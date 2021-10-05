@@ -51,5 +51,4 @@ public abstract class InputParser {
     public static String[] getCommandComponents(String commandInput) {
         return commandInput.trim().split(SEPARATOR);
     }
-
 }
