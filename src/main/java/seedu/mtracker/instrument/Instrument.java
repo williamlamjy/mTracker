@@ -4,7 +4,8 @@ public abstract class Instrument {
     protected String name;
     protected double currentPrice;
     protected String sentiment;
-    public Instrument(String name, double currentPrice, String sentiment){
+
+    public Instrument(String name, double currentPrice, String sentiment) {
         this.name = name;
         this.currentPrice = currentPrice;
         this.sentiment = sentiment;
