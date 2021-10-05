@@ -19,7 +19,7 @@ public class InstrumentManager {
     }
 
     public ArrayList<Instrument> getInstruments() {
-        return this.instruments;
+        return instruments;
     }
 
     public void addInstrument(Instrument addedInstrument) {
