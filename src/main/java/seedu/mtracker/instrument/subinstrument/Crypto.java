@@ -3,30 +3,26 @@ package seedu.mtracker.instrument.subinstrument;
 import seedu.mtracker.instrument.Instrument;
 
 public class Crypto extends Instrument {
-    protected double enterPrice;
-    protected double exitPrice;
+    protected String expiry;
+    protected String remarks;
     protected static final char INSTRUMENT_ICON = 'C';
 
-    public Crypto(String description, double currentPrice, String sentiment, double enterPrice, double exitPrice){
-        super(description, currentPrice, sentiment);
-        this.enterPrice = enterPrice;
-        this.exitPrice = exitPrice;
+    public Crypto(String name, double currentPrice, String sentiment, String expiry, String remarks) {
+        super(name, currentPrice, sentiment);
+        this.expiry = expiry;
+        this.remarks = remarks;
     }
 
-    public double getEnterPrice() {
-        return enterPrice;
+    public String getExpiry() {
+        return expiry;
     }
 
-    public double getExitPrice() {
-        return exitPrice;
-    }
-
-    public double getCurrentPrice() {
-        return super.getCurrentPrice();
+    public String getRemarks() {
+        return remarks;
     }
 
     @Override
-    public String toString(){
-        return "[" + INSTRUMENT_ICON + "]" + getDescription();
+    public String toString() {
+        return "[" + INSTRUMENT_ICON + "]" + getName();
     }
 }

@@ -7,9 +7,10 @@ public abstract class Command {
     protected InstrumentManager instrumentManager;
     protected TextUi textUi;
 
-    public Command(){
+    public Command() {
     }
-    public void setData(){
+
+    public void setData() {
         this.textUi = textUi;
         this.instrumentManager = instrumentManager;
     }

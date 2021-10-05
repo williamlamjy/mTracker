@@ -1,21 +1,25 @@
 package seedu.mtracker.instrument;
 
 public abstract class Instrument {
-    protected String description;
+    protected String name;
     protected double currentPrice;
     protected String sentiment;
-    public Instrument(String description, double currentPrice, String sentiment){
-        this.description = description;
+    public Instrument(String name, double currentPrice, String sentiment){
+        this.name = name;
         this.currentPrice = currentPrice;
         this.sentiment = sentiment;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
     public double getCurrentPrice() {
         return currentPrice;
+    }
+
+    public String getSentiment() {
+        return sentiment;
     }
 
     public abstract String toString();
