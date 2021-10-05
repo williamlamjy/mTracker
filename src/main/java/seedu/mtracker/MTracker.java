@@ -1,8 +1,12 @@
 package seedu.mtracker;
 
+import seedu.mtracker.instrument.InstrumentManager;
+
 import java.util.Scanner;
 
 public class MTracker {
+    InstrumentManager instrumentManager = InstrumentManager.getInstance();
+
     /**
      * Main entry-point for the java.duke.Duke application.
      */
@@ -16,6 +20,7 @@ public class MTracker {
         System.out.println("What is your name?");
 
         Scanner in = new Scanner(System.in);
+        //command.setData(instrumentManager, ui); uncomment after initialising ui and command
         System.out.println("Hello " + in.nextLine());
     }
 }
