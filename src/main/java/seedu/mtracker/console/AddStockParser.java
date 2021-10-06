@@ -8,21 +8,21 @@ public class AddStockParser extends AddInstrumentParser {
 
     public static String STOCK_TYPE = "stock";
 
-    public static String getStockRemarksFromUser() {
+    public String getStockRemarksFromUser() {
         TextUi.displayAddRemarksInstruction();
         return getUserInput();
     }
 
-    public static void addStockRemarksToParameters() {
+    public void addStockRemarksToParameters() {
         String remarks = getStockRemarksFromUser();
         parameters.add(remarks);
     }
 
-    public static void getStockSpecificParameters() {
+    public void getStockSpecificParameters() {
         addStockRemarksToParameters();
     }
 
-    public static Command getStockParameters() {
+    public Command getStockParameters() {
         getGeneralParameters(STOCK_TYPE);
         getStockSpecificParameters();
 
