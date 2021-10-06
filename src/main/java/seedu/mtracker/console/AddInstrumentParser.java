@@ -11,23 +11,36 @@ import java.util.ArrayList;
 public abstract class AddInstrumentParser extends InputParser {
 
     public static final int INSTRUMENT_COMMAND_INDEX = 0;
-    public static final ArrayList<String> parameters = new ArrayList<>();
+
+    protected static final ArrayList<String> parameters = new ArrayList<>();
 
     public static String getInstrumentNameFromUser(String instrumentType) {
         TextUi.displayAddInstrumentNameInstruction(instrumentType);
         return getUserInput();
     }
 
+    public static boolean isValidName(String name, String instrumentType) {
+        boolean isValid = true;
+        try {
+            if (name.isEmpty()) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            ErrorMessage.displayAddInstrumentNameError(instrumentType);
+            isValid = false;
+        }
+        return isValid;
+    }
+
     public static void addNameToParameters(String instrumentType) {
         String name = getInstrumentNameFromUser(instrumentType);
-        while (name.equals(EMPTY_STRING)) {
-            ErrorMessage.displayAddInstrumentNameError(instrumentType);
+        while (!isValidName(name, instrumentType)) {
             name = getInstrumentNameFromUser(instrumentType);
         }
         parameters.add(name);
     }
 
-    public static String getInstrumentCurrentPriceFromUser() {
+    public static String getCurrentPriceFromUser() {
         TextUi.displayAddInstrumentCurrentPriceInstruction();
         return getUserInput();
     }
@@ -44,9 +57,9 @@ public abstract class AddInstrumentParser extends InputParser {
     }
 
     public static void addCurrentPriceToParameters() {
-        String currentPrice = getInstrumentCurrentPriceFromUser();
+        String currentPrice = getCurrentPriceFromUser();
         while (!isValidPrice(currentPrice)) {
-            currentPrice = getInstrumentCurrentPriceFromUser();
+            currentPrice = getCurrentPriceFromUser();
         }
         parameters.add(currentPrice);
     }

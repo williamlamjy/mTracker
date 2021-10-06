@@ -2,7 +2,7 @@ package seedu.mtracker.ui;
 
 public class TextUi {
 
-    public static void displayAddInstrumentInstructionOne() {
+    public static void displayAddInstrumentFirstInstruction() {
         System.out.println("Please key in the type of instrument: ");
     }
 

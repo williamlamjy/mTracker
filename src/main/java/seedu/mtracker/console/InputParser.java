@@ -11,7 +11,6 @@ import java.util.Scanner;
 public abstract class InputParser {
 
     public static final String SEPARATOR = " ";
-    public static final String EMPTY_STRING = "";
 
     public static final String POSITIVE_SENTIMENT = "positive";
     public static final String NEUTRAL_SENTIMENT = "neutral";
@@ -22,11 +21,11 @@ public abstract class InputParser {
     protected static Scanner inputScanner = new Scanner(System.in);
 
     public static String getUserInput() {
-        return inputScanner.nextLine();
+        return inputScanner.nextLine().trim();
     }
 
     public static Command getAddInstrumentParameters() {
-        TextUi.displayAddInstrumentInstructionOne();
+        TextUi.displayAddInstrumentFirstInstruction();
         String addInstrumentType = getUserInput();
         return AddInstrumentParser.filterByInstrumentType(getCommandComponents(addInstrumentType));
     }
