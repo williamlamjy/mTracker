@@ -1,5 +1,6 @@
 package seedu.mtracker.console;
 
+import seedu.mtracker.commands.AddHelpCommand;
 import seedu.mtracker.commands.AddStockCommand;
 import seedu.mtracker.commands.Command;
 import seedu.mtracker.commands.ExitCommand;
@@ -13,6 +14,10 @@ public abstract class AddInstrumentParser extends InputParser {
     public static final int INSTRUMENT_COMMAND_INDEX = 0;
 
     protected static final ArrayList<String> parameters = new ArrayList<>();
+
+    public ArrayList<String> getParameters() {
+        return parameters;
+    }
 
     public static String getInstrumentNameFromUser(String instrumentType) {
         TextUi.displayAddInstrumentNameInstruction(instrumentType);
@@ -95,19 +100,23 @@ public abstract class AddInstrumentParser extends InputParser {
         addSentimentToParameters();
     }
 
+    public abstract Command getInstrumentParameters();
+
     // Todo: Create a new command to handle an unrecognised instrument type in default branch,
     // Todo: add other instrument cases. Update the command class to allow setting of parameters as its attribute
     public static Command filterByInstrumentType(String[] commandComponents) {
         Command command;
+        AddInstrumentParser addInstrumentParser;
         switch (commandComponents[INSTRUMENT_COMMAND_INDEX]) {
         case AddStockCommand.COMMAND_WORD:
-            AddStockParser addStockParser = new AddStockParser();
-            command = addStockParser.getStockParameters();
+            addInstrumentParser = new AddStockParser();
             break;
         default:
-            command = new ExitCommand();
+            addInstrumentParser = new AddInvalidInstrumentParser();
             break;
         }
+        command = addInstrumentParser.getInstrumentParameters();
+        command.setParams(addInstrumentParser.getParameters());
 
         return command;
     }

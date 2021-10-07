@@ -22,7 +22,8 @@ public class AddStockParser extends AddInstrumentParser {
         addStockRemarksToParameters();
     }
 
-    public Command getStockParameters() {
+    @Override
+    public Command getInstrumentParameters() {
         getGeneralParameters(STOCK_TYPE);
         getStockSpecificParameters();
 
