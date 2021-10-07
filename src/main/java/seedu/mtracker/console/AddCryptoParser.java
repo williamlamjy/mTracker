@@ -13,12 +13,12 @@ public class AddCryptoParser extends AddInstrumentParser {
         return getUserInput();
     }
 
-    public String getCryptoExpiryFromUser(){
+    public String getCryptoExpiryFromUser() {
         TextUi.displayAddExpiryInstruction();
         return getUserInput();
     }
 
-    public void addCryptoExpiryToParameters(){
+    public void addCryptoExpiryToParameters() {
         String expiry = getCryptoExpiryFromUser();
         parameters.add(expiry);
     }
