@@ -3,6 +3,7 @@ package seedu.mtracker.console;
 import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commands.AddStockCommand;
 import seedu.mtracker.error.ErrorMessage;
+import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.ui.TextUi;
 
 import java.util.ArrayList;
@@ -100,7 +101,8 @@ public abstract class AddInstrumentParser extends InputParser {
 
     public abstract AddInstrumentCommand getInstrumentParameters();
 
-    public static AddInstrumentCommand filterByInstrumentType(String[] commandComponents) {
+    public static AddInstrumentCommand filterByInstrumentType(String[] commandComponents)
+            throws InvalidInstrumentError {
         AddInstrumentCommand command;
         AddInstrumentParser addInstrumentParser;
         switch (commandComponents[INSTRUMENT_COMMAND_INDEX]) {
@@ -108,8 +110,7 @@ public abstract class AddInstrumentParser extends InputParser {
             addInstrumentParser = new AddStockParser();
             break;
         default:
-            addInstrumentParser = new AddInvalidInstrumentParser();
-            break;
+            throw new InvalidInstrumentError();
         }
         command = addInstrumentParser.getInstrumentParameters();
         command.setParams(addInstrumentParser.getParameters());
