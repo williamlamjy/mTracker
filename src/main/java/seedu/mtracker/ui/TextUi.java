@@ -31,4 +31,8 @@ public class TextUi {
     public static void displayAddRemarksInstruction() {
         System.out.println("Remarks (optional): ");
     }
+
+    public static void displayAddExpiryInstruction(){
+        System.out.println("Expiry: ");
+    }
 }
