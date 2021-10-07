@@ -46,8 +46,7 @@ class AddInstrumentParserTest {
     @Test
     void addSentiment_validSentiment_expectSuccess() {
         Arrays.stream(validSentiments)
-                .forEach((sentiment) -> assertTrue(AddInstrumentParser.isValidSentiment(sentiment))
-        );
+                .forEach((sentiment) -> assertTrue(AddInstrumentParser.isValidSentiment(sentiment)));
     }
 
     @Test
