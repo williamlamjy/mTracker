@@ -1,10 +1,7 @@
 package seedu.mtracker.console;
 
-import seedu.mtracker.commands.AddHelpCommand;
 import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commands.AddStockCommand;
-import seedu.mtracker.commands.Command;
-import seedu.mtracker.commands.ExitCommand;
 import seedu.mtracker.error.ErrorMessage;
 import seedu.mtracker.ui.TextUi;
 
@@ -103,8 +100,6 @@ public abstract class AddInstrumentParser extends InputParser {
 
     public abstract AddInstrumentCommand getInstrumentParameters();
 
-    // Todo: Create a new command to handle an unrecognised instrument type in default branch,
-    // Todo: add other instrument cases. Update the command class to allow setting of parameters as its attribute
     public static AddInstrumentCommand filterByInstrumentType(String[] commandComponents) {
         AddInstrumentCommand command;
         AddInstrumentParser addInstrumentParser;
