@@ -1,6 +1,7 @@
 package seedu.mtracker.commands;
 
 import seedu.mtracker.instrument.subinstrument.Stock;
+import seedu.mtracker.ui.TextUi;
 
 public class AddStockCommand extends AddInstrumentCommand {
 
@@ -13,12 +14,17 @@ public class AddStockCommand extends AddInstrumentCommand {
         remarkParameter = inputParameters.get(REMARK_INDEX);
     }
 
+    public void createNewStock() {
+        newInstrument = new Stock(nameParameter, currentPriceParameter, sentimentParameter, remarkParameter);
+    }
+
     @Override
     public String execute() {
         setAddGeneralParameters();
         setStockParameters();
-        Stock newStock = new Stock(nameParameter, currentPriceParameter, sentimentParameter, remarkParameter);
-        instrumentManager.addInstrument(newStock);
+        createNewStock();
+        instrumentManager.addInstrument(newInstrument);
+        TextUi.displayInstrumentAdded(newInstrument);
         return COMMAND_WORD;
     }
 }

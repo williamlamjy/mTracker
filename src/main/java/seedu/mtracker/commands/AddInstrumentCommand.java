@@ -1,5 +1,7 @@
 package seedu.mtracker.commands;
 
+import seedu.mtracker.instrument.Instrument;
+
 public class AddInstrumentCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
@@ -10,6 +12,7 @@ public class AddInstrumentCommand extends Command {
     protected String nameParameter;
     protected Double currentPriceParameter;
     protected String sentimentParameter;
+    protected Instrument newInstrument;
 
     public void setAddGeneralParameters() {
         nameParameter = inputParameters.get(NAME_INDEX);
