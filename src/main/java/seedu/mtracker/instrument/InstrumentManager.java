@@ -25,5 +25,4 @@ public class InstrumentManager {
     public void addInstrument(Instrument addedInstrument) {
         instruments.add(addedInstrument);
     }
-
 }

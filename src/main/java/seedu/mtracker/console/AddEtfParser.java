@@ -1,12 +1,12 @@
 package seedu.mtracker.console;
 
 import seedu.mtracker.commands.AddEtfCommand;
-import seedu.mtracker.commands.Command;
+import seedu.mtracker.commands.AddInstrumentCommand;
 
 public class AddEtfParser extends AddInstrumentParser {
 
     @Override
-    public Command getInstrumentParameters() {
+    public AddInstrumentCommand getInstrumentParameters() {
         return new AddEtfCommand();
     }
 }

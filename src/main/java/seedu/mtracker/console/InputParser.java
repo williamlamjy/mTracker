@@ -24,7 +24,7 @@ public abstract class InputParser {
         return inputScanner.nextLine().trim();
     }
 
-    public static Command getAddInstrumentParameters() {
+    public static AddInstrumentCommand getAddInstrumentParameters() {
         TextUi.displayAddInstrumentFirstInstruction();
         String addInstrumentType = getUserInput();
         return AddInstrumentParser.filterByInstrumentType(getCommandComponents(addInstrumentType));

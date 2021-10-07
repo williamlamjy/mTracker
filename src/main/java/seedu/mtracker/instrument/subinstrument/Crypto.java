@@ -5,13 +5,13 @@ import seedu.mtracker.instrument.Instrument;
 public class Crypto extends Instrument {
 
     protected String expiry;
-    protected String remarks;
+    protected String remark;
     protected static final char INSTRUMENT_ICON = 'C';
 
-    public Crypto(String name, double currentPrice, String sentiment, String expiry, String remarks) {
+    public Crypto(String name, double currentPrice, String sentiment, String expiry, String remark) {
         super(name, currentPrice, sentiment);
         this.expiry = expiry;
-        this.remarks = remarks;
+        this.remark = remark;
     }
 
     public String getExpiry() {
@@ -19,7 +19,7 @@ public class Crypto extends Instrument {
     }
 
     public String getRemarks() {
-        return remarks;
+        return remark;
     }
 
     @Override

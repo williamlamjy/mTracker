@@ -1,11 +1,11 @@
 package seedu.mtracker.console;
 
 import seedu.mtracker.commands.AddHelpCommand;
-import seedu.mtracker.commands.Command;
+import seedu.mtracker.commands.AddInstrumentCommand;
 
 public class AddInvalidInstrumentParser extends AddInstrumentParser {
     @Override
-    public Command getInstrumentParameters() {
+    public AddInstrumentCommand getInstrumentParameters() {
         return new AddHelpCommand();
     }
 }

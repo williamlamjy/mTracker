@@ -4,8 +4,11 @@ import seedu.mtracker.instrument.Instrument;
 
 public class Stock extends Instrument {
 
-    public Stock(String name, double currentPrice, String sentiment) {
+    protected String remark;
+
+    public Stock(String name, double currentPrice, String sentiment, String remark) {
         super(name, currentPrice, sentiment);
+        this.remark = remark;
     }
 
     @Override
