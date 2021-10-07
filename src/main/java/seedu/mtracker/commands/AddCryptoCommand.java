@@ -18,7 +18,8 @@ public class AddCryptoCommand extends AddInstrumentCommand {
     }
 
     public void createNewCrypto() {
-        newInstrument = new Crypto(nameParameter, currentPriceParameter, sentimentParameter, expiryParameter, remarkParameter);
+        newInstrument = new Crypto(nameParameter, currentPriceParameter,
+                sentimentParameter, expiryParameter, remarkParameter);
     }
 
     @Override
