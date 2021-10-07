@@ -1,6 +1,16 @@
 package seedu.mtracker.ui;
 
+import seedu.mtracker.instrument.Instrument;
+
 public class TextUi {
+
+    public static String createBoxDisplay(String icon) {
+        return "[" + icon + "]";
+    }
+
+    public static void displayInstrumentAdded(Instrument newInstrument) {
+        System.out.println(newInstrument);
+    }
 
     public static void displayAddInstrumentFirstInstruction() {
         System.out.println("Please key in the type of instrument: ");

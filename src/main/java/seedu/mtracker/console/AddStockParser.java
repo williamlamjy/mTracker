@@ -1,7 +1,7 @@
 package seedu.mtracker.console;
 
+import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commands.AddStockCommand;
-import seedu.mtracker.commands.Command;
 import seedu.mtracker.ui.TextUi;
 
 public class AddStockParser extends AddInstrumentParser {
@@ -22,7 +22,8 @@ public class AddStockParser extends AddInstrumentParser {
         addStockRemarksToParameters();
     }
 
-    public Command getStockParameters() {
+    @Override
+    public AddInstrumentCommand getInstrumentParameters() {
         getGeneralParameters(STOCK_TYPE);
         getStockSpecificParameters();
 

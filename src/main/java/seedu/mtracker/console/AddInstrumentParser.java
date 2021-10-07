@@ -1,9 +1,9 @@
 package seedu.mtracker.console;
 
+import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commands.AddStockCommand;
-import seedu.mtracker.commands.Command;
-import seedu.mtracker.commands.ExitCommand;
 import seedu.mtracker.error.ErrorMessage;
+import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.ui.TextUi;
 
 import java.util.ArrayList;
@@ -13,6 +13,10 @@ public abstract class AddInstrumentParser extends InputParser {
     public static final int INSTRUMENT_COMMAND_INDEX = 0;
 
     protected static final ArrayList<String> parameters = new ArrayList<>();
+
+    public ArrayList<String> getParameters() {
+        return parameters;
+    }
 
     public static String getInstrumentNameFromUser(String instrumentType) {
         TextUi.displayAddInstrumentNameInstruction(instrumentType);
@@ -95,19 +99,21 @@ public abstract class AddInstrumentParser extends InputParser {
         addSentimentToParameters();
     }
 
-    // Todo: Create a new command to handle an unrecognised instrument type in default branch,
-    // Todo: add other instrument cases. Update the command class to allow setting of parameters as its attribute
-    public static Command filterByInstrumentType(String[] commandComponents) {
-        Command command;
+    public abstract AddInstrumentCommand getInstrumentParameters();
+
+    public static AddInstrumentCommand filterByInstrumentType(String[] commandComponents)
+            throws InvalidInstrumentError {
+        AddInstrumentCommand command;
+        AddInstrumentParser addInstrumentParser;
         switch (commandComponents[INSTRUMENT_COMMAND_INDEX]) {
         case AddStockCommand.COMMAND_WORD:
-            AddStockParser addStockParser = new AddStockParser();
-            command = addStockParser.getStockParameters();
+            addInstrumentParser = new AddStockParser();
             break;
         default:
-            command = new ExitCommand();
-            break;
+            throw new InvalidInstrumentError();
         }
+        command = addInstrumentParser.getInstrumentParameters();
+        command.setParams(addInstrumentParser.getParameters());
 
         return command;
     }

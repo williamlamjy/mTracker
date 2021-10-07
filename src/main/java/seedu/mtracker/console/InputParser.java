@@ -4,6 +4,8 @@ import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commands.Command;
 import seedu.mtracker.commands.ExitCommand;
 import seedu.mtracker.commands.ListCommand;
+import seedu.mtracker.error.ErrorMessage;
+import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.ui.TextUi;
 
 import java.util.Scanner;
@@ -24,14 +26,14 @@ public abstract class InputParser {
         return inputScanner.nextLine().trim();
     }
 
-    public static Command getAddInstrumentParameters() {
+    public static AddInstrumentCommand getAddInstrumentParameters() throws InvalidInstrumentError {
         TextUi.displayAddInstrumentFirstInstruction();
         String addInstrumentType = getUserInput();
         return AddInstrumentParser.filterByInstrumentType(getCommandComponents(addInstrumentType));
     }
 
     // Todo: Create a new command type to handle and unrecognised command type in default branch
-    public static Command filterByCommandType(String[] commandComponents) {
+    public static Command filterByCommandType(String[] commandComponents) throws Exception {
         Command command;
         switch (commandComponents[MAIN_COMMAND_INDEX]) {
         case ListCommand.COMMAND_WORD:
