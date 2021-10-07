@@ -5,7 +5,8 @@ import seedu.mtracker.instrument.InstrumentManager;
 import java.util.Scanner;
 
 public class MTracker {
-    InstrumentManager instrumentManager = InstrumentManager.getInstance();
+
+    private InstrumentManager instrumentManager = InstrumentManager.getInstance();
 
     /**
      * Main entry-point for the java.duke.Duke application.

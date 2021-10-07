@@ -3,6 +3,7 @@ package seedu.mtracker.instrument;
 import java.util.ArrayList;
 
 public class InstrumentManager {
+
     private static InstrumentManager instrumentManager;
     private final ArrayList<Instrument> instruments;
 
@@ -18,7 +19,7 @@ public class InstrumentManager {
     }
 
     public ArrayList<Instrument> getInstruments() {
-        return this.instruments;
+        return instruments;
     }
 
     public void addInstrument(Instrument addedInstrument) {

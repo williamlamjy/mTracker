@@ -1,6 +1,7 @@
 package seedu.mtracker.instrument;
 
 public abstract class Instrument {
+
     protected String name;
     protected double currentPrice;
     protected String sentiment;

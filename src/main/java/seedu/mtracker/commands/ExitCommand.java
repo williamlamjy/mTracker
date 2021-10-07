@@ -1,8 +1,8 @@
 package seedu.mtracker.commands;
 
-public class AddStockCommand extends AddInstrumentCommand {
+public class ExitCommand extends Command {
 
-    public static final String COMMAND_WORD = "stock";
+    public static final String COMMAND_WORD = "bye";
 
     @Override
     public String execute() {

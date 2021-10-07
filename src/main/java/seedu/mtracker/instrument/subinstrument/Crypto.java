@@ -3,6 +3,7 @@ package seedu.mtracker.instrument.subinstrument;
 import seedu.mtracker.instrument.Instrument;
 
 public class Crypto extends Instrument {
+
     protected String expiry;
     protected String remarks;
     protected static final char INSTRUMENT_ICON = 'C';
