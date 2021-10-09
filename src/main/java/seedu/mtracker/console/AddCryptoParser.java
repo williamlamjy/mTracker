@@ -21,14 +21,14 @@ public class AddCryptoParser extends AddInstrumentParser {
 
     public void addCryptoExpiryToParameters() {
         String expiry = getCryptoExpiryFromUser();
-        if(isValidSpecificParameter(expiry)){
+        if (isValidSpecificParameter(expiry)) {
             parameters.add(expiry);
         }
     }
 
     public void addCryptoRemarksToParameters() {
         String remarks = getCryptoRemarksFromUser();
-        if(isValidSpecificParameter(remarks)){
+        if (isValidSpecificParameter(remarks)) {
             parameters.add(remarks);
         }
     }

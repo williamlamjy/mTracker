@@ -2,8 +2,8 @@ package seedu.mtracker.console;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AddCryptoParserTest {
     public static String emptyInput = "";
@@ -16,7 +16,7 @@ class AddCryptoParserTest {
     }
 
     @Test
-    void addCryptoExpiry_emptyInput_expectFailure(){
+    void addCryptoExpiry_emptyInput_expectFailure() {
         assertFalse(AddCryptoParser.isValidSpecificParameter(emptyInput));
     }
 
@@ -26,7 +26,7 @@ class AddCryptoParserTest {
     }
 
     @Test
-    void addCryptoRemarks_emptyInput_expectFailure(){
+    void addCryptoRemarks_emptyInput_expectFailure() {
         assertFalse(AddCryptoParser.isValidSpecificParameter(emptyInput));
     }
 
