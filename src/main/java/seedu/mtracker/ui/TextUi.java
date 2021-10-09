@@ -51,8 +51,8 @@ public class TextUi {
     public static void greetAtStartUp() {
         System.out.println(lineDecorator);
         System.out.println(logo);
-        System.out.println("Hello! I am mTracker, your personal assistant bot that \n" +
-                "helps you keep track of the markets.\nWhat should I do for you now? ☺");
+        System.out.println("Hello! I am mTracker, your personal assistant bot that \n"
+                + "helps you keep track of the markets.\nWhat should I do for you now? ☺");
         System.out.println(lineDecorator);
         System.out.println(System.lineSeparator());
     }
