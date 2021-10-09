@@ -3,6 +3,14 @@ package seedu.mtracker.ui;
 import seedu.mtracker.instrument.Instrument;
 
 public class TextUi {
+    protected static String lineDecorator = "_".repeat(80);
+    private static String logo = "            _________                      __\n"
+            + "           |  _   _  |                    [  |  _\n"
+            + " _ .--..--.|_/ | | \\_| .--.  ,--.   .---.  | | / ] .---.  _ .--.\n"
+            + "[ `.-. .-. |   | |  [ `/'`\\]`'_\\ : / /'`\\] | '' < / /__\\\\[ `/'`\\]\n"
+            + " | | | | | |  _| |_  | |    /| | |,| \\__.  | |`\\ \\| \\__., | |\n"
+            + "[___||__||__]|_____|[___]   \\'-;__/'.___.'[__|  \\_]'.__.'[___]\n";
+
 
     public static String createBoxDisplay(String icon) {
         return "[" + icon + "]";
@@ -38,6 +46,15 @@ public class TextUi {
 
     public void showErrorMessage(Exception e) {
         System.out.println(e.getMessage());
+    }
+
+    public static void greetAtStartUp() {
+        System.out.println(lineDecorator);
+        System.out.println(logo);
+        System.out.println("Hello! I am mTracker, your personal assistant bot that\n"
+                + "helps you keep track of the markets.\nWhat should I do for you now? ☺");
+        System.out.println(lineDecorator);
+        System.out.println(System.lineSeparator());
     }
 
 }
