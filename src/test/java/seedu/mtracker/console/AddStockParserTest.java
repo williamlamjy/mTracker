@@ -60,19 +60,16 @@ class AddStockParserTest {
 
     @Test
     void addStockParams_tryInvalidNameMultipleTimes_expectSuccess() {
-        testStockParameters(USER_INPUT_TRY_INVALID_NAME,
-                EXPECTED_PARAMS_NO_REMARKS);
+        testStockParameters(USER_INPUT_TRY_INVALID_NAME, EXPECTED_PARAMS_NO_REMARKS);
     }
 
     @Test
     void addStockParams_tryInvalidPriceMultipleTimes_expectSuccess() {
-        testStockParameters(USER_INPUT_TRY_INVALID_PRICE,
-                EXPECTED_PARAMS_WITH_REMARKS);
+        testStockParameters(USER_INPUT_TRY_INVALID_PRICE, EXPECTED_PARAMS_WITH_REMARKS);
     }
 
     @Test
     void addStockParams_tryInvalidSentimentMultipleTimes_expectSuccess() {
-        testStockParameters(USER_INPUT_TRY_INVALID_SENTIMENT,
-                EXPECTED_PARAMS_WITH_REMARKS);
+        testStockParameters(USER_INPUT_TRY_INVALID_SENTIMENT, EXPECTED_PARAMS_WITH_REMARKS);
     }
 }
