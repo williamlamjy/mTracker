@@ -44,6 +44,14 @@ public class TextUi {
         System.out.println("Expiry: ");
     }
 
+    public static void displayAddEntryPriceInstruction() {
+        System.out.println("Entry price: ");
+    }
+
+    public static void displayAddExitPriceInstruction() {
+        System.out.println("Exit price: ");
+    }
+
     public void showErrorMessage(Exception e) {
         System.out.println(e.getMessage());
     }
