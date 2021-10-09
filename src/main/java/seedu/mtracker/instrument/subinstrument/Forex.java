@@ -19,7 +19,7 @@ public class Forex extends Instrument {
             double exitPrice,
             String deadline,
             String remark
-        ) {
+    ) {
         super(name, currentPrice, sentiment);
         this.entry = entryPrice;
         this.exit = exitPrice;
