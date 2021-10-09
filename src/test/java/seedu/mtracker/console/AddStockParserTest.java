@@ -10,7 +10,6 @@ class AddStockParserTest {
 
     public static final int PARAMETER_SIZE = 4;
 
-
     public static String USER_INPUT_NO_REMARKS = "TestName%1$s23.4%1$spositive%1$s ";
     public static String[] EXPECTED_PARAMS_NO_REMARKS = { "TestName", "23.4", "positive", "" };
 
@@ -42,7 +41,7 @@ class AddStockParserTest {
     void testStockParameters(String input, String[] expectedParameters) {
         simulateConsoleInput(input);
         AddStockParser testStockParser = new AddStockParser();
-        testStockParser.setParameter();
+        testStockParser.initParameters();
         testStockParser.getInstrumentParameters();
         checkParameters(testStockParser, expectedParameters);
 

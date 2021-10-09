@@ -15,12 +15,12 @@ public abstract class AddInstrumentParser extends InputParser {
 
     protected static ArrayList<String> parameters;
 
-    public ArrayList<String> getParameters() {
-        return parameters;
+    public void initParameters() {
+        parameters = new ArrayList<>();
     }
 
-    public void setParameter() {
-        parameters = new ArrayList<>();
+    public ArrayList<String> getParameters() {
+        return parameters;
     }
 
     public static String getInstrumentNameFromUser(String instrumentType) {
@@ -120,7 +120,7 @@ public abstract class AddInstrumentParser extends InputParser {
         default:
             throw new InvalidInstrumentError();
         }
-        addInstrumentParser.setParameter();
+        addInstrumentParser.initParameters();
         command = addInstrumentParser.getInstrumentParameters();
         command.setParams(addInstrumentParser.getParameters());
 
