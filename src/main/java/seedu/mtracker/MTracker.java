@@ -12,7 +12,6 @@ import java.util.Arrays;
 public class MTracker {
 
     private InstrumentManager instrumentManager;
-    private static final String[] COMPONENT_FOR_EXIT = { ExitCommand.COMMAND_WORD };
 
     public MTracker() {
         instrumentManager = InstrumentManager.getInstance();
@@ -30,6 +29,7 @@ public class MTracker {
             commandComponents = InputParser.getCommandComponents(userInput);
             try {
                 command = InputParser.filterByCommandType(commandComponents);
+                command.setData(instrumentManager);
                 command.execute();
             } catch (Exception e) {
                 TextUi.showErrorMessage(e);
@@ -42,7 +42,6 @@ public class MTracker {
      */
     public static void main(String[] args) {
         new MTracker().run();
-        //command.setData(instrumentManager, ui); uncomment after initialising ui and command
     }
 
 }
