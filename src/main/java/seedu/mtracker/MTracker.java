@@ -19,7 +19,7 @@ public class MTracker {
     public void run() {
         TextUi.greetAtStartUp();
         String userInput = InputParser.getUserInput();
-        String[] components = InputParser.getCommandComponents(userInput);
+        String[] commandComponents = InputParser.getCommandComponents(userInput);
         try {
             Command c = InputParser.filterByCommandType(components);
             c.execute();
