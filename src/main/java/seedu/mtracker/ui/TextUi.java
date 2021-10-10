@@ -59,6 +59,10 @@ public class TextUi {
         System.out.println("Exit price: ");
     }
 
+    public static void displayAddPastReturnsInstruction() {
+        System.out.println("Past Returns: ");
+    }
+
     public static void showErrorMessage(Exception e) {
         System.out.println(e.getMessage());
     }

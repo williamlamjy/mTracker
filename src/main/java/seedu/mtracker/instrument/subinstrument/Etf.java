@@ -9,7 +9,7 @@ public class Etf extends Instrument {
     protected double pastReturns;
     protected static final String ETF_ICON = "E";
 
-    public Etf(String name, double currentPrice, double pastReturns, String sentiment, String remark) {
+    public Etf(String name, double currentPrice, String sentiment, double pastReturns, String remark) {
         super(name, currentPrice, sentiment);
         this.pastReturns = pastReturns;
         this.remark = remark;
