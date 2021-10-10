@@ -10,3 +10,14 @@ Hello! I am mTracker, your personal assistant bot that
 helps you keep track of the markets.
 What should I do for you now? ☺
 ________________________________________________________________________________
+mTracker$> Oops, I do not understand you...
+mTracker$>  ______            _______  _
+(  ___ \ |\     /|(  ____ \( )
+| (   ) )( \   / )| (    \/| |
+| (__/ /  \ (_) / | (__    | |
+|  __ (    \   /  |  __)   | |
+| (  \ \    ) (   | (      (_)
+| )___) )   | |   | (____/| _
+|/ \___/    \_/   (_______/(_)
+Thank you for using mTracker.
+☻ MAY THE MARKETS BE WITH YOU!!! ᕦ(ò_óˇ)ᕤ
