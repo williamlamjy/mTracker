@@ -1,6 +1,7 @@
 package seedu.mtracker.console;
 
 import seedu.mtracker.commands.AddCryptoCommand;
+import seedu.mtracker.commands.AddForexCommand;
 import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commands.AddStockCommand;
 import seedu.mtracker.error.ErrorMessage;
@@ -116,6 +117,9 @@ public abstract class AddInstrumentParser extends InputParser {
             break;
         case AddCryptoCommand.COMMAND_WORD:
             addInstrumentParser = new AddCryptoParser();
+            break;
+        case AddForexCommand.COMMAND_WORD:
+            addInstrumentParser = new AddForexParser();
             break;
         default:
             throw new InvalidInstrumentError();
