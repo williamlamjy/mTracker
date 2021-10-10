@@ -10,9 +10,11 @@ import seedu.mtracker.ui.TextUi;
 public class MTracker {
 
     private InstrumentManager instrumentManager;
+    private InputParser parser;
 
     public MTracker() {
         instrumentManager = InstrumentManager.getInstance();
+        parser = new InputParser();
     }
 
     public void run() {
@@ -21,10 +23,10 @@ public class MTracker {
         String[] commandComponents;
 
         do {
-            userInput = InputParser.getUserInput();
-            commandComponents = InputParser.getCommandComponents(userInput);
+            userInput = parser.getUserInput();
+            commandComponents = parser.getCommandComponents(userInput);
             try {
-                command = InputParser.filterByCommandType(commandComponents);
+                command = parser.filterByCommandType(commandComponents);
                 command.setData(instrumentManager);
                 command.execute();
             } catch (Exception e) {

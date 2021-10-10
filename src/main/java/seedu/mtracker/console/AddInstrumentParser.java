@@ -14,7 +14,11 @@ public abstract class AddInstrumentParser extends InputParser {
 
     public static final int INSTRUMENT_COMMAND_INDEX = 0;
 
-    protected static final ArrayList<String> parameters = new ArrayList<>();
+    protected static ArrayList<String> parameters;
+
+    public void initParameters() {
+        parameters = new ArrayList<>();
+    }
 
     public ArrayList<String> getParameters() {
         return parameters;
@@ -120,6 +124,7 @@ public abstract class AddInstrumentParser extends InputParser {
         default:
             throw new InvalidInstrumentError();
         }
+        addInstrumentParser.initParameters();
         command = addInstrumentParser.getInstrumentParameters();
         command.setParams(addInstrumentParser.getParameters());
 
