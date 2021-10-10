@@ -10,7 +10,14 @@ public class TextUi {
             + "[ `.-. .-. |   | |  [ `/'`\\]`'_\\ : / /'`\\] | '' < / /__\\\\[ `/'`\\]\n"
             + " | | | | | |  _| |_  | |    /| | |,| \\__.  | |`\\ \\| \\__., | |\n"
             + "[___||__||__]|_____|[___]   \\'-;__/'.___.'[__|  \\_]'.__.'[___]\n";
-
+    private static String byeLogo = " ______            _______  _\n"
+            + "(  ___ \\ |\\     /|(  ____ \\( )\n"
+            + "| (   ) )( \\   / )| (    \\/| |\n"
+            + "| (__/ /  \\ (_) / | (__    | |\n"
+            + "|  __ (    \\   /  |  __)   | |\n"
+            + "| (  \\ \\    ) (   | (      (_)\n"
+            + "| )___) )   | |   | (____/| _ \n"
+            + "|/ \\___/    \\_/   (_______/(_)";
 
     public static String createBoxDisplay(String icon) {
         return "[" + icon + "]";
@@ -46,6 +53,12 @@ public class TextUi {
 
     public void showErrorMessage(Exception e) {
         System.out.println(e.getMessage());
+    }
+
+    public static void displayExitMessage() {
+        System.out.println(byeLogo);
+        System.out.println("Thank you for using mTracker.\n"
+                + "☻ MAY THE MARKETS BE WITH YOU!!! ᕦ(ò_óˇ)ᕤ");
     }
 
     public static void greetAtStartUp() {

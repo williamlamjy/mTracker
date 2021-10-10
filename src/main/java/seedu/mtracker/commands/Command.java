@@ -1,5 +1,6 @@
 package seedu.mtracker.commands;
 
+import seedu.mtracker.error.InvalidCommandError;
 import seedu.mtracker.instrument.InstrumentManager;
 
 import java.util.ArrayList;
@@ -17,5 +18,5 @@ public abstract class Command {
         inputParameters = parameters;
     }
 
-    public abstract String execute();
+    public abstract String execute() throws InvalidCommandError;
 }

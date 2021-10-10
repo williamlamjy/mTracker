@@ -4,6 +4,7 @@ import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commands.Command;
 import seedu.mtracker.commands.ExitCommand;
 import seedu.mtracker.commands.ListCommand;
+import seedu.mtracker.commands.InvalidCommand;
 import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.ui.TextUi;
 
@@ -41,8 +42,11 @@ public abstract class InputParser {
         case AddInstrumentCommand.COMMAND_WORD:
             command = getAddInstrumentParameters();
             break;
-        default:
+        case ExitCommand.COMMAND_WORD:
             command = new ExitCommand();
+            break;
+        default:
+            command = new InvalidCommand();
             break;
         }
         return command;
