@@ -6,11 +6,9 @@ public class InvalidCommand extends Command {
     public static final String COMMAND_WORD = null;
 
     @Override
-    public String execute() throws InvalidCommandError {
-        throw new InvalidCommandError();
+    public String execute() {
+        return COMMAND_WORD;
     }
 
-    public InvalidCommand() {
 
-    }
 }

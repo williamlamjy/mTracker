@@ -1,6 +1,7 @@
 package seedu.mtracker;
 
 import seedu.mtracker.commands.Command;
+import seedu.mtracker.commands.InvalidCommand;
 import seedu.mtracker.console.InputParser;
 import seedu.mtracker.error.InvalidCommandError;
 import seedu.mtracker.instrument.InstrumentManager;
@@ -17,16 +18,15 @@ public class MTracker {
     }
 
     public void run() {
+        Command command;
         TextUi.greetAtStartUp();
         String userInput = InputParser.getUserInput();
-        String[] components = InputParser.getCommandComponents(userInput);
+        String[] commandComponents = InputParser.getCommandComponents(userInput);
         try {
-            Command c = InputParser.filterByCommandType(components);
-            c.execute();
-        } catch (InvalidCommandError e) {
-            System.out.println(e.getMessage());
+            command = InputParser.filterByCommandType(commandComponents);
+            command.execute();
         } catch (Exception e) {
-            e.printStackTrace();
+            TextUi.showErrorMessage(e);
         }
     }
 
