@@ -17,9 +17,9 @@ public class AddEtfCommand extends AddInstrumentCommand {
 
     public void setEtfParameters() {
         remarkParameter = inputParameters.get(REMARK_INDEX);
-        try{
+        try {
             pastReturnsParameter = Double.parseDouble(inputParameters.get(PAST_RETURNS_INDEX));
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             pastReturnsParameter = UNDEFINED_PAST_RETURN_VALUE;
         }
     }
