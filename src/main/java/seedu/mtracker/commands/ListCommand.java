@@ -18,7 +18,6 @@ public class ListCommand extends Command {
     public String execute() {
         System.out.println(instruments.size());
         for (Instrument i : instruments) {
-            System.out.println("test");
             System.out.println(i.toString() + i.getCurrentPrice());
         }
         return COMMAND_WORD;
