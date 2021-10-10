@@ -9,8 +9,8 @@ public abstract class Command {
     protected InstrumentManager instrumentManager;
     protected ArrayList<String> inputParameters;
 
-    public void setData() {
-        instrumentManager = InstrumentManager.getInstance();
+    public void setData(InstrumentManager instrumentManager) {
+        this.instrumentManager = instrumentManager;
     }
 
     public void setParams(ArrayList<String> parameters) {
