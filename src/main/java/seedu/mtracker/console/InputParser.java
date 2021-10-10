@@ -41,6 +41,9 @@ public abstract class InputParser {
         case AddInstrumentCommand.COMMAND_WORD:
             command = getAddInstrumentParameters();
             break;
+        case ExitCommand.COMMAND_WORD:
+            command = new ExitCommand();
+            break;
         default:
             command = new ExitCommand();
             break;
