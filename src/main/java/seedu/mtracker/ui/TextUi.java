@@ -17,7 +17,7 @@ public class TextUi {
             + "| (__/ /  \\ (_) / | (__    | |\n"
             + "|  __ (    \\   /  |  __)   | |\n"
             + "| (  \\ \\    ) (   | (      (_)\n"
-            + "| )___) )   | |   | (____/| _ \n"
+            + "| )___) )   | |   | (____/| _\n"
             + "|/ \\___/    \\_/   (_______/(_)";
 
     public static String createBoxDisplay(String icon) {
