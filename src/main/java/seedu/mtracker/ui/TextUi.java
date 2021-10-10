@@ -3,14 +3,21 @@ package seedu.mtracker.ui;
 import seedu.mtracker.instrument.Instrument;
 
 public class TextUi {
-    protected static String lineDecorator = "_".repeat(80);
-    private static String logo = "            _________                      __\n"
+    protected static final String LINE_DECORATOR = "_".repeat(80);
+    private static final String LOGO = "            _________                      __\n"
             + "           |  _   _  |                    [  |  _\n"
             + " _ .--..--.|_/ | | \\_| .--.  ,--.   .---.  | | / ] .---.  _ .--.\n"
             + "[ `.-. .-. |   | |  [ `/'`\\]`'_\\ : / /'`\\] | '' < / /__\\\\[ `/'`\\]\n"
             + " | | | | | |  _| |_  | |    /| | |,| \\__.  | |`\\ \\| \\__., | |\n"
             + "[___||__||__]|_____|[___]   \\'-;__/'.___.'[__|  \\_]'.__.'[___]\n";
-
+    private static final String BYE_LOGO = " ______            _______  _\n"
+            + "(  ___ \\ |\\     /|(  ____ \\( )\n"
+            + "| (   ) )( \\   / )| (    \\/| |\n"
+            + "| (__/ /  \\ (_) / | (__    | |\n"
+            + "|  __ (    \\   /  |  __)   | |\n"
+            + "| (  \\ \\    ) (   | (      (_)\n"
+            + "| )___) )   | |   | (____/| _ \n"
+            + "|/ \\___/    \\_/   (_______/(_)";
 
     public static String createBoxDisplay(String icon) {
         return "[" + icon + "]";
@@ -52,17 +59,22 @@ public class TextUi {
         System.out.println("Exit price: ");
     }
 
-    public void showErrorMessage(Exception e) {
+    public static void showErrorMessage(Exception e) {
         System.out.println(e.getMessage());
     }
 
+    public static void displayExitMessage() {
+        System.out.println(BYE_LOGO);
+        System.out.println("Thank you for using mTracker.\n"
+                + "☻ MAY THE MARKETS BE WITH YOU!!! ᕦ(ò_óˇ)ᕤ");
+    }
+
     public static void greetAtStartUp() {
-        System.out.println(lineDecorator);
-        System.out.println(logo);
+        System.out.println(LINE_DECORATOR);
+        System.out.println(LOGO);
         System.out.println("Hello! I am mTracker, your personal assistant bot that\n"
                 + "helps you keep track of the markets.\nWhat should I do for you now? ☺");
-        System.out.println(lineDecorator);
-        System.out.println(System.lineSeparator());
+        System.out.println(LINE_DECORATOR);
     }
 
 }

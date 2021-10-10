@@ -1,9 +1,9 @@
 package seedu.mtracker;
 
+import seedu.mtracker.commands.Command;
+import seedu.mtracker.console.InputParser;
 import seedu.mtracker.instrument.InstrumentManager;
 import seedu.mtracker.ui.TextUi;
-
-import java.util.Scanner;
 
 public class MTracker {
 
@@ -14,8 +14,16 @@ public class MTracker {
     }
 
     public void run() {
+        Command command;
         TextUi.greetAtStartUp();
-
+        String userInput = InputParser.getUserInput();
+        String[] commandComponents = InputParser.getCommandComponents(userInput);
+        try {
+            command = InputParser.filterByCommandType(commandComponents);
+            command.execute();
+        } catch (Exception e) {
+            TextUi.showErrorMessage(e);
+        }
     }
 
     /**
