@@ -1,13 +1,9 @@
 package seedu.mtracker;
 
 import seedu.mtracker.commands.Command;
-import seedu.mtracker.commands.InvalidCommand;
 import seedu.mtracker.console.InputParser;
-import seedu.mtracker.error.InvalidCommandError;
 import seedu.mtracker.instrument.InstrumentManager;
 import seedu.mtracker.ui.TextUi;
-
-import java.util.Scanner;
 
 public class MTracker {
 

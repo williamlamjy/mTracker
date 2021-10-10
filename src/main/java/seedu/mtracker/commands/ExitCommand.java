@@ -11,8 +11,4 @@ public class ExitCommand extends Command {
         TextUi.displayExitMessage();
         return COMMAND_WORD;
     }
-
-    public ExitCommand() {
-    }
-
 }

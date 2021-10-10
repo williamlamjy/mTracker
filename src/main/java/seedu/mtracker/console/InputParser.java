@@ -33,7 +33,6 @@ public abstract class InputParser {
         return AddInstrumentParser.filterByInstrumentType(getCommandComponents(addInstrumentType));
     }
 
-    // Todo: Create a new command type to handle and unrecognised command type in default branch
     public static Command filterByCommandType(String[] commandComponents) throws Exception {
         Command command;
         switch (commandComponents[MAIN_COMMAND_INDEX]) {

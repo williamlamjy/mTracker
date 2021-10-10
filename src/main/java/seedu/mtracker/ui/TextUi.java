@@ -75,7 +75,6 @@ public class TextUi {
         System.out.println("Hello! I am mTracker, your personal assistant bot that\n"
                 + "helps you keep track of the markets.\nWhat should I do for you now? ☺");
         System.out.println(LINE_DECORATOR);
-        System.out.println(System.lineSeparator());
     }
 
 }
