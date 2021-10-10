@@ -4,10 +4,8 @@ import seedu.mtracker.commands.Command;
 import seedu.mtracker.commands.ExitCommand;
 import seedu.mtracker.commands.InvalidCommand;
 import seedu.mtracker.console.InputParser;
-import seedu.mtracker.error.InvalidCommandError;
 import seedu.mtracker.instrument.InstrumentManager;
 import seedu.mtracker.ui.TextUi;
-import java.util.Arrays;
 
 public class MTracker {
 
@@ -18,8 +16,6 @@ public class MTracker {
     }
 
     public void run() {
-        TextUi.greetAtStartUp();
-
         Command command = new InvalidCommand();
         String userInput;
         String[] commandComponents;
@@ -37,11 +33,16 @@ public class MTracker {
         }
     }
 
+    public void executeProgram() {
+        TextUi.greetAtStartUp();
+        run();
+    }
+
     /**
      * Main entry-point for the mTracker application.
      */
     public static void main(String[] args) {
-        new MTracker().run();
+        new MTracker().executeProgram();
     }
 
 }
