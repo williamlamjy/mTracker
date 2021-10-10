@@ -2,7 +2,6 @@ package seedu.mtracker.console;
 
 import seedu.mtracker.commands.AddEtfCommand;
 import seedu.mtracker.commands.AddInstrumentCommand;
-import seedu.mtracker.commands.AddStockCommand;
 import seedu.mtracker.ui.TextUi;
 
 public class AddEtfParser extends AddInstrumentParser {
