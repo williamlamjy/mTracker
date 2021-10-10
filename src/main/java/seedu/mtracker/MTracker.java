@@ -17,7 +17,7 @@ public class MTracker {
     }
 
     public void run() {
-//        TextUi.greetAtStartUp();
+        TextUi.greetAtStartUp();
 
         String userInput = InputParser.getUserInput();
         String[] inputComponents = InputParser.getCommandComponents(userInput);
