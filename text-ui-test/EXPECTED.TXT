@@ -10,3 +10,4 @@ Hello! I am mTracker, your personal assistant bot that
 helps you keep track of the markets.
 What should I do for you now? ☺
 ________________________________________________________________________________
+mTracker$>
