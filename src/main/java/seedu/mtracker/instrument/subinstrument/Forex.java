@@ -4,10 +4,10 @@ import seedu.mtracker.instrument.Instrument;
 import seedu.mtracker.ui.TextUi;
 
 public class Forex extends Instrument {
-    protected double entry;
-    protected double exit;
+    protected double entryPrice;
+    protected double exitPrice;
     protected String expiry;
-    protected String remarks;
+    protected String remark;
 
     private static final String FX_ICON = "F";
 
@@ -17,7 +17,7 @@ public class Forex extends Instrument {
             String sentiment,
             double entryPrice,
             double exitPrice,
-            String deadline,
+            String expiry,
             String remark
     ) {
         super(name, currentPrice, sentiment);
