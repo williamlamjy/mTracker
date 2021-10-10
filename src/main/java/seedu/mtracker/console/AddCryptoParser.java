@@ -21,34 +21,17 @@ public class AddCryptoParser extends AddInstrumentParser {
 
     public void addCryptoExpiryToParameters() {
         String expiry = getCryptoExpiryFromUser();
-        if (isValidSpecificParameter(expiry)) {
             parameters.add(expiry);
-        }
     }
 
     public void addCryptoRemarksToParameters() {
         String remarks = getCryptoRemarksFromUser();
-        if (isValidSpecificParameter(remarks)) {
             parameters.add(remarks);
-        }
     }
 
     public void getCryptoSpecificParameters() {
         addCryptoExpiryToParameters();
         addCryptoRemarksToParameters();
-    }
-
-    public static boolean isValidSpecificParameter(String userInput) {
-        boolean isValid = true;
-        try {
-            if (userInput.isEmpty()) {
-                throw new IllegalArgumentException();
-            }
-        } catch (IllegalArgumentException e) {
-            ErrorMessage.displayAddEmptyParameterError();
-            isValid = false;
-        }
-        return isValid;
     }
 
     @Override
