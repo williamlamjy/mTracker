@@ -8,12 +8,15 @@ import seedu.mtracker.ui.TextUi;
 public class MTracker {
 
     private InstrumentManager instrumentManager;
+    private InputParser parser;
 
     public MTracker() {
         instrumentManager = InstrumentManager.getInstance();
+        parser = new InputParser();
     }
 
     public void run() {
+<<<<<<< HEAD
             Command command;
             TextUi.greetAtStartUp();
             String userInput = InputParser.getUserInput();
@@ -24,6 +27,18 @@ public class MTracker {
             } catch (Exception e) {
                 TextUi.showErrorMessage(e);
             }
+=======
+        Command command;
+        TextUi.greetAtStartUp();
+        String userInput = parser.getUserInput();
+        String[] commandComponents = parser.getCommandComponents(userInput);
+        try {
+            command = parser.filterByCommandType(commandComponents);
+            command.execute();
+        } catch (Exception e) {
+            TextUi.showErrorMessage(e);
+        }
+>>>>>>> master
     }
 
     /**

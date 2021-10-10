@@ -11,7 +11,7 @@ import seedu.mtracker.ui.TextUi;
 
 import java.util.Scanner;
 
-public abstract class InputParser {
+public class InputParser {
 
     public static final String SEPARATOR = " ";
 
@@ -21,19 +21,24 @@ public abstract class InputParser {
 
     public static final int MAIN_COMMAND_INDEX = 0;
 
-    protected static Scanner inputScanner = new Scanner(System.in);
+    protected static Scanner inputScanner;
+
+    public InputParser() {
+        inputScanner = new Scanner(System.in);
+    }
 
     public static String getUserInput() {
         return inputScanner.nextLine().trim();
     }
 
-    public static AddInstrumentCommand getAddInstrumentParameters() throws InvalidInstrumentError {
+    public AddInstrumentCommand getAddInstrumentParameters() throws InvalidInstrumentError {
         TextUi.displayAddInstrumentFirstInstruction();
         String addInstrumentType = getUserInput();
         return AddInstrumentParser.filterByInstrumentType(getCommandComponents(addInstrumentType));
     }
 
-    public static Command filterByCommandType(String[] commandComponents) throws Exception {
+    // Todo: Create a new command type to handle and unrecognised command type in default branch
+    public Command filterByCommandType(String[] commandComponents) throws Exception {
         Command command;
         switch (commandComponents[MAIN_COMMAND_INDEX]) {
         case ListCommand.COMMAND_WORD:
@@ -51,7 +56,7 @@ public abstract class InputParser {
         return command;
     }
 
-    public static String[] getCommandComponents(String commandInput) {
+    public String[] getCommandComponents(String commandInput) {
         return commandInput.trim().split(SEPARATOR);
     }
 }
