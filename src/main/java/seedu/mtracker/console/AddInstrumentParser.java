@@ -1,6 +1,10 @@
 package seedu.mtracker.console;
 
-import seedu.mtracker.commands.*;
+import seedu.mtracker.commands.AddCryptoCommand;
+import seedu.mtracker.commands.AddEtfCommand;
+import seedu.mtracker.commands.AddForexCommand;
+import seedu.mtracker.commands.AddInstrumentCommand;
+import seedu.mtracker.commands.AddStockCommand;
 import seedu.mtracker.error.ErrorMessage;
 import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.ui.TextUi;

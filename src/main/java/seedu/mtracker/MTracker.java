@@ -16,18 +16,6 @@ public class MTracker {
     }
 
     public void run() {
-<<<<<<< HEAD
-            Command command;
-            TextUi.greetAtStartUp();
-            String userInput = InputParser.getUserInput();
-            String[] commandComponents = InputParser.getCommandComponents(userInput);
-            try {
-                command = InputParser.filterByCommandType(commandComponents);
-                command.execute();
-            } catch (Exception e) {
-                TextUi.showErrorMessage(e);
-            }
-=======
         Command command;
         TextUi.greetAtStartUp();
         String userInput = parser.getUserInput();
@@ -38,7 +26,6 @@ public class MTracker {
         } catch (Exception e) {
             TextUi.showErrorMessage(e);
         }
->>>>>>> master
     }
 
     /**

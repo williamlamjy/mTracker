@@ -16,7 +16,6 @@ public class ListCommand extends Command {
 
     @Override
     public String execute() {
-        System.out.println(instruments.size());
         for (Instrument i : instruments) {
             System.out.println(i.toString() + i.getCurrentPrice());
         }

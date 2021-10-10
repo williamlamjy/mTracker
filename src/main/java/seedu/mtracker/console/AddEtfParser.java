@@ -2,6 +2,7 @@ package seedu.mtracker.console;
 
 import seedu.mtracker.commands.AddEtfCommand;
 import seedu.mtracker.commands.AddInstrumentCommand;
+import seedu.mtracker.error.ErrorMessage;
 import seedu.mtracker.ui.TextUi;
 
 public class AddEtfParser extends AddInstrumentParser {
@@ -18,6 +19,17 @@ public class AddEtfParser extends AddInstrumentParser {
         return getUserInput();
     }
 
+    public static boolean isValidPastReturn(String pastReturns) {
+        boolean isValid = true;
+        try {
+            Double.parseDouble(pastReturns);
+        } catch (NumberFormatException e) {
+            ErrorMessage.displayAddInstrumentCurrentPriceError();
+            isValid = false;
+        }
+        return isValid;
+    }
+
     public void addEtfRemarksToParameters() {
         String remarks = getEtfRemarksFromUser();
         parameters.add(remarks);
@@ -25,6 +37,9 @@ public class AddEtfParser extends AddInstrumentParser {
 
     public void addEtfpastReturnsToParameters() {
         String pastReturns = getEtfpastReturnsFromUser();
+        while (!isValidPastReturn(pastReturns)) {
+            pastReturns = getEtfpastReturnsFromUser();
+        }
         parameters.add(pastReturns);
     }
 

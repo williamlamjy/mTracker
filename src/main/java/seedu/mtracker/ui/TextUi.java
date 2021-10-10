@@ -60,7 +60,7 @@ public class TextUi {
     }
 
     public static void displayAddPastReturnsInstruction() {
-        System.out.println("Past Returns: ");
+        System.out.println("Past Returns (optional): ");
     }
 
     public static void showErrorMessage(Exception e) {

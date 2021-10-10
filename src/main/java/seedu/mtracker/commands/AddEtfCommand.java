@@ -19,7 +19,8 @@ public class AddEtfCommand extends AddInstrumentCommand {
     }
 
     public void createNewEtf() {
-        newInstrument = new Etf(nameParameter, currentPriceParameter, sentimentParameter, pastReturnsParameter, remarkParameter);
+        newInstrument = new Etf(nameParameter, currentPriceParameter,
+                sentimentParameter, pastReturnsParameter, remarkParameter);
     }
 
     @Override
