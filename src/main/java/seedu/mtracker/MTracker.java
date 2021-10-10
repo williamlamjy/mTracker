@@ -21,20 +21,18 @@ public class MTracker {
     public void run() {
         TextUi.greetAtStartUp();
 
-        Command c = new InvalidCommand();
+        Command command = new InvalidCommand();
         String userInput;
-        String[] inputComponents;
+        String[] commandComponents;
         // Quit program after ExitCommand executed.
-        while (!(c instanceof ExitCommand)) {
+        while (!(command instanceof ExitCommand)) {
             userInput = InputParser.getUserInput();
-            inputComponents = InputParser.getCommandComponents(userInput);
+            commandComponents = InputParser.getCommandComponents(userInput);
             try {
-                c = InputParser.filterByCommandType(inputComponents);
-                c.execute();
-            } catch (InvalidCommandError e) {
-                System.out.println(e.getMessage());
+                command = InputParser.filterByCommandType(commandComponents);
+                command.execute();
             } catch (Exception e) {
-                e.printStackTrace();
+                TextUi.showErrorMessage(e);
             }
         }
     }

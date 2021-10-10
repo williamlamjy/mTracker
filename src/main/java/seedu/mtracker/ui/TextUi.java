@@ -51,7 +51,7 @@ public class TextUi {
         System.out.println("Expiry: ");
     }
 
-    public void showErrorMessage(Exception e) {
+    public static void showErrorMessage(Exception e) {
         System.out.println(e.getMessage());
     }
 
