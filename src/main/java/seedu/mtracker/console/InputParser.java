@@ -28,6 +28,7 @@ public class InputParser {
     }
 
     public static String getUserInput() {
+        TextUi.displayPrompter();
         return inputScanner.nextLine().trim();
     }
 
