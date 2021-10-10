@@ -21,10 +21,11 @@ public class Forex extends Instrument {
             String remark
     ) {
         super(name, currentPrice, sentiment);
-        this.entry = entryPrice;
-        this.exit = exitPrice;
-        this.expiry = deadline;
-        this.remarks = remark;
+        this.entryPrice = entryPrice;
+        this.exitPrice = exitPrice;
+        this.expiry = expiry;
+        this.remark = remark;
+
     }
 
     @Override
