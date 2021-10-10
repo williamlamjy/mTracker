@@ -3,6 +3,7 @@ package seedu.mtracker.error;
 public abstract class ErrorMessage {
 
     public static String invalidInstrumentGivenError = "Invalid Instrument given!";
+    public static String invalidCommandGivenError = "Oops, I do not understand you...";
 
     public static void displayAddInstrumentNameError(String instrumentType) {
         System.out.println("Sorry " + instrumentType + " cannot have an empty name!");

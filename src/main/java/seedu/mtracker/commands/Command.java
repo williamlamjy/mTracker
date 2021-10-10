@@ -1,5 +1,6 @@
 package seedu.mtracker.commands;
 
+import seedu.mtracker.error.InvalidCommandError;
 import seedu.mtracker.instrument.InstrumentManager;
 
 import java.util.ArrayList;
