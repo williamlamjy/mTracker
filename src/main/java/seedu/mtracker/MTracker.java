@@ -2,6 +2,7 @@ package seedu.mtracker;
 
 import seedu.mtracker.commands.Command;
 import seedu.mtracker.commands.ExitCommand;
+import seedu.mtracker.commands.InvalidCommand;
 import seedu.mtracker.console.InputParser;
 import seedu.mtracker.error.InvalidCommandError;
 import seedu.mtracker.instrument.InstrumentManager;
@@ -20,11 +21,11 @@ public class MTracker {
     public void run() {
         TextUi.greetAtStartUp();
 
-        Command c;
+        Command c = new InvalidCommand();
         String userInput;
-        String[] inputComponents = {};
+        String[] inputComponents;
         // Quit program after ExitCommand executed.
-        while (!(Arrays.equals(inputComponents, COMPONENT_FOR_EXIT))) {
+        while (!(c instanceof ExitCommand)) {
             userInput = InputParser.getUserInput();
             inputComponents = InputParser.getCommandComponents(userInput);
             try {
