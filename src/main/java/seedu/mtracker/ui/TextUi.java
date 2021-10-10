@@ -24,6 +24,8 @@ public class TextUi {
         return "[" + icon + "]";
     }
 
+    public static final String CURRENT_PRICE_HEADER = " Current Price: ";
+
     public static void displayInstrumentAdded(Instrument newInstrument) {
         System.out.println(newInstrument);
     }
@@ -62,6 +64,10 @@ public class TextUi {
 
     public static void displayAddPastReturnsInstruction() {
         System.out.println("Past Returns (optional): ");
+    }
+
+    public static void displayInstruments(Instrument instrument) {
+        System.out.println(instrument.toString() + CURRENT_PRICE_HEADER + instrument.getCurrentPrice());;
     }
 
     public static void showErrorMessage(Exception e) {
