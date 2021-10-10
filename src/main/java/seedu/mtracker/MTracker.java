@@ -16,11 +16,11 @@ public class MTracker {
     }
 
     public void run() {
-        Command command = new InvalidCommand();
+        Command command;
         String userInput;
         String[] commandComponents;
-        // Quit program after ExitCommand executed.
-        while (!(command instanceof ExitCommand)) {
+
+        do {
             userInput = InputParser.getUserInput();
             commandComponents = InputParser.getCommandComponents(userInput);
             try {
@@ -29,8 +29,9 @@ public class MTracker {
                 command.execute();
             } catch (Exception e) {
                 TextUi.showErrorMessage(e);
+                command = new InvalidCommand();
             }
-        }
+        } while (!(command instanceof ExitCommand));
     }
 
     public void executeProgram() {

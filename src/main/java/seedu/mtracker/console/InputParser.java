@@ -24,7 +24,7 @@ public abstract class InputParser {
     protected static Scanner inputScanner = new Scanner(System.in);
 
     public static String getUserInput() {
-        System.out.print("mTracker$>");
+        TextUi.displayPrompter();
         return inputScanner.nextLine().trim();
     }
 

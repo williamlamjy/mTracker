@@ -4,6 +4,7 @@ import seedu.mtracker.instrument.Instrument;
 
 public class TextUi {
     protected static final String LINE_DECORATOR = "_".repeat(80);
+    private static final String CLI_PROMPTER = "mTracker$> ";
     private static final String LOGO = "            _________                      __\n"
             + "           |  _   _  |                    [  |  _\n"
             + " _ .--..--.|_/ | | \\_| .--.  ,--.   .---.  | | / ] .---.  _ .--.\n"
@@ -67,6 +68,10 @@ public class TextUi {
         System.out.println(BYE_LOGO);
         System.out.println("Thank you for using mTracker.\n"
                 + "☻ MAY THE MARKETS BE WITH YOU!!! ᕦ(ò_óˇ)ᕤ");
+    }
+
+    public static void displayPrompter() {
+        System.out.print(CLI_PROMPTER);
     }
 
     public static void greetAtStartUp() {

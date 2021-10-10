@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class InstrumentManager {
 
     private static InstrumentManager instrumentManager;
-    private static ArrayList<Instrument> instruments;
+    private final ArrayList<Instrument> INSTRUMENTS;
 
     private InstrumentManager() {
-        instruments = new ArrayList<>();
+        INSTRUMENTS = new ArrayList<>();
     }
 
     public static InstrumentManager getInstance() {
@@ -19,10 +19,10 @@ public class InstrumentManager {
     }
 
     public ArrayList<Instrument> getInstruments() {
-        return instruments;
+        return INSTRUMENTS;
     }
 
     public void addInstrument(Instrument addedInstrument) {
-        instruments.add(addedInstrument);
+        INSTRUMENTS.add(addedInstrument);
     }
 }
