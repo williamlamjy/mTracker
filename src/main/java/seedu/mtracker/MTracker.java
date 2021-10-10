@@ -21,7 +21,8 @@ public class MTracker {
         String userInput = InputParser.getUserInput();
         String[] commandComponents = InputParser.getCommandComponents(userInput);
         try {
-            Command c = InputParser.filterByCommandType(components);
+            Command command = InputParser.filterByCommandType(components);
+            command.setData(instrumentManager)
             c.execute();
         } catch (InvalidCommandError e) {
             System.out.println(e.getMessage());
