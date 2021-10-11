@@ -61,7 +61,7 @@ public abstract class AddInstrumentParser extends InputParser {
         try {
             Double.parseDouble(currentPrice);
         } catch (NumberFormatException e) {
-            ErrorMessage.displayAddInstrumentCurrentPriceError();
+            ErrorMessage.displayAddInstrumentPriceError();
             isValid = false;
         }
         return isValid;
