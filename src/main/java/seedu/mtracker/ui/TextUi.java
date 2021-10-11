@@ -69,9 +69,9 @@ public class TextUi {
     }
 
     private static void displayInstrument(Instrument instrument) {
-        System.out.println(instrument.toString() + System.lineSeparator() +
-                CURRENT_PRICE_HEADER + instrument.getCurrentPrice() + System.lineSeparator() +
-                SENTIMENT_HEADER + instrument.getSentiment());
+        System.out.println(instrument.toString() + System.lineSeparator()
+                + CURRENT_PRICE_HEADER + instrument.getCurrentPrice() + System.lineSeparator()
+                + SENTIMENT_HEADER + instrument.getSentiment());
     }
 
     public static void displayAllInstruments(ArrayList<Instrument> instruments) {
