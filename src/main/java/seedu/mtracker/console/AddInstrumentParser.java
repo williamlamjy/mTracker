@@ -1,5 +1,6 @@
 package seedu.mtracker.console;
 
+import seedu.mtracker.asserthelpers.AssertParserHelper;
 import seedu.mtracker.commands.AddCryptoCommand;
 import seedu.mtracker.commands.AddEtfCommand;
 import seedu.mtracker.commands.AddForexCommand;
@@ -58,6 +59,7 @@ public abstract class AddInstrumentParser extends InputParser {
             name = getInstrumentNameFromUser(instrumentType);
         }
         parameters.add(name);
+        AssertParserHelper.assertInputNotEmpty(name);
     }
 
     public static String getCurrentPriceFromUser() {
@@ -82,6 +84,8 @@ public abstract class AddInstrumentParser extends InputParser {
             currentPrice = getCurrentPriceFromUser();
         }
         parameters.add(currentPrice);
+        AssertParserHelper.assertInputNotEmpty(currentPrice);
+        AssertParserHelper.assertPriceNonNegative(currentPrice);
     }
 
     public static String getInstrumentSentimentFromUser() {
@@ -107,12 +111,14 @@ public abstract class AddInstrumentParser extends InputParser {
             sentiment = getInstrumentSentimentFromUser();
         }
         parameters.add(sentiment);
+        AssertParserHelper.assertInputNotEmpty(sentiment);
     }
 
     public static void getGeneralParameters(String instrumentType) {
         addNameToParameters(instrumentType);
         addCurrentPriceToParameters();
         addSentimentToParameters();
+        AssertParserHelper.assertNoMissingGeneralParameters(parameters);
     }
 
     public abstract AddInstrumentCommand getInstrumentParameters();
