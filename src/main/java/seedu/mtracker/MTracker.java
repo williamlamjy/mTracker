@@ -33,7 +33,6 @@ public class MTracker {
      */
     public static void main(String[] args) {
         new MTracker().run();
-        //command.setData(instrumentManager, ui); uncomment after initialising ui and command
     }
 
 }
