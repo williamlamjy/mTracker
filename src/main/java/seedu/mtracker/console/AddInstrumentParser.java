@@ -67,6 +67,19 @@ public abstract class AddInstrumentParser extends InputParser {
         return isValid;
     }
 
+    public static boolean isExpiryFilled(String expiryInput) {
+        boolean isFilled = true;
+        try {
+            if (expiryInput.isEmpty() | expiryInput.isBlank()) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            ErrorMessage.displayEmptyExpiryError();
+            isFilled = false;
+        }
+        return isFilled;
+    }
+
     public static void addCurrentPriceToParameters() {
         String currentPrice = getCurrentPriceFromUser();
         while (!isValidPrice(currentPrice)) {

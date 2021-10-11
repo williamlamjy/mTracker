@@ -49,7 +49,10 @@ public class AddForexParser extends AddInstrumentParser {
     }
 
     public void addForexExpiryToParameter() {
-        String expiry = getForexExpiryFromUser();
+        String expiry;
+        do {
+            expiry = getForexExpiryFromUser();
+        } while (!isExpiryFilled(expiry));
         parameters.add(expiry);
     }
 

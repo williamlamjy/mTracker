@@ -14,7 +14,10 @@ public abstract class ErrorMessage {
     }
 
     public static void displayAddInstrumentSentimentError() {
-        System.out.println("Sorry sentiment cannot be empty and must be either positive, negative or neutral");
+        System.out.println("Sorry sentiment cannot be empty and must be either positive, negative or neutral!");
     }
 
+    public static void displayEmptyExpiryError() {
+        System.out.println("Sorry there must be an expiry date/time for this instrument signal!");
+    }
 }
