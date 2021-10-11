@@ -17,19 +17,17 @@ public class AddEtfParser extends AddInstrumentParser {
 
     public String getEtfPastReturnFromUser() {
         TextUi.displayAddPastReturnsInstruction();
-        String userInput = getUserInput();
-        double pastReturn = isValidPastReturn(userInput);
-        return String.valueOf(pastReturn);
+        return isValidPastReturn(getUserInput());
     }
 
-    public static double isValidPastReturn(String userInput) {
+    public static String isValidPastReturn(String userInput) {
         double pastReturn;
         try {
             pastReturn = Double.parseDouble(userInput);
         } catch (NumberFormatException e) {
             pastReturn = UNDEFINED_PAST_RETURN_VALUE;
         }
-        return pastReturn;
+        return String.valueOf(pastReturn);
     }
 
     public void addEtfRemarkToParameters() {

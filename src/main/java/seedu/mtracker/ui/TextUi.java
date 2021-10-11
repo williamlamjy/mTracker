@@ -21,8 +21,9 @@ public class TextUi {
             + "| (  \\ \\    ) (   | (      (_)\n"
             + "| )___) )   | |   | (____/| _\n"
             + "|/ \\___/    \\_/   (_______/(_)";
-    public static final String CURRENT_PRICE_HEADER = "Current Price: ";
-    public static final String SENTIMENT_HEADER = "Sentiment : ";
+    private static final String NAME_HEADER = "Name: ";
+    private static final String CURRENT_PRICE_HEADER = "Current Price: ";
+    private static final String SENTIMENT_HEADER = "Sentiment : ";
 
     public static String createBoxDisplay(String icon) {
         return "[" + icon + "]";
@@ -69,15 +70,13 @@ public class TextUi {
     }
 
     private static void displayInstrument(Instrument instrument) {
-        System.out.println(instrument.toString() + System.lineSeparator()
+        System.out.println(NAME_HEADER + instrument.toString() + System.lineSeparator()
                 + CURRENT_PRICE_HEADER + instrument.getCurrentPrice() + System.lineSeparator()
                 + SENTIMENT_HEADER + instrument.getSentiment());
     }
 
     public static void displayAllInstruments(ArrayList<Instrument> instruments) {
-        for (Instrument i:instruments) {
-            displayInstrument(i);
-        }
+        instruments.stream().forEach(instrument -> displayInstrument(instrument));
     }
 
     public static void showErrorMessage(Exception e) {
