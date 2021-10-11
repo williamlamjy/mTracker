@@ -70,7 +70,7 @@ public abstract class AddInstrumentParser extends InputParser {
     public static boolean isExpiryFilled(String expiryInput) {
         boolean isFilled = true;
         try {
-            if (expiryInput.isEmpty() | expiryInput.isBlank()) {
+            if (expiryInput.isEmpty()) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
