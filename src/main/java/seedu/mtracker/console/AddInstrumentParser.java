@@ -72,10 +72,23 @@ public abstract class AddInstrumentParser extends InputParser {
         try {
             Double.parseDouble(currentPrice);
         } catch (NumberFormatException e) {
-            ErrorMessage.displayAddInstrumentCurrentPriceError();
+            ErrorMessage.displayAddInstrumentPriceError();
             isValid = false;
         }
         return isValid;
+    }
+
+    public static boolean isExpiryFilled(String expiryInput) {
+        boolean isFilled = true;
+        try {
+            if (expiryInput.isEmpty()) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            ErrorMessage.displayEmptyExpiryError();
+            isFilled = false;
+        }
+        return isFilled;
     }
 
     public static void addCurrentPriceToParameters() {

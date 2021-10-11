@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class TextUi {
     protected static final String LINE_DECORATOR = "_".repeat(80);
-    private static final String CLI_PROMPTER = "mTracker$> ";
+    private static final String CONSOLE_PROMPTER = "mTracker$> ";
     private static final String LOGO = "            _________                      __\n"
             + "           |  _   _  |                    [  |  _\n"
             + " _ .--..--.|_/ | | \\_| .--.  ,--.   .---.  | | / ] .---.  _ .--.\n"
@@ -24,49 +24,50 @@ public class TextUi {
     private static final String NAME_HEADER = "Name: ";
     private static final String CURRENT_PRICE_HEADER = "Current Price: ";
     private static final String SENTIMENT_HEADER = "Sentiment : ";
+    private static final String TAB = "\t";
 
     public static String createBoxDisplay(String icon) {
         return "[" + icon + "]";
     }
 
     public static void displayInstrumentAdded(Instrument newInstrument) {
-        System.out.println(newInstrument);
+        System.out.println(TAB + newInstrument);
     }
 
     public static void displayAddInstrumentFirstInstruction() {
-        System.out.println("Please key in the type of instrument: ");
+        System.out.println(TAB + "Please key in the type of instrument: ");
     }
 
     public static void displayAddInstrumentNameInstruction(String instrumentType) {
-        System.out.println("Name of " + instrumentType + ": ");
+        System.out.println(TAB + "Name of " + instrumentType + ": ");
     }
 
     public static void displayAddInstrumentCurrentPriceInstruction() {
-        System.out.println("Current Price: ");
+        System.out.println(TAB + "Current Price: ");
     }
 
     public static void displayAddInstrumentSentimentInstruction() {
-        System.out.println("Sentiment of security: ");
+        System.out.println(TAB + "Sentiment for instrument: ");
     }
 
     public static void displayAddRemarksInstruction() {
-        System.out.println("Remarks (optional): ");
+        System.out.println(TAB + "Remarks (optional): ");
     }
 
     public static void displayAddExpiryInstruction() {
-        System.out.println("Expiry (optional): ");
+        System.out.println(TAB + "Expiry: ");
     }
 
     public static void displayAddEntryPriceInstruction() {
-        System.out.println("Entry price: ");
+        System.out.println(TAB + "Entry price: ");
     }
 
     public static void displayAddExitPriceInstruction() {
-        System.out.println("Exit price: ");
+        System.out.println(TAB + "Exit price: ");
     }
 
     public static void displayAddPastReturnsInstruction() {
-        System.out.println("Past Returns (optional): ");
+        System.out.println(TAB + "Past Returns (optional): ");
     }
 
     private static void displayInstrument(Instrument instrument) {
@@ -90,7 +91,7 @@ public class TextUi {
     }
 
     public static void displayPrompter() {
-        System.out.print(CLI_PROMPTER);
+        System.out.print(CONSOLE_PROMPTER);
     }
 
     public static void greetAtStartUp() {
