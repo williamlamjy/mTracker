@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class AddForexParserTest {
 
     public static final int PARAMETER_SIZE = 7;
-    private static final String STR_SEP = "%1$s";
+    private static final String SEPARATOR_SPECIFIERS = "%1$s";
 
     public static final String[] EXPECTED_PARAMS_NO_REMARKS = {
         "TTTXXX",
@@ -32,47 +32,48 @@ class AddForexParserTest {
     };
 
     public static final String USER_INPUT_NO_REMARKS = "TTTXXX"
-            + STR_SEP + "1.11"
-            + STR_SEP + "positive"
-            + STR_SEP + "1.15"
-            + STR_SEP + "1.30"
-            + STR_SEP + "15 Oct"
-            + STR_SEP + " ";
+            + SEPARATOR_SPECIFIERS + "1.11"
+            + SEPARATOR_SPECIFIERS + "positive"
+            + SEPARATOR_SPECIFIERS + "1.15"
+            + SEPARATOR_SPECIFIERS + "1.30"
+            + SEPARATOR_SPECIFIERS + "15 Oct"
+            + SEPARATOR_SPECIFIERS + " ";
 
     public static final String USER_INPUT_WITH_REMARKS = "TTTXXX"
-            + STR_SEP + "0.81"
-            + STR_SEP + "negative"
-            + STR_SEP + "0.79"
-            + STR_SEP + "0.70"
-            + STR_SEP + "20 Oct"
-            + STR_SEP + "fooRemarks";
+            + SEPARATOR_SPECIFIERS + "0.81"
+            + SEPARATOR_SPECIFIERS + "negative"
+            + SEPARATOR_SPECIFIERS + "0.79"
+            + SEPARATOR_SPECIFIERS + "0.70"
+            + SEPARATOR_SPECIFIERS + "20 Oct"
+            + SEPARATOR_SPECIFIERS + "fooRemarks";
 
-    public static final String USER_INPUT_TRY_INVALID_NAME = STR_SEP.repeat(2) + "TTXX"
-            + STR_SEP + "TTTXXX"
-            + STR_SEP + "1.11"
-            + STR_SEP + "positive"
-            + STR_SEP + "1.15"
-            + STR_SEP + "1.30"
-            + STR_SEP + "15 Oct"
-            + STR_SEP + " ";
+    public static final String USER_INPUT_TRY_INVALID_NAME = SEPARATOR_SPECIFIERS.repeat(2) + "TTXX"
+            + SEPARATOR_SPECIFIERS + "TTTXXX"
+            + SEPARATOR_SPECIFIERS + "1.11"
+            + SEPARATOR_SPECIFIERS + "positive"
+            + SEPARATOR_SPECIFIERS + "1.15"
+            + SEPARATOR_SPECIFIERS + "1.30"
+            + SEPARATOR_SPECIFIERS + "15 Oct"
+            + SEPARATOR_SPECIFIERS + " ";
 
-    public static final String USER_INPUT_TRY_INVALID_PRICE = STR_SEP + "TTTXXX"
-            + STR_SEP + "lol"
-            + STR_SEP + "0.81"
-            + STR_SEP + "negative"
-            + STR_SEP + "0.79"
-            + STR_SEP + "0.70"
-            + STR_SEP + "20 Oct"
-            + STR_SEP + "fooRemarks";
+    public static final String USER_INPUT_TRY_INVALID_PRICE = SEPARATOR_SPECIFIERS + "TTTXXX"
+            + SEPARATOR_SPECIFIERS + "lol"
+            + SEPARATOR_SPECIFIERS + "0.81"
+            + SEPARATOR_SPECIFIERS + "negative"
+            + SEPARATOR_SPECIFIERS + "foobar"
+            + SEPARATOR_SPECIFIERS + "0.79"
+            + SEPARATOR_SPECIFIERS.repeat(2) + "0.70"
+            + SEPARATOR_SPECIFIERS + "20 Oct"
+            + SEPARATOR_SPECIFIERS + "fooRemarks";
 
-    public static final String USER_INPUT_TRY_INVALID_SENTIMENT = STR_SEP + "TTTXXX"
-            + STR_SEP + "0.81"
-            + STR_SEP + "foobar"
-            + STR_SEP.repeat(2) + "negative"
-            + STR_SEP + "0.79"
-            + STR_SEP + "0.70"
-            + STR_SEP + "20 Oct"
-            + STR_SEP + "fooRemarks";
+    public static final String USER_INPUT_TRY_INVALID_SENTIMENT = SEPARATOR_SPECIFIERS + "TTTXXX"
+            + SEPARATOR_SPECIFIERS + "0.81"
+            + SEPARATOR_SPECIFIERS + "foobar"
+            + SEPARATOR_SPECIFIERS.repeat(2) + "negative"
+            + SEPARATOR_SPECIFIERS + "0.79"
+            + SEPARATOR_SPECIFIERS + "0.70"
+            + SEPARATOR_SPECIFIERS + "20 Oct"
+            + SEPARATOR_SPECIFIERS + "fooRemarks";
 
     String formatConsoleInput(String input) {
         return String.format(input, System.lineSeparator());
