@@ -16,4 +16,5 @@ public abstract class ErrorMessage {
     public static void displayAddInstrumentSentimentError() {
         System.out.println("Sorry sentiment cannot be empty and must be either positive, negative or neutral");
     }
+
 }
