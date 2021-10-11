@@ -7,41 +7,19 @@ import seedu.mtracker.console.InputParser;
 import seedu.mtracker.instrument.InstrumentManager;
 import seedu.mtracker.ui.TextUi;
 
-import java.io.IOException;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
-
 public class MTracker {
-
-    public static final String LOG_FILE_NAME = "logger.log";
 
     private InstrumentManager instrumentManager;
     private InputParser parser;
-    private final Logger logger;
+    private LogHelper logger;
 
     public MTracker() {
         instrumentManager = InstrumentManager.getInstance();
         parser = new InputParser();
-        logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-    }
-
-    public void setupLogger() {
-        LogManager.getLogManager().reset();
-        logger.setLevel(Level.WARNING);
-
-        try {
-            FileHandler logFile = new FileHandler(LOG_FILE_NAME);
-            logFile.setLevel(Level.WARNING);
-            logger.addHandler(logFile);
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "Log file not working!", e);
-        }
+        logger = new LogHelper();
     }
 
     public void run() {
-        setupLogger();
         Command command;
         String userInput;
         String[] commandComponents;
