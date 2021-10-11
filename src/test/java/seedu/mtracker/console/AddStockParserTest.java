@@ -10,16 +10,16 @@ class AddStockParserTest {
 
     public static final int PARAMETER_SIZE = 4;
 
-    public static String USER_INPUT_NO_REMARKS = "TestName%1$s23.4%1$spositive%1$s ";
-    public static String[] EXPECTED_PARAMS_NO_REMARKS = { "TestName", "23.4", "positive", "" };
+    public static final String USER_INPUT_NO_REMARKS = "TestName%1$s23.4%1$spositive%1$s ";
+    public static final String[] EXPECTED_PARAMS_NO_REMARKS = { "TestName", "23.4", "positive", "" };
 
-    public static String USER_INPUT_WITH_REMARKS = "TestName%1$s100.4%1$snegative%1$sTestRemarks";
-    public static String[] EXPECTED_PARAMS_WITH_REMARKS = { "TestName", "100.4", "negative", "TestRemarks" };
+    public static final String USER_INPUT_WITH_REMARKS = "TestName%1$s100.4%1$snegative%1$sTestRemarks";
+    public static final String[] EXPECTED_PARAMS_WITH_REMARKS = { "TestName", "100.4", "negative", "TestRemarks" };
 
-    public static String USER_INPUT_TRY_INVALID_NAME = "%1$s%1$s%1$sTestName%1$s23.4%1$spositive%1$s ";
-    public static String USER_INPUT_TRY_INVALID_PRICE = "%1$sTestName%1$s2sd3.4%1$s100.4"
+    public static final String USER_INPUT_TRY_INVALID_NAME = "%1$s%1$s%1$sTestName%1$s23.4%1$spositive%1$s ";
+    public static final String USER_INPUT_TRY_INVALID_PRICE = "%1$sTestName%1$s2sd3.4%1$s100.4"
             + "%1$snegative%1$sTestRemarks";
-    public static String USER_INPUT_TRY_INVALID_SENTIMENT = "%1$sTestName%1$s100.4"
+    public static final String USER_INPUT_TRY_INVALID_SENTIMENT = "%1$sTestName%1$s100.4"
             + "%1$swrong%1$s%1$snegative%1$sTestRemarks";
 
     String formatConsoleInput(String input) {

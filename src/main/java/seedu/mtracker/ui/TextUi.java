@@ -2,6 +2,8 @@ package seedu.mtracker.ui;
 
 import seedu.mtracker.instrument.Instrument;
 
+import java.util.ArrayList;
+
 public class TextUi {
     protected static final String LINE_DECORATOR = "_".repeat(80);
     private static final String CLI_PROMPTER = "mTracker$> ";
@@ -19,6 +21,9 @@ public class TextUi {
             + "| (  \\ \\    ) (   | (      (_)\n"
             + "| )___) )   | |   | (____/| _\n"
             + "|/ \\___/    \\_/   (_______/(_)";
+    private static final String NAME_HEADER = "Name: ";
+    private static final String CURRENT_PRICE_HEADER = "Current Price: ";
+    private static final String SENTIMENT_HEADER = "Sentiment : ";
 
     public static String createBoxDisplay(String icon) {
         return "[" + icon + "]";
@@ -58,6 +63,20 @@ public class TextUi {
 
     public static void displayAddExitPriceInstruction() {
         System.out.println("Exit price: ");
+    }
+
+    public static void displayAddPastReturnsInstruction() {
+        System.out.println("Past Returns (optional): ");
+    }
+
+    private static void displayInstrument(Instrument instrument) {
+        System.out.println(NAME_HEADER + instrument.toString() + System.lineSeparator()
+                + CURRENT_PRICE_HEADER + instrument.getCurrentPrice() + System.lineSeparator()
+                + SENTIMENT_HEADER + instrument.getSentiment());
+    }
+
+    public static void displayAllInstruments(ArrayList<Instrument> instruments) {
+        instruments.stream().forEach(instrument -> displayInstrument(instrument));
     }
 
     public static void showErrorMessage(Exception e) {
