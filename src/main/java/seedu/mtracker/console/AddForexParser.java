@@ -3,6 +3,7 @@ package seedu.mtracker.console;
 import seedu.mtracker.commands.AddForexCommand;
 import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.ui.TextUi;
+import seedu.mtracker.asserthelpers.AssertParserHelper;
 
 public class AddForexParser extends AddInstrumentParser {
     public static String INSTRUMENT_TYPE = "forex";
@@ -35,16 +36,21 @@ public class AddForexParser extends AddInstrumentParser {
     public void addForexEntryToParameter() {
         String entryPrice = getForexEntryFromUser();
         parameters.add(entryPrice);
+        AssertParserHelper.assertInputNotEmpty(entryPrice);
+        AssertParserHelper.assertPriceNonNegative(entryPrice);
     }
 
     public void addForexExitToParameter() {
         String exitPrice = getForexExitFromUser();
         parameters.add(exitPrice);
+        AssertParserHelper.assertInputNotEmpty(exitPrice);
+        AssertParserHelper.assertPriceNonNegative(exitPrice);
     }
 
     public void addForexExpiryToParameter() {
         String expiry = getForexExpiryFromUser();
         parameters.add(expiry);
+        AssertParserHelper.assertInputNotEmpty(expiry);
     }
 
     public void getForexSpecificParameters() {
@@ -58,7 +64,7 @@ public class AddForexParser extends AddInstrumentParser {
     public AddInstrumentCommand getInstrumentParameters() {
         getGeneralParameters(INSTRUMENT_TYPE);
         getForexSpecificParameters();
-
+        AssertParserHelper.assertNoMissingForexParameters(parameters);
         return new AddForexCommand();
     }
 }
