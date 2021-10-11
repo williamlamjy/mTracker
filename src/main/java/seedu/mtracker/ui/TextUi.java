@@ -2,8 +2,11 @@ package seedu.mtracker.ui;
 
 import seedu.mtracker.instrument.Instrument;
 
+import java.util.ArrayList;
+
 public class TextUi {
     protected static final String LINE_DECORATOR = "_".repeat(80);
+    private static final String CLI_PROMPTER = "mTracker$> ";
     private static final String LOGO = "            _________                      __\n"
             + "           |  _   _  |                    [  |  _\n"
             + " _ .--..--.|_/ | | \\_| .--.  ,--.   .---.  | | / ] .---.  _ .--.\n"
@@ -16,8 +19,11 @@ public class TextUi {
             + "| (__/ /  \\ (_) / | (__    | |\n"
             + "|  __ (    \\   /  |  __)   | |\n"
             + "| (  \\ \\    ) (   | (      (_)\n"
-            + "| )___) )   | |   | (____/| _ \n"
+            + "| )___) )   | |   | (____/| _\n"
             + "|/ \\___/    \\_/   (_______/(_)";
+    private static final String NAME_HEADER = "Name: ";
+    private static final String CURRENT_PRICE_HEADER = "Current Price: ";
+    private static final String SENTIMENT_HEADER = "Sentiment : ";
 
     public static String createBoxDisplay(String icon) {
         return "[" + icon + "]";
@@ -59,6 +65,20 @@ public class TextUi {
         System.out.println("Exit price: ");
     }
 
+    public static void displayAddPastReturnsInstruction() {
+        System.out.println("Past Returns (optional): ");
+    }
+
+    private static void displayInstrument(Instrument instrument) {
+        System.out.println(NAME_HEADER + instrument.toString() + System.lineSeparator()
+                + CURRENT_PRICE_HEADER + instrument.getCurrentPrice() + System.lineSeparator()
+                + SENTIMENT_HEADER + instrument.getSentiment());
+    }
+
+    public static void displayAllInstruments(ArrayList<Instrument> instruments) {
+        instruments.stream().forEach(instrument -> displayInstrument(instrument));
+    }
+
     public static void showErrorMessage(Exception e) {
         System.out.println(e.getMessage());
     }
@@ -67,6 +87,10 @@ public class TextUi {
         System.out.println(BYE_LOGO);
         System.out.println("Thank you for using mTracker.\n"
                 + "☻ MAY THE MARKETS BE WITH YOU!!! ᕦ(ò_óˇ)ᕤ");
+    }
+
+    public static void displayPrompter() {
+        System.out.print(CLI_PROMPTER);
     }
 
     public static void greetAtStartUp() {

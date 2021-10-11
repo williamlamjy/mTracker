@@ -17,7 +17,4 @@ public abstract class ErrorMessage {
         System.out.println("Sorry sentiment cannot be empty and must be either positive, negative or neutral");
     }
 
-    public static void displayAddEmptyParameterError() {
-        System.out.println("Sorry the following remark/expiry cannot be empty!");
-    }
 }
