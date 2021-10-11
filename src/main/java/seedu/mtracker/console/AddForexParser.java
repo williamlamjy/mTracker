@@ -33,17 +33,26 @@ public class AddForexParser extends AddInstrumentParser {
     }
 
     public void addForexEntryToParameter() {
-        String entryPrice = getForexEntryFromUser();
+        String entryPrice;
+        do {
+            entryPrice = getForexEntryFromUser();
+        } while (!isValidPrice(entryPrice));
         parameters.add(entryPrice);
     }
 
     public void addForexExitToParameter() {
-        String exitPrice = getForexExitFromUser();
+        String exitPrice;
+        do {
+            exitPrice = getForexExitFromUser();
+        } while (!isValidPrice(exitPrice));
         parameters.add(exitPrice);
     }
 
     public void addForexExpiryToParameter() {
-        String expiry = getForexExpiryFromUser();
+        String expiry;
+        do {
+            expiry = getForexExpiryFromUser();
+        } while (!isExpiryFilled(expiry));
         parameters.add(expiry);
     }
 
