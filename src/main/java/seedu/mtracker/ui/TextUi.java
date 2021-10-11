@@ -54,7 +54,7 @@ public class TextUi {
     }
 
     public static void displayAddExpiryInstruction() {
-        System.out.println("Expiry: ");
+        System.out.println("Expiry (optional): ");
     }
 
     public static void displayAddEntryPriceInstruction() {
