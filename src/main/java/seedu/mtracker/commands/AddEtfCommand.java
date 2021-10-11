@@ -10,23 +10,17 @@ public class AddEtfCommand extends AddInstrumentCommand {
     public static final int PAST_RETURNS_INDEX = 3;
     public static final int REMARK_INDEX = 4;
 
-    private static final double UNDEFINED_PAST_RETURN_VALUE = 0;
-
-    protected double pastReturnsParameter;
+    protected double pastReturnParameter;
     protected String remarkParameter;
 
     public void setEtfParameters() {
         remarkParameter = inputParameters.get(REMARK_INDEX);
-        try {
-            pastReturnsParameter = Double.parseDouble(inputParameters.get(PAST_RETURNS_INDEX));
-        } catch (NumberFormatException e) {
-            pastReturnsParameter = UNDEFINED_PAST_RETURN_VALUE;
-        }
+        pastReturnParameter = Double.parseDouble(inputParameters.get(PAST_RETURNS_INDEX));
     }
 
     public void createNewEtf() {
         newInstrument = new Etf(nameParameter, currentPriceParameter,
-                sentimentParameter, pastReturnsParameter, remarkParameter);
+                sentimentParameter, pastReturnParameter, remarkParameter);
     }
 
     @Override

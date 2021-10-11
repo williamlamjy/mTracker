@@ -14,9 +14,7 @@ public class ListCommand extends Command {
     @Override
     public String execute() {
         instruments = instrumentManager.getInstruments();
-        for (Instrument i : instruments) {
-            TextUi.displayInstruments(i);
-        }
+        TextUi.displayAllInstruments(instruments);
         return COMMAND_WORD;
     }
 }
