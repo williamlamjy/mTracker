@@ -30,7 +30,7 @@ public abstract class AssertParserHelper {
         assert stockParameters.size() == NUM_STOCK_PARAMETERS : MISSING_STOCK_PARAMETERS;
     }
 
-    public static void assertNoMissingCryptoParameters(ArrayList<String> cryptoParameters){
+    public static void assertNoMissingCryptoParameters(ArrayList<String> cryptoParameters) {
         assert cryptoParameters.size() == NUM_CRYPTO_PARAMETERS : MISSING_CRYPTO_PARAMETERS;
     }
 
