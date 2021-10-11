@@ -10,7 +10,7 @@ public abstract class ErrorMessage {
     }
 
     public static void displayAddForexNameError() {
-        System.out.println("Sorry forex pair codes contain 6 letters!");
+        System.out.println("Sorry forex pair codes must contain 6 letters!");
     }
 
     public static void displayAddInstrumentCurrentPriceError() {
