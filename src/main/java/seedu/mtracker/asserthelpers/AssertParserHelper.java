@@ -13,10 +13,13 @@ public abstract class AssertParserHelper {
     public static final int NUM_CRYPTO_PARAMETERS = 5;
     public static final String MISSING_CRYPTO_PARAMETERS = "There are missing crypto parameters";
 
+    public static final int NUM_FX_PARAMETERS = 7;
+    private static final String MISSING_FX_PARAMETERS = "There are missing forex parameters";
+
     public static final int MINIMUM_PRICE = 0;
     public static final String NEGATIVE_PRICE = "Price recorded is negative";
 
-    public static final String EMPTY_STRING_INPUT = "Parameter is found to be empty when it shouldn't";
+    public static final String EMPTY_STRING_INPUT = "Parameter is found to be empty when it should not be";
 
     public static void assertPriceNonNegative(String price) {
         assert Double.parseDouble(price) >= MINIMUM_PRICE : NEGATIVE_PRICE;
@@ -32,6 +35,10 @@ public abstract class AssertParserHelper {
 
     public static void assertNoMissingCryptoParameters(ArrayList<String> cryptoParameters) {
         assert cryptoParameters.size() == NUM_CRYPTO_PARAMETERS : MISSING_CRYPTO_PARAMETERS;
+    }
+
+    public static void assertNoMissingForexParameters(ArrayList<String> forexParameters) {
+        assert forexParameters.size() == NUM_FX_PARAMETERS : MISSING_FX_PARAMETERS;
     }
 
     public static void assertInputNotEmpty(String param) {
