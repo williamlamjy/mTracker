@@ -1,5 +1,6 @@
 package seedu.mtracker.console;
 
+import seedu.mtracker.LogHelper;
 import seedu.mtracker.asserthelpers.AssertParserHelper;
 import seedu.mtracker.commands.AddCryptoCommand;
 import seedu.mtracker.commands.AddEtfCommand;
@@ -11,12 +12,16 @@ import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.ui.TextUi;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public abstract class AddInstrumentParser extends InputParser {
 
     public static final int INSTRUMENT_COMMAND_INDEX = 0;
+    private static final int FX_PAIR_NAME_LENGTH = 6;
 
     protected static ArrayList<String> parameters;
+
+    private static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public void initParameters() {
         parameters = new ArrayList<>();
@@ -31,14 +36,26 @@ public abstract class AddInstrumentParser extends InputParser {
         return getUserInput();
     }
 
+    public static boolean isInvalidNameCondition(String name, String instrumentType) {
+        if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
+            return (name.length() != FX_PAIR_NAME_LENGTH);
+        }
+        return name.isEmpty();
+    }
+
     public static boolean isValidName(String name, String instrumentType) {
         boolean isValid = true;
         try {
-            if (name.isEmpty()) {
+            if (isInvalidNameCondition(name, instrumentType)) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            ErrorMessage.displayAddInstrumentNameError(instrumentType);
+            logger.info(LogHelper.LOG_INVALID_NAME);
+            if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
+                ErrorMessage.displayAddForexNameError();
+            } else {
+                ErrorMessage.displayAddInstrumentNameError(instrumentType);
+            }
             isValid = false;
         }
         return isValid;
@@ -63,10 +80,24 @@ public abstract class AddInstrumentParser extends InputParser {
         try {
             Double.parseDouble(currentPrice);
         } catch (NumberFormatException e) {
-            ErrorMessage.displayAddInstrumentCurrentPriceError();
+            logger.info(LogHelper.LOG_INVALID_PRICE);
+            ErrorMessage.displayAddInstrumentPriceError();
             isValid = false;
         }
         return isValid;
+    }
+
+    public static boolean isExpiryFilled(String expiryInput) {
+        boolean isFilled = true;
+        try {
+            if (expiryInput.isEmpty()) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            ErrorMessage.displayEmptyExpiryError();
+            isFilled = false;
+        }
+        return isFilled;
     }
 
     public static void addCurrentPriceToParameters() {
@@ -89,6 +120,7 @@ public abstract class AddInstrumentParser extends InputParser {
         boolean isValidNegativeSentiment = sentiment.equals(NEGATIVE_SENTIMENT);
         boolean isValidNeutralSentiment = sentiment.equals(NEUTRAL_SENTIMENT);
         if (!isValidPositiveSentiment && !isValidNeutralSentiment && !isValidNegativeSentiment) {
+            logger.info(LogHelper.LOG_INVALID_SENTIMENT);
             ErrorMessage.displayAddInstrumentSentimentError();
             return false;
         }
