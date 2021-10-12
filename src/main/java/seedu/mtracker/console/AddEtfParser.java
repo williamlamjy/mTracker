@@ -27,7 +27,7 @@ public class AddEtfParser extends AddInstrumentParser {
         try {
             pastReturn = Double.parseDouble(userInput);
         } catch (NumberFormatException e) {
-            logger.info(LogHelper.LOG_EMPTY_RETURNS);
+            logger.info(LogHelper.LOG_EMPTY_PAST_RETURNS);
             pastReturn = UNDEFINED_PAST_RETURN_VALUE;
         }
         return String.valueOf(pastReturn);
