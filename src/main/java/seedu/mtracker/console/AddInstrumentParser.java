@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 public abstract class AddInstrumentParser extends InputParser {
 
     public static final int INSTRUMENT_COMMAND_INDEX = 0;
+    private static final int FX_PAIR_NAME_LENGTH = 6;
 
     protected static ArrayList<String> parameters;
 
@@ -35,15 +36,26 @@ public abstract class AddInstrumentParser extends InputParser {
         return getUserInput();
     }
 
+    public static boolean isInvalidNameCondition(String name, String instrumentType) {
+        if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
+            return (name.length() != FX_PAIR_NAME_LENGTH);
+        }
+        return name.isEmpty();
+    }
+
     public static boolean isValidName(String name, String instrumentType) {
         boolean isValid = true;
         try {
-            if (name.isEmpty()) {
+            if (isInvalidNameCondition(name, instrumentType)) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
             logger.info(LogHelper.LOG_INVALID_NAME);
-            ErrorMessage.displayAddInstrumentNameError(instrumentType);
+            if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
+                ErrorMessage.displayAddForexNameError();
+            } else {
+                ErrorMessage.displayAddInstrumentNameError(instrumentType);
+            }
             isValid = false;
         }
         return isValid;

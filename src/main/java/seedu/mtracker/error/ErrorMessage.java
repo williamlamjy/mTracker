@@ -9,6 +9,10 @@ public abstract class ErrorMessage {
         System.out.println("Sorry " + instrumentType + " cannot have an empty name!");
     }
 
+    public static void displayAddForexNameError() {
+        System.out.println("Sorry forex pair codes must contain 6 letters!");
+    }
+
     public static void displayAddInstrumentPriceError() {
         System.out.println("Sorry price value must be numeric and cannot be empty!");
     }
