@@ -9,9 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class AddCryptoParserTest {
     public static final int PARAMETER_SIZE = 5;
 
-    public static final String USER_INPUT_NO_EXPIRY = "TestName%1$s23.4%1$spositive%1$s%1$sTestRemarks";
-    public static final String[] EXPECTED_PARAMS_NO_EXPIRY = {"TestName", "23.4", "positive", "", "TestRemarks"};
-
     public static final String USER_INPUT_NO_REMARKS = "TestName%1$s23.4%1$spositive%1$s18 Oct%1$s ";
     public static final String[] EXPECTED_PARAMS_NO_REMARKS = {"TestName", "23.4", "positive", "18 Oct", ""};
 
@@ -53,11 +50,6 @@ class AddCryptoParserTest {
     @Test
     void addCryptoParams_noRemarks_expectSuccess() {
         testCryptoParameters(USER_INPUT_NO_REMARKS, EXPECTED_PARAMS_NO_REMARKS);
-    }
-
-    @Test
-    void addCryptoParams_noExpiry_expectSuccess() {
-        testCryptoParameters(USER_INPUT_NO_EXPIRY, EXPECTED_PARAMS_NO_EXPIRY);
     }
 
     @Test
