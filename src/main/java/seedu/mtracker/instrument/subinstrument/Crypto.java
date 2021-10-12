@@ -16,6 +16,14 @@ public class Crypto extends Instrument {
         this.remark = remark;
     }
 
+    public String getExpiry() {
+        return expiry;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
     @Override
     public String toString() {
         return TextUi.createBoxDisplay(CRYPTO_ICON) + getName();
@@ -30,6 +38,6 @@ public class Crypto extends Instrument {
     public String toList() {
         return super.toList()
                 + System.lineSeparator() + EXPIRY_HEADER + getExpiry()
-                + System.lineSeparator() + REMARKS_HEADER + getRemarks();
+                + System.lineSeparator() + REMARKS_HEADER + getRemark();
     }
 }
