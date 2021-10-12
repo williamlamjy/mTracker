@@ -36,7 +36,7 @@ public abstract class Instrument {
 
     public abstract String getType();
 
-    public String toList(){
+    public String toList() {
         return TYPE_HEADER + getType() + System.lineSeparator()
                 + NAME_HEADER + getName() + System.lineSeparator()
                 + CURRENT_PRICE_HEADER + getCurrentPrice() + System.lineSeparator()

@@ -31,11 +31,11 @@ public class Forex extends Instrument {
 
     }
 
-    public double getEntryPrice(){
+    public double getEntryPrice() {
         return entryPrice;
     }
 
-    public double getExitPrice(){
+    public double getExitPrice() {
         return  exitPrice;
     }
 
@@ -53,16 +53,16 @@ public class Forex extends Instrument {
     }
 
     @Override
-    public String getType(){
+    public String getType() {
         return TYPE_STOCK;
     }
 
     @Override
-    public String toList(){
+    public String toList() {
         return super.toList()
                 + System.lineSeparator() + ENTRY_PRICE_HEADER + getEntryPrice()
                 + System.lineSeparator() + EXIT_PRICE_HEADER + getExitPrice()
                 + System.lineSeparator() + EXPIRY_HEADER + getExpiry()
                 + System.lineSeparator() + REMARKS_HEADER + getRemarks();
-    };
+    }
 }

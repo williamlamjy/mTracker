@@ -30,14 +30,14 @@ public class Crypto extends Instrument {
     }
 
     @Override
-    public String getType(){
+    public String getType() {
         return TYPE_STOCK;
     }
 
     @Override
-    public String toList(){
+    public String toList() {
         return super.toList()
                 + System.lineSeparator() + EXPIRY_HEADER + getExpiry()
                 + System.lineSeparator() + REMARKS_HEADER + getRemarks();
-    };
+    }
 }

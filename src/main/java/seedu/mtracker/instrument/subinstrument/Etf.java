@@ -21,8 +21,8 @@ public class Etf extends Instrument {
         return remark;
     }
 
-    public String getReturns(){
-        if (pastReturns == -101.0){
+    public String getReturns() {
+        if (pastReturns == -101.0) {
             return EMPTY_STRING;
         }
         return String.valueOf(pastReturns);
@@ -34,14 +34,14 @@ public class Etf extends Instrument {
     }
 
     @Override
-    public String getType(){
+    public String getType() {
         return TYPE_STOCK;
     }
 
     @Override
-    public String toList(){
+    public String toList() {
         return super.toList()
                 + System.lineSeparator() + RETURNS_HEADER + getReturns()
                 + System.lineSeparator() + REMARKS_HEADER + getRemark();
-    };
+    }
 }
