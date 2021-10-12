@@ -35,11 +35,8 @@ public abstract class AddInstrumentParser extends InputParser {
     public static boolean isValidName(String name, String instrumentType) {
         boolean isValid = true;
         try {
-            if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
-                if (name.length() != FX_PAIR_NAME_LENGTH) {
-                    throw new IllegalArgumentException();
-                }
-            } else if (name.isEmpty()) {
+            if (name.isEmpty() || (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE) && name.length() != FX_PAIR_NAME_LENGTH)) {
+               throw new IllegalArgumentException();
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
