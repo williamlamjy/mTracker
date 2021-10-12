@@ -1,5 +1,6 @@
 package seedu.mtracker.console;
 
+import seedu.mtracker.asserthelpers.AssertParserHelper;
 import seedu.mtracker.commands.AddCryptoCommand;
 import seedu.mtracker.commands.AddEtfCommand;
 import seedu.mtracker.commands.AddForexCommand;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 public abstract class AddInstrumentParser extends InputParser {
 
     public static final int INSTRUMENT_COMMAND_INDEX = 0;
+    private static final int FX_PAIR_NAME_LENGTH = 6;
 
     protected static ArrayList<String> parameters;
 
@@ -30,14 +32,25 @@ public abstract class AddInstrumentParser extends InputParser {
         return getUserInput();
     }
 
+    public static boolean isInvalidNameCondition(String name, String instrumentType) {
+        if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
+            return (name.length() != FX_PAIR_NAME_LENGTH);
+        }
+        return name.isEmpty();
+    }
+
     public static boolean isValidName(String name, String instrumentType) {
         boolean isValid = true;
         try {
-            if (name.isEmpty()) {
+            if (isInvalidNameCondition(name, instrumentType)) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            ErrorMessage.displayAddInstrumentNameError(instrumentType);
+            if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
+                ErrorMessage.displayAddForexNameError();
+            } else {
+                ErrorMessage.displayAddInstrumentNameError(instrumentType);
+            }
             isValid = false;
         }
         return isValid;
@@ -49,6 +62,7 @@ public abstract class AddInstrumentParser extends InputParser {
             name = getInstrumentNameFromUser(instrumentType);
         }
         parameters.add(name);
+        AssertParserHelper.assertInputNotEmpty(name);
     }
 
     public static String getCurrentPriceFromUser() {
@@ -61,10 +75,23 @@ public abstract class AddInstrumentParser extends InputParser {
         try {
             Double.parseDouble(currentPrice);
         } catch (NumberFormatException e) {
-            ErrorMessage.displayAddInstrumentCurrentPriceError();
+            ErrorMessage.displayAddInstrumentPriceError();
             isValid = false;
         }
         return isValid;
+    }
+
+    public static boolean isExpiryFilled(String expiryInput) {
+        boolean isFilled = true;
+        try {
+            if (expiryInput.isEmpty()) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            ErrorMessage.displayEmptyExpiryError();
+            isFilled = false;
+        }
+        return isFilled;
     }
 
     public static void addCurrentPriceToParameters() {
@@ -73,6 +100,8 @@ public abstract class AddInstrumentParser extends InputParser {
             currentPrice = getCurrentPriceFromUser();
         }
         parameters.add(currentPrice);
+        AssertParserHelper.assertInputNotEmpty(currentPrice);
+        AssertParserHelper.assertPriceNonNegative(currentPrice);
     }
 
     public static String getInstrumentSentimentFromUser() {
@@ -98,12 +127,14 @@ public abstract class AddInstrumentParser extends InputParser {
             sentiment = getInstrumentSentimentFromUser();
         }
         parameters.add(sentiment);
+        AssertParserHelper.assertInputNotEmpty(sentiment);
     }
 
     public static void getGeneralParameters(String instrumentType) {
         addNameToParameters(instrumentType);
         addCurrentPriceToParameters();
         addSentimentToParameters();
+        AssertParserHelper.assertNoMissingGeneralParameters(parameters);
     }
 
     public abstract AddInstrumentCommand getInstrumentParameters();
