@@ -9,9 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class AddCryptoParserTest {
     public static final int PARAMETER_SIZE = 5;
 
-    public static final String USER_INPUT_NO_EXPIRY = "TestName%1$s23.4%1$spositive%1$s%1$sTestRemarks";
-    public static final String[] EXPECTED_PARAMS_NO_EXPIRY = {"TestName", "23.4", "positive", "", "TestRemarks"};
-
     public static final String USER_INPUT_NO_REMARKS = "TestName%1$s23.4%1$spositive%1$s18 Oct%1$s ";
     public static final String[] EXPECTED_PARAMS_NO_REMARKS = {"TestName", "23.4", "positive", "18 Oct", ""};
 
@@ -24,6 +21,8 @@ class AddCryptoParserTest {
             + "%1$snegative%1$s18 Oct%1$sTestRemarks";
     public static final String USER_INPUT_TRY_INVALID_SENTIMENT = "%1$sTestName%1$s100.4"
             + "%1$swrong%1$s%1$snegative%1$s18 Oct%1$sTestRemarks";
+    public static final String USER_INPUT_TRY_EMPTY_EXPIRY = "%1$sTestName%1$s100.4"
+            + "%1$snegative%1$s %1$s %1$s18 Oct%1$sTestRemarks";
 
     String formatConsoleInput(String input) {
         return String.format(input, System.lineSeparator());
@@ -56,11 +55,6 @@ class AddCryptoParserTest {
     }
 
     @Test
-    void addCryptoParams_noExpiry_expectSuccess() {
-        testCryptoParameters(USER_INPUT_NO_EXPIRY, EXPECTED_PARAMS_NO_EXPIRY);
-    }
-
-    @Test
     void addCryptoParams_allValidParametersWithRemarksAndExpiry_expectSuccess() {
         testCryptoParameters(USER_INPUT_WITH_REMARKS_AND_EXPIRY,
                 EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY);
@@ -82,4 +76,11 @@ class AddCryptoParserTest {
         testCryptoParameters(USER_INPUT_TRY_INVALID_SENTIMENT,
                 EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY);
     }
+
+    @Test
+    void addCryptoParams_tryEmptyExpiryMultipleTimes_expectSuccess() {
+        testCryptoParameters(USER_INPUT_TRY_EMPTY_EXPIRY,
+                EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY);
+    }
+
 }
