@@ -23,7 +23,7 @@ public class TextUi {
             + "|/ \\___/    \\_/   (_______/(_)";
     private static final String NAME_HEADER = "Name: ";
     private static final String CURRENT_PRICE_HEADER = "Current Price: ";
-    private static final String SENTIMENT_HEADER = "Sentiment : ";
+    private static final String SENTIMENT_HEADER = "Sentiment: ";
     private static final String TAB = "\t";
 
     public static String createBoxDisplay(String icon) {
