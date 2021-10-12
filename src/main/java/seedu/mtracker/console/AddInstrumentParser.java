@@ -43,7 +43,7 @@ public abstract class AddInstrumentParser extends InputParser {
         boolean isValid = true;
         try {
             if (isInvalidNameCondition(name, instrumentType)) {
-               throw new IllegalArgumentException();
+                throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
             if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
