@@ -1,5 +1,6 @@
 package seedu.mtracker.console;
 
+import seedu.mtracker.LogHelper;
 import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commands.Command;
 import seedu.mtracker.commands.ExitCommand;
@@ -50,6 +51,7 @@ public class InputParser {
             command = new ExitCommand();
             break;
         default:
+            AddInstrumentParser.logger.info(LogHelper.LOG_INVALID_COMMAND);
             throw new InvalidCommandError();
         }
         return command;

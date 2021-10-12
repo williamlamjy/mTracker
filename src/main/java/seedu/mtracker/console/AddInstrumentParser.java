@@ -169,6 +169,7 @@ public abstract class AddInstrumentParser extends InputParser {
             addInstrumentParser = new AddEtfParser();
             break;
         default:
+            logger.info(LogHelper.LOG_INVALID_INSTRUMENT);
             throw new InvalidInstrumentError();
         }
         addInstrumentParser.initParameters();
