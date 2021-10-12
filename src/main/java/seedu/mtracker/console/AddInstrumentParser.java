@@ -94,6 +94,7 @@ public abstract class AddInstrumentParser extends InputParser {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
+            logger.info(LogHelper.LOG_EMPTY_EXPIRY);
             ErrorMessage.displayEmptyExpiryError();
             isFilled = false;
         }
