@@ -20,7 +20,10 @@ public class AddCryptoParser extends AddInstrumentParser {
     }
 
     public void addCryptoExpiryToParameters() {
-        String expiry = getCryptoExpiryFromUser();
+        String expiry;
+        do {
+            expiry = getCryptoExpiryFromUser();
+        } while (!isExpiryFilled(expiry));
         parameters.add(expiry);
     }
 

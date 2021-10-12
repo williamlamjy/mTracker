@@ -1,5 +1,6 @@
 package seedu.mtracker.console;
 
+import seedu.mtracker.LogHelper;
 import seedu.mtracker.asserthelpers.AssertParserHelper;
 import seedu.mtracker.commands.AddEtfCommand;
 import seedu.mtracker.commands.AddInstrumentCommand;
@@ -26,6 +27,7 @@ public class AddEtfParser extends AddInstrumentParser {
         try {
             pastReturn = Double.parseDouble(userInput);
         } catch (NumberFormatException e) {
+            logger.info(LogHelper.LOG_EMPTY_PAST_RETURNS);
             pastReturn = UNDEFINED_PAST_RETURN_VALUE;
         }
         return String.valueOf(pastReturn);

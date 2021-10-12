@@ -16,14 +16,6 @@ public class Crypto extends Instrument {
         this.remark = remark;
     }
 
-    public String getExpiry() {
-        return expiry;
-    }
-
-    public String getRemarks() {
-        return remark;
-    }
-
     @Override
     public String toString() {
         return TextUi.createBoxDisplay(CRYPTO_ICON) + getName();
