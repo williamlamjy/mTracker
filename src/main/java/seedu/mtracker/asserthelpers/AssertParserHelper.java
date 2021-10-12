@@ -44,8 +44,8 @@ public abstract class AssertParserHelper {
         assert forexParameters.size() == NUM_FX_PARAMETERS : MISSING_FX_PARAMETERS;
     }
 
-    public static void assertNoMissingEtfParameters(ArrayList<String> EtfParameters) {
-        assert EtfParameters.size() == NUM_ETF_PARAMETERS : MISSING_ETF_PARAMETERS;
+    public static void assertNoMissingEtfParameters(ArrayList<String> etfParameters) {
+        assert etfParameters.size() == NUM_ETF_PARAMETERS : MISSING_ETF_PARAMETERS;
     }
 
     public static void assertInputNotEmpty(String param) {
