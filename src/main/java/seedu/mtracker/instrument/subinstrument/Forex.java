@@ -10,7 +10,7 @@ public class Forex extends Instrument {
     protected String remark;
 
     private static final String FX_ICON = "F";
-    protected static final String TYPE_STOCK = "Forex";
+    protected static final String TYPE_INSTRUMENT = "Forex";
     protected static final String ENTRY_PRICE_HEADER = "Entry Price: ";
     protected static final String EXIT_PRICE_HEADER = "Exit Price: ";
 
@@ -36,7 +36,7 @@ public class Forex extends Instrument {
     }
 
     public double getExitPrice() {
-        return  exitPrice;
+        return exitPrice;
     }
 
     public String getExpiry() {
@@ -54,7 +54,7 @@ public class Forex extends Instrument {
 
     @Override
     public String getType() {
-        return TYPE_STOCK;
+        return TYPE_INSTRUMENT;
     }
 
     @Override

@@ -8,7 +8,7 @@ public class Crypto extends Instrument {
     protected String expiry;
     protected String remark;
     protected static final String CRYPTO_ICON = "C";
-    protected static final String TYPE_STOCK = "Crypto";
+    protected static final String TYPE_INSTRUMENT = "Crypto";
 
     public Crypto(String name, double currentPrice, String sentiment, String expiry, String remark) {
         super(name, currentPrice, sentiment);
@@ -31,7 +31,7 @@ public class Crypto extends Instrument {
 
     @Override
     public String getType() {
-        return TYPE_STOCK;
+        return TYPE_INSTRUMENT;
     }
 
     @Override

@@ -7,7 +7,7 @@ public class Stock extends Instrument {
 
     protected String remark;
     protected static final String STOCK_ICON = "S";
-    protected static final String TYPE_STOCK = "Stock";
+    protected static final String TYPE_INSTRUMENT = "Stock";
 
     public Stock(String name, double currentPrice, String sentiment, String remark) {
         super(name, currentPrice, sentiment);
@@ -25,7 +25,7 @@ public class Stock extends Instrument {
 
     @Override
     public String getType() {
-        return TYPE_STOCK;
+        return TYPE_INSTRUMENT;
     }
 
     @Override
