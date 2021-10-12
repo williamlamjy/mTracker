@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 public abstract class AddInstrumentParser extends InputParser {
 
     public static final int INSTRUMENT_COMMAND_INDEX = 0;
+    public static final double MINIMUM_PRICE = 0;
     private static final int FX_PAIR_NAME_LENGTH = 6;
 
     protected static ArrayList<String> parameters;
@@ -78,8 +79,11 @@ public abstract class AddInstrumentParser extends InputParser {
     public static boolean isValidPrice(String currentPrice) {
         boolean isValid = true;
         try {
-            Double.parseDouble(currentPrice);
-        } catch (NumberFormatException e) {
+            double inputPrice = Double.parseDouble(currentPrice);
+            if (inputPrice < MINIMUM_PRICE) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
             logger.info(LogHelper.LOG_INVALID_PRICE);
             ErrorMessage.displayAddInstrumentPriceError();
             isValid = false;

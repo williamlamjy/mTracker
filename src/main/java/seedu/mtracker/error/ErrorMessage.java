@@ -14,7 +14,7 @@ public abstract class ErrorMessage {
     }
 
     public static void displayAddInstrumentPriceError() {
-        System.out.println("Sorry price value must be numeric and cannot be empty!");
+        System.out.println("Sorry price value must be a positive value and cannot be empty!");
     }
 
     public static void displayAddInstrumentSentimentError() {
