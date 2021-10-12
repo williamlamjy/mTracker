@@ -16,7 +16,7 @@ public abstract class AssertParserHelper {
     public static final int NUM_FX_PARAMETERS = 7;
     private static final String MISSING_FX_PARAMETERS = "There are missing forex parameters";
 
-    public static final int NUM_ETF_PARAMETERS = 7;
+    public static final int NUM_ETF_PARAMETERS = 5;
     private static final String MISSING_ETF_PARAMETERS = "There are missing Etf parameters";
 
     public static final int MINIMUM_PRICE = 0;
