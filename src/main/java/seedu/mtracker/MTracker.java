@@ -7,13 +7,17 @@ import seedu.mtracker.console.InputParser;
 import seedu.mtracker.instrument.InstrumentManager;
 import seedu.mtracker.ui.TextUi;
 
+import java.util.logging.Level;
+
 public class MTracker {
 
-    private InstrumentManager instrumentManager;
-    private InputParser parser;
+    private final InstrumentManager instrumentManager;
+    private final InputParser parser;
+    private final LogHelper logger;
 
     public MTracker() {
         instrumentManager = InstrumentManager.getInstance();
+        logger = LogHelper.getInstance();
         parser = new InputParser();
     }
 
@@ -30,6 +34,7 @@ public class MTracker {
                 command.setData(instrumentManager);
                 command.execute();
             } catch (Exception e) {
+                logger.getLogger().log(Level.WARNING, e.getMessage());
                 TextUi.showErrorMessage(e);
                 command = new InvalidCommand();
             }
