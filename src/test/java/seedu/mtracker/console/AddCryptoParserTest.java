@@ -21,6 +21,8 @@ class AddCryptoParserTest {
             + "%1$snegative%1$s18 Oct%1$sTestRemarks";
     public static final String USER_INPUT_TRY_INVALID_SENTIMENT = "%1$sTestName%1$s100.4"
             + "%1$swrong%1$s%1$snegative%1$s18 Oct%1$sTestRemarks";
+    public static final String USER_INPUT_TRY_EMPTY_EXPIRY = "%1$sTestName%1$s100.4"
+            + "%1$snegative%1$s %1$s %1$s18 Oct%1$sTestRemarks";
 
     String formatConsoleInput(String input) {
         return String.format(input, System.lineSeparator());
@@ -74,4 +76,11 @@ class AddCryptoParserTest {
         testCryptoParameters(USER_INPUT_TRY_INVALID_SENTIMENT,
                 EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY);
     }
+
+    @Test
+    void addCryptoParams_tryEmptyExpiryMultipleTimes_expectSuccess() {
+        testCryptoParameters(USER_INPUT_TRY_EMPTY_EXPIRY,
+                EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY);
+    }
+
 }
