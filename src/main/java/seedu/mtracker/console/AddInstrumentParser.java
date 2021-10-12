@@ -32,12 +32,18 @@ public abstract class AddInstrumentParser extends InputParser {
         return getUserInput();
     }
 
+    public static boolean isInvalidNameCondition(String name, String instrumentType) {
+        if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
+            return (name.length() != FX_PAIR_NAME_LENGTH);
+        }
+        return name.isEmpty();
+    }
+
     public static boolean isValidName(String name, String instrumentType) {
         boolean isValid = true;
         try {
-            if (name.isEmpty() || (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE) && name.length() != FX_PAIR_NAME_LENGTH)) {
+            if (isInvalidNameCondition(name, instrumentType)) {
                throw new IllegalArgumentException();
-                throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
             if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
