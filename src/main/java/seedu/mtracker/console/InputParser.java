@@ -4,7 +4,6 @@ import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commands.Command;
 import seedu.mtracker.commands.ExitCommand;
 import seedu.mtracker.commands.ListCommand;
-import seedu.mtracker.commands.InvalidCommand;
 import seedu.mtracker.error.InvalidCommandError;
 import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.ui.TextUi;
@@ -38,7 +37,6 @@ public class InputParser {
         return AddInstrumentParser.filterByInstrumentType(getCommandComponents(addInstrumentType));
     }
 
-    // Todo: Create a new command type to handle and unrecognised command type in default branch
     public Command filterByCommandType(String[] commandComponents) throws Exception {
         Command command;
         switch (commandComponents[MAIN_COMMAND_INDEX]) {

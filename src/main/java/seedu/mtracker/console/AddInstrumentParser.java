@@ -1,5 +1,6 @@
 package seedu.mtracker.console;
 
+import seedu.mtracker.LogHelper;
 import seedu.mtracker.asserthelpers.AssertParserHelper;
 import seedu.mtracker.commands.AddCryptoCommand;
 import seedu.mtracker.commands.AddEtfCommand;
@@ -11,6 +12,7 @@ import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.ui.TextUi;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public abstract class AddInstrumentParser extends InputParser {
 
@@ -18,6 +20,8 @@ public abstract class AddInstrumentParser extends InputParser {
     private static final int FX_PAIR_NAME_LENGTH = 6;
 
     protected static ArrayList<String> parameters;
+
+    private static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public void initParameters() {
         parameters = new ArrayList<>();
@@ -46,6 +50,7 @@ public abstract class AddInstrumentParser extends InputParser {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
+            logger.info(LogHelper.LOG_INVALID_NAME);
             if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
                 ErrorMessage.displayAddForexNameError();
             } else {
@@ -75,6 +80,7 @@ public abstract class AddInstrumentParser extends InputParser {
         try {
             Double.parseDouble(currentPrice);
         } catch (NumberFormatException e) {
+            logger.info(LogHelper.LOG_INVALID_PRICE);
             ErrorMessage.displayAddInstrumentPriceError();
             isValid = false;
         }
@@ -114,6 +120,7 @@ public abstract class AddInstrumentParser extends InputParser {
         boolean isValidNegativeSentiment = sentiment.equals(NEGATIVE_SENTIMENT);
         boolean isValidNeutralSentiment = sentiment.equals(NEUTRAL_SENTIMENT);
         if (!isValidPositiveSentiment && !isValidNeutralSentiment && !isValidNegativeSentiment) {
+            logger.info(LogHelper.LOG_INVALID_SENTIMENT);
             ErrorMessage.displayAddInstrumentSentimentError();
             return false;
         }
