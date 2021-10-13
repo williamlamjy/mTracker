@@ -22,8 +22,6 @@ public abstract class AddInstrumentParser extends InputParser {
 
     protected static ArrayList<String> parameters;
 
-    protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-
     public void initParameters() {
         parameters = new ArrayList<>();
     }
@@ -169,6 +167,7 @@ public abstract class AddInstrumentParser extends InputParser {
             addInstrumentParser = new AddEtfParser();
             break;
         default:
+            logger.info(LogHelper.LOG_INVALID_INSTRUMENT);
             throw new InvalidInstrumentError();
         }
         addInstrumentParser.initParameters();
