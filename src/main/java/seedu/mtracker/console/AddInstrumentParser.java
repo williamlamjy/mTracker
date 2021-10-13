@@ -22,8 +22,6 @@ public abstract class AddInstrumentParser extends InputParser {
 
     protected static ArrayList<String> parameters;
 
-    protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-
     public void initParameters() {
         parameters = new ArrayList<>();
     }

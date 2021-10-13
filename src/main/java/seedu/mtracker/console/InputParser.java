@@ -10,6 +10,7 @@ import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.ui.TextUi;
 
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class InputParser {
 
@@ -18,6 +19,8 @@ public class InputParser {
     public static final String POSITIVE_SENTIMENT = "positive";
     public static final String NEUTRAL_SENTIMENT = "neutral";
     public static final String NEGATIVE_SENTIMENT = "negative";
+
+    protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public static final int MAIN_COMMAND_INDEX = 0;
 
@@ -51,7 +54,7 @@ public class InputParser {
             command = new ExitCommand();
             break;
         default:
-            AddInstrumentParser.logger.info(LogHelper.LOG_INVALID_COMMAND);
+            logger.info(LogHelper.LOG_INVALID_COMMAND);
             throw new InvalidCommandError();
         }
         return command;
