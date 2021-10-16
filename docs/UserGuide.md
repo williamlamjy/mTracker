@@ -12,7 +12,7 @@ for busy individuals.
 ## Quick Start
 
 1. Ensure that you have Java `11` installed on your computer.
-2. Down the latest version of `MTracker` from [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/releases).
+2. Download the latest version of `MTracker` from [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/releases).
 3. Copy the jar file to a folder that you want to run MTracker from.
 4. At the folder where you copied the jar file run the command `java -jar TP.jar` in terminal.
 5. If MTracker starts successfully, you should see the following output:
