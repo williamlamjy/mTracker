@@ -36,9 +36,9 @@ ________________________________________________________________________________
 ## Notes about command format
 * Words in `UPPER_CASE` represent the parameters to be supplied by user. Below we have a list of parameters
   that we would be referring to throughout this user guide.
-    * `NAME` represents the name of instrument to be specified by user.
-    * `PRICE` represents the price specified by the user.
     * `DATE` represents the date specified by the user in `YYYY MM DD` format.
+    * `SENTIMENT` represents the public's opinion towards an instrument. It can only take 3 different values: 
+  `positive`, `neutral` or `negative`.
     * `REMARKS` represents the remarks specified by the user.
     * `INDEX` represents the index value of an instrument. The index value would correspond to the instrument's
       position in the list.
@@ -48,8 +48,6 @@ ________________________________________________________________________________
 * Extraneous parameters for commands `list` and `bye` would be ignored.
     * For example the command `bye 123`
       would be interpreted as `bye`.
-
-{Give detailed description of each feature}
 
 ## Adding a new instrument: `add`
 Adds a new instrument to your watchlist of instruments. 
@@ -71,7 +69,7 @@ The 4 types are `stock`, `etf`, `crypto` and `forex`.
 The addition of a new stock expects 4 parameters.
 * `Name` Name of the stock. Empty name is not allowed.
 * `Current price` Current price of the stock. Requires a positive number.
-* `Sentiment` Sentiment of the stock. Requires one of the following types: `positive`, `neutral` or `negative`.
+* `Sentiment` Sentiment of the stock.
 * `Remarks` Any additional optional remarks about the stock.
 
 Example usage
