@@ -20,7 +20,7 @@ public class Stock extends Instrument {
 
     @Override
     public String toString() {
-        return TextUi.createBoxDisplay(STOCK_ICON) + getName();
+        return TextUi.createBoxDisplay(STOCK_ICON) + super.toString() + getName();
     }
 
     @Override

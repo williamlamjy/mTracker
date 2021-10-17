@@ -2,6 +2,7 @@ package seedu.mtracker.console;
 
 import seedu.mtracker.LogHelper;
 import seedu.mtracker.commands.AddInstrumentCommand;
+import seedu.mtracker.commands.CheckOffInstrumentCommand;
 import seedu.mtracker.commands.Command;
 import seedu.mtracker.commands.ExitCommand;
 import seedu.mtracker.commands.ListCommand;
@@ -23,6 +24,7 @@ public class InputParser {
     protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public static final int MAIN_COMMAND_INDEX = 0;
+    public static final int LIST_NUMBER_COMMAND_INDEX = 1;
 
     protected static Scanner inputScanner;
 
@@ -53,6 +55,9 @@ public class InputParser {
         case ExitCommand.COMMAND_WORD:
             command = new ExitCommand();
             break;
+        case CheckOffInstrumentCommand.COMMAND_WORD:
+            command = new CheckOffInstrumentCommand(getInstrumentIndex(commandComponents));
+            break;
         default:
             logger.info(LogHelper.LOG_INVALID_COMMAND);
             throw new InvalidCommandError();
@@ -62,5 +67,10 @@ public class InputParser {
 
     public String[] getCommandComponents(String commandInput) {
         return commandInput.trim().split(SEPARATOR);
+    }
+
+    public int getInstrumentIndex(String[] commandComponents) {
+        int instrumentIndex = Integer.parseInt(commandComponents[1]) - 1;
+        return instrumentIndex;
     }
 }

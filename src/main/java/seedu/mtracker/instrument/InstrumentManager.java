@@ -22,7 +22,15 @@ public class InstrumentManager {
         return instruments;
     }
 
+    public Instrument getInstrument(int instrumentIndex) {
+        return instruments.get(instrumentIndex);
+    }
+
     public void addInstrument(Instrument addedInstrument) {
         instruments.add(addedInstrument);
+    }
+
+    public void checkOffInstrument(int completedInstrumentIndex) {
+        instruments.get(completedInstrumentIndex).markAsDone();
     }
 }

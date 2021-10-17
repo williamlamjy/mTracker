@@ -49,7 +49,7 @@ public class Forex extends Instrument {
 
     @Override
     public String toString() {
-        return TextUi.createBoxDisplay(FX_ICON) + getName();
+        return TextUi.createBoxDisplay(FX_ICON) + super.toString() + getName();
     }
 
     @Override

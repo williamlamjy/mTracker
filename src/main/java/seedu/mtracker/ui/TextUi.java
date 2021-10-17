@@ -78,6 +78,11 @@ public class TextUi {
         instruments.stream().forEach(instrument -> displayInstrument(instrument));
     }
 
+    public static void displayCheckOffInstrument(Instrument instrument){
+        System.out.println("Nice! I have marked this instrument as completed:"
+                + "\n" + instrument);
+    }
+
     public static void showErrorMessage(Exception e) {
         System.out.println(e.getMessage());
     }

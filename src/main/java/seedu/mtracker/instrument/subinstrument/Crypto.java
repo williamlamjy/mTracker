@@ -26,7 +26,7 @@ public class Crypto extends Instrument {
 
     @Override
     public String toString() {
-        return TextUi.createBoxDisplay(CRYPTO_ICON) + getName();
+        return TextUi.createBoxDisplay(CRYPTO_ICON) + super.toString() + getName();
     }
 
     @Override

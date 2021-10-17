@@ -1,10 +1,13 @@
 package seedu.mtracker.instrument;
 
+import seedu.mtracker.ui.TextUi;
+
 public abstract class Instrument {
 
     protected String name;
     protected double currentPrice;
     protected String sentiment;
+    protected boolean isDone;
 
     private static final String TYPE_HEADER = "Type: ";
     private static final String NAME_HEADER = "Name: ";
@@ -18,6 +21,19 @@ public abstract class Instrument {
         this.name = name;
         this.currentPrice = currentPrice;
         this.sentiment = sentiment;
+        this.isDone = false;
+    }
+
+    public boolean getIsDone(){
+        return isDone;
+    }
+
+    public void markAsDone(){
+        isDone = true;
+    }
+
+    public String getStatusIcon() {
+        return (getIsDone() ? "X" : " ");
     }
 
     public String getName() {
@@ -32,13 +48,15 @@ public abstract class Instrument {
         return sentiment;
     }
 
-    public abstract String toString();
+    public String toString(){
+        return TextUi.createBoxDisplay(getStatusIcon());
+    }
 
     public abstract String getType();
 
     public String toList() {
-        return TYPE_HEADER + getType() + System.lineSeparator()
-                + NAME_HEADER + getName() + System.lineSeparator()
+        return TYPE_HEADER + TextUi.createBoxDisplay(getStatusIcon()) + getType()
+                + System.lineSeparator() + NAME_HEADER + getName() + System.lineSeparator()
                 + CURRENT_PRICE_HEADER + getCurrentPrice() + System.lineSeparator()
                 + SENTIMENT_HEADER + getSentiment();
     }

@@ -30,7 +30,7 @@ public class Etf extends Instrument {
 
     @Override
     public String toString() {
-        return TextUi.createBoxDisplay(ETF_ICON) + getName();
+        return TextUi.createBoxDisplay(ETF_ICON) + super.toString() + getName();
     }
 
     @Override
