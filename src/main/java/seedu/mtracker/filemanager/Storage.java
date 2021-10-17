@@ -57,23 +57,12 @@ public class Storage {
         return instruments;
     }
 
-    public String emptyRemarksFormatter(String textSegment){
-        String parameter;
-        if(textSegment == null){
-            parameter = " ";
-        }
-        else{
-            parameter = textSegment;
-        }
-        return parameter;
-    }
-
     public void addCryptoToList(String [] textSegment, ArrayList<Instrument> instruments){
         String name = textSegment[1];
         double currentPrice = Double.parseDouble(textSegment[2]);
         String sentiment = textSegment[3];
         String expiry = textSegment[4];
-        String remarks = emptyRemarksFormatter(textSegment[5]);
+        String remarks = textSegment[5];
         Instrument crypto = new Crypto(name, currentPrice, sentiment, expiry, remarks);
         instruments.add(crypto);
     }
@@ -85,7 +74,7 @@ public class Storage {
         double entryPrice = Double.parseDouble(textSegment[4]);
         double exitPrice = Double.parseDouble(textSegment[5]);
         String expiry = textSegment[6];
-        String remarks = emptyRemarksFormatter(textSegment[7]);
+        String remarks = textSegment[7];
         Instrument forex = new Forex(name, currentPrice, sentiment,
                 entryPrice, exitPrice, expiry, remarks);
         instruments.add(forex);
@@ -95,7 +84,7 @@ public class Storage {
         String name = textSegment[1];
         double currentPrice = Double.parseDouble(textSegment[2]);
         String sentiment = textSegment[3];
-        String remarks = emptyRemarksFormatter(textSegment[4]);
+        String remarks = textSegment[4];
         Instrument stock = new Stock(name, currentPrice, sentiment, remarks);
         instruments.add(stock);
     }
@@ -105,7 +94,7 @@ public class Storage {
         double currentPrice = Double.parseDouble(textSegment[2]);
         String sentiment = textSegment[3];
         double pastReturns = Double.parseDouble(textSegment[4]);
-        String remarks = emptyRemarksFormatter(textSegment[5]);
+        String remarks = textSegment[5];
         Instrument etf = new Etf(name, currentPrice, sentiment, pastReturns, remarks);
         instruments.add(etf);
     }
