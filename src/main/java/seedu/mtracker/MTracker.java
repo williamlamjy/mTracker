@@ -19,9 +19,9 @@ public class MTracker {
 
     public MTracker(String filePath) {
         try {
-            instrumentManager = InstrumentManager.getInstance();
             logger = LogHelper.getInstance();
             storage = new Storage(filePath);
+            instrumentManager = new InstrumentManager(storage.readFile());
             parser = new InputParser();
         } catch (Exception e) {
             ErrorMessage.displayFileError();
