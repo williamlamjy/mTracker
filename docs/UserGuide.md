@@ -1,33 +1,103 @@
-# User Guide
+# MTracker User Guide
 
 ## Introduction
 
-{Give a product intro}
+mTracker is a **command-line based trading journal interface** that **allows 
+investors and traders to store and view important trading related information** on their 
+shortlisted financial instruments for **reference and decision-making**. It **summarises 
+key details** into an **easy-to-read format and provides convenient lookups for trade setups**
+for busy individuals.
+
 
 ## Quick Start
 
-{Give steps to get started quickly}
+1. Ensure that you have Java `11` installed on your computer.
+2. Download the latest version of `MTracker` from [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/releases).
+3. Copy the jar file to a folder that you want to run MTracker from.
+4. At the folder where you copied the jar file run the command `java -jar TP.jar` in terminal.
+5. If MTracker starts successfully, you should see the following output:
+```
+________________________________________________________________________________
+            _________                      __
+           |  _   _  |                    [  |  _
+ _ .--..--.|_/ | | \_| .--.  ,--.   .---.  | | / ] .---.  _ .--.
+[ `.-. .-. |   | |  [ `/'`\]`'_\ : / /'`\] | '' < / /__\\[ `/'`\]
+ | | | | | |  _| |_  | |    /| | |,| \__.  | |`\ \| \__., | |
+[___||__||__]|_____|[___]   \'-;__/'.___.'[__|  \_]'.__.'[___]
 
-1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+Hello! I am mTracker, your personal assistant bot that
+helps you keep track of the markets.
+What should I do for you now? ☺
+________________________________________________________________________________
+```
 
 ## Features 
 
-{Give detailed description of each feature}
+## Notes about command format
+* Words in `UPPER_CASE` represent the parameters to be supplied by user. Below we have a list of parameters
+  that we would be referring to throughout this user guide.
+    * `DATE` represents the date specified by the user in `YYYY MM DD` format.
+    * `SENTIMENT` represents the public's opinion towards an instrument. It can only take 3 different values: 
+  `positive`, `neutral` or `negative`.
+    * `REMARKS` represents the remarks specified by the user.
+    * `INDEX` represents the index value of an instrument. The index value would correspond to the instrument's
+      position in the list.
+      * For example the first instrument in the list would have an index value of 1 while 
+      the 3rd instrument in the list would have a
+  value of 3.
+* Extraneous parameters for commands `list` and `bye` would be ignored.
+    * For example the command `bye 123`
+      would be interpreted as `bye`.
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+## Adding a new instrument: `add`
+Adds a new instrument to your watchlist of instruments. 
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Format: `add`
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+Upon typing the `add` command, an instruction prompt below would be displayed to guide you through the process of
+adding a new instrument.
 
-Example of usage: 
+```
+mTracker$> add
+	Please key in the type of instrument: 
+```
 
-`todo n/Write the rest of the User Guide d/next week`
+MTracker currently supports 4 different types of instruments.
+The 4 types are `stock`, `etf`, `crypto` and `forex`. 
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+### Adding a new `stock`
+The addition of a new stock expects 4 parameters.
+* `Name` Name of the stock. Empty name is not allowed.
+* `Current price` Current price of the stock. Requires a positive number.
+* `Sentiment` Sentiment of the stock.
+* `Remarks` Any additional optional remarks about the stock.
+
+Example usage
+```
+mTracker$> add
+	Please key in the type of instrument: 
+mTracker$> stock
+	Name of stock: 
+mTracker$> IBM
+	Current Price: 
+mTracker$> 144.61
+	Sentiment for instrument: 
+mTracker$> positive
+	Remarks (optional): 
+mTracker$> 
+```
+
+By following the instructions above, a new stock would be added and an acknowledgement message would appear.
+Following the usage example above we would see the following message:
+```
+	[S]IBM
+```
+
+Note: If any of the non-optional parameters `Name`, `Current price` and `Sentiment` are provided with invalid
+inputs, you would be prompted to give a valid input.
+
+
+
 
 ## FAQ
 
