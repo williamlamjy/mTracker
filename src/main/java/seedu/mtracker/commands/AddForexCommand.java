@@ -3,6 +3,8 @@ package seedu.mtracker.commands;
 import seedu.mtracker.instrument.subinstrument.Forex;
 import seedu.mtracker.ui.TextUi;
 
+import java.io.IOException;
+
 public class AddForexCommand extends AddInstrumentCommand {
     public static final String COMMAND_WORD = "forex";
 
@@ -36,12 +38,13 @@ public class AddForexCommand extends AddInstrumentCommand {
     }
 
     @Override
-    public String execute() {
+    public String execute() throws IOException {
         setAddGeneralParameters();
         setForexParameters();
         createNewFxPair();
         instrumentManager.addInstrument(newInstrument);
         TextUi.displayInstrumentAdded(newInstrument);
+        storage.writeFile(instrumentManager);
         return COMMAND_WORD;
     }
 }

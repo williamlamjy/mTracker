@@ -4,21 +4,29 @@ import seedu.mtracker.commands.Command;
 import seedu.mtracker.commands.ExitCommand;
 import seedu.mtracker.commands.InvalidCommand;
 import seedu.mtracker.console.InputParser;
+import seedu.mtracker.error.ErrorMessage;
+import seedu.mtracker.filemanager.Storage;
 import seedu.mtracker.instrument.InstrumentManager;
 import seedu.mtracker.ui.TextUi;
 
 import java.util.logging.Level;
 
 public class MTracker {
+    private Storage storage;
+    private InstrumentManager instrumentManager;
+    private InputParser parser;
+    private LogHelper logger;
 
-    private final InstrumentManager instrumentManager;
-    private final InputParser parser;
-    private final LogHelper logger;
-
-    public MTracker() {
-        instrumentManager = InstrumentManager.getInstance();
-        logger = LogHelper.getInstance();
-        parser = new InputParser();
+    public MTracker(String filePath) {
+        try {
+            instrumentManager = InstrumentManager.getInstance();
+            logger = LogHelper.getInstance();
+            storage = new Storage(filePath);
+            parser = new InputParser();
+        } catch (Exception e) {
+            ErrorMessage.displayFileError();
+            System.exit(-1);
+        }
     }
 
     public void run() {
@@ -27,11 +35,11 @@ public class MTracker {
         String[] commandComponents;
 
         do {
-            userInput = parser.getUserInput();
+            userInput = InputParser.getUserInput();
             commandComponents = parser.getCommandComponents(userInput);
             try {
                 command = parser.filterByCommandType(commandComponents);
-                command.setData(instrumentManager);
+                command.setData(instrumentManager, storage);
                 command.execute();
             } catch (Exception e) {
                 logger.getLogger().log(Level.WARNING, e.getMessage());
@@ -50,7 +58,7 @@ public class MTracker {
      * Main entry-point for the mTracker application.
      */
     public static void main(String[] args) {
-        new MTracker().executeProgram();
+        new MTracker("data/mTracker.txt").executeProgram();
     }
 
 }

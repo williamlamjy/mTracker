@@ -36,6 +36,11 @@ public abstract class Instrument {
 
     public abstract String getType();
 
+    public String textFileFormatting() {
+        return String.format(this.getType() + ";" + this.getName() + ";"
+                + this.getCurrentPrice() + ";" + this.getSentiment());
+    }
+
     public String toList() {
         return TYPE_HEADER + getType() + System.lineSeparator()
                 + NAME_HEADER + getName() + System.lineSeparator()

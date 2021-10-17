@@ -2,6 +2,8 @@ package seedu.mtracker.commands;
 
 import seedu.mtracker.instrument.Instrument;
 
+import java.io.IOException;
+
 public class AddInstrumentCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
@@ -21,7 +23,7 @@ public class AddInstrumentCommand extends Command {
     }
 
     @Override
-    public String execute() {
+    public String execute() throws IOException {
         return COMMAND_WORD;
     }
 }

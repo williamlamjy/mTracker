@@ -3,6 +3,8 @@ package seedu.mtracker.commands;
 import seedu.mtracker.instrument.subinstrument.Stock;
 import seedu.mtracker.ui.TextUi;
 
+import java.io.IOException;
+
 public class AddStockCommand extends AddInstrumentCommand {
 
     public static final String COMMAND_WORD = "stock";
@@ -19,12 +21,13 @@ public class AddStockCommand extends AddInstrumentCommand {
     }
 
     @Override
-    public String execute() {
+    public String execute() throws IOException {
         setAddGeneralParameters();
         setStockParameters();
         createNewStock();
         instrumentManager.addInstrument(newInstrument);
         TextUi.displayInstrumentAdded(newInstrument);
+        storage.writeFile(instrumentManager);
         return COMMAND_WORD;
     }
 }

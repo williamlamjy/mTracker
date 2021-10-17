@@ -22,6 +22,14 @@ public class InstrumentManager {
         return instruments;
     }
 
+    public int getSize() {
+        return instruments.size();
+    }
+
+    public String getInstrumentWithFileFormat(int instrumentIndex) {
+        return instruments.get(instrumentIndex).textFileFormatting();
+    }
+
     public void addInstrument(Instrument addedInstrument) {
         instruments.add(addedInstrument);
     }

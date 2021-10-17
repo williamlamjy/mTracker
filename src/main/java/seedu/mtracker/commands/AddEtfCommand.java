@@ -3,6 +3,8 @@ package seedu.mtracker.commands;
 import seedu.mtracker.instrument.subinstrument.Etf;
 import seedu.mtracker.ui.TextUi;
 
+import java.io.IOException;
+
 public class AddEtfCommand extends AddInstrumentCommand {
 
     public static final String COMMAND_WORD = "etf";
@@ -24,12 +26,13 @@ public class AddEtfCommand extends AddInstrumentCommand {
     }
 
     @Override
-    public String execute() {
+    public String execute() throws IOException {
         setAddGeneralParameters();
         setEtfParameters();
         createNewEtf();
         instrumentManager.addInstrument(newInstrument);
         TextUi.displayInstrumentAdded(newInstrument);
+        storage.writeFile(instrumentManager);
         return COMMAND_WORD;
     }
 }

@@ -24,4 +24,8 @@ public abstract class ErrorMessage {
     public static void displayEmptyExpiryError() {
         System.out.println("Sorry there must be an expiry date/time for this instrument signal!");
     }
+
+    public static void displayFileError() {
+        System.out.println("Oh no! There seems to be an error loading this file");
+    }
 }
