@@ -156,6 +156,9 @@ Following the usage example above we would see the following message:
 	[C]bitcoin
 ```
 
+_**Note: If any of the non-optional parameters `Name`, `Current price`, `Sentiment` and `Expiry` are provided with invalid
+inputs, you would be prompted to give a valid input.**_
+
 ### *Adding a new `etf`*
 An exchange-traded fund (ETF) is a security that tracks an index, sector, commodity, or any
 other asset. After keying in `etf` as the type of instrument, mTracker expects the 
@@ -233,6 +236,10 @@ out:
 ```
 	[F]USDJPY
 ```
+
+_**Note: If any of the non-optional parameters `Name`, `Current price`, `Sentiment`, `Extry Price`, `Exit Price`,
+and `Expiry` are provided with invalid
+inputs, you would be prompted to give a valid input.**_
 
 ### Displaying general info of all instruments added: `list`
 
@@ -410,9 +417,6 @@ Thank you for using mTracker.
 
 _**Note: Once quit, the instruments created during session
 will be stored and retrieved back by mTracker once it is relaunched.**_
-
-Note: If any of the non-optional parameters `Name`, `Current price`, `Sentiment` and `Expiry` are provided with invalid
-inputs, you would be prompted to give a valid input.
 
 ## FAQ
 
