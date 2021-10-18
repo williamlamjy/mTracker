@@ -36,7 +36,6 @@ public class InputParser {
 
     public InputParser() {
         inputScanner = new Scanner(System.in);
-        instrumentNumber = -1;
     }
 
     public static String getUserInput() {

@@ -7,10 +7,11 @@ import seedu.mtracker.ui.TextUi;
 
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
+    public static final int UNINITIALISED_INDEX = -1;
     private int index;
 
     public DeleteCommand() {
-        index = -1;
+        index = UNINITIALISED_INDEX;
     }
 
     public void setIndex(int index) {
