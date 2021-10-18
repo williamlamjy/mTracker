@@ -171,6 +171,28 @@ out:
 	[F]USDJPY
 ```
 
+### To display general info of all instruments added: `list`
+
+mTracker displays the 3 general parameters of `Name`, `Current Price`, 
+and `Sentiment` for all instruments added in an easy-to-view format, alongside
+their execution status marked by an [X].
+
+**Example usage**
+
+```
+mTracker$> list
+```
+
+**Expected outcome**
+
+```
+CURRENT WATCHLIST
+1. [S][ ] IBM; 144.61; positive
+2. [E][ ] SPY; 445.87; positive
+3. [C][X] bitcoin; 14442.22; positive
+4. [F][ ] USDJPY; 114.289; negative
+```
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
