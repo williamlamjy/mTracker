@@ -285,6 +285,42 @@ Now you have 3 instruments in the watchlist.
 
 You can key in `list` once again to view the latest watchlist.
 
+### To search for instruments in watchlist: `find`
+
+You can find specific instruments in the watchlist by searching for them through `find` command.
+
+**Format**
+
+```
+mTracker$> find SEARCH_STRING
+```
+
+**Example usage**
+
+```
+mTracker$> find py
+```
+
+**Expected outcome:**
+
+Any instrument name which contains the SEARCH_STRING will be returned 
+- regardless of character case - alongside their watchlist index:
+
+```
+        ------------------------------------------------------------
+	Instruments found for keyword, py
+	2| [E][ ] SPY; 445.87; positive
+	4| [F][ ] USDJPY; 114.289; negative
+	------------------------------------------------------------
+```
+
+In the event that there were no instruments found for the input
+SEARCH_STRING, the following message will be printed out:
+
+```
+No instruments found for keyword, py
+```
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
