@@ -1,5 +1,7 @@
 package seedu.mtracker.instrument;
 
+import seedu.mtracker.error.InvalidBoundsError;
+
 import java.util.ArrayList;
 
 public class InstrumentManager {
@@ -24,5 +26,13 @@ public class InstrumentManager {
 
     public void addInstrument(Instrument addedInstrument) {
         instruments.add(addedInstrument);
+    }
+
+    public void deleteInstrument(int index) throws InvalidBoundsError {
+        try {
+            instruments.remove(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidBoundsError();
+        }
     }
 }
