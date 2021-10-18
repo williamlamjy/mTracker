@@ -4,7 +4,13 @@
 
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
-## Architecture
+
+## Design
+
+> Tip: The diagrams in this guide were designed using PlantUML.
+> Their original .puml files can be found in the diagrams folder here.
+
+### Architecture
 
 The following diagram denotes the high-level design of the mTracker
 program:
@@ -36,13 +42,37 @@ them during runtime, and restoring data from previous session when the program i
 The subsequent sections will elaborate on the more technical design and implementation details of
 the architectural components briefly explained in this section.
 
-## Design & implementation
 
-> Tip: The diagrams in this guide were designed using PlantUML.
-> Their original .puml files can be found in the diagrams folder here.
+### InputParser component
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+<Theodore_stuff>
 
+
+
+### ui
+
+The ui component only contains the TextUi.java file and its API can be found
+[here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/src/main/java/seedu/mtracker/ui/TextUi.java).
+
+It is a basic java class containing private string attributes of frequently used display texts.
+As detailed by the UML diagrams in the other sections above, many other parser and command classes utilize
+the methods contained in `TextUi` to display instructions on the console for required user input. Hence, most other
+classes of this program are moderately coupled with the `TextUi` class as they are dependent on the methods of this class
+for their proper interaction with the user.
+
+Thus, the `TextUi` class is highly-cohesive as it contains all the user text display methods for the various classes
+in itself. This enhances maintainability as only this class has to be modified to achieve a small change in
+the desired texted or instruction to be displayed by various classes, and increases reusability of the module
+as all aspects of texts or instruments to be displayed on the console have been localized.
+
+Moreover, the following sequence diagram explains `TextUi`'s interaction with an `Instrument` class. This primarily occurs when the
+`displayInstrument()` method is called when the user wishes to list out all instruments of the watchlist:
+
+<>
+
+Hence, in this scenario, `TextUi` relies on the particular `Instrument` class's `toList()` method to retrieve
+all the financial information recorded for that instrument, and then displays them in an appropriate format to
+the user.
 
 ## Product scope
 ### Target user profile
