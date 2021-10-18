@@ -5,7 +5,8 @@ import seedu.mtracker.commands.DeleteCommand;
 import seedu.mtracker.error.InvalidIndexError;
 import seedu.mtracker.error.InvalidNoIndexError;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class InputParserTest {
 
