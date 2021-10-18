@@ -78,6 +78,13 @@ public class TextUi {
         instruments.stream().forEach(instrument -> displayInstrument(instrument));
     }
 
+    public static void displayInstrumentDeletedAcknowledgement(Instrument instrument) {
+        System.out.println(LINE_DECORATOR);
+        System.out.println("Noted I have removed " + instrument.getName() + " from your watchlist");
+        System.out.println(instrument);
+        System.out.println(LINE_DECORATOR);
+    }
+
     public static void showErrorMessage(Exception e) {
         System.out.println(e.getMessage());
     }

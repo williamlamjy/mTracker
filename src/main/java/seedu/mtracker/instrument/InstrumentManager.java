@@ -24,15 +24,21 @@ public class InstrumentManager {
         return instruments;
     }
 
+    public Instrument getInstrument(int index) throws InvalidBoundsError {
+        Instrument instrument;
+        try {
+            instrument = instruments.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidBoundsError();
+        }
+        return instrument;
+    }
+
     public void addInstrument(Instrument addedInstrument) {
         instruments.add(addedInstrument);
     }
 
-    public void deleteInstrument(int index) throws InvalidBoundsError {
-        try {
-            instruments.remove(index);
-        } catch (IndexOutOfBoundsException e) {
-            throw new InvalidBoundsError();
-        }
+    public void deleteInstrument(int index) {
+        instruments.remove(index);
     }
 }

@@ -1,6 +1,7 @@
 package seedu.mtracker.commands;
 
 import seedu.mtracker.error.InvalidBoundsError;
+import seedu.mtracker.instrument.Instrument;
 import seedu.mtracker.ui.TextUi;
 
 public class DeleteCommand extends Command {
@@ -14,7 +15,9 @@ public class DeleteCommand extends Command {
     @Override
     public String execute() {
         try {
+            Instrument instrumentToDelete = instrumentManager.getInstrument(index);
             instrumentManager.deleteInstrument(index);
+            TextUi.displayInstrumentDeletedAcknowledgement(instrumentToDelete);
         } catch (InvalidBoundsError e) {
             TextUi.showErrorMessage(e);
         }
