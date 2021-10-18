@@ -1,33 +1,37 @@
-@startuml
-!include <office/Concepts/globe_internet>
-!include <office/Concepts/documents>
-!include <office/Users/user>
-!include Colors.puml
-
-Package " "<<Rectangle>>{
-    Class UI COLOR_GREEN
-    Class Logic COLOR_WHITE
-    Class Storage COLOR_YELLOW
-    Class Model COLOR_BLUE
-    Class Main COLOR_WHITE
-    Class Commons COLOR_BLUE
-}
-
-Class "<$user>" as User COLOR_GREEN
-Class "<$documents>" as File COLOR_YELLOW
-
-
-UI --> Logic
-UI -right-> Model
-Logic --> Storage
-Logic -down-> Model
-Main --> UI
-Main --> Logic
-Main --> Storage
-Main -up-> Model
-Main -down-> Commons
-
-Storage -up.> Model
-Storage .right.>File
-User ..> UI
-@enduml
+'@startuml
+'!include <office/Concepts/globe_internet>
+'!include <office/Concepts/documents>
+''!include <tp/src/main/java/seedu.mtracker/>
+'!include Colors.puml
+'
+''Package " "<<Rectangle>>{
+''    Class UI COLOR_GREEN
+''    Class Logic COLOR_WHITE
+''    Class Storage COLOR_YELLOW
+''    Class Model COLOR_BLUE
+''    Class Main COLOR_WHITE
+''    Class Commons COLOR_BLUE
+''}
+''
+''Class "<$user>" as User COLOR_GREEN
+''Class "<$documents>" as File COLOR_YELLOW
+''
+''
+''UI --> Logic
+''UI -right-> Model
+''Logic --> Storage
+''Logic -down-> Model
+''Main --> UI
+''Main --> Logic
+''Main --> Storage
+''Main -up-> Model
+''Main -down-> Commons
+''
+''Storage -up.> Model
+''Storage .right.>File
+''User ..> UI
+'
+'
+'class mTracker
+'
+'@enduml
