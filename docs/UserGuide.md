@@ -11,10 +11,10 @@ for busy individuals.
 * [Quick Start](#quick-start)
 * [Features](#features)
     * [Add a new instrument: `add`](#add-a-new-instrument-add)
-    * [Add a new stock: `stock`](#add-a-new-stock)
-    * [Add a new crypto: `crypto`](#add-a-new-crypto)
-    * [Add a new forex: `forex`](#add-a-new-forex)
-    * [Add a new etf: `etf`](#add-a-new-etf)
+      * [Add a new stock: `stock`](#add-a-new-stock)
+      * [Add a new crypto: `crypto`](#add-a-new-crypto)
+      * [Add a new forex: `forex`](#add-a-new-forex)
+      * [Add a new etf: `etf`](#add-a-new-etf)
     * [List all instruments : `list`](#list-all-instruments-list)
     * [Exit the application : `bye`](#exit-bye)
 * [FAQ](#faq)
@@ -138,7 +138,7 @@ Following the usage example above we would see the following message:
 	[C]bitcoin
 ```
 
-Note: If any of the non-optional parameters `Name`, `Current price` and `Sentiment` are provided with invalid
+Note: If any of the non-optional parameters `Name`, `Current price`, `Sentiment` and `Expiry` are provided with invalid
 inputs, you would be prompted to give a valid input.
 
 ## FAQ
