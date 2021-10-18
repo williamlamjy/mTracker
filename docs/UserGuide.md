@@ -171,7 +171,7 @@ out:
 	[F]USDJPY
 ```
 
-### To display general info of all instruments added: `list`
+### Displaying general info of all instruments added: `list`
 
 mTracker displays the 3 general parameters of `Name`, `Current Price`, 
 and `Sentiment` for all instruments added in an easy-to-view format, alongside
@@ -193,7 +193,7 @@ CURRENT WATCHLIST
 4. [F][ ] USDJPY; 114.289; negative
 ```
 
-### To view more info recorded for an instrument: `view`
+### Viewing more info recorded for an instrument: `view`
 
 Since there are many different parameters that are recorded for
 various instruments, to view all the recorded information for an
@@ -228,7 +228,7 @@ Remarks: Prices will plateau out in a few days.
 ________________________________________________________________________________
 ```
 
-### To mark a setup as acted upon: `done`
+### Marking a setup as acted upon: `done`
 
 mTracker provides the ability for you to mark a particular
 record of an instrument in the watchlist as executed or acted upon.
@@ -285,7 +285,7 @@ Now you have 3 instruments in the watchlist.
 
 You can key in `list` once again to view the latest watchlist.
 
-### To search for instruments in watchlist: `find`
+### Search for instruments in watchlist: `find`
 
 You can find specific instruments in the watchlist by searching for them through `find` command.
 
