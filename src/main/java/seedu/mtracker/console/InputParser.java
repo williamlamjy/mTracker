@@ -44,13 +44,17 @@ public class InputParser {
         return inputScanner.nextLine().trim();
     }
 
+    public int getInstrumentNumber() {
+        return instrumentNumber;
+    }
+
     public AddInstrumentCommand getAddInstrumentParameters() throws InvalidInstrumentError {
         TextUi.displayAddInstrumentFirstInstruction();
         String addInstrumentType = getUserInput();
         return AddInstrumentParser.filterByInstrumentType(getCommandComponents(addInstrumentType));
     }
 
-    public DeleteCommand getDeleteInstrumentIndex(String[] commandComponents) throws InvalidIndexError,
+    public DeleteCommand getDeleteInstrumentCommand(String[] commandComponents) throws InvalidIndexError,
             InvalidNoIndexError {
         DeleteCommand deleteCommand = new DeleteCommand();
         getIndexNumber(commandComponents);
@@ -68,7 +72,7 @@ public class InputParser {
             command = getAddInstrumentParameters();
             break;
         case DeleteCommand.COMMAND_WORD:
-            command = getDeleteInstrumentIndex(commandComponents);
+            command = getDeleteInstrumentCommand(commandComponents);
             break;
         case ExitCommand.COMMAND_WORD:
             command = new ExitCommand();

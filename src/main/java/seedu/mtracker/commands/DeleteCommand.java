@@ -17,6 +17,10 @@ public class DeleteCommand extends Command {
         this.index = index;
     }
 
+    public int getIndex() {
+        return index;
+    }
+
     @Override
     public String execute() {
         try {
