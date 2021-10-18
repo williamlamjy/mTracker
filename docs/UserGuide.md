@@ -75,7 +75,7 @@ mTracker$> TYPE
 After the desired instrument type is input, instruction prompts would be displayed to guide you through the process of
 adding the new instrument. They are explained for the respective instrument types in the following sections below.
 
-### Adding a new `stock`
+### *Adding a new `stock`*
 After keying in `stock` as type of instrument to be added, the following 4 parameters are expected:
 * `Name` Name of the stock. Empty name is not allowed.
 * `Current price` Current price of the stock. Requires a positive number.
@@ -108,7 +108,7 @@ Following the usage example above would produce the following message:
 Note: If any of the non-optional parameters `Name`, `Current price` and `Sentiment` are provided with invalid
 inputs, you would be prompted to give a valid input.
 
-### Adding a new `etf`
+### *Adding a new `etf`*
 An exchange-traded fund (ETF) is a security that tracks an index, sector, commodity, or any
 other asset. After keying in `etf` as the type of instrument, mTracker expects the 
 following parameters:
@@ -142,7 +142,7 @@ out:
 	[E]SPY
 ```
 
-### Adding a new `forex`
+### *Adding a new `forex`*
 Bilateral currency pairs, known as forex pairs, are traded in the currency market
 and mTracker provides the ability to add forex pairs to its watchlist too.
 After keying in `forex` as the type of instrument, mTracker prompts for the
