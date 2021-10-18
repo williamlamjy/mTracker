@@ -193,6 +193,41 @@ CURRENT WATCHLIST
 4. [F][ ] USDJPY; 114.289; negative
 ```
 
+### To view more info recorded for an instrument: `view`
+
+Since there are many different parameters that are recorded for
+various instruments, to view all the recorded information for an
+instrument apart from the general information presented
+by the output of the `list` command, the `view` command can be used.
+
+**Format**
+
+```
+mTracker$> view INDEX
+```
+
+**Example usage**
+
+```
+mTracker$> view 2
+```
+
+**Expected outcome**
+
+All the parameters for the instrument at the requested index 
+will be printed out:
+
+```
+________________________________________________________________________________
+Type: Etf
+Name: SPY
+Current Price: 445.87
+Sentiment: positive
+Past Returns: 1200
+Remarks: Prices will plateau out in a few days.
+________________________________________________________________________________
+```
+
 ### To mark a setup as acted upon: `done`
 
 mTracker provides the ability for you to mark a particular
