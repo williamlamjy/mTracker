@@ -1,4 +1,4 @@
-# mTracker User Guide
+# MTracker User Guide
 
 ## Introduction
 
@@ -7,6 +7,19 @@ investors and traders to store and view important trading related information** 
 shortlisted financial instruments for **reference and decision-making**. It **summarises 
 key details** into an **easy-to-read format and provides convenient lookups for trade setups**
 for busy individuals.
+
+* [Quick Start](#quick-start)
+* [Features](#features)
+    * [Add a new instrument: `add`](#add-a-new-instrument-add)
+      * [Add a new stock: `stock`](#add-a-new-stock)
+      * [Add a new crypto: `crypto`](#add-a-new-crypto)
+      * [Add a new forex: `forex`](#add-a-new-forex)
+      * [Add a new etf: `etf`](#add-a-new-etf)
+    * [List all instruments : `list`](#list-all-instruments-list)
+    * [Exit the application : `bye`](#exit-bye)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
+
 
 
 ## Quick Start
@@ -108,6 +121,41 @@ Following the usage example above would produce the following message:
 Note: If any of the non-optional parameters `Name`, `Current price` and `Sentiment` are provided with invalid
 inputs, you would be prompted to give a valid input.
 
+### *Add a new `crypto`*
+The addition of a new crypto expects 5 parameters.
+* `Name` Name of the crypto. Empty name is not allowed.
+* `Current Price`  Current price of the crypto. Requires a positive number.
+* `Sentiment` Sentiment of the crypto.
+* `Expiry` Expiry date of the crypto. Dates only in the `YYYY MM DD` format is allowed.
+* `Remarks` Any additional optional remarks about the crypto.
+
+**Example usage**
+
+```
+mTracker$> add
+	Please key in the type of instrument: 
+mTracker$> crypto
+	Name of crypto: 
+mTracker$> bitcoin
+	Current Price: 
+mTracker$> 14442.22
+	Sentiment for instrument: 
+mTracker$> positive
+	Expiry: 
+mTracker$> 2021 12 14
+	Remarks (optional):
+mTracker$> 
+```
+
+**Expected outcome**
+
+By following the instructions above, a new crypto would be added and an acknowledgement message would appear.
+Following the usage example above we would see the following message:
+
+```
+	[C]bitcoin
+```
+
 ### *Adding a new `etf`*
 An exchange-traded fund (ETF) is a security that tracks an index, sector, commodity, or any
 other asset. After keying in `etf` as the type of instrument, mTracker expects the 
@@ -152,7 +200,7 @@ following parameters:
 * `Sentiment` Sentiment of user towards the stock.
 * `Entry Price` Price at which to open an order for the forex pair.
 * `Exit Price` Price at which to close the order.
-* `Expiry` The date by which this trade setup should be executed.
+* `Expiry` The date by which this trade setup should be executed. Dates only in the `YYYY MM DD` format is allowed.
 * `Remarks` Any additional optional remarks about the forex that the user would like to record.
    (Eg. trade deficits between countries, FOMC meeting dates,
    interest rates outlook in currency's home country, etc.)
@@ -337,7 +385,6 @@ No instruments found for keyword, py
 ```
 
 ### Exiting the bot: `bye`
-
 When you wish to quit the mTracker program, simply type in `bye`.
 
 **Example usage**
@@ -364,6 +411,9 @@ Thank you for using mTracker.
 _**Note: Once quit, the instruments created during session
 will be stored and retrieved back by mTracker once it is relaunched.**_
 
+Note: If any of the non-optional parameters `Name`, `Current price`, `Sentiment` and `Expiry` are provided with invalid
+inputs, you would be prompted to give a valid input.
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
@@ -372,6 +422,12 @@ will be stored and retrieved back by mTracker once it is relaunched.**_
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+Action | Format | Examples
+ --------- | ------ |------
+Add instrument | `add` |
+Add stock | `stock` | 
+Add crypto | `crypto` |
+Add forex | `forex` |
+Add etf | `etf` |
+List | `list` |
+Exit | `bye` |
