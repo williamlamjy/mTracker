@@ -8,6 +8,19 @@ shortlisted financial instruments for **reference and decision-making**. It **su
 key details** into an **easy-to-read format and provides convenient lookups for trade setups**
 for busy individuals.
 
+* [Quick Start](#quick-start)
+* [Features](#features)
+    * [Add a new instrument: `add`](#add-a-new-instrument-add)
+      * [Add a new stock: `stock`](#add-a-new-stock)
+      * [Add a new crypto: `crypto`](#add-a-new-crypto)
+      * [Add a new forex: `forex`](#add-a-new-forex)
+      * [Add a new etf: `etf`](#add-a-new-etf)
+    * [List all instruments : `list`](#list-all-instruments-list)
+    * [Exit the application : `bye`](#exit-bye)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
+
+
 
 ## Quick Start
 
@@ -49,7 +62,7 @@ ________________________________________________________________________________
     * For example the command `bye 123`
       would be interpreted as `bye`.
 
-## Adding a new instrument: `add`
+## Add a new instrument: `add`
 Adds a new instrument to your watchlist of instruments. 
 
 Format: `add`
@@ -65,7 +78,7 @@ mTracker$> add
 MTracker currently supports 4 different types of instruments.
 The 4 types are `stock`, `etf`, `crypto` and `forex`. 
 
-### Adding a new `stock`
+### Add a new `stock`
 The addition of a new stock expects 4 parameters.
 * `Name` Name of the stock. Empty name is not allowed.
 * `Current price` Current price of the stock. Requires a positive number.
@@ -96,8 +109,37 @@ Following the usage example above we would see the following message:
 Note: If any of the non-optional parameters `Name`, `Current price` and `Sentiment` are provided with invalid
 inputs, you would be prompted to give a valid input.
 
+### Add a new `crypto`
+The addition of a new crypto expects 5 parameters.
+* `Name` Name of the crypto. Empty name is not allowed.
+* `Current Price`  Current price of the crypto. Requires a positive number.
+* `Sentiment` Sentiment of the crypto.
+* `Expiry` Expiry date of the crypto. Dates only in the `YYYY MM DD` format is allowed.
+* `Remarks` Any additional optional remarks about the crypto.
 
+Example usage
+```
+mTracker$> add
+	Please key in the type of instrument: 
+mTracker$> crypto
+	Name of crypto: 
+mTracker$> bitcoin
+	Current Price: 
+mTracker$> 14442.22
+	Sentiment for instrument: 
+mTracker$> positive
+	Expiry: 
+mTracker$> 2021 12 14
+	Remarks (optional): 
+```
+By following the instructions above, a new crypto would be added and an acknowledgement message would appear.
+Following the usage example above we would see the following message:
+```text
+	[C]bitcoin
+```
 
+Note: If any of the non-optional parameters `Name`, `Current price`, `Sentiment` and `Expiry` are provided with invalid
+inputs, you would be prompted to give a valid input.
 
 ## FAQ
 
@@ -107,6 +149,12 @@ inputs, you would be prompted to give a valid input.
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+Action | Format | Examples
+ --------- | ------ |------
+Add instrument | `add` |
+Add stock | `stock` | 
+Add crypto | `crypto` |
+Add forex | `forex` |
+Add etf | `etf` |
+List | `list` |
+Exit | `bye` |
