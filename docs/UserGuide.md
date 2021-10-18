@@ -36,6 +36,8 @@ ________________________________________________________________________________
 > * Words in `UPPER_CASE` represent the parameters to be supplied by user. These are the list of parameters
 >that would be referred to throughout this user guide.
 >    * `NAME` represents the name of an instrument.
+>    * `TYPE` represents the type of an instrument. mTracker currently
+       supports 4 different types of instruments: `stock`, `etf`, `crypto` and `forex`.
 >    * `PRICE` represents a price value of the instrument, and it must 
 >      be a positive integer or decimal.
 >    * `DATE` represents the date specified by the user in `YYYY MM DD` format.
@@ -46,6 +48,7 @@ ________________________________________________________________________________
 >      * For example, the first instrument in the list would have at position index of 1 while 
 >      the 3rd instrument in the list would have a
 >position index of 3.
+>    * `SEARCH_STRING` represents the phrase or word user would like to search for in the watchlist with `find` command. 
 >* Extraneous parameters for commands `list` and `bye` would be ignored.
 >    * For example, the command `bye 123`
 >      would be interpreted as `bye`.
@@ -53,18 +56,24 @@ ________________________________________________________________________________
 ### Adding a new instrument: `add`
 Adds a new instrument to the watchlist of instruments. 
 
-Format: `add`
+**Example usage**
+```
+mTracker$> add
+```
 
-Upon entering the `add` command, instruction prompts would be displayed to guide you through the process of
-adding a new instrument. They are explained for the respective instruments in the subsequent sections below.
+**Expected outcome**
+
+Upon entering the `add` command, mTracker prompts for the type of 
+instrument to be added:
 
 ```
 mTracker$> add
-	Please key in the type of instrument: 
+	Please key in the type of instrument:
+mTracker$> TYPE 
 ```
 
-MTracker currently supports 4 different types of instruments.
-The 4 types are `stock`, `etf`, `crypto` and `forex`. 
+After the desired instrument type is input, instruction prompts would be displayed to guide you through the process of
+adding the new instrument. They are explained for the respective instrument types in the following sections below.
 
 ### Adding a new `stock`
 After keying in `stock` as type of instrument to be added, the following 4 parameters are expected:
@@ -73,7 +82,7 @@ After keying in `stock` as type of instrument to be added, the following 4 param
 * `Sentiment` Sentiment of user towards the stock.
 * `Remarks` Any additional optional remarks about the stock that the user would like to record.
 
-Example usage
+**Example usage**
 ```
 mTracker$> add
 	Please key in the type of instrument: 
@@ -87,6 +96,8 @@ mTracker$> positive
 	Remarks (optional): 
 mTracker$> 
 ```
+
+**Expected outcome**
 
 By following the instructions above, a new stock would be added, and an acknowledgement message would appear.
 Following the usage example above would produce the following message:
@@ -107,7 +118,7 @@ following parameters:
 * `Returns` Optional input for past returns of the etf.
 * `Remarks` Any additional optional remarks about the etf that the user would like to record.
 
-Example usage
+**Example usage**
 ```
 mTracker$> add
 	Please key in the type of instrument: 
@@ -146,7 +157,8 @@ following parameters:
    (Eg. trade deficits between countries, FOMC meeting dates,
    interest rates outlook in currency's home country, etc.)
 
-Example usage
+**Example usage**
+
 ```
 mTracker$> add
 	Please key in the type of instrument: 
