@@ -35,16 +35,19 @@ ________________________________________________________________________________
 ### *Notes on command format*
 > * Words in `UPPER_CASE` represent the parameters to be supplied by user. These are the list of parameters
 >that would be referred to throughout this user guide.
+>    * `NAME` represents the name of an instrument.
+>    * `PRICE` represents a price value of the instrument, and it must 
+>      be a positive integer or decimal.
 >    * `DATE` represents the date specified by the user in `YYYY MM DD` format.
 >    * `SENTIMENT` represents the general opinion towards an instrument. It can only take 3 different values: 
 >`positive`, `neutral` or `negative`.
 >    * `REMARKS` represents the remarks specified by the user.
 >    * `INDEX` represents position index at which the instrument appears in the displayed list.
->      * For example the first instrument in the list would have an position index of 1 while 
+>      * For example, the first instrument in the list would have at position index of 1 while 
 >      the 3rd instrument in the list would have a
 >position index of 3.
 >* Extraneous parameters for commands `list` and `bye` would be ignored.
->    * For example the command `bye 123`
+>    * For example, the command `bye 123`
 >      would be interpreted as `bye`.
 
 ### Adding a new instrument: `add`
