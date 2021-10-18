@@ -25,7 +25,7 @@ to understand the various commands the user would like to execute through the co
 * `commands` is another collection of closely-related classes that deal with 
 executing particular commands determined by the necessary parser classes in console.
 * `instrument` contains two types of classes:
-    * `InstrumentManager` singelton class that manages access to the arraylist containing
+    * `InstrumentManager` singleton class that manages access to the arraylist containing
     all the instruments created by user during the session.
     * `subinstrument` is a collection of the different instrument classes: `Crypto`, 
     `Etf`, `Forex`, and `Stock`. The primary role of these classes is to initialize instrument
