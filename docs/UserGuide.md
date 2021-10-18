@@ -321,6 +321,34 @@ SEARCH_STRING, the following message will be printed out:
 No instruments found for keyword, py
 ```
 
+### Exiting the bot: `bye`
+
+When you wish to quit the mTracker program, simply type in `bye`.
+
+**Example usage**
+
+```
+mTracker$> bye
+```
+
+**Expected outcome**
+
+```
+ ______            _______  _
+(  ___ \ |\     /|(  ____ \( )
+| (   ) )( \   / )| (    \/| |
+| (__/ /  \ (_) / | (__    | |
+|  __ (    \   /  |  __)   | |
+| (  \ \    ) (   | (      (_)
+| )___) )   | |   | (____/| _
+|/ \___/    \_/   (_______/(_)
+Thank you for using mTracker.
+☻ MAY THE MARKETS BE WITH YOU!!! ᕦ(ò_óˇ)ᕤ
+```
+
+_**Note: Once quit, the instruments created during session
+will be stored and retrieved back by mTracker once it is relaunched.**_
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
