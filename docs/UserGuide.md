@@ -221,6 +221,35 @@ Okay, IBM has been marked as acted upon!
 In this example, the first instrument is `IBM` so it has been
 checked as complete.
 
+### Removing an instrument record: `delete`
+
+You can remove a instrument from the watchlist as you deem 
+fit with the index number of the instrument in inventory.
+
+**Format**
+
+```
+mTracker$> delete INDEX
+```
+
+**Example usage**
+
+```
+mTracker$> delete 4
+```
+
+**Expected outcome**
+
+The 4th instrument in the watchlist is removed, 
+and the remaining instruments' index numbers are updated accordingly.
+
+```
+USDJPY removed from watchlist.
+Now you have 3 instruments in the watchlist.
+```
+
+You can key in `list` once again to view the latest watchlist.
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
