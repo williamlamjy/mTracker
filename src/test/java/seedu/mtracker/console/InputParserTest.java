@@ -28,28 +28,28 @@ class InputParserTest {
     void getIndexNumber_noIndexProvided_expectException() throws InvalidNoIndexError {
         InputParser parser = new InputParser();
         assertThrows(InvalidNoIndexError.class,
-                () -> parser.getIndexNumber(NO_INDEX_INPUT));
+            () -> parser.getIndexNumber(NO_INDEX_INPUT));
     }
 
     @Test
     void getIndexNumber_invalidIndexProvided_expectException() throws InvalidIndexError {
         InputParser parser = new InputParser();
         assertThrows(InvalidIndexError.class,
-                () -> parser.getIndexNumber(INVALID_INDEX_INPUT));
+            () -> parser.getIndexNumber(INVALID_INDEX_INPUT));
     }
 
     @Test
     void getDeleteInstrumentCommand_noIndexProvided_expectException() throws InvalidNoIndexError {
         InputParser parser = new InputParser();
         assertThrows(InvalidNoIndexError.class,
-                () -> parser.getDeleteInstrumentCommand(NO_INDEX_INPUT));
+            () -> parser.getDeleteInstrumentCommand(NO_INDEX_INPUT));
     }
 
     @Test
     void getDeleteInstrumentCommand_invalidIndexProvided_expectException() throws InvalidIndexError {
         InputParser parser = new InputParser();
         assertThrows(InvalidIndexError.class,
-                () -> parser.getDeleteInstrumentCommand(INVALID_INDEX_INPUT));
+            () -> parser.getDeleteInstrumentCommand(INVALID_INDEX_INPUT));
     }
 
     @Test
