@@ -193,6 +193,34 @@ CURRENT WATCHLIST
 4. [F][ ] USDJPY; 114.289; negative
 ```
 
+### To mark a setup as acted upon: `done`
+
+mTracker provides the ability for you to mark a particular
+record of an instrument in the watchlist as executed or acted upon.
+
+**Format**
+
+```
+mTracker$> done INDEX
+```
+
+**Example usage**
+```
+mTracker$> done 1
+```
+
+**Expected output**
+
+Marks the first instrument in watchlist as complete,
+and the following confirmation message will be displayed:
+
+```
+Okay, IBM has been marked as acted upon!
+```
+
+In this example, the first instrument is `IBM` so it has been
+checked as complete.
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
