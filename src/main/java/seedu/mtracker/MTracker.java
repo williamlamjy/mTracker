@@ -50,6 +50,7 @@ public class MTracker {
      * Main entry-point for the mTracker application.
      */
     public static void main(String[] args) {
+        assert false : "dummy assertion set to fail";
         new MTracker().executeProgram();
     }
 
