@@ -2,17 +2,19 @@ package seedu.mtracker.instrument;
 
 public abstract class Instrument {
 
+    public static final String DATE_REGEX = "MMM dd yyyy";
+
     protected String name;
     protected double currentPrice;
     protected String sentiment;
 
+    protected static final String EXPIRY_HEADER = "Expiry: ";
+    protected static final String REMARKS_HEADER = "Remarks: ";
+    protected static final String EMPTY_STRING = "";
     private static final String TYPE_HEADER = "Type: ";
     private static final String NAME_HEADER = "Name: ";
     private static final String CURRENT_PRICE_HEADER = "Current Price: ";
     private static final String SENTIMENT_HEADER = "Sentiment: ";
-    protected static final String EXPIRY_HEADER = "Expiry: ";
-    protected static final String REMARKS_HEADER = "Remarks: ";
-    protected static final String EMPTY_STRING = "";
 
     public Instrument(String name, double currentPrice, String sentiment) {
         this.name = name;

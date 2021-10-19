@@ -53,7 +53,7 @@ public class TextUi {
     }
 
     public static void displayAddExpiryInstruction() {
-        System.out.println(TAB + "Expiry: ");
+        System.out.println(TAB + "Expiry (YYYY-MM-DD): ");
     }
 
     public static void displayAddEntryPriceInstruction() {

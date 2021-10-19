@@ -57,7 +57,7 @@ public class AddForexParser extends AddInstrumentParser {
         String expiry;
         do {
             expiry = getForexExpiryFromUser();
-        } while (!isExpiryFilled(expiry));
+        } while (!isValidExpiry(expiry));
         parameters.add(expiry);
         AssertParserHelper.assertInputNotEmpty(expiry);
     }

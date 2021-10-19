@@ -11,6 +11,8 @@ import seedu.mtracker.error.ErrorMessage;
 import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.ui.TextUi;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -89,18 +91,23 @@ public abstract class AddInstrumentParser extends InputParser {
         return isValid;
     }
 
-    public static boolean isExpiryFilled(String expiryInput) {
-        boolean isFilled = true;
+    public static boolean isValidExpiry(String expiryInput) {
+        boolean isValid = true;
         try {
             if (expiryInput.isEmpty()) {
                 throw new IllegalArgumentException();
             }
+            LocalDate.parse(expiryInput);
         } catch (IllegalArgumentException e) {
             logger.info(LogHelper.LOG_EMPTY_EXPIRY);
             ErrorMessage.displayEmptyExpiryError();
-            isFilled = false;
+            isValid = false;
+        } catch (DateTimeParseException e) {
+            logger.info(LogHelper.LOG_INVALID_EXPIRY);
+            ErrorMessage.displayInvalidExpiryError();
+            isValid = false;
         }
-        return isFilled;
+        return isValid;
     }
 
     public static void addCurrentPriceToParameters() {

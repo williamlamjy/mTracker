@@ -3,10 +3,13 @@ package seedu.mtracker.instrument.subinstrument;
 import seedu.mtracker.instrument.Instrument;
 import seedu.mtracker.ui.TextUi;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Forex extends Instrument {
     protected double entryPrice;
     protected double exitPrice;
-    protected String expiry;
+    protected LocalDate expiry;
     protected String remark;
 
     private static final String FX_ICON = "F";
@@ -20,7 +23,7 @@ public class Forex extends Instrument {
             String sentiment,
             double entryPrice,
             double exitPrice,
-            String expiry,
+            LocalDate expiry,
             String remark
     ) {
         super(name, currentPrice, sentiment);
@@ -40,7 +43,7 @@ public class Forex extends Instrument {
     }
 
     public String getExpiry() {
-        return expiry;
+        return expiry.format(DateTimeFormatter.ofPattern(DATE_REGEX));
     }
 
     public String getRemarks() {

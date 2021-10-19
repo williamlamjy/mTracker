@@ -3,6 +3,8 @@ package seedu.mtracker.commands;
 import seedu.mtracker.instrument.subinstrument.Forex;
 import seedu.mtracker.ui.TextUi;
 
+import java.time.LocalDate;
+
 public class AddForexCommand extends AddInstrumentCommand {
     public static final String COMMAND_WORD = "forex";
 
@@ -13,13 +15,13 @@ public class AddForexCommand extends AddInstrumentCommand {
 
     protected double entryPriceParameter;
     protected double exitPriceParameter;
-    protected String expiryParameter;
+    protected LocalDate expiryParameter;
     protected String remarkParameter;
 
     public void setForexParameters() {
         entryPriceParameter = Double.parseDouble(inputParameters.get(ENTRY_INDEX));
         exitPriceParameter = Double.parseDouble(inputParameters.get(EXIT_INDEX));
-        expiryParameter = inputParameters.get(EXPIRY_INDEX);
+        expiryParameter = LocalDate.parse(inputParameters.get(EXPIRY_INDEX));
         remarkParameter = inputParameters.get(REMARK_INDEX);
     }
 

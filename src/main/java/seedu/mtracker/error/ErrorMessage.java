@@ -22,6 +22,10 @@ public abstract class ErrorMessage {
     }
 
     public static void displayEmptyExpiryError() {
-        System.out.println("Sorry there must be an expiry date/time for this instrument signal!");
+        System.out.println("Sorry there must be an expiry date for this instrument signal!");
+    }
+
+    public static void displayInvalidExpiryError() {
+        System.out.println("Sorry expiry must be a valid date and in YYYY-MM-DD format!");
     }
 }

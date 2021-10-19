@@ -3,21 +3,24 @@ package seedu.mtracker.instrument.subinstrument;
 import seedu.mtracker.instrument.Instrument;
 import seedu.mtracker.ui.TextUi;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Crypto extends Instrument {
 
-    protected String expiry;
+    protected LocalDate expiry;
     protected String remark;
     protected static final String CRYPTO_ICON = "C";
     protected static final String TYPE_INSTRUMENT = "Crypto";
 
-    public Crypto(String name, double currentPrice, String sentiment, String expiry, String remark) {
+    public Crypto(String name, double currentPrice, String sentiment, LocalDate expiry, String remark) {
         super(name, currentPrice, sentiment);
         this.expiry = expiry;
         this.remark = remark;
     }
 
     public String getExpiry() {
-        return expiry;
+        return expiry.format(DateTimeFormatter.ofPattern(DATE_REGEX));
     }
 
     public String getRemark() {
