@@ -4,7 +4,9 @@
 
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
-## Architecture
+## Design
+
+### Architecture
 
 The following diagram denotes the high-level design of the mTracker
 program:
@@ -36,13 +38,37 @@ them during runtime, and restoring data from previous session when the program i
 The subsequent sections will elaborate on the more technical design and implementation details of
 the architectural components briefly explained in this section.
 
-## Design & implementation
+### Parser component
+The main parent class in `console` package is the `InputParser` which is defined in `InputParser.java`.
+The figure below represents the class diagram of how all the different parser classes work together:
+
+<>
+
+How the `InputParser` class works:
+1. When the user enters a command along with the relevant parameters if any, the
+   `getCommandComponents()` method in `InputParser` separates the user's command by spaces to return a string array.
+2. The command is then determined by using the `filterByCommandType()` method which would return the corresponding
+   command type. Examples of different command types are `AddInstrumentCommand`, `DeleteCommand`, `ListCommand` etc.
+
+Given the different types of financial instruments supported by mTracker, an abstract class `addInstrumentParser`
+which inherits from `InputParser` is implemented. Multiple `addXYZParser` (`XYZ` is
+a placeholder for the different instrument types, for example `addStockParser`) child classes of
+`addInstrumentParser` support the parsing of different instruments and their parameters.
+This implementation provides greater extensibility to the add functionality to support more instrument types.
+
+The figure below represents the sequence diagram when the user wants to add a stock:
+
+<>
+
+## Implementation
+(for parser alternatives considered to design for inputs like
+"stock name/ price/ ...", "stock NAME PRICE" <- not very cli friendly with user having to recall all params,
+in addition without any 'markers' like name/ it is error prone when there 2 parameters of the same type,
+pros slightly simpler parser implementation with few add parser classes)
+(talk about how feature is implemented, why is it implemented that way, alternatives considered)
 
 > Tip: The diagrams in this guide were designed using PlantUML.
 > Their original .puml files can be found in the diagrams folder here.
-
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-
 
 ## Product scope
 ### Target user profile
