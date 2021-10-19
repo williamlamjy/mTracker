@@ -42,14 +42,29 @@ them during runtime, and restoring data from previous session when the program i
 The subsequent sections will elaborate on the more technical design and implementation details of
 the architectural components briefly explained in this section.
 
+### Parser component
+The main parent class in `console` package is the `InputParser` which is defined in `InputParser.java`.
+The figure below represents the class diagram of how all the different parser classes work together:
 
-### InputParser component
+<>
 
-<Theodore_stuff>
+How the `InputParser` class works:
+1. When the user enters a command along with the relevant parameters if any, the
+   `getCommandComponents()` method in `InputParser` separates the user's command by spaces to return a string array.
+2. The command is then determined by using the `filterByCommandType()` method which would return the corresponding
+   command type. Examples of different command types are `AddInstrumentCommand`, `DeleteCommand`, `ListCommand` etc.
 
+Given the different types of financial instruments supported by mTracker, an abstract class `addInstrumentParser`
+which inherits from `InputParser` is implemented. Multiple `addXYZParser` (`XYZ` is
+a placeholder for the different instrument types, for example `addStockParser`) child classes of
+`addInstrumentParser` support the parsing of different instruments and their parameters.
+This implementation provides greater extensibility to the add functionality to support more instrument types.
 
+The figure below represents the sequence diagram when the user wants to add a stock:
 
-### ui
+<>
+
+### Ui
 
 The ui component only contains the TextUi.java file and its API can be found
 [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/src/main/java/seedu/mtracker/ui/TextUi.java).
@@ -72,6 +87,13 @@ Moreover, the following sequence diagram explains `TextUi`'s interaction with an
 Hence, in this scenario, `TextUi` relies on the particular `Instrument` class's `toList()` method to retrieve
 all the financial information recorded for that instrument, and then displays them in an appropriate format to
 the user.
+
+## Implementation
+(for parser alternatives considered to design for inputs like
+"stock name/ price/ ...", "stock NAME PRICE" <- not very cli friendly with user having to recall all params,
+in addition without any 'markers' like name/ it is error prone when there 2 parameters of the same type,
+pros slightly simpler parser implementation with few add parser classes)
+(talk about how feature is implemented, why is it implemented that way, alternatives considered)
 
 ## Product scope
 ### Target user profile
