@@ -18,6 +18,8 @@ class AddInstrumentParserTest {
     public static final String INVALID_SENTIMENT = "invalid";
     public static final String INVALID_EXPIRY = "18 Oct";
     public static final int DAYS_DIFFERENCE = 1;
+    public static final LocalDate FUTURE_DATE = LocalDate.now().plusDays(DAYS_DIFFERENCE);
+    public static final LocalDate PAST_DATE = LocalDate.now().minusDays(DAYS_DIFFERENCE);
 
     public static String validTestInstrument = "testInstrument";
 
@@ -64,9 +66,7 @@ class AddInstrumentParserTest {
 
     @Test
     void addExpiry_validExpiryInFutre_expectSuccess() {
-        LocalDate currDate = LocalDate.now();
-        LocalDate futureDate = currDate.plusDays(DAYS_DIFFERENCE);
-        assertTrue(AddInstrumentParser.isValidExpiry(futureDate.toString()));
+        assertTrue(AddInstrumentParser.isValidExpiry(FUTURE_DATE.toString()));
     }
 
     @Test
@@ -81,8 +81,6 @@ class AddInstrumentParserTest {
 
     @Test
     void addExpiry_validExpiryButIsInPast_expectFailure() {
-        LocalDate currDate = LocalDate.now();
-        LocalDate pastDate = currDate.minusDays(DAYS_DIFFERENCE);
-        assertFalse(AddInstrumentParser.isValidExpiry(pastDate.toString()));
+        assertFalse(AddInstrumentParser.isValidExpiry(PAST_DATE.toString()));
     }
 }
