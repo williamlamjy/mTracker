@@ -39,18 +39,18 @@ The subsequent sections will elaborate on the more technical design and implemen
 the architectural components briefly explained in this section.
 
 ### Parser component
-The main class in `console` package is the `InputParser` which is defined in `InputParser.java`.
+The main parent class in `console` package is the `InputParser` which is defined in `InputParser.java`.
 The figure below represents the class diagram of how all the different parser classes work together:
 
 <>
 
 How the `InputParser` class works:
 1. When the user enters a command along with the relevant parameters if any, the
-   `getCommandComponents` method in `InputParser` separates the user's command by spaces to return a string array.
-2. The command is then determined by using the `filterByCommandType` method which would return the corresponding
+   `getCommandComponents()` method in `InputParser` separates the user's command by spaces to return a string array.
+2. The command is then determined by using the `filterByCommandType()` method which would return the corresponding
    command type. Examples of different command types are `AddInstrumentCommand`, `DeleteCommand`, `ListCommand` etc.
 
-Given the different types of financial instruments supported by MTracker, an abstract class `addInstrumentParser`
+Given the different types of financial instruments supported by mTracker, an abstract class `addInstrumentParser`
 which inherits from `InputParser` is implemented. Multiple `addXYZParser` (`XYZ` is
 a placeholder for the different instrument types, for example `addStockParser`) child classes of
 `addInstrumentParser` support the parsing of different instruments and their parameters.
