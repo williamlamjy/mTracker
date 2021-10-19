@@ -4,6 +4,8 @@ public abstract class ErrorMessage {
 
     public static final String INVALID_INSTRUMENT_GIVEN_ERROR = "Invalid Instrument given!";
     public static final String INVALID_COMMAND_GIVEN_ERROR = "Oops, I do not understand you...";
+    public static final String INVALID_DATE_GIVEN_ERROR = "Oops, expiry must be a valid date in the future "
+        + "and in YYYY-MM-DD format";
 
     public static void displayAddInstrumentNameError(String instrumentType) {
         System.out.println("Sorry " + instrumentType + " cannot have an empty name!");

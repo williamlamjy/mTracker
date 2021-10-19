@@ -8,13 +8,13 @@ import seedu.mtracker.commands.AddForexCommand;
 import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commands.AddStockCommand;
 import seedu.mtracker.error.ErrorMessage;
+import seedu.mtracker.error.InvalidDateError;
 import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.ui.TextUi;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 public abstract class AddInstrumentParser extends InputParser {
 
@@ -91,20 +91,38 @@ public abstract class AddInstrumentParser extends InputParser {
         return isValid;
     }
 
+    public static void checkDateFormat(String expiryInput) throws InvalidDateError {
+        try {
+            LocalDate.parse(expiryInput);
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateError();
+        }
+    }
+
+    public static void checkDateInPast(String expiryInput) throws InvalidDateError {
+        LocalDate givenDate = LocalDate.parse(expiryInput);
+        if (givenDate.equals(LocalDate.now()) || givenDate.isAfter(LocalDate.now())) {
+            return;
+        }
+
+        throw new InvalidDateError();
+    }
+
     public static boolean isValidExpiry(String expiryInput) {
         boolean isValid = true;
         try {
             if (expiryInput.isEmpty()) {
                 throw new IllegalArgumentException();
             }
-            LocalDate.parse(expiryInput);
+            checkDateFormat(expiryInput);
+            checkDateInPast(expiryInput);
         } catch (IllegalArgumentException e) {
             logger.info(LogHelper.LOG_EMPTY_EXPIRY);
             ErrorMessage.displayEmptyExpiryError();
             isValid = false;
-        } catch (DateTimeParseException e) {
+        } catch (InvalidDateError e) {
             logger.info(LogHelper.LOG_INVALID_EXPIRY);
-            ErrorMessage.displayInvalidExpiryError();
+            TextUi.showErrorMessage(e);
             isValid = false;
         }
         return isValid;
