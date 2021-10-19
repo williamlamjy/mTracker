@@ -25,6 +25,7 @@ public class AddCryptoParser extends AddInstrumentParser {
             expiry = getCryptoExpiryFromUser();
         } while (!isValidExpiry(expiry));
         parameters.add(expiry);
+        AssertParserHelper.assertExpiryInTheFuture(expiry);
     }
 
     public void addCryptoRemarksToParameters() {
