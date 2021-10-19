@@ -101,11 +101,9 @@ public abstract class AddInstrumentParser extends InputParser {
 
     public static void checkDateInPast(String expiryInput) throws InvalidDateError {
         LocalDate givenDate = LocalDate.parse(expiryInput);
-        if (givenDate.equals(LocalDate.now()) || givenDate.isAfter(LocalDate.now())) {
-            return;
+        if (givenDate.isBefore(LocalDate.now())) {
+            throw new InvalidDateError();
         }
-
-        throw new InvalidDateError();
     }
 
     public static boolean isValidExpiry(String expiryInput) {

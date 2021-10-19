@@ -10,38 +10,38 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class AddCryptoParserTest {
     public static final int PARAMETER_SIZE = 5;
     public static final int DAYS_DIFFERENCE = 1;
-    public static final LocalDate futureDate = LocalDate.now().plusDays(DAYS_DIFFERENCE);
+    public static final LocalDate FUTURE_DATE = LocalDate.now().plusDays(DAYS_DIFFERENCE);
 
     public static final String USER_INPUT_NO_REMARKS = "TestName%1$s23.4%1$spositive%1$s"
-            + futureDate
+            + FUTURE_DATE
             + "%1$s ";
 
-    public static final String[] EXPECTED_PARAMS_NO_REMARKS = {"TestName", "23.4", "positive", futureDate.toString(),
+    public static final String[] EXPECTED_PARAMS_NO_REMARKS = {"TestName", "23.4", "positive", FUTURE_DATE.toString(),
         ""};
 
     public static final String USER_INPUT_WITH_REMARKS_AND_EXPIRY = "TestName%1$s100.4%1$snegative%1$s"
-            + futureDate
+            + FUTURE_DATE
             + "%1$sTestRemarks";
 
     public static final String[] EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY = {"TestName", "100.4", "negative",
-        futureDate.toString(), "TestRemarks"};
+        FUTURE_DATE.toString(), "TestRemarks"};
 
     public static final String USER_INPUT_TRY_INVALID_NAME = "%1$s%1$s%1$sTestName%1$s23.4%1$spositive%1$s"
-            + futureDate
+            + FUTURE_DATE
             + "%1$s ";
 
     public static final String USER_INPUT_TRY_INVALID_PRICE = "%1$sTestName%1$s2sd3.4%1$s100.4"
             + "%1$snegative%1$s"
-            + futureDate
+            + FUTURE_DATE
             + "%1$sTestRemarks";
 
     public static final String USER_INPUT_TRY_INVALID_SENTIMENT = "%1$sTestName%1$s100.4"
             + "%1$swrong%1$s%1$snegative%1$s"
-            + futureDate
+            + FUTURE_DATE
             + "%1$sTestRemarks";
     public static final String USER_INPUT_TRY_EMPTY_EXPIRY = "%1$sTestName%1$s100.4"
             + "%1$snegative%1$s %1$s %1$s"
-            + futureDate
+            + FUTURE_DATE
             + "%1$sTestRemarks";
 
     String formatConsoleInput(String input) {
