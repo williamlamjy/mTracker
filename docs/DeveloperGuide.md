@@ -57,16 +57,15 @@ The ui component only contains the TextUi.java file and its API can be found
 It is a basic java class containing private string attributes of frequently used display texts.
 As detailed by the UML diagrams in the other sections above, many other parser and command classes utilize
 the methods contained in `TextUi` to display instructions on the console for required user input. Hence, most other
-classes of this program are moderately coupled with the `TextUi` class as they are dependent on the methods of this class
-for their proper interaction with the user.
+classes of this program are dependent on the methods of this `TextUi` class for their proper interaction with the user.
 
 Thus, the `TextUi` class is highly-cohesive as it contains all the user text display methods for the various classes
 in itself. This enhances maintainability as only this class has to be modified to achieve a small change in
 the desired texted or instruction to be displayed by various classes, and increases reusability of the module
 as all aspects of texts or instruments to be displayed on the console have been localized.
 
-Moreover, the following sequence diagram explains `TextUi`'s interaction with an `Instrument` class. This primarily occurs when the
-`displayInstrument()` method is called when the user wishes to list out all instruments of the watchlist:
+Moreover, the following sequence diagram explains `TextUi`'s interaction with an `Instrument` class. This primarily occurs with the calling of the
+`displayInstrument()` method when the user wishes to list out all instruments of the watchlist:
 
 <>
 
