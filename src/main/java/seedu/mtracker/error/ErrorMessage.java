@@ -24,4 +24,8 @@ public abstract class ErrorMessage {
     public static void displayEmptyExpiryError() {
         System.out.println("Sorry there must be an expiry date/time for this instrument signal!");
     }
+
+    public static void displayIndexOutOfRange() {
+        System.out.println("Sorry index must be within the range of the list!");
+    }
 }

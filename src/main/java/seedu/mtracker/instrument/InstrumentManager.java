@@ -26,6 +26,10 @@ public class InstrumentManager {
         return instruments.get(instrumentIndex);
     }
 
+    public int getSize() {
+        return instruments.size();
+    }
+
     public void addInstrument(Instrument addedInstrument) {
         instruments.add(addedInstrument);
     }

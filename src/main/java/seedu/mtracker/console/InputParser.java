@@ -56,7 +56,8 @@ public class InputParser {
             command = new ExitCommand();
             break;
         case CheckOffInstrumentCommand.COMMAND_WORD:
-            command = new CheckOffInstrumentCommand(getInstrumentIndex(commandComponents));
+            int instrumentIndex = getInstrumentIndex(commandComponents);
+            command = new CheckOffInstrumentCommand(instrumentIndex);
             break;
         default:
             logger.info(LogHelper.LOG_INVALID_COMMAND);

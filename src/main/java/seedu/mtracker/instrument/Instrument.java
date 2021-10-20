@@ -24,11 +24,11 @@ public abstract class Instrument {
         this.isDone = false;
     }
 
-    public boolean getIsDone(){
+    public boolean getIsDone() {
         return isDone;
     }
 
-    public void markAsDone(){
+    public void markAsDone() {
         isDone = true;
     }
 
@@ -48,7 +48,7 @@ public abstract class Instrument {
         return sentiment;
     }
 
-    public String toString(){
+    public String toString() {
         return TextUi.createBoxDisplay(getStatusIcon());
     }
 
