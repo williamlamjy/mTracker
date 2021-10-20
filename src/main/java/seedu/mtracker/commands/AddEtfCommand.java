@@ -26,7 +26,7 @@ public class AddEtfCommand extends AddInstrumentCommand {
     }
 
     @Override
-    public String execute() throws IOException {
+    public String execute() {
         setAddGeneralParameters();
         setEtfParameters();
         createNewEtf();

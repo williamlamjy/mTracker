@@ -21,7 +21,7 @@ public class AddStockCommand extends AddInstrumentCommand {
     }
 
     @Override
-    public String execute() throws IOException {
+    public String execute() {
         setAddGeneralParameters();
         setStockParameters();
         createNewStock();

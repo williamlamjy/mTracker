@@ -13,7 +13,7 @@ public class ListCommand extends Command {
     private ArrayList<Instrument> instruments;
 
     @Override
-    public String execute() throws IOException {
+    public String execute() {
         instruments = instrumentManager.getInstruments();
         TextUi.displayAllInstruments(instruments);
         return COMMAND_WORD;

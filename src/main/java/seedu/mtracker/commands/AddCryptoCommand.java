@@ -25,7 +25,7 @@ public class AddCryptoCommand extends AddInstrumentCommand {
     }
 
     @Override
-    public String execute() throws IOException {
+    public String execute() {
         setAddGeneralParameters();
         setCryptoParameters();
         createNewCrypto();

@@ -19,5 +19,5 @@ public abstract class Command {
         inputParameters = parameters;
     }
 
-    public abstract String execute() throws IOException;
+    public abstract String execute();
 }

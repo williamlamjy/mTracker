@@ -23,7 +23,7 @@ public class AddInstrumentCommand extends Command {
     }
 
     @Override
-    public String execute() throws IOException {
+    public String execute() {
         return COMMAND_WORD;
     }
 }

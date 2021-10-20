@@ -38,7 +38,7 @@ public class AddForexCommand extends AddInstrumentCommand {
     }
 
     @Override
-    public String execute() throws IOException {
+    public String execute() {
         setAddGeneralParameters();
         setForexParameters();
         createNewFxPair();
