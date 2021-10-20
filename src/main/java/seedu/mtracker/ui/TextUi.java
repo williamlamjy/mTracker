@@ -83,10 +83,6 @@ public class TextUi {
                 + "\n" + instrument);
     }
 
-    public static void displayInstrumentAlreadyCompleted(Instrument instrument) {
-        System.out.println("This instrument has already been completed!");
-    }
-
     public static void showErrorMessage(Exception e) {
         System.out.println(e.getMessage());
     }
