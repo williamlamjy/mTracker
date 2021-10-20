@@ -61,7 +61,7 @@ The figure below represents the sequence diagram when the user wants to add a st
 <>
 
 ### Model Component
-The `model` package contains the `InstrumentManager` class and the main parent class `Instrument`. It is defined
+The `model` package contains the `InstrumentManager` class and `Instrument` class. It is defined
 in `InstrumentManager.java` and `Instrument.java` respectively. This figure below represents the class diagram of 
 how the different class work together:
 
@@ -69,16 +69,16 @@ how the different class work together:
 
 The `Model` component:
 
-1. Stores the instrument data through `Instrument` objects which are contained in the `InstrumentManager`
-2. Contains an abstract parent `Instrument` class. The 4 child sub-instrument classes `Crypto`, `Etf`, `Forex` and 
-`Stock` implements the Overridden methods (e.g. toList()).
-3. Contains the `InstrumentManager` which manages the list of instruments (e.g. add a new instrument to the list).
-4. Does not depend on any of the other components (as the `Model` component represents data on the instruments and can 
-exist on its own).
+* Stores the instrument data through `Instrument` objects which are contained and managed by the `InstrumentManager`
+* Contains an abstract parent `Instrument` class. The 4 child sub-instrument classes `Crypto`, `Etf`, `Forex` and 
+`Stock` implements the Overridden methods (e.g. `toList()`).
+* Contains the `InstrumentManager` class which manages the list of instruments (e.g. add a new instrument to 
+the list). `InstrumentManager` is implemented as a singleton class to ensure that only one instrument list exists.
+This ensures the user only edits one list and prevents possible data corruption (e.g. adding a new instrument to 
+different lists).
+* Does not have any dependencies on any of the other components, as the `Model` component is meant to be responsible
+solely for the data representation and modification of instruments.
 
-The figure below represents the sequence diagram when the user wants to add a crypto:
-
-<>
 
 ## Implementation
 (for parser alternatives considered to design for inputs like
