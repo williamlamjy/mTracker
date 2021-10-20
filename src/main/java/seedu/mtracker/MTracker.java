@@ -36,7 +36,7 @@ public class MTracker {
         String[] commandComponents;
 
         do {
-            userInput = InputParser.getUserInput();
+            userInput = parser.getUserInput();
             commandComponents = parser.getCommandComponents(userInput);
             try {
                 command = parser.filterByCommandType(commandComponents);
