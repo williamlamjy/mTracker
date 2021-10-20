@@ -9,6 +9,7 @@ import seedu.mtracker.filemanager.Storage;
 import seedu.mtracker.instrument.InstrumentManager;
 import seedu.mtracker.ui.TextUi;
 
+import java.io.IOException;
 import java.util.logging.Level;
 
 public class MTracker {
@@ -45,6 +46,11 @@ public class MTracker {
                 logger.getLogger().log(Level.WARNING, e.getMessage());
                 TextUi.showErrorMessage(e);
                 command = new InvalidCommand();
+            }
+            try {
+                storage.writeFile(instrumentManager.getInstruments());
+            } catch (IOException e){
+                ErrorMessage.displayFileError();
             }
         } while (!(command instanceof ExitCommand));
     }

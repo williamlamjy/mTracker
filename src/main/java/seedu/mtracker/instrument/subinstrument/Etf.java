@@ -28,6 +28,10 @@ public class Etf extends Instrument {
         return String.valueOf(pastReturns);
     }
 
+    public String getReturnsForFileFormat() {
+        return String.valueOf(pastReturns);
+    }
+
     @Override
     public String toString() {
         return TextUi.createBoxDisplay(ETF_ICON) + getName();
@@ -40,8 +44,8 @@ public class Etf extends Instrument {
 
     @Override
     public String textFileFormatting() {
-        return String.format(super.textFileFormatting() + ";" + this.getReturns()
-                + ";" + this.getRemark());
+        return String.format(super.textFileFormatting() + FILE_SEPARATOR + getReturnsForFileFormat()
+                + FILE_SEPARATOR + getRemark());
     }
 
     @Override

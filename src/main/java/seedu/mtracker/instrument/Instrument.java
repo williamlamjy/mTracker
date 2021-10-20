@@ -13,6 +13,7 @@ public abstract class Instrument {
     protected static final String EXPIRY_HEADER = "Expiry: ";
     protected static final String REMARKS_HEADER = "Remarks: ";
     protected static final String EMPTY_STRING = "";
+    protected static final String FILE_SEPARATOR = ";";
 
     public Instrument(String name, double currentPrice, String sentiment) {
         this.name = name;
@@ -37,8 +38,8 @@ public abstract class Instrument {
     public abstract String getType();
 
     public String textFileFormatting() {
-        return String.format(this.getType() + ";" + this.getName() + ";"
-                + this.getCurrentPrice() + ";" + this.getSentiment());
+        return String.format(getType() + FILE_SEPARATOR + getName() + FILE_SEPARATOR
+                + getCurrentPrice() + FILE_SEPARATOR + getSentiment());
     }
 
     public String toList() {

@@ -11,28 +11,30 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
     private final File file;
-    private static final String FILE_PATH = "data/mTracker.txt";
+    public static final String FILE_PATH = "data/mTracker.txt";
+    private final Path path;
 
     public Storage() throws IOException {
         file = new File(FILE_PATH);
-        if (!this.file.exists()) {
-            File dir = new File("data");
-            dir.mkdir();
-            file = new File(FILE_PATH);
-            file.createNewFile();
-        }
+        path = Paths.get(FILE_PATH);
     }
 
-    public void writeFile(InstrumentManager instrumentManager) throws IOException {
+    public void writeFile(ArrayList<Instrument> instruments) throws IOException {
         FileWriter writeToFile = new FileWriter(this.file);
-        for (int i = 0; i < instrumentManager.getSize(); i++) {
-            writeToFile.write(instrumentManager.getInstrumentWithFileFormat(i) + "\n");
-        }
+        instruments.stream().forEach(instrument -> {
+            try {
+                writeToFile.write(instrument.textFileFormatting() + "\n");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
         writeToFile.close();
     }
 
