@@ -1,5 +1,6 @@
 package seedu.mtracker.filemanager;
 
+import seedu.mtracker.error.ErrorMessage;
 import seedu.mtracker.instrument.Instrument;
 import seedu.mtracker.instrument.InstrumentManager;
 import seedu.mtracker.instrument.subinstrument.Crypto;
@@ -32,7 +33,7 @@ public class Storage {
             try {
                 writeToFile.write(instrument.textFileFormatting() + "\n");
             } catch (IOException e) {
-                e.printStackTrace();
+                ErrorMessage.displayFileError();
             }
         });
         writeToFile.close();
