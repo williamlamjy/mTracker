@@ -326,6 +326,36 @@ Okay, IBM has been marked as acted upon!
 In this example, the first instrument is `IBM` so it has been
 checked as complete.
 
+### Editing an instrument: `edit`
+Edit an existing instrument parameters.
+
+**Format**
+```
+mTracker$> edit INDEX
+```
+**Example usage**
+
+```
+mTracker$> edit 2
+```
+
+**Expected outcome:**
+
+Upon entering the `edit` command, mTracker prompts for the parameters of 
+instrument to be edited:
+
+```
+mTracker$> edit 2
+	Please enter one of more of TYPE parameters to edits:
+mTracker$> name currentprice
+	Name:
+mTracker$> Apple
+	Name changed from Ale to Apple.
+	Current Price:
+mTracker$> 148.76
+	Current Price change from 145.10 to 148.76.
+```
+
 ### Removing an instrument record: `delete`
 
 You can remove a instrument from the watchlist as you deem 
@@ -422,7 +452,11 @@ will be stored and retrieved back by mTracker once it is relaunched.**_
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: {your answer here}
+**A**: Locate text file named ` ` and transfer the file over to the other computer.
+
+**Q**: Can I edit the data without lauching the mTracker? 
+
+**A**: Edit data in the text file directly could cause the file to be corrupted. It is recommended to edit data using the `edit` function in mTracker.
 
 ## Command Summary
 
