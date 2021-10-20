@@ -30,7 +30,7 @@ public class MTracker {
             userInput = parser.getUserInput();
             commandComponents = parser.getCommandComponents(userInput);
             try {
-                command = parser.filterByCommandType(commandComponents);
+                command = parser.filterByCommandType(commandComponents, instrumentManager.getInstruments());
                 command.setData(instrumentManager);
                 command.execute();
             } catch (Exception e) {

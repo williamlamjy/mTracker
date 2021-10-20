@@ -1,21 +1,43 @@
 package seedu.mtracker.console;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.mtracker.commands.DeleteCommand;
+import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidIndexError;
 import seedu.mtracker.error.InvalidNoIndexError;
+import seedu.mtracker.model.Instrument;
+import seedu.mtracker.model.subinstrument.Stock;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class InputParserTest {
 
+    public static final int VALID_INDEX = 1;
+
     public static final String[] NO_INDEX_INPUT = { "delete" };
     public static final String[] INVALID_INDEX_INPUT = { "delete", "23r2fc" };
-    public static final String[] VALID_INDEX_INPUT = { "delete", "4" };
+    public static final String[] OUT_OF_BOUNDS_INDEX_INPUT = { "delete", "23" };
+    public static final String[] VALID_INDEX_INPUT = { "delete", String.valueOf(VALID_INDEX)};
+
+    public static final String FAKE_NAME = "Test";
+    public static final double FAKE_PRICE = 34.5;
+    public static final String FAKE_SENTIMENT = "negative";
+    public static final String FAKE_REMARK = "";
+    public static final Instrument FAKE_STOCK = new Stock(FAKE_NAME, FAKE_PRICE, FAKE_SENTIMENT, FAKE_REMARK);
+    public static ArrayList<Instrument> INSTRUMENTS;
 
     public static final int INDEX_OFFSET = 1;
-    public static final int VALID_INDEX = 4;
+
+    @BeforeEach
+    void initialiseInstruments() {
+        INSTRUMENTS = new ArrayList<>();
+        INSTRUMENTS.add(FAKE_STOCK);
+    }
 
     @Test
     void getIndexNumber_validIndexProvided_expectSuccess() {
@@ -42,20 +64,27 @@ class InputParserTest {
     void getDeleteInstrumentCommand_noIndexProvided_expectException() throws InvalidNoIndexError {
         InputParser parser = new InputParser();
         assertThrows(InvalidNoIndexError.class,
-            () -> parser.getDeleteInstrumentCommand(NO_INDEX_INPUT));
+            () -> parser.getDeleteInstrumentCommand(NO_INDEX_INPUT, INSTRUMENTS));
     }
 
     @Test
     void getDeleteInstrumentCommand_invalidIndexProvided_expectException() throws InvalidIndexError {
         InputParser parser = new InputParser();
         assertThrows(InvalidIndexError.class,
-            () -> parser.getDeleteInstrumentCommand(INVALID_INDEX_INPUT));
+            () -> parser.getDeleteInstrumentCommand(INVALID_INDEX_INPUT, INSTRUMENTS));
+    }
+
+    @Test
+    void getDeleteInstrumentCommand_outOfBoundsIndexProvided_expectException() throws InvalidBoundsError {
+        InputParser parser = new InputParser();
+        assertThrows(InvalidBoundsError.class,
+                () -> parser.getDeleteInstrumentCommand(OUT_OF_BOUNDS_INDEX_INPUT, INSTRUMENTS));
     }
 
     @Test
     void getDeleteInstrumentCommand_validIndexProvided_expectSuccess() {
         InputParser parser = new InputParser();
-        DeleteCommand command = parser.getDeleteInstrumentCommand(VALID_INDEX_INPUT);
+        DeleteCommand command = parser.getDeleteInstrumentCommand(VALID_INDEX_INPUT, INSTRUMENTS);
         assertEquals(command.getIndex(), VALID_INDEX - INDEX_OFFSET);
     }
 }

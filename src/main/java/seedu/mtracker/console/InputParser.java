@@ -6,12 +6,15 @@ import seedu.mtracker.commands.Command;
 import seedu.mtracker.commands.DeleteCommand;
 import seedu.mtracker.commands.ExitCommand;
 import seedu.mtracker.commands.ListCommand;
+import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidCommandError;
 import seedu.mtracker.error.InvalidIndexError;
 import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.error.InvalidNoIndexError;
+import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -53,15 +56,24 @@ public class InputParser {
         return AddInstrumentParser.filterByInstrumentType(getCommandComponents(addInstrumentType));
     }
 
-    public DeleteCommand getDeleteInstrumentCommand(String[] commandComponents) throws InvalidIndexError,
-            InvalidNoIndexError {
+    public void validateIndexWithinBounds(ArrayList<Instrument> instruments) throws InvalidBoundsError {
+        boolean isNegative = instrumentNumber < 0;
+        boolean isGreaterThanListSize = instrumentNumber >= instruments.size();
+        if (isNegative || isGreaterThanListSize) {
+            throw new InvalidBoundsError();
+        }
+    }
+    public DeleteCommand getDeleteInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
+            throws InvalidIndexError, InvalidNoIndexError, InvalidBoundsError {
         DeleteCommand deleteCommand = new DeleteCommand();
         getIndexNumber(commandComponents);
+        validateIndexWithinBounds(instruments);
         deleteCommand.setIndex(instrumentNumber);
         return deleteCommand;
     }
 
-    public Command filterByCommandType(String[] commandComponents) throws Exception {
+    public Command filterByCommandType(String[] commandComponents, ArrayList<Instrument> instruments)
+            throws Exception {
         Command command;
         switch (commandComponents[MAIN_COMMAND_INDEX]) {
         case ListCommand.COMMAND_WORD:
@@ -71,7 +83,7 @@ public class InputParser {
             command = getAddInstrumentParameters();
             break;
         case DeleteCommand.COMMAND_WORD:
-            command = getDeleteInstrumentCommand(commandComponents);
+            command = getDeleteInstrumentCommand(commandComponents, instruments);
             break;
         case ExitCommand.COMMAND_WORD:
             command = new ExitCommand();
