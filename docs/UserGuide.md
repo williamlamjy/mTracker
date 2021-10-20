@@ -346,7 +346,7 @@ instrument to be edited:
 
 ```
 mTracker$> edit 2
-	Please enter one of more of TYPE parameters to edits:
+	Please enter one of more of stock parameters to edits:
 mTracker$> name currentprice
 	Name:
 mTracker$> Apple
