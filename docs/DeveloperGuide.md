@@ -125,12 +125,12 @@ This figure below shows the class diagram of all the commands classes:
 
 Command component:
 
-* Each command class is responsible to carry out its repective function, by linking different classes together in a manner that its function is carried out successfully. 
-* All Command class will have a function named excute() that does the processing needed to provide its function.
+* Each command class is responsible in carrying out its respective function where each command will execute different actions on the model component. In addition they ensure that the user sees the correct messages based on their input.
+* All Command classes have a method `execute()` that does the actions required according to the user's input.
 * Contains an abstract parent `Command` class. All commands are child classes of the Command class.
-* Contains a parent `AddInstrumentCommand` class where all commands relating to adding an instruments inherits from the AddInstrument class.
-* Other than ExitCommand and InvalidCommand, the other command classes are dependent of on the InstrumentManager in order to access the list that stores all the instruments.
-* As Command involves writing words back to the user, all commannds classes are dependent on TextUi class to display words to the user.
+* Contains a parent `AddInstrumentCommand` class where all commands related to adding an instrument inherits from.
+* Other than ExitCommand and InvalidCommand, the other command classes are dependent of on the InstrumentManager in order to execute the required actions on the stored instruments.
+* The command classes are dependent on the `TextUi` class. This allows the command class to display its execution results to the user.
 
 ## Implementation
 (for parser alternatives considered to design for inputs like
