@@ -26,7 +26,7 @@ instructions for user input, and other display texts. The class contains both
 to understand the various commands the user would like to execute through the console.
 * `commands` is another collection of closely-related classes that deal with 
 executing particular commands determined by the necessary parser classes in console.
-* `instrument` contains two types of classes:
+* `model` contains two types of classes:
     * `InstrumentManager` singleton class that manages access to the arraylist containing
     all the instruments created by user during the session.
     * `subinstrument` is a collection of the different instrument classes: `Crypto`, 
@@ -57,6 +57,26 @@ a placeholder for the different instrument types, for example `addStockParser`) 
 This implementation provides greater extensibility to the add functionality to support more instrument types.
 
 The figure below represents the sequence diagram when the user wants to add a stock:
+
+<>
+
+### Model Component
+The `model` package contains the `InstrumentManager` class and the main parent class `Instrument`. It is defined
+in `InstrumentManager.java` and `Instrument.java` respectively. This figure below represents the class diagram of 
+how the different class work together:
+
+<>
+
+The `Model` component:
+
+1. Stores the instrument data through `Instrument` objects which are contained in the `InstrumentManager`
+2. Contains an abstract parent `Instrument` class. The 4 child sub-instrument classes `Crypto`, `Etf`, `Forex` and 
+`Stock` implements the Overridden methods (e.g. toList()).
+3. Contains the `InstrumentManager` which manages the list of instruments (e.g. add a new instrument to the list).
+4. Does not depend on any of the other components (as the `Model` component represents data on the instruments and can 
+exist on its own).
+
+The figure below represents the sequence diagram when the user wants to add a crypto:
 
 <>
 
