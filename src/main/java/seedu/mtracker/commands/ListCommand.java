@@ -16,7 +16,6 @@ public class ListCommand extends Command {
     public String execute() throws IOException {
         instruments = instrumentManager.getInstruments();
         TextUi.displayAllInstruments(instruments);
-        storage.writeFile(instrumentManager);
         return COMMAND_WORD;
     }
 }

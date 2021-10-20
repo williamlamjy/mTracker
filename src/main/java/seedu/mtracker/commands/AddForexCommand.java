@@ -44,7 +44,6 @@ public class AddForexCommand extends AddInstrumentCommand {
         createNewFxPair();
         instrumentManager.addInstrument(newInstrument);
         TextUi.displayInstrumentAdded(newInstrument);
-        storage.writeFile(instrumentManager);
         return COMMAND_WORD;
     }
 }

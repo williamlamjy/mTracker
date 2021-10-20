@@ -10,11 +10,9 @@ public abstract class Command {
 
     protected InstrumentManager instrumentManager;
     protected ArrayList<String> inputParameters;
-    protected Storage storage;
 
-    public void setData(InstrumentManager instrumentManager, Storage storage) {
+    public void setData(InstrumentManager instrumentManager) {
         this.instrumentManager = instrumentManager;
-        this.storage = storage;
     }
 
     public void setParams(ArrayList<String> parameters) {

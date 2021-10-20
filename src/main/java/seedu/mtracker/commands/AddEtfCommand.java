@@ -32,7 +32,6 @@ public class AddEtfCommand extends AddInstrumentCommand {
         createNewEtf();
         instrumentManager.addInstrument(newInstrument);
         TextUi.displayInstrumentAdded(newInstrument);
-        storage.writeFile(instrumentManager);
         return COMMAND_WORD;
     }
 }

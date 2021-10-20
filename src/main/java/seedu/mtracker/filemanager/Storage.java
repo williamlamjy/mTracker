@@ -15,14 +15,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
-    private File file;
+    private final File file;
+    private static final String FILE_PATH = "data/mTracker.txt";
 
-    public Storage(String filePath) throws Exception {
-        this.file = new File(filePath);
+    public Storage() throws IOException {
+        file = new File(FILE_PATH);
         if (!this.file.exists()) {
             File dir = new File("data");
             dir.mkdir();
-            this.file = new File("data/mTracker.txt");
+            file = new File(FILE_PATH);
             file.createNewFile();
         }
     }

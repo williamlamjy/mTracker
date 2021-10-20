@@ -17,10 +17,10 @@ public class MTracker {
     private InputParser parser;
     private LogHelper logger;
 
-    public MTracker(String filePath) {
+    public MTracker() {
         try {
             logger = LogHelper.getInstance();
-            storage = new Storage(filePath);
+            storage = new Storage();
             instrumentManager = new InstrumentManager(storage.readFile());
             parser = new InputParser();
         } catch (Exception e) {
@@ -39,7 +39,7 @@ public class MTracker {
             commandComponents = parser.getCommandComponents(userInput);
             try {
                 command = parser.filterByCommandType(commandComponents);
-                command.setData(instrumentManager, storage);
+                command.setData(instrumentManager);
                 command.execute();
             } catch (Exception e) {
                 logger.getLogger().log(Level.WARNING, e.getMessage());
@@ -58,7 +58,7 @@ public class MTracker {
      * Main entry-point for the mTracker application.
      */
     public static void main(String[] args) {
-        new MTracker("data/mTracker.txt").executeProgram();
+        new MTracker().executeProgram();
     }
 
 }

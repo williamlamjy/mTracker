@@ -31,7 +31,6 @@ public class AddCryptoCommand extends AddInstrumentCommand {
         createNewCrypto();
         instrumentManager.addInstrument(newInstrument);
         TextUi.displayInstrumentAdded(newInstrument);
-        storage.writeFile(instrumentManager);
         return COMMAND_WORD;
     }
 }

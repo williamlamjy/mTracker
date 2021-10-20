@@ -11,7 +11,6 @@ public class ExitCommand extends Command {
     @Override
     public String execute() throws IOException {
         TextUi.displayExitMessage();
-        storage.writeFile(instrumentManager);
         return COMMAND_WORD;
     }
 }

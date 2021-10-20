@@ -27,7 +27,6 @@ public class AddStockCommand extends AddInstrumentCommand {
         createNewStock();
         instrumentManager.addInstrument(newInstrument);
         TextUi.displayInstrumentAdded(newInstrument);
-        storage.writeFile(instrumentManager);
         return COMMAND_WORD;
     }
 }
