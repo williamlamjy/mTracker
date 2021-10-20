@@ -1,6 +1,6 @@
-package seedu.mtracker.instrument.subinstrument;
+package seedu.mtracker.model.subinstrument;
 
-import seedu.mtracker.instrument.Instrument;
+import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
 public class Crypto extends Instrument {
