@@ -107,7 +107,7 @@ Hence, in this scenario, `TextUi` relies on the particular `Instrument` class's 
 all the financial information recorded for that instrument, and then displays them in an appropriate format to
 the user.
 
-### Commands
+### Command Component
 The Command component contains all the commands classes, where its respective class is instantiated when a valid command is entered by the user. 
 
 Commands include:
