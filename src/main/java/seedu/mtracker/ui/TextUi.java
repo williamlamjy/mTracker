@@ -1,6 +1,6 @@
 package seedu.mtracker.ui;
 
-import seedu.mtracker.instrument.Instrument;
+import seedu.mtracker.model.Instrument;
 
 import java.util.ArrayList;
 

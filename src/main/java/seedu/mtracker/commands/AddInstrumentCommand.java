@@ -1,6 +1,6 @@
 package seedu.mtracker.commands;
 
-import seedu.mtracker.instrument.Instrument;
+import seedu.mtracker.model.Instrument;
 
 public class AddInstrumentCommand extends Command {
 
