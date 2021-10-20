@@ -1,6 +1,6 @@
 package seedu.mtracker.commands;
 
-import seedu.mtracker.instrument.subinstrument.Etf;
+import seedu.mtracker.model.subinstrument.Etf;
 import seedu.mtracker.ui.TextUi;
 
 public class AddEtfCommand extends AddInstrumentCommand {

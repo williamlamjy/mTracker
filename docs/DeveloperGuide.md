@@ -4,7 +4,6 @@
 
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
-
 ## Design
 
 > Tip: The diagrams in this guide were designed using PlantUML.
@@ -30,7 +29,7 @@ instructions for user input, and other display texts. The class contains both
 to understand the various commands the user would like to execute through the console.
 * `commands` is another collection of closely-related classes that deal with 
 executing particular commands determined by the necessary parser classes in console.
-* `instrument` contains two types of classes:
+* `model` contains two types of classes:
     * `InstrumentManager` singleton class that manages access to the arraylist containing
     all the instruments created by user during the session.
     * `subinstrument` is a collection of the different instrument classes: `Crypto`, 
@@ -64,6 +63,25 @@ The figure below represents the sequence diagram when the user wants to add a st
 
 <>
 
+### Model Component
+The `model` package contains the `InstrumentManager` class and `Instrument` class. It is defined
+in `InstrumentManager.java` and `Instrument.java` respectively. This figure below represents the class diagram of 
+how the different class work together:
+
+<>
+
+The `Model` component:
+
+* Stores the instrument data through `Instrument` objects which are contained and managed by the `InstrumentManager`
+* Contains an abstract parent `Instrument` class. The 4 child sub-instrument classes `Crypto`, `Etf`, `Forex` and 
+`Stock` implements the Overridden methods (e.g. `toList()`).
+* Contains the `InstrumentManager` class which manages the list of instruments (e.g. add a new instrument to 
+the list). `InstrumentManager` is implemented as a singleton class to ensure that only one instrument list exists.
+This ensures the user only edits one list and prevents possible data corruption (e.g. adding a new instrument to 
+different lists).
+* Does not have any dependencies on any of the other components, as the `Model` component is meant to be responsible
+solely for the data representation and modification of instruments.
+  
 ### Ui
 
 The ui component only contains the TextUi.java file and its API can be found
