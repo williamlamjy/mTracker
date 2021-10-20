@@ -78,7 +78,7 @@ class InputParserTest {
     void getDeleteInstrumentCommand_outOfBoundsIndexProvided_expectException() throws InvalidBoundsError {
         InputParser parser = new InputParser();
         assertThrows(InvalidBoundsError.class,
-                () -> parser.getDeleteInstrumentCommand(OUT_OF_BOUNDS_INDEX_INPUT, INSTRUMENTS));
+            () -> parser.getDeleteInstrumentCommand(OUT_OF_BOUNDS_INDEX_INPUT, INSTRUMENTS));
     }
 
     @Test
