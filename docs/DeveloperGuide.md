@@ -11,7 +11,7 @@
 The following diagram denotes the high-level design of the mTracker
 program:
 
-<>
+<img src="images/ArchitectureDiagram.png" width="345"/>
 
 Major components of the app:
 * `MTracker` contains the `main` method responsible for launching and 

@@ -1,0 +1,34 @@
+@startuml
+!include Styles.puml
+
+!define COLOR_UI COLOR_DARK_BLUE
+!define COLOR_MAIN COLOR_BLACK
+!define COLOR_COMMANDS COLOR_DARK_GREEN
+!define COLOR_CONSOLE COLOR_TEAL
+!define COLOR_INSTRUMENT COLOR_PURPLE
+!define COLOR_STORAGE COLOR_BROWN
+
+Package " "<<Rectangle>>{
+    Class ui COLOR_UI
+    Class main COLOR_MAIN
+    Class commands COLOR_COMMANDS
+    Class console COLOR_CONSOLE
+    Class instrument COLOR_INSTRUMENT
+    Class storage COLOR_STORAGE
+}
+
+main -down[COLOR_MAIN]-> storage
+main -down[COLOR_MAIN]-> console
+main -down[COLOR_MAIN]-> instrument
+main .down[COLOR_MAIN]-> commands
+main .down[COLOR_MAIN]-> ui
+storage .down[COLOR_STORAGE]->ui
+storage .down[COLOR_STORAGE]->instrument
+console .down[COLOR_CONSOLE]->ui
+console .down[COLOR_CONSOLE]->instrument
+console .down[COLOR_CONSOLE]->commands
+commands .down[COLOR_COMMANDS]->ui
+commands -down[COLOR_COMMANDS]->instrument
+ui .down[COLOR_UI]->instrument
+
+@endum
