@@ -63,6 +63,7 @@ public class InputParser {
             throw new InvalidBoundsError();
         }
     }
+
     public DeleteCommand getDeleteInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
             throws InvalidIndexError, InvalidNoIndexError, InvalidBoundsError {
         DeleteCommand deleteCommand = new DeleteCommand();
