@@ -87,7 +87,8 @@ solely for the data representation and modification of instruments.
 The ui component only contains the TextUi.java file and its API can be found
 [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/src/main/java/seedu/mtracker/ui/TextUi.java).
 
-It is a basic java class containing private string attributes of frequently used display texts.
+It is a basic java class containing string attributes and helper methods for displaying the different features, texts and
+instructions to the user.
 As detailed by the UML diagrams in the other sections above, many other parser and command classes utilize
 the methods contained in `TextUi` to display instructions on the console for required user input. Hence, most other
 classes of this program are dependent on the methods of this `TextUi` class for their proper interaction with the user.
