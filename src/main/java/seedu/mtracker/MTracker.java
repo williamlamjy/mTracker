@@ -9,7 +9,6 @@ import seedu.mtracker.filemanager.Storage;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.ui.TextUi;
 
-import java.io.IOException;
 import java.util.logging.Level;
 
 public class MTracker {
