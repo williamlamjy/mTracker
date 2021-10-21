@@ -57,7 +57,8 @@ public abstract class Instrument {
 
     public String textFileFormatting() {
         return String.format(getType() + FILE_SEPARATOR + getName() + FILE_SEPARATOR
-                + getCurrentPrice() + FILE_SEPARATOR + getSentiment());
+                + getCurrentPrice() + FILE_SEPARATOR + getSentiment() + FILE_SEPARATOR
+                + getIsDone());
     }
 
     public String toList() {

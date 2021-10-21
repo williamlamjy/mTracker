@@ -47,7 +47,9 @@ public class InstrumentManager {
     public void doneInstrument(int completedInstrumentIndex) {
         instruments.get(completedInstrumentIndex).markAsDone();
     }
+
     public void deleteInstrument(int index) {
         instruments.remove(index);
     }
+
 }

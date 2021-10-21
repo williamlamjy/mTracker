@@ -6,8 +6,8 @@ import seedu.mtracker.model.subinstrument.Crypto;
 
 public class CryptoDecoder extends InstrumentDecoder {
 
-    public static final int CRYPTO_EXPIRY_INDEX = 4;
-    public static final int CRYPTO_REMARKS_INDEX = 5;
+    public static final int CRYPTO_EXPIRY_INDEX = 5;
+    public static final int CRYPTO_REMARKS_INDEX = 6;
 
     public static void addCryptoToList(String[] textSegment, InstrumentManager instrumentManager) {
         decodeGeneralAttributes(textSegment);
@@ -16,6 +16,7 @@ public class CryptoDecoder extends InstrumentDecoder {
         Instrument crypto = new Crypto(decodedName, decodedCurrPrice, decodedSentiment,
                 decodedExpiry, decodedRemarks);
         instrumentManager.addInstrument(crypto);
+        setIsDone(decodedIsDone, instrumentManager);
     }
 
 }

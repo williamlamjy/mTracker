@@ -20,16 +20,26 @@ public class InstrumentDecoder {
     public static final int NAME_INDEX = 1;
     public static final int CURR_PRICE_INDEX = 2;
     public static final int SENTIMENT_INDEX = 3;
+    public static final int IS_DONE_INDEX = 4;
 
     public static String decodedSentiment;
     public static String decodedName;
     public static double decodedCurrPrice;
+    public static boolean decodedIsDone;
 
 
     public static void decodeGeneralAttributes(String[] textSegment) {
         decodedName = textSegment[NAME_INDEX];
         decodedSentiment = textSegment[SENTIMENT_INDEX];
         decodedCurrPrice = Double.parseDouble(textSegment[CURR_PRICE_INDEX]);
+        decodedIsDone = Boolean.parseBoolean(textSegment[IS_DONE_INDEX]);
+    }
+
+    public static void setIsDone(boolean isDone, InstrumentManager instrumentManager) {
+        int lastIndex = instrumentManager.getSize() - 1;
+        if (isDone) {
+            instrumentManager.doneInstrument(lastIndex);
+        }
     }
 
     public static void readFile(InstrumentManager instrumentManager, List<String> fileData) {
