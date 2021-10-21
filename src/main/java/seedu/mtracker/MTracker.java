@@ -50,7 +50,7 @@ public class MTracker {
                 command = new InvalidCommand();
             }
             try {
-                storage.writeFile(instrumentManager.getInstruments());
+                storage.updateFileData(instrumentManager.getInstruments());
             } catch (IOException e){
                 ErrorMessage.displayFileError();
             }
