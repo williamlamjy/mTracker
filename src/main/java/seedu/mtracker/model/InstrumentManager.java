@@ -20,6 +20,10 @@ public class InstrumentManager {
         return instrumentManager;
     }
 
+    public int getSize() {
+        return instruments.size();
+    }
+
     public ArrayList<Instrument> getInstruments() {
         return instruments;
     }

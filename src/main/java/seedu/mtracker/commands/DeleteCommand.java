@@ -23,10 +23,10 @@ public class DeleteCommand extends Command {
 
     @Override
     public String execute() {
-        AssertCommandHelpers.assertIndexWithinBounds(instrumentManager.getInstruments().size(), index);
+        AssertCommandHelpers.assertIndexWithinBounds(instrumentManager.getSize(), index);
         Instrument instrumentToDelete = instrumentManager.getInstrument(index);
         instrumentManager.deleteInstrument(index);
-        TextUi.displayInstrumentDeletedAcknowledgement(instrumentToDelete);
+        TextUi.displayInstrumentDeleted(instrumentToDelete);
         return COMMAND_WORD;
     }
 }

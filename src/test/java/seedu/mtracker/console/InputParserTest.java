@@ -24,11 +24,11 @@ class InputParserTest {
     public static final String[] OUT_OF_BOUNDS_INDEX_INPUT = { "delete", "23" };
     public static final String[] VALID_INDEX_INPUT = { "delete", String.valueOf(VALID_INDEX)};
 
-    public static final String FAKE_NAME = "Test";
-    public static final double FAKE_PRICE = 34.5;
-    public static final String FAKE_SENTIMENT = "negative";
-    public static final String FAKE_REMARK = "";
-    public static final Instrument FAKE_STOCK = new Stock(FAKE_NAME, FAKE_PRICE, FAKE_SENTIMENT, FAKE_REMARK);
+    public static final String TEST_NAME = "Test";
+    public static final double TEST_PRICE = 34.5;
+    public static final String TEST_SENTIMENT = "negative";
+    public static final String TEST_REMARK = "";
+    public static final Instrument TEST_STOCK = new Stock(TEST_NAME, TEST_PRICE, TEST_SENTIMENT, TEST_REMARK);
     public static ArrayList<Instrument> INSTRUMENTS;
 
     public static final int INDEX_OFFSET = 1;
@@ -36,7 +36,7 @@ class InputParserTest {
     @BeforeEach
     void initialiseInstruments() {
         INSTRUMENTS = new ArrayList<>();
-        INSTRUMENTS.add(FAKE_STOCK);
+        INSTRUMENTS.add(TEST_STOCK);
     }
 
     @Test
