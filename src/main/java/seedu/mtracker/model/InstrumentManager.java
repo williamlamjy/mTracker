@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 public class InstrumentManager {
 
-    private static InstrumentManager instrumentManager;
     private final ArrayList<Instrument> instruments;
+
+    private static InstrumentManager instrumentManager;
 
     private InstrumentManager() {
         instruments = new ArrayList<>();
@@ -25,4 +26,5 @@ public class InstrumentManager {
     public void addInstrument(Instrument addedInstrument) {
         instruments.add(addedInstrument);
     }
+
 }

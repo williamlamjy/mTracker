@@ -29,6 +29,12 @@ public class Stock extends Instrument {
     }
 
     @Override
+    public String textFileFormatting() {
+        return String.format(super.textFileFormatting()
+                + FILE_SEPARATOR + getRemark());
+    }
+
+    @Override
     public String toList() {
         return super.toList()
                 + System.lineSeparator() + REMARKS_HEADER + getRemark();
