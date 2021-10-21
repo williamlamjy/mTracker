@@ -38,7 +38,7 @@ public class Storage {
     public void updateFileData(ArrayList<Instrument> instruments) {
         try {
             setFileToWritable();
-            FileWriter writeToFile = new FileWriter(this.file);
+            FileWriter writeToFile = new FileWriter(file);
             InstrumentEncoder.writeFile(instruments, writeToFile);
             setFileToReadOnly();
         } catch (IOException e) {

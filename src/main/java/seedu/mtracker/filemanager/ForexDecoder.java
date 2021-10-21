@@ -12,15 +12,13 @@ public class ForexDecoder extends InstrumentDecoder {
     public static final int FOREX_REMARKS_INDEX = 7;
 
     public static void addForexToList(String[] textSegment, InstrumentManager instrumentManager) {
-        String name = textSegment[NAME_INDEX];
-        double currentPrice = Double.parseDouble(textSegment[CURR_PRICE_INDEX]);
-        String sentiment = textSegment[SENTIMENT_INDEX];
-        double entryPrice = Double.parseDouble(textSegment[ENTRY_PRICE_INDEX]);
-        double exitPrice = Double.parseDouble(textSegment[EXIT_PRICE_INDEX]);
-        String expiry = textSegment[FOREX_EXPIRY_INDEX];
-        String remarks = textSegment[FOREX_REMARKS_INDEX];
-        Instrument forex = new Forex(name, currentPrice, sentiment,
-                entryPrice, exitPrice, expiry, remarks);
+        decodeGeneralAttributes(textSegment);
+        double decodedEntryPrice = Double.parseDouble(textSegment[ENTRY_PRICE_INDEX]);
+        double decodedExitPrice = Double.parseDouble(textSegment[EXIT_PRICE_INDEX]);
+        String decodedExpiry = textSegment[FOREX_EXPIRY_INDEX];
+        String decodedRemarks = textSegment[FOREX_REMARKS_INDEX];
+        Instrument forex = new Forex(decodedName, decodedCurrPrice, decodedSentiment,
+                decodedEntryPrice, decodedExitPrice, decodedExpiry, decodedRemarks);
         instrumentManager.addInstrument(forex);
     }
 }

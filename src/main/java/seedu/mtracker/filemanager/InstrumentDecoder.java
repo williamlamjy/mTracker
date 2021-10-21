@@ -21,6 +21,16 @@ public class InstrumentDecoder {
     public static final int CURR_PRICE_INDEX = 2;
     public static final int SENTIMENT_INDEX = 3;
 
+    public static String decodedSentiment;
+    public static String decodedName;
+    public static double decodedCurrPrice;
+
+
+    public static void decodeGeneralAttributes(String[] textSegment) {
+        decodedName = textSegment[NAME_INDEX];
+        decodedSentiment = textSegment[SENTIMENT_INDEX];
+        decodedCurrPrice = Double.parseDouble(textSegment[CURR_PRICE_INDEX]);
+    }
 
     public static void readFile(InstrumentManager instrumentManager, List<String> fileData) {
         fileData.stream()

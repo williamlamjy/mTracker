@@ -10,12 +10,11 @@ public class EtfDecoder extends InstrumentDecoder {
     public static final int ETF_REMARKS_INDEX = 5;
 
     public static void addEtfToList(String[] textSegment, InstrumentManager instrumentManager) {
-        String name = textSegment[NAME_INDEX];
-        double currentPrice = Double.parseDouble(textSegment[CURR_PRICE_INDEX]);
-        String sentiment = textSegment[SENTIMENT_INDEX];
-        double pastReturns = Double.parseDouble(textSegment[PAST_RETURNS_INDEX]);
-        String remarks = textSegment[ETF_REMARKS_INDEX];
-        Instrument etf = new Etf(name, currentPrice, sentiment, pastReturns, remarks);
+        decodeGeneralAttributes(textSegment);
+        double decodedPastReturns = Double.parseDouble(textSegment[PAST_RETURNS_INDEX]);
+        String decodedRemarks = textSegment[ETF_REMARKS_INDEX];
+        Instrument etf = new Etf(decodedName, decodedCurrPrice, decodedSentiment,
+                decodedPastReturns, decodedRemarks);
         instrumentManager.addInstrument(etf);
     }
 
