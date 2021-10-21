@@ -1,7 +1,5 @@
 package seedu.mtracker.model;
 
-import seedu.mtracker.filemanager.Storage;
-
 import java.util.ArrayList;
 
 public class InstrumentManager {
