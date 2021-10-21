@@ -19,7 +19,11 @@ public class Crypto extends Instrument {
         this.remark = remark;
     }
 
-    public String getExpiry() {
+    public LocalDate getExpiry() {
+        return expiry;
+    }
+
+    public String formatExpiry() {
         return expiry.format(DateTimeFormatter.ofPattern(DATE_REGEX));
     }
 
@@ -38,9 +42,15 @@ public class Crypto extends Instrument {
     }
 
     @Override
+    public String textFileFormatting() {
+        return String.format(super.textFileFormatting() + FILE_SEPARATOR + getExpiry()
+                + FILE_SEPARATOR + getRemark());
+    }
+
+    @Override
     public String toList() {
         return super.toList()
-                + System.lineSeparator() + EXPIRY_HEADER + getExpiry()
+                + System.lineSeparator() + EXPIRY_HEADER + formatExpiry()
                 + System.lineSeparator() + REMARKS_HEADER + getRemark();
     }
 }

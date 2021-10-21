@@ -4,21 +4,31 @@ import seedu.mtracker.commands.Command;
 import seedu.mtracker.commands.ExitCommand;
 import seedu.mtracker.commands.InvalidCommand;
 import seedu.mtracker.console.InputParser;
+import seedu.mtracker.error.ErrorMessage;
+import seedu.mtracker.filemanager.Storage;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.ui.TextUi;
 
+import java.io.IOException;
 import java.util.logging.Level;
 
 public class MTracker {
-
-    private final InstrumentManager instrumentManager;
-    private final InputParser parser;
-    private final LogHelper logger;
+    private Storage storage;
+    private InstrumentManager instrumentManager;
+    private InputParser parser;
+    private LogHelper logger;
 
     public MTracker() {
-        instrumentManager = InstrumentManager.getInstance();
-        logger = LogHelper.getInstance();
-        parser = new InputParser();
+        try {
+            logger = LogHelper.getInstance();
+            storage = new Storage();
+            instrumentManager = instrumentManager.getInstance();
+            parser = new InputParser();
+            storage.loadFileData(instrumentManager);
+        } catch (Exception e) {
+            ErrorMessage.displayFileError();
+            System.exit(-1);
+        }
     }
 
     public void run() {
@@ -30,9 +40,10 @@ public class MTracker {
             userInput = parser.getUserInput();
             commandComponents = parser.getCommandComponents(userInput);
             try {
-                command = parser.filterByCommandType(commandComponents);
+                command = parser.filterByCommandType(commandComponents, instrumentManager.getInstruments());
                 command.setData(instrumentManager);
                 command.execute();
+                storage.updateFileData(instrumentManager.getInstruments());
             } catch (Exception e) {
                 logger.getLogger().log(Level.WARNING, e.getMessage());
                 TextUi.showErrorMessage(e);
@@ -52,5 +63,4 @@ public class MTracker {
     public static void main(String[] args) {
         new MTracker().executeProgram();
     }
-
 }

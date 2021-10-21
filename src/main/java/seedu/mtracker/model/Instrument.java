@@ -16,6 +16,8 @@ public abstract class Instrument {
     private static final String CURRENT_PRICE_HEADER = "Current Price: ";
     private static final String SENTIMENT_HEADER = "Sentiment: ";
 
+    protected static final String FILE_SEPARATOR = ";";
+
     public Instrument(String name, double currentPrice, String sentiment) {
         this.name = name;
         this.currentPrice = currentPrice;
@@ -37,6 +39,11 @@ public abstract class Instrument {
     public abstract String toString();
 
     public abstract String getType();
+
+    public String textFileFormatting() {
+        return String.format(getType() + FILE_SEPARATOR + getName() + FILE_SEPARATOR
+                + getCurrentPrice() + FILE_SEPARATOR + getSentiment());
+    }
 
     public String toList() {
         return TYPE_HEADER + getType() + System.lineSeparator()

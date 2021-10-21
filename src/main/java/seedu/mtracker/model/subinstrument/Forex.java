@@ -42,11 +42,15 @@ public class Forex extends Instrument {
         return exitPrice;
     }
 
-    public String getExpiry() {
+    public LocalDate getExpiry() {
+        return expiry;
+    }
+
+    public String formatExpiry() {
         return expiry.format(DateTimeFormatter.ofPattern(DATE_REGEX));
     }
 
-    public String getRemarks() {
+    public String getRemark() {
         return remark;
     }
 
@@ -61,11 +65,18 @@ public class Forex extends Instrument {
     }
 
     @Override
+    public String textFileFormatting() {
+        return String.format(super.textFileFormatting() + FILE_SEPARATOR + getEntryPrice()
+                + FILE_SEPARATOR + getExitPrice() + FILE_SEPARATOR + getExpiry()
+                + FILE_SEPARATOR + getRemark());
+    }
+
+    @Override
     public String toList() {
         return super.toList()
                 + System.lineSeparator() + ENTRY_PRICE_HEADER + getEntryPrice()
                 + System.lineSeparator() + EXIT_PRICE_HEADER + getExitPrice()
-                + System.lineSeparator() + EXPIRY_HEADER + getExpiry()
-                + System.lineSeparator() + REMARKS_HEADER + getRemarks();
+                + System.lineSeparator() + EXPIRY_HEADER + formatExpiry()
+                + System.lineSeparator() + REMARKS_HEADER + getRemark();
     }
 }

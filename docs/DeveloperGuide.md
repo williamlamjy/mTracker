@@ -107,6 +107,31 @@ Hence, in this scenario, `TextUi` relies on the particular `Instrument` class's 
 all the financial information recorded for that instrument, and then displays them in an appropriate format to
 the user.
 
+### Command Component
+The Command component contains all the commands classes, where its respective class is instantiated when a valid command is entered by the user. 
+
+Commands include:
+```
+1) AddCrytoCommand
+2) AddEtfCommand
+3) AddForexCommand
+3) AddStockCommand
+4) ExitCommand
+5) InvalidCommand
+6) ListCommand
+```
+This figure below shows the class diagram of all the commands classes:
+<>
+
+Command component:
+
+* Each command class is responsible in carrying out its respective function where each command will execute different actions on the model component. In addition they ensure that the user sees the correct messages based on their input.
+* All Command classes have a method `execute()` that does the actions required according to the user's input.
+* Contains an abstract parent `Command` class. All commands are child classes of the Command class.
+* Contains a parent `AddInstrumentCommand` class where all commands related to adding an instrument inherits from.
+* Other than ExitCommand and InvalidCommand, the other command classes are dependent of on the InstrumentManager in order to execute the required actions on the stored instruments.
+* The command classes are dependent on the `TextUi` class. This allows the command class to display its execution results to the user.
+
 ## Implementation
 (for parser alternatives considered to design for inputs like
 "stock name/ price/ ...", "stock NAME PRICE" <- not very cli friendly with user having to recall all params,
