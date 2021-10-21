@@ -15,6 +15,12 @@ public class InstrumentDecoder {
 
     public static final String FILE_SEPARATOR = ";";
     public static final int SPLIT_FUNCTION_LIMIT_VALUE = -1;
+
+    public static final String TYPE_CRYPTO = "Crypto";
+    public static final String TYPE_STOCK = "Stock";
+    public static final String TYPE_ETF = "Etf";
+    public static final String TYPE_FOREX = "Forex";
+
     public static final int TYPE_INDEX = 0;
     public static final int NAME_INDEX = 1;
     public static final int CURR_PRICE_INDEX = 2;
@@ -49,16 +55,16 @@ public class InstrumentDecoder {
     private static void addSavedInstrumentToList(InstrumentManager instrumentManager, String[] textSegment)
             throws InvalidInstrumentInFileError {
         switch (textSegment[TYPE_INDEX]) {
-        case ("Crypto"):
+        case (TYPE_CRYPTO):
             addCryptoToList(textSegment, instrumentManager);
             break;
-        case ("Stock"):
+        case (TYPE_STOCK):
             addStockToList(textSegment, instrumentManager);
             break;
-        case ("Forex"):
+        case (TYPE_FOREX):
             addForexToList(textSegment, instrumentManager);
             break;
-        case ("Etf"):
+        case (TYPE_ETF):
             addEtfToList(textSegment, instrumentManager);
             break;
         default:
