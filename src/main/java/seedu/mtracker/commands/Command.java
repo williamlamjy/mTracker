@@ -1,9 +1,7 @@
 package seedu.mtracker.commands;
 
-import seedu.mtracker.filemanager.Storage;
-import seedu.mtracker.instrument.InstrumentManager;
+import seedu.mtracker.model.InstrumentManager;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class Command {

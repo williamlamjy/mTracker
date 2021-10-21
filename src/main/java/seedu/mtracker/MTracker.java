@@ -6,7 +6,7 @@ import seedu.mtracker.commands.InvalidCommand;
 import seedu.mtracker.console.InputParser;
 import seedu.mtracker.error.ErrorMessage;
 import seedu.mtracker.filemanager.Storage;
-import seedu.mtracker.instrument.InstrumentManager;
+import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.ui.TextUi;
 
 import java.io.FileNotFoundException;

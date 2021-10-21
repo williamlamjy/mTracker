@@ -1,7 +1,7 @@
 package seedu.mtracker.filemanager;
 
 import seedu.mtracker.error.ErrorMessage;
-import seedu.mtracker.instrument.Instrument;
+import seedu.mtracker.model.Instrument;
 
 import java.io.FileWriter;
 import java.io.IOException;

@@ -1,11 +1,11 @@
 package seedu.mtracker.filemanager;
 
-import seedu.mtracker.instrument.Instrument;
-import seedu.mtracker.instrument.InstrumentManager;
-import seedu.mtracker.instrument.subinstrument.Crypto;
-import seedu.mtracker.instrument.subinstrument.Etf;
-import seedu.mtracker.instrument.subinstrument.Forex;
-import seedu.mtracker.instrument.subinstrument.Stock;
+import seedu.mtracker.model.Instrument;
+import seedu.mtracker.model.InstrumentManager;
+import seedu.mtracker.model.subinstrument.Crypto;
+import seedu.mtracker.model.subinstrument.Etf;
+import seedu.mtracker.model.subinstrument.Forex;
+import seedu.mtracker.model.subinstrument.Stock;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package seedu.mtracker.instrument;
+package seedu.mtracker.model;
 
 import seedu.mtracker.filemanager.Storage;
 

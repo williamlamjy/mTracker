@@ -1,6 +1,6 @@
 package seedu.mtracker.commands;
 
-import seedu.mtracker.instrument.subinstrument.Stock;
+import seedu.mtracker.model.subinstrument.Stock;
 import seedu.mtracker.ui.TextUi;
 
 import java.io.IOException;
