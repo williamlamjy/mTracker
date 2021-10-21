@@ -14,6 +14,7 @@ import java.util.List;
 public class InstrumentDecoder {
 
     public static final String FILE_SEPARATOR = ";";
+    public static final int SPLIT_FUNCTION_LIMIT_VALUE = -1;
     public static final int TYPE_INDEX = 0;
     public static final int NAME_INDEX = 1;
     public static final int CURR_PRICE_INDEX = 2;
@@ -36,7 +37,7 @@ public class InstrumentDecoder {
     public static void readFile(InstrumentManager instrumentManager, List<String> fileData) {
         fileData.stream()
                 .forEach((line) -> {
-                    String[] textSegment = line.split(FILE_SEPARATOR, -1);
+                    String[] textSegment = line.split(FILE_SEPARATOR, SPLIT_FUNCTION_LIMIT_VALUE);
                     try {
                         addSavedInstrumentToList(instrumentManager, textSegment);
                     } catch (InvalidInstrumentInFileError e) {
