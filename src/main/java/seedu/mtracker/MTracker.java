@@ -22,7 +22,7 @@ public class MTracker {
         try {
             logger = LogHelper.getInstance();
             storage = new Storage();
-            instrumentManager = new InstrumentManager(storage.readFile());
+            instrumentManager = instrumentManager.getInstance();
             parser = new InputParser();
         } catch (Exception e) {
             ErrorMessage.displayFileError();
