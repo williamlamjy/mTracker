@@ -9,6 +9,7 @@ import seedu.mtracker.filemanager.Storage;
 import seedu.mtracker.instrument.InstrumentManager;
 import seedu.mtracker.ui.TextUi;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 
@@ -24,6 +25,7 @@ public class MTracker {
             storage = new Storage();
             instrumentManager = instrumentManager.getInstance();
             parser = new InputParser();
+            storage.loadFileData(instrumentManager);
         } catch (Exception e) {
             ErrorMessage.displayFileError();
             System.exit(-1);
@@ -66,5 +68,4 @@ public class MTracker {
     public static void main(String[] args) {
         new MTracker().executeProgram();
     }
-
 }

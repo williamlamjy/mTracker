@@ -10,14 +10,13 @@ public class InstrumentManager {
 
     private static InstrumentManager instrumentManager;
 
-    private InstrumentManager(ArrayList<Instrument> instruments) {
-        this.instruments = instruments;
+    private InstrumentManager() {
+        instruments = new ArrayList<>();
     }
 
     public static InstrumentManager getInstance() {
         if (instrumentManager == null) {
-            ArrayList<Instrument> instruments = Storage.readFile();
-            instrumentManager = new InstrumentManager(instruments);
+            instrumentManager = new InstrumentManager();
         }
         return instrumentManager;
     }
