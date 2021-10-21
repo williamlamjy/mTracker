@@ -1,7 +1,5 @@
 package seedu.mtracker.model.subinstrument;
 
-import seedu.mtracker.asserthelpers.AssertCommandHelpers;
-import seedu.mtracker.asserthelpers.AssertParserHelper;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
