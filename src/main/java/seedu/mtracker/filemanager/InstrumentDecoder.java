@@ -55,16 +55,16 @@ public class InstrumentDecoder {
     private static void addSavedInstrumentToList(InstrumentManager instrumentManager, String[] textSegment)
             throws InvalidInstrumentInFileError {
         switch (textSegment[TYPE_INDEX]) {
-        case (TYPE_CRYPTO):
+        case TYPE_CRYPTO:
             addCryptoToList(textSegment, instrumentManager);
             break;
-        case (TYPE_STOCK):
+        case TYPE_STOCK:
             addStockToList(textSegment, instrumentManager);
             break;
-        case (TYPE_FOREX):
+        case TYPE_FOREX:
             addForexToList(textSegment, instrumentManager);
             break;
-        case (TYPE_ETF):
+        case TYPE_ETF:
             addEtfToList(textSegment, instrumentManager);
             break;
         default:
