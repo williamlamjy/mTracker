@@ -2,6 +2,7 @@ package seedu.mtracker.filemanager;
 
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
+import seedu.mtracker.ui.TextUi;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -12,8 +13,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Storage {
-    private final File file;
     public static final String FILE_PATH = "data/mTracker.txt";
+    private final File file;
     private final Path path;
 
     public Storage() {
@@ -23,10 +24,12 @@ public class Storage {
 
     public void loadFileData(InstrumentManager instrumentManager) throws IOException {
         if (!Files.exists(path) || !Files.isRegularFile(path)) {
+            TextUi.displayCreateFile();
             file.getParentFile().mkdir();
             file.createNewFile();
             return;
         }
+        TextUi.displayLoadingFile();
         InstrumentDecoder.readFile(instrumentManager, Files.readAllLines(path));
     }
 

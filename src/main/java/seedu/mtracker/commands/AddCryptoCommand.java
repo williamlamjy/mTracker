@@ -3,8 +3,6 @@ package seedu.mtracker.commands;
 import seedu.mtracker.model.subinstrument.Crypto;
 import seedu.mtracker.ui.TextUi;
 
-import java.io.IOException;
-
 public class AddCryptoCommand extends AddInstrumentCommand {
 
     public static final String COMMAND_WORD = "crypto";

@@ -13,9 +13,9 @@ public class InstrumentEncoder {
         instruments.stream()
                 .forEach(instrument -> {
                     try {
-                        writeToFile.write(instrument.textFileFormatting() + "\n");
+                        writeToFile.write(instrument.textFileFormatting() + System.lineSeparator());
                     } catch (IOException e) {
-                        ErrorMessage.displayFileError();
+                        ErrorMessage.displayWriteToFileError();
                     }
                 });
         writeToFile.close();

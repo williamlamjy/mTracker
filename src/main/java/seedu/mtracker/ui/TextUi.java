@@ -78,6 +78,14 @@ public class TextUi {
         instruments.stream().forEach(instrument -> displayInstrument(instrument));
     }
 
+    public static void displayCreateFile() {
+        System.out.println("Unable to find a saved file. Creating a new one now...");
+    }
+
+    public static void displayLoadingFile() {
+        System.out.println("Found a saved file. Loading the saved data now...");
+    }
+
     public static void showErrorMessage(Exception e) {
         System.out.println(e.getMessage());
     }

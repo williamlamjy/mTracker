@@ -4,6 +4,8 @@ public abstract class ErrorMessage {
 
     public static final String INVALID_INSTRUMENT_GIVEN_ERROR = "Invalid Instrument given!";
     public static final String INVALID_COMMAND_GIVEN_ERROR = "Oops, I do not understand you...";
+    public static final String INVALID_INSTRUMENT_IN_FILE_ERROR = "Oops, it appears that the incorrect instrument" +
+            "type is provided in the mTracker.txt file";
 
     public static void displayAddInstrumentNameError(String instrumentType) {
         System.out.println("Sorry " + instrumentType + " cannot have an empty name!");
@@ -28,4 +30,9 @@ public abstract class ErrorMessage {
     public static void displayFileError() {
         System.out.println("Oh no! There seems to be an error loading this file");
     }
+
+    public static void displayWriteToFileError() {
+        System.out.println("Oh no! There seems to be an error writing to the file");
+    }
+
 }
