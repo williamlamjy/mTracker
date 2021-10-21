@@ -43,13 +43,14 @@ public class Forex extends Instrument {
         return expiry;
     }
 
-    public String getRemarks() {
+    public String getRemark() {
         return remark;
     }
 
     @Override
     public String toString() {
-        return TextUi.createBoxDisplay(FX_ICON) + super.toString() + getName();
+        return TextUi.createBoxDisplay(FX_ICON)
+                + TextUi.createBoxDisplay(getStatusIcon()) + getName();
     }
 
     @Override
@@ -58,11 +59,18 @@ public class Forex extends Instrument {
     }
 
     @Override
+    public String textFileFormatting() {
+        return String.format(super.textFileFormatting() + FILE_SEPARATOR + getEntryPrice()
+                + FILE_SEPARATOR + getExitPrice() + FILE_SEPARATOR + getExpiry()
+                + FILE_SEPARATOR + getRemark());
+    }
+
+    @Override
     public String toList() {
         return super.toList()
                 + System.lineSeparator() + ENTRY_PRICE_HEADER + getEntryPrice()
                 + System.lineSeparator() + EXIT_PRICE_HEADER + getExitPrice()
                 + System.lineSeparator() + EXPIRY_HEADER + getExpiry()
-                + System.lineSeparator() + REMARKS_HEADER + getRemarks();
+                + System.lineSeparator() + REMARKS_HEADER + getRemark();
     }
 }

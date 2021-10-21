@@ -16,6 +16,9 @@ public abstract class Instrument {
     protected static final String EXPIRY_HEADER = "Expiry: ";
     protected static final String REMARKS_HEADER = "Remarks: ";
     protected static final String EMPTY_STRING = "";
+    protected static final String FILE_SEPARATOR = ";";
+    protected static final String DONE_SYMBOL = "X";
+    protected static final String NOT_DONE_SYMBOL = " ";
 
     public Instrument(String name, double currentPrice, String sentiment) {
         this.name = name;
@@ -33,7 +36,7 @@ public abstract class Instrument {
     }
 
     public String getStatusIcon() {
-        return (getIsDone() ? "X" : " ");
+        return (getIsDone() ? DONE_SYMBOL : NOT_DONE_SYMBOL);
     }
 
     public String getName() {
@@ -48,14 +51,17 @@ public abstract class Instrument {
         return sentiment;
     }
 
-    public String toString() {
-        return TextUi.createBoxDisplay(getStatusIcon());
-    }
+    public abstract String toString();
 
     public abstract String getType();
 
+    public String textFileFormatting() {
+        return String.format(getType() + FILE_SEPARATOR + getName() + FILE_SEPARATOR
+                + getCurrentPrice() + FILE_SEPARATOR + getSentiment());
+    }
+
     public String toList() {
-        return TYPE_HEADER + TextUi.createBoxDisplay(getStatusIcon()) + getType()
+        return TYPE_HEADER + getType() + TextUi.createBoxDisplay(getStatusIcon())
                 + System.lineSeparator() + NAME_HEADER + getName() + System.lineSeparator()
                 + CURRENT_PRICE_HEADER + getCurrentPrice() + System.lineSeparator()
                 + SENTIMENT_HEADER + getSentiment();

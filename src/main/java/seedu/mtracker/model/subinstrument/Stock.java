@@ -20,12 +20,19 @@ public class Stock extends Instrument {
 
     @Override
     public String toString() {
-        return TextUi.createBoxDisplay(STOCK_ICON) + super.toString() + getName();
+        return TextUi.createBoxDisplay(STOCK_ICON)
+                + TextUi.createBoxDisplay(getStatusIcon()) + getName();
     }
 
     @Override
     public String getType() {
         return TYPE_INSTRUMENT;
+    }
+
+    @Override
+    public String textFileFormatting() {
+        return String.format(super.textFileFormatting()
+                + FILE_SEPARATOR + getRemark());
     }
 
     @Override

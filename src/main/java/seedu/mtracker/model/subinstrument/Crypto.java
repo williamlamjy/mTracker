@@ -26,12 +26,19 @@ public class Crypto extends Instrument {
 
     @Override
     public String toString() {
-        return TextUi.createBoxDisplay(CRYPTO_ICON) + super.toString() + getName();
+        return TextUi.createBoxDisplay(CRYPTO_ICON)
+                + TextUi.createBoxDisplay(getStatusIcon()) + getName();
     }
 
     @Override
     public String getType() {
         return TYPE_INSTRUMENT;
+    }
+
+    @Override
+    public String textFileFormatting() {
+        return String.format(super.textFileFormatting() + FILE_SEPARATOR + getExpiry()
+                + FILE_SEPARATOR + getRemark());
     }
 
     @Override

@@ -2,14 +2,20 @@ package seedu.mtracker.console;
 
 import seedu.mtracker.LogHelper;
 import seedu.mtracker.commands.AddInstrumentCommand;
-import seedu.mtracker.commands.CheckOffInstrumentCommand;
+import seedu.mtracker.commands.DoneCommand;
 import seedu.mtracker.commands.Command;
+import seedu.mtracker.commands.DeleteCommand;
 import seedu.mtracker.commands.ExitCommand;
 import seedu.mtracker.commands.ListCommand;
+import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidCommandError;
+import seedu.mtracker.error.InvalidIndexError;
 import seedu.mtracker.error.InvalidInstrumentError;
+import seedu.mtracker.error.InvalidNoIndexError;
+import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -21,12 +27,17 @@ public class InputParser {
     public static final String NEUTRAL_SENTIMENT = "neutral";
     public static final String NEGATIVE_SENTIMENT = "negative";
 
+    public static final int INDEX_OFFSET = 1;
+    public static final int INSTRUMENT_INDEX = 1;
+
     protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public static final int MAIN_COMMAND_INDEX = 0;
     public static final int LIST_NUMBER_COMMAND_INDEX = 1;
 
     protected static Scanner inputScanner;
+
+    private int instrumentNumber;
 
     public InputParser() {
         inputScanner = new Scanner(System.in);
@@ -37,13 +48,44 @@ public class InputParser {
         return inputScanner.nextLine().trim();
     }
 
+    public int getInstrumentNumber() {
+        return instrumentNumber;
+    }
+
     public AddInstrumentCommand getAddInstrumentParameters() throws InvalidInstrumentError {
         TextUi.displayAddInstrumentFirstInstruction();
         String addInstrumentType = getUserInput();
         return AddInstrumentParser.filterByInstrumentType(getCommandComponents(addInstrumentType));
     }
 
-    public Command filterByCommandType(String[] commandComponents) throws Exception {
+    public void validateIndexWithinBounds(ArrayList<Instrument> instruments) throws InvalidBoundsError {
+        boolean isNegative = instrumentNumber < 0;
+        boolean isGreaterThanListSize = instrumentNumber >= instruments.size();
+        if (isNegative || isGreaterThanListSize) {
+            throw new InvalidBoundsError();
+        }
+    }
+
+    public DeleteCommand getDeleteInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
+            throws InvalidIndexError, InvalidNoIndexError, InvalidBoundsError {
+        DeleteCommand deleteCommand = new DeleteCommand();
+        getIndexNumber(commandComponents);
+        validateIndexWithinBounds(instruments);
+        deleteCommand.setIndex(instrumentNumber);
+        return deleteCommand;
+    }
+
+    public DoneCommand getDoneInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
+            throws InvalidIndexError, InvalidNoIndexError, InvalidBoundsError {
+        DoneCommand doneCommand = new DoneCommand();
+        getIndexNumber(commandComponents);
+        validateIndexWithinBounds(instruments);
+        doneCommand.setIndex(instrumentNumber);
+        return doneCommand;
+    }
+
+    public Command filterByCommandType(String[] commandComponents, ArrayList<Instrument> instruments)
+            throws Exception {
         Command command;
         switch (commandComponents[MAIN_COMMAND_INDEX]) {
         case ListCommand.COMMAND_WORD:
@@ -52,12 +94,14 @@ public class InputParser {
         case AddInstrumentCommand.COMMAND_WORD:
             command = getAddInstrumentParameters();
             break;
+        case DeleteCommand.COMMAND_WORD:
+            command = getDeleteInstrumentCommand(commandComponents, instruments);
+            break;
         case ExitCommand.COMMAND_WORD:
             command = new ExitCommand();
             break;
-        case CheckOffInstrumentCommand.COMMAND_WORD:
-            int instrumentIndex = getInstrumentIndex(commandComponents);
-            command = new CheckOffInstrumentCommand(instrumentIndex);
+        case DoneCommand.COMMAND_WORD:
+            command = getDoneInstrumentCommand(commandComponents, instruments);
             break;
         default:
             logger.info(LogHelper.LOG_INVALID_COMMAND);
@@ -70,8 +114,13 @@ public class InputParser {
         return commandInput.trim().split(SEPARATOR);
     }
 
-    public int getInstrumentIndex(String[] commandComponents) {
-        int instrumentIndex = Integer.parseInt(commandComponents[1]) - 1;
-        return instrumentIndex;
+    public void getIndexNumber(String[] commandComponents) {
+        try {
+            instrumentNumber = Integer.parseInt(commandComponents[INSTRUMENT_INDEX]) - INDEX_OFFSET;
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidNoIndexError();
+        } catch (NumberFormatException e) {
+            throw new InvalidIndexError();
+        }
     }
 }

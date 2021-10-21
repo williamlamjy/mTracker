@@ -78,9 +78,26 @@ public class TextUi {
         instruments.stream().forEach(instrument -> displayInstrument(instrument));
     }
 
-    public static void displayCheckOffInstrument(Instrument instrument) {
+
+    public static void displayDoneInstrument(Instrument instrument) {
         System.out.println("Nice! I have marked this instrument as completed:"
                 + "\n" + instrument);
+    }
+
+    public static void displayInstrumentDeleted(Instrument instrument) {
+        System.out.println(LINE_DECORATOR);
+        System.out.println("Noted I have removed " + instrument.getName() + " from your watchlist");
+        System.out.println(instrument);
+        System.out.println(LINE_DECORATOR);
+    }
+
+    public static void displayCreateFile() {
+        System.out.println("Unable to find a saved file. Creating a new one now...");
+    }
+
+    public static void displayLoadingFile() {
+        System.out.println("Found a saved file. Loading the saved data now...");
+
     }
 
     public static void showErrorMessage(Exception e) {
