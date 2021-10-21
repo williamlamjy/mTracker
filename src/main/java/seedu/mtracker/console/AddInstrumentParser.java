@@ -8,7 +8,8 @@ import seedu.mtracker.commands.AddForexCommand;
 import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commands.AddStockCommand;
 import seedu.mtracker.error.ErrorMessage;
-import seedu.mtracker.error.InvalidDateError;
+import seedu.mtracker.error.InvalidDateFormatError;
+import seedu.mtracker.error.InvalidPastDateError;
 import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.ui.TextUi;
 
@@ -48,6 +49,7 @@ public abstract class AddInstrumentParser extends InputParser {
         boolean isValid = true;
         try {
             if (isInvalidNameCondition(name, instrumentType)) {
+                // todo: replace the error with a custom exception
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
@@ -81,6 +83,7 @@ public abstract class AddInstrumentParser extends InputParser {
         try {
             double inputPrice = Double.parseDouble(currentPrice);
             if (inputPrice < MINIMUM_PRICE) {
+                // todo: replace the error with a custom exception
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
@@ -91,18 +94,18 @@ public abstract class AddInstrumentParser extends InputParser {
         return isValid;
     }
 
-    public static void checkDateFormat(String expiryInput) throws InvalidDateError {
+    public static void checkDateFormat(String expiryInput) throws InvalidDateFormatError {
         try {
             LocalDate.parse(expiryInput);
         } catch (DateTimeParseException e) {
-            throw new InvalidDateError();
+            throw new InvalidDateFormatError();
         }
     }
 
-    public static void checkDateInPast(String expiryInput) throws InvalidDateError {
+    public static void checkDateInPast(String expiryInput) throws InvalidPastDateError {
         LocalDate givenDate = LocalDate.parse(expiryInput);
         if (givenDate.isBefore(LocalDate.now())) {
-            throw new InvalidDateError();
+            throw new InvalidPastDateError();
         }
     }
 
@@ -110,6 +113,7 @@ public abstract class AddInstrumentParser extends InputParser {
         boolean isValid = true;
         try {
             if (expiryInput.isEmpty()) {
+                // todo: replace the error with a custom exception so will have one catch block
                 throw new IllegalArgumentException();
             }
             checkDateFormat(expiryInput);
@@ -118,7 +122,7 @@ public abstract class AddInstrumentParser extends InputParser {
             logger.info(LogHelper.LOG_EMPTY_EXPIRY);
             ErrorMessage.displayEmptyExpiryError();
             isValid = false;
-        } catch (InvalidDateError e) {
+        } catch (InvalidPastDateError | InvalidDateFormatError e) {
             logger.info(LogHelper.LOG_INVALID_EXPIRY);
             TextUi.showErrorMessage(e);
             isValid = false;
