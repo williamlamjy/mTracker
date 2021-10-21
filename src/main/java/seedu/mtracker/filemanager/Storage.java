@@ -1,5 +1,6 @@
 package seedu.mtracker.filemanager;
 
+import seedu.mtracker.error.ErrorMessage;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.ui.TextUi;
@@ -33,9 +34,12 @@ public class Storage {
         InstrumentDecoder.readFile(instrumentManager, Files.readAllLines(path));
     }
 
-    public void updateFileData(ArrayList<Instrument> instruments) throws IOException {
-        FileWriter writeToFile = new FileWriter(this.file);
-        InstrumentEncoder.writeFile(instruments, writeToFile);
+    public void updateFileData(ArrayList<Instrument> instruments) {
+        try {
+            FileWriter writeToFile = new FileWriter(this.file);
+            InstrumentEncoder.writeFile(instruments, writeToFile);
+        } catch (IOException e) {
+            ErrorMessage.displayFileError();
+        }
     }
-
 }

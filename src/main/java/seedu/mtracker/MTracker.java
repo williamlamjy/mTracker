@@ -43,15 +43,11 @@ public class MTracker {
                 command = parser.filterByCommandType(commandComponents);
                 command.setData(instrumentManager);
                 command.execute();
+                storage.updateFileData(instrumentManager.getInstruments());
             } catch (Exception e) {
                 logger.getLogger().log(Level.WARNING, e.getMessage());
                 TextUi.showErrorMessage(e);
                 command = new InvalidCommand();
-            }
-            try {
-                storage.updateFileData(instrumentManager.getInstruments());
-            } catch (IOException e) {
-                ErrorMessage.displayFileError();
             }
         } while (!(command instanceof ExitCommand));
     }

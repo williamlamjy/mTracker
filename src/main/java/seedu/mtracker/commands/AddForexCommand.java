@@ -3,8 +3,6 @@ package seedu.mtracker.commands;
 import seedu.mtracker.model.subinstrument.Forex;
 import seedu.mtracker.ui.TextUi;
 
-import java.io.IOException;
-
 public class AddForexCommand extends AddInstrumentCommand {
     public static final String COMMAND_WORD = "forex";
 

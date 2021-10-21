@@ -3,7 +3,6 @@ package seedu.mtracker.commands;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class ListCommand extends Command {
