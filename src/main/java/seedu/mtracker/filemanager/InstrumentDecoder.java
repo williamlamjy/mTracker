@@ -10,6 +10,7 @@ public class InstrumentDecoder {
 
     public static final String FILE_SEPARATOR = ";";
     public static final int SPLIT_FUNCTION_LIMIT_VALUE = -1;
+    public static final int INDEX_OFFSET = 1;
 
     public static final String TYPE_CRYPTO = "Crypto";
     public static final String TYPE_STOCK = "Stock";
@@ -36,7 +37,7 @@ public class InstrumentDecoder {
     }
 
     public static void setIsDone(boolean isDone, InstrumentManager instrumentManager) {
-        int lastIndex = instrumentManager.getSize() - 1;
+        int lastIndex = instrumentManager.getSize() - INDEX_OFFSET;
         if (isDone) {
             instrumentManager.doneInstrument(lastIndex);
         }
