@@ -97,21 +97,21 @@ class InputParserTest {
     void getDoneInstrumentCommand_noIndexProvided_expectException() throws InvalidNoIndexError {
         InputParser parser = new InputParser();
         assertThrows(InvalidNoIndexError.class,
-                () -> parser.getDoneInstrumentCommand(NO_INDEX_DONE_INPUT, INSTRUMENTS));
+            () -> parser.getDoneInstrumentCommand(NO_INDEX_DONE_INPUT, INSTRUMENTS));
     }
 
     @Test
     void getDoneInstrumentCommand_invalidIndexProvided_expectException() throws InvalidIndexError {
         InputParser parser = new InputParser();
         assertThrows(InvalidIndexError.class,
-                () -> parser.getDoneInstrumentCommand(INVALID_INDEX_DONE_INPUT, INSTRUMENTS));
+            () -> parser.getDoneInstrumentCommand(INVALID_INDEX_DONE_INPUT, INSTRUMENTS));
     }
 
     @Test
     void getDoneInstrumentCommand_outOfBoundsIndexProvided_expectException() throws InvalidBoundsError {
         InputParser parser = new InputParser();
         assertThrows(InvalidBoundsError.class,
-                () -> parser.getDoneInstrumentCommand(OUT_OF_BOUNDS_INDEX_DONE_INPUT, INSTRUMENTS));
+            () -> parser.getDoneInstrumentCommand(OUT_OF_BOUNDS_INDEX_DONE_INPUT, INSTRUMENTS));
     }
 
     @Test
