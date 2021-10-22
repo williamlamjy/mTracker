@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class AddStockParserTest {
 
     public static final int PARAMETER_SIZE = 4;
-    private static final String SEPARATOR_SPECIFIER = "%1$s";
+    public static final String SEPARATOR_SPECIFIER = "%1$s";
 
     public static final String USER_INPUT_NO_REMARKS = "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"

@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AddEtfParserTest {
 
     public static final int PARAMETER_SIZE = 5;
-    private static final String SEPARATOR_SPECIFIER = "%1$s";
+    public static final String SEPARATOR_SPECIFIER = "%1$s";
 
     public static final String USER_INPUT_NO_REMARKS = "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"

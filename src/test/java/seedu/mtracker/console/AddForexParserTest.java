@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class AddForexParserTest {
 
     public static final int PARAMETER_SIZE = 7;
-    private static final String SEPARATOR_SPECIFIER = "%1$s";
+    public static final String SEPARATOR_SPECIFIER = "%1$s";
 
     public static final String[] EXPECTED_PARAMS_NO_REMARKS = {
         "TTTXXX",
