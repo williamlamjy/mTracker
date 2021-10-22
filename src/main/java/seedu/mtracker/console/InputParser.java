@@ -1,7 +1,13 @@
 package seedu.mtracker.console;
 
 import seedu.mtracker.LogHelper;
-import seedu.mtracker.commands.*;
+import seedu.mtracker.commands.AddInstrumentCommand;
+import seedu.mtracker.commands.Command;
+import seedu.mtracker.commands.DeleteCommand;
+import seedu.mtracker.commands.ViewCommand;
+import seedu.mtracker.commands.ListCommand;
+import seedu.mtracker.commands.FindCommand;
+import seedu.mtracker.commands.ExitCommand;
 import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidCommandError;
 import seedu.mtracker.error.InvalidIndexError;
@@ -95,6 +101,9 @@ public class InputParser {
             break;
         case ViewCommand.COMMAND_WORD:
             command = getViewInstrumentCommand(commandComponents, instruments);
+            break;
+        case FindCommand.COMMAND_WORD:
+            command = new FindCommand();
             break;
         default:
             logger.info(LogHelper.LOG_INVALID_COMMAND);

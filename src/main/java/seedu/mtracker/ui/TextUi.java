@@ -74,6 +74,17 @@ public class TextUi {
         System.out.println(instrument);
     }
 
+    public static void displayInstrumentsFound(ArrayList<Instrument> instruments, String searchString) {
+        System.out.println(LINE_DECORATOR);
+        int idx = 0;
+        for (Instrument i: instruments) {
+            idx += 1;
+            if i.
+            displayInstrumentForList(idx, i);
+        }
+        System.out.println(LINE_DECORATOR);
+    }
+
     public static void displayInstrumentForView(Instrument instrument) {
         System.out.println(LINE_DECORATOR);
         System.out.println(instrument.getAllParams());
