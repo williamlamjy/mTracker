@@ -25,6 +25,7 @@ public class TextUi {
     private static final String TAB = "\t";
     public static final String SEMICOLON_SEP = "; ";
     public static final String INDEX_BRACKET = ") ";
+    public static final String SPACE = " ";
 
     private static final String TYPE_HEADER = "Type: ";
     private static final String NAME_HEADER = "Name: ";
@@ -36,12 +37,8 @@ public class TextUi {
     protected static final String EXIT_PRICE_HEADER = "Exit Price: ";
     protected static final String RETURNS_HEADER = "Past Returns: ";
 
-    public static String createBoxDisplay(String icon) {
-        return "[" + icon + "]";
-    }
-
     public static void displayInstrumentAdded(Instrument newInstrument) {
-        System.out.println(TAB + toStringGeneralParams(newInstrument) + " - has been added to list.");
+        System.out.println(TAB + displayInstrumentGeneralView(newInstrument) + " - has been added to list.");
     }
 
     public static void displayAddInstrumentFirstInstruction() {
@@ -84,22 +81,22 @@ public class TextUi {
     public static void displayAllInstruments(ArrayList<Instrument> instruments) {
         System.out.println(LINE_DECORATOR);
         int idx = 0;
-        for (Instrument i: instruments) {
+        for (Instrument instrument: instruments) {
             idx += 1;
             System.out.print(idx + INDEX_BRACKET);
-            System.out.println(toStringGeneralParams(i));
+            System.out.println(displayInstrumentGeneralView(instrument));
         }
         System.out.println(LINE_DECORATOR);
     }
 
-    public static String toStringGeneralParams(Instrument instrument) {
+    public static String displayInstrumentGeneralView(Instrument instrument) {
         return instrument.getIcon()
-                + " " + instrument.getName()
+                + SPACE + instrument.getName()
                 + SEMICOLON_SEP + instrument.getCurrentPrice()
                 + SEMICOLON_SEP + instrument.getSentiment();
     }
 
-    // @@theodore
+    // @@theodorekwok
     public static void displayInstrumentDeleted(Instrument instrument) {
         System.out.println(LINE_DECORATOR);
         System.out.println("Noted I have removed " + instrument.getName() + " from your watchlist");
@@ -107,7 +104,7 @@ public class TextUi {
         System.out.println(LINE_DECORATOR);
     }
 
-    // @@william
+    // @@williamlamjy
     public static void displayCreateFile() {
         System.out.println("Unable to find a saved file. Creating a new one now...");
     }
