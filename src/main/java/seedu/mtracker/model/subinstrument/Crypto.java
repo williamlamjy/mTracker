@@ -26,7 +26,10 @@ public class Crypto extends Instrument {
 
     @Override
     public String toString() {
-        return TextUi.createBoxDisplay(CRYPTO_ICON) + getName();
+        return TextUi.createBoxDisplay(CRYPTO_ICON)
+                + TextUi.SEMICOLON_SEP + getName()
+                + TextUi.SEMICOLON_SEP + getCurrentPrice()
+                + TextUi.SEMICOLON_SEP + getSentiment();
     }
 
     @Override
@@ -41,8 +44,8 @@ public class Crypto extends Instrument {
     }
 
     @Override
-    public String toList() {
-        return super.toList()
+    public String toListAllParams() {
+        return super.toListAllParams()
                 + System.lineSeparator() + EXPIRY_HEADER + getExpiry()
                 + System.lineSeparator() + REMARKS_HEADER + getRemark();
     }

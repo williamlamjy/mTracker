@@ -42,10 +42,14 @@ public abstract class Instrument {
                 + getCurrentPrice() + FILE_SEPARATOR + getSentiment());
     }
 
-    public String toList() {
+    public String toListAllParams() {
         return TYPE_HEADER + getType() + System.lineSeparator()
                 + NAME_HEADER + getName() + System.lineSeparator()
                 + CURRENT_PRICE_HEADER + getCurrentPrice() + System.lineSeparator()
                 + SENTIMENT_HEADER + getSentiment();
     }
+//
+//    public string toListGeneralParams() {
+//        retunr
+//    }
 }

@@ -34,7 +34,10 @@ public class Etf extends Instrument {
 
     @Override
     public String toString() {
-        return TextUi.createBoxDisplay(ETF_ICON) + getName();
+        return TextUi.createBoxDisplay(ETF_ICON)
+                + TextUi.SEMICOLON_SEP + getName()
+                + TextUi.SEMICOLON_SEP + getCurrentPrice()
+                + TextUi.SEMICOLON_SEP + getSentiment();
     }
 
     @Override
@@ -49,8 +52,8 @@ public class Etf extends Instrument {
     }
 
     @Override
-    public String toList() {
-        return super.toList()
+    public String toListAllParams() {
+        return super.toListAllParams()
                 + System.lineSeparator() + RETURNS_HEADER + getReturns()
                 + System.lineSeparator() + REMARKS_HEADER + getRemark();
     }

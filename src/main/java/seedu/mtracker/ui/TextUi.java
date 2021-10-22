@@ -23,13 +23,14 @@ public class TextUi {
             + "|/ \\___/    \\_/   (_______/(_)";
 
     private static final String TAB = "\t";
+    public static final String SEMICOLON_SEP = "; ";
 
     public static String createBoxDisplay(String icon) {
         return "[" + icon + "]";
     }
 
     public static void displayInstrumentAdded(Instrument newInstrument) {
-        System.out.println(TAB + newInstrument);
+        System.out.println(TAB + newInstrument + " has been added to list.");
     }
 
     public static void displayAddInstrumentFirstInstruction() {
@@ -68,14 +69,20 @@ public class TextUi {
         System.out.println(TAB + "Past Returns (optional): ");
     }
 
-    private static void displayInstrument(Instrument instrument) {
-        System.out.println(LINE_DECORATOR);
-        System.out.println(instrument.toList());
-        System.out.println(LINE_DECORATOR);
-    }
+//    private static void displayInstrument(Instrument instrument) {
+//    }
 
     public static void displayAllInstruments(ArrayList<Instrument> instruments) {
-        instruments.stream().forEach(instrument -> displayInstrument(instrument));
+        System.out.println(LINE_DECORATOR);
+        int idx = 0;
+        for (Instrument i: instruments) {
+            idx += 1;
+            System.out.print(idx + ") ");
+            System.out.println(i);
+        }
+
+//        instruments.stream().forEach(instrument -> displayInstrument(instrument));
+        System.out.println(LINE_DECORATOR);
     }
 
     public static void displayInstrumentDeleted(Instrument instrument) {

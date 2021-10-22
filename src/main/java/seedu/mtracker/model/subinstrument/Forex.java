@@ -49,7 +49,10 @@ public class Forex extends Instrument {
 
     @Override
     public String toString() {
-        return TextUi.createBoxDisplay(FX_ICON) + getName();
+        return TextUi.createBoxDisplay(FX_ICON)
+                + " " + getName()
+                + TextUi.SEMICOLON_SEP + getCurrentPrice()
+                + TextUi.SEMICOLON_SEP + getSentiment();
     }
 
     @Override
@@ -65,8 +68,8 @@ public class Forex extends Instrument {
     }
 
     @Override
-    public String toList() {
-        return super.toList()
+    public String toListAllParams() {
+        return super.toListAllParams()
                 + System.lineSeparator() + ENTRY_PRICE_HEADER + getEntryPrice()
                 + System.lineSeparator() + EXIT_PRICE_HEADER + getExitPrice()
                 + System.lineSeparator() + EXPIRY_HEADER + getExpiry()
