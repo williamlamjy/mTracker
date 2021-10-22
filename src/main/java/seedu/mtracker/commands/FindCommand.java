@@ -19,14 +19,14 @@ public class FindCommand extends Command {
         keyword = searchString;
     }
 
-    public void getKeyword() {
+    public String getKeyword() {
         return keyword;
     }
 
     @Override
     public String execute() {
         instruments = instrumentManager.getInstruments();
-        TextUi.displayInstrumentsFound(instruments, );
+        TextUi.displayInstrumentsFound(instruments, keyword);
         return COMMAND_WORD;
     }
 }

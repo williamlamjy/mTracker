@@ -86,7 +86,9 @@ public class InputParser {
 
     public FindCommand getFindInstrumentsCommand(String[] commandComponents) {
         FindCommand findCommand = new FindCommand();
-
+        getSearchString(commandComponents);
+        findCommand.setKeyword(searchString);
+        return findCommand;
     }
 
     public Command filterByCommandType(String[] commandComponents, ArrayList<Instrument> instruments)
@@ -109,7 +111,7 @@ public class InputParser {
             command = getViewInstrumentCommand(commandComponents, instruments);
             break;
         case FindCommand.COMMAND_WORD:
-            command = new FindCommand();
+            command = getFindInstrumentsCommand(commandComponents);
             break;
         default:
             logger.info(LogHelper.LOG_INVALID_COMMAND);
