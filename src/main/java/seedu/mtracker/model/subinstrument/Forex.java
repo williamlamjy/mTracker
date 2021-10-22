@@ -1,5 +1,3 @@
-// @@KVignesh122
-
 package seedu.mtracker.model.subinstrument;
 
 import seedu.mtracker.model.Instrument;
@@ -13,7 +11,7 @@ public class Forex extends Instrument {
     protected LocalDate expiry;
     protected String remark;
 
-    private static final String FOREX_ICON = "[F]";
+    private static final String FOREX_ICON = "F";
     protected static final String TYPE_INSTRUMENT = "Forex";
 
     public Forex(

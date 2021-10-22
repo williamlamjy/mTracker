@@ -8,8 +8,8 @@ import java.time.LocalDate;
 
 public class CryptoDecoder extends InstrumentDecoder {
 
-    public static final int CRYPTO_EXPIRY_INDEX = 4;
-    public static final int CRYPTO_REMARKS_INDEX = 5;
+    public static final int CRYPTO_EXPIRY_INDEX = 5;
+    public static final int CRYPTO_REMARKS_INDEX = 6;
 
     public static void addCryptoToList(String[] textSegment, InstrumentManager instrumentManager) {
         decodeGeneralAttributes(textSegment);
@@ -18,6 +18,7 @@ public class CryptoDecoder extends InstrumentDecoder {
         String decodedRemarks = textSegment[CRYPTO_REMARKS_INDEX];
         Instrument crypto = new Crypto(decodedName, decodedCurrPrice, decodedSentiment,
                 decodedExpiry, decodedRemarks);
+        setDoneStatus(decodedIsDone, crypto);
         instrumentManager.addInstrument(crypto);
     }
 

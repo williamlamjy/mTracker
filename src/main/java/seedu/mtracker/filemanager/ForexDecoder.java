@@ -8,10 +8,10 @@ import java.time.LocalDate;
 
 public class ForexDecoder extends InstrumentDecoder {
 
-    public static final int ENTRY_PRICE_INDEX = 4;
-    public static final int EXIT_PRICE_INDEX = 5;
-    public static final int FOREX_EXPIRY_INDEX = 6;
-    public static final int FOREX_REMARKS_INDEX = 7;
+    public static final int ENTRY_PRICE_INDEX = 5;
+    public static final int EXIT_PRICE_INDEX = 6;
+    public static final int FOREX_EXPIRY_INDEX = 7;
+    public static final int FOREX_REMARKS_INDEX = 8;
 
     public static void addForexToList(String[] textSegment, InstrumentManager instrumentManager) {
         decodeGeneralAttributes(textSegment);
@@ -21,6 +21,7 @@ public class ForexDecoder extends InstrumentDecoder {
         String decodedRemarks = textSegment[FOREX_REMARKS_INDEX];
         Instrument forex = new Forex(decodedName, decodedCurrPrice, decodedSentiment,
                 decodedEntryPrice, decodedExitPrice, decodedExpiry, decodedRemarks);
+        setDoneStatus(decodedIsDone, forex);
         instrumentManager.addInstrument(forex);
     }
 }
