@@ -1,7 +1,6 @@
 package seedu.mtracker.model;
 
 public abstract class Instrument {
-
     protected String name;
     protected double currentPrice;
     protected String sentiment;
@@ -42,7 +41,7 @@ public abstract class Instrument {
                 + getCurrentPrice() + FILE_SEPARATOR + getSentiment());
     }
 
-    public String toListAllParams() {
+    public String getAllParams() {
         return TYPE_HEADER + getType() + System.lineSeparator()
                 + NAME_HEADER + getName() + System.lineSeparator()
                 + CURRENT_PRICE_HEADER + getCurrentPrice() + System.lineSeparator()

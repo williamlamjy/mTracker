@@ -1,11 +1,7 @@
 package seedu.mtracker.console;
 
 import seedu.mtracker.LogHelper;
-import seedu.mtracker.commands.AddInstrumentCommand;
-import seedu.mtracker.commands.Command;
-import seedu.mtracker.commands.DeleteCommand;
-import seedu.mtracker.commands.ExitCommand;
-import seedu.mtracker.commands.ListCommand;
+import seedu.mtracker.commands.*;
 import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidCommandError;
 import seedu.mtracker.error.InvalidIndexError;
@@ -73,6 +69,14 @@ public class InputParser {
         return deleteCommand;
     }
 
+    public ViewCommand getViewInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments) {
+        ViewCommand viewCommand = new ViewCommand();
+        getIndexNumber(commandComponents);
+        validateIndexWithinBounds(instruments);
+        viewCommand.setIndex(instrumentNumber);
+        return viewCommand;
+    }
+
     public Command filterByCommandType(String[] commandComponents, ArrayList<Instrument> instruments)
             throws Exception {
         Command command;
@@ -88,6 +92,9 @@ public class InputParser {
             break;
         case ExitCommand.COMMAND_WORD:
             command = new ExitCommand();
+            break;
+        case ViewCommand.COMMAND_WORD:
+            command = getViewInstrumentCommand(commandComponents, instruments);
             break;
         default:
             logger.info(LogHelper.LOG_INVALID_COMMAND);

@@ -68,8 +68,8 @@ public class Forex extends Instrument {
     }
 
     @Override
-    public String toListAllParams() {
-        return super.toListAllParams()
+    public String getAllParams() {
+        return super.getAllParams()
                 + System.lineSeparator() + ENTRY_PRICE_HEADER + getEntryPrice()
                 + System.lineSeparator() + EXIT_PRICE_HEADER + getExitPrice()
                 + System.lineSeparator() + EXPIRY_HEADER + getExpiry()

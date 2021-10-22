@@ -38,8 +38,8 @@ public class Stock extends Instrument {
     }
 
     @Override
-    public String toListAllParams() {
-        return super.toListAllParams()
+    public String getAllParams() {
+        return super.getAllParams()
                 + System.lineSeparator() + REMARKS_HEADER + getRemark();
     }
 }
