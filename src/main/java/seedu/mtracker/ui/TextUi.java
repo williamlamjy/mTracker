@@ -74,14 +74,26 @@ public class TextUi {
         System.out.println(instrument);
     }
 
+    private static void displayFoundMessage(int nFound, String keyword) {
+        if (nFound == 0) {
+            System.out.println("There were no instruments found for " + keyword.toUpperCase());
+            return;
+        }
+        System.out.println("There were " + nFound + " instruments found for " + keyword.toUpperCase());
+    }
+
     public static void displayInstrumentsFound(ArrayList<Instrument> instruments, String searchString) {
         System.out.println(LINE_DECORATOR);
+        int found = 0;
         int idx = 0;
         for (Instrument i: instruments) {
             idx += 1;
-            if i.
-            displayInstrumentForList(idx, i);
+            if (i.getName().contains(searchString)) {
+                displayInstrumentForList(idx, i);
+                found += 1;
+            }
         }
+        displayFoundMessage(found, searchString);
         System.out.println(LINE_DECORATOR);
     }
 

@@ -29,7 +29,7 @@ public class InputParser {
     public static final String NEGATIVE_SENTIMENT = "negative";
 
     public static final int INDEX_OFFSET = 1;
-    public static final int INSTRUMENT_INDEX = 1;
+    public static final int COMMAND_PARAMETER_INDEX = 1;
 
     protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
@@ -38,6 +38,7 @@ public class InputParser {
     protected static Scanner inputScanner;
 
     private int instrumentNumber;
+    private String searchString;
 
     public InputParser() {
         inputScanner = new Scanner(System.in);
@@ -83,6 +84,11 @@ public class InputParser {
         return viewCommand;
     }
 
+    public FindCommand getFindInstrumentsCommand(String[] commandComponents) {
+        FindCommand findCommand = new FindCommand();
+
+    }
+
     public Command filterByCommandType(String[] commandComponents, ArrayList<Instrument> instruments)
             throws Exception {
         Command command;
@@ -118,11 +124,15 @@ public class InputParser {
 
     public void getIndexNumber(String[] commandComponents) {
         try {
-            instrumentNumber = Integer.parseInt(commandComponents[INSTRUMENT_INDEX]) - INDEX_OFFSET;
+            instrumentNumber = Integer.parseInt(commandComponents[COMMAND_PARAMETER_INDEX]) - INDEX_OFFSET;
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidNoIndexError();
         } catch (NumberFormatException e) {
             throw new InvalidIndexError();
         }
+    }
+
+    public void getSearchString(String[] commandComponents) {
+        searchString = commandComponents[COMMAND_PARAMETER_INDEX];
     }
 }
