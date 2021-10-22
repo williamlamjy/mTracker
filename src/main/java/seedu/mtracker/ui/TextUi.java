@@ -1,6 +1,10 @@
 package seedu.mtracker.ui;
 
 import seedu.mtracker.model.Instrument;
+import seedu.mtracker.model.subinstrument.Crypto;
+import seedu.mtracker.model.subinstrument.Etf;
+import seedu.mtracker.model.subinstrument.Forex;
+import seedu.mtracker.model.subinstrument.Stock;
 
 import java.util.ArrayList;
 
@@ -36,6 +40,10 @@ public class TextUi {
     protected static final String ENTRY_PRICE_HEADER = "Entry Price: ";
     protected static final String EXIT_PRICE_HEADER = "Exit Price: ";
     protected static final String RETURNS_HEADER = "Past Returns: ";
+
+    private static final String FOREX_TYPE = "Forex";
+    private static final String CRYPTO_TYPE = "Crypto";
+    private static final String ETF_TYPE = "Etf";
 
     public static void displayInstrumentAdded(Instrument newInstrument) {
         System.out.println(TAB + displayInstrumentGeneralView(newInstrument) + " - has been added to list.");
@@ -89,17 +97,56 @@ public class TextUi {
         System.out.println(LINE_DECORATOR);
     }
 
-    public static void displayInstrumentForView(Instrument instrument) {
-        System.out.println(LINE_DECORATOR);
-        System.out.println(instrument.getAllParams());
-        System.out.println(LINE_DECORATOR);
-    }
-
     public static String displayInstrumentGeneralView(Instrument instrument) {
         return instrument.getIcon()
                 + SPACE + instrument.getName()
                 + SEMICOLON_SEP + instrument.getCurrentPrice()
                 + SEMICOLON_SEP + instrument.getSentiment();
+    }
+
+    public static String getAdditionalParams(Instrument instrument) {
+        String type = instrument.getType();
+        if (type.equals(FOREX_TYPE)) {
+            return getForexAdditionalParams((Forex) instrument);
+        }
+        if (type.equals(CRYPTO_TYPE)) {
+            return getCryptoAdditionalParams((Crypto) instrument);
+        }
+        if (type.equals(ETF_TYPE)) {
+            return getEtfAdditionalParams((Etf) instrument);
+        }
+        return getStockAdditionalParams((Stock) instrument);
+    }
+
+    private static String getStockAdditionalParams(Stock instrument) {
+        return REMARKS_HEADER + instrument.getRemark();
+    }
+
+    private static String getEtfAdditionalParams(Etf instrument) {
+        return RETURNS_HEADER + instrument.getReturns()
+                + System.lineSeparator() + REMARKS_HEADER + instrument.getRemark();
+    }
+
+    private static String getCryptoAdditionalParams(Crypto instrument) {
+        return EXPIRY_HEADER + instrument.getExpiry()
+                + System.lineSeparator() + REMARKS_HEADER + instrument.getRemark();
+    }
+
+    private static String getForexAdditionalParams(Forex instrument) {
+        return ENTRY_PRICE_HEADER + instrument.getEntryPrice()
+                + System.lineSeparator() + EXIT_PRICE_HEADER + instrument.getExitPrice()
+                + System.lineSeparator() + EXPIRY_HEADER + instrument.getExpiry()
+                + System.lineSeparator() + REMARKS_HEADER + instrument.getRemark();
+    }
+
+    public static void displaySpecificInstrumentView(Instrument instrument) {
+        System.out.println(LINE_DECORATOR);
+        System.out.println(TYPE_HEADER + instrument.getType());
+        System.out.println(NAME_HEADER + instrument.getName());
+        System.out.println(CURRENT_PRICE_HEADER + instrument.getCurrentPrice());
+        System.out.println(SENTIMENT_HEADER + instrument.getSentiment());
+        System.out.println(getAdditionalParams(instrument));
+        System.out.println(LINE_DECORATOR);
     }
 
     // @@theodorekwok

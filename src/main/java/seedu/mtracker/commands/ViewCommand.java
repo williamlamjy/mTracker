@@ -26,7 +26,7 @@ public class ViewCommand extends Command {
     public String execute() {
         AssertCommandHelpers.assertIndexWithinBounds(instrumentManager.getSize(), index);
         Instrument instrumentToView = instrumentManager.getInstrument(index);
-        TextUi.displayInstrumentForView(instrumentToView);
+        TextUi.displaySpecificInstrumentView(instrumentToView);
         return COMMAND_WORD;
     }
 }

@@ -8,6 +8,7 @@ public abstract class Instrument {
     protected static final String EMPTY_STRING = "";
     protected static final String FILE_SEPARATOR = ";";
 
+
     public Instrument(String name, double currentPrice, String sentiment) {
         this.name = name;
         this.currentPrice = currentPrice;
