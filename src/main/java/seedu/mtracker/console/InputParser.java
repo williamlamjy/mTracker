@@ -1,7 +1,12 @@
 package seedu.mtracker.console;
 
 import seedu.mtracker.LogHelper;
-import seedu.mtracker.commands.*;
+import seedu.mtracker.commands.AddInstrumentCommand;
+import seedu.mtracker.commands.Command;
+import seedu.mtracker.commands.DeleteCommand;
+import seedu.mtracker.commands.ExitCommand;
+import seedu.mtracker.commands.ListCommand;
+import seedu.mtracker.commands.ViewCommand;
 import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidCommandError;
 import seedu.mtracker.error.InvalidIndexError;
