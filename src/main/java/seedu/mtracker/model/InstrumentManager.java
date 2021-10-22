@@ -29,7 +29,6 @@ public class InstrumentManager {
         return instruments;
     }
 
-
     public Instrument getInstrument(int index) throws InvalidBoundsError {
         Instrument instrument;
         try {

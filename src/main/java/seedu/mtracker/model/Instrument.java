@@ -1,7 +1,5 @@
 package seedu.mtracker.model;
 
-import seedu.mtracker.ui.TextUi;
-
 public abstract class Instrument {
 
     protected String name;
@@ -9,16 +7,12 @@ public abstract class Instrument {
     protected String sentiment;
     protected boolean isDone;
 
-    private static final String TYPE_HEADER = "Type: ";
-    private static final String NAME_HEADER = "Name: ";
-    private static final String CURRENT_PRICE_HEADER = "Current Price: ";
-    private static final String SENTIMENT_HEADER = "Sentiment: ";
-    protected static final String EXPIRY_HEADER = "Expiry: ";
-    protected static final String REMARKS_HEADER = "Remarks: ";
     protected static final String EMPTY_STRING = "";
     protected static final String FILE_SEPARATOR = ";";
     protected static final String DONE_SYMBOL = "X";
     protected static final String NOT_DONE_SYMBOL = " ";
+    protected static final String OPENING_BRACKET = "[";
+    protected static final String CLOSING_BRACKET = "]";
 
     public Instrument(String name, double currentPrice, String sentiment) {
         this.name = name;
@@ -36,7 +30,9 @@ public abstract class Instrument {
     }
 
     public String getStatusIcon() {
-        return (getIsDone() ? DONE_SYMBOL : NOT_DONE_SYMBOL);
+        return (OPENING_BRACKET
+                + (getIsDone() ? DONE_SYMBOL : NOT_DONE_SYMBOL)
+                + CLOSING_BRACKET);
     }
 
     public String getName() {
@@ -51,8 +47,6 @@ public abstract class Instrument {
         return sentiment;
     }
 
-    public abstract String toString();
-
     public abstract String getType();
 
     public String textFileFormatting() {
@@ -61,10 +55,5 @@ public abstract class Instrument {
                 + getIsDone());
     }
 
-    public String toList() {
-        return TYPE_HEADER + getType() + TextUi.createBoxDisplay(getStatusIcon())
-                + System.lineSeparator() + NAME_HEADER + getName() + System.lineSeparator()
-                + CURRENT_PRICE_HEADER + getCurrentPrice() + System.lineSeparator()
-                + SENTIMENT_HEADER + getSentiment();
-    }
+    public abstract String getIcon();
 }

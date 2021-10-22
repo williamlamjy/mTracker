@@ -1,6 +1,7 @@
 package seedu.mtracker.filemanager;
 
 import seedu.mtracker.error.InvalidInstrumentInFileError;
+import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.ui.TextUi;
 
@@ -10,7 +11,6 @@ public class InstrumentDecoder {
 
     public static final String FILE_SEPARATOR = ";";
     public static final int SPLIT_FUNCTION_LIMIT_VALUE = -1;
-    public static final int INDEX_OFFSET = 1;
 
     public static final String TYPE_CRYPTO = "Crypto";
     public static final String TYPE_STOCK = "Stock";
@@ -36,11 +36,11 @@ public class InstrumentDecoder {
         decodedIsDone = Boolean.parseBoolean(textSegment[IS_DONE_INDEX]);
     }
 
-    public static void setIsDone(boolean isDone, InstrumentManager instrumentManager) {
-        int lastIndex = instrumentManager.getSize() - INDEX_OFFSET;
-        if (isDone) {
-            instrumentManager.doneInstrument(lastIndex);
+    public static void setDoneStatus(boolean isDone, Instrument doneInstrument) {
+        if (!isDone) {
+            return;
         }
+        doneInstrument.markAsDone();
     }
 
     public static void readFile(InstrumentManager instrumentManager, List<String> fileData) {

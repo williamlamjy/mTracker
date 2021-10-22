@@ -16,7 +16,7 @@ public class EtfDecoder extends InstrumentDecoder {
         Instrument etf = new Etf(decodedName, decodedCurrPrice, decodedSentiment,
                 decodedPastReturns, decodedRemarks);
         instrumentManager.addInstrument(etf);
-        setIsDone(decodedIsDone, instrumentManager);
+        setDoneStatus(decodedIsDone, etf);
     }
 
 }

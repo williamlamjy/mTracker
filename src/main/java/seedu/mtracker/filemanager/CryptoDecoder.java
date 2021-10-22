@@ -16,7 +16,7 @@ public class CryptoDecoder extends InstrumentDecoder {
         Instrument crypto = new Crypto(decodedName, decodedCurrPrice, decodedSentiment,
                 decodedExpiry, decodedRemarks);
         instrumentManager.addInstrument(crypto);
-        setIsDone(decodedIsDone, instrumentManager);
+        setDoneStatus(decodedIsDone, crypto);
     }
 
 }

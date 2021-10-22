@@ -20,6 +20,6 @@ public class ForexDecoder extends InstrumentDecoder {
         Instrument forex = new Forex(decodedName, decodedCurrPrice, decodedSentiment,
                 decodedEntryPrice, decodedExitPrice, decodedExpiry, decodedRemarks);
         instrumentManager.addInstrument(forex);
-        setIsDone(decodedIsDone, instrumentManager);
+        setDoneStatus(decodedIsDone, forex);
     }
 }

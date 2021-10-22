@@ -33,7 +33,6 @@ public class InputParser {
     protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public static final int MAIN_COMMAND_INDEX = 0;
-    public static final int LIST_NUMBER_COMMAND_INDEX = 1;
 
     protected static Scanner inputScanner;
 
@@ -69,8 +68,7 @@ public class InputParser {
     public DeleteCommand getDeleteInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
             throws InvalidIndexError, InvalidNoIndexError, InvalidBoundsError {
         DeleteCommand deleteCommand = new DeleteCommand();
-        getIndexNumber(commandComponents);
-        validateIndexWithinBounds(instruments);
+        finaliseIndexNumber(commandComponents, instruments);
         deleteCommand.setIndex(instrumentNumber);
         return deleteCommand;
     }
@@ -78,10 +76,14 @@ public class InputParser {
     public DoneCommand getDoneInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
             throws InvalidIndexError, InvalidNoIndexError, InvalidBoundsError {
         DoneCommand doneCommand = new DoneCommand();
-        getIndexNumber(commandComponents);
-        validateIndexWithinBounds(instruments);
+        finaliseIndexNumber(commandComponents, instruments);
         doneCommand.setIndex(instrumentNumber);
         return doneCommand;
+    }
+
+    private void finaliseIndexNumber(String[] commandComponents, ArrayList<Instrument> instruments) {
+        getIndexNumber(commandComponents);
+        validateIndexWithinBounds(instruments);
     }
 
     public Command filterByCommandType(String[] commandComponents, ArrayList<Instrument> instruments)
