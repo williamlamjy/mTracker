@@ -99,8 +99,7 @@ public class TextUi {
     // @@theodorekwok
     public static void displayInstrumentDeleted(Instrument instrument) {
         System.out.println(LINE_DECORATOR);
-        System.out.println("Noted. " + displayInstrumentGeneralView(instrument) + " removed from your watchlist");
-        System.out.println(instrument);
+        System.out.println("Noted. " + displayInstrumentGeneralView(instrument) + " - removed from your watchlist");
         System.out.println(LINE_DECORATOR);
     }
 
