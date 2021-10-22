@@ -1,6 +1,7 @@
 package seedu.mtracker.console;
 
 import org.junit.jupiter.api.Test;
+import seedu.mtracker.commons.Validate;
 
 import java.util.Arrays;
 
@@ -20,42 +21,42 @@ class AddInstrumentParserTest {
 
     @Test
     void addName_validName_expectSuccess() {
-        assertTrue(AddInstrumentParser.isValidName(validTestName, validTestInstrument));
+        assertTrue(Validate.isValidName(validTestName, validTestInstrument));
     }
 
     @Test
     void addName_emptyName_expectFailure() {
-        assertFalse(AddInstrumentParser.isValidName(emptyInput, validTestInstrument));
+        assertFalse(Validate.isValidName(emptyInput, validTestInstrument));
     }
 
     @Test
     void addCurrentPrice_validNumber_expectSuccess() {
-        assertTrue(AddInstrumentParser.isValidPrice(validPrice));
+        assertTrue(Validate.isValidPrice(validPrice));
     }
 
     @Test
     void addCurrentPrice_invalidNumber_expectFailure() {
-        assertFalse(AddInstrumentParser.isValidPrice(invalidPrice));
+        assertFalse(Validate.isValidPrice(invalidPrice));
     }
 
     @Test
     void addCurrentPrice_emptyNumber_expectFailure() {
-        assertFalse(AddInstrumentParser.isValidPrice(emptyInput));
+        assertFalse(Validate.isValidPrice(emptyInput));
     }
 
     @Test
     void addSentiment_validSentiment_expectSuccess() {
         Arrays.stream(validSentiments)
-                .forEach((sentiment) -> assertTrue(AddInstrumentParser.isValidSentiment(sentiment)));
+                .forEach((sentiment) -> assertTrue(Validate.isValidSentiment(sentiment)));
     }
 
     @Test
     void addSentiment_invalidSentiment_expectFailure() {
-        assertFalse(AddInstrumentParser.isValidSentiment(invalidSentiment));
+        assertFalse(Validate.isValidSentiment(invalidSentiment));
     }
 
     @Test
     void addSentiment_emptySentiment_expectFailure() {
-        assertFalse(AddInstrumentParser.isValidSentiment(emptyInput));
+        assertFalse(Validate.isValidSentiment(emptyInput));
     }
 }
