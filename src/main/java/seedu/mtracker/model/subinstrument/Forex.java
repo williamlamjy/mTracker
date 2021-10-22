@@ -1,8 +1,8 @@
 // @@KVignesh122
+
 package seedu.mtracker.model.subinstrument;
 
 import seedu.mtracker.model.Instrument;
-import seedu.mtracker.ui.TextUi;
 
 public class Forex extends Instrument {
     protected double entryPrice;

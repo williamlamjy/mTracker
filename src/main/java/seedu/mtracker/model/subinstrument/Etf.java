@@ -1,7 +1,7 @@
 package seedu.mtracker.model.subinstrument;
 
 import seedu.mtracker.model.Instrument;
-import seedu.mtracker.ui.TextUi;
+
 
 public class Etf extends Instrument {
 
