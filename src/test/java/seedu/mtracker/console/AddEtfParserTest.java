@@ -10,19 +10,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AddEtfParserTest {
 
     public static final int PARAMETER_SIZE = 5;
-    private static final String SEPARATOR_SPECIFIERS = "%1$s";
+    private static final String SEPARATOR_SPECIFIER = "%1$s";
 
     public static final String USER_INPUT_NO_REMARKS = "TTTXXX"
-            + SEPARATOR_SPECIFIERS + "23.4"
-            + SEPARATOR_SPECIFIERS + "positive"
-            + SEPARATOR_SPECIFIERS + "50.0"
-            + SEPARATOR_SPECIFIERS + " ";
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER + "50.0"
+            + SEPARATOR_SPECIFIER + " ";
 
     public static final String USER_INPUT_All_PARAM = "TTTXXX"
-            + SEPARATOR_SPECIFIERS + "23.4"
-            + SEPARATOR_SPECIFIERS + "positive"
-            + SEPARATOR_SPECIFIERS + "50.0"
-            + SEPARATOR_SPECIFIERS + "fooRemarks";
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER + "50.0"
+            + SEPARATOR_SPECIFIER + "fooRemarks";
 
     public static final String[] EXPECTED_PARAMS_NO_REMARKS = {
             "TTTXXX",
@@ -40,33 +40,33 @@ public class AddEtfParserTest {
             "fooRemarks"
     };
 
-    public static final String USER_INPUT_TRY_INVALID_NAME = SEPARATOR_SPECIFIERS.repeat(2) + "TTTXXX"
-            + SEPARATOR_SPECIFIERS + "23.4"
-            + SEPARATOR_SPECIFIERS + "positive"
-            + SEPARATOR_SPECIFIERS + "50.0"
-            + SEPARATOR_SPECIFIERS + "fooRemarks";
+    public static final String USER_INPUT_TRY_INVALID_NAME = SEPARATOR_SPECIFIER.repeat(2) + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER + "50.0"
+            + SEPARATOR_SPECIFIER + "fooRemarks";
 
 
-    public static final String USER_INPUT_TRY_INVALID_PRICE = SEPARATOR_SPECIFIERS + "TTTXXX"
-            + SEPARATOR_SPECIFIERS + "2sd3.4"
-            + SEPARATOR_SPECIFIERS + "23.4"
-            + SEPARATOR_SPECIFIERS + "positive"
-            + SEPARATOR_SPECIFIERS + "50.0"
-            + SEPARATOR_SPECIFIERS + "fooRemarks";
+    public static final String USER_INPUT_TRY_INVALID_PRICE = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "2sd3.4"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER + "50.0"
+            + SEPARATOR_SPECIFIER + "fooRemarks";
 
-    public static final String USER_INPUT_TRY_INVALID_SENTIMENT = SEPARATOR_SPECIFIERS + "TTTXXX"
-            + SEPARATOR_SPECIFIERS + "23.4"
-            + SEPARATOR_SPECIFIERS + "foobar"
-            + SEPARATOR_SPECIFIERS.repeat(2) + "positive"
-            + SEPARATOR_SPECIFIERS + "50.0"
-            + SEPARATOR_SPECIFIERS + "fooRemarks";
+    public static final String USER_INPUT_TRY_INVALID_SENTIMENT = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "foobar"
+            + SEPARATOR_SPECIFIER.repeat(2) + "positive"
+            + SEPARATOR_SPECIFIER + "50.0"
+            + SEPARATOR_SPECIFIER + "fooRemarks";
 
 
-    public static final String USER_INPUT_TRY_INVALID_RETURNS = SEPARATOR_SPECIFIERS + "TTTXXX"
-            + SEPARATOR_SPECIFIERS + "23.4"
-            + SEPARATOR_SPECIFIERS + "positive"
-            + SEPARATOR_SPECIFIERS + ""
-            + SEPARATOR_SPECIFIERS + "fooRemarks";
+    public static final String USER_INPUT_TRY_INVALID_RETURNS = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER + ""
+            + SEPARATOR_SPECIFIER + "fooRemarks";
 
     public static final String[] EXPECTED_PARAMS_INVALID_RETURNS = {
             "TTTXXX",
