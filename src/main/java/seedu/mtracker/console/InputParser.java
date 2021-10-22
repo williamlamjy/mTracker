@@ -8,11 +8,7 @@ import seedu.mtracker.commands.ViewCommand;
 import seedu.mtracker.commands.ListCommand;
 import seedu.mtracker.commands.FindCommand;
 import seedu.mtracker.commands.ExitCommand;
-import seedu.mtracker.error.InvalidBoundsError;
-import seedu.mtracker.error.InvalidCommandError;
-import seedu.mtracker.error.InvalidIndexError;
-import seedu.mtracker.error.InvalidInstrumentError;
-import seedu.mtracker.error.InvalidNoIndexError;
+import seedu.mtracker.error.*;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -84,7 +80,8 @@ public class InputParser {
         return viewCommand;
     }
 
-    public FindCommand getFindInstrumentsCommand(String[] commandComponents) {
+    public FindCommand getFindInstrumentsCommand(String[] commandComponents)
+            throws InvalidNoKeywordError {
         FindCommand findCommand = new FindCommand();
         getSearchString(commandComponents);
         findCommand.setKeyword(searchString);
@@ -135,6 +132,10 @@ public class InputParser {
     }
 
     public void getSearchString(String[] commandComponents) {
-        searchString = commandComponents[COMMAND_PARAMETER_INDEX];
+        try {
+            searchString = commandComponents[COMMAND_PARAMETER_INDEX];
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidNoKeywordError();
+        }
     }
 }
