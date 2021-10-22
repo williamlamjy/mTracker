@@ -7,7 +7,7 @@ public class Crypto extends Instrument {
 
     protected String expiry;
     protected String remark;
-    protected static final String CRYPTO_ICON = "C";
+    protected static final String CRYPTO_ICON = "[C]";
     protected static final String TYPE_INSTRUMENT = "Crypto";
 
     public Crypto(String name, double currentPrice, String sentiment, String expiry, String remark) {
@@ -25,14 +25,6 @@ public class Crypto extends Instrument {
     }
 
     @Override
-    public String toString() {
-        return TextUi.createBoxDisplay(CRYPTO_ICON)
-                + TextUi.SEMICOLON_SEP + getName()
-                + TextUi.SEMICOLON_SEP + getCurrentPrice()
-                + TextUi.SEMICOLON_SEP + getSentiment();
-    }
-
-    @Override
     public String getType() {
         return TYPE_INSTRUMENT;
     }
@@ -44,9 +36,7 @@ public class Crypto extends Instrument {
     }
 
     @Override
-    public String toListAllParams() {
-        return super.toListAllParams()
-                + System.lineSeparator() + EXPIRY_HEADER + getExpiry()
-                + System.lineSeparator() + REMARKS_HEADER + getRemark();
+    public String getIcon() {
+        return CRYPTO_ICON;
     }
 }
