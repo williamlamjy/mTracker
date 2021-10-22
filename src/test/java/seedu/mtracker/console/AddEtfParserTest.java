@@ -25,19 +25,27 @@ public class AddEtfParserTest {
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
     public static final String[] EXPECTED_PARAMS_NO_REMARKS = {
-            "TTTXXX",
-            "23.4",
-            "positive",
-            "50.0",
-            "",
+        "TTTXXX",
+        "23.4",
+        "positive",
+        "50.0",
+        "",
     };
 
     public static final String[] EXPECTED_PARAMS_ALL_PARAM = {
-            "TTTXXX",
-            "23.4",
-            "positive",
-            "50.0",
-            "fooRemarks"
+        "TTTXXX",
+        "23.4",
+        "positive",
+        "50.0",
+        "fooRemarks"
+    };
+
+    public static final String[] EXPECTED_PARAMS_INVALID_RETURNS = {
+        "TTTXXX",
+        "23.4",
+        "positive",
+        "-101.0",
+        "fooRemarks"
     };
 
     public static final String USER_INPUT_TRY_INVALID_NAME = SEPARATOR_SPECIFIER.repeat(2) + "TTTXXX"
@@ -67,13 +75,6 @@ public class AddEtfParserTest {
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + ""
             + SEPARATOR_SPECIFIER + "fooRemarks";
-
-    public static final String[] EXPECTED_PARAMS_INVALID_RETURNS = {
-            "TTTXXX",
-            "23.4",
-            "positive",
-            "-101.0",
-            "fooRemarks" };
 
     String formatConsoleInput(String input) {
         return String.format(input, System.lineSeparator());

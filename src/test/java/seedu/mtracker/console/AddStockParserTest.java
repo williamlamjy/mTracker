@@ -22,17 +22,17 @@ class AddStockParserTest {
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
     public static final String[] EXPECTED_PARAMS_NO_REMARKS = {
-            "TTTXXX",
-            "23.4",
-            "positive",
-            "",
+        "TTTXXX",
+        "23.4",
+        "positive",
+        "",
     };
 
     public static final String[] EXPECTED_PARAMS_WITH_REMARKS = {
-            "TTTXXX",
-            "23.4",
-            "positive",
-            "fooRemarks"
+        "TTTXXX",
+        "23.4",
+        "positive",
+        "fooRemarks"
     };
 
     public static final String USER_INPUT_TRY_INVALID_NAME = SEPARATOR_SPECIFIER.repeat(2) + "TTTXXX"
