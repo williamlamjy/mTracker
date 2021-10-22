@@ -69,19 +69,18 @@ public class TextUi {
         System.out.println(TAB + "Past Returns (optional): ");
     }
 
-//    private static void displayInstrument(Instrument instrument) {
-//    }
+    private static void displayInstrumentForList(int index, Instrument instrument) {
+        System.out.print(index + ") ");
+        System.out.println(instrument);
+    }
 
     public static void displayAllInstruments(ArrayList<Instrument> instruments) {
         System.out.println(LINE_DECORATOR);
         int idx = 0;
         for (Instrument i: instruments) {
             idx += 1;
-            System.out.print(idx + ") ");
-            System.out.println(i);
+            displayInstrumentForList(idx, i);
         }
-
-//        instruments.stream().forEach(instrument -> displayInstrument(instrument));
         System.out.println(LINE_DECORATOR);
     }
 
