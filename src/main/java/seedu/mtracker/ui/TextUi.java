@@ -92,7 +92,8 @@ public class TextUi {
     }
 
     public static String displayInstrumentGeneralView(Instrument instrument) {
-        return instrument.getIcon() + createBoxDisplay(instrument.getStatusIcon())
+        return createBoxDisplay(instrument.getIcon())
+                + createBoxDisplay(instrument.getStatusIcon())
                 + SPACE + instrument.getName()
                 + SEMICOLON_SEP + instrument.getCurrentPrice()
                 + SEMICOLON_SEP + instrument.getSentiment();
