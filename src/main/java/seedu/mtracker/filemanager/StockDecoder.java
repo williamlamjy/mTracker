@@ -6,12 +6,13 @@ import seedu.mtracker.model.subinstrument.Stock;
 
 public class StockDecoder extends InstrumentDecoder {
 
-    public static final int STOCK_REMARKS_INDEX = 4;
+    public static final int STOCK_REMARKS_INDEX = 5;
 
     public static void addStockToList(String[] textSegment, InstrumentManager instrumentManager) {
         decodeGeneralAttributes(textSegment);
         String decodedRemarks = textSegment[STOCK_REMARKS_INDEX];
         Instrument stock = new Stock(decodedName, decodedCurrPrice, decodedSentiment, decodedRemarks);
+        setDoneStatus(decodedIsDone, stock);
         instrumentManager.addInstrument(stock);
     }
 

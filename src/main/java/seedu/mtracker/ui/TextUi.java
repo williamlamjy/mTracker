@@ -27,22 +27,25 @@ public class TextUi {
     public static final String INDEX_BRACKET = ") ";
     public static final String SPACE = " ";
 
-    private static final String TYPE_HEADER = "Type: ";
-    private static final String NAME_HEADER = "Name: ";
+    private static final String TYPE_HEADER = "Please key in the type of instrument: ";
     private static final String CURRENT_PRICE_HEADER = "Current Price: ";
-    private static final String SENTIMENT_HEADER = "Sentiment: ";
+    private static final String SENTIMENT_HEADER = "Sentiment for instrument: ";
     protected static final String EXPIRY_HEADER = "Expiry: ";
-    protected static final String REMARKS_HEADER = "Remarks: ";
+    protected static final String REMARKS_HEADER = "Remarks (optional): ";
     protected static final String ENTRY_PRICE_HEADER = "Entry Price: ";
     protected static final String EXIT_PRICE_HEADER = "Exit Price: ";
-    protected static final String RETURNS_HEADER = "Past Returns: ";
+    protected static final String RETURNS_HEADER = "Past Returns (optional): ";
 
     public static void displayInstrumentAdded(Instrument newInstrument) {
         System.out.println(TAB + displayInstrumentGeneralView(newInstrument) + " - has been added to list.");
     }
 
+    public static String createBoxDisplay(String icon) {
+        return "[" + icon + "]";
+    }
+
     public static void displayAddInstrumentFirstInstruction() {
-        System.out.println(TAB + "Please key in the type of instrument: ");
+        System.out.println(TAB + TYPE_HEADER);
     }
 
     public static void displayAddInstrumentNameInstruction(String instrumentType) {
@@ -54,11 +57,11 @@ public class TextUi {
     }
 
     public static void displayAddInstrumentSentimentInstruction() {
-        System.out.println(TAB + "Sentiment for instrument: ");
+        System.out.println(TAB + SENTIMENT_HEADER);
     }
 
     public static void displayAddRemarksInstruction() {
-        System.out.println(TAB + "Remarks (optional): ");
+        System.out.println(TAB + REMARKS_HEADER);
     }
 
     public static void displayAddExpiryInstruction() {
@@ -74,10 +77,9 @@ public class TextUi {
     }
 
     public static void displayAddPastReturnsInstruction() {
-        System.out.println(TAB + "Past Returns (optional): ");
+        System.out.println(TAB + RETURNS_HEADER);
     }
 
-    // @@KVignesh122
     public static void displayAllInstruments(ArrayList<Instrument> instruments) {
         System.out.println(LINE_DECORATOR);
         int idx = 0;
@@ -90,20 +92,25 @@ public class TextUi {
     }
 
     public static String displayInstrumentGeneralView(Instrument instrument) {
-        return instrument.getIcon()
+        return createBoxDisplay(instrument.getIcon())
+                + createBoxDisplay(instrument.getStatusIcon())
                 + SPACE + instrument.getName()
                 + SEMICOLON_SEP + instrument.getCurrentPrice()
                 + SEMICOLON_SEP + instrument.getSentiment();
     }
 
-    // @@theodorekwok
+    public static void displayDoneInstrument(Instrument instrument) {
+        System.out.println(TAB + "Nice! I have marked this instrument as completed:"
+                + System.lineSeparator() + TAB + TAB
+                + displayInstrumentGeneralView(instrument));
+    }
+
     public static void displayInstrumentDeleted(Instrument instrument) {
         System.out.println(LINE_DECORATOR);
         System.out.println("Noted. " + displayInstrumentGeneralView(instrument) + " - removed from your watchlist");
         System.out.println(LINE_DECORATOR);
     }
 
-    // @@williamlamjy
     public static void displayCreateFile() {
         System.out.println("Unable to find a saved file. Creating a new one now...");
     }
