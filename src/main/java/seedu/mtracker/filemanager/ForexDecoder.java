@@ -19,7 +19,7 @@ public class ForexDecoder extends InstrumentDecoder {
         String decodedRemarks = textSegment[FOREX_REMARKS_INDEX];
         Instrument forex = new Forex(decodedName, decodedCurrPrice, decodedSentiment,
                 decodedEntryPrice, decodedExitPrice, decodedExpiry, decodedRemarks);
-        instrumentManager.addInstrument(forex);
         setDoneStatus(decodedIsDone, forex);
+        instrumentManager.addInstrument(forex);
     }
 }

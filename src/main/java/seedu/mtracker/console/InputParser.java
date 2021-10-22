@@ -68,7 +68,7 @@ public class InputParser {
     public DeleteCommand getDeleteInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
             throws InvalidIndexError, InvalidNoIndexError, InvalidBoundsError {
         DeleteCommand deleteCommand = new DeleteCommand();
-        finaliseIndexNumber(commandComponents, instruments);
+        getAndValidateIndexNumber(commandComponents, instruments);
         deleteCommand.setIndex(instrumentNumber);
         return deleteCommand;
     }
@@ -76,12 +76,12 @@ public class InputParser {
     public DoneCommand getDoneInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
             throws InvalidIndexError, InvalidNoIndexError, InvalidBoundsError {
         DoneCommand doneCommand = new DoneCommand();
-        finaliseIndexNumber(commandComponents, instruments);
+        getAndValidateIndexNumber(commandComponents, instruments);
         doneCommand.setIndex(instrumentNumber);
         return doneCommand;
     }
 
-    private void finaliseIndexNumber(String[] commandComponents, ArrayList<Instrument> instruments) {
+    private void getAndValidateIndexNumber(String[] commandComponents, ArrayList<Instrument> instruments) {
         getIndexNumber(commandComponents);
         validateIndexWithinBounds(instruments);
     }

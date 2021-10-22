@@ -41,6 +41,10 @@ public class TextUi {
         System.out.println(TAB + displayInstrumentGeneralView(newInstrument) + " - has been added to list.");
     }
 
+    public static String createBoxDisplay(String icon) {
+        return "[" + icon + "]";
+    }
+
     public static void displayAddInstrumentFirstInstruction() {
         System.out.println(TAB + "Please key in the type of instrument: ");
     }
@@ -89,7 +93,7 @@ public class TextUi {
     }
 
     public static String displayInstrumentGeneralView(Instrument instrument) {
-        return instrument.getIcon() + instrument.getStatusIcon()
+        return instrument.getIcon() + createBoxDisplay(instrument.getStatusIcon())
                 + SPACE + instrument.getName()
                 + SEMICOLON_SEP + instrument.getCurrentPrice()
                 + SEMICOLON_SEP + instrument.getSentiment();

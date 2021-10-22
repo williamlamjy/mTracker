@@ -12,8 +12,8 @@ public class StockDecoder extends InstrumentDecoder {
         decodeGeneralAttributes(textSegment);
         String decodedRemarks = textSegment[STOCK_REMARKS_INDEX];
         Instrument stock = new Stock(decodedName, decodedCurrPrice, decodedSentiment, decodedRemarks);
-        instrumentManager.addInstrument(stock);
         setDoneStatus(decodedIsDone, stock);
+        instrumentManager.addInstrument(stock);
     }
 
 }

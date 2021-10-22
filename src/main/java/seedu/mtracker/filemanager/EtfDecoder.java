@@ -15,8 +15,8 @@ public class EtfDecoder extends InstrumentDecoder {
         String decodedRemarks = textSegment[ETF_REMARKS_INDEX];
         Instrument etf = new Etf(decodedName, decodedCurrPrice, decodedSentiment,
                 decodedPastReturns, decodedRemarks);
-        instrumentManager.addInstrument(etf);
         setDoneStatus(decodedIsDone, etf);
+        instrumentManager.addInstrument(etf);
     }
 
 }

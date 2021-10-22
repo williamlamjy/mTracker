@@ -15,8 +15,8 @@ public class CryptoDecoder extends InstrumentDecoder {
         String decodedRemarks = textSegment[CRYPTO_REMARKS_INDEX];
         Instrument crypto = new Crypto(decodedName, decodedCurrPrice, decodedSentiment,
                 decodedExpiry, decodedRemarks);
-        instrumentManager.addInstrument(crypto);
         setDoneStatus(decodedIsDone, crypto);
+        instrumentManager.addInstrument(crypto);
     }
 
 }

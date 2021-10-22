@@ -30,9 +30,7 @@ public abstract class Instrument {
     }
 
     public String getStatusIcon() {
-        return (OPENING_BRACKET
-                + (getIsDone() ? DONE_SYMBOL : NOT_DONE_SYMBOL)
-                + CLOSING_BRACKET);
+        return (getIsDone() ? DONE_SYMBOL : NOT_DONE_SYMBOL);
     }
 
     public String getName() {
