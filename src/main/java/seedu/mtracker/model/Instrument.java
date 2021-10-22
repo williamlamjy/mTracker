@@ -11,8 +11,6 @@ public abstract class Instrument {
     protected static final String FILE_SEPARATOR = ";";
     protected static final String DONE_SYMBOL = "X";
     protected static final String NOT_DONE_SYMBOL = " ";
-    protected static final String OPENING_BRACKET = "[";
-    protected static final String CLOSING_BRACKET = "]";
 
     public Instrument(String name, double currentPrice, String sentiment) {
         this.name = name;

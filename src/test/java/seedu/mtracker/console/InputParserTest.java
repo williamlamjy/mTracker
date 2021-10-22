@@ -35,80 +35,80 @@ class InputParserTest {
     public static final String TEST_REMARK = "";
     public static final Instrument TEST_STOCK = new Stock(TEST_NAME, TEST_PRICE, TEST_SENTIMENT, TEST_REMARK);
     public static ArrayList<Instrument> INSTRUMENTS;
-    private InputParser parser;
+    private InputParser initialiseTestResources;
 
     public static final int INDEX_OFFSET = 1;
 
     @BeforeEach
     void initialiseInstruments() {
+        initialiseTestResources = new InputParser();
         INSTRUMENTS = new ArrayList<>();
-        parser = new InputParser();
         INSTRUMENTS.add(TEST_STOCK);
     }
 
     @Test
     void getIndexNumber_validIndexProvided_expectSuccess() {
-        parser.getIndexNumber(VALID_INDEX_DELETE_INPUT);
-        assertEquals(parser.getInstrumentNumber(), VALID_INDEX - INDEX_OFFSET);
+        initialiseTestResources.getIndexNumber(VALID_INDEX_DELETE_INPUT);
+        assertEquals(initialiseTestResources.getInstrumentNumber(), VALID_INDEX - INDEX_OFFSET);
     }
 
     @Test
     void getIndexNumber_noIndexProvided_expectException() throws InvalidNoIndexError {
         assertThrows(InvalidNoIndexError.class,
-            () -> parser.getIndexNumber(NO_INDEX_DELETE_INPUT));
+            () -> initialiseTestResources.getIndexNumber(NO_INDEX_DELETE_INPUT));
     }
 
     @Test
     void getIndexNumber_invalidIndexProvided_expectException() throws InvalidIndexError {
         assertThrows(InvalidIndexError.class,
-            () -> parser.getIndexNumber(INVALID_INDEX_DELETE_INPUT));
+            () -> initialiseTestResources.getIndexNumber(INVALID_INDEX_DELETE_INPUT));
     }
 
     @Test
     void getDeleteInstrumentCommand_noIndexProvided_expectException() throws InvalidNoIndexError {
         assertThrows(InvalidNoIndexError.class,
-            () -> parser.getDeleteInstrumentCommand(NO_INDEX_DELETE_INPUT, INSTRUMENTS));
+            () -> initialiseTestResources.getDeleteInstrumentCommand(NO_INDEX_DELETE_INPUT, INSTRUMENTS));
     }
 
     @Test
     void getDeleteInstrumentCommand_invalidIndexProvided_expectException() throws InvalidIndexError {
         assertThrows(InvalidIndexError.class,
-            () -> parser.getDeleteInstrumentCommand(INVALID_INDEX_DELETE_INPUT, INSTRUMENTS));
+            () -> initialiseTestResources.getDeleteInstrumentCommand(INVALID_INDEX_DELETE_INPUT, INSTRUMENTS));
     }
 
     @Test
     void getDeleteInstrumentCommand_outOfBoundsIndexProvided_expectException() throws InvalidBoundsError {
         assertThrows(InvalidBoundsError.class,
-            () -> parser.getDeleteInstrumentCommand(OUT_OF_BOUNDS_INDEX_DELETE_INPUT, INSTRUMENTS));
+            () -> initialiseTestResources.getDeleteInstrumentCommand(OUT_OF_BOUNDS_INDEX_DELETE_INPUT, INSTRUMENTS));
     }
 
     @Test
     void getDeleteInstrumentCommand_validIndexProvided_expectSuccess() {
-        DeleteCommand command = parser.getDeleteInstrumentCommand(VALID_INDEX_DELETE_INPUT, INSTRUMENTS);
+        DeleteCommand command = initialiseTestResources.getDeleteInstrumentCommand(VALID_INDEX_DELETE_INPUT, INSTRUMENTS);
         assertEquals(command.getIndex(), VALID_INDEX - INDEX_OFFSET);
     }
 
     @Test
     void getDoneInstrumentCommand_noIndexProvided_expectException() throws InvalidNoIndexError {
         assertThrows(InvalidNoIndexError.class,
-            () -> parser.getDoneInstrumentCommand(NO_INDEX_DONE_INPUT, INSTRUMENTS));
+            () -> initialiseTestResources.getDoneInstrumentCommand(NO_INDEX_DONE_INPUT, INSTRUMENTS));
     }
 
     @Test
     void getDoneInstrumentCommand_invalidIndexProvided_expectException() throws InvalidIndexError {
         assertThrows(InvalidIndexError.class,
-            () -> parser.getDoneInstrumentCommand(INVALID_INDEX_DONE_INPUT, INSTRUMENTS));
+            () -> initialiseTestResources.getDoneInstrumentCommand(INVALID_INDEX_DONE_INPUT, INSTRUMENTS));
     }
 
     @Test
     void getDoneInstrumentCommand_outOfBoundsIndexProvided_expectException() throws InvalidBoundsError {
         assertThrows(InvalidBoundsError.class,
-            () -> parser.getDoneInstrumentCommand(OUT_OF_BOUNDS_INDEX_DONE_INPUT, INSTRUMENTS));
+            () -> initialiseTestResources.getDoneInstrumentCommand(OUT_OF_BOUNDS_INDEX_DONE_INPUT, INSTRUMENTS));
     }
 
     @Test
     void getDoneInstrumentCommand_validIndexProvided_expectSuccess() {
-        DoneCommand command = parser.getDoneInstrumentCommand(VALID_INDEX_DONE_INPUT, INSTRUMENTS);
+        DoneCommand command = initialiseTestResources.getDoneInstrumentCommand(VALID_INDEX_DONE_INPUT, INSTRUMENTS);
         assertEquals(command.getIndex(), VALID_INDEX - INDEX_OFFSET);
     }
 }
