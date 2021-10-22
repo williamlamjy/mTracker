@@ -48,8 +48,4 @@ public abstract class Instrument {
                 + CURRENT_PRICE_HEADER + getCurrentPrice() + System.lineSeparator()
                 + SENTIMENT_HEADER + getSentiment();
     }
-//
-//    public string toListGeneralParams() {
-//        retunr
-//    }
 }

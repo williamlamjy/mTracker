@@ -30,7 +30,7 @@ public class TextUi {
     }
 
     public static void displayInstrumentAdded(Instrument newInstrument) {
-        System.out.println(TAB + newInstrument + " has been added to list.");
+        System.out.println(TAB + newInstrument + " - has been added to list.");
     }
 
     public static void displayAddInstrumentFirstInstruction() {
