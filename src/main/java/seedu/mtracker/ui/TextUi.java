@@ -5,6 +5,14 @@ import seedu.mtracker.model.Instrument;
 import java.util.ArrayList;
 
 public class TextUi {
+
+    public static final String SEMICOLON_SEP = "; ";
+    public static final String INDEX_BRACKET = ") ";
+    public static final String SPACE = " ";
+
+    private static final String CURRENT_PRICE_HEADER = "Current Price: ";
+    protected static final String ENTRY_PRICE_HEADER = "Entry Price: ";
+    protected static final String EXIT_PRICE_HEADER = "Exit Price: ";
     protected static final String LINE_DECORATOR = "_".repeat(80);
     private static final String CONSOLE_PROMPTER = "mTracker$> ";
     private static final String LOGO = "            _________                      __\n"
@@ -24,12 +32,8 @@ public class TextUi {
 
     private static final String TAB = "\t";
 
-    public static String createBoxDisplay(String icon) {
-        return "[" + icon + "]";
-    }
-
     public static void displayInstrumentAdded(Instrument newInstrument) {
-        System.out.println(TAB + newInstrument);
+        System.out.println(TAB + displayInstrumentGeneralView(newInstrument) + " - has been added to list.");
     }
 
     public static void displayAddInstrumentFirstInstruction() {
@@ -41,7 +45,7 @@ public class TextUi {
     }
 
     public static void displayAddInstrumentCurrentPriceInstruction() {
-        System.out.println(TAB + "Current Price: ");
+        System.out.println(TAB + CURRENT_PRICE_HEADER);
     }
 
     public static void displayAddInstrumentSentimentInstruction() {
@@ -57,34 +61,44 @@ public class TextUi {
     }
 
     public static void displayAddEntryPriceInstruction() {
-        System.out.println(TAB + "Entry price: ");
+        System.out.println(TAB + ENTRY_PRICE_HEADER);
     }
 
     public static void displayAddExitPriceInstruction() {
-        System.out.println(TAB + "Exit price: ");
+        System.out.println(TAB + EXIT_PRICE_HEADER);
     }
 
     public static void displayAddPastReturnsInstruction() {
         System.out.println(TAB + "Past Returns (optional): ");
     }
 
-    private static void displayInstrument(Instrument instrument) {
-        System.out.println(LINE_DECORATOR);
-        System.out.println(instrument.toList());
-        System.out.println(LINE_DECORATOR);
-    }
-
+    // @@KVignesh122
     public static void displayAllInstruments(ArrayList<Instrument> instruments) {
-        instruments.stream().forEach(instrument -> displayInstrument(instrument));
+        System.out.println(LINE_DECORATOR);
+        int idx = 0;
+        for (Instrument instrument: instruments) {
+            idx += 1;
+            System.out.print(idx + INDEX_BRACKET);
+            System.out.println(displayInstrumentGeneralView(instrument));
+        }
+        System.out.println(LINE_DECORATOR);
     }
 
+    public static String displayInstrumentGeneralView(Instrument instrument) {
+        return instrument.getIcon()
+                + SPACE + instrument.getName()
+                + SEMICOLON_SEP + instrument.getCurrentPrice()
+                + SEMICOLON_SEP + instrument.getSentiment();
+    }
+
+    // @@theodorekwok
     public static void displayInstrumentDeleted(Instrument instrument) {
         System.out.println(LINE_DECORATOR);
-        System.out.println("Noted I have removed " + instrument.getName() + " from your watchlist");
-        System.out.println(instrument);
+        System.out.println("Noted. " + displayInstrumentGeneralView(instrument) + " - removed from your watchlist");
         System.out.println(LINE_DECORATOR);
     }
 
+    // @@williamlamjy
     public static void displayCreateFile() {
         System.out.println("Unable to find a saved file. Creating a new one now...");
     }
