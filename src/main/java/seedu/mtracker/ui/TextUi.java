@@ -50,7 +50,7 @@ public class TextUi {
     }
 
     public static void displayAddInstrumentCurrentPriceInstruction() {
-        System.out.println(TAB + "Current Price: ");
+        System.out.println(TAB + CURRENT_PRICE_HEADER);
     }
 
     public static void displayAddInstrumentSentimentInstruction() {
@@ -62,15 +62,15 @@ public class TextUi {
     }
 
     public static void displayAddExpiryInstruction() {
-        System.out.println(TAB + "Expiry: ");
+        System.out.println(TAB + EXPIRY_HEADER);
     }
 
     public static void displayAddEntryPriceInstruction() {
-        System.out.println(TAB + "Entry price: ");
+        System.out.println(TAB + ENTRY_PRICE_HEADER);
     }
 
     public static void displayAddExitPriceInstruction() {
-        System.out.println(TAB + "Exit price: ");
+        System.out.println(TAB + EXIT_PRICE_HEADER);
     }
 
     public static void displayAddPastReturnsInstruction() {
