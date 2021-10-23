@@ -8,6 +8,7 @@ import seedu.mtracker.commands.DeleteCommand;
 import seedu.mtracker.commands.ExitCommand;
 import seedu.mtracker.commands.ListCommand;
 import seedu.mtracker.commons.Validate;
+import seedu.mtracker.commands.ViewCommand;
 import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidCommandError;
 import seedu.mtracker.error.InvalidIndexError;
@@ -62,6 +63,14 @@ public class InputParser {
         return deleteCommand;
     }
 
+    public ViewCommand getViewInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
+            throws InvalidIndexError, InvalidNoIndexError, InvalidBoundsError {
+        ViewCommand viewCommand = new ViewCommand();
+        getAndValidateIndexNumber(commandComponents, instruments);
+        viewCommand.setIndex(instrumentNumber);
+        return viewCommand;
+    }
+
     public DoneCommand getDoneInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
             throws InvalidIndexError, InvalidNoIndexError, InvalidBoundsError {
         DoneCommand doneCommand = new DoneCommand();
@@ -90,6 +99,9 @@ public class InputParser {
             break;
         case ExitCommand.COMMAND_WORD:
             command = new ExitCommand();
+            break;
+        case ViewCommand.COMMAND_WORD:
+            command = getViewInstrumentCommand(commandComponents, instruments);
             break;
         case DoneCommand.COMMAND_WORD:
             command = getDoneInstrumentCommand(commandComponents, instruments);
