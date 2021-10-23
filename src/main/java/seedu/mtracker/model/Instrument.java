@@ -3,6 +3,8 @@ package seedu.mtracker.model;
 public abstract class Instrument {
 
     public static final String DATE_REGEX = "MMM dd yyyy";
+    public static final String SEMICOLON_SEP = "; ";
+    public static final String SPACE = " ";
 
     protected String name;
     protected double currentPrice;
@@ -10,8 +12,15 @@ public abstract class Instrument {
     protected boolean isDone;
 
     protected static final String FILE_SEPARATOR = ";";
-    protected static final String DONE_SYMBOL = "X";
-    protected static final String NOT_DONE_SYMBOL = " ";
+    protected static final String DONE_SYMBOL = "[X]";
+    protected static final String NOT_DONE_SYMBOL = "[ ]";
+
+    protected static final String REMARKS_FIELD = "Remarks: ";
+    private static final String TYPE_FIELD = "Type: ";
+    private static final String NAME_FIELD = "Name: ";
+    private static final String CURRENT_PRICE_FIELD = "Current Price: ";
+    private static final String SENTIMENT_FIELD = "Sentiment: ";
+
 
     public Instrument(String name, double currentPrice, String sentiment) {
         this.name = name;
@@ -52,5 +61,17 @@ public abstract class Instrument {
                 + getIsDone());
     }
 
-    public abstract String getIcon();
+    public abstract String getTypeIcon();
+
+    public String getAllParams() {
+        return TYPE_FIELD + getType() + System.lineSeparator()
+                + NAME_FIELD + name + System.lineSeparator()
+                + CURRENT_PRICE_FIELD + currentPrice + System.lineSeparator()
+                + SENTIMENT_FIELD + sentiment + System.lineSeparator();
+    }
+
+    public String getGeneralParams() {
+        return getTypeIcon() + getStatusIcon()
+                + SPACE + name + SEMICOLON_SEP + currentPrice + SEMICOLON_SEP + sentiment;
+    }
 }

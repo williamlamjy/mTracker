@@ -6,14 +6,11 @@ import java.util.ArrayList;
 
 public class TextUi {
 
-    public static final String SEMICOLON_SEP = "; ";
-    public static final String INDEX_BRACKET = ") ";
-    public static final String SPACE = " ";
-
+    private static final String INDEX_BRACKET = ") ";
     private static final String CURRENT_PRICE_HEADER = "Current Price: ";
-    protected static final String ENTRY_PRICE_HEADER = "Entry Price: ";
-    protected static final String EXIT_PRICE_HEADER = "Exit Price: ";
-    protected static final String LINE_DECORATOR = "_".repeat(80);
+    private static final String ENTRY_PRICE_HEADER = "Entry Price: ";
+    private static final String EXIT_PRICE_HEADER = "Exit Price: ";
+    private static final String LINE_DECORATOR = "_".repeat(80);
     private static final String CONSOLE_PROMPTER = "mTracker$> ";
     private static final String LOGO = "            _________                      __\n"
             + "           |  _   _  |                    [  |  _\n"
@@ -34,16 +31,12 @@ public class TextUi {
 
     private static final String TYPE_HEADER = "Please key in the type of instrument: ";
     private static final String SENTIMENT_HEADER = "Sentiment for instrument: ";
-    protected static final String EXPIRY_HEADER = "Expiry (YYYY-MM-DD): ";
-    protected static final String REMARKS_HEADER = "Remarks (optional): ";
-    protected static final String RETURNS_HEADER = "Past Returns (optional): ";
+    private static final String EXPIRY_HEADER = "Expiry (YYYY-MM-DD): ";
+    private static final String REMARKS_HEADER = "Remarks (optional): ";
+    private static final String RETURNS_HEADER = "Past Returns (optional): ";
 
     public static void displayInstrumentAdded(Instrument newInstrument) {
-        System.out.println(TAB + displayInstrumentGeneralView(newInstrument) + " - has been added to list.");
-    }
-
-    public static String createBoxDisplay(String icon) {
-        return "[" + icon + "]";
+        System.out.println(TAB + newInstrument.getGeneralParams() + " - has been added to list.");
     }
 
     public static void displayAddInstrumentFirstInstruction() {
@@ -87,29 +80,30 @@ public class TextUi {
         int idx = 0;
         for (Instrument instrument: instruments) {
             idx += 1;
-            System.out.print(idx + INDEX_BRACKET);
-            System.out.println(displayInstrumentGeneralView(instrument));
+            System.out.println(constructLineInList(idx, instrument));
         }
         System.out.println(LINE_DECORATOR);
     }
 
-    public static String displayInstrumentGeneralView(Instrument instrument) {
-        return createBoxDisplay(instrument.getIcon())
-                + createBoxDisplay(instrument.getStatusIcon())
-                + SPACE + instrument.getName()
-                + SEMICOLON_SEP + instrument.getCurrentPrice()
-                + SEMICOLON_SEP + instrument.getSentiment();
+    private static String constructLineInList(int idx, Instrument instrument) {
+        return idx + INDEX_BRACKET + instrument.getGeneralParams();
+    }
+
+    public static void displaySpecificInstrumentView(Instrument instrument) {
+        System.out.println(LINE_DECORATOR);
+        System.out.println(instrument.getAllParams());
+        System.out.println(LINE_DECORATOR);
     }
 
     public static void displayDoneInstrument(Instrument instrument) {
         System.out.println(TAB + "Nice! I have marked this instrument as completed:"
                 + System.lineSeparator() + TAB + TAB
-                + displayInstrumentGeneralView(instrument));
+                + instrument.getGeneralParams());
     }
 
     public static void displayInstrumentDeleted(Instrument instrument) {
         System.out.println(LINE_DECORATOR);
-        System.out.println("Noted. " + displayInstrumentGeneralView(instrument) + " - removed from your watchlist");
+        System.out.println("Noted. " + instrument.getGeneralParams() + " - removed from your watchlist");
         System.out.println(LINE_DECORATOR);
     }
 

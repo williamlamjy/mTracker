@@ -5,7 +5,7 @@ import seedu.mtracker.model.Instrument;
 public class Stock extends Instrument {
 
     protected String remark;
-    protected static final String STOCK_ICON = "S";
+    protected static final String STOCK_ICON = "[S]";
     protected static final String TYPE_INSTRUMENT = "Stock";
 
     public Stock(String name, double currentPrice, String sentiment, String remark) {
@@ -29,7 +29,14 @@ public class Stock extends Instrument {
     }
 
     @Override
-    public String getIcon() {
+    public String getTypeIcon() {
         return STOCK_ICON;
+    }
+
+    @Override
+    public String getAllParams() {
+        return super.getAllParams()
+                + REMARKS_FIELD + remark + System.lineSeparator()
+                + getStatusIcon();
     }
 }
