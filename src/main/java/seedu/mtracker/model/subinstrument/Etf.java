@@ -10,6 +10,8 @@ public class Etf extends Instrument {
     protected static final String ETF_ICON = "[E]";
     protected static final String TYPE_INSTRUMENT = "Etf";
 
+    protected static final String RETURNS_FIELD = "Past Returns: ";
+
     public Etf(String name, double currentPrice, String sentiment, double pastReturns, String remark) {
         super(name, currentPrice, sentiment);
         this.pastReturns = pastReturns;

@@ -8,6 +8,12 @@ public abstract class Instrument {
     protected static final String EMPTY_STRING = "";
     protected static final String FILE_SEPARATOR = ";";
 
+    private static final String TYPE_FIELD = "Type: ";
+    private static final String NAME_FIELD = "Name: ";
+    private static final String CURRENT_PRICE_FIELD = "Current Price: ";
+    private static final String SENTIMENT_FIELD = "Sentiment: ";
+    protected static final String REMARKS_FIELD = "Remarks: ";
+
 
     public Instrument(String name, double currentPrice, String sentiment) {
         this.name = name;
@@ -35,4 +41,8 @@ public abstract class Instrument {
     }
 
     public abstract String getIcon();
+
+    public String getAllParams() {
+
+    }
 }

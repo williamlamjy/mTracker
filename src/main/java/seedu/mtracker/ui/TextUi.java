@@ -31,15 +31,14 @@ public class TextUi {
     public static final String INDEX_BRACKET = ") ";
     public static final String SPACE = " ";
 
-    private static final String TYPE_HEADER = "Type: ";
-    private static final String NAME_HEADER = "Name: ";
+    private static final String TYPE_HEADER = "Please key in the type of instrument: ";
     private static final String CURRENT_PRICE_HEADER = "Current Price: ";
-    private static final String SENTIMENT_HEADER = "Sentiment: ";
+    private static final String SENTIMENT_HEADER = "Sentiment for instrument: ";
     protected static final String EXPIRY_HEADER = "Expiry: ";
-    protected static final String REMARKS_HEADER = "Remarks: ";
+    protected static final String REMARKS_HEADER = "Remarks (optional): ";
     protected static final String ENTRY_PRICE_HEADER = "Entry Price: ";
     protected static final String EXIT_PRICE_HEADER = "Exit Price: ";
-    protected static final String RETURNS_HEADER = "Past Returns: ";
+    protected static final String RETURNS_HEADER = "Past Returns (optional): ";
 
     private static final String FOREX_TYPE = "Forex";
     private static final String CRYPTO_TYPE = "Crypto";
@@ -50,7 +49,7 @@ public class TextUi {
     }
 
     public static void displayAddInstrumentFirstInstruction() {
-        System.out.println(TAB + "Please key in the type of instrument: ");
+        System.out.println(TAB + TYPE_HEADER);
     }
 
     public static void displayAddInstrumentNameInstruction(String instrumentType) {
@@ -62,11 +61,11 @@ public class TextUi {
     }
 
     public static void displayAddInstrumentSentimentInstruction() {
-        System.out.println(TAB + "Sentiment for instrument: ");
+        System.out.println(TAB + SENTIMENT_HEADER);
     }
 
     public static void displayAddRemarksInstruction() {
-        System.out.println(TAB + "Remarks (optional): ");
+        System.out.println(TAB + REMARKS_HEADER);
     }
 
     public static void displayAddExpiryInstruction() {
@@ -82,7 +81,7 @@ public class TextUi {
     }
 
     public static void displayAddPastReturnsInstruction() {
-        System.out.println(TAB + "Past Returns (optional): ");
+        System.out.println(TAB + RETURNS_HEADER);
     }
 
     // @@KVignesh122

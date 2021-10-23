@@ -13,6 +13,10 @@ public class Forex extends Instrument {
     private static final String FOREX_ICON = "[F]";
     protected static final String TYPE_INSTRUMENT = "Forex";
 
+    protected static final String ENTRY_PRICE_FIELD = "Entry Price: ";
+    protected static final String EXIT_PRICE_FIELD = "Exit Price: ";
+    protected static final String EXPIRY_FIELD = "Expiry: ";
+
     public Forex(
             String name,
             double currentPrice,
