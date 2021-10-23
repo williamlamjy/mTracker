@@ -42,10 +42,11 @@ The subsequent sections will elaborate on the more technical design and implemen
 the architectural components briefly explained in this section.
 
 ### Parser component
-The main parent class in `console` package is the `InputParser` which is defined in `InputParser.java`.
-The figure below represents the class diagram of how all the different parser classes work together:
+The main parent class in `console` package is the `InputParser` class which is defined in `InputParser.java`.
+The figure below represents the class diagram of how all the parser classes interact with classes outside the `console`
+package:
 
-<>
+<img src="images/ConsoleDiagram.png" width="550"/>
 
 How the `InputParser` class works:
 1. When the user enters a command along with the relevant parameters if any, the
@@ -53,15 +54,38 @@ How the `InputParser` class works:
 2. The command is then determined by using the `filterByCommandType()` method which would return the corresponding
    command type. Examples of different command types are `AddInstrumentCommand`, `DeleteCommand`, `ListCommand` etc.
 
-Given the different types of financial instruments supported by mTracker, an abstract class `addInstrumentParser`
-which inherits from `InputParser` is implemented. Multiple `addXYZParser` (`XYZ` is
-a placeholder for the different instrument types, for example `addStockParser`) child classes of
-`addInstrumentParser` support the parsing of different instruments and their parameters.
+Given the different types of financial instruments supported by mTracker, an abstract class `AddInstrumentParser`
+which inherits from `InputParser` is implemented. Multiple `AddXYZParser` (`XYZ` is
+a placeholder for the different instrument types, for example `AddStockParser`) child classes of
+`AddInstrumentParser` support the parsing of different instruments and their parameters.
 This implementation provides greater extensibility to the add functionality to support more instrument types.
 
 The figure below represents the sequence diagram when the user wants to add a stock:
 
-<>
+<img src="images/AddStockSequenceDiagram.png" width="550"/>
+
+The process for adding the other instruments follow a similar process to the sequence above. The main difference would
+be the type of instrument parser called, the parameters collected from the user and the command type returned.
+
+From the notes in the sequence diagram above, for every attribute in the instrument, there would be an instructional
+prompt to get user to provide information for that attribute. This is done through a series of methods in
+the `TextUi` class.
+
+Two alternatives to get the instrument information from the user were considered. The first alternative was to
+get the user to add in all the information in a single line with separators
+(for example: `stock TSLA; 909.68; negative; To buy`). This was not implemented as it is likely
+for the user to enter the parameters in the wrong order. This becomes especially problematic if there are multiple
+parameters that require the same type to represent different attributes of the instrument (for example: The entry and
+exit price attributes in Forex instrument).
+
+The second alternative was to get the user to indicate which attribute the parameter would belong to
+(for example: `stock n/TSLA p/909.68 s/negative r/To buy`). This way there are distinct markers to define which
+parameter belongs to which attribute. However, this was not implemented as given that some instruments have as many as
+7 different attributes, it requires the user to recall all the attributes needed to add an instrument which is not
+user-friendly.
+
+Therefore, the current implementation prompts the user on the information required to add a particular instrument.
+This helps to support the user through the process of adding a new instrument.
 
 ### Model Component
 The `model` package contains the `InstrumentManager` class and `Instrument` class. It is defined

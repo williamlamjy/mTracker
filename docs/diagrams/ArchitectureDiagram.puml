@@ -1,0 +1,27 @@
+@startuml
+!include Styles.puml
+
+Package " "<<Rectangle>>{
+    Class ui COLOR_UI
+    Class main COLOR_MAIN
+    Class commands COLOR_COMMANDS
+    Class console COLOR_CONSOLE
+    Class model COLOR_MODEL
+    Class storage COLOR_STORAGE
+}
+
+main -down[COLOR_MAIN]-> storage
+main -down[COLOR_MAIN]-> console
+main -down[COLOR_MAIN]-> model
+main .down[COLOR_MAIN]-> commands
+main .down[COLOR_MAIN]-> ui
+storage .down[COLOR_STORAGE]->ui
+storage .down[COLOR_STORAGE]->model
+console .down[COLOR_CONSOLE]->ui
+console .down[COLOR_CONSOLE]->model
+console .down[COLOR_CONSOLE]->commands
+commands .down[COLOR_COMMANDS]->ui
+commands -down[COLOR_COMMANDS]->model
+ui .down[COLOR_UI]->model
+
+@endum
