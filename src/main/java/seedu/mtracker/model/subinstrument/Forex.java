@@ -8,7 +8,7 @@ public class Forex extends Instrument {
     protected String expiry;
     protected String remark;
 
-    private static final String FOREX_ICON = "F";
+    private static final String FOREX_ICON = "[F]";
     protected static final String TYPE_INSTRUMENT = "Forex";
 
     protected static final String ENTRY_PRICE_FIELD = "Entry Price: ";

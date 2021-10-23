@@ -7,7 +7,7 @@ public class Etf extends Instrument {
 
     protected String remark;
     protected double pastReturns;
-    protected static final String ETF_ICON = "E";
+    protected static final String ETF_ICON = "[E]";
     protected static final String TYPE_INSTRUMENT = "Etf";
 
     protected static final String RETURNS_FIELD = "Past Returns: ";

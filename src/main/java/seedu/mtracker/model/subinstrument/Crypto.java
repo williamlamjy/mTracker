@@ -6,7 +6,7 @@ public class Crypto extends Instrument {
 
     protected String expiry;
     protected String remark;
-    protected static final String CRYPTO_ICON = "C";
+    protected static final String CRYPTO_ICON = "[C]";
     protected static final String TYPE_INSTRUMENT = "Crypto";
 
     protected static final String EXPIRY_FIELD = "Expiry: ";
