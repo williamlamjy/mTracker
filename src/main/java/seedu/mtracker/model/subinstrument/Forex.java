@@ -8,8 +8,12 @@ public class Forex extends Instrument {
     protected String expiry;
     protected String remark;
 
-    private static final String FOREX_ICON = "F";
+    private static final String FOREX_ICON = "[F]";
     protected static final String TYPE_INSTRUMENT = "Forex";
+
+    protected static final String ENTRY_PRICE_FIELD = "Entry Price: ";
+    protected static final String EXIT_PRICE_FIELD = "Exit Price: ";
+    protected static final String EXPIRY_FIELD = "Expiry: ";
 
     public Forex(
             String name,
@@ -50,7 +54,7 @@ public class Forex extends Instrument {
     }
 
     @Override
-    public String getIcon() {
+    public String getTypeIcon() {
         return FOREX_ICON;
     }
 
@@ -61,4 +65,12 @@ public class Forex extends Instrument {
                 + FILE_SEPARATOR + getRemark());
     }
 
+    @Override
+    public String getAllParams() {
+        return super.getAllParams()
+                + ENTRY_PRICE_FIELD + entryPrice + System.lineSeparator()
+                + EXIT_PRICE_FIELD + exitPrice + System.lineSeparator()
+                + EXPIRY_FIELD + expiry + System.lineSeparator()
+                + REMARKS_FIELD + remark;
+    }
 }
