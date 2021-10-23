@@ -51,7 +51,6 @@ public class Crypto extends Instrument {
     public String getAllParams() {
         return super.getAllParams()
                 + EXPIRY_FIELD + formatExpiry() + System.lineSeparator()
-                + REMARKS_FIELD + remark + System.lineSeparator()
-                + getStatusIcon();
+                + REMARKS_FIELD + remark;
     }
 }

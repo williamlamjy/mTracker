@@ -2,6 +2,7 @@ package seedu.mtracker.console;
 
 import seedu.mtracker.commands.AddForexCommand;
 import seedu.mtracker.commands.AddInstrumentCommand;
+import seedu.mtracker.commons.Validate;
 import seedu.mtracker.ui.TextUi;
 import seedu.mtracker.asserthelpers.AssertParserHelper;
 
@@ -37,7 +38,7 @@ public class AddForexParser extends AddInstrumentParser {
         String entryPrice;
         do {
             entryPrice = getForexEntryFromUser();
-        } while (!isValidPrice(entryPrice));
+        } while (!Validate.isValidPrice(entryPrice));
         parameters.add(entryPrice);
         AssertParserHelper.assertInputNotEmpty(entryPrice);
         AssertParserHelper.assertPriceNonNegative(entryPrice);
@@ -47,7 +48,7 @@ public class AddForexParser extends AddInstrumentParser {
         String exitPrice;
         do {
             exitPrice = getForexExitFromUser();
-        } while (!isValidPrice(exitPrice));
+        } while (!Validate.isValidPrice(exitPrice));
         parameters.add(exitPrice);
         AssertParserHelper.assertInputNotEmpty(exitPrice);
         AssertParserHelper.assertPriceNonNegative(exitPrice);
@@ -57,7 +58,7 @@ public class AddForexParser extends AddInstrumentParser {
         String expiry;
         do {
             expiry = getForexExpiryFromUser();
-        } while (!isValidExpiry(expiry));
+        } while (!Validate.isValidExpiry(expiry));
         parameters.add(expiry);
         AssertParserHelper.assertExpiryInTheFuture(expiry);
         AssertParserHelper.assertInputNotEmpty(expiry);
