@@ -6,4 +6,3 @@ public class FileTamperedError extends Exception {
         return ErrorMessage.FILE_TAMPERED_ERROR;
     }
 }
-
