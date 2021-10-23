@@ -53,7 +53,6 @@ public class Etf extends Instrument {
     public String getAllParams() {
         return super.getAllParams()
                 + RETURNS_FIELD + pastReturns + System.lineSeparator()
-                + REMARKS_FIELD + remark + System.lineSeparator()
-                + getStatusIcon();
+                + REMARKS_FIELD + remark;
     }
 }

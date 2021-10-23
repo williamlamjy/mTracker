@@ -36,7 +36,6 @@ public class Stock extends Instrument {
     @Override
     public String getAllParams() {
         return super.getAllParams()
-                + REMARKS_FIELD + remark + System.lineSeparator()
-                + getStatusIcon();
+                + REMARKS_FIELD + remark;
     }
 }

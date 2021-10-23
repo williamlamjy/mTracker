@@ -62,7 +62,7 @@ public abstract class Instrument {
     public abstract String getTypeIcon();
 
     public String getAllParams() {
-        return TYPE_FIELD + getType() + System.lineSeparator()
+        return TYPE_FIELD + getType() + getStatusIcon() + System.lineSeparator()
                 + NAME_FIELD + name + System.lineSeparator()
                 + CURRENT_PRICE_FIELD + currentPrice + System.lineSeparator()
                 + SENTIMENT_FIELD + sentiment + System.lineSeparator();
