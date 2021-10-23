@@ -77,7 +77,7 @@ public class InputParser {
     public ViewCommand getViewInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments) {
         ViewCommand viewCommand = new ViewCommand();
         getIndexNumber(commandComponents);
-        validateIndexWithinBounds(instruments);
+        getAndValidateIndexNumber(commandComponents, instruments);
         viewCommand.setIndex(instrumentNumber);
         return viewCommand;
     }
