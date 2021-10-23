@@ -1,6 +1,7 @@
 package seedu.mtracker.filemanager;
 
 import seedu.mtracker.error.InvalidInstrumentInFileError;
+import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.ui.TextUi;
 
@@ -20,16 +21,26 @@ public class InstrumentDecoder {
     public static final int NAME_INDEX = 1;
     public static final int CURR_PRICE_INDEX = 2;
     public static final int SENTIMENT_INDEX = 3;
+    public static final int IS_DONE_INDEX = 4;
 
     public static String decodedSentiment;
     public static String decodedName;
     public static double decodedCurrPrice;
+    public static boolean decodedIsDone;
 
 
     public static void decodeGeneralAttributes(String[] textSegment) {
         decodedName = textSegment[NAME_INDEX];
         decodedSentiment = textSegment[SENTIMENT_INDEX];
         decodedCurrPrice = Double.parseDouble(textSegment[CURR_PRICE_INDEX]);
+        decodedIsDone = Boolean.parseBoolean(textSegment[IS_DONE_INDEX]);
+    }
+
+    public static void setDoneStatus(boolean isDone, Instrument doneInstrument) {
+        if (!isDone) {
+            return;
+        }
+        doneInstrument.markAsDone();
     }
 
     public static void readFile(InstrumentManager instrumentManager, List<String> fileData) {

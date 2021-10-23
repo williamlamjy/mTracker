@@ -43,7 +43,12 @@ public class InstrumentManager {
         instruments.add(addedInstrument);
     }
 
+    public void doneInstrument(int completedInstrumentIndex) {
+        instruments.get(completedInstrumentIndex).markAsDone();
+    }
+
     public void deleteInstrument(int index) {
         instruments.remove(index);
     }
+
 }

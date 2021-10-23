@@ -4,12 +4,13 @@ import seedu.mtracker.asserthelpers.AssertCommandHelpers;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
-public class ViewCommand extends Command {
-    public static final String COMMAND_WORD = "view";
+public class DoneCommand extends Command {
+
     public static final int UNINITIALISED_INDEX = -1;
+    public static final String COMMAND_WORD = "done";
     private int index;
 
-    public ViewCommand() {
+    public DoneCommand() {
         index = UNINITIALISED_INDEX;
     }
 
@@ -24,8 +25,9 @@ public class ViewCommand extends Command {
     @Override
     public String execute() {
         AssertCommandHelpers.assertIndexWithinBounds(instrumentManager.getSize(), index);
-        Instrument instrumentToView = instrumentManager.getInstrument(index);
-        TextUi.displaySpecificInstrumentView(instrumentToView);
+        Instrument instrumentToComplete = instrumentManager.getInstrument(index);
+        instrumentManager.doneInstrument(index);
+        TextUi.displayDoneInstrument(instrumentToComplete);
         return COMMAND_WORD;
     }
 }
