@@ -17,8 +17,8 @@ public abstract class Instrument {
     private static final String SENTIMENT_FIELD = "Sentiment: ";
     protected static final String REMARKS_FIELD = "Remarks: ";
 
-    protected static final String DONE_SYMBOL = "X";
-    protected static final String NOT_DONE_SYMBOL = " ";
+    protected static final String DONE_SYMBOL = "[X]";
+    protected static final String NOT_DONE_SYMBOL = "[ ]";
 
     public Instrument(String name, double currentPrice, String sentiment) {
         this.name = name;
@@ -59,7 +59,7 @@ public abstract class Instrument {
                 + getIsDone());
     }
 
-    public abstract String getIcon();
+    public abstract String getTypeIcon();
 
     public String getAllParams() {
         return TYPE_FIELD + getType() + System.lineSeparator()
@@ -69,6 +69,7 @@ public abstract class Instrument {
     }
 
     public String getGeneralParams() {
-        return getIcon() + SPACE + name + SEMICOLON_SEP + currentPrice + SEMICOLON_SEP + sentiment;
+        return getTypeIcon() + getStatusIcon()
+                + SPACE + name + SEMICOLON_SEP + currentPrice + SEMICOLON_SEP + sentiment;
     }
 }

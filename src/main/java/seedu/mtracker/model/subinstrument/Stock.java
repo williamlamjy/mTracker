@@ -29,12 +29,14 @@ public class Stock extends Instrument {
     }
 
     @Override
-    public String getIcon() {
+    public String getTypeIcon() {
         return STOCK_ICON;
     }
 
     @Override
     public String getAllParams() {
-        return super.getAllParams() + REMARKS_FIELD + remark;
+        return super.getAllParams()
+                + REMARKS_FIELD + remark + System.lineSeparator()
+                + getStatusIcon();
     }
 }

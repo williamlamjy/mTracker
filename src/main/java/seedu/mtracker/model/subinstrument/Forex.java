@@ -54,7 +54,7 @@ public class Forex extends Instrument {
     }
 
     @Override
-    public String getIcon() {
+    public String getTypeIcon() {
         return FOREX_ICON;
     }
 
@@ -71,6 +71,7 @@ public class Forex extends Instrument {
                 + ENTRY_PRICE_FIELD + entryPrice + System.lineSeparator()
                 + EXIT_PRICE_FIELD + exitPrice + System.lineSeparator()
                 + EXPIRY_FIELD + expiry + System.lineSeparator()
-                + REMARKS_FIELD + remark;
+                + REMARKS_FIELD + remark + System.lineSeparator()
+                + getStatusIcon();
     }
 }

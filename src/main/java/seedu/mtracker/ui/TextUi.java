@@ -38,10 +38,6 @@ public class TextUi {
         System.out.println(TAB + newInstrument.getGeneralParams() + " - has been added to list.");
     }
 
-    public static String createBoxDisplay(String icon) {
-        return "[" + icon + "]";
-    }
-
     public static void displayAddInstrumentFirstInstruction() {
         System.out.println(TAB + TYPE_HEADER);
     }
@@ -101,7 +97,7 @@ public class TextUi {
     public static void displayDoneInstrument(Instrument instrument) {
         System.out.println(TAB + "Nice! I have marked this instrument as completed:"
                 + System.lineSeparator() + TAB + TAB
-                + displayInstrumentGeneralView(instrument));
+                + instrument.getGeneralParams());
     }
 
     public static void displayInstrumentDeleted(Instrument instrument) {
