@@ -1,7 +1,6 @@
 package seedu.mtracker.model.subinstrument;
 
 import seedu.mtracker.model.Instrument;
-import seedu.mtracker.ui.TextUi;
 
 public class Crypto extends Instrument {
 
@@ -25,11 +24,6 @@ public class Crypto extends Instrument {
     }
 
     @Override
-    public String toString() {
-        return TextUi.createBoxDisplay(CRYPTO_ICON) + getName();
-    }
-
-    @Override
     public String getType() {
         return TYPE_INSTRUMENT;
     }
@@ -41,9 +35,7 @@ public class Crypto extends Instrument {
     }
 
     @Override
-    public String toList() {
-        return super.toList()
-                + System.lineSeparator() + EXPIRY_HEADER + getExpiry()
-                + System.lineSeparator() + REMARKS_HEADER + getRemark();
+    public String getIcon() {
+        return CRYPTO_ICON;
     }
 }

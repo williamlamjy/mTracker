@@ -1,7 +1,6 @@
 package seedu.mtracker.model.subinstrument;
 
 import seedu.mtracker.model.Instrument;
-import seedu.mtracker.ui.TextUi;
 
 public class Stock extends Instrument {
 
@@ -19,11 +18,6 @@ public class Stock extends Instrument {
     }
 
     @Override
-    public String toString() {
-        return TextUi.createBoxDisplay(STOCK_ICON) + getName();
-    }
-
-    @Override
     public String getType() {
         return TYPE_INSTRUMENT;
     }
@@ -35,8 +29,7 @@ public class Stock extends Instrument {
     }
 
     @Override
-    public String toList() {
-        return super.toList()
-                + System.lineSeparator() + REMARKS_HEADER + getRemark();
+    public String getIcon() {
+        return STOCK_ICON;
     }
 }

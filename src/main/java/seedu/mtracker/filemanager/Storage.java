@@ -21,6 +21,7 @@ public class Storage {
     public Storage() {
         file = new File(FILE_PATH);
         path = Paths.get(FILE_PATH);
+        setFileToReadOnly();
     }
 
     public void loadFileData(InstrumentManager instrumentManager) throws IOException {
@@ -36,10 +37,20 @@ public class Storage {
 
     public void updateFileData(ArrayList<Instrument> instruments) {
         try {
-            FileWriter writeToFile = new FileWriter(this.file);
+            setFileToWritable();
+            FileWriter writeToFile = new FileWriter(file);
             InstrumentEncoder.writeFile(instruments, writeToFile);
+            setFileToReadOnly();
         } catch (IOException e) {
             ErrorMessage.displayFileError();
         }
+    }
+
+    public void setFileToWritable() {
+        file.setWritable(true);
+    }
+
+    public void setFileToReadOnly() {
+        file.setReadOnly();
     }
 }
