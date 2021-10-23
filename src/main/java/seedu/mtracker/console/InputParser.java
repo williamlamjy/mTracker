@@ -74,9 +74,9 @@ public class InputParser {
         return deleteCommand;
     }
 
-    public ViewCommand getViewInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments) {
+    public ViewCommand getViewInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
+            throws InvalidIndexError, InvalidNoIndexError, InvalidBoundsError {
         ViewCommand viewCommand = new ViewCommand();
-        getIndexNumber(commandComponents);
         getAndValidateIndexNumber(commandComponents, instruments);
         viewCommand.setIndex(instrumentNumber);
         return viewCommand;
