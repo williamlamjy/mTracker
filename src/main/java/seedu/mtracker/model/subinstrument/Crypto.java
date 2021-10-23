@@ -40,4 +40,11 @@ public class Crypto extends Instrument {
     public String getIcon() {
         return CRYPTO_ICON;
     }
+
+    @Override
+    public String getAllParams() {
+        return super.getAllParams()
+                + EXPIRY_FIELD + expiry + System.lineSeparator()
+                + REMARKS_FIELD + remark;
+    }
 }

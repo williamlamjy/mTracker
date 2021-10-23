@@ -7,6 +7,8 @@ public abstract class Instrument {
 
     protected static final String EMPTY_STRING = "";
     protected static final String FILE_SEPARATOR = ";";
+    public static final String SEMICOLON_SEP = "; ";
+    public static final String SPACE = " ";
 
     private static final String TYPE_FIELD = "Type: ";
     private static final String NAME_FIELD = "Name: ";
@@ -43,6 +45,13 @@ public abstract class Instrument {
     public abstract String getIcon();
 
     public String getAllParams() {
+        return TYPE_FIELD + getType() + System.lineSeparator()
+                + NAME_FIELD + name + System.lineSeparator()
+                + CURRENT_PRICE_FIELD + currentPrice + System.lineSeparator()
+                + SENTIMENT_FIELD + sentiment + System.lineSeparator();
+    }
 
+    public String getGeneralParams() {
+        return getIcon() + SPACE + name + SEMICOLON_SEP + currentPrice + SEMICOLON_SEP + sentiment;
     }
 }

@@ -67,4 +67,12 @@ public class Forex extends Instrument {
                 + FILE_SEPARATOR + getRemark());
     }
 
+    @Override
+    public String getAllParams() {
+        return super.getAllParams()
+                + ENTRY_PRICE_FIELD + entryPrice + System.lineSeparator()
+                + EXIT_PRICE_FIELD + exitPrice + System.lineSeparator()
+                + EXPIRY_FIELD + expiry + System.lineSeparator()
+                + REMARKS_FIELD + remark;
+    }
 }

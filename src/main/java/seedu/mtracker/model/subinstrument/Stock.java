@@ -32,4 +32,9 @@ public class Stock extends Instrument {
     public String getIcon() {
         return STOCK_ICON;
     }
+
+    @Override
+    public String getAllParams() {
+        return super.getAllParams() + REMARKS_FIELD + remark;
+    }
 }

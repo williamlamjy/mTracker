@@ -48,4 +48,11 @@ public class Etf extends Instrument {
     public String getIcon() {
         return ETF_ICON;
     }
+
+    @Override
+    public String getAllParams() {
+        return super.getAllParams()
+                + RETURNS_FIELD + pastReturns + System.lineSeparator()
+                + REMARKS_FIELD + remark;
+    }
 }
