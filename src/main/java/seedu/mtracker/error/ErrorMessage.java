@@ -11,7 +11,8 @@ public abstract class ErrorMessage {
     public static final String INVALID_INSTRUMENT_NONEXISTENT_ERROR = "Oops instrument does not exist at that index";
     public static final String INVALID_INSTRUMENT_IN_FILE_ERROR = "Oops, it appears that the incorrect instrument"
             + "type is provided in the mTracker.txt file";
-    public static final String INVALID_NO_KEYWORD_GIVEN_ERROR = "Oops please input a search keyword after 'find' command.";
+    public static final String INVALID_NO_KEYWORD_GIVEN_ERROR = "Oops please input a search"
+            + " keyword after 'find' command.";
 
     public static final String FILE_LOAD_ERROR = "Oh no! There seems to be an error loading this file";
     public static final String FILE_TAMPERED_ERROR = "Oh no! Looks like file has been tampered, aborting load file";

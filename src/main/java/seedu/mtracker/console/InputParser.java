@@ -10,7 +10,12 @@ import seedu.mtracker.commands.ListCommand;
 import seedu.mtracker.commands.FindCommand;
 import seedu.mtracker.commons.Validate;
 import seedu.mtracker.commands.ViewCommand;
-import seedu.mtracker.error.*;
+import seedu.mtracker.error.InvalidBoundsError;
+import seedu.mtracker.error.InvalidCommandError;
+import seedu.mtracker.error.InvalidIndexError;
+import seedu.mtracker.error.InvalidInstrumentError;
+import seedu.mtracker.error.InvalidNoIndexError;
+import seedu.mtracker.error.InvalidNoKeywordError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 

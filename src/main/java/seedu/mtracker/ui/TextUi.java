@@ -84,12 +84,12 @@ public class TextUi {
         System.out.println(LINE_DECORATOR);
     }
 
-    private static void displayFoundMessage(int nFound, String keyword) {
-        if (nFound == 0) {
+    private static void displayFoundMessage(int numFound, String keyword) {
+        if (numFound == 0) {
             System.out.println("There were no instruments found for " + keyword.toUpperCase());
             return;
         }
-        System.out.println("There were " + nFound + " instrument(s) found for " + keyword.toUpperCase());
+        System.out.println("There were " + numFound + " instrument(s) found for " + keyword.toUpperCase());
     }
 
     public static void displayInstrumentsFound(ArrayList<Instrument> instruments, String searchString) {
