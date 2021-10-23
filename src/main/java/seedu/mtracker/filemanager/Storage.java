@@ -1,6 +1,8 @@
 package seedu.mtracker.filemanager;
 
 import seedu.mtracker.error.ErrorMessage;
+import seedu.mtracker.error.FileLoadError;
+import seedu.mtracker.error.FileTamperedError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.ui.TextUi;
@@ -21,18 +23,31 @@ public class Storage {
     public Storage() {
         file = new File(FILE_PATH);
         path = Paths.get(FILE_PATH);
-        setFileToReadOnly();
     }
 
-    public void loadFileData(InstrumentManager instrumentManager) throws IOException {
-        if (!Files.exists(path) || !Files.isRegularFile(path)) {
-            TextUi.displayCreateFile();
-            file.getParentFile().mkdir();
-            file.createNewFile();
-            return;
+    public void checkIfFileIsTampered() throws FileTamperedError {
+        if (file.canWrite()) {
+            throw new FileTamperedError();
         }
-        TextUi.displayLoadingFile();
-        InstrumentDecoder.readFile(instrumentManager, Files.readAllLines(path));
+    }
+
+    public void loadFileData(InstrumentManager instrumentManager) throws FileLoadError {
+        try {
+            if (!Files.exists(path) || !Files.isRegularFile(path)) {
+                TextUi.displayCreateFile();
+                setFileToReadOnly();
+                file.getParentFile().mkdir();
+                file.createNewFile();
+                return;
+            }
+            TextUi.displayLoadingFile();
+            checkIfFileIsTampered();
+            InstrumentDecoder.readFile(instrumentManager, Files.readAllLines(path));
+        } catch (IOException e) {
+            throw new FileLoadError();
+        } catch (FileTamperedError e) {
+            TextUi.showErrorMessage(e);
+        }
     }
 
     public void updateFileData(ArrayList<Instrument> instruments) {
@@ -42,7 +57,7 @@ public class Storage {
             InstrumentEncoder.writeFile(instruments, writeToFile);
             setFileToReadOnly();
         } catch (IOException e) {
-            ErrorMessage.displayFileError();
+            ErrorMessage.displayWriteToFileError();
         }
     }
 
