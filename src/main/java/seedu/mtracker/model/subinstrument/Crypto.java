@@ -6,8 +6,10 @@ public class Crypto extends Instrument {
 
     protected String expiry;
     protected String remark;
-    protected static final String CRYPTO_ICON = "C";
+    protected static final String CRYPTO_ICON = "[C]";
     protected static final String TYPE_INSTRUMENT = "Crypto";
+
+    protected static final String EXPIRY_FIELD = "Expiry: ";
 
     public Crypto(String name, double currentPrice, String sentiment, String expiry, String remark) {
         super(name, currentPrice, sentiment);
@@ -35,7 +37,15 @@ public class Crypto extends Instrument {
     }
 
     @Override
-    public String getIcon() {
+    public String getTypeIcon() {
         return CRYPTO_ICON;
+    }
+
+    @Override
+    public String getAllParams() {
+        return super.getAllParams()
+                + EXPIRY_FIELD + expiry + System.lineSeparator()
+                + REMARKS_FIELD + remark + System.lineSeparator()
+                + getStatusIcon();
     }
 }
