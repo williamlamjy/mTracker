@@ -35,7 +35,7 @@ executing particular commands determined by the necessary parser classes in cons
     * `subinstrument` is a collection of the different instrument classes: `Crypto`, 
     `Etf`, `Forex`, and `Stock`. The primary role of these classes is to initialize instrument
       objects of their said type containing their necessary financial information recorded from the user.
-* `storage` is responsible for saving the session's instruments data to local file, updating
+* `filemanager` is responsible for saving the session's instruments data to local file, updating
 them during runtime, and restoring data from previous session when the program is relaunched.
 
 The subsequent sections will elaborate on the more technical design and implementation details of
