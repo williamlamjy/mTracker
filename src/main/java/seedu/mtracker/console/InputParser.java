@@ -2,6 +2,7 @@ package seedu.mtracker.console;
 
 import seedu.mtracker.LogHelper;
 import seedu.mtracker.commands.AddInstrumentCommand;
+import seedu.mtracker.commands.DoneCommand;
 import seedu.mtracker.commands.Command;
 import seedu.mtracker.commands.DeleteCommand;
 import seedu.mtracker.commands.ExitCommand;
@@ -68,8 +69,7 @@ public class InputParser {
     public DeleteCommand getDeleteInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
             throws InvalidIndexError, InvalidNoIndexError, InvalidBoundsError {
         DeleteCommand deleteCommand = new DeleteCommand();
-        getIndexNumber(commandComponents);
-        validateIndexWithinBounds(instruments);
+        getAndValidateIndexNumber(commandComponents, instruments);
         deleteCommand.setIndex(instrumentNumber);
         return deleteCommand;
     }
@@ -80,6 +80,19 @@ public class InputParser {
         validateIndexWithinBounds(instruments);
         viewCommand.setIndex(instrumentNumber);
         return viewCommand;
+    }
+
+    public DoneCommand getDoneInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
+            throws InvalidIndexError, InvalidNoIndexError, InvalidBoundsError {
+        DoneCommand doneCommand = new DoneCommand();
+        getAndValidateIndexNumber(commandComponents, instruments);
+        doneCommand.setIndex(instrumentNumber);
+        return doneCommand;
+    }
+
+    private void getAndValidateIndexNumber(String[] commandComponents, ArrayList<Instrument> instruments) {
+        getIndexNumber(commandComponents);
+        validateIndexWithinBounds(instruments);
     }
 
     public Command filterByCommandType(String[] commandComponents, ArrayList<Instrument> instruments)
@@ -100,6 +113,9 @@ public class InputParser {
             break;
         case ViewCommand.COMMAND_WORD:
             command = getViewInstrumentCommand(commandComponents, instruments);
+            break;
+        case DoneCommand.COMMAND_WORD:
+            command = getDoneInstrumentCommand(commandComponents, instruments);
             break;
         default:
             logger.info(LogHelper.LOG_INVALID_COMMAND);

@@ -38,6 +38,10 @@ public class TextUi {
         System.out.println(TAB + newInstrument.getGeneralParams() + " - has been added to list.");
     }
 
+    public static String createBoxDisplay(String icon) {
+        return "[" + icon + "]";
+    }
+
     public static void displayAddInstrumentFirstInstruction() {
         System.out.println(TAB + TYPE_HEADER);
     }
@@ -74,7 +78,6 @@ public class TextUi {
         System.out.println(TAB + RETURNS_HEADER);
     }
 
-    // @@KVignesh122
     public static void displayAllInstruments(ArrayList<Instrument> instruments) {
         System.out.println(LINE_DECORATOR);
         int idx = 0;
@@ -95,14 +98,18 @@ public class TextUi {
         System.out.println(LINE_DECORATOR);
     }
 
-    // @@theodorekwok
+    public static void displayDoneInstrument(Instrument instrument) {
+        System.out.println(TAB + "Nice! I have marked this instrument as completed:"
+                + System.lineSeparator() + TAB + TAB
+                + displayInstrumentGeneralView(instrument));
+    }
+
     public static void displayInstrumentDeleted(Instrument instrument) {
         System.out.println(LINE_DECORATOR);
         System.out.println("Noted. " + instrument.getGeneralParams() + " - removed from your watchlist");
         System.out.println(LINE_DECORATOR);
     }
 
-    // @@williamlamjy
     public static void displayCreateFile() {
         System.out.println("Unable to find a saved file. Creating a new one now...");
     }

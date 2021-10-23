@@ -6,8 +6,8 @@ import seedu.mtracker.model.subinstrument.Etf;
 
 public class EtfDecoder extends InstrumentDecoder {
 
-    public static final int PAST_RETURNS_INDEX = 4;
-    public static final int ETF_REMARKS_INDEX = 5;
+    public static final int PAST_RETURNS_INDEX = 5;
+    public static final int ETF_REMARKS_INDEX = 6;
 
     public static void addEtfToList(String[] textSegment, InstrumentManager instrumentManager) {
         decodeGeneralAttributes(textSegment);
@@ -15,6 +15,7 @@ public class EtfDecoder extends InstrumentDecoder {
         String decodedRemarks = textSegment[ETF_REMARKS_INDEX];
         Instrument etf = new Etf(decodedName, decodedCurrPrice, decodedSentiment,
                 decodedPastReturns, decodedRemarks);
+        setDoneStatus(decodedIsDone, etf);
         instrumentManager.addInstrument(etf);
     }
 
