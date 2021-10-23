@@ -10,54 +10,54 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class ValidateTest {
 
-    public static String emptyInput = "";
-    public static String validTestName = "testName";
-    public static String validPrice = "123.43";
-    public static String invalidPrice = "32fvr";
-    public static String[] validSentiments = {"positive", "neutral", "negative"};
-    public static String invalidSentiment = "invalid";
+    public static final String EMPTY_INPUT = "";
+    public static final String VALID_TEST_NAME = "testName";
+    public static final String VALID_PRICE = "123.43";
+    public static final String INVALID_PRICE = "32fvr";
+    public static final String[] VALID_SENTIMENTS = {"positive", "neutral", "negative"};
+    public static final String INVALID_SENTIMENT = "invalid";
 
-    public static String validTestInstrument = "testInstrument";
+    public static final String VALID_TEST_INSTRUMENT = "testInstrument";
 
     @Test
     void validateName_validName_expectSuccess() {
-        assertTrue(Validate.isValidName(validTestName, validTestInstrument));
+        assertTrue(Validate.isValidName(VALID_TEST_NAME, VALID_TEST_INSTRUMENT));
     }
 
     @Test
     void validateName_emptyName_expectFailure() {
-        assertFalse(Validate.isValidName(emptyInput, validTestInstrument));
+        assertFalse(Validate.isValidName(EMPTY_INPUT, VALID_TEST_INSTRUMENT));
     }
 
     @Test
     void validateCurrentPrice_validNumber_expectSuccess() {
-        assertTrue(Validate.isValidPrice(validPrice));
+        assertTrue(Validate.isValidPrice(VALID_PRICE));
     }
 
     @Test
     void validateCurrentPrice_invalidNumber_expectFailure() {
-        assertFalse(Validate.isValidPrice(invalidPrice));
+        assertFalse(Validate.isValidPrice(INVALID_PRICE));
     }
 
     @Test
     void validateCurrentPrice_emptyNumber_expectFailure() {
-        assertFalse(Validate.isValidPrice(emptyInput));
+        assertFalse(Validate.isValidPrice(EMPTY_INPUT));
     }
 
     @Test
     void validateSentiment_validSentiment_expectSuccess() {
-        Arrays.stream(validSentiments)
+        Arrays.stream(VALID_SENTIMENTS)
                 .forEach((sentiment) -> assertTrue(Validate.isValidSentiment(sentiment)));
     }
 
     @Test
     void validateSentiment_invalidSentiment_expectFailure() {
-        assertFalse(Validate.isValidSentiment(invalidSentiment));
+        assertFalse(Validate.isValidSentiment(INVALID_SENTIMENT));
     }
 
     @Test
     void validateSentiment_emptySentiment_expectFailure() {
-        assertFalse(Validate.isValidSentiment(emptyInput));
+        assertFalse(Validate.isValidSentiment(EMPTY_INPUT));
     }
 
 }
