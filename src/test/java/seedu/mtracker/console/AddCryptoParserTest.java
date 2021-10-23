@@ -8,41 +8,66 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AddCryptoParserTest {
+
     public static final int PARAMETER_SIZE = 5;
     public static final int DAYS_DIFFERENCE = 1;
     public static final LocalDate FUTURE_DATE = LocalDate.now().plusDays(DAYS_DIFFERENCE);
+    public static final String SEPARATOR_SPECIFIER = "%1$s";
 
-    public static final String USER_INPUT_NO_REMARKS = "TestName%1$s23.4%1$spositive%1$s"
-            + FUTURE_DATE
-            + "%1$s ";
+    public static final String USER_INPUT_NO_REMARKS = "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER + FUTURE_DATE
+            + SEPARATOR_SPECIFIER + " ";
 
-    public static final String[] EXPECTED_PARAMS_NO_REMARKS = {"TestName", "23.4", "positive", FUTURE_DATE.toString(),
-        ""};
+    public static final String USER_INPUT_WITH_REMARKS_AND_EXPIRY = "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER + FUTURE_DATE
+            + SEPARATOR_SPECIFIER + "fooRemarks";
 
-    public static final String USER_INPUT_WITH_REMARKS_AND_EXPIRY = "TestName%1$s100.4%1$snegative%1$s"
-            + FUTURE_DATE
-            + "%1$sTestRemarks";
+    public static final String[] EXPECTED_PARAMS_NO_REMARKS = {
+        "TTTXXX",
+        "23.4",
+        "positive",
+        String.valueOf(FUTURE_DATE),
+        "",
+    };
 
-    public static final String[] EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY = {"TestName", "100.4", "negative",
-        FUTURE_DATE.toString(), "TestRemarks"};
+    public static final String[] EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY = {
+        "TTTXXX",
+        "23.4",
+        "positive",
+        String.valueOf(FUTURE_DATE),
+        "fooRemarks"
+    };
 
-    public static final String USER_INPUT_TRY_INVALID_NAME = "%1$s%1$s%1$sTestName%1$s23.4%1$spositive%1$s"
-            + FUTURE_DATE
-            + "%1$s ";
+    public static final String USER_INPUT_TRY_INVALID_NAME = SEPARATOR_SPECIFIER.repeat(2) + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER + FUTURE_DATE
+            + SEPARATOR_SPECIFIER + " ";
 
-    public static final String USER_INPUT_TRY_INVALID_PRICE = "%1$sTestName%1$s2sd3.4%1$s100.4"
-            + "%1$snegative%1$s"
-            + FUTURE_DATE
-            + "%1$sTestRemarks";
 
-    public static final String USER_INPUT_TRY_INVALID_SENTIMENT = "%1$sTestName%1$s100.4"
-            + "%1$swrong%1$s%1$snegative%1$s"
-            + FUTURE_DATE
-            + "%1$sTestRemarks";
-    public static final String USER_INPUT_TRY_EMPTY_EXPIRY = "%1$sTestName%1$s100.4"
-            + "%1$snegative%1$s %1$s %1$s"
-            + FUTURE_DATE
-            + "%1$sTestRemarks";
+    public static final String USER_INPUT_TRY_INVALID_PRICE = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "2sd3.4"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER + FUTURE_DATE
+            + SEPARATOR_SPECIFIER + "fooRemarks";
+
+    public static final String USER_INPUT_TRY_INVALID_SENTIMENT = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "foobar"
+            + SEPARATOR_SPECIFIER.repeat(2) + "positive"
+            + SEPARATOR_SPECIFIER + FUTURE_DATE
+            + SEPARATOR_SPECIFIER + "fooRemarks";
+
+    public static final String USER_INPUT_TRY_EMPTY_EXPIRY = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER.repeat(2) + FUTURE_DATE
+            + SEPARATOR_SPECIFIER + "fooRemarks";
 
     String formatConsoleInput(String input) {
         return String.format(input, System.lineSeparator());
