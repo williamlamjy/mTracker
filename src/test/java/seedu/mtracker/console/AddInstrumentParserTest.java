@@ -65,7 +65,7 @@ class AddInstrumentParserTest {
     }
 
     @Test
-    void addExpiry_validExpiryInFutre_expectSuccess() {
+    void addExpiry_validExpiryInFuture_expectSuccess() {
         assertTrue(AddInstrumentParser.isValidExpiry(FUTURE_DATE.toString()));
     }
 
