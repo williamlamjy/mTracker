@@ -13,8 +13,24 @@ public class Stock extends Instrument {
         this.remark = remark;
     }
 
+    @Override
     public String getRemark() {
         return remark;
+    }
+
+    @Override
+    public void setRemark(String inputRemark) {
+        remark = inputRemark;
+    }
+
+    @Override
+    public String getSpecificParameter(int index) {
+        return null;
+    }
+
+    @Override
+    public void setSpecificParameter(Double inputReturns, int index) {
+
     }
 
     @Override

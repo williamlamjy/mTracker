@@ -1,5 +1,7 @@
 package seedu.mtracker.model;
 
+import java.util.HashSet;
+
 public abstract class Instrument {
     protected String name;
     protected double currentPrice;
@@ -20,11 +22,18 @@ public abstract class Instrument {
     protected static final String DONE_SYMBOL = "[X]";
     protected static final String NOT_DONE_SYMBOL = "[ ]";
 
+    protected static final String NAME_ATTRIBUTE = "name";
+    protected static final String CURRENT_PRICE_ATTRIBUTE = "current-price";
+    protected static final String SENTIMENT_ATTRIBUTE = "sentiment";
+    protected static final String REMARK_ATTRIBUTE = "remark";
+    protected static HashSet<String> validAttribute;
+
     public Instrument(String name, double currentPrice, String sentiment) {
         this.name = name;
         this.currentPrice = currentPrice;
         this.sentiment = sentiment;
         this.isDone = false;
+        validAttribute = new HashSet<>();
     }
 
     public boolean getIsDone() {
@@ -71,5 +80,34 @@ public abstract class Instrument {
     public String getGeneralParams() {
         return getTypeIcon() + getStatusIcon()
                 + SPACE + name + SEMICOLON_SEP + currentPrice + SEMICOLON_SEP + sentiment;
+    }
+
+
+    public void setName(String inputName) {
+        name = inputName;
+    }
+
+    public void setCurrentPrice(double inputCurrentPrice) {
+        currentPrice = inputCurrentPrice;
+    }
+
+    public void setSentiment(String inputSentiment) {
+        sentiment = inputSentiment;
+    }
+
+    public abstract String getRemark();
+
+    public abstract void setRemark(String currentPrice);
+
+    public abstract String getSpecificParameter(int index);
+
+    public abstract void setSpecificParameter(Double inputReturns,int index);
+
+    public HashSet<String> getValidAttribute() {
+        validAttribute.add(NAME_ATTRIBUTE);
+        validAttribute.add(CURRENT_PRICE_ATTRIBUTE);
+        validAttribute.add(SENTIMENT_ATTRIBUTE);
+        validAttribute.add(REMARK_ATTRIBUTE);
+        return validAttribute;
     }
 }

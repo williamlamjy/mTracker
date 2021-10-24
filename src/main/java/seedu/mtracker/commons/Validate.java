@@ -80,7 +80,6 @@ public class Validate {
             ErrorMessage.displayAddInstrumentSentimentError();
             return false;
         }
-
         return true;
     }
 

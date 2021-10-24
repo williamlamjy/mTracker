@@ -1,6 +1,5 @@
 package seedu.mtracker.console;
 
-import seedu.mtracker.LogHelper;
 import seedu.mtracker.asserthelpers.AssertParserHelper;
 import seedu.mtracker.commands.AddEtfCommand;
 import seedu.mtracker.commands.AddInstrumentCommand;

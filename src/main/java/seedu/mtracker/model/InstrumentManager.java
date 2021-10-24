@@ -50,5 +50,4 @@ public class InstrumentManager {
     public void deleteInstrument(int index) {
         instruments.remove(index);
     }
-
 }

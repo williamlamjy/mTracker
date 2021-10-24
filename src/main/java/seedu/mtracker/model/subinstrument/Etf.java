@@ -2,6 +2,8 @@ package seedu.mtracker.model.subinstrument;
 
 import seedu.mtracker.model.Instrument;
 
+import java.util.HashSet;
+
 
 public class Etf extends Instrument {
 
@@ -11,6 +13,7 @@ public class Etf extends Instrument {
     protected static final String TYPE_INSTRUMENT = "Etf";
 
     protected static final String RETURNS_FIELD = "Past Returns: ";
+    protected static final String RETURNS_ATTRIBUTE = "returns";
 
     public Etf(String name, double currentPrice, String sentiment, double pastReturns, String remark) {
         super(name, currentPrice, sentiment);
@@ -22,15 +25,25 @@ public class Etf extends Instrument {
         return remark;
     }
 
-    public String getReturns() {
+    public void setRemark(String inputRemark) {
+        remark = inputRemark;
+    }
+
+    public String getReturnsForFileFormat() {
+        return String.valueOf(pastReturns);
+    }
+
+    @Override
+    public String getSpecificParameter(int index) {
         if (pastReturns == -101.0) {
             return EMPTY_STRING;
         }
         return String.valueOf(pastReturns);
     }
 
-    public String getReturnsForFileFormat() {
-        return String.valueOf(pastReturns);
+    @Override
+    public void setSpecificParameter(Double inputPastReturn, int index) {
+        pastReturns = inputPastReturn;
     }
 
     @Override
@@ -54,5 +67,12 @@ public class Etf extends Instrument {
         return super.getAllParams()
                 + RETURNS_FIELD + pastReturns + System.lineSeparator()
                 + REMARKS_FIELD + remark;
+    }
+
+    @Override
+    public HashSet<String> getValidAttribute() {
+        super.getValidAttribute();
+        validAttribute.add(RETURNS_ATTRIBUTE);
+        return validAttribute;
     }
 }
