@@ -40,7 +40,7 @@ public class Forex extends Instrument {
     }
 
     @Override
-    public String editParameterInstructions(){
+    public String editParameterInstructions() {
         return super.editParameterInstructions() + SEPARATOR + ENTRY_PRICE_ATTRIBUTE + SEPARATOR
                 + EXIT_PRICE_ATTRIBUTE + SEPARATOR
                 + EXPIRY_ATTRIBUTE + SEPARATOR
@@ -67,33 +67,33 @@ public class Forex extends Instrument {
         remark = inputRemark;
     }
 
-    public void setEntryPrice(Double inputEntryPrice){
+    public void setEntryPrice(Double inputEntryPrice) {
         entryPrice = inputEntryPrice;
     }
 
-    public void setExitPrice(Double inputExitPrice){
+    public void setExitPrice(Double inputExitPrice) {
         exitPrice = inputExitPrice;
     }
 
-    public void setExpiry(String inputExpiry){
+    public void setExpiry(String inputExpiry) {
         expiry = inputExpiry;
     }
 
     @Override
     public void editParameter(HashMap<String,String> editedParameters) {
         super.editParameter(editedParameters);
-        if(editedParameters.containsKey(EXPIRY_ATTRIBUTE)){
+        if (editedParameters.containsKey(EXPIRY_ATTRIBUTE)) {
             setExpiry(editedParameters.get(EXPIRY_ATTRIBUTE));
         }
-        if(editedParameters.containsKey(ENTRY_PRICE_ATTRIBUTE)){
+        if (editedParameters.containsKey(ENTRY_PRICE_ATTRIBUTE)) {
             Double updateEntryPrice = Double.parseDouble(editedParameters.get(ENTRY_PRICE_ATTRIBUTE));
             setEntryPrice(updateEntryPrice);
         }
-        if(editedParameters.containsKey(EXIT_PRICE_FIELD)){
+        if (editedParameters.containsKey(EXIT_PRICE_FIELD)) {
             Double updateExitPrice = Double.parseDouble(editedParameters.get(EXIT_PRICE_FIELD));
             setExitPrice(updateExitPrice);
         }
-        if(editedParameters.containsKey(REMARK_ATTRIBUTE)){
+        if (editedParameters.containsKey(REMARK_ATTRIBUTE)) {
             setRemark(editedParameters.get(REMARK_ATTRIBUTE));
         }
     }

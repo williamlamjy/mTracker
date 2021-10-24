@@ -26,7 +26,7 @@ public class Stock extends Instrument {
     @Override
     public void editParameter(HashMap<String,String> editedParameters) {
         super.editParameter(editedParameters);
-        if(editedParameters.containsKey(REMARK_ATTRIBUTE)){
+        if (editedParameters.containsKey(REMARK_ATTRIBUTE)) {
             setRemark(editedParameters.get(REMARK_ATTRIBUTE));
         }
     }

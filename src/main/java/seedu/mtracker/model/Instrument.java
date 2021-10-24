@@ -76,14 +76,14 @@ public abstract class Instrument {
     }
 
     public void editParameter(HashMap<String,String> editedParameters) {
-        if(editedParameters.containsKey(NAME_ATTRIBUTE)){
+        if (editedParameters.containsKey(NAME_ATTRIBUTE)) {
             setName(editedParameters.get(NAME_ATTRIBUTE));
         }
-        if(editedParameters.containsKey(CURRENT_PRICE_ATTRIBUTE)){
+        if (editedParameters.containsKey(CURRENT_PRICE_ATTRIBUTE)) {
             Double updatedPrice = Double.parseDouble(editedParameters.get(CURRENT_PRICE_ATTRIBUTE));
             setCurrentPrice(updatedPrice);
         }
-        if(editedParameters.containsKey(SENTIMENT_ATTRIBUTE)){
+        if (editedParameters.containsKey(SENTIMENT_ATTRIBUTE)) {
             setSentiment(editedParameters.get(SENTIMENT_ATTRIBUTE));
         }
     }
@@ -96,7 +96,7 @@ public abstract class Instrument {
                 + getIsDone());
     }
 
-    public String editParameterInstructions(){
+    public String editParameterInstructions() {
         return NAME_ATTRIBUTE + SEPARATOR
                 + CURRENT_PRICE_ATTRIBUTE + SEPARATOR
                 + SENTIMENT_ATTRIBUTE;

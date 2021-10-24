@@ -53,7 +53,7 @@ public class InstrumentManager {
         instruments.remove(index);
     }
 
-    public void editInstrument(int index, HashMap<String,String> editedParameters){
+    public void editInstrument(int index, HashMap<String,String> editedParameters) {
         Instrument instrument = instruments.get(index);
         instrument.editParameter(editedParameters);
     }

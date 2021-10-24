@@ -28,7 +28,7 @@ public class Crypto extends Instrument {
         return remark;
     }
 
-    public void setExpiry(String inputExpiry){
+    public void setExpiry(String inputExpiry) {
         expiry = inputExpiry;
     }
 
@@ -39,10 +39,10 @@ public class Crypto extends Instrument {
     @Override
     public void editParameter(HashMap<String,String> editedParameters) {
         super.editParameter(editedParameters);
-        if(editedParameters.containsKey(EXPIRY_ATTRIBUTE)){
+        if (editedParameters.containsKey(EXPIRY_ATTRIBUTE)) {
             setExpiry(editedParameters.get(EXPIRY_ATTRIBUTE));
         }
-        if(editedParameters.containsKey(REMARK_ATTRIBUTE)){
+        if (editedParameters.containsKey(REMARK_ATTRIBUTE)) {
             setRemark(editedParameters.get(REMARK_ATTRIBUTE));
         }
     }
@@ -59,7 +59,7 @@ public class Crypto extends Instrument {
     }
 
     @Override
-    public String editParameterInstructions(){
+    public String editParameterInstructions() {
         return super.editParameterInstructions() + SEPARATOR + EXPIRY_ATTRIBUTE + SEPARATOR
                 + REMARK_ATTRIBUTE;
     }

@@ -142,7 +142,7 @@ public class TextUi {
                 + instrument.editParameterInstructions());
     }
 
-    public static void displayEditInvalidAttribute(String inputAttribute){
+    public static void displayEditInvalidAttribute(String inputAttribute) {
         System.out.println(inputAttribute + "is an invalid attribute of this instrument and will be ignored.");
     }
 

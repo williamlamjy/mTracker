@@ -87,7 +87,7 @@ public class InputParser {
         for (String i: parametersToEdit) {
             if (validAttributes.contains(i)) {
                 filteredAttributes.add(i);
-            }else{
+            } else {
                 TextUi.displayEditInvalidAttribute(i);
             }
         }

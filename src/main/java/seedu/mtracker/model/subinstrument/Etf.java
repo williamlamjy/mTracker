@@ -30,18 +30,18 @@ public class Etf extends Instrument {
         remark = inputRemark;
     }
 
-    public void setPastReturns(Double inputPastReturn){
+    public void setPastReturns(Double inputPastReturn) {
         pastReturns = inputPastReturn;
     }
 
     @Override
     public void editParameter(HashMap<String,String> editedParameters) {
         super.editParameter(editedParameters);
-        if(editedParameters.containsKey(RETURNS_ATTRIBUTE)){
+        if (editedParameters.containsKey(RETURNS_ATTRIBUTE)) {
             Double updateReturn = Double.parseDouble(editedParameters.get(RETURNS_ATTRIBUTE));
             setPastReturns(updateReturn);
         }
-        if(editedParameters.containsKey(REMARK_ATTRIBUTE)){
+        if (editedParameters.containsKey(REMARK_ATTRIBUTE)) {
             setRemark(editedParameters.get(REMARK_ATTRIBUTE));
         }
     }
@@ -51,7 +51,7 @@ public class Etf extends Instrument {
     }
 
     @Override
-    public String editParameterInstructions(){
+    public String editParameterInstructions() {
         return super.editParameterInstructions() + SEPARATOR + RETURNS_ATTRIBUTE + SEPARATOR
                 + REMARK_ATTRIBUTE;
     }
