@@ -121,7 +121,7 @@ public class TextUi {
     public static void displayExitMessage() {
         System.out.println(BYE_LOGO);
         System.out.println("Thank you for using mTracker.\n"
-                + "☻ MAY THE MARKETS BE WITH YOU!!! ᕦ(ò_óˇ)ᕤ");
+                + "☺ ☺ ☺ MAY THE MARKETS BE WITH YOU!!! ☺ ☺ ☺");
     }
 
     public static void displayPrompter() {
