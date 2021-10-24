@@ -1,0 +1,111 @@
+@startuml
+!include Styles.puml
+
+box console COLOR_BRIGHT_GREEN
+participant ":InputParser" as InputParser COLOR_CONSOLE
+end box
+
+box model COLOR_GREY
+participant ":DoneCommand" as DoneCommand COLOR_COMMANDS
+participant ":InstrumentManager" as InstrumentManager COLOR_MODEL
+participant ":Instrument" as Instrument COLOR_MODEL
+end box
+
+box ui COLOR_LIGHT_BLUE
+participant ":TextUi" as TextUi COLOR_UI
+end box
+
+
+[-> InputParser : filterByCommandType({"done"}, instruments)
+activate InputParser
+
+InputParser-> DoneCommand : new DoneCommand()
+activate DoneCommand
+
+InputParser ->InputParser: getDoneInstrumentCommand(commandComponents[], instruments)
+activate InputParser
+
+InputParser ->InputParser: getIndex(commandComponents[])
+activate InputParser
+InputParser --> InputParser
+deactivate InputParser
+
+InputParser ->DoneCommand: setIndex(index)
+activate DoneCommand
+
+activate DoneCommand
+DoneCommand --> DoneCommand
+deactivate DoneCommand
+
+deactivate DoneCommand
+DoneCommand--> InputParser
+deactivate DoneCommand
+
+InputParser -->InputParser: return doneCommand
+
+deactivate InputParser
+[<--InputParser: return doneCommand
+deactivate InputParser
+
+[->DoneCommand:execute()
+activate DoneCommand
+
+
+DoneCommand-> InstrumentManager: getInstrument(index)
+activate InstrumentManager
+
+activate Instrument
+InstrumentManager-> Instrument: get(index)
+
+Instrument--> InstrumentManager: return instrument
+deactivate Instrument
+
+
+InstrumentManager--> DoneCommand: return instrument
+deactivate InstrumentManager
+
+DoneCommand-> InstrumentManager: doneInstrument(index)
+activate InstrumentManager
+
+
+InstrumentManager-> Instrument: get(index)
+activate Instrument
+
+Instrument--> InstrumentManager: return instrument
+deactivate Instrument
+
+
+InstrumentManager-> Instrument: markAsDone
+activate Instrument
+
+Instrument--> InstrumentManager
+deactivate Instrument
+
+InstrumentManager--> DoneCommand
+deactivate InstrumentManager
+
+DoneCommand-> TextUi: displayDoneInstrument(instrument)
+activate TextUi
+
+TextUi-> Instrument: getGeneralParams
+activate Instrument
+
+Instrument-> Instrument: getTypeIcon()
+activate Instrument
+Instrument--> Instrument
+deactivate Instrument
+
+Instrument-> Instrument: getStatusIcon()
+activate Instrument
+Instrument--> Instrument
+deactivate Instrument
+
+Instrument--> TextUi: return instrumentDescription
+deactivate Instrument
+
+TextUi--> DoneCommand
+deactivate TextUi
+
+[<--DoneCommand
+deactivate DoneCommand
+@enduml

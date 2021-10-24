@@ -15,7 +15,6 @@ Package " "<<Rectangle>>{
     Class console COLOR_CONSOLE
     Class model COLOR_MODEL
     Class storage COLOR_STORAGE
-}
 
 main -down[COLOR_MAIN]-> storage
 main -down[COLOR_MAIN]-> console
@@ -31,4 +30,4 @@ commands .down[COLOR_COMMANDS]->ui
 commands -down[COLOR_COMMANDS]->model
 ui .down[COLOR_UI]->model
 
-@endum
+@enduml

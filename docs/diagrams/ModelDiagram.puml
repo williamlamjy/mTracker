@@ -1,0 +1,25 @@
+@startuml
+!include Styles.puml
+
+Package "Model            "  <<Rectangle>>{
+     Class "{abstract}\nInstrument" as Instrument COLOR_MODEL
+     Class InstrumentManager COLOR_MODEL
+     Class Crypto COLOR_MODEL
+     Class Stock COLOR_MODEL
+     Class Etf COLOR_MODEL
+     Class Forex COLOR_MODEL
+
+ }
+
+Class outside COLOR_WHITE
+outside -down[COLOR_MODEL]->"1" InstrumentManager
+Crypto -up[COLOR_MODEL]->Instrument
+Stock -up[COLOR_MODEL]->Instrument
+Etf -up[COLOR_MODEL]->Instrument
+Forex -up[COLOR_MODEL]->Instrument
+InstrumentManager -down[COLOR_MODEL]-> "*" Instrument
+
+
+
+
+@enduml

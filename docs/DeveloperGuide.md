@@ -68,7 +68,7 @@ The `model` package contains the `InstrumentManager` class and `Instrument` clas
 in `InstrumentManager.java` and `Instrument.java` respectively. This figure below represents the class diagram of 
 how the different class work together:
 
-<>
+<img src="images/ModelDiagram.png" width="550"/>
 
 The `Model` component:
 
@@ -81,6 +81,7 @@ This ensures the user only edits one list and prevents possible data corruption 
 different lists).
 * Does not have any dependencies on any of the other components, as the `Model` component is meant to be responsible
 solely for the data representation and modification of instruments.
+
   
 ### Ui
 
@@ -131,6 +132,10 @@ Command component:
 * Contains a parent `AddInstrumentCommand` class where all commands related to adding an instrument inherits from.
 * Other than ExitCommand and InvalidCommand, the other command classes are dependent of on the InstrumentManager in order to execute the required actions on the stored instruments.
 * The command classes are dependent on the `TextUi` class. This allows the command class to display its execution results to the user.
+
+The figure below represents the sequence diagram when the user executes a done command:
+
+<img src="images/DoneCryptoSequenceDiagram.png" width="800"/>
 
 ## Implementation
 (for parser alternatives considered to design for inputs like
