@@ -1,0 +1,13 @@
+!include Colors.puml
+
+skinparam Class {
+    FontColor #FFFFFF
+    BorderThickness 1
+    BorderColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Shadowing false
+
+hide members
+hide circle
