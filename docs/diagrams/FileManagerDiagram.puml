@@ -1,0 +1,24 @@
+@startuml
+!include Styles.puml
+'https://plantuml.com/class-diagram
+
+Package "filemanager"  <<Rectangle>>{
+     Class Storage COLOR_STORAGE
+     Class InstrumentDecoder COLOR_STORAGE
+     Class InstrumentEncoder COLOR_STORAGE
+     Class CryptoDecoder COLOR_STORAGE
+     Class StockDecoder COLOR_STORAGE
+     Class EtfDecoder COLOR_STORAGE
+     Class ForexDecoder COLOR_STORAGE
+}
+
+Class outside COLOR_WHITE
+outside -down[COLOR_STORAGE]-> Storage
+CryptoDecoder -up[COLOR_STORAGE]->InstrumentDecoder
+StockDecoder -up[COLOR_STORAGE]->InstrumentDecoder
+EtfDecoder -up[COLOR_STORAGE]->InstrumentDecoder
+ForexDecoder -up[COLOR_STORAGE]->InstrumentDecoder
+Storage -left[COLOR_STORAGE].> InstrumentEncoder
+Storage -right[COLOR_STORAGE].> InstrumentDecoder
+
+@enduml
