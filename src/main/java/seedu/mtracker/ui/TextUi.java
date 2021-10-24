@@ -33,12 +33,14 @@ public class TextUi {
     private static final String ENTRY_PRICE_HEADER = "Entry Price: ";
     private static final String EXIT_PRICE_HEADER = "Exit Price: ";
     private static final String RETURNS_HEADER = "Past Returns (optional): ";
-    private static final String EDIT_NAME_MESSAGE = "name changed from ";
-    private static final String EDIT_CURRENTPRICE_MESSAGE = "Current price changed from ";
-    private static final String EDIT_SENTIMENT_MESSAGE = "Sentiment changed from ";
-    private static final String EDIT_REMARKS_MESSAGE = "Remark changed from ";
-    private static final String EDIT_RETURN_MESSAGE = "Past Returns changed from ";
-    private static final String EDIT_TO_MESSAGE = " to ";
+    private static final String EDIT_NAME_MESSAGE = "Enter new name:";
+    private static final String EDIT_CURRENTPRICE_MESSAGE = "Enter new Current price:";
+    private static final String EDIT_SENTIMENT_MESSAGE = "Enter new Sentiment:";
+    private static final String EDIT_REMARKS_MESSAGE = "Enter new Remark:";
+    private static final String EDIT_RETURN_MESSAGE = "Enter new Past Returns:";
+    private static final String EDIT_ENTRY_MESSAGE = "Enter new Entry Price:";
+    private static final String EDIT_EXIT_MESSAGE = "Enter new Exit Price:";
+    private static final String EDIT_EXPIRY_MESSAGE = "Enter new Expiry:";
 
     public static void displayInstrumentAdded(Instrument newInstrument) {
         System.out.println(TAB + newInstrument.getGeneralParams() + " - has been added to list.");
@@ -137,27 +139,43 @@ public class TextUi {
     public static void displayEditInstrumentFirstInstruction(Instrument instrument) {
         System.out.println("Please enter one or more " + instrument.getType()
                 + " parameters to edit." + System.lineSeparator()
-                + instrument.getAllParams());
+                + instrument.editParameterInstructions());
     }
 
-    public static void displayEditName(String previousName, String newName) {
-        System.out.println(EDIT_NAME_MESSAGE + previousName + EDIT_TO_MESSAGE + newName);
+    public static void displayEditInvalidAttribute(String inputAttribute){
+        System.out.println(inputAttribute + "is an invalid attribute of this instrument and will be ignored.");
     }
 
-    public static void displayEditCurrentPrice(String previousPrice, String newPrice) {
-        System.out.println(EDIT_CURRENTPRICE_MESSAGE + previousPrice + EDIT_TO_MESSAGE + newPrice);
+    public static void displayEditName() {
+        System.out.println(EDIT_NAME_MESSAGE);
     }
 
-    public static void displayEditSentiment(String previousSentiment, String newSentiment) {
-        System.out.println(EDIT_SENTIMENT_MESSAGE + previousSentiment + EDIT_TO_MESSAGE + newSentiment);
+    public static void displayEditCurrentPrice() {
+        System.out.println(EDIT_CURRENTPRICE_MESSAGE);
     }
 
-    public static void displayEditRemark(String previousRemark, String newRemark) {
-        System.out.println(EDIT_REMARKS_MESSAGE + previousRemark + EDIT_TO_MESSAGE + newRemark);
+    public static void displayEditSentiment() {
+        System.out.println(EDIT_SENTIMENT_MESSAGE);
     }
 
-    public static void displayEditReturn(String previousReturn, String newReturn) {
-        System.out.println(EDIT_RETURN_MESSAGE + previousReturn + EDIT_TO_MESSAGE + newReturn);
+    public static void displayEditRemark() {
+        System.out.println(EDIT_REMARKS_MESSAGE);
+    }
+
+    public static void displayEditReturn() {
+        System.out.println(EDIT_RETURN_MESSAGE);
+    }
+
+    public static void displayEditEntryPrice() {
+        System.out.println(EDIT_ENTRY_MESSAGE);
+    }
+
+    public static void displayEditExitPrice() {
+        System.out.println(EDIT_EXIT_MESSAGE);
+    }
+
+    public static void displayEditExpiry() {
+        System.out.println(EDIT_EXPIRY_MESSAGE);
     }
 
     public static void greetAtStartUp() {

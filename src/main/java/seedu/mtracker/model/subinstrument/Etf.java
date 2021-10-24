@@ -2,6 +2,7 @@ package seedu.mtracker.model.subinstrument;
 
 import seedu.mtracker.model.Instrument;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 
@@ -29,21 +30,30 @@ public class Etf extends Instrument {
         remark = inputRemark;
     }
 
+    public void setPastReturns(Double inputPastReturn){
+        pastReturns = inputPastReturn;
+    }
+
+    @Override
+    public void editParameter(HashMap<String,String> editedParameters) {
+        super.editParameter(editedParameters);
+        if(editedParameters.containsKey(RETURNS_ATTRIBUTE)){
+            Double updateReturn = Double.parseDouble(editedParameters.get(RETURNS_ATTRIBUTE));
+            setPastReturns(updateReturn);
+        }
+        if(editedParameters.containsKey(REMARK_ATTRIBUTE)){
+            setRemark(editedParameters.get(REMARK_ATTRIBUTE));
+        }
+    }
+
     public String getReturnsForFileFormat() {
         return String.valueOf(pastReturns);
     }
 
     @Override
-    public String getSpecificParameter(int index) {
-        if (pastReturns == -101.0) {
-            return EMPTY_STRING;
-        }
-        return String.valueOf(pastReturns);
-    }
-
-    @Override
-    public void setSpecificParameter(Double inputPastReturn, int index) {
-        pastReturns = inputPastReturn;
+    public String editParameterInstructions(){
+        return super.editParameterInstructions() + SEPARATOR + RETURNS_ATTRIBUTE + SEPARATOR
+                + REMARK_ATTRIBUTE;
     }
 
     @Override

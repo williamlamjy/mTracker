@@ -2,6 +2,7 @@ package seedu.mtracker.model.subinstrument;
 
 import seedu.mtracker.model.Instrument;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class Forex extends Instrument {
@@ -17,8 +18,8 @@ public class Forex extends Instrument {
     protected static final String EXIT_PRICE_FIELD = "Exit Price: ";
     protected static final String EXPIRY_FIELD = "Expiry: ";
 
-    protected static final String ENTRY_PRICE_ATTRIBUTE = "entry price";
-    protected static final String EXIT_PRICE_ATTRIBUTE = "exit price";
+    protected static final String ENTRY_PRICE_ATTRIBUTE = "entry-price";
+    protected static final String EXIT_PRICE_ATTRIBUTE = "exit-price";
     protected static final String EXPIRY_ATTRIBUTE = "expiry";
 
     public Forex(
@@ -38,6 +39,14 @@ public class Forex extends Instrument {
 
     }
 
+    @Override
+    public String editParameterInstructions(){
+        return super.editParameterInstructions() + SEPARATOR + ENTRY_PRICE_ATTRIBUTE + SEPARATOR
+                + EXIT_PRICE_ATTRIBUTE + SEPARATOR
+                + EXPIRY_ATTRIBUTE + SEPARATOR
+                + REMARK_ATTRIBUTE;
+    }
+
     public double getEntryPrice() {
         return entryPrice;
     }
@@ -50,24 +59,43 @@ public class Forex extends Instrument {
         return expiry;
     }
 
-    @Override
     public String getRemark() {
         return remark;
     }
 
-    @Override
     public void setRemark(String inputRemark) {
         remark = inputRemark;
     }
 
-    @Override
-    public String getSpecificParameter(int index) {
-        return null;
+    public void setEntryPrice(Double inputEntryPrice){
+        entryPrice = inputEntryPrice;
+    }
+
+    public void setExitPrice(Double inputExitPrice){
+        exitPrice = inputExitPrice;
+    }
+
+    public void setExpiry(String inputExpiry){
+        expiry = inputExpiry;
     }
 
     @Override
-    public void setSpecificParameter(Double inputReturns, int index) {
-
+    public void editParameter(HashMap<String,String> editedParameters) {
+        super.editParameter(editedParameters);
+        if(editedParameters.containsKey(EXPIRY_ATTRIBUTE)){
+            setExpiry(editedParameters.get(EXPIRY_ATTRIBUTE));
+        }
+        if(editedParameters.containsKey(ENTRY_PRICE_ATTRIBUTE)){
+            Double updateEntryPrice = Double.parseDouble(editedParameters.get(ENTRY_PRICE_ATTRIBUTE));
+            setEntryPrice(updateEntryPrice);
+        }
+        if(editedParameters.containsKey(EXIT_PRICE_FIELD)){
+            Double updateExitPrice = Double.parseDouble(editedParameters.get(EXIT_PRICE_FIELD));
+            setExitPrice(updateExitPrice);
+        }
+        if(editedParameters.containsKey(REMARK_ATTRIBUTE)){
+            setRemark(editedParameters.get(REMARK_ATTRIBUTE));
+        }
     }
 
     @Override

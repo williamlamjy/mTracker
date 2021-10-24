@@ -82,11 +82,13 @@ public class InputParser {
     }
 
 
-    public HashSet<String> isValidParameters(String[] parametersToEdit, HashSet<String> validAttributes) {
+    public HashSet<String> filterInValidParameters(String[] parametersToEdit, HashSet<String> validAttributes) {
         HashSet<String> filteredAttributes = new HashSet<>();
         for (String i: parametersToEdit) {
             if (validAttributes.contains(i)) {
                 filteredAttributes.add(i);
+            }else{
+                TextUi.displayEditInvalidAttribute(i);
             }
         }
         return filteredAttributes;
@@ -95,7 +97,7 @@ public class InputParser {
     public HashSet<String> getParametersToEdit(HashSet<String> validAttributes) {
         String parametersToEdit = getUserInput();
         String[] parameters = getCommandComponents(parametersToEdit);
-        return isValidParameters(parameters, validAttributes);
+        return filterInValidParameters(parameters, validAttributes);
     }
 
 
@@ -105,7 +107,7 @@ public class InputParser {
         Instrument instrumentToEdit = instruments.get(instrumentNumber);
         TextUi.displayEditInstrumentFirstInstruction(instrumentToEdit);
         HashSet<String> parametersToEdit = getParametersToEdit(instrumentToEdit.getValidAttribute());
-        EditInstrumentParser editInstrumentParser = new EditEtfParser();
+        EditInstrumentParser editInstrumentParser = new EditInstrumentParser();
         return editInstrumentParser.getParametersToEdit(parametersToEdit, instrumentToEdit, instrumentNumber);
     }
 

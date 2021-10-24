@@ -2,6 +2,7 @@ package seedu.mtracker.model.subinstrument;
 
 import seedu.mtracker.model.Instrument;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class Crypto extends Instrument {
@@ -23,24 +24,27 @@ public class Crypto extends Instrument {
         return expiry;
     }
 
-    @Override
     public String getRemark() {
         return remark;
     }
 
-    @Override
+    public void setExpiry(String inputExpiry){
+        expiry = inputExpiry;
+    }
+
     public void setRemark(String inputRemark) {
         remark = inputRemark;
     }
 
     @Override
-    public String getSpecificParameter(int index) {
-        return null;
-    }
-
-    @Override
-    public void setSpecificParameter(Double inputReturns, int index) {
-
+    public void editParameter(HashMap<String,String> editedParameters) {
+        super.editParameter(editedParameters);
+        if(editedParameters.containsKey(EXPIRY_ATTRIBUTE)){
+            setExpiry(editedParameters.get(EXPIRY_ATTRIBUTE));
+        }
+        if(editedParameters.containsKey(REMARK_ATTRIBUTE)){
+            setRemark(editedParameters.get(REMARK_ATTRIBUTE));
+        }
     }
 
     @Override
@@ -52,6 +56,12 @@ public class Crypto extends Instrument {
     public String textFileFormatting() {
         return String.format(super.textFileFormatting() + FILE_SEPARATOR + getExpiry()
                 + FILE_SEPARATOR + getRemark());
+    }
+
+    @Override
+    public String editParameterInstructions(){
+        return super.editParameterInstructions() + SEPARATOR + EXPIRY_ATTRIBUTE + SEPARATOR
+                + REMARK_ATTRIBUTE;
     }
 
     @Override

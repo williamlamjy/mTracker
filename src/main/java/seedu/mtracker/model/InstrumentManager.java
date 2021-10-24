@@ -3,6 +3,8 @@ package seedu.mtracker.model;
 import seedu.mtracker.error.InvalidBoundsError;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class InstrumentManager {
 
@@ -49,5 +51,10 @@ public class InstrumentManager {
 
     public void deleteInstrument(int index) {
         instruments.remove(index);
+    }
+
+    public void editInstrument(int index, HashMap<String,String> editedParameters){
+        Instrument instrument = instruments.get(index);
+        instrument.editParameter(editedParameters);
     }
 }
