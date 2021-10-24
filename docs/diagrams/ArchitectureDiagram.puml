@@ -1,13 +1,6 @@
 @startuml
 !include Styles.puml
 
-!define COLOR_UI COLOR_DARK_BLUE
-!define COLOR_MAIN COLOR_BLACK
-!define COLOR_COMMANDS COLOR_DARK_GREEN
-!define COLOR_CONSOLE COLOR_TEAL
-!define COLOR_MODEL COLOR_PURPLE
-!define COLOR_STORAGE COLOR_BROWN
-
 Package " "<<Rectangle>>{
     Class ui COLOR_UI
     Class main COLOR_MAIN

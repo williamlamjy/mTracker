@@ -8,8 +8,7 @@ Package "Model            "  <<Rectangle>>{
      Class Stock COLOR_MODEL
      Class Etf COLOR_MODEL
      Class Forex COLOR_MODEL
-
- }
+}
 
 Class outside COLOR_WHITE
 outside -down[COLOR_MODEL]->"1" InstrumentManager
@@ -18,8 +17,5 @@ Stock -up[COLOR_MODEL]->Instrument
 Etf -up[COLOR_MODEL]->Instrument
 Forex -up[COLOR_MODEL]->Instrument
 InstrumentManager -down[COLOR_MODEL]-> "*" Instrument
-
-
-
 
 @enduml
