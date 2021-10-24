@@ -178,6 +178,13 @@ public class TextUi {
         System.out.println(EDIT_EXPIRY_MESSAGE);
     }
 
+    public static void displayEditBeforeAfter(Instrument beforeEdit, Instrument afterEdit) {
+        System.out.println("Before:");
+        displaySpecificInstrumentView(beforeEdit);
+        System.out.println("Changed To:");
+        displaySpecificInstrumentView(afterEdit);
+    }
+
     public static void greetAtStartUp() {
         System.out.println(LINE_DECORATOR);
         System.out.println(LOGO);
