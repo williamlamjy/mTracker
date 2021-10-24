@@ -35,13 +35,15 @@ executing particular commands determined by the necessary parser classes in cons
     * `subinstrument` is a collection of the different instrument classes: `Crypto`, 
     `Etf`, `Forex`, and `Stock`. The primary role of these classes is to initialize instrument
       objects of their said type containing their necessary financial information recorded from the user.
-* `storage` is responsible for saving the session's instruments data to local file, updating
+* `filemanager` is responsible for saving the session's instruments data to local file, updating
 them during runtime, and restoring data from previous session when the program is relaunched.
 
 The subsequent sections will elaborate on the more technical design and implementation details of
 the architectural components briefly explained in this section.
 
 ### Parser component
+
+
 The main parent class in `console` package is the `InputParser` which is defined in `InputParser.java`.
 The figure below represents the class diagram of how all the different parser classes work together:
 
@@ -64,6 +66,8 @@ The figure below represents the sequence diagram when the user wants to add a st
 <>
 
 ### Model Component
+
+
 The `model` package contains the `InstrumentManager` class and `Instrument` class. It is defined
 in `InstrumentManager.java` and `Instrument.java` respectively. This figure below represents the class diagram of 
 how the different class work together:
@@ -109,6 +113,8 @@ all the financial information recorded for that instrument, and then displays th
 the user.
 
 ### Command Component
+
+
 The Command component contains all the commands classes, where its respective class is instantiated when a valid command is entered by the user. 
 
 Commands include:
@@ -133,9 +139,28 @@ Command component:
 * Other than ExitCommand and InvalidCommand, the other command classes are dependent of on the InstrumentManager in order to execute the required actions on the stored instruments.
 * The command classes are dependent on the `TextUi` class. This allows the command class to display its execution results to the user.
 
+
 The figure below represents the sequence diagram when the user executes a done command:
 
 <img src="images/DoneCryptoSequenceDiagram.png" width="800"/>
+
+### FileManager Component
+The `filemanager` package contains the `Storage`, `InstrumentEncoder` and `InstrumentDecoder` classes. It is defined in
+the `Storage.java`, `InstrumentEncoder.java` and `InstrumentDecoder.java` respectively. This figure below represents the class diagram of
+how the different class work together:
+
+<img src="images/FileManagerDiagram.png" width="550"/>
+
+The FileManager Component:
+
+* Contains the `Storage` class that loads data from any pre-existing text file. If the file does not exist, it creates 
+a new text file to store the data. It updates the file by calling the `writeFile` method in the `InstrumentEncoder` class.
+* Contains the `InstrumentEncoder` class which encodes the instrument data into a text file format for decoding.
+* Contains the `InstrumentDecoder` parent class which decodes the text file. The 4 sub-decoder classes `CryptoDecoder`,
+`EtfDecoder`, `ForexDecoder` and `StockDecoder` adds the respective instruments with their decoded attributes into the
+`InstrumentManager` enabling the program to load pre-existing data.
+* Has some dependencies on the `Model` component as it saves and retrieves data from `Model` objects.
+
 
 ## Implementation
 (for parser alternatives considered to design for inputs like
