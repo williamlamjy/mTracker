@@ -1,12 +1,16 @@
 @startuml
+'https://plantuml.com/class-diagram
 !include Styles.puml
 
 box console COLOR_BRIGHT_GREEN
 participant ":InputParser" as InputParser COLOR_CONSOLE
 end box
 
-box model COLOR_GREY
+box command COLOR_YELLOW
 participant ":DoneCommand" as DoneCommand COLOR_COMMANDS
+end box
+
+box model COLOR_GREY
 participant ":InstrumentManager" as InstrumentManager COLOR_MODEL
 participant ":Instrument" as Instrument COLOR_MODEL
 end box
