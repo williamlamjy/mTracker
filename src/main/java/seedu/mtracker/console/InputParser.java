@@ -7,6 +7,7 @@ import seedu.mtracker.commands.Command;
 import seedu.mtracker.commands.DeleteCommand;
 import seedu.mtracker.commands.ExitCommand;
 import seedu.mtracker.commands.ListCommand;
+import seedu.mtracker.commands.FindCommand;
 import seedu.mtracker.commons.Validate;
 import seedu.mtracker.commands.ViewCommand;
 import seedu.mtracker.error.InvalidBoundsError;
@@ -14,6 +15,7 @@ import seedu.mtracker.error.InvalidCommandError;
 import seedu.mtracker.error.InvalidIndexError;
 import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.error.InvalidNoIndexError;
+import seedu.mtracker.error.InvalidNoKeywordError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -27,6 +29,7 @@ public class InputParser {
 
     public static final int INDEX_OFFSET = 1;
     public static final int INSTRUMENT_INDEX = 1;
+    public static final int SEARCH_STR_INDEX = 1;
 
     protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
@@ -35,6 +38,7 @@ public class InputParser {
     protected static Scanner inputScanner;
 
     private int instrumentNumber;
+    private String searchString;
 
     public InputParser() {
         inputScanner = new Scanner(System.in);
@@ -84,6 +88,14 @@ public class InputParser {
         Validate.validateIndexWithinBounds(instruments, instrumentNumber);
     }
 
+    public FindCommand getFindInstrumentsCommand(String[] commandComponents)
+            throws InvalidNoKeywordError {
+        FindCommand findCommand = new FindCommand();
+        getSearchString(commandComponents);
+        findCommand.setKeyword(searchString);
+        return findCommand;
+    }
+
     public Command filterByCommandType(String[] commandComponents, ArrayList<Instrument> instruments)
             throws Exception {
         Command command;
@@ -106,6 +118,9 @@ public class InputParser {
         case DoneCommand.COMMAND_WORD:
             command = getDoneInstrumentCommand(commandComponents, instruments);
             break;
+        case FindCommand.COMMAND_WORD:
+            command = getFindInstrumentsCommand(commandComponents);
+            break;
         default:
             logger.info(LogHelper.LOG_INVALID_COMMAND);
             throw new InvalidCommandError();
@@ -124,6 +139,14 @@ public class InputParser {
             throw new InvalidNoIndexError();
         } catch (NumberFormatException e) {
             throw new InvalidIndexError();
+        }
+    }
+
+    public void getSearchString(String[] commandComponents) {
+        try {
+            searchString = commandComponents[SEARCH_STR_INDEX];
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidNoKeywordError();
         }
     }
 }
