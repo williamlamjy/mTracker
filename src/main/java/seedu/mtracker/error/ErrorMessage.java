@@ -4,7 +4,7 @@ public abstract class ErrorMessage {
 
     public static final String INVALID_INSTRUMENT_GIVEN_ERROR = "Invalid Instrument given!";
     public static final String INVALID_COMMAND_GIVEN_ERROR = "Oops, I do not understand you...";
-    public static final String INVALID_PAST_DATE_GIVEN_ERROR = "Oops, expiry must be a valid date in the future";
+    public static final String INVALID_PAST_DATE_GIVEN_ERROR = "Oops, expiry cannot be a date in the past";
     public static final String INVALID_DATE_FORMAT_ERROR = "Oops, expiry given must be in YYYY-MM-DD format";
     public static final String INVALID_INDEX_GIVEN_ERROR = "Oops an invalid index is given. "
             + "Please provide an acceptable index number between 1 and 2147483647";
