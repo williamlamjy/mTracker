@@ -54,4 +54,8 @@ public abstract class ErrorMessage {
     public static void displayEditReturnError() {
         System.out.println("Past Returns entered is invalid. Ignoring edit for Past Returns");
     }
+
+    public static void displayPastReturnError() {
+        System.out.println("Past Returns entered is invalid.");
+    }
 }

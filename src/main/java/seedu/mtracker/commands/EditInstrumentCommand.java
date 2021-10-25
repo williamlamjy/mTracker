@@ -11,9 +11,9 @@ public class EditInstrumentCommand extends Command {
     public static final String COMMAND_WORD = "edit";
     public static final int UNINITIALISED_INDEX = -1;
     protected int index;
-    protected HashMap<String,String> editedParameters;
+    protected HashMap<String, String> editedParameters;
 
-    public EditInstrumentCommand(HashMap<String,String> editedParameters) {
+    public EditInstrumentCommand(HashMap<String, String> editedParameters) {
         index = UNINITIALISED_INDEX;
         this.editedParameters = editedParameters;
     }
@@ -27,9 +27,9 @@ public class EditInstrumentCommand extends Command {
     public String execute() {
         AssertCommandHelpers.assertIndexWithinBounds(instrumentManager.getSize(), index);
         Instrument instrumentBefore = instrumentManager.getInstrument(index);
-        instrumentManager.editInstrument(index,editedParameters);
+        instrumentManager.editInstrument(index, editedParameters);
         Instrument instrumentAfter = instrumentManager.getInstrument(index);
-        TextUi.displayEditBeforeAfter(instrumentBefore,instrumentAfter);
+        TextUi.displayEditBeforeAfter(instrumentBefore, instrumentAfter);
         return COMMAND_WORD;
     }
 }

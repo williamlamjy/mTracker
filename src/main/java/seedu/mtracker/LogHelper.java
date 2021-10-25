@@ -14,7 +14,8 @@ public class LogHelper {
     public static final String LOG_INVALID_NAME = "User tried to enter an invalid name here";
     public static final String LOG_INVALID_PRICE = "User tried to enter an invalid price here";
     public static final String LOG_INVALID_SENTIMENT = "User tried to enter an invalid sentiment here";
-    public static final String LOG_EMPTY_PAST_RETURNS = "User left past returns empty. Defaulting to double -101.0";
+    public static final String LOG_EMPTY_PAST_RETURNS = "User left past returns empty. Default: double -101.0";
+    public static final String LOG_INVALID_PAST_RETURNS = "Invalid Past returns entered. Default: double -101.0";
     public static final String LOG_EMPTY_EXPIRY = "User left expiry empty.";
     public static final String LOG_INVALID_INSTRUMENT = "User tried to add an invalid instrument type here";
     public static final String LOG_INVALID_COMMAND = "User entered an invalid command to console here";

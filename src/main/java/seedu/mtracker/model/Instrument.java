@@ -13,7 +13,7 @@ public abstract class Instrument {
 
     public static final String SEMICOLON_SEP = "; ";
     public static final String SPACE = " ";
-    protected static final String EMPTY_STRING = "";
+
     protected static final String FILE_SEPARATOR = ";";
 
     protected static final String TYPE_FIELD = "Type: ";
@@ -29,7 +29,7 @@ public abstract class Instrument {
     protected static final String CURRENT_PRICE_ATTRIBUTE = "current-price";
     protected static final String SENTIMENT_ATTRIBUTE = "sentiment";
     protected static final String REMARK_ATTRIBUTE = "remark";
-    protected static final String SEPARATOR = " , ";
+    protected static final String SEPARATOR = ", ";
 
     public Instrument(String name, double currentPrice, String sentiment) {
         this.name = name;
@@ -75,17 +75,33 @@ public abstract class Instrument {
         sentiment = inputSentiment;
     }
 
-    public void editParameter(HashMap<String,String> editedParameters) {
+    public void editName(HashMap<String, String> editedParameters) {
         if (editedParameters.containsKey(NAME_ATTRIBUTE)) {
             setName(editedParameters.get(NAME_ATTRIBUTE));
         }
+    }
+
+    public void editCurrentPrice(HashMap<String, String> editedParameters) {
         if (editedParameters.containsKey(CURRENT_PRICE_ATTRIBUTE)) {
             Double updatedPrice = Double.parseDouble(editedParameters.get(CURRENT_PRICE_ATTRIBUTE));
             setCurrentPrice(updatedPrice);
         }
+    }
+
+    public void editSentiment(HashMap<String, String> editedParameters) {
         if (editedParameters.containsKey(SENTIMENT_ATTRIBUTE)) {
             setSentiment(editedParameters.get(SENTIMENT_ATTRIBUTE));
         }
+    }
+
+    public void editGeneralParameter(HashMap<String, String> editedParameters) {
+        editName(editedParameters);
+        editCurrentPrice(editedParameters);
+        editSentiment(editedParameters);
+    }
+
+    public void editParameter(HashMap<String, String> editedParameters) {
+        editGeneralParameter(editedParameters);
     }
 
     public abstract String getType();

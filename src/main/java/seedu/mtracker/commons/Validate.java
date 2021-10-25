@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 public class Validate {
 
     public static final double MINIMUM_PRICE = 0;
+    public static final double MINIMUM_RETURN = -100;
 
     public static final String POSITIVE_SENTIMENT = "positive";
     public static final String NEUTRAL_SENTIMENT = "neutral";
@@ -87,8 +88,15 @@ public class Validate {
         double pastReturn;
         try {
             pastReturn = Double.parseDouble(userInput);
+            if (pastReturn < MINIMUM_RETURN) {
+                throw new IllegalArgumentException();
+            }
         } catch (NumberFormatException e) {
             logger.info(LogHelper.LOG_EMPTY_PAST_RETURNS);
+            pastReturn = UNDEFINED_PAST_RETURN_VALUE;
+        } catch (IllegalArgumentException e) {
+            logger.info(LogHelper.LOG_INVALID_PAST_RETURNS);
+            ErrorMessage.displayPastReturnError();
             pastReturn = UNDEFINED_PAST_RETURN_VALUE;
         }
         return String.valueOf(pastReturn);

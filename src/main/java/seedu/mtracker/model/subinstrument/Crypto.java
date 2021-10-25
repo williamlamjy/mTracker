@@ -36,15 +36,27 @@ public class Crypto extends Instrument {
         remark = inputRemark;
     }
 
-    @Override
-    public void editParameter(HashMap<String,String> editedParameters) {
-        super.editParameter(editedParameters);
-        if (editedParameters.containsKey(EXPIRY_ATTRIBUTE)) {
-            setExpiry(editedParameters.get(EXPIRY_ATTRIBUTE));
-        }
+    public void editRemark(HashMap<String, String> editedParameters) {
         if (editedParameters.containsKey(REMARK_ATTRIBUTE)) {
             setRemark(editedParameters.get(REMARK_ATTRIBUTE));
         }
+    }
+
+    public void editExpiry(HashMap<String, String> editedParameters) {
+        if (editedParameters.containsKey(EXPIRY_ATTRIBUTE)) {
+            setExpiry(editedParameters.get(EXPIRY_ATTRIBUTE));
+        }
+    }
+
+    public void editSpecificParameter(HashMap<String, String> editedParameters) {
+        editExpiry(editedParameters);
+        editRemark(editedParameters);
+    }
+
+    @Override
+    public void editParameter(HashMap<String, String> editedParameters) {
+        editGeneralParameter(editedParameters);
+        editSpecificParameter(editedParameters);
     }
 
     @Override

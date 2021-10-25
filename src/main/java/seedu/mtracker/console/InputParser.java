@@ -81,14 +81,13 @@ public class InputParser {
         return doneCommand;
     }
 
-
-    public HashSet<String> filterInValidParameters(String[] parametersToEdit, HashSet<String> validAttributes) {
+    public HashSet<String> filterInvalidParameters(String[] parametersToEdit, HashSet<String> validAttributes) {
         HashSet<String> filteredAttributes = new HashSet<>();
-        for (String i: parametersToEdit) {
-            if (validAttributes.contains(i)) {
-                filteredAttributes.add(i);
+        for (String param: parametersToEdit) {
+            if (validAttributes.contains(param)) {
+                filteredAttributes.add(param);
             } else {
-                TextUi.displayEditInvalidAttribute(i);
+                TextUi.displayEditInvalidAttribute(param);
             }
         }
         return filteredAttributes;
@@ -97,9 +96,8 @@ public class InputParser {
     public HashSet<String> getParametersToEdit(HashSet<String> validAttributes) {
         String parametersToEdit = getUserInput();
         String[] parameters = getCommandComponents(parametersToEdit);
-        return filterInValidParameters(parameters, validAttributes);
+        return filterInvalidParameters(parameters, validAttributes);
     }
-
 
     public EditInstrumentCommand getEditInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
             throws InvalidIndexError, InvalidNoIndexError, InvalidBoundsError {
