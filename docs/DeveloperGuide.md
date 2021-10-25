@@ -142,7 +142,7 @@ Command component:
 
 The figure below represents the sequence diagram when the user executes a done command:
 
-<img src="images/DoneCryptoSequenceDiagram.png" width="800"/>
+<img src="images/DoneCryptoSequenceDiagram.png" width="900"/>
 
 ### FileManager Component
 The `filemanager` package contains the `Storage`, `InstrumentEncoder` and `InstrumentDecoder` classes. It is defined in
