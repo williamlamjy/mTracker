@@ -88,7 +88,7 @@ public class TextUi {
 
     private static void displayFoundMessage(int numFound, String keyword) {
         if (numFound == NONE_FOUND) {
-            System.out.println("There were no instruments found for " + keyword.toUpperCase());
+            System.out.println("There were no instruments found for " + keyword);
             return;
         }
         System.out.println("There were " + numFound + " instrument(s) found for keyword, " + keyword + ".");
