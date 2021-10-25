@@ -63,14 +63,6 @@ deactivate InstrumentManager
 DoneCommand-> InstrumentManager: doneInstrument(index)
 activate InstrumentManager
 
-
-InstrumentManager-> Instrument: get(index)
-activate Instrument
-
-Instrument--> InstrumentManager: return instrument
-deactivate Instrument
-
-
 InstrumentManager-> Instrument: markAsDone
 activate Instrument
 
