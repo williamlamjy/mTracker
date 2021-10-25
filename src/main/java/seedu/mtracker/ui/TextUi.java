@@ -5,7 +5,8 @@ import seedu.mtracker.model.Instrument;
 import java.util.ArrayList;
 
 public class TextUi {
-    protected static final String LINE_DECORATOR = "_".repeat(80);
+
+    private static final String LINE_DECORATOR = "_".repeat(80);
     private static final String CONSOLE_PROMPTER = "mTracker$> ";
     private static final String LOGO = "            _________                      __\n"
             + "           |  _   _  |                    [  |  _\n"
@@ -23,8 +24,7 @@ public class TextUi {
             + "|/ \\___/    \\_/   (_______/(_)";
 
     private static final String TAB = "\t";
-    public static final String INDEX_BRACKET = ") ";
-
+    private static final String INDEX_BRACKET = ") ";
     private static final String TYPE_HEADER = "Please key in the type of instrument: ";
     private static final String CURRENT_PRICE_HEADER = "Current Price: ";
     private static final String SENTIMENT_HEADER = "Sentiment for instrument: ";

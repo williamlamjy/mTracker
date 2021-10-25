@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 public class LogHelper {
 
     public static final String LOG_FILE_NAME = "logger.log";
-
     public static final String LOG_FILE_ERROR = "Log file not working!";
     public static final String LOG_INVALID_NAME = "User tried to enter an invalid name here";
     public static final String LOG_INVALID_PRICE = "User tried to enter an invalid price here";

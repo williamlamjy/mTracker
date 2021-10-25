@@ -5,6 +5,7 @@ import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
 public class ViewCommand extends Command {
+
     public static final String COMMAND_WORD = "view";
     public static final int UNINITIALISED_INDEX = -1;
     private int index;
@@ -15,10 +16,6 @@ public class ViewCommand extends Command {
 
     public void setIndex(int index) {
         this.index = index;
-    }
-
-    public int getIndex() {
-        return index;
     }
 
     @Override

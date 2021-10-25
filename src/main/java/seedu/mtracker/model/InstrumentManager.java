@@ -1,15 +1,12 @@
 package seedu.mtracker.model;
 
 import seedu.mtracker.error.InvalidBoundsError;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class InstrumentManager {
 
     private final ArrayList<Instrument> instruments;
-
     private static InstrumentManager instrumentManager;
 
     private InstrumentManager() {

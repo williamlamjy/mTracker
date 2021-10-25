@@ -1,7 +1,6 @@
 package seedu.mtracker.model.subinstrument;
 
 import seedu.mtracker.model.Instrument;
-
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -37,15 +36,17 @@ public class Crypto extends Instrument {
     }
 
     public void editRemark(HashMap<String, String> editedParameters) {
-        if (editedParameters.containsKey(REMARK_ATTRIBUTE)) {
-            setRemark(editedParameters.get(REMARK_ATTRIBUTE));
+        if (!editedParameters.containsKey(REMARK_ATTRIBUTE)) {
+            return;
         }
+        setRemark(editedParameters.get(REMARK_ATTRIBUTE));
     }
 
     public void editExpiry(HashMap<String, String> editedParameters) {
-        if (editedParameters.containsKey(EXPIRY_ATTRIBUTE)) {
-            setExpiry(editedParameters.get(EXPIRY_ATTRIBUTE));
+        if (!editedParameters.containsKey(EXPIRY_ATTRIBUTE)) {
+            return;
         }
+        setExpiry(editedParameters.get(EXPIRY_ATTRIBUTE));
     }
 
     public void editSpecificParameter(HashMap<String, String> editedParameters) {

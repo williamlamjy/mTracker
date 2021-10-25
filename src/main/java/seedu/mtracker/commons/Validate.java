@@ -5,7 +5,6 @@ import seedu.mtracker.console.AddForexParser;
 import seedu.mtracker.error.ErrorMessage;
 import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.model.Instrument;
-
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -101,5 +100,4 @@ public class Validate {
         }
         return String.valueOf(pastReturn);
     }
-
 }

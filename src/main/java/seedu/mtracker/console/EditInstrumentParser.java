@@ -32,7 +32,7 @@ public class EditInstrumentParser extends InputParser {
             ErrorMessage.displayEditNameError();
             return;
         }
-        editedParameters.put(NAME_ATTRIBUTE,inputName);
+        editedParameters.put(NAME_ATTRIBUTE, inputName);
     }
 
     public static void editCurrentPriceParameter(HashSet<String> parametersGiven) {

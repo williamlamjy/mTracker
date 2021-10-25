@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public abstract class Instrument {
+
     protected String name;
     protected double currentPrice;
     protected String sentiment;
@@ -11,8 +12,8 @@ public abstract class Instrument {
 
     protected static HashSet<String> validAttribute;
 
-    public static final String SEMICOLON_SEP = "; ";
-    public static final String SPACE = " ";
+    protected static final String SEMICOLON_SEP = "; ";
+    protected static final String SPACE = " ";
 
     protected static final String FILE_SEPARATOR = ";";
 
@@ -76,22 +77,25 @@ public abstract class Instrument {
     }
 
     public void editName(HashMap<String, String> editedParameters) {
-        if (editedParameters.containsKey(NAME_ATTRIBUTE)) {
-            setName(editedParameters.get(NAME_ATTRIBUTE));
+        if (!editedParameters.containsKey(NAME_ATTRIBUTE)) {
+            return;
         }
+        setName(editedParameters.get(NAME_ATTRIBUTE));
     }
 
     public void editCurrentPrice(HashMap<String, String> editedParameters) {
-        if (editedParameters.containsKey(CURRENT_PRICE_ATTRIBUTE)) {
-            Double updatedPrice = Double.parseDouble(editedParameters.get(CURRENT_PRICE_ATTRIBUTE));
-            setCurrentPrice(updatedPrice);
+        if (!editedParameters.containsKey(CURRENT_PRICE_ATTRIBUTE)) {
+            return;
         }
+        Double updatedPrice = Double.parseDouble(editedParameters.get(CURRENT_PRICE_ATTRIBUTE));
+        setCurrentPrice(updatedPrice);
     }
 
     public void editSentiment(HashMap<String, String> editedParameters) {
-        if (editedParameters.containsKey(SENTIMENT_ATTRIBUTE)) {
-            setSentiment(editedParameters.get(SENTIMENT_ATTRIBUTE));
+        if (!editedParameters.containsKey(SENTIMENT_ATTRIBUTE)) {
+            return;
         }
+        setSentiment(editedParameters.get(SENTIMENT_ATTRIBUTE));
     }
 
     public void editGeneralParameter(HashMap<String, String> editedParameters) {

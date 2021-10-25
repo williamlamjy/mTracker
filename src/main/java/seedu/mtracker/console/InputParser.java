@@ -26,14 +26,11 @@ import java.util.logging.Logger;
 public class InputParser {
 
     public static final String SEPARATOR = " ";
-
     public static final int INDEX_OFFSET = 1;
     public static final int INSTRUMENT_INDEX = 1;
-
-    protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-
     public static final int MAIN_COMMAND_INDEX = 0;
 
+    protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     protected static Scanner inputScanner;
 
     private int instrumentNumber;
@@ -83,7 +80,7 @@ public class InputParser {
 
     public HashSet<String> filterInvalidParameters(String[] parametersToEdit, HashSet<String> validAttributes) {
         HashSet<String> filteredAttributes = new HashSet<>();
-        for (String param: parametersToEdit) {
+        for (String param : parametersToEdit) {
             if (validAttributes.contains(param)) {
                 filteredAttributes.add(param);
             } else {

@@ -1,11 +1,11 @@
 package seedu.mtracker.model.subinstrument;
 
 import seedu.mtracker.model.Instrument;
-
 import java.util.HashMap;
 import java.util.HashSet;
 
 public class Forex extends Instrument {
+
     protected double entryPrice;
     protected double exitPrice;
     protected String expiry;
@@ -80,29 +80,33 @@ public class Forex extends Instrument {
     }
 
     public void editRemark(HashMap<String, String> editedParameters) {
-        if (editedParameters.containsKey(REMARK_ATTRIBUTE)) {
-            setRemark(editedParameters.get(REMARK_ATTRIBUTE));
+        if (!editedParameters.containsKey(REMARK_ATTRIBUTE)) {
+            return;
         }
+        setRemark(editedParameters.get(REMARK_ATTRIBUTE));
     }
 
     public void editExpiry(HashMap<String, String> editedParameters) {
-        if (editedParameters.containsKey(EXPIRY_ATTRIBUTE)) {
-            setExpiry(editedParameters.get(EXPIRY_ATTRIBUTE));
+        if (!editedParameters.containsKey(EXPIRY_ATTRIBUTE)) {
+            return;
         }
+        setExpiry(editedParameters.get(EXPIRY_ATTRIBUTE));
     }
 
     public void editEntryPrice(HashMap<String, String> editedParameters) {
-        if (editedParameters.containsKey(ENTRY_PRICE_ATTRIBUTE)) {
-            Double updateEntryPrice = Double.parseDouble(editedParameters.get(ENTRY_PRICE_ATTRIBUTE));
-            setEntryPrice(updateEntryPrice);
+        if (!editedParameters.containsKey(ENTRY_PRICE_ATTRIBUTE)) {
+            return;
         }
+        Double updateEntryPrice = Double.parseDouble(editedParameters.get(ENTRY_PRICE_ATTRIBUTE));
+        setEntryPrice(updateEntryPrice);
     }
 
     public void editExitPrice(HashMap<String, String> editedParameters) {
-        if (editedParameters.containsKey(EXIT_PRICE_FIELD)) {
-            Double updateExitPrice = Double.parseDouble(editedParameters.get(EXIT_PRICE_FIELD));
-            setExitPrice(updateExitPrice);
+        if (!editedParameters.containsKey(EXIT_PRICE_FIELD)) {
+            return;
         }
+        Double updateExitPrice = Double.parseDouble(editedParameters.get(EXIT_PRICE_FIELD));
+        setExitPrice(updateExitPrice);
     }
 
     public void editSpecificParameter(HashMap<String, String> editedParameters) {
