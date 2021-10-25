@@ -60,17 +60,6 @@ a placeholder for the different instrument types, for example `AddStockParser`) 
 `AddInstrumentParser` support the parsing of different instruments and their parameters.
 This implementation provides greater extensibility to the add functionality to support more instrument types.
 
-The figure below represents the sequence diagram when the user wants to add a stock:
-
-<img src="images/AddStockSequenceDiagram.png" width="1040"/>
-
-The process for adding the other instruments follow a similar process to the sequence above. The main difference would
-be the type of instrument parser called, the parameters collected from the user and the command type returned.
-
-From the notes in the sequence diagram above, for every attribute in the instrument, there would be an instructional
-prompt to get user to provide information for that attribute. This is done through a series of methods in
-the `TextUi` class.
-
 Two alternatives to get the instrument information from the user were considered. The first alternative was to
 get the user to add in all the information in a single line with separators
 (for example: `stock TSLA; 909.68; negative; To buy`). This was not implemented as it is likely
@@ -157,11 +146,25 @@ Command component:
 * The command classes are dependent on the `TextUi` class. This allows the command class to display its execution results to the user.
 
 ## Implementation
-(for parser alternatives considered to design for inputs like
-"stock name/ price/ ...", "stock NAME PRICE" <- not very cli friendly with user having to recall all params,
-in addition without any 'markers' like name/ it is error prone when there 2 parameters of the same type,
-pros slightly simpler parser implementation with few add parser classes)
-(talk about how feature is implemented, why is it implemented that way, alternatives considered)
+
+### Add instrument feature
+The add instrument functionality is mainly handled by the `parser` and `commands` components. Within the `parser`
+component, the `InputParser` class implements the method `InputParser#getAddInstrumentParameters()`. This method calls
+`AddInstrumentParser#filterByInstrumentType()` which will then guide the user through the process of adding a new
+instrument. 
+
+The figure below represents the sequence diagram when the user wants to add a stock:
+
+<img src="images/AddStockSequenceDiagram.png" width="1040"/>
+
+The process for adding the other instruments follow a similar process to the sequence above. The main difference would
+be the type of instrument parser called, the parameters collected from the user and the command type returned. For
+example instead of calling `AddStockParser#getStockSpecificParameters()`, its equivalent for adding a crypto is 
+`AddCryptoParser#getCryptoSpecificParameters()`.
+
+From the notes in the sequence diagram above, for every attribute in the instrument, there would be an instructional
+prompt to get user to provide information for that attribute. This is done through a series of methods in
+the `TextUi` class.
 
 ## Product scope
 ### Target user profile
