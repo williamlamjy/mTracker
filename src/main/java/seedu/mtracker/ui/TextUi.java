@@ -147,7 +147,7 @@ public class TextUi {
     public static void displayExitMessage() {
         System.out.println(BYE_LOGO);
         System.out.println("Thank you for using mTracker.\n"
-                + "☻ MAY THE MARKETS BE WITH YOU!!! ᕦ(ò_óˇ)ᕤ");
+                + "MAY THE MARKETS BE WITH YOU!!!");
     }
 
     public static void displayPrompter() {
@@ -158,7 +158,7 @@ public class TextUi {
         System.out.println(LINE_DECORATOR);
         System.out.println(LOGO);
         System.out.println("Hello! I am mTracker, your personal assistant bot that\n"
-                + "helps you keep track of the markets.\nWhat should I do for you now? ☺");
+                + "helps you keep track of the markets.\nWhat should I do for you now?");
         System.out.println(LINE_DECORATOR);
     }
 
