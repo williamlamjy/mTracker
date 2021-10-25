@@ -5,7 +5,6 @@
 box filemanager COLOR_STORAGE_SEGMENT
 participant ":Storage" as Storage COLOR_STORAGE
 participant ":InstrumentDecoder" as InstrumentDecoder COLOR_STORAGE
-participant ":InstrumentEncoder" as InstrumentEncoder COLOR_STORAGE
 participant ":CryptoDecoder" as CryptoDecoder COLOR_STORAGE
 end box
 

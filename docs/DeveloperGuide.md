@@ -164,6 +164,8 @@ a new text file to store the data. It updates the file by calling the `writeFile
 Putting the implementation for decoding here first
 <img src="images/FileManagerSequenceDiagram.png" width="1040"/>
 
+Putting the implementation for encoding here first
+<img src="images/FileManagerEncodingSequenceDiag.png" width="700"/>
 
 ## Implementation
 (for parser alternatives considered to design for inputs like
