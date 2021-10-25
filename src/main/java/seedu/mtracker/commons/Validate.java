@@ -99,9 +99,6 @@ public class Validate {
             ErrorMessage.displayPastReturnError();
             pastReturn = UNDEFINED_PAST_RETURN_VALUE;
         }
-        if(pastReturn == Validate.UNDEFINED_PAST_RETURN_VALUE){
-            return false;
-        }
-        return true;
+        return pastReturn != Validate.UNDEFINED_PAST_RETURN_VALUE;
     }
 }
