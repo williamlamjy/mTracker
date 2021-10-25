@@ -22,7 +22,7 @@ public class AddEtfParser extends AddInstrumentParser {
         if (!Validate.isValidPastReturn(userInput)) {
             return String.valueOf(UNDEFINED_PAST_RETURN_VALUE);
         }
-        return getUserInput();
+        return userInput;
     }
 
     public void addEtfRemarkToParameters() {
