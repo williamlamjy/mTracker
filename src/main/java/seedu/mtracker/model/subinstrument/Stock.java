@@ -2,6 +2,8 @@ package seedu.mtracker.model.subinstrument;
 
 import seedu.mtracker.model.Instrument;
 
+import java.util.HashMap;
+
 public class Stock extends Instrument {
 
     protected String remark;
@@ -15,6 +17,23 @@ public class Stock extends Instrument {
 
     public String getRemark() {
         return remark;
+    }
+
+    public void setRemark(String inputRemark) {
+        remark = inputRemark;
+    }
+
+    public void  editRemark(HashMap<String, String> editedParameters) {
+        if (!editedParameters.containsKey(REMARK_ATTRIBUTE)) {
+            return;
+        }
+        setRemark(editedParameters.get(REMARK_ATTRIBUTE));
+    }
+
+    @Override
+    public void editParameter(HashMap<String, String> editedParameters) {
+        editGeneralParameter(editedParameters);
+        editRemark(editedParameters);
     }
 
     @Override

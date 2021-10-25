@@ -13,7 +13,6 @@ import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.ui.TextUi;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 public abstract class AddInstrumentParser extends InputParser {
 

@@ -4,9 +4,6 @@ import seedu.mtracker.commands.Command;
 import seedu.mtracker.commands.ExitCommand;
 import seedu.mtracker.commands.InvalidCommand;
 import seedu.mtracker.console.InputParser;
-import seedu.mtracker.error.ErrorMessage;
-import seedu.mtracker.error.FileLoadError;
-import seedu.mtracker.error.FileTamperedError;
 import seedu.mtracker.filemanager.Storage;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.ui.TextUi;
@@ -14,6 +11,7 @@ import seedu.mtracker.ui.TextUi;
 import java.util.logging.Level;
 
 public class MTracker {
+
     private Storage storage;
     private InstrumentManager instrumentManager;
     private InputParser parser;
