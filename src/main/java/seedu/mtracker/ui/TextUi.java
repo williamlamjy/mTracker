@@ -42,7 +42,7 @@ public class TextUi {
     private static final String EDIT_RETURN_MESSAGE = "Enter new Past Returns:";
     private static final String EDIT_ENTRY_MESSAGE = "Enter new Entry Price:";
     private static final String EDIT_EXIT_MESSAGE = "Enter new Exit Price:";
-    private static final String EDIT_EXPIRY_MESSAGE = "Enter new Expiry:";
+    private static final String EDIT_EXPIRY_MESSAGE = "Enter new Expiry (YYYY-MM-DD):";
 
     private static final int NONE_FOUND = 0;
 
