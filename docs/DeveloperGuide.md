@@ -161,6 +161,9 @@ a new text file to store the data. It updates the file by calling the `writeFile
 `InstrumentManager` enabling the program to load pre-existing data.
 * Has some dependencies on the `Model` component as it saves and retrieves data from `Model` objects.
 
+Putting the implementation for decoding here first
+<img src="images/FileManagerSequenceDiagram.png" width="1040"/>
+
 
 ## Implementation
 (for parser alternatives considered to design for inputs like
