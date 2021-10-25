@@ -24,4 +24,4 @@ commands .down[COLOR_COMMANDS]->ui
 commands -down[COLOR_COMMANDS]->model
 ui .down[COLOR_UI]->model
 
-@endum
+@enduml

@@ -1,16 +1,21 @@
 @startuml
 !include Styles.puml
 
-box console COLOR_GREY
+box console COLOR_CONSOLE_SEGMENT
 participant ":InputParser" as InputParser COLOR_CONSOLE
 participant "<<Class>>\nAddInstrumentParser" as AddInstrumentParser COLOR_CONSOLE
 participant ":AddStockParser" as AddStockParser COLOR_CONSOLE
 participant ":AddStockCommand" as AddStockCommand COLOR_COMMANDS
 end box
 
+box commands COLOR_FAINT_GREEN
+participant ":AddStockCommand" as AddStockCommand COLOR_FAINT_GREEN
+end box
+
 box ui COLOR_LIGHT_BLUE
 participant ":TextUi" as TextUi COLOR_UI
 end box
+
 
 [-> InputParser : filterByCommandType({"add"}, instruments)
 activate InputParser
