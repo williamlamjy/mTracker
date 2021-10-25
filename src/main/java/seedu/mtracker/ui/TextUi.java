@@ -91,7 +91,7 @@ public class TextUi {
             System.out.println("There were no instruments found for " + keyword.toUpperCase());
             return;
         }
-        System.out.println("There were " + numFound + " instrument(s) found for keyword, " + keyword);
+        System.out.println("There were " + numFound + " instrument(s) found for keyword, " + keyword + ".");
     }
 
     public static void displayInstrumentsFound(ArrayList<Instrument> instruments, String searchString) {
