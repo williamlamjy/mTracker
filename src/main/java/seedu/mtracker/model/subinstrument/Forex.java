@@ -2,8 +2,10 @@ package seedu.mtracker.model.subinstrument;
 
 import seedu.mtracker.model.Instrument;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.time.LocalDate;
 
 public class Forex extends Instrument {
 
@@ -12,13 +14,16 @@ public class Forex extends Instrument {
     protected LocalDate expiry;
     protected String remark;
 
+    protected static final String FOREX_ICON = "[F]";
+    protected static final String TYPE_INSTRUMENT = "Forex";
+
     protected static final String ENTRY_PRICE_FIELD = "Entry Price: ";
     protected static final String EXIT_PRICE_FIELD = "Exit Price: ";
     protected static final String EXPIRY_FIELD = "Expiry: ";
 
-    private static final String FOREX_ICON = "[F]";
-    protected static final String TYPE_INSTRUMENT = "Forex";
-
+    protected static final String ENTRY_PRICE_ATTRIBUTE = "entry-price";
+    protected static final String EXIT_PRICE_ATTRIBUTE = "exit-price";
+    protected static final String EXPIRY_ATTRIBUTE = "expiry";
 
     public Forex(
             String name,
@@ -35,6 +40,14 @@ public class Forex extends Instrument {
         this.expiry = expiry;
         this.remark = remark;
 
+    }
+
+    @Override
+    public String editParameterInstructions() {
+        return super.editParameterInstructions() + SEPARATOR + ENTRY_PRICE_ATTRIBUTE + SEPARATOR
+                + EXIT_PRICE_ATTRIBUTE + SEPARATOR
+                + EXPIRY_ATTRIBUTE + SEPARATOR
+                + REMARK_ATTRIBUTE;
     }
 
     public double getEntryPrice() {
@@ -55,6 +68,66 @@ public class Forex extends Instrument {
 
     public String getRemark() {
         return remark;
+    }
+
+    public void setRemark(String inputRemark) {
+        remark = inputRemark;
+    }
+
+    public void setEntryPrice(Double inputEntryPrice) {
+        entryPrice = inputEntryPrice;
+    }
+
+    public void setExitPrice(Double inputExitPrice) {
+        exitPrice = inputExitPrice;
+    }
+
+    public void setExpiry(LocalDate inputExpiry) {
+        expiry = inputExpiry;
+    }
+
+    public void editRemark(HashMap<String, String> editedParameters) {
+        if (!editedParameters.containsKey(REMARK_ATTRIBUTE)) {
+            return;
+        }
+        setRemark(editedParameters.get(REMARK_ATTRIBUTE));
+    }
+
+    public void editExpiry(HashMap<String, String> editedParameters) {
+        if (!editedParameters.containsKey(EXPIRY_ATTRIBUTE)) {
+            return;
+        }
+        LocalDate updateExpiry = LocalDate.parse(editedParameters.get(EXPIRY_ATTRIBUTE));
+        setExpiry(updateExpiry);
+    }
+
+    public void editEntryPrice(HashMap<String, String> editedParameters) {
+        if (!editedParameters.containsKey(ENTRY_PRICE_ATTRIBUTE)) {
+            return;
+        }
+        Double updateEntryPrice = Double.parseDouble(editedParameters.get(ENTRY_PRICE_ATTRIBUTE));
+        setEntryPrice(updateEntryPrice);
+    }
+
+    public void editExitPrice(HashMap<String, String> editedParameters) {
+        if (!editedParameters.containsKey(EXIT_PRICE_FIELD)) {
+            return;
+        }
+        Double updateExitPrice = Double.parseDouble(editedParameters.get(EXIT_PRICE_FIELD));
+        setExitPrice(updateExitPrice);
+    }
+
+    public void editSpecificParameter(HashMap<String, String> editedParameters) {
+        editEntryPrice(editedParameters);
+        editExitPrice(editedParameters);
+        editExpiry(editedParameters);
+        editRemark(editedParameters);
+    }
+
+    @Override
+    public void editParameter(HashMap<String, String> editedParameters) {
+        editGeneralParameter(editedParameters);
+        editSpecificParameter(editedParameters);
     }
 
     @Override
@@ -81,5 +154,14 @@ public class Forex extends Instrument {
                 + EXIT_PRICE_FIELD + exitPrice + System.lineSeparator()
                 + EXPIRY_FIELD + formatExpiry() + System.lineSeparator()
                 + REMARKS_FIELD + remark;
+    }
+
+    @Override
+    public HashSet<String> getValidAttribute() {
+        super.getValidAttribute();
+        validAttribute.add(ENTRY_PRICE_ATTRIBUTE);
+        validAttribute.add(EXIT_PRICE_ATTRIBUTE);
+        validAttribute.add(EXPIRY_ATTRIBUTE);
+        return validAttribute;
     }
 }

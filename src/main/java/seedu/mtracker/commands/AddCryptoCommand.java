@@ -11,6 +11,7 @@ public class AddCryptoCommand extends AddInstrumentCommand {
 
     public static final int EXPIRY_INDEX = 3;
     public static final int REMARK_INDEX = 4;
+
     protected LocalDate expiryParameter;
     protected String remarkParameter;
 
