@@ -23,10 +23,11 @@ end box
 [-> InputParser : filterByCommandType({"done", "1"}, instruments)
 activate InputParser
 
-InputParser ->InputParser: getDoneInstrumentCommand(commandComponents[], instruments)
+InputParser ->InputParser: getDoneInstrumentCommand({"done", "1"}, instruments)
 activate InputParser
 
-InputParser-> DoneCommand : new DoneCommand()
+create DoneCommand
+InputParser-> DoneCommand :DoneCommand()
 activate DoneCommand
 DoneCommand --> InputParser
 deactivate DoneCommand

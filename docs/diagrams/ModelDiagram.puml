@@ -16,6 +16,6 @@ Crypto -up[COLOR_MODEL].|>Instrument
 Stock -up[COLOR_MODEL].|>Instrument
 Etf -up[COLOR_MODEL].|>Instrument
 Forex -up[COLOR_MODEL].|>Instrument
-InstrumentManager -down[COLOR_MODEL].|> "              *" Instrument
+InstrumentManager -down[COLOR_MODEL]-> "              *" Instrument
 
 @enduml
