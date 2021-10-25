@@ -27,17 +27,17 @@ InputParser ->InputParser: getDoneInstrumentCommand({"done", "1"}, instruments)
 activate InputParser
 
 create DoneCommand
-InputParser-> DoneCommand :DoneCommand()
+InputParser-> DoneCommand: DoneCommand()
 activate DoneCommand
 DoneCommand --> InputParser
 deactivate DoneCommand
 
-InputParser ->InputParser: getIndex(commandComponents[])
+InputParser ->InputParser: getIndex({"done", "1"})
 activate InputParser
 InputParser --> InputParser
 deactivate InputParser
 
-InputParser ->DoneCommand: setIndex(index)
+InputParser ->DoneCommand: setIndex(1)
 activate DoneCommand
 
 DoneCommand--> InputParser
@@ -53,14 +53,14 @@ deactivate InputParser
 activate DoneCommand
 
 
-DoneCommand-> InstrumentManager: getInstrument(index)
+DoneCommand-> InstrumentManager: getInstrument(1)
 activate InstrumentManager
 
 
 InstrumentManager--> DoneCommand: return instrument
 deactivate InstrumentManager
 
-DoneCommand-> InstrumentManager: doneInstrument(index)
+DoneCommand-> InstrumentManager: doneInstrument(1)
 activate InstrumentManager
 
 InstrumentManager-> Instrument: markAsDone
@@ -75,7 +75,7 @@ deactivate InstrumentManager
 DoneCommand-> TextUi: displayDoneInstrument(instrument)
 activate TextUi
 
-TextUi-> Instrument: getGeneralParams
+TextUi-> Instrument: getGeneralParams()
 activate Instrument
 
 Instrument-> Instrument: getTypeIcon()
