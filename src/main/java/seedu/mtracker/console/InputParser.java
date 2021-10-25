@@ -2,9 +2,10 @@ package seedu.mtracker.console;
 
 import seedu.mtracker.LogHelper;
 import seedu.mtracker.commands.AddInstrumentCommand;
-import seedu.mtracker.commands.DoneCommand;
 import seedu.mtracker.commands.Command;
 import seedu.mtracker.commands.DeleteCommand;
+import seedu.mtracker.commands.DoneCommand;
+import seedu.mtracker.commands.EditInstrumentCommand;
 import seedu.mtracker.commands.ExitCommand;
 import seedu.mtracker.commands.ListCommand;
 import seedu.mtracker.commands.FindCommand;
@@ -20,21 +21,20 @@ import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class InputParser {
 
     public static final String SEPARATOR = " ";
-
     public static final int INDEX_OFFSET = 1;
     public static final int INSTRUMENT_INDEX = 1;
     public static final int SEARCH_STR_INDEX = 1;
 
-    protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-
     public static final int MAIN_COMMAND_INDEX = 0;
 
+    protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     protected static Scanner inputScanner;
 
     private int instrumentNumber;
@@ -83,6 +83,34 @@ public class InputParser {
         return doneCommand;
     }
 
+    public HashSet<String> filterInvalidParameters(String[] parametersToEdit, HashSet<String> validAttributes) {
+        HashSet<String> filteredAttributes = new HashSet<>();
+        for (String param : parametersToEdit) {
+            if (validAttributes.contains(param)) {
+                filteredAttributes.add(param);
+            } else {
+                TextUi.displayEditInvalidAttribute(param);
+            }
+        }
+        return filteredAttributes;
+    }
+
+    public HashSet<String> getParametersToEdit(HashSet<String> validAttributes) {
+        String parametersToEdit = getUserInput();
+        String[] parameters = getCommandComponents(parametersToEdit);
+        return filterInvalidParameters(parameters, validAttributes);
+    }
+
+    public EditInstrumentCommand getEditInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
+            throws InvalidIndexError, InvalidNoIndexError, InvalidBoundsError {
+        getAndValidateIndexNumber(commandComponents, instruments);
+        Instrument instrumentToEdit = instruments.get(instrumentNumber);
+        TextUi.displayEditInstrumentFirstInstruction(instrumentToEdit);
+        HashSet<String> parametersToEdit = getParametersToEdit(instrumentToEdit.getValidAttribute());
+        EditInstrumentParser editInstrumentParser = new EditInstrumentParser();
+        return editInstrumentParser.getParametersToEdit(parametersToEdit, instrumentToEdit, instrumentNumber);
+    }
+
     private void getAndValidateIndexNumber(String[] commandComponents, ArrayList<Instrument> instruments) {
         getIndexNumber(commandComponents);
         Validate.validateIndexWithinBounds(instruments, instrumentNumber);
@@ -117,6 +145,9 @@ public class InputParser {
             break;
         case DoneCommand.COMMAND_WORD:
             command = getDoneInstrumentCommand(commandComponents, instruments);
+            break;
+        case EditInstrumentCommand.COMMAND_WORD:
+            command = getEditInstrumentCommand(commandComponents, instruments);
             break;
         case FindCommand.COMMAND_WORD:
             command = getFindInstrumentsCommand(commandComponents);

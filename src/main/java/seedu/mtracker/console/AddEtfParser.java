@@ -1,6 +1,5 @@
 package seedu.mtracker.console;
 
-import seedu.mtracker.LogHelper;
 import seedu.mtracker.asserthelpers.AssertParserHelper;
 import seedu.mtracker.commands.AddEtfCommand;
 import seedu.mtracker.commands.AddInstrumentCommand;
@@ -10,6 +9,7 @@ import seedu.mtracker.ui.TextUi;
 public class AddEtfParser extends AddInstrumentParser {
 
     public static String INSTRUMENT_TYPE = "etf";
+    public static final double UNDEFINED_PAST_RETURN_VALUE = -101;
 
     public String getEtfRemarkFromUser() {
         TextUi.displayAddRemarksInstruction();
@@ -18,7 +18,11 @@ public class AddEtfParser extends AddInstrumentParser {
 
     public String getEtfPastReturnFromUser() {
         TextUi.displayAddPastReturnsInstruction();
-        return Validate.isValidPastReturn(getUserInput());
+        String userInput = getUserInput();
+        if (!Validate.isValidPastReturn(userInput)) {
+            return String.valueOf(UNDEFINED_PAST_RETURN_VALUE);
+        }
+        return userInput;
     }
 
     public void addEtfRemarkToParameters() {

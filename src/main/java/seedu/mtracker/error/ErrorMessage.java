@@ -40,4 +40,24 @@ public abstract class ErrorMessage {
     public static void displayWriteToFileError() {
         System.out.println("Oh no! There seems to be an error writing to the file");
     }
+
+    public static void displayEditNameError() {
+        System.out.println("Name entered is invalid. Ignoring edit for Name");
+    }
+
+    public static void displayEditPriceError() {
+        System.out.println("Price entered is invalid. Ignoring edit for Price");
+    }
+
+    public static void displayEditSentimentError() {
+        System.out.println("Sentiment entered is invalid. Ignoring edit for Sentiments");
+    }
+
+    public static void displayEditReturnError() {
+        System.out.println("Past Returns entered is invalid. Ignoring edit for Past Returns");
+    }
+
+    public static void displayPastReturnError() {
+        System.out.println("Past Returns entered is invalid.");
+    }
 }
