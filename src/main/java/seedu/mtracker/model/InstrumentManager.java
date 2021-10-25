@@ -3,6 +3,7 @@ package seedu.mtracker.model;
 import seedu.mtracker.error.InvalidBoundsError;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class InstrumentManager {
 
@@ -45,6 +46,12 @@ public class InstrumentManager {
 
     public void doneInstrument(int completedInstrumentIndex) {
         instruments.get(completedInstrumentIndex).markAsDone();
+    }
+
+    public ArrayList<Instrument> findInstruments(String keyword) {
+        return (ArrayList<Instrument>) instruments.stream()
+                .filter((instrument) -> instrument.getName().contains(keyword))
+                .collect(Collectors.toList());
     }
 
     public void deleteInstrument(int index) {

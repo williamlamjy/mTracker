@@ -96,16 +96,12 @@ public class TextUi {
 
     public static void displayInstrumentsFound(ArrayList<Instrument> instruments, String searchString) {
         System.out.println(LINE_DECORATOR);
-        int found = 0;
         int idx = 0;
         for (Instrument instrument: instruments) {
             idx += 1;
-            if (instrument.getName().contains(searchString)) {
-                System.out.println(constructLineInList(idx, instrument));
-                found += 1;
-            }
+            System.out.println(constructLineInList(idx, instrument));
         }
-        displayFoundMessage(found, searchString);
+        displayFoundMessage(instruments.size(), searchString);
         System.out.println(LINE_DECORATOR);
     }
 
