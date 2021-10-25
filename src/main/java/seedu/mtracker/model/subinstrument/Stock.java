@@ -23,7 +23,7 @@ public class Stock extends Instrument {
         remark = inputRemark;
     }
 
-    public void  editRemark(HashMap<String, String> editedParameters) {
+    public void editRemark(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(REMARK_ATTRIBUTE)) {
             return;
         }
@@ -34,6 +34,11 @@ public class Stock extends Instrument {
     public void editParameter(HashMap<String, String> editedParameters) {
         editGeneralParameter(editedParameters);
         editRemark(editedParameters);
+    }
+
+    @Override
+    public String editParameterInstructions() {
+        return super.editParameterInstructions() + SEPARATOR + REMARK_ATTRIBUTE;
     }
 
     @Override
