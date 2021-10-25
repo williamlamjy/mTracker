@@ -34,6 +34,8 @@ public class TextUi {
     protected static final String EXIT_PRICE_HEADER = "Exit Price: ";
     protected static final String RETURNS_HEADER = "Past Returns (optional): ";
 
+    private static final int NONE_FOUND = 0;
+
     public static void displayInstrumentAdded(Instrument newInstrument) {
         System.out.println(TAB + newInstrument.getGeneralParams() + " - has been added to list.");
     }
@@ -85,11 +87,11 @@ public class TextUi {
     }
 
     private static void displayFoundMessage(int numFound, String keyword) {
-        if (numFound == 0) {
+        if (numFound == NONE_FOUND) {
             System.out.println("There were no instruments found for " + keyword.toUpperCase());
             return;
         }
-        System.out.println("There were " + numFound + " instrument(s) found for " + keyword.toUpperCase());
+        System.out.println("There were " + numFound + " instrument(s) found for keyword, " + keyword);
     }
 
     public static void displayInstrumentsFound(ArrayList<Instrument> instruments, String searchString) {

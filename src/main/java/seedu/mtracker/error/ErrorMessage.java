@@ -6,7 +6,7 @@ public abstract class ErrorMessage {
     public static final String INVALID_COMMAND_GIVEN_ERROR = "Oops, I do not understand you...";
     public static final String INVALID_INDEX_GIVEN_ERROR = "Oops an invalid index is given. "
             + "Please provide an acceptable index number between 1 and 2147483647";
-    public static final String INVALID_NO_INDEX_GIVEN_ERROR = "Oops no index/keyword given. "
+    public static final String INVALID_NO_INDEX_GIVEN_ERROR = "Oops no index given. "
             + "Please provide an acceptable index number between 1 and 2147483647";
     public static final String INVALID_INSTRUMENT_NONEXISTENT_ERROR = "Oops instrument does not exist at that index";
     public static final String INVALID_INSTRUMENT_IN_FILE_ERROR = "Oops, it appears that the incorrect instrument"
