@@ -42,6 +42,8 @@ public class TextUi {
     private static final String EDIT_EXIT_MESSAGE = "Enter new Exit Price:";
     private static final String EDIT_EXPIRY_MESSAGE = "Enter new Expiry:";
 
+    private static final int NONE_FOUND = 0;
+
     public static void displayInstrumentAdded(Instrument newInstrument) {
         System.out.println(TAB + newInstrument.getGeneralParams() + " - has been added to list.");
     }
@@ -89,6 +91,29 @@ public class TextUi {
             idx += 1;
             System.out.println(constructLineInList(idx, instrument));
         }
+        System.out.println(LINE_DECORATOR);
+    }
+
+    private static void displayFoundMessage(int numFound, String keyword) {
+        if (numFound == NONE_FOUND) {
+            System.out.println("There were no instruments found for " + keyword.toUpperCase());
+            return;
+        }
+        System.out.println("There were " + numFound + " instrument(s) found for keyword, " + keyword + ".");
+    }
+
+    public static void displayInstrumentsFound(ArrayList<Instrument> instruments, String searchString) {
+        System.out.println(LINE_DECORATOR);
+        int found = 0;
+        int idx = 0;
+        for (Instrument instrument: instruments) {
+            idx += 1;
+            if (instrument.getName().contains(searchString)) {
+                System.out.println(constructLineInList(idx, instrument));
+                found += 1;
+            }
+        }
+        displayFoundMessage(found, searchString);
         System.out.println(LINE_DECORATOR);
     }
 
