@@ -1,4 +1,4 @@
-Unable to find a saved file. Creating a new one now...
+Found a saved file. Loading the saved data now...
 ________________________________________________________________________________
             _________                      __
            |  _   _  |                    [  |  _
@@ -21,4 +21,4 @@ mTracker$>  ______            _______  _
 | )___) )   | |   | (____/| _
 |/ \___/    \_/   (_______/(_)
 Thank you for using mTracker.
-☺ ☺ ☺ MAY THE MARKETS BE WITH YOU!!! ☺ ☺ ☺
+MAY THE MARKETS BE WITH YOU!!!
