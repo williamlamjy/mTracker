@@ -1,6 +1,7 @@
 package seedu.mtracker.model;
 
 import seedu.mtracker.error.InvalidBoundsError;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 

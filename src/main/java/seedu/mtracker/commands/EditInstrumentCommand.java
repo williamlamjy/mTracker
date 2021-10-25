@@ -3,6 +3,7 @@ package seedu.mtracker.commands;
 import seedu.mtracker.asserthelpers.AssertCommandHelpers;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
+
 import java.util.HashMap;
 
 public class EditInstrumentCommand extends Command {
@@ -26,9 +27,10 @@ public class EditInstrumentCommand extends Command {
     @Override
     public String execute() {
         AssertCommandHelpers.assertIndexWithinBounds(instrumentManager.getSize(), index);
-        Instrument instrumentBefore = instrumentManager.getInstrument(index);
+        Instrument instrument = instrumentManager.getInstrument(index);
+        String instrumentBefore = instrument.getAllParams();
         instrumentManager.editInstrument(index, editedParameters);
-        Instrument instrumentAfter = instrumentManager.getInstrument(index);
+        String instrumentAfter = instrument.getAllParams();
         TextUi.displayEditBeforeAfter(instrumentBefore, instrumentAfter);
         return COMMAND_WORD;
     }

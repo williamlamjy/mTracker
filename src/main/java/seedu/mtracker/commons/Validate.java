@@ -5,6 +5,7 @@ import seedu.mtracker.console.AddForexParser;
 import seedu.mtracker.error.ErrorMessage;
 import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.model.Instrument;
+
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -83,7 +84,7 @@ public class Validate {
         return true;
     }
 
-    public static String isValidPastReturn(String userInput) {
+    public static boolean isValidPastReturn(String userInput) {
         double pastReturn;
         try {
             pastReturn = Double.parseDouble(userInput);
@@ -98,6 +99,9 @@ public class Validate {
             ErrorMessage.displayPastReturnError();
             pastReturn = UNDEFINED_PAST_RETURN_VALUE;
         }
-        return String.valueOf(pastReturn);
+        if(pastReturn == Validate.UNDEFINED_PAST_RETURN_VALUE){
+            return false;
+        }
+        return true;
     }
 }

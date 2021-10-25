@@ -1,6 +1,7 @@
 package seedu.mtracker.ui;
 
 import seedu.mtracker.model.Instrument;
+
 import java.util.ArrayList;
 
 public class TextUi {
@@ -202,11 +203,14 @@ public class TextUi {
         System.out.println(EDIT_EXPIRY_MESSAGE);
     }
 
-    public static void displayEditBeforeAfter(Instrument beforeEdit, Instrument afterEdit) {
+    public static void displayEditBeforeAfter(String beforeEdit, String afterEdit) {
+        System.out.println(LINE_DECORATOR);
         System.out.println("Before:");
-        displaySpecificInstrumentView(beforeEdit);
+        System.out.println(beforeEdit);
+        System.out.println(LINE_DECORATOR);
         System.out.println("Changed To:");
-        displaySpecificInstrumentView(afterEdit);
+        System.out.println(afterEdit);
+        System.out.println(LINE_DECORATOR);
     }
 
     public static void greetAtStartUp() {

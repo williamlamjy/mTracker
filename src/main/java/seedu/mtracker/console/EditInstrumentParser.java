@@ -11,7 +11,7 @@ import java.util.HashSet;
 
 public class EditInstrumentParser extends InputParser {
 
-    protected static HashMap<String,String> editedParameters;
+    protected static HashMap<String, String> editedParameters;
 
     protected static final String NAME_ATTRIBUTE = "name";
     protected static final String CURRENT_PRICE_ATTRIBUTE = "current-price";
@@ -76,7 +76,7 @@ public class EditInstrumentParser extends InputParser {
         }
         TextUi.displayEditReturn();
         String inputReturn = getUserInput();
-        if (Validate.isValidPastReturn(inputReturn).equals(String.valueOf(Validate.UNDEFINED_PAST_RETURN_VALUE))) {
+        if (!Validate.isValidPastReturn(inputReturn)) {
             ErrorMessage.displayEditReturnError();
             return;
         }
