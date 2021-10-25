@@ -18,6 +18,10 @@ public class ViewCommand extends Command {
         this.index = index;
     }
 
+    public int getIndex() {
+        return index;
+    }
+
     @Override
     public String execute() {
         AssertCommandHelpers.assertIndexWithinBounds(instrumentManager.getSize(), index);

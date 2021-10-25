@@ -1,7 +1,6 @@
 package seedu.mtracker.ui;
 
 import seedu.mtracker.model.Instrument;
-
 import java.util.ArrayList;
 
 public class TextUi {

@@ -8,13 +8,9 @@ import seedu.mtracker.commands.DoneCommand;
 import seedu.mtracker.commands.EditInstrumentCommand;
 import seedu.mtracker.commands.ExitCommand;
 import seedu.mtracker.commands.ListCommand;
-<<<<<<< HEAD
-=======
 import seedu.mtracker.commands.FindCommand;
 import seedu.mtracker.commons.Validate;
->>>>>>> upstream/master
 import seedu.mtracker.commands.ViewCommand;
-import seedu.mtracker.commons.Validate;
 import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidCommandError;
 import seedu.mtracker.error.InvalidIndexError;
@@ -34,13 +30,8 @@ public class InputParser {
     public static final String SEPARATOR = " ";
     public static final int INDEX_OFFSET = 1;
     public static final int INSTRUMENT_INDEX = 1;
-<<<<<<< HEAD
-=======
     public static final int SEARCH_STR_INDEX = 1;
 
-    protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-
->>>>>>> upstream/master
     public static final int MAIN_COMMAND_INDEX = 0;
 
     protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -155,13 +146,11 @@ public class InputParser {
         case DoneCommand.COMMAND_WORD:
             command = getDoneInstrumentCommand(commandComponents, instruments);
             break;
-<<<<<<< HEAD
         case EditInstrumentCommand.COMMAND_WORD:
             command = getEditInstrumentCommand(commandComponents, instruments);
-=======
+            break;
         case FindCommand.COMMAND_WORD:
             command = getFindInstrumentsCommand(commandComponents);
->>>>>>> upstream/master
             break;
         default:
             logger.info(LogHelper.LOG_INVALID_COMMAND);
