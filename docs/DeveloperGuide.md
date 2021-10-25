@@ -154,7 +154,7 @@ how the different class work together:
 The FileManager Component:
 
 * Contains the `Storage` class that loads data from any pre-existing text file. If the file does not exist, it creates 
-a new text file to store the data. It updates the file by calling the `writeFile` method in the `InstrumentEncoder` class.
+a new text file to store the data. It updates the file by calling the `writeFile()` method in the `InstrumentEncoder` class.
 * Contains the `InstrumentEncoder` class which encodes the instrument data into a text file format for decoding.
 * Contains the `InstrumentDecoder` parent class which decodes the text file. The 4 sub-decoder classes `CryptoDecoder`,
 `EtfDecoder`, `ForexDecoder` and `StockDecoder` adds the respective instruments with their decoded attributes into the
