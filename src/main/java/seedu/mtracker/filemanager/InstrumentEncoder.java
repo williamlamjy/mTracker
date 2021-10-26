@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class InstrumentEncoder {
 
-    public static void editFile(String line, FileWriter writeToFile) throws FileWriteError{
+    public static void editFile(String line, FileWriter writeToFile) throws FileWriteError {
         try {
             writeToFile.write(line);
         } catch (IOException e) {
