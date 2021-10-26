@@ -4,8 +4,13 @@ import seedu.mtracker.LogHelper;
 import seedu.mtracker.console.AddForexParser;
 import seedu.mtracker.error.ErrorMessage;
 import seedu.mtracker.error.InvalidBoundsError;
+import seedu.mtracker.error.InvalidDateFormatError;
+import seedu.mtracker.error.InvalidPastDateError;
 import seedu.mtracker.model.Instrument;
+import seedu.mtracker.ui.TextUi;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -100,5 +105,41 @@ public class Validate {
             pastReturn = UNDEFINED_PAST_RETURN_VALUE;
         }
         return pastReturn != Validate.UNDEFINED_PAST_RETURN_VALUE;
+    }
+
+    public static void checkDateFormat(String expiryInput) throws InvalidDateFormatError {
+        try {
+            LocalDate.parse(expiryInput);
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateFormatError();
+        }
+    }
+
+    public static void checkDateInPast(String expiryInput) throws InvalidPastDateError {
+        LocalDate givenDate = LocalDate.parse(expiryInput);
+        if (givenDate.isBefore(LocalDate.now())) {
+            throw new InvalidPastDateError();
+        }
+    }
+
+    public static boolean isValidExpiry(String expiryInput) {
+        boolean isValid = true;
+        try {
+            if (expiryInput.isEmpty()) {
+                // todo: replace the error with a custom exception so will have one catch block
+                throw new IllegalArgumentException();
+            }
+            checkDateFormat(expiryInput);
+            checkDateInPast(expiryInput);
+        } catch (IllegalArgumentException e) {
+            logger.info(LogHelper.LOG_EMPTY_EXPIRY);
+            ErrorMessage.displayEmptyExpiryError();
+            isValid = false;
+        } catch (InvalidPastDateError | InvalidDateFormatError e) {
+            logger.info(LogHelper.LOG_INVALID_EXPIRY);
+            TextUi.showErrorMessage(e);
+            isValid = false;
+        }
+        return isValid;
     }
 }

@@ -137,9 +137,6 @@ public class InputParser {
         case DeleteCommand.COMMAND_WORD:
             command = getDeleteInstrumentCommand(commandComponents, instruments);
             break;
-        case ExitCommand.COMMAND_WORD:
-            command = new ExitCommand();
-            break;
         case ViewCommand.COMMAND_WORD:
             command = getViewInstrumentCommand(commandComponents, instruments);
             break;
@@ -151,6 +148,9 @@ public class InputParser {
             break;
         case FindCommand.COMMAND_WORD:
             command = getFindInstrumentsCommand(commandComponents);
+            break;
+        case ExitCommand.COMMAND_WORD:
+            command = new ExitCommand();
             break;
         default:
             logger.info(LogHelper.LOG_INVALID_COMMAND);
