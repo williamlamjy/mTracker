@@ -5,7 +5,15 @@ import seedu.mtracker.console.AddForexParser;
 import seedu.mtracker.error.ErrorMessage;
 import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidDateFormatError;
+import seedu.mtracker.error.InvalidNameError;
+import seedu.mtracker.error.InvalidNoExpiryDateError;
+import seedu.mtracker.error.InvalidNoSentimentError;
 import seedu.mtracker.error.InvalidPastDateError;
+import seedu.mtracker.error.InvalidPastReturnError;
+import seedu.mtracker.error.InvalidPastReturnTypeError;
+import seedu.mtracker.error.InvalidPriceEmptyError;
+import seedu.mtracker.error.InvalidPriceError;
+import seedu.mtracker.error.InvalidSentimentGivenError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -24,7 +32,6 @@ public class Validate {
     public static final String NEGATIVE_SENTIMENT = "negative";
 
     public static final int FX_PAIR_NAME_LENGTH = 6;
-    public static final double UNDEFINED_PAST_RETURN_VALUE = -101;
 
     protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
@@ -35,37 +42,55 @@ public class Validate {
         return name.isEmpty();
     }
 
-    public static boolean isValidName(String name, String instrumentType) {
-        boolean isValid = true;
-        try {
-            if (isInvalidNameCondition(name, instrumentType)) {
-                throw new IllegalArgumentException();
-            }
-        } catch (IllegalArgumentException e) {
-            logger.info(LogHelper.LOG_INVALID_NAME);
-            if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
-                ErrorMessage.displayAddForexNameError();
-            } else {
-                ErrorMessage.displayAddInstrumentNameError(instrumentType);
-            }
-            isValid = false;
+    public static void checkName(String name, String instrumentType) throws InvalidNameError {
+        if (isInvalidNameCondition(name, instrumentType)) {
+            throw new InvalidNameError(instrumentType);
         }
-        return isValid;
+    }
+
+    public static boolean isValidName(String name, String instrumentType) {
+        try {
+            checkName(name, instrumentType);
+        } catch (Exception e) {
+            logger.info(LogHelper.LOG_INVALID_NAME);
+            TextUi.showErrorMessage(e);
+            return false;
+        }
+        return true;
+    }
+
+    public static void checkPriceEmpty(String price) throws InvalidPriceEmptyError {
+        if (price.isEmpty()) {
+            throw new InvalidPriceEmptyError();
+        }
+    }
+
+    public static void checkPriceIsDouble(String price) throws InvalidPriceError {
+        try {
+            Double.parseDouble(price);
+        } catch (IllegalArgumentException e) {
+            throw new InvalidPriceError();
+        }
+    }
+
+    public static void checkPriceIsNonNegative(String price) throws InvalidPriceError {
+        double inputPrice = Double.parseDouble(price);
+        if (inputPrice < MINIMUM_PRICE) {
+            throw new InvalidPriceError();
+        }
     }
 
     public static boolean isValidPrice(String currentPrice) {
-        boolean isValid = true;
         try {
-            double inputPrice = Double.parseDouble(currentPrice);
-            if (inputPrice < MINIMUM_PRICE) {
-                throw new IllegalArgumentException();
-            }
-        } catch (IllegalArgumentException e) {
+            checkPriceEmpty(currentPrice);
+            checkPriceIsDouble(currentPrice);
+            checkPriceIsNonNegative(currentPrice);
+        } catch (Exception e) {
             logger.info(LogHelper.LOG_INVALID_PRICE);
-            ErrorMessage.displayAddInstrumentPriceError();
-            isValid = false;
+            TextUi.showErrorMessage(e);
+            return false;
         }
-        return isValid;
+        return true;
     }
 
     public static void validateIndexWithinBounds(ArrayList<Instrument> instruments, int instrumentNumber)
@@ -77,34 +102,67 @@ public class Validate {
         }
     }
 
-    public static boolean isValidSentiment(String sentiment) {
+    public static void checkSentimentEmpty(String sentiment) throws InvalidNoSentimentError {
+        if (sentiment.isEmpty()) {
+            throw new InvalidNoSentimentError();
+        }
+    }
+
+    public static void checkSentimentGiven(String sentiment) throws InvalidSentimentGivenError {
         boolean isValidPositiveSentiment = sentiment.equals(POSITIVE_SENTIMENT);
         boolean isValidNegativeSentiment = sentiment.equals(NEGATIVE_SENTIMENT);
         boolean isValidNeutralSentiment = sentiment.equals(NEUTRAL_SENTIMENT);
         if (!isValidPositiveSentiment && !isValidNeutralSentiment && !isValidNegativeSentiment) {
+            throw new InvalidSentimentGivenError();
+        }
+    }
+
+    public static boolean isValidSentiment(String sentiment) {
+        try {
+            checkSentimentEmpty(sentiment);
+            checkSentimentGiven(sentiment);
+        } catch (Exception e) {
             logger.info(LogHelper.LOG_INVALID_SENTIMENT);
-            ErrorMessage.displayAddInstrumentSentimentError();
+            TextUi.showErrorMessage(e);
             return false;
         }
         return true;
     }
 
-    public static boolean isValidPastReturn(String userInput) {
-        double pastReturn;
+    public static void checkPastReturnIsDouble(String pastReturn) throws InvalidPastReturnTypeError {
         try {
-            pastReturn = Double.parseDouble(userInput);
-            if (pastReturn < MINIMUM_RETURN) {
-                throw new IllegalArgumentException();
-            }
-        } catch (NumberFormatException e) {
-            logger.info(LogHelper.LOG_EMPTY_PAST_RETURNS);
-            pastReturn = UNDEFINED_PAST_RETURN_VALUE;
+            Double.parseDouble(pastReturn);
         } catch (IllegalArgumentException e) {
-            logger.info(LogHelper.LOG_INVALID_PAST_RETURNS);
-            ErrorMessage.displayPastReturnError();
-            pastReturn = UNDEFINED_PAST_RETURN_VALUE;
+            throw new InvalidPastReturnTypeError();
         }
-        return pastReturn != Validate.UNDEFINED_PAST_RETURN_VALUE;
+    }
+
+    public static void checkPastReturnIsValid(String pastReturn) throws InvalidPastReturnError {
+        double pastReturnValue = Double.parseDouble(pastReturn);
+        if (pastReturnValue < MINIMUM_RETURN) {
+            throw new InvalidPastReturnError();
+        }
+    }
+
+    public static boolean isValidPastReturn(String pastReturn) {
+        if (pastReturn.isEmpty()) {
+            return false;
+        }
+        try {
+            checkPastReturnIsDouble(pastReturn);
+            checkPastReturnIsValid(pastReturn);
+        } catch (Exception e) {
+            logger.info(LogHelper.LOG_INVALID_PAST_RETURNS);
+            TextUi.showErrorMessage(e);
+            return false;
+        }
+        return true;
+    }
+
+    public static void checkDateExist(String expiryInput) throws InvalidNoExpiryDateError {
+        if (expiryInput.isEmpty()) {
+            throw new InvalidNoExpiryDateError();
+        }
     }
 
     public static void checkDateFormat(String expiryInput) throws InvalidDateFormatError {
@@ -123,23 +181,15 @@ public class Validate {
     }
 
     public static boolean isValidExpiry(String expiryInput) {
-        boolean isValid = true;
         try {
-            if (expiryInput.isEmpty()) {
-                // todo: replace the error with a custom exception so will have one catch block
-                throw new IllegalArgumentException();
-            }
+            checkDateExist(expiryInput);
             checkDateFormat(expiryInput);
             checkDateInPast(expiryInput);
-        } catch (IllegalArgumentException e) {
-            logger.info(LogHelper.LOG_EMPTY_EXPIRY);
-            ErrorMessage.displayEmptyExpiryError();
-            isValid = false;
-        } catch (InvalidPastDateError | InvalidDateFormatError e) {
+        } catch (Exception e) {
             logger.info(LogHelper.LOG_INVALID_EXPIRY);
             TextUi.showErrorMessage(e);
-            isValid = false;
+            return false;
         }
-        return isValid;
+        return true;
     }
 }
