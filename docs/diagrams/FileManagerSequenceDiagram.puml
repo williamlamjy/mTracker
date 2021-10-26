@@ -3,7 +3,6 @@
 !include Styles.puml
 
 box filemanager COLOR_STORAGE_SEGMENT
-participant ":Storage" as Storage COLOR_STORAGE
 participant ":InstrumentDecoder" as InstrumentDecoder COLOR_STORAGE
 participant ":CryptoDecoder" as CryptoDecoder COLOR_STORAGE
 end box
@@ -18,8 +17,7 @@ participant ":InvalidInstrumentInFileError" as InvalidInstrumentInFileError COLO
 end box
 
 
-    Storage-> InstrumentDecoder: readFile(instrumentManager, fileData)
-    activate Storage
+    [-> InstrumentDecoder: readFile(instrumentManager, fileData)
     activate InstrumentDecoder
 
         loop each line in the file
@@ -78,11 +76,13 @@ end box
                     deactivate InvalidInstrumentInFileError
 
                     end
+
                     InstrumentDecoder--> InstrumentDecoder
                     deactivate InstrumentDecoder
+
                     end
-                    InstrumentDecoder--> Storage
+
+                    [<--InstrumentDecoder
                     deactivate InstrumentDecoder
-                    deactivate Storage
 
 @enduml
