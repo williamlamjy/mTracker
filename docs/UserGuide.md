@@ -21,17 +21,23 @@ eventual _**Command Summary**_ section gives a brief overview of the different t
 command-line commands mTracker intakes to execute the various functionalities.
 
 ## _Contents_
-* [Quick Start](#1.0-quick-start)
-* [Features](#features)
-    * [Add a new instrument: `add`](#Adding-a-new-instrument-add)
-      * [Add a new stock: `stock`](#add-a-new-stock)
-      * [Add a new crypto: `crypto`](#add-a-new-crypto)
-      * [Add a new forex: `forex`](#add-a-new-forex)
-      * [Add a new etf: `etf`](#add-a-new-etf)
-    * [List all instruments : `list`](#list-all-instruments-list)
-    * [Exit the application : `bye`](#exit-bye)
-* [FAQ](#faq)
-* [Command Summary](#command-summary)
+* [Quick Start](#10-quick-start)
+* [Usage](#20-usage)
+    * [Notes on command format](#notes-on-command-format)
+    * [Add a new instrument: `add`](#210-adding-a-new-instrument-add)
+      * [Add a new stock: `stock`](#211-adding-a-new-stock)
+      * [Add a new crypto: `crypto`](#212-add-a-new-crypto)
+      * [Add a new etf: `etf`](#213-adding-a-new-etf)
+      * [Add a new forex: `forex`](#214-adding-a-new-forex)
+    * [List all instruments: `list`](#220-displaying-general-info-of-all-instruments-added-list)
+      * [View instrument info: `view`](#230-viewing-more-info-recorded-for-an-instrument-view)
+    * [Mark an instrument: `done`](#240-marking-a-setup-as-acted-upon-done)
+    * [Edit an instrument: `edit`](#250-editing-an-instrument-edit)
+    * [Remove an instrument: `delete`](#260-removing-an-instrument-record-delete)
+    * [Search for an instrument: `find`](#270-search-for-instruments-in-watchlist-find)
+    * [Exit the application : `bye`](#280-exiting-the-bot-bye)
+* [FAQ](#30-faq)
+* [Command Summary](#40-command-summary)
 
 
 
