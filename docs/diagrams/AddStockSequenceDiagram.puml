@@ -1,0 +1,98 @@
+@startuml
+!include Styles.puml
+
+box console COLOR_CONSOLE_SEGMENT
+participant ":InputParser" as InputParser COLOR_CONSOLE
+participant "<<Class>>\nAddInstrumentParser" as AddInstrumentParser COLOR_CONSOLE
+participant ":AddStockParser" as AddStockParser COLOR_CONSOLE
+participant ":AddStockCommand" as AddStockCommand COLOR_COMMANDS
+end box
+
+box commands COLOR_FAINT_GREEN
+participant ":AddStockCommand" as AddStockCommand COLOR_FAINT_GREEN
+end box
+
+box ui COLOR_LIGHT_BLUE
+participant ":TextUi" as TextUi COLOR_UI
+end box
+
+
+[-> InputParser : filterByCommandType({"add"}, instruments)
+activate InputParser
+
+InputParser -> InputParser : getAddInstrumentParameters()
+activate InputParser
+
+InputParser -> TextUi : displayAddInstrumentFirstInstruction()
+activate TextUi
+
+TextUi --> InputParser
+deactivate TextUi
+
+InputParser -> AddInstrumentParser : filterByInstrumentType({"stock"})
+activate AddInstrumentParser
+
+note right
+The parameter "stock" was
+given by the user after
+displayAddInstrumentFirstInstruction().
+end note
+
+create AddStockParser
+AddInstrumentParser -> AddStockParser : AddStockParser()
+activate AddStockParser
+
+AddStockParser --> AddInstrumentParser
+deactivate AddStockParser
+
+AddInstrumentParser -> AddStockParser : initParameters()
+activate AddStockParser
+AddStockParser --> AddInstrumentParser
+deactivate AddStockParser
+
+AddInstrumentParser -> AddStockParser : getInstrumentParameters()
+activate AddStockParser
+AddStockParser -> AddInstrumentParser : getGeneralParameters("stock")
+
+note right
+Both getGeneralParameters() and
+getStockSpecificParameters()
+would prompt the user to input details for every
+attribute to store as parameters.
+end note
+
+activate AddInstrumentParser
+AddInstrumentParser --> AddStockParser
+deactivate AddInstrumentParser
+
+AddStockParser -> AddStockParser : getStockSpecificParameters()
+activate AddStockParser
+AddStockParser --> AddStockParser
+deactivate AddStockParser
+
+create AddStockCommand
+AddStockParser -> AddStockCommand : AddStockCommand()
+activate AddStockCommand
+AddStockCommand --> AddStockParser
+deactivate AddStockCommand
+
+AddStockParser -> AddInstrumentParser : return command
+deactivate AddStockParser
+
+AddInstrumentParser -> AddStockParser : getParameters()
+activate AddStockParser
+AddStockParser --> AddInstrumentParser : return parameters
+deactivate AddStockParser
+
+AddInstrumentParser -> AddStockCommand : setParams(parameters)
+activate AddStockCommand
+AddStockCommand --> AddInstrumentParser
+deactivate AddStockCommand
+
+AddInstrumentParser --> InputParser : return command
+deactivate AddInstrumentParser
+deactivate InputParser
+[<-- InputParser : return command
+deactivate InputParser
+
+@enduml

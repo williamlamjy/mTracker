@@ -1,5 +1,14 @@
 !include Colors.puml
 
+!define COLOR_UI COLOR_DARK_BLUE
+!define COLOR_MAIN COLOR_BLACK
+!define COLOR_COMMANDS COLOR_DARK_GREEN
+!define COLOR_COMMANDS_SEGMENT COLOR_FAINT_GREEN
+!define COLOR_CONSOLE COLOR_TEAL
+!define COLOR_CONSOLE_SEGMENT COLOR_FAINT_TEAL
+!define COLOR_MODEL COLOR_PURPLE
+!define COLOR_STORAGE COLOR_BROWN
+
 skinparam Class {
     FontColor #FFFFFF
     BorderThickness 1
@@ -7,7 +16,14 @@ skinparam Class {
     FontName Arial
 }
 
+skinparam Participant {
+    BorderThickness 0
+    FontColor #FFFFFF
+    FontName Arial
+}
+
 skinparam Shadowing false
 
 hide members
+hide footbox
 hide circle
