@@ -137,7 +137,7 @@ The addition of a new `crypto` expects 5 parameters:
 * `Name` Name of the crypto. Empty name is not allowed.
 * `Current Price`  Current price of the crypto. Requires a positive number.
 * `Sentiment` Sentiment of the crypto.
-* `Expiry` Expiry date of the crypto. Date only in the `YYYY MM DD` format is allowed.
+* `Expiry` Expiry date of the crypto. Date only in the `YYYY-MM-DD` format is allowed.
 * `Remarks` Any additional optional remarks about the cryptocurrency the user would like to keep
   note of in mTracker.
 
@@ -153,7 +153,7 @@ mTracker$> bitcoin
 mTracker$> 14442.22
 	Sentiment for instrument: 
 mTracker$> positive
-	Expiry: 
+	Expiry (YYYY-MM-DD): 
 mTracker$> 2021 12 14
 	Remarks (optional):
 mTracker$> 
@@ -216,7 +216,7 @@ following parameters:
 * `Sentiment` Sentiment of user towards the stock.
 * `Entry Price` Price at which to open an order for the forex pair.
 * `Exit Price` Price at which to close the order.
-* `Expiry` The date by which this trade setup should be executed. Dates only in the `YYYY MM DD` format is allowed.
+* `Expiry` The date by which this trade setup should be executed. Dates only in the `YYYY-MM-DD` format is allowed.
 * `Remarks` Any additional optional remarks about the forex that the user would like to record.
    (Eg. trade deficits between countries, FOMC meeting dates,
    interest rates outlook in currency's home country, etc.)
@@ -237,8 +237,8 @@ mTracker$> negative
 mTracker$> 114.20
 	Exit price: 
 mTracker$> 110.0
-	Expiry: 
-mTracker$> 23 Oct
+	Expiry (YYYY-MM-DD): 
+mTracker$> 2021 10 13
 	Remarks (optional): 
 mTracker$> USD is losing momentum. Technical levels are holding firm.
 ```
@@ -365,10 +365,13 @@ mTracker$> edit 2
 	name, current-price, sentiment, returns, remark
 mTracker$> name current-price
 	Enter new name:
-mTracker$> Apple
+mTracker$> XLF
 	Enter new Current price:
 mTracker$> 148.76
 ```
+
+_**Note: If unknown/invalid parameters are input when mTracker prompts for the parameters to edit,
+they will be ignored.**_
 
 Then, it prints out the changes that have been made:
 
@@ -384,7 +387,7 @@ Remarks: Prices will plateau out in a few days.
 ________________________________________________________________________________
 Changed To:
 Type: Etf	[ ]
-Name: Apple
+Name: XLF
 Current Price: 148.76
 Sentiment: positive
 Past Returns: 1200.0
@@ -406,7 +409,7 @@ mTracker$> delete INDEX
 **Example usage**
 
 ```
-mTracker$> delete 3
+mTracker$> delete 4
 ```
 
 **Expected outcome**
