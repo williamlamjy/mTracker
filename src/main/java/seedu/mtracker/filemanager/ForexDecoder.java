@@ -4,6 +4,8 @@ import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.model.subinstrument.Forex;
 
+import java.time.LocalDate;
+
 public class ForexDecoder extends InstrumentDecoder {
 
     public static final int ENTRY_PRICE_INDEX = 5;
@@ -15,7 +17,7 @@ public class ForexDecoder extends InstrumentDecoder {
         decodeGeneralAttributes(textSegment);
         double decodedEntryPrice = Double.parseDouble(textSegment[ENTRY_PRICE_INDEX]);
         double decodedExitPrice = Double.parseDouble(textSegment[EXIT_PRICE_INDEX]);
-        String decodedExpiry = textSegment[FOREX_EXPIRY_INDEX];
+        LocalDate decodedExpiry = LocalDate.parse(textSegment[FOREX_EXPIRY_INDEX]);
         String decodedRemarks = textSegment[FOREX_REMARKS_INDEX];
         Instrument forex = new Forex(decodedName, decodedCurrPrice, decodedSentiment,
                 decodedEntryPrice, decodedExitPrice, decodedExpiry, decodedRemarks);

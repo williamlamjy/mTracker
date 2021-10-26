@@ -2,14 +2,16 @@ package seedu.mtracker.model.subinstrument;
 
 import seedu.mtracker.model.Instrument;
 
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.time.LocalDate;
 
 public class Forex extends Instrument {
 
     protected double entryPrice;
     protected double exitPrice;
-    protected String expiry;
+    protected LocalDate expiry;
     protected String remark;
 
     protected static final String FOREX_ICON = "[F]";
@@ -29,7 +31,7 @@ public class Forex extends Instrument {
             String sentiment,
             double entryPrice,
             double exitPrice,
-            String expiry,
+            LocalDate expiry,
             String remark
     ) {
         super(name, currentPrice, sentiment);
@@ -56,8 +58,12 @@ public class Forex extends Instrument {
         return exitPrice;
     }
 
-    public String getExpiry() {
+    public LocalDate getExpiry() {
         return expiry;
+    }
+
+    public String formatExpiry() {
+        return expiry.format(DateTimeFormatter.ofPattern(DATE_REGEX));
     }
 
     public String getRemark() {
@@ -76,7 +82,7 @@ public class Forex extends Instrument {
         exitPrice = inputExitPrice;
     }
 
-    public void setExpiry(String inputExpiry) {
+    public void setExpiry(LocalDate inputExpiry) {
         expiry = inputExpiry;
     }
 
@@ -91,7 +97,8 @@ public class Forex extends Instrument {
         if (!editedParameters.containsKey(EXPIRY_ATTRIBUTE)) {
             return;
         }
-        setExpiry(editedParameters.get(EXPIRY_ATTRIBUTE));
+        LocalDate updateExpiry = LocalDate.parse(editedParameters.get(EXPIRY_ATTRIBUTE));
+        setExpiry(updateExpiry);
     }
 
     public void editEntryPrice(HashMap<String, String> editedParameters) {
@@ -145,7 +152,7 @@ public class Forex extends Instrument {
         return super.getAllParams()
                 + ENTRY_PRICE_FIELD + entryPrice + System.lineSeparator()
                 + EXIT_PRICE_FIELD + exitPrice + System.lineSeparator()
-                + EXPIRY_FIELD + expiry + System.lineSeparator()
+                + EXPIRY_FIELD + formatExpiry() + System.lineSeparator()
                 + REMARKS_FIELD + remark;
     }
 
