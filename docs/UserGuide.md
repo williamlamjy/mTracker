@@ -34,7 +34,7 @@ command-line commands mTracker intakes to execute the various functionalities.
 
 
 
-## Quick Start
+## 1.0 Quick Start
 
 1) Ensure that you have Java `11` installed on your computer.
 2) Download the latest version of `mTracker` from [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/releases).
@@ -57,7 +57,7 @@ What should I do for you now?
 ________________________________________________________________________________
 ```
 
-## Usage
+## 2.0 Usage
 ### *Notes on command format*
 > * Words in `UPPER_CASE` represent the parameters to be supplied by user. This is the list of parameters
 >that would often be referred to throughout this user guide.
@@ -76,7 +76,7 @@ ________________________________________________________________________________
 >    * The command `view 2 5` will be interpreted as `view 2`, so financial details of the second item in the watchlist
 > will be printed out.
 
-### Adding a new instrument: `add`
+### 2.1.0 Adding a new instrument: `add`
 Adds a new instrument to the watchlist of instruments. 
 
 **Example usage**
@@ -98,7 +98,7 @@ mTracker$> TYPE
 After the desired instrument type is input, instruction prompts would be displayed to guide you through the process of
 adding the new instrument. They are explained for the respective instrument types in the following sections below.
 
-### *Adding a new `stock`*
+### *2.1.1 Adding a new `stock`*
 After keying in `stock` as type of instrument to be added, the following 4 parameters are expected:
 * `Name` Name of the stock. Empty name is not allowed.
 * `Current price` Current price of the stock. Requires a positive number.
@@ -131,7 +131,7 @@ Following the usage example above would produce the following message:
 _**Note: If any of the non-optional parameters `Name`, `Current price` and `Sentiment` are provided with invalid
 inputs, mTracker would prompt you once again to give a valid input.**_
 
-### *Add a new `crypto`*
+### *2.1.2 Add a new `crypto`*
 The addition of a new `crypto` expects 5 parameters:
 * `Name` Name of the crypto. Empty name is not allowed.
 * `Current Price`  Current price of the crypto. Requires a positive number.
@@ -170,7 +170,7 @@ Following the usage example above we would see the following message:
 _**Note: If any of the non-optional parameters `Name`, `Current price`, `Sentiment` and `Expiry` are provided with invalid
 inputs, you would be prompted to give a valid input.**_
 
-### *Adding a new `etf`*
+### *2.1.3 Adding a new `etf`*
 An exchange-traded fund (ETF) is a security that tracks an index, sector, commodity, or any
 other asset. After keying in `etf` as the type of instrument, mTracker expects the 
 following parameters:
@@ -204,7 +204,7 @@ out:
 	[E][ ] SPY; 445.87; positive - has been added to list.
 ```
 
-### *Adding a new `forex`*
+### *2.1.4 Adding a new `forex`*
 Bilateral currency pairs, known as forex pairs, are traded in the currency market
 and mTracker provides the ability to add forex pairs to its watchlist too.
 After keying in `forex` as the type of instrument, mTracker prompts for the
@@ -253,7 +253,7 @@ _**Note: If any of the non-optional parameters `Name`, `Current price`, `Sentime
 and `Expiry` are provided with invalid
 inputs, you would be prompted to give a valid input.**_
 
-### Displaying general info of all instruments added: `list`
+### 2.2.0 Displaying general info of all instruments added: `list`
 
 mTracker displays the 3 general parameters of `Name`, `Current Price`, 
 and `Sentiment` for all instruments added in an easy-to-view format, alongside
@@ -276,7 +276,7 @@ CURRENT WATCHLIST
 ________________________________________________________________________________
 ```
 
-### Viewing more info recorded for an instrument: `view`
+### 2.3.0 Viewing more info recorded for an instrument: `view`
 
 Since there are many different parameters that are recorded for
 various instruments, to view all the recorded information for an
@@ -311,7 +311,7 @@ Remarks: Prices will plateau out in a few days.
 ________________________________________________________________________________
 ```
 
-### Marking a setup as acted upon: `done`
+### 2.4.0 Marking a setup as acted upon: `done`
 
 mTracker provides the ability for you to mark a particular
 record of an instrument in the watchlist as executed or acted upon.
@@ -340,7 +340,7 @@ and the following confirmation message will be displayed:
 In this example, the first instrument is `IBM` so it has been
 checked as complete with an 'X'.
 
-### Editing an instrument: `edit`
+### 2.5.0 Editing an instrument: `edit`
 Edit an existing instrument parameters.
 
 **Format**
@@ -391,7 +391,7 @@ Remarks: Prices will plateau out in a few days.
 ________________________________________________________________________________
 ```
 
-### Removing an instrument record: `delete`
+### 2.6.0 Removing an instrument record: `delete`
 
 You can remove an instrument from the watchlist as you deem 
 fit with the index number of the instrument in inventory.
@@ -421,7 +421,7 @@ ________________________________________________________________________________
 
 You can key in `list` once again to view the latest watchlist.
 
-### Search for instruments in watchlist: `find`
+### 2.7.0 Search for instruments in watchlist: `find`
 
 You can find specific instruments in the watchlist by searching for them through `find` command.
 
@@ -459,7 +459,7 @@ There were no instruments found for keyword, JPY
 ________________________________________________________________________________
 ```
 
-### Exiting the bot: `bye`
+### 2.8.0 Exiting the bot: `bye`
 When you wish to quit the mTracker program, simply type in `bye`.
 
 **Example usage**
@@ -486,7 +486,7 @@ MAY THE MARKETS BE WITH YOU!!!
 _**Note: Once quit, the instruments created during session
 will be stored and retrieved back by mTracker once it is relaunched.**_
 
-## FAQ
+## 3.0 FAQ
 
 **Q**: How do I transfer my data to another computer? 
 
@@ -499,7 +499,7 @@ to edit/add instruments manually. However, please make sure that the each line
 contains details on only one instrument. The different parameters of 
 the instrument should be separated by a semicolon (;) without spaces in between.
 
-## Command Summary
+## 4.0 Command Summary
 
 Action | Format | Examples
  --------- | ------ |------
