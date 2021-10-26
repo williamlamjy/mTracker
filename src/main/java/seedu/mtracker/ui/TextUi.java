@@ -41,6 +41,7 @@ public class TextUi {
     private static final String EDIT_ENTRY_MESSAGE = "Enter new Entry Price:";
     private static final String EDIT_EXIT_MESSAGE = "Enter new Exit Price:";
     private static final String EDIT_EXPIRY_MESSAGE = "Enter new Expiry:";
+    private static final String WATCHLIST_HEADER = "CURRENT WATCHLIST";
 
     private static final int NONE_FOUND = 0;
 
@@ -86,6 +87,7 @@ public class TextUi {
 
     public static void displayAllInstruments(ArrayList<Instrument> instruments) {
         System.out.println(LINE_DECORATOR);
+        System.out.println(WATCHLIST_HEADER);
         int idx = 0;
         for (Instrument instrument: instruments) {
             idx += 1;

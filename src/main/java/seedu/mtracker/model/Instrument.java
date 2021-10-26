@@ -14,7 +14,7 @@ public abstract class Instrument {
 
     protected static final String SEMICOLON_SEP = "; ";
     protected static final String SPACE = " ";
-
+    protected static final String TAB = "\t";
     protected static final String FILE_SEPARATOR = ";";
 
     protected static final String TYPE_FIELD = "Type: ";
@@ -125,7 +125,7 @@ public abstract class Instrument {
     public abstract String getTypeIcon();
 
     public String getAllParams() {
-        return TYPE_FIELD + getType() + getStatusIcon() + System.lineSeparator()
+        return TYPE_FIELD + getType() + TAB + getStatusIcon() + System.lineSeparator()
                 + NAME_FIELD + name + System.lineSeparator()
                 + CURRENT_PRICE_FIELD + currentPrice + System.lineSeparator()
                 + SENTIMENT_FIELD + sentiment + System.lineSeparator();
