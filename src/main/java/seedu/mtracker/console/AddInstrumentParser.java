@@ -8,7 +8,6 @@ import seedu.mtracker.commands.AddForexCommand;
 import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commands.AddStockCommand;
 import seedu.mtracker.commons.Validate;
-import seedu.mtracker.error.ErrorMessage;
 import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.ui.TextUi;
 
@@ -45,20 +44,6 @@ public abstract class AddInstrumentParser extends InputParser {
     public static String getCurrentPriceFromUser() {
         TextUi.displayAddInstrumentCurrentPriceInstruction();
         return getUserInput();
-    }
-
-    public static boolean isExpiryFilled(String expiryInput) {
-        boolean isFilled = true;
-        try {
-            if (expiryInput.isEmpty()) {
-                throw new IllegalArgumentException();
-            }
-        } catch (IllegalArgumentException e) {
-            logger.info(LogHelper.LOG_EMPTY_EXPIRY);
-            ErrorMessage.displayEmptyExpiryError();
-            isFilled = false;
-        }
-        return isFilled;
     }
 
     public static void addCurrentPriceToParameters() {

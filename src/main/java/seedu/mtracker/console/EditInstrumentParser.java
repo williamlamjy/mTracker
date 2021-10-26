@@ -115,6 +115,10 @@ public class EditInstrumentParser extends InputParser {
         }
         TextUi.displayEditExpiry();
         String inputExpiry = getUserInput();
+        if (!Validate.isValidExpiry(inputExpiry)) {
+            ErrorMessage.displayEditExpiryError();
+            return;
+        }
         editedParameters.put(EXPIRY_ATTRIBUTE, inputExpiry);
     }
 
