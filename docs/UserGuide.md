@@ -10,7 +10,7 @@ for busy individuals.
 
 * [Quick Start](#quick-start)
 * [Features](#features)
-    * [Add a new instrument: `add`](#add-a-new-instrument-add)
+    * [Add a new instrument: `add`](#Adding-a-new-instrument-add)
       * [Add a new stock: `stock`](#add-a-new-stock)
       * [Add a new crypto: `crypto`](#add-a-new-crypto)
       * [Add a new forex: `forex`](#add-a-new-forex)
