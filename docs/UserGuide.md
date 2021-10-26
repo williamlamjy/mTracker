@@ -20,7 +20,8 @@ end of this guide answers possible queries that you may have of this product, an
 eventual _**Command Summary**_ section gives a brief overview of the different types of
 command-line commands mTracker intakes to execute the various functionalities.
 
-* [Quick Start](#quick-start)
+## _Contents_
+* [Quick Start](#1.0-quick-start)
 * [Features](#features)
     * [Add a new instrument: `add`](#add-a-new-instrument-add)
       * [Add a new stock: `stock`](#add-a-new-stock)
