@@ -14,10 +14,10 @@ This user guide explains the key features of mTracker and includes examples of
 their usages. The contents table below includes clickable hyperlinks for you to 
 navigate directly to a section of your preference.
 
-The Quick Start section provides you with the instructions to download the product, and the necessary software specifications 
-needed so that you can start using mTracker on the go! The FAQ section towards the 
+The _**Quick Start**_ section provides you with the instructions to download the product, and the necessary software specifications 
+needed so that you can start using mTracker on the go! The _**FAQ**_ section towards the 
 end of this guide answers possible queries that you may have of this product, and the
-final Command Summary section gives a brief overview of the different types of
+eventual _**Command Summary**_ section gives a brief overview of the different types of
 command-line commands mTracker intakes to execute the various functionalities.
 
 * [Quick Start](#quick-start)
