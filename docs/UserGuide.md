@@ -137,7 +137,7 @@ The addition of a new `crypto` expects 5 parameters:
 * `Name` Name of the crypto. Empty name is not allowed.
 * `Current Price`  Current price of the crypto. Requires a positive number.
 * `Sentiment` Sentiment of the crypto.
-* `Expiry` Expiry date of the crypto. Date only in the `YYYY-MM-DD` format is allowed.
+* `Expiry` Expiry date of the crypto. Date only in the `YYYY-MM-DD` format is allowed and it should be a date in the future.
 * `Remarks` Any additional optional remarks about the cryptocurrency the user would like to keep
   note of in mTracker.
 
@@ -216,7 +216,7 @@ following parameters:
 * `Sentiment` Sentiment of user towards the stock.
 * `Entry Price` Price at which to open an order for the forex pair.
 * `Exit Price` Price at which to close the order.
-* `Expiry` The date by which this trade setup should be executed. Dates only in the `YYYY-MM-DD` format is allowed.
+* `Expiry` The date by which this trade setup should be executed. Dates only in the `YYYY-MM-DD` format and in the future are allowed.
 * `Remarks` Any additional optional remarks about the forex that the user would like to record.
    (Eg. trade deficits between countries, FOMC meeting dates,
    interest rates outlook in currency's home country, etc.)
