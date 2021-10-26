@@ -4,6 +4,8 @@ public abstract class ErrorMessage {
 
     public static final String INVALID_INSTRUMENT_GIVEN_ERROR = "Invalid Instrument given!";
     public static final String INVALID_COMMAND_GIVEN_ERROR = "Oops, I do not understand you...";
+    public static final String INVALID_PAST_DATE_GIVEN_ERROR = "Oops, expiry cannot be a date in the past";
+    public static final String INVALID_DATE_FORMAT_ERROR = "Oops, expiry given must be in YYYY-MM-DD format";
     public static final String INVALID_INDEX_GIVEN_ERROR = "Oops an invalid index is given. "
             + "Please provide an acceptable index number between 1 and 2147483647";
     public static final String INVALID_NO_INDEX_GIVEN_ERROR = "Oops no index given. "
@@ -34,10 +36,34 @@ public abstract class ErrorMessage {
     }
 
     public static void displayEmptyExpiryError() {
-        System.out.println("Sorry there must be an expiry date/time for this instrument signal!");
+        System.out.println("Sorry there must be an expiry date for this instrument signal!");
     }
 
     public static void displayWriteToFileError() {
         System.out.println("Oh no! There seems to be an error writing to the file");
+    }
+
+    public static void displayEditNameError() {
+        System.out.println("Name entered is invalid. Ignoring edit for Name");
+    }
+
+    public static void displayEditPriceError() {
+        System.out.println("Price entered is invalid. Ignoring edit for Price");
+    }
+
+    public static void displayEditSentimentError() {
+        System.out.println("Sentiment entered is invalid. Ignoring edit for Sentiments");
+    }
+
+    public static void displayEditReturnError() {
+        System.out.println("Past Returns entered is invalid. Ignoring edit for Past Returns");
+    }
+
+    public static void displayEditExpiryError() {
+        System.out.println("Past expiry entered is invalid. Ignoring edit for Past Returns");
+    }
+
+    public static void displayPastReturnError() {
+        System.out.println("Past Returns entered is invalid.");
     }
 }
