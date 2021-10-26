@@ -97,6 +97,7 @@ public class TextUi {
 
     public static void displayAllInstruments(ArrayList<Instrument> instruments) {
         System.out.println(LINE_DECORATOR);
+        System.out.println(WATCHLIST_HEADER);
         displayInstruments(instruments);
         System.out.println(LINE_DECORATOR);
     }
