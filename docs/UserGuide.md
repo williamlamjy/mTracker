@@ -1,4 +1,5 @@
 # mTracker User Guide
+![foo](images/mTracker_logo_cropped.png)
 
 ## Introduction
 
@@ -35,11 +36,12 @@ command-line commands mTracker intakes to execute the various functionalities.
 
 ## Quick Start
 
-1. Ensure that you have Java `11` installed on your computer.
-2. Download the latest version of `mTracker` from [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/releases).
-3. Copy the jar file to a folder that you want to run mTracker from.
-4. At the folder where you copied the jar file run the command `java -jar TP.jar` in terminal.
-5. If mTracker starts successfully, you should see the following output:
+1) Ensure that you have Java `11` installed on your computer.
+2) Download the latest version of `mTracker` from [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/releases).
+3) Copy the jar file to a folder that you want to run mTracker from.
+4) At the folder where you copied the jar file run the command `java -jar TP.jar` in terminal.
+5) If mTracker starts successfully, you should see the following greeting:
+
 ```
 ________________________________________________________________________________
             _________                      __
