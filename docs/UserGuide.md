@@ -210,7 +210,7 @@ Bilateral currency pairs, known as forex pairs, are traded in the currency marke
 and mTracker provides the ability to add forex pairs to its watchlist too.
 After keying in `forex` as the type of instrument, mTracker prompts for the
 following parameters:
-* `Name` Name of the ETF. Empty name is not allowed and forex pairs' names should be 
+* `Name` Name of forex. Empty name is not allowed and forex pairs' names should be 
   6 letters long. (Eg. AUDUSD instead of AUD USD, or Australian dollar-US dollar, or AUD/USD)
 * `Current Price` Current price of the stock. Requires a positive number.
 * `Sentiment` Sentiment of user towards the stock.
