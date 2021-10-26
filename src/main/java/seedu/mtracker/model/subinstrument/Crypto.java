@@ -2,33 +2,39 @@ package seedu.mtracker.model.subinstrument;
 
 import seedu.mtracker.model.Instrument;
 
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.time.LocalDate;
 
 public class Crypto extends Instrument {
 
-    protected String expiry;
+    protected LocalDate expiry;
     protected String remark;
     protected static final String CRYPTO_ICON = "[C]";
     protected static final String TYPE_INSTRUMENT = "Crypto";
     protected static final String EXPIRY_FIELD = "Expiry: ";
     protected static final String EXPIRY_ATTRIBUTE = "expiry";
 
-    public Crypto(String name, double currentPrice, String sentiment, String expiry, String remark) {
+    public Crypto(String name, double currentPrice, String sentiment, LocalDate expiry, String remark) {
         super(name, currentPrice, sentiment);
         this.expiry = expiry;
         this.remark = remark;
     }
 
-    public String getExpiry() {
+    public LocalDate getExpiry() {
         return expiry;
+    }
+
+    public String formatExpiry() {
+        return expiry.format(DateTimeFormatter.ofPattern(DATE_REGEX));
     }
 
     public String getRemark() {
         return remark;
     }
 
-    public void setExpiry(String inputExpiry) {
+    public void setExpiry(LocalDate inputExpiry) {
         expiry = inputExpiry;
     }
 
@@ -47,7 +53,8 @@ public class Crypto extends Instrument {
         if (!editedParameters.containsKey(EXPIRY_ATTRIBUTE)) {
             return;
         }
-        setExpiry(editedParameters.get(EXPIRY_ATTRIBUTE));
+        LocalDate updateExpiry = LocalDate.parse(editedParameters.get(EXPIRY_ATTRIBUTE));
+        setExpiry(updateExpiry);
     }
 
     public void editSpecificParameter(HashMap<String, String> editedParameters) {
@@ -86,7 +93,7 @@ public class Crypto extends Instrument {
     @Override
     public String getAllParams() {
         return super.getAllParams()
-                + EXPIRY_FIELD + expiry + System.lineSeparator()
+                + EXPIRY_FIELD + formatExpiry() + System.lineSeparator()
                 + REMARKS_FIELD + remark;
     }
 

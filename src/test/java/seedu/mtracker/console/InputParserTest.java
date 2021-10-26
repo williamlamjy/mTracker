@@ -34,10 +34,10 @@ class InputParserTest {
     public static final String TEST_SENTIMENT = "negative";
     public static final String TEST_REMARK = "";
     public static final Instrument TEST_STOCK = new Stock(TEST_NAME, TEST_PRICE, TEST_SENTIMENT, TEST_REMARK);
-    public static ArrayList<Instrument> INSTRUMENTS;
-    private InputParser parser;
-
     public static final int INDEX_OFFSET = 1;
+    public static ArrayList<Instrument> INSTRUMENTS;
+
+    private InputParser parser;
 
     @BeforeEach
     void initialiseTestResources() {

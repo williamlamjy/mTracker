@@ -1,5 +1,6 @@
 package seedu.mtracker.asserthelpers;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public abstract class AssertParserHelper {
@@ -23,6 +24,8 @@ public abstract class AssertParserHelper {
     public static final String NEGATIVE_PRICE = "Price recorded is negative";
 
     public static final String EMPTY_STRING_INPUT = "Parameter is found to be empty when it should not be";
+
+    public static final String INVALID_EXPIRY = "Expiry date is set to the past when it should not be";
 
     public static void assertPriceNonNegative(String price) {
         assert Double.parseDouble(price) >= MINIMUM_PRICE : NEGATIVE_PRICE;
@@ -50,5 +53,10 @@ public abstract class AssertParserHelper {
 
     public static void assertInputNotEmpty(String param) {
         assert !param.isEmpty() : EMPTY_STRING_INPUT;
+    }
+
+    public static void assertExpiryInTheFuture(String dateParam) {
+        LocalDate dateGiven = LocalDate.parse(dateParam);
+        assert dateGiven.isAfter(LocalDate.now()) || dateGiven.isEqual(LocalDate.now()) : INVALID_EXPIRY;
     }
 }
