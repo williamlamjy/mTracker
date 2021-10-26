@@ -61,7 +61,6 @@ ________________________________________________________________________________
 >that would often be referred to throughout this user guide.
 >    * `TYPE` represents the type of the instrument. mTracker currently
        supports 4 different types of instruments: `stock`, `etf`, `crypto` and `forex`.
->    * `REMARKS` represents the remarks specified by the user.
 >    * `INDEX` represents position index at which the instrument appears in the displayed list.
 >      * For example, the first instrument in the list would have a position index of 1 while 
 >      the 3rd instrument in the list would have a
@@ -502,6 +501,11 @@ the instrument should be separated by a semicolon (;) without spaces in between.
 
 Action | Format | Examples
  --------- | ------ |------
-Add instrument | `add` | Read <> for detailed instructions and examples.
-List | `list` | 
-Exit | `bye` |
+Add an instrument | `add` | Read <> for detailed instructions and examples.
+List all instruments in watchlist | `list` | `mTracker$> list` prints out all instruments in watchlist, and their respective general parameters' information.
+View all info of an instrument | `view INDEX` | `mTracker$> view 1` prints out all financial details recorded for the first instrument in watchlist.
+Mark an instrument's trade setup as completed | `done INDEX` | `mTracker$> done 2` marks second instrument in watchlist as acted upon.
+Edit details recorded for an instrument | `edit INDEX` | Read <> for detailed instructions and examples.
+Delete an instrument from watchlist | `delete INDEX` | `mTracker$> delete 5` deletes the fifth instrument in watchlist.
+Search for recorded instrument(s) | `find SEARCH_STRING` | `mTracker$> find USD` returns all financial instruments in watchlist that contain "USD". **(Note: SEARCH_STRING is case-sensitive.)**
+Exit program | `bye` | `mTracker$> bye` prints out farewell message and program ends.
