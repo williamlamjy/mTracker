@@ -21,17 +21,23 @@ eventual _**Command Summary**_ section gives a brief overview of the different t
 command-line commands mTracker intakes to execute the various functionalities.
 
 ## _Contents_
-* [Quick Start](#1.0-quick-start)
-* [Features](#features)
-    * [Add a new instrument: `add`](#add-a-new-instrument-add)
-      * [Add a new stock: `stock`](#add-a-new-stock)
-      * [Add a new crypto: `crypto`](#add-a-new-crypto)
-      * [Add a new forex: `forex`](#add-a-new-forex)
-      * [Add a new etf: `etf`](#add-a-new-etf)
-    * [List all instruments : `list`](#list-all-instruments-list)
-    * [Exit the application : `bye`](#exit-bye)
-* [FAQ](#faq)
-* [Command Summary](#command-summary)
+* [1.0 Quick Start](#10-quick-start)
+* [2.0 Usage](#20-usage)
+    * [Notes on command format](#notes-on-command-format)
+    * [2.1.0 Add a new instrument: `add`](#210-adding-a-new-instrument-add)
+      * [2.1.1 Add a new stock: `stock`](#211-adding-a-new-stock)
+      * [2.1.2 Add a new crypto: `crypto`](#212-add-a-new-crypto)
+      * [2.1.3 Add a new etf: `etf`](#213-adding-a-new-etf)
+      * [2.1.4 Add a new forex: `forex`](#214-adding-a-new-forex)
+    * [2.2.0 List all instruments: `list`](#220-displaying-general-info-of-all-instruments-added-list)
+    * [2.3.0 View instrument info: `view`](#230-viewing-more-info-recorded-for-an-instrument-view)
+    * [2.4.0 Mark an instrument done: `done`](#240-marking-a-setup-as-acted-upon-done)
+    * [2.5.0 Edit an instrument: `edit`](#250-editing-an-instrument-edit)
+    * [2.6.0 Remove an instrument: `delete`](#260-removing-an-instrument-record-delete)
+    * [2.7.0 Search for an instrument: `find`](#270-search-for-instruments-in-watchlist-find)
+    * [2.8.0 Exit the application : `bye`](#280-exiting-the-bot-bye)
+* [3.0 FAQ](#30-faq)
+* [4.0 Command Summary](#40-command-summary)
 
 
 
@@ -507,11 +513,11 @@ the instrument should be separated by a semicolon (;) without spaces in between.
 
 Action | Format | Examples
  --------- | ------ |------
-Add an instrument | `add` | Read <> for detailed instructions and examples.
+Add an instrument | `add` | Read [2.1.0 Add a new instrument: `add`](#210-adding-a-new-instrument-add) for detailed instructions and examples.
 List all instruments in watchlist | `list` | `mTracker$> list` prints out all instruments in watchlist, and their respective general parameters' information.
 View all info of an instrument | `view INDEX` | `mTracker$> view 1` prints out all financial details recorded for the first instrument in watchlist.
 Mark an instrument's trade setup as completed | `done INDEX` | `mTracker$> done 2` marks second instrument in watchlist as acted upon.
-Edit details recorded for an instrument | `edit INDEX` | Read <> for detailed instructions and examples.
+Edit details recorded for an instrument | `edit INDEX` | Read [2.5.0 Edit an instrument: `edit`](#250-editing-an-instrument-edit) for detailed instructions and examples.
 Delete an instrument from watchlist | `delete INDEX` | `mTracker$> delete 5` deletes the fifth instrument in watchlist.
 Search for recorded instrument(s) | `find SEARCH_STRING` | `mTracker$> find USD` returns all financial instruments in watchlist that contain "USD". **(Note: SEARCH_STRING is case-sensitive.)**
 Exit program | `bye` | `mTracker$> bye` prints out farewell message and program ends.
