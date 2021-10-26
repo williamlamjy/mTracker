@@ -164,9 +164,9 @@ public class TextUi {
     }
 
     public static void displayEditInstrumentFirstInstruction(Instrument instrument) {
-        System.out.println("Please enter one or more " + instrument.getType()
+        System.out.println(TAB +"Please enter one or more " + instrument.getType()
                 + " parameters to edit." + System.lineSeparator()
-                + instrument.editParameterInstructions());
+                + TAB + instrument.editParameterInstructions());
     }
 
     public static void displayEditInvalidAttribute(String inputAttribute) {
@@ -174,35 +174,35 @@ public class TextUi {
     }
 
     public static void displayEditName() {
-        System.out.println(EDIT_NAME_MESSAGE);
+        System.out.println(TAB + EDIT_NAME_MESSAGE);
     }
 
     public static void displayEditCurrentPrice() {
-        System.out.println(EDIT_CURRENTPRICE_MESSAGE);
+        System.out.println(TAB + EDIT_CURRENTPRICE_MESSAGE);
     }
 
     public static void displayEditSentiment() {
-        System.out.println(EDIT_SENTIMENT_MESSAGE);
+        System.out.println(TAB + EDIT_SENTIMENT_MESSAGE);
     }
 
     public static void displayEditRemark() {
-        System.out.println(EDIT_REMARKS_MESSAGE);
+        System.out.println(TAB + EDIT_REMARKS_MESSAGE);
     }
 
     public static void displayEditReturn() {
-        System.out.println(EDIT_RETURN_MESSAGE);
+        System.out.println(TAB + EDIT_RETURN_MESSAGE);
     }
 
     public static void displayEditEntryPrice() {
-        System.out.println(EDIT_ENTRY_MESSAGE);
+        System.out.println(TAB + EDIT_ENTRY_MESSAGE);
     }
 
     public static void displayEditExitPrice() {
-        System.out.println(EDIT_EXIT_MESSAGE);
+        System.out.println(TAB + EDIT_EXIT_MESSAGE);
     }
 
     public static void displayEditExpiry() {
-        System.out.println(EDIT_EXPIRY_MESSAGE);
+        System.out.println(TAB + EDIT_EXPIRY_MESSAGE);
     }
 
     public static void displayEditBeforeAfter(String beforeEdit, String afterEdit) {
