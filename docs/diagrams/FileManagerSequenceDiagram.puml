@@ -17,81 +17,87 @@ box ui COLOR_LIGHT_BLUE
 participant ":TextUi" as TextUi COLOR_UI
 end box
 
+box error COLOR_WHITE
+participant ":InvalidInstrumentInFileError" as InvalidInstrumentInFileError COLOR_SILVER
+end box
+
 [-> Storage: loadFileData(instrumentManager)
 activate Storage
+
 alt file does not exist or is not a regular file
-
-Storage-> TextUi: displayCreateFile()
-activate TextUi
-
-TextUi--> Storage
-deactivate TextUi
-
+    Storage-> TextUi: displayCreateFile()
+    activate TextUi
+    TextUi--> Storage
+    deactivate TextUi
 else
-Storage-> TextUi: displayLoadingFile()
-activate TextUi
-
-TextUi-> Storage:
-deactivate TextUi
-
-Storage-> InstrumentDecoder: readFile(instrumentManager, fileData)
-activate InstrumentDecoder
-
-    loop each line in the file
-    InstrumentDecoder-> InstrumentDecoder: addSavedInstrumentToList(instrumentManager, textSegment)
+    Storage-> TextUi: displayLoadingFile()
+    activate TextUi
+    TextUi-> Storage:
+    deactivate TextUi
+    Storage-> InstrumentDecoder: readFile(instrumentManager, fileData)
     activate InstrumentDecoder
 
-note right
-The parameter textSegment is
-the array of Crypto parameters:
-{"Crypto", "32.0", "positive", "19 Dec", ""}
-end note
+        loop each line in the file
+            InstrumentDecoder-> InstrumentDecoder: addSavedInstrumentToList(instrumentManager, textSegment)
+            activate InstrumentDecoder
 
-    opt Instrument type is Crypto/Etf/Stock/Forex
-    InstrumentDecoder-> CryptoDecoder: addCryptoToList(textSegment, instrumentManager)
-    activate CryptoDecoder
+            note right
+            The parameter textSegment is
+            the array of Crypto parameters:
+            {"Crypto", "32.0", "positive", "19 Dec", ""}
+            end note
 
-note bottom
-Displaying only the outcome of adding
-a pre-existing Crypto to list. This if
-statement is supposed to be a switch statement
-amongst the 4 different instruments
-end note
+                alt Instrument type is Crypto/Etf/Stock/Forex
+                    InstrumentDecoder-> CryptoDecoder: addCryptoToList(textSegment, instrumentManager)
+                    activate CryptoDecoder
 
-create Crypto
-CryptoDecoder-> Crypto: Crypto("Crypto", "32.0", "positive","true", "2022-01-12", "")
-activate Crypto
+                    note bottom
+                    Displaying only the outcome of adding
+                    a pre-existing Crypto to list. This if
+                    statement is supposed to be a switch statement
+                    amongst the 4 different instruments
+                    end note
+
+                    create Crypto
+                    CryptoDecoder-> Crypto: Crypto("Crypto", "32.0", "positive","true", "2022-01-12", "")
+                    activate Crypto
 
 
-Crypto--> CryptoDecoder: return crypto
-deactivate Crypto
+                    Crypto--> CryptoDecoder: return crypto
+                    deactivate Crypto
 
-CryptoDecoder-> CryptoDecoder: setDoneStatus(true, crypto)
-activate CryptoDecoder
-CryptoDecoder--> CryptoDecoder
-deactivate CryptoDecoder
+                    CryptoDecoder-> CryptoDecoder: setDoneStatus(true, crypto)
+                    activate CryptoDecoder
+                    CryptoDecoder--> CryptoDecoder
+                    deactivate CryptoDecoder
 
-CryptoDecoder-> InstrumentManager: addInstrument(crypto)
-activate InstrumentManager
+                    CryptoDecoder-> InstrumentManager: addInstrument(crypto)
+                    activate InstrumentManager
 
-InstrumentManager--> CryptoDecoder
-deactivate InstrumentManager
+                    InstrumentManager--> CryptoDecoder
+                    deactivate InstrumentManager
 
-CryptoDecoder--> InstrumentDecoder
-deactivate CryptoDecoder
+                    CryptoDecoder--> InstrumentDecoder
+                    deactivate CryptoDecoder
 
-InstrumentDecoder--> InstrumentDecoder
-deactivate InstrumentDecoder
-InstrumentDecoder--> Storage
-deactivate InstrumentDecoder
+                else
+                    create InvalidInstrumentInFileError
+                    InstrumentDecoder-> InvalidInstrumentInFileError: throw new InvalidInstrumentInFileError()
+                    activate InvalidInstrumentInFileError
+                    InvalidInstrumentInFileError--> InstrumentDecoder
+                    deactivate InvalidInstrumentInFileError
 
-[<-- Storage
-deactivate Storage
+                    end
+                    InstrumentDecoder--> InstrumentDecoder
+                    deactivate InstrumentDecoder
+                    end
+                    InstrumentDecoder--> Storage
+                    deactivate InstrumentDecoder
+
+                    [<-- Storage
+                    deactivate Storage
 
 end
 
-end
-
-end
 
 @enduml

@@ -2,7 +2,9 @@ package seedu.mtracker.commons;
 
 
 import org.junit.jupiter.api.Test;
+import seedu.mtracker.console.AddInstrumentParser;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,6 +18,10 @@ class ValidateTest {
     public static final String INVALID_PRICE = "32fvr";
     public static final String[] VALID_SENTIMENTS = {"positive", "neutral", "negative"};
     public static final String INVALID_SENTIMENT = "invalid";
+    public static final String INVALID_EXPIRY = "18 Oct";
+    public static final int DAYS_DIFFERENCE = 1;
+    public static final LocalDate FUTURE_DATE = LocalDate.now().plusDays(DAYS_DIFFERENCE);
+    public static final LocalDate PAST_DATE = LocalDate.now().minusDays(DAYS_DIFFERENCE);
 
     public static final String VALID_TEST_INSTRUMENT = "testInstrument";
 
@@ -60,4 +66,23 @@ class ValidateTest {
         assertFalse(Validate.isValidSentiment(EMPTY_INPUT));
     }
 
+    @Test
+    void addExpiry_validExpiryInFuture_expectSuccess() {
+        assertTrue(Validate.isValidExpiry(FUTURE_DATE.toString()));
+    }
+
+    @Test
+    void addExpiry_emptyExpiry_expectFailure() {
+        assertFalse(Validate.isValidExpiry(EMPTY_INPUT));
+    }
+
+    @Test
+    void addExpiry_invalidExpiry_expectFailure() {
+        assertFalse(Validate.isValidExpiry(INVALID_EXPIRY));
+    }
+
+    @Test
+    void addExpiry_validExpiryButIsInPast_expectFailure() {
+        assertFalse(Validate.isValidExpiry(PAST_DATE.toString()));
+    }
 }

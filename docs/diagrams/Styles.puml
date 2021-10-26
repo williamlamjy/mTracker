@@ -19,9 +19,9 @@ skinparam Class {
 }
 
 skinparam Participant {
-BorderThickness 0
-FontColor #FFFFFF
-FontName Arial
+    BorderThickness 0
+    FontColor #FFFFFF
+    FontName Arial
 }
 
 skinparam Shadowing false

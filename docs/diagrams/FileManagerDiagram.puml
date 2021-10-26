@@ -9,11 +9,26 @@ Package "filemanager"  <<Rectangle>>{
      Class XYZDecoder COLOR_STORAGE
 }
 
+Class TextUi COLOR_UI
+
+
+Class Instrument COLOR_MODEL
+Class InstrumentManager COLOR_MODEL
+
+
 Class outside COLOR_WHITE
 outside -down[COLOR_STORAGE]-> Storage
 XYZDecoder -up[COLOR_STORAGE].|>InstrumentDecoder
-Storage -left[COLOR_STORAGE].> InstrumentEncoder
-Storage -right[COLOR_STORAGE].> InstrumentDecoder
+Storage -right[COLOR_STORAGE].> InstrumentEncoder
+Storage -down[COLOR_STORAGE].> InstrumentDecoder
+InstrumentEncoder -up[COLOR_STORAGE].> Instrument
+InstrumentDecoder -down[COLOR_STORAGE].> InstrumentManager
+InstrumentDecoder -right[COLOR_STORAGE].> Instrument
+XYZDecoder -up[COLOR_STORAGE].> Instrument
+XYZDecoder -down[COLOR_STORAGE].> InstrumentManager
+Storage -left[COLOR_STORAGE].> TextUi
+InstrumentDecoder -left[COLOR_STORAGE].> TextUi
+
 
 note bottom of XYZDecoder: XYZDecoder = CryptoDecoder, ForexDecoder, \nEtfDecoder, StockDecoder
 
