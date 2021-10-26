@@ -27,7 +27,7 @@ activate TextUi
 TextUi--> Storage
 deactivate TextUi
 
-else file exists and is regular
+else
 Storage-> TextUi: displayLoadingFile()
 activate TextUi
 
@@ -37,9 +37,9 @@ deactivate TextUi
 Storage-> InstrumentDecoder: readFile(instrumentManager, fileData)
 activate InstrumentDecoder
 
-loop each line in the file
-InstrumentDecoder-> InstrumentDecoder: addSavedInstrumentToList(instrumentManager, textSegment)
-activate InstrumentDecoder
+    loop each line in the file
+    InstrumentDecoder-> InstrumentDecoder: addSavedInstrumentToList(instrumentManager, textSegment)
+    activate InstrumentDecoder
 
 note right
 The parameter textSegment is
@@ -47,9 +47,9 @@ the array of Crypto parameters:
 {"Crypto", "32.0", "positive", "19 Dec", ""}
 end note
 
-opt Instrument type is Crypto/Etf/Stock/Forex
-InstrumentDecoder-> CryptoDecoder: addCryptoToList(textSegment, instrumentManager)
-activate CryptoDecoder
+    opt Instrument type is Crypto/Etf/Stock/Forex
+    InstrumentDecoder-> CryptoDecoder: addCryptoToList(textSegment, instrumentManager)
+    activate CryptoDecoder
 
 note bottom
 Displaying only the outcome of adding
@@ -59,11 +59,11 @@ amongst the 4 different instruments
 end note
 
 create Crypto
-CryptoDecoder-> Crypto: new Crypto("Crypto", 32.0, "positive", "19 Dec", "")
+CryptoDecoder-> Crypto: Crypto("Crypto", "32.0", "positive","true", "2022-01-12", "")
 activate Crypto
 
 
-Crypto--> CryptoDecoder
+Crypto--> CryptoDecoder: return crypto
 deactivate Crypto
 
 CryptoDecoder-> CryptoDecoder: setDoneStatus(true, crypto)

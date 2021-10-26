@@ -15,6 +15,6 @@ XYZDecoder -up[COLOR_STORAGE].|>InstrumentDecoder
 Storage -left[COLOR_STORAGE].> InstrumentEncoder
 Storage -right[COLOR_STORAGE].> InstrumentDecoder
 
-note bottom of XYZDecoder: XYZDecoder = CryptoDecoder, ForexDecoder, \nEtfDecoder, StockDEcoder
+note bottom of XYZDecoder: XYZDecoder = CryptoDecoder, ForexDecoder, \nEtfDecoder, StockDecoder
 
 @enduml
