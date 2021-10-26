@@ -14,6 +14,7 @@ public abstract class Instrument {
     protected String sentiment;
     protected boolean isDone;
 
+    protected static final String TAB = "\t";
     protected static final String FILE_SEPARATOR = ";";
     protected static final String DONE_SYMBOL = "[X]";
     protected static final String NOT_DONE_SYMBOL = "[ ]";
@@ -125,7 +126,7 @@ public abstract class Instrument {
     public abstract String getTypeIcon();
 
     public String getAllParams() {
-        return TYPE_FIELD + getType() + getStatusIcon() + System.lineSeparator()
+        return TYPE_FIELD + getType() + TAB + getStatusIcon() + System.lineSeparator()
                 + NAME_FIELD + name + System.lineSeparator()
                 + CURRENT_PRICE_FIELD + currentPrice + System.lineSeparator()
                 + SENTIMENT_FIELD + sentiment + System.lineSeparator();
