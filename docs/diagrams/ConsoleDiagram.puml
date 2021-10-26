@@ -11,7 +11,7 @@ Package "console                 "<<Rectangle>>{
 Class "{abstract}\nCommand" as Command COLOR_COMMANDS
 Class AddXYZCommand COLOR_COMMANDS
 Class TextUi COLOR_UI
-Class Instrument COLOR_MODEL
+Class "{abstract}\nInstrument" as Instrument COLOR_MODEL
 
 Class outside COLOR_WHITE
 outside -down[COLOR_MAIN]-> InputParser
