@@ -13,28 +13,13 @@ participant ":InstrumentManager" as InstrumentManager COLOR_MODEL
 participant ":Crypto" as Crypto COLOR_MODEL
 end box
 
-box ui COLOR_LIGHT_BLUE
-participant ":TextUi" as TextUi COLOR_UI
+box error COLOR_ERROR_SEGMENT
+participant ":InvalidInstrumentInFileError" as InvalidInstrumentInFileError COLOR_ERROR
 end box
 
-box error COLOR_WHITE
-participant ":InvalidInstrumentInFileError" as InvalidInstrumentInFileError COLOR_SILVER
-end box
 
-[-> Storage: loadFileData(instrumentManager)
-activate Storage
-
-alt file does not exist or is not a regular file
-    Storage-> TextUi: displayCreateFile()
-    activate TextUi
-    TextUi--> Storage
-    deactivate TextUi
-else
-    Storage-> TextUi: displayLoadingFile()
-    activate TextUi
-    TextUi-> Storage:
-    deactivate TextUi
     Storage-> InstrumentDecoder: readFile(instrumentManager, fileData)
+    activate Storage
     activate InstrumentDecoder
 
         loop each line in the file
@@ -44,12 +29,17 @@ else
             note right
             The parameter textSegment is
             the array of Crypto parameters:
-            {"Crypto", "32.0", "positive", "19 Dec", ""}
+            {"Crypto", "32.0", "positive", "2022-01-12", ""}
             end note
 
                 alt Instrument type is Crypto/Etf/Stock/Forex
                     InstrumentDecoder-> CryptoDecoder: addCryptoToList(textSegment, instrumentManager)
                     activate CryptoDecoder
+
+                    CryptoDecoder-> CryptoDecoder: decodeGeneralAttributes(textSegment)
+                    activate CryptoDecoder
+                    CryptoDecoder--> CryptoDecoder
+                    deactivate CryptoDecoder
 
                     note bottom
                     Displaying only the outcome of adding
@@ -93,11 +83,6 @@ else
                     end
                     InstrumentDecoder--> Storage
                     deactivate InstrumentDecoder
-
-                    [<-- Storage
                     deactivate Storage
-
-end
-
 
 @enduml
