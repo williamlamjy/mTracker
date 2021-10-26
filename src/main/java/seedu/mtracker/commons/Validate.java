@@ -2,7 +2,6 @@ package seedu.mtracker.commons;
 
 import seedu.mtracker.LogHelper;
 import seedu.mtracker.console.AddForexParser;
-import seedu.mtracker.error.ErrorMessage;
 import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidDateFormatError;
 import seedu.mtracker.error.InvalidNameError;
