@@ -43,6 +43,7 @@ public class TextUi {
     private static final String EDIT_ENTRY_MESSAGE = "Enter new Entry Price:";
     private static final String EDIT_EXIT_MESSAGE = "Enter new Exit Price:";
     private static final String EDIT_EXPIRY_MESSAGE = "Enter new Expiry (YYYY-MM-DD):";
+    private static final String WATCHLIST_HEADER = "CURRENT WATCHLIST";
 
     private static final int NONE_FOUND = 0;
 
@@ -85,7 +86,7 @@ public class TextUi {
     public static void displayAddPastReturnsInstruction() {
         System.out.println(TAB + RETURNS_HEADER);
     }
-
+    
     public static void displayInstruments(ArrayList<Instrument> instruments) {
         int idx = 0;
         for (Instrument instrument: instruments) {
@@ -102,7 +103,7 @@ public class TextUi {
 
     private static void displayFoundMessage(int numFound, String keyword) {
         if (numFound == NONE_FOUND) {
-            System.out.println("There were no instruments found for " + keyword);
+            System.out.println("There were no instruments found for keyword, " + keyword);
             return;
         }
         System.out.println("There were " + numFound + " instrument(s) found for keyword, " + keyword + ".");
@@ -160,9 +161,9 @@ public class TextUi {
     }
 
     public static void displayEditInstrumentFirstInstruction(Instrument instrument) {
-        System.out.println("Please enter one or more " + instrument.getType()
+        System.out.println(TAB + "Please enter one or more " + instrument.getType()
                 + " parameters to edit." + System.lineSeparator()
-                + instrument.editParameterInstructions());
+                + TAB + instrument.editParameterInstructions());
     }
 
     public static void displayEditInvalidAttribute(String inputAttribute) {
@@ -170,35 +171,35 @@ public class TextUi {
     }
 
     public static void displayEditName() {
-        System.out.println(EDIT_NAME_MESSAGE);
+        System.out.println(TAB + EDIT_NAME_MESSAGE);
     }
 
     public static void displayEditCurrentPrice() {
-        System.out.println(EDIT_CURRENT_PRICE_MESSAGE);
+        System.out.println(TAB + EDIT_CURRENT_PRICE_MESSAGE);
     }
 
     public static void displayEditSentiment() {
-        System.out.println(EDIT_SENTIMENT_MESSAGE);
+        System.out.println(TAB + EDIT_SENTIMENT_MESSAGE);
     }
 
     public static void displayEditRemark() {
-        System.out.println(EDIT_REMARKS_MESSAGE);
+        System.out.println(TAB + EDIT_REMARKS_MESSAGE);
     }
 
     public static void displayEditReturn() {
-        System.out.println(EDIT_RETURN_MESSAGE);
+        System.out.println(TAB + EDIT_RETURN_MESSAGE);
     }
 
     public static void displayEditEntryPrice() {
-        System.out.println(EDIT_ENTRY_MESSAGE);
+        System.out.println(TAB + EDIT_ENTRY_MESSAGE);
     }
 
     public static void displayEditExitPrice() {
-        System.out.println(EDIT_EXIT_MESSAGE);
+        System.out.println(TAB + EDIT_EXIT_MESSAGE);
     }
 
     public static void displayEditExpiry() {
-        System.out.println(EDIT_EXPIRY_MESSAGE);
+        System.out.println(TAB + EDIT_EXPIRY_MESSAGE);
     }
 
     public static void displayEditBeforeAfter(String beforeEdit, String afterEdit) {
