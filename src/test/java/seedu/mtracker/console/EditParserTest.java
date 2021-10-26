@@ -46,17 +46,17 @@ public class EditParserTest {
 
 
     @Test
-    void EditInstrumentParam_NameAndRemark_expectSuccess() {
+    void editInstrumentParam_nameAndRemark_expectSuccess() {
         testEditInstrumentParameters(USER_INPUT, EXPECTED_OUTPUT, PARAM_INPUT);
     }
 
     @Test
-    void EditInstrumentParam_CurrentPriceAndSentiment_expectSuccess() {
+    void editInstrumentParam_currentPriceAndSentiment_expectSuccess() {
         testEditInstrumentParameters(USER_INPUT2, EXPECTED_OUTPUT2, PARAM_INPUT2);
     }
 
     @Test
-    void EditInstrumentParam_EntryAndExitPrice_expectSuccess() {
+    void editInstrumentParam_entryAndExitPrice_expectSuccess() {
         testEditInstrumentParameters(USER_INPUT3, EXPECTED_OUTPUT3, PARAM_INPUT3);
     }
 }
