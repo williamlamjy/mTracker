@@ -31,7 +31,7 @@ command-line commands mTracker intakes to execute the various functionalities.
       * [Add a new forex: `forex`](#214-adding-a-new-forex)
     * [List all instruments: `list`](#220-displaying-general-info-of-all-instruments-added-list)
       * [View instrument info: `view`](#230-viewing-more-info-recorded-for-an-instrument-view)
-    * [Mark an instrument: `done`](#240-marking-a-setup-as-acted-upon-done)
+    * [Mark an instrument done: `done`](#240-marking-a-setup-as-acted-upon-done)
     * [Edit an instrument: `edit`](#250-editing-an-instrument-edit)
     * [Remove an instrument: `delete`](#260-removing-an-instrument-record-delete)
     * [Search for an instrument: `find`](#270-search-for-instruments-in-watchlist-find)
