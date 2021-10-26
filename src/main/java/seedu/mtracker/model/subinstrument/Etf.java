@@ -11,10 +11,10 @@ public class Etf extends Instrument {
     protected double pastReturns;
     protected static final String ETF_ICON = "[E]";
     protected static final String TYPE_INSTRUMENT = "Etf";
+    protected static final String EMPTY_STRING = "";
 
     protected static final String RETURNS_FIELD = "Past Returns: ";
     protected static final String RETURNS_ATTRIBUTE = "returns";
-    protected static final String EMPTY_STRING = "";
     protected static final double UNDEFINED_VALUE = -101.0;
 
     public Etf(String name, double currentPrice, String sentiment, double pastReturns, String remark) {

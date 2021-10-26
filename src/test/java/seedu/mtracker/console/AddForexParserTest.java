@@ -3,12 +3,15 @@ package seedu.mtracker.console;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AddForexParserTest {
 
     public static final int PARAMETER_SIZE = 7;
+    public static final int DAYS_DIFFERENCE = 1;
+    public static final LocalDate FUTURE_DATE = LocalDate.now().plusDays(DAYS_DIFFERENCE);
     public static final String SEPARATOR_SPECIFIER = "%1$s";
 
     public static final String[] EXPECTED_PARAMS_NO_REMARKS = {
@@ -17,7 +20,7 @@ class AddForexParserTest {
         "positive",
         "1.15",
         "1.30",
-        "15 Oct",
+        FUTURE_DATE.toString(),
         ""
     };
 
@@ -27,7 +30,7 @@ class AddForexParserTest {
         "negative",
         "0.79",
         "0.70",
-        "20 Oct",
+        FUTURE_DATE.toString(),
         "fooRemarks"
     };
 
@@ -36,7 +39,7 @@ class AddForexParserTest {
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + "1.15"
             + SEPARATOR_SPECIFIER + "1.30"
-            + SEPARATOR_SPECIFIER + "15 Oct"
+            + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + " ";
 
     public static final String USER_INPUT_WITH_REMARKS = "TTTXXX"
@@ -44,7 +47,7 @@ class AddForexParserTest {
             + SEPARATOR_SPECIFIER + "negative"
             + SEPARATOR_SPECIFIER + "0.79"
             + SEPARATOR_SPECIFIER + "0.70"
-            + SEPARATOR_SPECIFIER + "20 Oct"
+            + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
     public static final String USER_INPUT_TRY_INVALID_NAME = SEPARATOR_SPECIFIER.repeat(2) + "TTXX"
@@ -53,7 +56,7 @@ class AddForexParserTest {
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + "1.15"
             + SEPARATOR_SPECIFIER + "1.30"
-            + SEPARATOR_SPECIFIER + "15 Oct"
+            + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + " ";
 
     public static final String USER_INPUT_TRY_INVALID_PRICE = SEPARATOR_SPECIFIER + "TTTXXX"
@@ -63,7 +66,7 @@ class AddForexParserTest {
             + SEPARATOR_SPECIFIER + "foobar"
             + SEPARATOR_SPECIFIER + "0.79"
             + SEPARATOR_SPECIFIER.repeat(2) + "0.70"
-            + SEPARATOR_SPECIFIER + "20 Oct"
+            + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
     public static final String USER_INPUT_TRY_INVALID_SENTIMENT = SEPARATOR_SPECIFIER + "TTTXXX"
@@ -72,7 +75,7 @@ class AddForexParserTest {
             + SEPARATOR_SPECIFIER.repeat(2) + "negative"
             + SEPARATOR_SPECIFIER + "0.79"
             + SEPARATOR_SPECIFIER + "0.70"
-            + SEPARATOR_SPECIFIER + "20 Oct"
+            + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
     String formatConsoleInput(String input) {

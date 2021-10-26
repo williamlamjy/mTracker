@@ -6,6 +6,16 @@ import java.util.ArrayList;
 
 public class TextUi {
 
+    private static final String INDEX_BRACKET = ") ";
+    private static final String TYPE_HEADER = "Please key in the type of instrument: ";
+    private static final String REMARKS_HEADER = "Remarks (optional): ";
+    private static final String SENTIMENT_HEADER = "Sentiment for instrument: ";
+    private static final String CURRENT_PRICE_HEADER = "Current Price: ";
+    private static final String ENTRY_PRICE_HEADER = "Entry Price: ";
+    private static final String EXIT_PRICE_HEADER = "Exit Price: ";
+    private static final String EXPIRY_HEADER = "Expiry (YYYY-MM-DD): ";
+    private static final String RETURNS_HEADER = "Past Returns (optional): ";
+
     private static final String LINE_DECORATOR = "_".repeat(80);
     private static final String CONSOLE_PROMPTER = "mTracker$> ";
     private static final String LOGO = "            _________                      __\n"
@@ -24,23 +34,16 @@ public class TextUi {
             + "|/ \\___/    \\_/   (_______/(_)";
 
     private static final String TAB = "\t";
-    private static final String INDEX_BRACKET = ") ";
-    private static final String TYPE_HEADER = "Please key in the type of instrument: ";
-    private static final String CURRENT_PRICE_HEADER = "Current Price: ";
-    private static final String SENTIMENT_HEADER = "Sentiment for instrument: ";
-    private static final String EXPIRY_HEADER = "Expiry: ";
-    private static final String REMARKS_HEADER = "Remarks (optional): ";
-    private static final String ENTRY_PRICE_HEADER = "Entry Price: ";
-    private static final String EXIT_PRICE_HEADER = "Exit Price: ";
-    private static final String RETURNS_HEADER = "Past Returns (optional): ";
+
     private static final String EDIT_NAME_MESSAGE = "Enter new name:";
-    private static final String EDIT_CURRENTPRICE_MESSAGE = "Enter new Current price:";
+    private static final String EDIT_CURRENT_PRICE_MESSAGE = "Enter new Current price:";
     private static final String EDIT_SENTIMENT_MESSAGE = "Enter new Sentiment:";
     private static final String EDIT_REMARKS_MESSAGE = "Enter new Remark:";
     private static final String EDIT_RETURN_MESSAGE = "Enter new Past Returns:";
     private static final String EDIT_ENTRY_MESSAGE = "Enter new Entry Price:";
     private static final String EDIT_EXIT_MESSAGE = "Enter new Exit Price:";
-    private static final String EDIT_EXPIRY_MESSAGE = "Enter new Expiry:";
+    private static final String EDIT_EXPIRY_MESSAGE = "Enter new Expiry (YYYY-MM-DD):";
+    private static final String WATCHLIST_HEADER = "CURRENT WATCHLIST";
 
     private static final int NONE_FOUND = 0;
 
@@ -86,6 +89,7 @@ public class TextUi {
 
     public static void displayAllInstruments(ArrayList<Instrument> instruments) {
         System.out.println(LINE_DECORATOR);
+        System.out.println(WATCHLIST_HEADER);
         int idx = 0;
         for (Instrument instrument: instruments) {
             idx += 1;
@@ -96,7 +100,7 @@ public class TextUi {
 
     private static void displayFoundMessage(int numFound, String keyword) {
         if (numFound == NONE_FOUND) {
-            System.out.println("There were no instruments found for " + keyword.toUpperCase());
+            System.out.println("There were no instruments found for keyword, " + keyword);
             return;
         }
         System.out.println("There were " + numFound + " instrument(s) found for keyword, " + keyword + ".");
@@ -162,9 +166,9 @@ public class TextUi {
     }
 
     public static void displayEditInstrumentFirstInstruction(Instrument instrument) {
-        System.out.println("Please enter one or more " + instrument.getType()
+        System.out.println(TAB + "Please enter one or more " + instrument.getType()
                 + " parameters to edit." + System.lineSeparator()
-                + instrument.editParameterInstructions());
+                + TAB + instrument.editParameterInstructions());
     }
 
     public static void displayEditInvalidAttribute(String inputAttribute) {
@@ -172,35 +176,35 @@ public class TextUi {
     }
 
     public static void displayEditName() {
-        System.out.println(EDIT_NAME_MESSAGE);
+        System.out.println(TAB + EDIT_NAME_MESSAGE);
     }
 
     public static void displayEditCurrentPrice() {
-        System.out.println(EDIT_CURRENTPRICE_MESSAGE);
+        System.out.println(TAB + EDIT_CURRENT_PRICE_MESSAGE);
     }
 
     public static void displayEditSentiment() {
-        System.out.println(EDIT_SENTIMENT_MESSAGE);
+        System.out.println(TAB + EDIT_SENTIMENT_MESSAGE);
     }
 
     public static void displayEditRemark() {
-        System.out.println(EDIT_REMARKS_MESSAGE);
+        System.out.println(TAB + EDIT_REMARKS_MESSAGE);
     }
 
     public static void displayEditReturn() {
-        System.out.println(EDIT_RETURN_MESSAGE);
+        System.out.println(TAB + EDIT_RETURN_MESSAGE);
     }
 
     public static void displayEditEntryPrice() {
-        System.out.println(EDIT_ENTRY_MESSAGE);
+        System.out.println(TAB + EDIT_ENTRY_MESSAGE);
     }
 
     public static void displayEditExitPrice() {
-        System.out.println(EDIT_EXIT_MESSAGE);
+        System.out.println(TAB + EDIT_EXIT_MESSAGE);
     }
 
     public static void displayEditExpiry() {
-        System.out.println(EDIT_EXPIRY_MESSAGE);
+        System.out.println(TAB + EDIT_EXPIRY_MESSAGE);
     }
 
     public static void displayEditBeforeAfter(String beforeEdit, String afterEdit) {
