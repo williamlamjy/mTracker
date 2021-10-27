@@ -4,15 +4,15 @@ import seedu.mtracker.LogHelper;
 import seedu.mtracker.console.AddForexParser;
 import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidDateFormatError;
+import seedu.mtracker.error.InvalidEmptyExpiryDateError;
+import seedu.mtracker.error.InvalidEmptyPriceError;
+import seedu.mtracker.error.InvalidEmptySentimentError;
 import seedu.mtracker.error.InvalidNameError;
-import seedu.mtracker.error.InvalidNoExpiryDateError;
-import seedu.mtracker.error.InvalidNoSentimentError;
 import seedu.mtracker.error.InvalidPastDateError;
 import seedu.mtracker.error.InvalidPastReturnError;
 import seedu.mtracker.error.InvalidPastReturnTypeError;
-import seedu.mtracker.error.InvalidPriceEmptyError;
 import seedu.mtracker.error.InvalidPriceError;
-import seedu.mtracker.error.InvalidSentimentGivenError;
+import seedu.mtracker.error.InvalidSentimentError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -58,9 +58,9 @@ public class Validate {
         return true;
     }
 
-    public static void checkPriceEmpty(String price) throws InvalidPriceEmptyError {
+    public static void checkPriceEmpty(String price) throws InvalidEmptyPriceError {
         if (price.isEmpty()) {
-            throw new InvalidPriceEmptyError();
+            throw new InvalidEmptyPriceError();
         }
     }
 
@@ -101,18 +101,18 @@ public class Validate {
         }
     }
 
-    public static void checkSentimentEmpty(String sentiment) throws InvalidNoSentimentError {
+    public static void checkSentimentEmpty(String sentiment) throws InvalidEmptySentimentError {
         if (sentiment.isEmpty()) {
-            throw new InvalidNoSentimentError();
+            throw new InvalidEmptySentimentError();
         }
     }
 
-    public static void checkSentimentGiven(String sentiment) throws InvalidSentimentGivenError {
+    public static void checkSentimentGiven(String sentiment) throws InvalidSentimentError {
         boolean isValidPositiveSentiment = sentiment.equals(POSITIVE_SENTIMENT);
         boolean isValidNegativeSentiment = sentiment.equals(NEGATIVE_SENTIMENT);
         boolean isValidNeutralSentiment = sentiment.equals(NEUTRAL_SENTIMENT);
         if (!isValidPositiveSentiment && !isValidNeutralSentiment && !isValidNegativeSentiment) {
-            throw new InvalidSentimentGivenError();
+            throw new InvalidSentimentError();
         }
     }
 
@@ -158,9 +158,9 @@ public class Validate {
         return true;
     }
 
-    public static void checkDateExist(String expiryInput) throws InvalidNoExpiryDateError {
+    public static void checkDateExist(String expiryInput) throws InvalidEmptyExpiryDateError {
         if (expiryInput.isEmpty()) {
-            throw new InvalidNoExpiryDateError();
+            throw new InvalidEmptyExpiryDateError();
         }
     }
 
