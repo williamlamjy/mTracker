@@ -8,7 +8,6 @@ Package " "<<Rectangle>>{
     Class console COLOR_CONSOLE
     Class model COLOR_MODEL
     Class storage COLOR_STORAGE
-}
 
 main -down[COLOR_MAIN]-> storage
 main -down[COLOR_MAIN]-> console
