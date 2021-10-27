@@ -75,7 +75,7 @@ ________________________________________________________________________________
 >      the 3rd instrument in the list would have a
 >position index of 3.
 >    * `SEARCH_STRING` represents the phrase or word user would like to search for in the watchlist with the `find` command. 
->* Extraneous parameters for commands `list` `delete`, `find`, `view` and `bye` would be ignored.
+>* Extraneous parameters for all commands would be ignored.
 >    * For example, the command `bye 123`
 >      would be interpreted as `bye`.
 >    * Similarly, the command `find hello world` would be interpreted as `find hello`, so 
