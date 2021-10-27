@@ -88,7 +88,7 @@ public abstract class Instrument {
         if (!editedParameters.containsKey(CURRENT_PRICE_ATTRIBUTE)) {
             return;
         }
-        Double updatedPrice = Double.parseDouble(editedParameters.get(CURRENT_PRICE_ATTRIBUTE));
+        double updatedPrice = Double.parseDouble(editedParameters.get(CURRENT_PRICE_ATTRIBUTE));
         setCurrentPrice(updatedPrice);
     }
 

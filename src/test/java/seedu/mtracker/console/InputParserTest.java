@@ -6,7 +6,7 @@ import seedu.mtracker.commands.DeleteCommand;
 import seedu.mtracker.commands.DoneCommand;
 import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidIndexError;
-import seedu.mtracker.error.InvalidNoIndexError;
+import seedu.mtracker.error.InvalidEmptyIndexError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.subinstrument.Stock;
 
@@ -53,8 +53,8 @@ class InputParserTest {
     }
 
     @Test
-    void getIndexNumber_noIndexProvided_expectException() throws InvalidNoIndexError {
-        assertThrows(InvalidNoIndexError.class,
+    void getIndexNumber_noIndexProvided_expectException() throws InvalidEmptyIndexError {
+        assertThrows(InvalidEmptyIndexError.class,
             () -> parser.getIndexNumber(NO_INDEX_DELETE_INPUT));
     }
 
@@ -65,8 +65,8 @@ class InputParserTest {
     }
 
     @Test
-    void getDeleteInstrumentCommand_noIndexProvided_expectException() throws InvalidNoIndexError {
-        assertThrows(InvalidNoIndexError.class,
+    void getDeleteInstrumentCommand_noIndexProvided_expectException() throws InvalidEmptyIndexError {
+        assertThrows(InvalidEmptyIndexError.class,
             () -> parser
                     .getDeleteInstrumentCommand(NO_INDEX_DELETE_INPUT, INSTRUMENTS));
     }
@@ -93,8 +93,8 @@ class InputParserTest {
     }
 
     @Test
-    void getDoneInstrumentCommand_noIndexProvided_expectException() throws InvalidNoIndexError {
-        assertThrows(InvalidNoIndexError.class,
+    void getDoneInstrumentCommand_noIndexProvided_expectException() throws InvalidEmptyIndexError {
+        assertThrows(InvalidEmptyIndexError.class,
             () -> parser
                     .getDoneInstrumentCommand(NO_INDEX_DONE_INPUT, INSTRUMENTS));
     }

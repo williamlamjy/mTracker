@@ -1,8 +1,7 @@
 package seedu.mtracker.filemanager;
 
-import seedu.mtracker.error.ErrorMessage;
 import seedu.mtracker.error.FileLoadError;
-import seedu.mtracker.error.FileTamperedError;
+import seedu.mtracker.error.FileWriteError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.ui.TextUi;
@@ -25,47 +24,35 @@ public class Storage {
         path = Paths.get(FILE_PATH);
     }
 
-    public void checkIfFileIsTampered() throws FileTamperedError {
-        if (file.canWrite()) {
-            throw new FileTamperedError();
-        }
-    }
-
     public void loadFileData(InstrumentManager instrumentManager) throws FileLoadError {
         try {
             if (!Files.exists(path) || !Files.isRegularFile(path)) {
                 TextUi.displayCreateFile();
-                setFileToReadOnly();
                 file.getParentFile().mkdir();
                 file.createNewFile();
                 return;
             }
             TextUi.displayLoadingFile();
-            checkIfFileIsTampered();
             InstrumentDecoder.readFile(instrumentManager, Files.readAllLines(path));
         } catch (IOException e) {
             throw new FileLoadError();
-        } catch (FileTamperedError e) {
-            TextUi.showErrorMessage(e);
+        }
+    }
+
+    public void writeFileData(ArrayList<Instrument> instruments) throws FileWriteError {
+        try {
+            FileWriter writeToFile = new FileWriter(file);
+            InstrumentEncoder.writeFile(instruments, writeToFile);
+        } catch (IOException e) {
+            throw new FileWriteError();
         }
     }
 
     public void updateFileData(ArrayList<Instrument> instruments) {
         try {
-            setFileToWritable();
-            FileWriter writeToFile = new FileWriter(file);
-            InstrumentEncoder.writeFile(instruments, writeToFile);
-            setFileToReadOnly();
-        } catch (IOException e) {
-            ErrorMessage.displayWriteToFileError();
+            writeFileData(instruments);
+        } catch (FileWriteError e) {
+            TextUi.showErrorMessage(e);
         }
-    }
-
-    public void setFileToWritable() {
-        file.setWritable(true);
-    }
-
-    public void setFileToReadOnly() {
-        file.setReadOnly();
     }
 }
