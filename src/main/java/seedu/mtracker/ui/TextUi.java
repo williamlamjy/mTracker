@@ -86,15 +86,19 @@ public class TextUi {
     public static void displayAddPastReturnsInstruction() {
         System.out.println(TAB + RETURNS_HEADER);
     }
-
-    public static void displayAllInstruments(ArrayList<Instrument> instruments) {
-        System.out.println(LINE_DECORATOR);
-        System.out.println(WATCHLIST_HEADER);
+    
+    public static void displayInstruments(ArrayList<Instrument> instruments) {
         int idx = 0;
         for (Instrument instrument: instruments) {
             idx += 1;
             System.out.println(constructLineInList(idx, instrument));
         }
+    }
+
+    public static void displayAllInstruments(ArrayList<Instrument> instruments) {
+        System.out.println(LINE_DECORATOR);
+        System.out.println(WATCHLIST_HEADER);
+        displayInstruments(instruments);
         System.out.println(LINE_DECORATOR);
     }
 
@@ -108,16 +112,8 @@ public class TextUi {
 
     public static void displayInstrumentsFound(ArrayList<Instrument> instruments, String searchString) {
         System.out.println(LINE_DECORATOR);
-        int found = 0;
-        int idx = 0;
-        for (Instrument instrument: instruments) {
-            idx += 1;
-            if (instrument.getName().contains(searchString)) {
-                System.out.println(constructLineInList(idx, instrument));
-                found += 1;
-            }
-        }
-        displayFoundMessage(found, searchString);
+        displayInstruments(instruments);
+        displayFoundMessage(instruments.size(), searchString);
         System.out.println(LINE_DECORATOR);
     }
 
