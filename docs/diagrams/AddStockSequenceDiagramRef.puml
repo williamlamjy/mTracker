@@ -2,14 +2,19 @@
 !include Styles.puml
 
 group sd Get stock details from user and create the AddStockCommand
+participant "<<Class>>\nAddInstrumentParser" as AddInstrumentParser COLOR_CONSOLE
 participant ":AddStockParser" as AddStockParser COLOR_CONSOLE
 participant ":AddStockCommand" as AddStockCommand COLOR_COMMANDS
 
-[-> AddStockParser : getInstrumentParameters()
-activate AddStockParser
-[<--AddStockParser : getGeneralParameters("stock")
+activate AddInstrumentParser
 
-[--> AddStockParser
+AddInstrumentParser-> AddStockParser : getInstrumentParameters()
+activate AddStockParser
+AddInstrumentParser<-AddStockParser : getGeneralParameters("stock")
+activate AddInstrumentParser
+AddInstrumentParser--> AddStockParser
+deactivate AddInstrumentParser
+
 
 note right
 Both getGeneralParameters() and
@@ -29,17 +34,17 @@ activate AddStockCommand
 AddStockCommand --> AddStockParser
 deactivate AddStockCommand
 
-[<--AddStockParser : return command
+AddInstrumentParser<--AddStockParser : return command
 deactivate AddStockParser
 
-[->AddStockParser : getParameters()
+AddInstrumentParser->AddStockParser : getParameters()
 activate AddStockParser
-[<--AddStockParser : return parameters
+AddInstrumentParser<--AddStockParser : return parameters
 deactivate AddStockParser
 
-[-> AddStockCommand : setParams(parameters)
+AddInstrumentParser-> AddStockCommand : setParams(parameters)
 activate AddStockCommand
-[<--AddStockCommand
+AddInstrumentParser<--AddStockCommand
 deactivate AddStockCommand
 
 end
