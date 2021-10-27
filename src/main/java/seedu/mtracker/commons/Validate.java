@@ -58,7 +58,7 @@ public class Validate {
         return true;
     }
 
-    public static void checkPriceEmpty(String price) throws InvalidEmptyPriceError {
+    public static void checkPriceIsEmpty(String price) throws InvalidEmptyPriceError {
         if (price.isEmpty()) {
             throw new InvalidEmptyPriceError();
         }
@@ -81,7 +81,7 @@ public class Validate {
 
     public static boolean isValidPrice(String currentPrice) {
         try {
-            checkPriceEmpty(currentPrice);
+            checkPriceIsEmpty(currentPrice);
             checkPriceIsDouble(currentPrice);
             checkPriceIsNonNegative(currentPrice);
         } catch (Exception e) {
@@ -101,13 +101,13 @@ public class Validate {
         }
     }
 
-    public static void checkSentimentEmpty(String sentiment) throws InvalidEmptySentimentError {
+    public static void checkSentimentIsEmpty(String sentiment) throws InvalidEmptySentimentError {
         if (sentiment.isEmpty()) {
             throw new InvalidEmptySentimentError();
         }
     }
 
-    public static void checkSentimentGiven(String sentiment) throws InvalidSentimentError {
+    public static void checkSentiment(String sentiment) throws InvalidSentimentError {
         boolean isValidPositiveSentiment = sentiment.equals(POSITIVE_SENTIMENT);
         boolean isValidNegativeSentiment = sentiment.equals(NEGATIVE_SENTIMENT);
         boolean isValidNeutralSentiment = sentiment.equals(NEUTRAL_SENTIMENT);
@@ -118,8 +118,8 @@ public class Validate {
 
     public static boolean isValidSentiment(String sentiment) {
         try {
-            checkSentimentEmpty(sentiment);
-            checkSentimentGiven(sentiment);
+            checkSentimentIsEmpty(sentiment);
+            checkSentiment(sentiment);
         } catch (Exception e) {
             logger.info(LogHelper.LOG_INVALID_SENTIMENT);
             TextUi.showErrorMessage(e);
@@ -158,13 +158,13 @@ public class Validate {
         return true;
     }
 
-    public static void checkDateExist(String expiryInput) throws InvalidEmptyExpiryDateError {
+    public static void checkDateIsEmpty(String expiryInput) throws InvalidEmptyExpiryDateError {
         if (expiryInput.isEmpty()) {
             throw new InvalidEmptyExpiryDateError();
         }
     }
 
-    public static void checkDateFormat(String expiryInput) throws InvalidDateFormatError {
+    public static void checkDateIsValidFormat(String expiryInput) throws InvalidDateFormatError {
         try {
             LocalDate.parse(expiryInput);
         } catch (DateTimeParseException e) {
@@ -172,7 +172,7 @@ public class Validate {
         }
     }
 
-    public static void checkDateInPast(String expiryInput) throws InvalidPastDateError {
+    public static void checkDateIsInPast(String expiryInput) throws InvalidPastDateError {
         LocalDate givenDate = LocalDate.parse(expiryInput);
         if (givenDate.isBefore(LocalDate.now())) {
             throw new InvalidPastDateError();
@@ -181,9 +181,9 @@ public class Validate {
 
     public static boolean isValidExpiry(String expiryInput) {
         try {
-            checkDateExist(expiryInput);
-            checkDateFormat(expiryInput);
-            checkDateInPast(expiryInput);
+            checkDateIsEmpty(expiryInput);
+            checkDateIsValidFormat(expiryInput);
+            checkDateIsInPast(expiryInput);
         } catch (Exception e) {
             logger.info(LogHelper.LOG_INVALID_EXPIRY);
             TextUi.showErrorMessage(e);
