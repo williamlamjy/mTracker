@@ -32,62 +32,9 @@ deactivate TextUi
 InputParser -> AddInstrumentParser : filterByInstrumentType({"stock"})
 activate AddInstrumentParser
 
-note right
-The parameter "stock" was
-given by the user after
-displayAddInstrumentFirstInstruction().
-end note
-
-create AddStockParser
-AddInstrumentParser -> AddStockParser : AddStockParser()
-activate AddStockParser
-
-AddStockParser --> AddInstrumentParser
-deactivate AddStockParser
-
-AddInstrumentParser -> AddStockParser : initParameters()
-activate AddStockParser
-AddStockParser --> AddInstrumentParser
-deactivate AddStockParser
-
-AddInstrumentParser -> AddStockParser : getInstrumentParameters()
-activate AddStockParser
-AddStockParser -> AddInstrumentParser : getGeneralParameters("stock")
-
-note right
-Both getGeneralParameters() and
-getStockSpecificParameters()
-would prompt the user to input details for every
-attribute to store as parameters.
-end note
-
-activate AddInstrumentParser
-AddInstrumentParser --> AddStockParser
-deactivate AddInstrumentParser
-
-AddStockParser -> AddStockParser : getStockSpecificParameters()
-activate AddStockParser
-AddStockParser --> AddStockParser
-deactivate AddStockParser
-
-create AddStockCommand
-AddStockParser -> AddStockCommand : AddStockCommand()
-activate AddStockCommand
-AddStockCommand --> AddStockParser
-deactivate AddStockCommand
-
-AddStockParser -> AddInstrumentParser : return command
-deactivate AddStockParser
-
-AddInstrumentParser -> AddStockParser : getParameters()
-activate AddStockParser
-AddStockParser --> AddInstrumentParser : return parameters
-deactivate AddStockParser
-
-AddInstrumentParser -> AddStockCommand : setParams(parameters)
-activate AddStockCommand
-AddStockCommand --> AddInstrumentParser
-deactivate AddStockCommand
+ref over AddInstrumentParser, AddStockParser, AddStockCommand
+Get stock details from user and create the AddStockCommand
+endref
 
 AddInstrumentParser --> InputParser : return command
 deactivate AddInstrumentParser
