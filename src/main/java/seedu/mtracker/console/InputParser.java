@@ -13,10 +13,10 @@ import seedu.mtracker.commons.Validate;
 import seedu.mtracker.commands.ViewCommand;
 import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidCommandError;
+import seedu.mtracker.error.InvalidEmptyIndexError;
+import seedu.mtracker.error.InvalidEmptyKeywordError;
 import seedu.mtracker.error.InvalidIndexError;
 import seedu.mtracker.error.InvalidInstrumentError;
-import seedu.mtracker.error.InvalidNoIndexError;
-import seedu.mtracker.error.InvalidNoKeywordError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -60,7 +60,7 @@ public class InputParser {
     }
 
     public DeleteCommand getDeleteInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
-            throws InvalidIndexError, InvalidNoIndexError, InvalidBoundsError {
+            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError {
         DeleteCommand deleteCommand = new DeleteCommand();
         getAndValidateIndexNumber(commandComponents, instruments);
         deleteCommand.setIndex(instrumentNumber);
@@ -68,7 +68,7 @@ public class InputParser {
     }
 
     public ViewCommand getViewInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
-            throws InvalidIndexError, InvalidNoIndexError, InvalidBoundsError {
+            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError {
         ViewCommand viewCommand = new ViewCommand();
         getAndValidateIndexNumber(commandComponents, instruments);
         viewCommand.setIndex(instrumentNumber);
@@ -76,7 +76,7 @@ public class InputParser {
     }
 
     public DoneCommand getDoneInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
-            throws InvalidIndexError, InvalidNoIndexError, InvalidBoundsError {
+            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError {
         DoneCommand doneCommand = new DoneCommand();
         getAndValidateIndexNumber(commandComponents, instruments);
         doneCommand.setIndex(instrumentNumber);
@@ -102,7 +102,7 @@ public class InputParser {
     }
 
     public EditInstrumentCommand getEditInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
-            throws InvalidIndexError, InvalidNoIndexError, InvalidBoundsError {
+            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError {
         getAndValidateIndexNumber(commandComponents, instruments);
         Instrument instrumentToEdit = instruments.get(instrumentNumber);
         TextUi.displayEditInstrumentFirstInstruction(instrumentToEdit);
@@ -117,7 +117,7 @@ public class InputParser {
     }
 
     public FindCommand getFindInstrumentsCommand(String[] commandComponents)
-            throws InvalidNoKeywordError {
+            throws InvalidEmptyKeywordError {
         FindCommand findCommand = new FindCommand();
         getSearchString(commandComponents);
         findCommand.setKeyword(searchString);
@@ -167,7 +167,7 @@ public class InputParser {
         try {
             instrumentNumber = Integer.parseInt(commandComponents[INSTRUMENT_INDEX]) - INDEX_OFFSET;
         } catch (IndexOutOfBoundsException e) {
-            throw new InvalidNoIndexError();
+            throw new InvalidEmptyIndexError();
         } catch (NumberFormatException e) {
             throw new InvalidIndexError();
         }
@@ -177,7 +177,7 @@ public class InputParser {
         try {
             searchString = commandComponents[SEARCH_STR_INDEX];
         } catch (IndexOutOfBoundsException e) {
-            throw new InvalidNoKeywordError();
+            throw new InvalidEmptyKeywordError();
         }
     }
 }

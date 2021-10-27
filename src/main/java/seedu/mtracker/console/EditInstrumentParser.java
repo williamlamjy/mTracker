@@ -8,6 +8,7 @@ import seedu.mtracker.ui.TextUi;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 
 public class EditInstrumentParser extends InputParser {
 
@@ -123,7 +124,7 @@ public class EditInstrumentParser extends InputParser {
     }
 
     public static void getEditedParameters(HashSet<String> parametersGiven, Instrument instrumentOfInterest) {
-        String instrumentType = instrumentOfInterest.getType();
+        String instrumentType = instrumentOfInterest.getType().toLowerCase();
         editNameParameter(instrumentType, parametersGiven);
         editCurrentPriceParameter(parametersGiven);
         editSentimentsParameter(parametersGiven);
