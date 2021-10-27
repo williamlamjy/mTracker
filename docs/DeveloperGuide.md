@@ -191,7 +191,7 @@ The figure below represents the sequence diagram when the user wants to add a st
 
 <img src="images/AddStockSequenceDiagram.png" width="800"/>
 
-More details about the reference frame for obtaining the stock details and creating the AddStockCommand object is shown
+More details about the reference frame for obtaining the stock details and creating the AddStockCommand object are shown
 below.
 
 <img src="images/AddStockSequenceDiagramRef.png" width="600"/>
