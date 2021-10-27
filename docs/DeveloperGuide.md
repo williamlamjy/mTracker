@@ -194,7 +194,7 @@ The figure below represents the sequence diagram when the user wants to add a st
 More details about the reference frame for obtaining the stock details and creating the AddStockCommand object is shown
 below.
 
-<img src="images/AddStockSequenceDiagramRef.png" width="900"/>
+<img src="images/AddStockSequenceDiagramRef.png" width="600"/>
 
 The process for adding the other instruments follow a similar process to the sequence above. The main difference would
 be the type of instrument parser called, the parameters collected from the user and the command type returned. For

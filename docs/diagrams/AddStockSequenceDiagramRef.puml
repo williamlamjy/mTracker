@@ -2,34 +2,14 @@
 !include Styles.puml
 
 group sd Get stock details from user and create the AddStockCommand
-participant "<<Class>>\nAddInstrumentParser" as AddInstrumentParser COLOR_CONSOLE
 participant ":AddStockParser" as AddStockParser COLOR_CONSOLE
 participant ":AddStockCommand" as AddStockCommand COLOR_COMMANDS
 
-[-> AddInstrumentParser : filterByInstrumentType({"stock"})
-activate AddInstrumentParser
-
-note right
-The parameter "stock" was
-given by the user after
-displayAddInstrumentFirstInstruction().
-end note
-
-create AddStockParser
-AddInstrumentParser -> AddStockParser : AddStockParser()
+[-> AddStockParser : getInstrumentParameters()
 activate AddStockParser
+[<--AddStockParser : getGeneralParameters("stock")
 
-AddStockParser --> AddInstrumentParser
-deactivate AddStockParser
-
-AddInstrumentParser -> AddStockParser : initParameters()
-activate AddStockParser
-AddStockParser --> AddInstrumentParser
-deactivate AddStockParser
-
-AddInstrumentParser -> AddStockParser : getInstrumentParameters()
-activate AddStockParser
-AddStockParser -> AddInstrumentParser : getGeneralParameters("stock")
+[--> AddStockParser
 
 note right
 Both getGeneralParameters() and
@@ -37,10 +17,6 @@ getStockSpecificParameters()
 would prompt the user to input details for every
 attribute to store as parameters.
 end note
-
-activate AddInstrumentParser
-AddInstrumentParser --> AddStockParser
-deactivate AddInstrumentParser
 
 AddStockParser -> AddStockParser : getStockSpecificParameters()
 activate AddStockParser
@@ -53,20 +29,18 @@ activate AddStockCommand
 AddStockCommand --> AddStockParser
 deactivate AddStockCommand
 
-AddStockParser -> AddInstrumentParser : return command
+[<--AddStockParser : return command
 deactivate AddStockParser
 
-AddInstrumentParser -> AddStockParser : getParameters()
+[->AddStockParser : getParameters()
 activate AddStockParser
-AddStockParser --> AddInstrumentParser : return parameters
+[<--AddStockParser : return parameters
 deactivate AddStockParser
 
-AddInstrumentParser -> AddStockCommand : setParams(parameters)
+[-> AddStockCommand : setParams(parameters)
 activate AddStockCommand
-AddStockCommand --> AddInstrumentParser
+[<--AddStockCommand
 deactivate AddStockCommand
 
-[<-- AddInstrumentParser : return command
-deactivate AddInstrumentParser
 end
 @enduml

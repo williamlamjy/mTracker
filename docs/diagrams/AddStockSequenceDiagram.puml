@@ -32,6 +32,24 @@ deactivate TextUi
 InputParser -> AddInstrumentParser : filterByInstrumentType({"stock"})
 activate AddInstrumentParser
 
+note right
+The parameter "stock" was
+given by the user after
+displayAddInstrumentFirstInstruction().
+end note
+
+create AddStockParser
+AddInstrumentParser -> AddStockParser : AddStockParser()
+activate AddStockParser
+
+AddStockParser --> AddInstrumentParser
+deactivate AddStockParser
+
+AddInstrumentParser -> AddStockParser : initParameters()
+activate AddStockParser
+AddStockParser --> AddInstrumentParser
+deactivate AddStockParser
+
 ref over AddInstrumentParser, AddStockParser, AddStockCommand
 Get stock details from user and create the AddStockCommand
 endref
