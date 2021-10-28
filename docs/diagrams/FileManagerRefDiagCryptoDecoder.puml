@@ -1,0 +1,45 @@
+@startuml
+!include Styles.puml
+
+group sd Decode crypto attributes and create and add crypto to InstrumentManager
+box filemanager COLOR_STORAGE_SEGMENT
+participant ":CryptoDecoder" as CryptoDecoder COLOR_STORAGE
+end box
+
+box model COLOR_MODEL_SEGMENT
+participant ":InstrumentManager" as InstrumentManager COLOR_MODEL
+participant ":Crypto" as Crypto COLOR_MODEL
+end box
+
+
+activate CryptoDecoder
+
+CryptoDecoder-> CryptoDecoder: decodeGeneralAttributes(textSegment)
+activate CryptoDecoder
+CryptoDecoder--> CryptoDecoder
+deactivate CryptoDecoder
+
+create Crypto
+CryptoDecoder-> Crypto: Crypto("Crypto", "32.0", "positive","true", "2022-01-12", "")
+activate Crypto
+
+
+Crypto--> CryptoDecoder: return crypto
+deactivate Crypto
+
+CryptoDecoder-> CryptoDecoder: setDoneStatus(true, crypto)
+activate CryptoDecoder
+CryptoDecoder--> CryptoDecoder
+deactivate CryptoDecoder
+
+CryptoDecoder-> InstrumentManager: addInstrument(crypto)
+activate InstrumentManager
+
+InstrumentManager--> CryptoDecoder
+deactivate InstrumentManager
+
+end
+
+deactivate CryptoDecoder
+
+@enduml

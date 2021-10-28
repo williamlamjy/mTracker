@@ -204,9 +204,13 @@ and display the corresponding error message.
 
 The figures below represents the sequence diagrams when the user loads a pre-existing crypto:
 
-<img src="images/FileManagerSeqBetweenStorageAndDecoder.png" width="700"/>
+<img src="images/FileManagerSeqBetweenStorageAndDecoder.png" width="800"/>
 
-<img src="images/FileManagerSequenceDiagram.png" width="1040" height="900"/>
+<img src="images/FileManagerSequenceDiagram.png" width="1040"/>
+
+More details about the reference frame for adding the decoded instrument into the `InstrumentManager` is shown below:
+
+<img src="images/FileManagerRefDiagCryptoDecoder.png" width="800"/>
 
 The process for loading other pre-existing instruments follow a similar process to the sequence above. The main difference
 would be the type of instrument decoder called, the different instrument specific decoded parameters and the type of instrument

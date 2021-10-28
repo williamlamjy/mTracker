@@ -34,10 +34,11 @@ end box
                     InstrumentDecoder-> CryptoDecoder: addCryptoToList(textSegment, instrumentManager)
                     activate CryptoDecoder
 
-                    CryptoDecoder-> CryptoDecoder: decodeGeneralAttributes(textSegment)
-                    activate CryptoDecoder
-                    CryptoDecoder--> CryptoDecoder
-                    deactivate CryptoDecoder
+                    ref over CryptoDecoder, InstrumentManager, Crypto
+
+                    Decode crypto attributes and create and add crypto to InstrumentManager
+
+                    endref
 
                     note bottom
                     Displaying only the outcome of adding
@@ -45,25 +46,6 @@ end box
                     statement is supposed to be a switch statement
                     amongst the 4 different instruments
                     end note
-
-                    create Crypto
-                    CryptoDecoder-> Crypto: Crypto("Crypto", "32.0", "positive","true", "2022-01-12", "")
-                    activate Crypto
-
-
-                    Crypto--> CryptoDecoder: return crypto
-                    deactivate Crypto
-
-                    CryptoDecoder-> CryptoDecoder: setDoneStatus(true, crypto)
-                    activate CryptoDecoder
-                    CryptoDecoder--> CryptoDecoder
-                    deactivate CryptoDecoder
-
-                    CryptoDecoder-> InstrumentManager: addInstrument(crypto)
-                    activate InstrumentManager
-
-                    InstrumentManager--> CryptoDecoder
-                    deactivate InstrumentManager
 
                     CryptoDecoder--> InstrumentDecoder
                     deactivate CryptoDecoder
