@@ -84,7 +84,7 @@ The `model` package contains the `InstrumentManager` class and `Instrument` clas
 in `InstrumentManager.java` and `Instrument.java` respectively. This figure below represents the class diagram of 
 how the different class work together:
 
-<img src="images/ModelDiagram.png" width="550"/>
+<img src="images/ModelDiagram.png" width="550" height="400"/>
 
 The `Model` component:
 
@@ -210,7 +210,7 @@ The figures below represents the sequence diagrams when the user loads a pre-exi
 
 <img src="images/FileManagerSeqBetweenStorageAndDecoder.png" width="800"/>
 
-<img src="images/FileManagerSequenceDiagram.png" width="1040"/>
+<img src="images/FileManagerSequenceDiagram.png" width="1040" height="800"/>
 
 More details about the reference frame for adding the decoded instrument into the `InstrumentManager` is shown below:
 
