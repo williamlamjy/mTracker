@@ -11,10 +11,6 @@ Package "filemanager"  <<Rectangle>>{
 
 Class TextUi COLOR_UI
 
-    Class FileLoadError COLOR_ERROR
-    Class InvalidInstrumentInFileError COLOR_ERROR
-    Class ErrorMessage COLOR_ERROR
-
 Class "{abstract}\n Instrument" as Instrument COLOR_MODEL
 Class InstrumentManager COLOR_MODEL
 
@@ -26,14 +22,9 @@ Class outside COLOR_WHITE
  Storage -down[COLOR_STORAGE].> InstrumentDecoder
  Storage -down[COLOR_STORAGE].> Instrument
  Storage -down[COLOR_STORAGE].> InstrumentManager
- Storage -up[COLOR_STORAGE].> FileLoadError
- Storage -up[COLOR_STORAGE].> ErrorMessage
  InstrumentEncoder -down[COLOR_STORAGE].> Instrument
- InstrumentEncoder -up[COLOR_STORAGE].> ErrorMessage
-
  InstrumentDecoder -down[COLOR_STORAGE].> InstrumentManager
  InstrumentDecoder -right[COLOR_STORAGE].> Instrument
- InstrumentDecoder -down[COLOR_STORAGE].> InvalidInstrumentInFileError
  XYZDecoder -up[COLOR_STORAGE].> Instrument
  XYZDecoder -down[COLOR_STORAGE].> InstrumentManager
  Storage -left[COLOR_STORAGE].> TextUi
