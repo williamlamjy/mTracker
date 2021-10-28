@@ -52,47 +52,11 @@ deactivate InputParser
 [->DoneCommand:execute()
 activate DoneCommand
 
+ref over DoneCommand, InstrumentManager, Instrument, TextUi
 
-DoneCommand-> InstrumentManager: getInstrument(1)
-activate InstrumentManager
+Mark instrument as done and displays it in the TextUi
 
-
-InstrumentManager--> DoneCommand: return instrument
-deactivate InstrumentManager
-
-DoneCommand-> InstrumentManager: doneInstrument(1)
-activate InstrumentManager
-
-InstrumentManager-> Instrument: markAsDone()
-activate Instrument
-
-Instrument--> InstrumentManager
-deactivate Instrument
-
-InstrumentManager--> DoneCommand
-deactivate InstrumentManager
-
-DoneCommand-> TextUi: displayDoneInstrument(instrument)
-activate TextUi
-
-TextUi-> Instrument: getGeneralParams()
-activate Instrument
-
-Instrument-> Instrument: getTypeIcon()
-activate Instrument
-Instrument--> Instrument
-deactivate Instrument
-
-Instrument-> Instrument: getStatusIcon()
-activate Instrument
-Instrument--> Instrument
-deactivate Instrument
-
-Instrument--> TextUi
-deactivate Instrument
-
-TextUi--> DoneCommand
-deactivate TextUi
+endref
 
 [<--DoneCommand
 deactivate DoneCommand

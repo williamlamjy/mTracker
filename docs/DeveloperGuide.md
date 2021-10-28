@@ -156,6 +156,10 @@ The figure below represents the sequence diagram when the user executes a done c
 
 <img src="images/DoneCryptoSequenceDiagram.png" width="1040"/>
 
+More details about the reference frame for executing the done command is shown below:
+
+<img src="images/DoneCryptoExecuteDiagram.png" width="800"/>
+
 ### FileManager Component
 The `filemanager` package contains the `Storage`, `InstrumentEncoder` and `InstrumentDecoder` classes. It is defined in
 the `Storage.java`, `InstrumentEncoder.java` and `InstrumentDecoder.java` respectively. This figure below represents the class diagram of
