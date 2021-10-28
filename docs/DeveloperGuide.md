@@ -206,7 +206,7 @@ The figures below represents the sequence diagrams when the user loads a pre-exi
 
 <img src="images/FileManagerSeqBetweenStorageAndDecoder.png" width="700"/>
 
-<img src="images/FileManagerSequenceDiagram.png" width="1040"/>
+<img src="images/FileManagerSequenceDiagram.png" width="1040" height="900"/>
 
 The process for loading other pre-existing instruments follow a similar process to the sequence above. The main difference
 would be the type of instrument decoder called, the different instrument specific decoded parameters and the type of instrument
