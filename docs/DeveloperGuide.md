@@ -212,9 +212,19 @@ the `TextUi` class.
 ## User Stories
 
 |Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|----|-----|---------------|----------------------------|
+|v1.0|user|add a stock|record details of the stock
+|v1.0|user|add a cryptocurrency|record details of the cryptocurrency
+|v1.0|user|add a forex|record details of the forex
+|v1.0|user|add an etf|record details of the etf
+|v1.0|user|see my recorded instruments|refer to all of my instruments with their corresponding details
+|v1.0|user|add additional information about an instrument|keep track of information other than the instrument's traits
+|v2.0|user|see my previously recorded instruments|continue adding to my list of instruments for my day to day trading
+|v2.0|user|have a clear and concise list of my instruments|easily look through the list without having too many details
+|v2.0|user|view further details of my instruments|view excessive details of each instrument without cluttering the list
+|v2.0|user|edit an instrument|update certain details of an instrument when their traits change
+|v2.0|user|mark instruments|so that I can have a checklist of instruments to prioritise
+|v2.0|user|find an instrument|locate an instrument without having to go through the entire list|
 
 ## Non-Functional Requirements
 
