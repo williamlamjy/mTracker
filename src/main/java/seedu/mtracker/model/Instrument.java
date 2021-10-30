@@ -1,5 +1,7 @@
 package seedu.mtracker.model;
 
+import seedu.mtracker.error.AlreadyDoneError;
+
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -45,7 +47,10 @@ public abstract class Instrument {
         return isDone;
     }
 
-    public void markAsDone() {
+    public void markAsDone() throws AlreadyDoneError {
+        if (isDone) {
+            throw new AlreadyDoneError();
+        }
         isDone = true;
     }
 

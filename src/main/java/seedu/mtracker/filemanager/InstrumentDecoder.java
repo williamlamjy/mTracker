@@ -1,5 +1,6 @@
 package seedu.mtracker.filemanager;
 
+import seedu.mtracker.error.AlreadyDoneError;
 import seedu.mtracker.error.InvalidInstrumentInFileError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
@@ -40,7 +41,11 @@ public class InstrumentDecoder {
         if (!isDone) {
             return;
         }
-        doneInstrument.markAsDone();
+        try {
+            doneInstrument.markAsDone();
+        } catch (AlreadyDoneError alreadyDoneError) {
+            alreadyDoneError.getMessage();
+        }
     }
 
     public static void readFile(InstrumentManager instrumentManager, List<String> fileData) {
