@@ -1,11 +1,13 @@
 package seedu.mtracker.filemanager;
 
+import seedu.mtracker.LogHelper;
 import seedu.mtracker.error.InvalidInstrumentInFileError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.ui.TextUi;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 public class InstrumentDecoder {
 
@@ -28,6 +30,7 @@ public class InstrumentDecoder {
     public static double decodedCurrPrice;
     public static boolean decodedIsDone;
 
+    protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public static void decodeGeneralAttributes(String[] textSegment) {
         decodedName = textSegment[NAME_INDEX];
@@ -71,6 +74,7 @@ public class InstrumentDecoder {
             EtfDecoder.addEtfToList(textSegment, instrumentManager);
             break;
         default:
+            logger.warning(LogHelper.LOG_DATA_FILE_CORRUPTED_ERROR);
             throw new InvalidInstrumentInFileError();
         }
     }

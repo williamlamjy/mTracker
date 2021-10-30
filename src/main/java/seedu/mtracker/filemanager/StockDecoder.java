@@ -9,6 +9,7 @@ public class StockDecoder extends InstrumentDecoder {
     public static final int STOCK_REMARKS_INDEX = 5;
 
     public static void addStockToList(String[] textSegment, InstrumentManager instrumentManager) {
+        // todo: add logging here after checks for the components in text file has been done, same for rest of decoders
         decodeGeneralAttributes(textSegment);
         String decodedRemarks = textSegment[STOCK_REMARKS_INDEX];
         Instrument stock = new Stock(decodedName, decodedCurrPrice, decodedSentiment, decodedRemarks);
