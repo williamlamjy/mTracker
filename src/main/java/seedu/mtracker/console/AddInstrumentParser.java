@@ -33,10 +33,10 @@ public abstract class AddInstrumentParser extends InputParser {
     }
 
     public static void addNameToParameters(String instrumentType) {
-        String name = getInstrumentNameFromUser(instrumentType);
-        while (!Validate.isValidName(name, instrumentType)) {
+        String name;
+        do {
             name = getInstrumentNameFromUser(instrumentType);
-        }
+        } while (!Validate.isValidName(name, instrumentType));
         parameters.add(name);
         AssertParserHelper.assertInputNotEmpty(name);
     }
@@ -47,10 +47,10 @@ public abstract class AddInstrumentParser extends InputParser {
     }
 
     public static void addCurrentPriceToParameters() {
-        String currentPrice = getCurrentPriceFromUser();
-        while (!Validate.isValidPrice(currentPrice)) {
+        String currentPrice;
+        do {
             currentPrice = getCurrentPriceFromUser();
-        }
+        } while (!Validate.isValidPrice(currentPrice));;
         parameters.add(currentPrice);
         AssertParserHelper.assertInputNotEmpty(currentPrice);
         AssertParserHelper.assertPriceNonNegative(currentPrice);
@@ -63,10 +63,10 @@ public abstract class AddInstrumentParser extends InputParser {
 
 
     public static void addSentimentToParameters() {
-        String sentiment = getInstrumentSentimentFromUser();
-        while (!Validate.isValidSentiment(sentiment)) {
+        String sentiment;
+        do {
             sentiment = getInstrumentSentimentFromUser();
-        }
+        } while (!Validate.isValidSentiment(sentiment));
         parameters.add(sentiment);
         AssertParserHelper.assertInputNotEmpty(sentiment);
     }
