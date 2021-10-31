@@ -1,6 +1,5 @@
 package seedu.mtracker.commands;
 
-import seedu.mtracker.error.AlreadyDoneError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -14,12 +13,8 @@ public class DoneCommand extends IndexedCommand {
     @Override
     public String execute() {
         Instrument instrumentToComplete = getInstrumentAtIndex();
-        try {
-            instrumentToComplete.markAsDone();
-            TextUi.displayDoneInstrument(instrumentToComplete);
-        } catch (AlreadyDoneError alreadyDoneError) {
-            TextUi.showErrorMessage(alreadyDoneError);
-        }
+        instrumentToComplete.markAsDone();
+        TextUi.displayDoneInstrument(instrumentToComplete);
         return COMMAND_WORD;
     }
 }

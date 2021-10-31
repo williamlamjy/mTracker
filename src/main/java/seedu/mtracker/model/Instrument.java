@@ -47,10 +47,7 @@ public abstract class Instrument {
         return isDone;
     }
 
-    public void markAsDone() throws AlreadyDoneError {
-        if (isDone) {
-            throw new AlreadyDoneError();
-        }
+    public void markAsDone() {
         isDone = true;
     }
 

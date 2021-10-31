@@ -11,12 +11,7 @@ import seedu.mtracker.commands.ListCommand;
 import seedu.mtracker.commands.FindCommand;
 import seedu.mtracker.commons.Validate;
 import seedu.mtracker.commands.ViewCommand;
-import seedu.mtracker.error.InvalidBoundsError;
-import seedu.mtracker.error.InvalidCommandError;
-import seedu.mtracker.error.InvalidEmptyIndexError;
-import seedu.mtracker.error.InvalidEmptyKeywordError;
-import seedu.mtracker.error.InvalidIndexError;
-import seedu.mtracker.error.InvalidInstrumentError;
+import seedu.mtracker.error.*;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -76,9 +71,10 @@ public class InputParser {
     }
 
     public DoneCommand getDoneInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
-            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError {
+            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError, AlreadyDoneError {
         DoneCommand doneCommand = new DoneCommand();
         getAndValidateIndexNumber(commandComponents, instruments);
+        getAndValidateDoneStatus(commandComponents, instruments);
         doneCommand.setIndex(instrumentNumber);
         return doneCommand;
     }
@@ -114,6 +110,12 @@ public class InputParser {
     private void getAndValidateIndexNumber(String[] commandComponents, ArrayList<Instrument> instruments) {
         getIndexNumber(commandComponents);
         Validate.validateIndexWithinBounds(instruments, instrumentNumber);
+    }
+
+    private void getAndValidateDoneStatus(String[] commandComponents, ArrayList<Instrument> instruments)
+            throws AlreadyDoneError {
+        getIndexNumber(commandComponents);
+        Validate.checkIsNotDone(instruments, instrumentNumber);
     }
 
     public FindCommand getFindInstrumentsCommand(String[] commandComponents)

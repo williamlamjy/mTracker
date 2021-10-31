@@ -41,11 +41,7 @@ public class InstrumentDecoder {
         if (!isDone) {
             return;
         }
-        try {
-            doneInstrument.markAsDone();
-        } catch (AlreadyDoneError alreadyDoneError) {
-            alreadyDoneError.getMessage();
-        }
+        doneInstrument.markAsDone();
     }
 
     public static void readFile(InstrumentManager instrumentManager, List<String> fileData) {
