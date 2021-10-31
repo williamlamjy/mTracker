@@ -12,13 +12,21 @@ public class ForexDecoder extends InstrumentDecoder {
     public static final int EXIT_PRICE_INDEX = 6;
     public static final int FOREX_EXPIRY_INDEX = 7;
     public static final int FOREX_REMARKS_INDEX = 8;
+    protected static double decodedEntryPrice;
+    protected static double decodedExitPrice;
+    protected static LocalDate decodedExpiry;
+    protected static String decodedRemarks;
+
+    private static void decodeSpecificAttributes(String[] textSegment) {
+        decodedEntryPrice = Double.parseDouble(textSegment[ENTRY_PRICE_INDEX]);
+        decodedExitPrice = Double.parseDouble(textSegment[EXIT_PRICE_INDEX]);
+        decodedExpiry = LocalDate.parse(textSegment[FOREX_EXPIRY_INDEX]);
+        decodedRemarks = textSegment[FOREX_REMARKS_INDEX];
+    }
 
     public static void addForexToList(String[] textSegment, InstrumentManager instrumentManager) {
         decodeGeneralAttributes(textSegment);
-        double decodedEntryPrice = Double.parseDouble(textSegment[ENTRY_PRICE_INDEX]);
-        double decodedExitPrice = Double.parseDouble(textSegment[EXIT_PRICE_INDEX]);
-        LocalDate decodedExpiry = LocalDate.parse(textSegment[FOREX_EXPIRY_INDEX]);
-        String decodedRemarks = textSegment[FOREX_REMARKS_INDEX];
+        decodeSpecificAttributes(textSegment);
         Instrument forex = new Forex(decodedName, decodedCurrPrice, decodedSentiment,
                 decodedEntryPrice, decodedExitPrice, decodedExpiry, decodedRemarks);
         setDoneStatus(decodedIsDone, forex);
