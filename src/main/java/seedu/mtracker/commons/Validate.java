@@ -2,7 +2,18 @@ package seedu.mtracker.commons;
 
 import seedu.mtracker.LogHelper;
 import seedu.mtracker.console.AddForexParser;
-import seedu.mtracker.error.*;
+import seedu.mtracker.error.InvalidBoundsError;
+import seedu.mtracker.error.InvalidDateFormatError;
+import seedu.mtracker.error.InvalidEmptyExpiryDateError;
+import seedu.mtracker.error.InvalidEmptyPriceError;
+import seedu.mtracker.error.InvalidEmptySentimentError;
+import seedu.mtracker.error.InvalidNameError;
+import seedu.mtracker.error.InvalidPastDateError;
+import seedu.mtracker.error.InvalidPastReturnError;
+import seedu.mtracker.error.InvalidPastReturnTypeError;
+import seedu.mtracker.error.InvalidPriceError;
+import seedu.mtracker.error.InvalidSentimentError;
+import seedu.mtracker.error.AlreadyDoneError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
