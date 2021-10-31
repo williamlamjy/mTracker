@@ -105,8 +105,8 @@ public class Validate {
     public static void checkIsNotDone(ArrayList<Instrument> instruments, int instrumentNumber)
             throws AlreadyDoneError {
         Instrument instrument = instruments.get(instrumentNumber);
-        boolean currentStatus = instrument.getIsDone();
-        if (currentStatus) {
+        boolean isDoneStatus = instrument.getIsDone();
+        if (isDoneStatus) {
             throw new AlreadyDoneError();
         }
     }

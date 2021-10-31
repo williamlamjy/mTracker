@@ -1,7 +1,5 @@
 package seedu.mtracker.model;
 
-import seedu.mtracker.error.AlreadyDoneError;
-
 import java.util.HashMap;
 import java.util.HashSet;
 

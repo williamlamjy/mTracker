@@ -1,6 +1,5 @@
 package seedu.mtracker.filemanager;
 
-import seedu.mtracker.error.AlreadyDoneError;
 import seedu.mtracker.error.InvalidInstrumentInFileError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
