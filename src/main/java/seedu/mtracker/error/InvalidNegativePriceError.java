@@ -1,8 +1,8 @@
 package seedu.mtracker.error;
 
-public class InvalidNegativePriceError extends Exception{
+public class InvalidNegativePriceError extends Exception {
     @Override
-    public String getMessage(){
+    public String getMessage() {
         return ErrorMessage.INVALID_NEGATIVE_PRICE_ERROR;
     }
 }
