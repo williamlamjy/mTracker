@@ -55,19 +55,11 @@ public abstract class Instrument {
     }
 
     public String getStatusIcon() {
-        return (getIsDone() ? DONE_SYMBOL : NOT_DONE_SYMBOL);
+        return (isDone ? DONE_SYMBOL : NOT_DONE_SYMBOL);
     }
 
     public String getName() {
         return name;
-    }
-
-    public double getCurrentPrice() {
-        return currentPrice;
-    }
-
-    public String getSentiment() {
-        return sentiment;
     }
 
     public void setName(String inputName) {
@@ -117,9 +109,9 @@ public abstract class Instrument {
     public abstract String getType();
 
     public String textFileFormatting() {
-        return String.format(getType() + FILE_SEPARATOR + getName() + FILE_SEPARATOR
-                + getCurrentPrice() + FILE_SEPARATOR + getSentiment() + FILE_SEPARATOR
-                + getIsDone());
+        return String.format(getType() + FILE_SEPARATOR + name + FILE_SEPARATOR
+                + currentPrice + FILE_SEPARATOR + sentiment + FILE_SEPARATOR
+                + isDone);
     }
 
     public String editParameterInstructions() {
