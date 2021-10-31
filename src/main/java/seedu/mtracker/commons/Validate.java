@@ -8,6 +8,7 @@ import seedu.mtracker.error.InvalidEmptyExpiryDateError;
 import seedu.mtracker.error.InvalidEmptyPriceError;
 import seedu.mtracker.error.InvalidEmptySentimentError;
 import seedu.mtracker.error.InvalidNameError;
+import seedu.mtracker.error.InvalidNegativePriceError;
 import seedu.mtracker.error.InvalidPastDateError;
 import seedu.mtracker.error.InvalidPastReturnError;
 import seedu.mtracker.error.InvalidPastReturnTypeError;
@@ -72,10 +73,10 @@ public class Validate {
         }
     }
 
-    public static void checkPriceIsNonNegative(String price) throws InvalidPriceError {
+    public static void checkPriceIsNonNegative(String price) throws InvalidNegativePriceError {
         double inputPrice = Double.parseDouble(price);
-        if (inputPrice < MINIMUM_PRICE) {
-            throw new InvalidPriceError();
+        if (inputPrice <= MINIMUM_PRICE) {
+            throw new InvalidNegativePriceError();
         }
     }
 
