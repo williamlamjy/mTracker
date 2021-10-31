@@ -66,7 +66,7 @@ public class Validate {
     }
 
     public static void checkInstrument(String instrument) throws InvalidInstrumentError {
-        if(isInvalidInstrument(instrument)) {
+        if (isInvalidInstrument(instrument)) {
             throw new InvalidInstrumentError();
         }
     }
