@@ -12,12 +12,12 @@ public class AddCryptoParser extends AddInstrumentParser {
 
     public String getCryptoRemarksFromUser() {
         TextUi.displayAddRemarksInstruction();
-        return getUserInput();
+        return getUserInput(WORKSPACE);
     }
 
     public String getCryptoExpiryFromUser() {
         TextUi.displayAddExpiryInstruction();
-        return getUserInput();
+        return getUserInput(WORKSPACE);
     }
 
     public void addCryptoExpiryToParameters() {

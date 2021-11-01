@@ -44,10 +44,6 @@ public class InstrumentManager {
         instruments.add(addedInstrument);
     }
 
-    public void doneInstrument(int completedInstrumentIndex) {
-        instruments.get(completedInstrumentIndex).markAsDone();
-    }
-
     public ArrayList<Instrument> findInstruments(String keyword) {
         return (ArrayList<Instrument>) instruments.stream()
                 .filter((instrument) -> instrument.getName().contains(keyword))

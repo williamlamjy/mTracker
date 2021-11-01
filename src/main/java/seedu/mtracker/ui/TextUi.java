@@ -17,7 +17,6 @@ public class TextUi {
     private static final String RETURNS_HEADER = "Past Returns (optional): ";
 
     private static final String LINE_DECORATOR = "_".repeat(80);
-    private static final String CONSOLE_PROMPTER = "mTracker$> ";
     private static final String LOGO = "            _________                      __\n"
             + "           |  _   _  |                    [  |  _\n"
             + " _ .--..--.|_/ | | \\_| .--.  ,--.   .---.  | | / ] .---.  _ .--.\n"
@@ -157,8 +156,9 @@ public class TextUi {
                 + "MAY THE MARKETS BE WITH YOU!!!");
     }
 
-    public static void displayPrompter() {
-        System.out.print(CONSOLE_PROMPTER);
+    public static void displayPrompter(String workspace) {
+        String prompter = "mTracker$" + workspace + "> ";
+        System.out.print(prompter);
     }
 
     public static void displayEditInstrumentFirstInstruction(Instrument instrument) {
