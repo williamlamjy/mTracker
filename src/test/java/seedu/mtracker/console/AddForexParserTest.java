@@ -78,7 +78,7 @@ class AddForexParserTest extends AddInstrumentParserTest {
             + SEPARATOR_SPECIFIER + "0.70"
             + SEPARATOR_SPECIFIER.repeat(2) + "testDate"
             + SEPARATOR_SPECIFIER + "31/12/2021"
-            + SEPARATOR_SPECIFIER + "2021-01-01"
+            + SEPARATOR_SPECIFIER + "2021.01.01"
             + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
