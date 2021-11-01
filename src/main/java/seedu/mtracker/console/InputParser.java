@@ -29,9 +29,10 @@ import java.util.logging.Logger;
 public class InputParser {
 
     public static final String SEPARATOR = " ";
+    public static final String EMPTY_STRING = "";
     public static final int INDEX_OFFSET = 1;
     public static final int INSTRUMENT_INDEX = 1;
-    public static final int SEARCH_STR_INDEX = 1;
+    public static final int SEARCH_STR_INDEX_START = 1;
 
     public static final int MAIN_COMMAND_INDEX = 0;
 
@@ -186,7 +187,10 @@ public class InputParser {
 
     public void getSearchString(String[] commandComponents) {
         try {
-            searchString = commandComponents[SEARCH_STR_INDEX];
+            searchString = commandComponents[SEARCH_STR_INDEX_START];
+            for (int i = SEARCH_STR_INDEX_START + 1; i < commandComponents.length; i++) {
+                searchString += SEPARATOR + commandComponents[i];
+            }
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidEmptyKeywordError();
         }
