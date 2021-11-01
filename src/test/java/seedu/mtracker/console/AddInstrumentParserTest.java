@@ -1,11 +1,15 @@
 package seedu.mtracker.console;
 
 import java.io.ByteArrayInputStream;
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public abstract class AddInstrumentParserTest {
-    public static final String SEPARATOR_SPECIFIER = "%1$s";
+    protected static final String SEPARATOR_SPECIFIER = "%1$s";
+    protected static final int DAYS_DIFFERENCE = 1;
+    protected static final LocalDate FUTURE_DATE = LocalDate.now().plusDays(DAYS_DIFFERENCE);
+    protected static final LocalDate PAST_DATE = LocalDate.now().minusDays(DAYS_DIFFERENCE);
 
     String formatConsoleInput(String input) {
         return String.format(input, System.lineSeparator());

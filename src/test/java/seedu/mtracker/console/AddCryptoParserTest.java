@@ -29,7 +29,7 @@ class AddCryptoParserTest extends AddInstrumentParserTest {
         "",
     };
 
-    public static final String[] EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY = {
+    public static final String[] EXPECTED_PARAMS_WITH_REMARKS = {
         "TTTXXX",
         "23.4",
         "positive",
@@ -64,6 +64,22 @@ class AddCryptoParserTest extends AddInstrumentParserTest {
             + SEPARATOR_SPECIFIER.repeat(2) + FUTURE_DATE
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
+    public static final String USER_INPUT_TRY_INVALID_EXPIRY = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER + "2021/11/1"
+            + SEPARATOR_SPECIFIER + "1 January 2021"
+            + SEPARATOR_SPECIFIER + FUTURE_DATE
+            + SEPARATOR_SPECIFIER + "fooRemarks";
+
+    public static final String USER_INPUT_TRY_PAST_EXPIRY = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER + PAST_DATE
+            + SEPARATOR_SPECIFIER + PAST_DATE
+            + SEPARATOR_SPECIFIER + FUTURE_DATE
+            + SEPARATOR_SPECIFIER + "fooRemarks";
+
     void testCryptoParameters(String input, String[] expectedParameters) {
         simulateConsoleInput(input);
         AddCryptoParser testCryptoParser = new AddCryptoParser();
@@ -83,7 +99,7 @@ class AddCryptoParserTest extends AddInstrumentParserTest {
     @Test
     void addCryptoParams_allValidParametersWithRemarksAndExpiry_expectSuccess() {
         testCryptoParameters(USER_INPUT_WITH_REMARKS_AND_EXPIRY,
-                EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY);
+                EXPECTED_PARAMS_WITH_REMARKS);
     }
 
     @Test
@@ -94,19 +110,28 @@ class AddCryptoParserTest extends AddInstrumentParserTest {
     @Test
     void addCryptoParams_tryInvalidPriceMultipleTimes_expectSuccess() {
         testCryptoParameters(USER_INPUT_TRY_INVALID_PRICE,
-                EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY);
+                EXPECTED_PARAMS_WITH_REMARKS);
     }
 
     @Test
     void addCryptoParams_tryInvalidSentimentMultipleTimes_expectSuccess() {
         testCryptoParameters(USER_INPUT_TRY_INVALID_SENTIMENT,
-                EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY);
+                EXPECTED_PARAMS_WITH_REMARKS);
     }
 
     @Test
     void addCryptoParams_tryEmptyExpiryMultipleTimes_expectSuccess() {
         testCryptoParameters(USER_INPUT_TRY_EMPTY_EXPIRY,
-                EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY);
+                EXPECTED_PARAMS_WITH_REMARKS);
     }
 
+    @Test
+    void addForexParams_tryInvalidDateMultipleTimes_expectSuccess() {
+        testCryptoParameters(USER_INPUT_TRY_INVALID_EXPIRY, EXPECTED_PARAMS_WITH_REMARKS);
+    }
+
+    @Test
+    void addForexParams_tryPastDateMultipleTimes_expectSuccess() {
+        testCryptoParameters(USER_INPUT_TRY_PAST_EXPIRY, EXPECTED_PARAMS_WITH_REMARKS);
+    }
 }
