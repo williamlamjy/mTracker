@@ -53,11 +53,14 @@ public class InstrumentDecoder {
         return false;
     }
 
-    public static boolean validateAndDecodeGeneralAttributes(String[] textSegment) {
-        if(isValidName(textSegment) && isValidPrice(textSegment) && isValidSentiment(textSegment)) {
+    public static void validateAndDecodeGeneralAttributes(String[] textSegment) {
+        if(isValidGeneralAttributes(textSegment)) {
             decodeGeneralAttributes(textSegment);
         }
-        return false;
+    }
+
+    private static boolean isValidGeneralAttributes(String[] textSegment) {
+        return isValidName(textSegment) && isValidPrice(textSegment) && isValidSentiment(textSegment);
     }
 
     public static void decodeGeneralAttributes(String[] textSegment) {
