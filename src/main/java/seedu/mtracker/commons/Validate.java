@@ -56,8 +56,11 @@ public class Validate {
     public static boolean isInvalidInstrument(String instrument) {
         switch (instrument) {
         case AddStockCommand.COMMAND_WORD:
+            // Fallthrough
         case AddCryptoCommand.COMMAND_WORD:
+            // Fallthrough
         case AddForexCommand.COMMAND_WORD:
+            // Fallthrough
         case AddEtfCommand.COMMAND_WORD:
             return false;
         default:
