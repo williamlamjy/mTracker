@@ -23,16 +23,18 @@ to enable a FileWriter to write to
 the text file
 end note
 
-    loop each instrument
-        InstrumentEncoder-> Instrument: textFileFormatting()
-        activate Instrument
-        Instrument--> InstrumentEncoder: return InstrumentInFileFormat
-        deactivate Instrument
-        note bottom
-        InstrumentInFileFormat is of type String
-        eg. {"Stock;AAPL;32.0;positive;false;Nil"}
-        end note
-    end
+loop each instrument
+    InstrumentEncoder-> Instrument: textFileFormatting()
+    activate Instrument
+    Instrument--> InstrumentEncoder: return InstrumentInFileFormat
+    deactivate Instrument
+    note bottom
+    InstrumentInFileFormat
+    is of type String eg.
+    {"Stock;AAPL;32.0;
+    positive;false;Nil"}
+    end note
+end
 InstrumentEncoder--> Storage
 deactivate InstrumentEncoder
 
