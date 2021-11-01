@@ -14,7 +14,7 @@ import seedu.mtracker.commands.ViewCommand;
 import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidCommandError;
 import seedu.mtracker.error.InvalidEmptyIndexError;
-import seedu.mtracker.error.InvalidEmptyKeywordError;
+import seedu.mtracker.error.InvalidEmptySearchStringError;
 import seedu.mtracker.error.InvalidIndexError;
 import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.error.AlreadyDoneError;
@@ -128,7 +128,7 @@ public class InputParser {
     }
 
     public FindCommand getFindInstrumentsCommand(String[] commandComponents)
-            throws InvalidEmptyKeywordError {
+            throws InvalidEmptySearchStringError {
         FindCommand findCommand = new FindCommand();
         constructSearchString(commandComponents);
         findCommand.setSearchString(searchString);
@@ -191,7 +191,7 @@ public class InputParser {
                 searchString += SEPARATOR + commandComponents[i];
             }
         } catch (IndexOutOfBoundsException e) {
-            throw new InvalidEmptyKeywordError();
+            throw new InvalidEmptySearchStringError();
         }
     }
 }

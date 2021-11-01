@@ -9,7 +9,6 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
     public static final String EMPTY_STR = "";
     private String searchString;
-    private ArrayList<Instrument> filteredInstruments;
 
     public FindCommand() {
         searchString = EMPTY_STR;
@@ -19,13 +18,9 @@ public class FindCommand extends Command {
         this.searchString = searchString;
     }
 
-    public String getSearchString() {
-        return searchString;
-    }
-
     @Override
     public String execute() {
-        filteredInstruments = instrumentManager.findInstruments(searchString);
+        ArrayList<Instrument> filteredInstruments = instrumentManager.findInstruments(searchString);
         TextUi.displayInstrumentsFound(filteredInstruments, searchString);
         return COMMAND_WORD;
     }
