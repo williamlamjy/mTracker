@@ -6,25 +6,38 @@ import seedu.mtracker.model.subinstrument.Stock;
 
 import java.io.ByteArrayInputStream;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EditParserTest {
 
     public static final String SEPARATOR_SPECIFIER = "%1$s";
 
-    public static final String USER_INPUT = "TTTXXX" + SEPARATOR_SPECIFIER + "Test Remark";
-    public static final String EXPECTED_OUTPUT = "name=TTTXXX,remark=Test Remark,";
-    public static final HashSet<String> PARAM_INPUT = new HashSet<>(Arrays.asList("name", "remark"));
+    public static final String USER_INPUT_EDIT_NAME_AND_REMARK = "TTTXXX" + SEPARATOR_SPECIFIER + "Test Remark";
+    public static final String[] EXPECTED_KEYS_NAME_AND_REMARK = {"name", "remark"};
+    public static final String[] EXPECTED_OUTPUT_NAME_AND_REMARK = {"TTTXXX", "Test Remark"};
+    public static final HashSet<String> PARAM_INPUT_NAME_AND_REMARK = new HashSet<>(Arrays.asList("name", "remark"));
 
-    public static final String USER_INPUT2 = "100" + SEPARATOR_SPECIFIER + "neutral";
-    public static final String EXPECTED_OUTPUT2 = "current-price=100,sentiment=neutral,";
-    public static final HashSet<String> PARAM_INPUT2 = new HashSet<>(Arrays.asList("current-price", "sentiment"));
+    public static final String USER_INPUT_EDIT_CURRENT_PRICE_AND_SENTIMENT = "100" + SEPARATOR_SPECIFIER + "neutral";
+    public static final String[] EXPECTED_KEYS_CURRENT_PRICE_AND_SENTIMENT = {"current-price", "sentiment"};
+    public static final String[] EXPECTED_OUTPUT_CURRENT_PRICE_AND_SENTIMENT = {"100", "neutral"};
+    public static final HashSet<String> PARAM_INPUT_CURRENT_PRICE_AND_SENTIMENT =
+            new HashSet<>(Arrays.asList("current-price", "sentiment"));
 
-    public static final String USER_INPUT3 = "10" + SEPARATOR_SPECIFIER + "100";
-    public static final String EXPECTED_OUTPUT3 = "entry-price=10,exit-price=100,";
-    public static final HashSet<String> PARAM_INPUT3 = new HashSet<>(Arrays.asList("entry-price", "exit-price"));
+    public static final String USER_INPUT_EDIT_ENTRY_PRICE_AND_EXIT_PRICE = "10" + SEPARATOR_SPECIFIER + "100";
+    public static final String[] EXPECTED_KEYS_ENTRY_PRICE_AND_EXIT_PRICE = {"entry-price", "exit-price"};
+    public static final String[] EXPECTED_OUTPUT_ENTRY_PRICE_AND_EXIT_PRICE = {"10", "100"};
+    public static final HashSet<String> PARAM_INPUT_ENTRY_PRICE_AND_EXIT_PRICE =
+            new HashSet<>(Arrays.asList("entry-price", "exit-price"));
+
+    public static final String TEST_NAME = "Test";
+    public static final double TEST_PRICE = 1.0;
+    public static final String TEST_SENTIMENT = "neutral";
+    public static final String TEST_REMARK = "";
+    public static final Instrument TEST_STOCK = new Stock(TEST_NAME, TEST_PRICE, TEST_SENTIMENT, TEST_REMARK);
+    public static final int TEST_INDEX = 0;
 
     String formatConsoleInput(String input) {
         return String.format(input, System.lineSeparator());
@@ -36,27 +49,46 @@ public class EditParserTest {
         System.setIn(inputStreamBytes);
     }
 
-    void testEditInstrumentParameters(String input, String output, HashSet<String> expectedParameters) {
-        simulateConsoleInput(input);
-        Instrument dummyInstrument = new Stock("test-1",1,"positive","test-remark");
-        EditInstrumentParser editInstrumentParser = new EditInstrumentParser();
-        editInstrumentParser.getParametersToEdit(expectedParameters, dummyInstrument, 0);
-        assertEquals(editInstrumentParser.getEditedParametersHashMap(), output);
+    HashMap<String,String> initialiseTestResources(String[] expectedKeys, String[] expectedValues) {
+        HashMap<String,String> expectedResult = new HashMap<>();
+        for (int i = 0; i < expectedKeys.length; i++) {
+            expectedResult.put(expectedKeys[i],expectedValues[i]);
+        }
+        return expectedResult;
     }
 
+    void testEditInstrumentParameters(String input, HashSet<String> expectedParameters,
+                                      String[] expectedKeys, String[] expectedValues) {
+        simulateConsoleInput(input);
+        HashMap<String,String> expectedHash = initialiseTestResources(expectedKeys, expectedValues);
+        EditInstrumentParser editInstrumentParser = new EditInstrumentParser();
+        editInstrumentParser.getParametersToEdit(expectedParameters, TEST_STOCK, TEST_INDEX);
+        HashMap<String,String> outputHash = EditInstrumentParser.getEditedParametersHash();
+        assertTrue(outputHash.equals(expectedHash));
+    }
 
     @Test
     void editInstrumentParam_nameAndRemark_expectSuccess() {
-        testEditInstrumentParameters(USER_INPUT, EXPECTED_OUTPUT, PARAM_INPUT);
+        testEditInstrumentParameters(USER_INPUT_EDIT_NAME_AND_REMARK,
+                PARAM_INPUT_NAME_AND_REMARK,
+                EXPECTED_KEYS_NAME_AND_REMARK,
+                EXPECTED_OUTPUT_NAME_AND_REMARK);
     }
+
 
     @Test
     void editInstrumentParam_currentPriceAndSentiment_expectSuccess() {
-        testEditInstrumentParameters(USER_INPUT2, EXPECTED_OUTPUT2, PARAM_INPUT2);
+        testEditInstrumentParameters(USER_INPUT_EDIT_CURRENT_PRICE_AND_SENTIMENT,
+                PARAM_INPUT_CURRENT_PRICE_AND_SENTIMENT,
+                EXPECTED_KEYS_CURRENT_PRICE_AND_SENTIMENT,
+                EXPECTED_OUTPUT_CURRENT_PRICE_AND_SENTIMENT);
     }
 
     @Test
     void editInstrumentParam_entryAndExitPrice_expectSuccess() {
-        testEditInstrumentParameters(USER_INPUT3, EXPECTED_OUTPUT3, PARAM_INPUT3);
+        testEditInstrumentParameters(USER_INPUT_EDIT_ENTRY_PRICE_AND_EXIT_PRICE,
+                PARAM_INPUT_ENTRY_PRICE_AND_EXIT_PRICE,
+                EXPECTED_KEYS_ENTRY_PRICE_AND_EXIT_PRICE,
+                EXPECTED_OUTPUT_ENTRY_PRICE_AND_EXIT_PRICE);
     }
 }

@@ -145,12 +145,7 @@ public class EditInstrumentParser extends InputParser {
         return command;
     }
 
-    public static String getEditedParametersHashMap() {
-        String parseString = "";
-        for (String s : editedParameters.keySet()) {
-            parseString += s + "=" + editedParameters.get(s) + ",";
-        }
-        System.out.println(parseString);
-        return parseString;
+    public static HashMap<String, String> getEditedParametersHash() {
+        return editedParameters;
     }
 }
