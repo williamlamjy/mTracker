@@ -58,7 +58,7 @@ public class InputParser {
         TextUi.displayAddInstrumentFirstInstruction();
         String addInstrumentType;
         do {
-            addInstrumentType = getUserInput(AddInstrumentCommand.COMMAND_WORD);
+            addInstrumentType = getUserInput(AddInstrumentCommand.COMMAND_WORD).toLowerCase();
         } while (!Validate.isValidInstrument(addInstrumentType));
         return AddInstrumentParser.filterByInstrumentType(getCommandComponents(addInstrumentType));
     }
@@ -138,7 +138,7 @@ public class InputParser {
     public Command filterByCommandType(String[] commandComponents, ArrayList<Instrument> instruments)
             throws Exception {
         Command command;
-        switch (commandComponents[MAIN_COMMAND_INDEX]) {
+        switch (commandComponents[MAIN_COMMAND_INDEX].toLowerCase()) {
         case ListCommand.COMMAND_WORD:
             command = new ListCommand();
             break;
