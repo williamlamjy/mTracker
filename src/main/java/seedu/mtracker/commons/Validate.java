@@ -39,10 +39,9 @@ public class Validate {
 
     protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-    // (!name.matches("^[a-zA-Z]{3}/?[a-zA-Z]{3}$"));
     public static boolean isInvalidNameCondition(String name, String instrumentType) {
         if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
-            return (name.length() != 6);
+            return (!name.matches("^[a-zA-Z]{3}/?[a-zA-Z]{3}$"));
         }
         return name.isEmpty();
     }
