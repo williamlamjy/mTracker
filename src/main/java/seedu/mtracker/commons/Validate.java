@@ -43,7 +43,7 @@ public class Validate {
 
     public static boolean isInvalidNameCondition(String name, String instrumentType) {
         if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
-            return (name.length() != FX_PAIR_NAME_LENGTH);
+            return (name.length() != FX_PAIR_NAME_LENGTH | !name.matches("[a-zA-Z]+"));
         }
         return name.isEmpty();
     }
