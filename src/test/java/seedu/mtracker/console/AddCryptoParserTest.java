@@ -2,12 +2,8 @@ package seedu.mtracker.console;
 
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
-
 class AddCryptoParserTest extends AddInstrumentParserTest {
     public static final int PARAMETER_SIZE = 5;
-    public static final int DAYS_DIFFERENCE = 1;
-    public static final LocalDate FUTURE_DATE = LocalDate.now().plusDays(DAYS_DIFFERENCE);
 
     public static final String USER_INPUT_NO_REMARKS = "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
