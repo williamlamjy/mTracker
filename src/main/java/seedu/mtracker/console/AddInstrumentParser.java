@@ -64,9 +64,9 @@ public abstract class AddInstrumentParser extends InputParser {
 
 
     public static void addSentimentToParameters() {
-        String sentiment = getInstrumentSentimentFromUser();
+        String sentiment = getInstrumentSentimentFromUser().toLowerCase();
         while (!Validate.isValidSentiment(sentiment)) {
-            sentiment = getInstrumentSentimentFromUser();
+            sentiment = getInstrumentSentimentFromUser().toLowerCase();
         }
         parameters.add(sentiment);
         AssertParserHelper.assertInputNotEmpty(sentiment);
