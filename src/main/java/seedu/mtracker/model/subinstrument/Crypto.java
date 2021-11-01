@@ -67,8 +67,8 @@ public class Crypto extends Instrument {
 
     @Override
     public String textFileFormatting() {
-        return String.format(super.textFileFormatting() + FILE_SEPARATOR + expiry
-                + FILE_SEPARATOR + remark);
+        return super.textFileFormatting() + FILE_SEPARATOR + expiry
+                + FILE_SEPARATOR + remark;
     }
 
     @Override
