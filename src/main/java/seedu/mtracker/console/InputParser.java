@@ -56,7 +56,10 @@ public class InputParser {
 
     public AddInstrumentCommand getAddInstrumentParameters() throws InvalidInstrumentError {
         TextUi.displayAddInstrumentFirstInstruction();
-        String addInstrumentType = getUserInput(AddInstrumentCommand.COMMAND_WORD);
+        String addInstrumentType;
+        do {
+            addInstrumentType = getUserInput(AddInstrumentCommand.COMMAND_WORD);
+        } while (!Validate.isValidInstrument(addInstrumentType));
         return AddInstrumentParser.filterByInstrumentType(getCommandComponents(addInstrumentType));
     }
 
