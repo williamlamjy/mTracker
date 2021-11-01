@@ -8,25 +8,25 @@ import java.util.ArrayList;
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
     public static final String EMPTY_STR = "";
-    private String keyword;
+    private String searchString;
     private ArrayList<Instrument> filteredInstruments;
 
     public FindCommand() {
-        keyword = EMPTY_STR;
+        searchString = EMPTY_STR;
     }
 
-    public void setKeyword(String searchString) {
-        keyword = searchString;
+    public void setSearchString(String searchString) {
+        this.searchString = searchString;
     }
 
-    public String getKeyword() {
-        return keyword;
+    public String getSearchString() {
+        return searchString;
     }
 
     @Override
     public String execute() {
-        filteredInstruments = instrumentManager.findInstruments(keyword);
-        TextUi.displayInstrumentsFound(filteredInstruments, keyword);
+        filteredInstruments = instrumentManager.findInstruments(searchString);
+        TextUi.displayInstrumentsFound(filteredInstruments, searchString);
         return COMMAND_WORD;
     }
 }

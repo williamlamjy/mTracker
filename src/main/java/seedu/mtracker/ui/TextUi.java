@@ -101,12 +101,12 @@ public class TextUi {
         System.out.println(LINE_DECORATOR);
     }
 
-    private static void displayFoundMessage(int numFound, String keyword) {
+    private static void displayFoundMessage(int numFound, String searchTerm) {
         if (numFound == NONE_FOUND) {
-            System.out.println("There were no instruments found for keyword, " + keyword + ".");
+            System.out.println("There were no instruments found for search string, " + searchTerm + ".");
             return;
         }
-        System.out.println("There were " + numFound + " instrument(s) found for keyword, " + keyword + ".");
+        System.out.println("There were " + numFound + " instrument(s) found for search string, " + searchTerm + ".");
     }
 
     public static void displayInstrumentsFound(ArrayList<Instrument> instruments, String searchString) {
