@@ -11,22 +11,22 @@ public class AddForexParser extends AddInstrumentParser {
 
     public String getForexRemarksFromUser() {
         TextUi.displayAddRemarksInstruction();
-        return getUserInput();
+        return getUserInput(WORKSPACE);
     }
 
     public String getForexExpiryFromUser() {
         TextUi.displayAddExpiryInstruction();
-        return getUserInput();
+        return getUserInput(WORKSPACE);
     }
 
     public String getForexEntryFromUser() {
         TextUi.displayAddEntryPriceInstruction();
-        return getUserInput();
+        return getUserInput(WORKSPACE);
     }
 
     public String getForexExitFromUser() {
         TextUi.displayAddExitPriceInstruction();
-        return getUserInput();
+        return getUserInput(WORKSPACE);
     }
 
     public void addForexRemarksToParameter() {

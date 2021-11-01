@@ -45,8 +45,8 @@ public class InputParser {
         inputScanner = new Scanner(System.in);
     }
 
-    public static String getUserInput() {
-        TextUi.displayPrompter();
+    public static String getUserInput(String currentWorkspace) {
+        TextUi.displayPrompter(currentWorkspace);
         return inputScanner.nextLine().trim();
     }
 
@@ -56,7 +56,10 @@ public class InputParser {
 
     public AddInstrumentCommand getAddInstrumentParameters() throws InvalidInstrumentError {
         TextUi.displayAddInstrumentFirstInstruction();
-        String addInstrumentType = getUserInput();
+        String addInstrumentType;
+        do {
+            addInstrumentType = getUserInput(AddInstrumentCommand.COMMAND_WORD);
+        } while (!Validate.isValidInstrument(addInstrumentType));
         return AddInstrumentParser.filterByInstrumentType(getCommandComponents(addInstrumentType));
     }
 
@@ -98,7 +101,7 @@ public class InputParser {
     }
 
     public HashSet<String> getParametersToEdit(HashSet<String> validAttributes) {
-        String parametersToEdit = getUserInput();
+        String parametersToEdit = getUserInput(EditInstrumentCommand.COMMAND_WORD);
         String[] parameters = getCommandComponents(parametersToEdit);
         return filterInvalidParameters(parameters, validAttributes);
     }

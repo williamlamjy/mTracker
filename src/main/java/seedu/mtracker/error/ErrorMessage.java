@@ -2,11 +2,13 @@ package seedu.mtracker.error;
 
 public abstract class ErrorMessage {
 
-    public static final String INVALID_INSTRUMENT_GIVEN_ERROR = "Invalid Instrument given!";
+    public static final String INVALID_INSTRUMENT_GIVEN_ERROR = "Sorry instrument must be either "
+            + "stock, crypto, forex or etf";
     public static final String INVALID_COMMAND_GIVEN_ERROR = "Oops, I do not understand you...";
     public static final String INVALID_FOREX_NAME_GIVEN_ERROR = "Sorry forex pair codes must contain 6 letters!";
     public static final String INVALID_PRICE_EMPTY_ERROR = "Sorry price cannot be empty";
-    public static final String INVALID_PRICE_TYPE_ERROR = "Sorry price must be a positive number";
+    public static final String INVALID_NEGATIVE_PRICE_ERROR = "Sorry price must be a positive number";
+    public static final String INVALID_PRICE_INPUT_ERROR = "Sorry please key in an appropriate number for price";
     public static final String INVALID_SENTIMENT_EMPTY_ERROR = "Sorry sentiment cannot be empty";
     public static final String INVALID_SENTIMENT_ERROR = "Sorry sentiment must be either "
             + "positive, negative or neutral";
