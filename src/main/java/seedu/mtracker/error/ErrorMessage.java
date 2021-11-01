@@ -12,8 +12,9 @@ public abstract class ErrorMessage {
             + "It must be a positive number.";
     public static final String INVALID_PRICE_INPUT_ERROR = "Sorry please key in an appropriate "
             + "numeric value for price.";
-    public static final String INVALID_SENTIMENT_EMPTY_ERROR = "Sorry sentiment cannot be empty."
-            + "Insert positive, negative or neutral.";
+    public static final String INVALID_SENTIMENT_EMPTY_ERROR = "Sorry sentiment cannot be empty. "
+            + "Please enter either positive, negative or neutral.";
+
     public static final String INVALID_SENTIMENT_ERROR = "Sorry sentiment must be either "
             + "positive, negative or neutral.";
     public static final String INVALID_PAST_RETURN_TYPE_ERROR = "Sorry, past return must be a numeric value! "
