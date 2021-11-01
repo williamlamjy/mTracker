@@ -2,10 +2,6 @@ package seedu.mtracker.console;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class AddEtfParserTest extends AddInstrumentParserTest {
     public static final int PARAMETER_SIZE = 5;
 
