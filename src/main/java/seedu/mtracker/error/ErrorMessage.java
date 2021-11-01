@@ -27,6 +27,8 @@ public abstract class ErrorMessage {
             + "type is provided in the mTracker.txt file";
     public static final String INVALID_NO_KEYWORD_GIVEN_ERROR = "Oops please input a search"
             + " keyword after 'find' command.";
+    public static final String INSTRUMENT_MARKED_DONE_ERROR = "Instrument at provided index "
+            + "has already been marked as completed!";
 
     public static final String FILE_WRITE_ERROR = "Oh no! There seems to be an error writing to the file";
     public static final String FILE_LOAD_ERROR = "Oh no! There seems to be an error loading this file";

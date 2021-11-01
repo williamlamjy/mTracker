@@ -19,6 +19,7 @@ import seedu.mtracker.error.InvalidPastReturnError;
 import seedu.mtracker.error.InvalidPastReturnTypeError;
 import seedu.mtracker.error.InvalidPriceError;
 import seedu.mtracker.error.InvalidSentimentError;
+import seedu.mtracker.error.AlreadyDoneError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -139,6 +140,15 @@ public class Validate {
         }
     }
 
+    public static void checkIsNotDone(ArrayList<Instrument> instruments, int instrumentNumber)
+            throws AlreadyDoneError {
+        Instrument instrument = instruments.get(instrumentNumber);
+        boolean isDoneStatus = instrument.getIsDone();
+        if (isDoneStatus) {
+            throw new AlreadyDoneError();
+        }
+    }
+
     public static void checkSentimentIsEmpty(String sentiment) throws InvalidEmptySentimentError {
         if (sentiment.isEmpty()) {
             throw new InvalidEmptySentimentError();
@@ -229,4 +239,6 @@ public class Validate {
         }
         return true;
     }
+
+
 }
