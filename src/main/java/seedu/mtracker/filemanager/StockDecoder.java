@@ -9,7 +9,7 @@ public class StockDecoder extends InstrumentDecoder {
     public static final int STOCK_REMARKS_INDEX = 5;
 
     public static void addStockToList(String[] textSegment, InstrumentManager instrumentManager) {
-        decodeGeneralAttributes(textSegment);
+        validateAndDecodeGeneralAttributes(textSegment);
         String decodedRemarks = textSegment[STOCK_REMARKS_INDEX];
         Instrument stock = new Stock(decodedName, decodedCurrPrice, decodedSentiment, decodedRemarks);
         setDoneStatus(decodedIsDone, stock);

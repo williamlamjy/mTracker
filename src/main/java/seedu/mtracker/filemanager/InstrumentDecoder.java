@@ -1,5 +1,6 @@
 package seedu.mtracker.filemanager;
 
+import seedu.mtracker.commons.Validate;
 import seedu.mtracker.error.InvalidInstrumentInFileError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
@@ -11,10 +12,10 @@ public class InstrumentDecoder {
 
     public static final int SPLIT_FUNCTION_LIMIT_VALUE = -1;
 
-    public static final String TYPE_CRYPTO = "Crypto";
-    public static final String TYPE_STOCK = "Stock";
-    public static final String TYPE_ETF = "Etf";
-    public static final String TYPE_FOREX = "Forex";
+    public static final String TYPE_CRYPTO = "crypto";
+    public static final String TYPE_STOCK = "stock";
+    public static final String TYPE_ETF = "etf";
+    public static final String TYPE_FOREX = "forex";
 
     public static final int TYPE_INDEX = 0;
     public static final int NAME_INDEX = 1;
@@ -31,11 +32,39 @@ public class InstrumentDecoder {
     protected static final char FILE_SEPARATOR = (char)ASCII_CODE;
 
 
+    public static boolean isValidPrice(String[] textSegment) {
+        if(Validate.isValidPrice(textSegment[CURR_PRICE_INDEX])) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isValidSentiment(String[] textSegment) {
+        if(Validate.isValidSentiment(textSegment[SENTIMENT_INDEX])) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isValidName(String[] textSegment) {
+        if(Validate.isValidName(textSegment[NAME_INDEX], textSegment[TYPE_INDEX])){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean validateAndDecodeGeneralAttributes(String[] textSegment) {
+        if(isValidName(textSegment) && isValidPrice(textSegment) && isValidSentiment(textSegment)) {
+            decodeGeneralAttributes(textSegment);
+        }
+        return false;
+    }
+
     public static void decodeGeneralAttributes(String[] textSegment) {
-        decodedName = textSegment[NAME_INDEX];
-        decodedSentiment = textSegment[SENTIMENT_INDEX];
-        decodedCurrPrice = Double.parseDouble(textSegment[CURR_PRICE_INDEX]);
-        decodedIsDone = Boolean.parseBoolean(textSegment[IS_DONE_INDEX]);
+            decodedName = textSegment[NAME_INDEX];
+            decodedSentiment = textSegment[SENTIMENT_INDEX];
+            decodedCurrPrice = Double.parseDouble(textSegment[CURR_PRICE_INDEX]);
+            decodedIsDone = Boolean.parseBoolean(textSegment[IS_DONE_INDEX]);
     }
 
     public static void setDoneStatus(boolean isDone, Instrument doneInstrument) {
@@ -56,6 +85,8 @@ public class InstrumentDecoder {
                     }
                 });
     }
+
+
 
     private static void addSavedInstrumentToList(InstrumentManager instrumentManager, String[] textSegment)
             throws InvalidInstrumentInFileError {
