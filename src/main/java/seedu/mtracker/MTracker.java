@@ -17,6 +17,8 @@ public class MTracker {
     private InputParser parser;
     private LogHelper logger;
 
+    private static final String MAIN_WORKSPACE = "main";
+
     public MTracker() {
         try {
             logger = LogHelper.getInstance();
@@ -36,7 +38,7 @@ public class MTracker {
         String[] commandComponents;
 
         do {
-            userInput = parser.getUserInput();
+            userInput = parser.getUserInput(MAIN_WORKSPACE);
             commandComponents = parser.getCommandComponents(userInput);
             try {
                 command = parser.filterByCommandType(commandComponents, instrumentManager.getInstruments());

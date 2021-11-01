@@ -18,6 +18,7 @@ public abstract class AddInstrumentParser extends InputParser {
     public static final int INSTRUMENT_COMMAND_INDEX = 0;
 
     protected static ArrayList<String> parameters;
+    protected static final String WORKSPACE = AddInstrumentCommand.COMMAND_WORD;
 
     public void initParameters() {
         parameters = new ArrayList<>();
@@ -29,7 +30,7 @@ public abstract class AddInstrumentParser extends InputParser {
 
     public static String getInstrumentNameFromUser(String instrumentType) {
         TextUi.displayAddInstrumentNameInstruction(instrumentType);
-        return getUserInput();
+        return getUserInput(WORKSPACE);
     }
 
     public static void addNameToParameters(String instrumentType) {
@@ -43,7 +44,7 @@ public abstract class AddInstrumentParser extends InputParser {
 
     public static String getCurrentPriceFromUser() {
         TextUi.displayAddInstrumentCurrentPriceInstruction();
-        return getUserInput();
+        return getUserInput(WORKSPACE);
     }
 
     public static void addCurrentPriceToParameters() {
@@ -58,7 +59,7 @@ public abstract class AddInstrumentParser extends InputParser {
 
     public static String getInstrumentSentimentFromUser() {
         TextUi.displayAddInstrumentSentimentInstruction();
-        return getUserInput();
+        return getUserInput(WORKSPACE);
     }
 
 

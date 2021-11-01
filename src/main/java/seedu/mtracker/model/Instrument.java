@@ -42,6 +42,10 @@ public abstract class Instrument {
         validAttribute = new HashSet<>();
     }
 
+    public boolean getIsDone() {
+        return isDone;
+    }
+
     public void markAsDone() {
         isDone = true;
     }
