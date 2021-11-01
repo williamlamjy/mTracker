@@ -37,13 +37,11 @@ public class Validate {
     public static final String NEUTRAL_SENTIMENT = "neutral";
     public static final String NEGATIVE_SENTIMENT = "negative";
 
-    public static final int FX_PAIR_NAME_LENGTH = 6;
-
     protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public static boolean isInvalidNameCondition(String name, String instrumentType) {
         if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
-            return (name.length() != FX_PAIR_NAME_LENGTH | !name.matches("[a-zA-Z]+"));
+            return (!name.matches("^[a-zA-Z]{3}/?[a-zA-Z]{3}$"));
         }
         return name.isEmpty();
     }
