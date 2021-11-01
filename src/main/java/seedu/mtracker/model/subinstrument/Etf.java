@@ -81,8 +81,8 @@ public class Etf extends Instrument {
 
     @Override
     public String textFileFormatting() {
-        return String.format(super.textFileFormatting() + FILE_SEPARATOR + getReturnsForFileFormat()
-                + FILE_SEPARATOR + remark);
+        return super.textFileFormatting() + FILE_SEPARATOR + getReturnsForFileFormat()
+                + FILE_SEPARATOR + remark;
     }
 
     @Override
