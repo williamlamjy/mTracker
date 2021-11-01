@@ -11,7 +11,7 @@ public class AddStockParser extends AddInstrumentParser {
 
     public String getStockRemarksFromUser() {
         TextUi.displayAddRemarksInstruction();
-        return getUserInput();
+        return getUserInput(WORKSPACE);
     }
 
     public void addStockRemarksToParameters() {
