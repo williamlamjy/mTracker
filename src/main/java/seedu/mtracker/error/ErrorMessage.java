@@ -8,7 +8,8 @@ public abstract class ErrorMessage {
     public static final String INVALID_FOREX_NAME_GIVEN_ERROR = "Sorry forex pair codes must contain 6 letters!"
             + "No numbers allowed.";
     public static final String INVALID_PRICE_EMPTY_ERROR = "Sorry price cannot be empty.";
-    public static final String INVALID_NEGATIVE_PRICE_ERROR = "Sorry price cannot be negative valued. "
+    public static final String INVALID_NEGATIVE_PRICE_ERROR = "Sorry price cannot be negative. "
+
             + "It must be a positive number.";
     public static final String INVALID_PRICE_INPUT_ERROR = "Sorry please key in an appropriate "
             + "numeric value for price.";
