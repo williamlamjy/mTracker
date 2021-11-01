@@ -5,7 +5,8 @@ public abstract class ErrorMessage {
     public static final String INVALID_INSTRUMENT_GIVEN_ERROR = "Sorry instrument must be either "
             + "stock, crypto, forex or etf.";
     public static final String INVALID_COMMAND_GIVEN_ERROR = "Oops, I do not understand you...";
-    public static final String INVALID_FOREX_NAME_GIVEN_ERROR = "Sorry forex pair codes must contain 6 letters!"
+    public static final String INVALID_FOREX_NAME_GIVEN_ERROR = "Sorry forex pair codes must contain 6 letters! "
+
             + "No numbers allowed.";
     public static final String INVALID_PRICE_EMPTY_ERROR = "Sorry price cannot be empty.";
     public static final String INVALID_NEGATIVE_PRICE_ERROR = "Sorry price cannot be negative. "
