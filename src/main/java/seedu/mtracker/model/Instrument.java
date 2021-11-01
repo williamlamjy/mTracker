@@ -14,7 +14,9 @@ public abstract class Instrument {
     protected String sentiment;
     protected boolean isDone;
 
-    protected static final String FILE_SEPARATOR = ";";
+    protected static final String TAB = "\t";
+    protected static final int ASCII_CODE = 127;
+    protected static final char FILE_SEPARATOR = (char)ASCII_CODE;
     protected static final String DONE_SYMBOL = "[X]";
     protected static final String NOT_DONE_SYMBOL = "[ ]";
     protected static HashSet<String> validAttribute;
@@ -49,19 +51,11 @@ public abstract class Instrument {
     }
 
     public String getStatusIcon() {
-        return (getIsDone() ? DONE_SYMBOL : NOT_DONE_SYMBOL);
+        return (isDone ? DONE_SYMBOL : NOT_DONE_SYMBOL);
     }
 
     public String getName() {
         return name;
-    }
-
-    public double getCurrentPrice() {
-        return currentPrice;
-    }
-
-    public String getSentiment() {
-        return sentiment;
     }
 
     public void setName(String inputName) {
@@ -87,7 +81,7 @@ public abstract class Instrument {
         if (!editedParameters.containsKey(CURRENT_PRICE_ATTRIBUTE)) {
             return;
         }
-        Double updatedPrice = Double.parseDouble(editedParameters.get(CURRENT_PRICE_ATTRIBUTE));
+        double updatedPrice = Double.parseDouble(editedParameters.get(CURRENT_PRICE_ATTRIBUTE));
         setCurrentPrice(updatedPrice);
     }
 
@@ -111,9 +105,9 @@ public abstract class Instrument {
     public abstract String getType();
 
     public String textFileFormatting() {
-        return String.format(getType() + FILE_SEPARATOR + getName() + FILE_SEPARATOR
-                + getCurrentPrice() + FILE_SEPARATOR + getSentiment() + FILE_SEPARATOR
-                + getIsDone());
+        return String.format(getType() + FILE_SEPARATOR + name + FILE_SEPARATOR
+                + currentPrice + FILE_SEPARATOR + sentiment + FILE_SEPARATOR
+                + isDone);
     }
 
     public String editParameterInstructions() {
@@ -125,7 +119,7 @@ public abstract class Instrument {
     public abstract String getTypeIcon();
 
     public String getAllParams() {
-        return TYPE_FIELD + getType() + getStatusIcon() + System.lineSeparator()
+        return TYPE_FIELD + getType() + TAB + getStatusIcon() + System.lineSeparator()
                 + NAME_FIELD + name + System.lineSeparator()
                 + CURRENT_PRICE_FIELD + currentPrice + System.lineSeparator()
                 + SENTIMENT_FIELD + sentiment + System.lineSeparator();

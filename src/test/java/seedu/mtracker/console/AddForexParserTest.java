@@ -2,17 +2,13 @@ package seedu.mtracker.console;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-class AddForexParserTest {
+class AddForexParserTest extends AddInstrumentParserTest {
 
     public static final int PARAMETER_SIZE = 7;
     public static final int DAYS_DIFFERENCE = 1;
     public static final LocalDate FUTURE_DATE = LocalDate.now().plusDays(DAYS_DIFFERENCE);
-    public static final String SEPARATOR_SPECIFIER = "%1$s";
 
     public static final String[] EXPECTED_PARAMS_NO_REMARKS = {
         "TTTXXX",
@@ -78,28 +74,15 @@ class AddForexParserTest {
             + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
-    String formatConsoleInput(String input) {
-        return String.format(input, System.lineSeparator());
-    }
-
-    void simulateConsoleInput(String input) {
-        String formattedInput = formatConsoleInput(input);
-        ByteArrayInputStream inputStreamBytes = new ByteArrayInputStream(formattedInput.getBytes());
-        System.setIn(inputStreamBytes);
-    }
-
-    void checkParameters(AddForexParser testForexParser, String[] expectedParameters) {
-        for (int i = 0; i < PARAMETER_SIZE; i++) {
-            assertEquals(testForexParser.getParameters().get(i), expectedParameters[i]);
-        }
-    }
-
-    void testForexParameters(String input, String[] expectedParameters) {
+    void testForexParameters(String input, String[] expectedForexParameters) {
         simulateConsoleInput(input);
         AddForexParser testForexParser = new AddForexParser();
-        testForexParser.initParameters();
-        testForexParser.getInstrumentParameters();
-        checkParameters(testForexParser, expectedParameters);
+        verifyInstrumentParameters(testForexParser, expectedForexParameters);
+    }
+
+    @Override
+    public int getParameterSize() {
+        return PARAMETER_SIZE;
     }
 
     @Test

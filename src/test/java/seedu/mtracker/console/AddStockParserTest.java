@@ -2,14 +2,8 @@ package seedu.mtracker.console;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-class AddStockParserTest {
-
+class AddStockParserTest extends AddInstrumentParserTest {
     public static final int PARAMETER_SIZE = 4;
-    public static final String SEPARATOR_SPECIFIER = "%1$s";
 
     public static final String USER_INPUT_NO_REMARKS = "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
@@ -53,29 +47,15 @@ class AddStockParserTest {
             + SEPARATOR_SPECIFIER.repeat(2) + "positive"
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
-    String formatConsoleInput(String input) {
-        return String.format(input, System.lineSeparator());
-    }
-
-    void simulateConsoleInput(String input) {
-        String formattedInput = formatConsoleInput(input);
-        ByteArrayInputStream inputStreamBytes = new ByteArrayInputStream(formattedInput.getBytes());
-        System.setIn(inputStreamBytes);
-    }
-
-    void checkParameters(AddStockParser testStockParser, String[] expectedParameters) {
-        for (int i = 0; i < PARAMETER_SIZE; i++) {
-            assertEquals(testStockParser.getParameters().get(i), expectedParameters[i]);
-        }
-    }
-
-    void testStockParameters(String input, String[] expectedParameters) {
+    void testStockParameters(String input, String[] expectedStockParameters) {
         simulateConsoleInput(input);
         AddStockParser testStockParser = new AddStockParser();
-        testStockParser.initParameters();
-        testStockParser.getInstrumentParameters();
-        checkParameters(testStockParser, expectedParameters);
+        verifyInstrumentParameters(testStockParser, expectedStockParameters);
+    }
 
+    @Override
+    public int getParameterSize() {
+        return PARAMETER_SIZE;
     }
 
     @Test

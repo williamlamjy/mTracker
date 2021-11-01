@@ -1,0 +1,39 @@
+@startuml
+!include Styles.puml
+
+Package "console                 "<<Rectangle>>{
+    Class InputParser COLOR_CONSOLE
+    Class AddInstrumentParser COLOR_CONSOLE
+    Class AddXYZParser COLOR_CONSOLE
+    Class Validate COLOR_CONSOLE
+}
+
+Class "{abstract}\nCommand" as Command COLOR_COMMANDS
+Class AddXYZCommand COLOR_COMMANDS
+Class TextUi COLOR_UI
+Class "{abstract}\nInstrument" as Instrument COLOR_MODEL
+
+Class outside COLOR_WHITE
+outside -down[COLOR_MAIN]-> InputParser
+AddInstrumentParser -up[COLOR_CONSOLE].|> InputParser
+AddXYZParser -up[COLOR_CONSOLE].|> AddInstrumentParser
+
+InputParser -down[COLOR_CONSOLE].> Validate
+AddInstrumentParser -left[COLOR_CONSOLE].> Validate
+AddXYZParser -left[COLOR_CONSOLE].> Validate
+
+InputParser -down[COLOR_CONSOLE].> Command : creates >
+AddInstrumentParser -right[COLOR_CONSOLE].> AddXYZCommand : creates >
+AddXYZParser -right[COLOR_CONSOLE].> AddXYZCommand : creates >
+
+InputParser -left[COLOR_CONSOLE].> TextUi
+AddInstrumentParser -left[COLOR_CONSOLE].> TextUi
+AddXYZParser -left[COLOR_CONSOLE].> TextUi
+
+InputParser -left[COLOR_CONSOLE].> Instrument
+
+note bottom of AddXYZParser: AddXYZParser = AddCryptoParser, \nAddEtfParser, etc
+
+AddXYZCommand -up[COLOR_COMMANDS].|> Command
+note bottom of AddXYZCommand: AddXYZCommand = AddCryptoCommand, \nAddEtfCommand, etc
+@enduml

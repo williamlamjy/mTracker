@@ -21,13 +21,14 @@ public class EditInstrumentParser extends InputParser {
     protected static final String ENTRY_PRICE_ATTRIBUTE = "entry-price";
     protected static final String EXIT_PRICE_ATTRIBUTE = "exit-price";
     protected static final String EXPIRY_ATTRIBUTE = "expiry";
+    protected static final String WORKSPACE = EditInstrumentCommand.COMMAND_WORD;
 
     public static void editNameParameter(String instrumentType, HashSet<String> parametersGiven) {
         if (!parametersGiven.contains(NAME_ATTRIBUTE)) {
             return;
         }
         TextUi.displayEditName();
-        String inputName = getUserInput();
+        String inputName = getUserInput(WORKSPACE);
         if (!Validate.isValidName(inputName, instrumentType)) {
             ErrorMessage.displayEditNameError();
             return;
@@ -40,7 +41,7 @@ public class EditInstrumentParser extends InputParser {
             return;
         }
         TextUi.displayEditCurrentPrice();
-        String inputCurrentPrice = getUserInput();
+        String inputCurrentPrice = getUserInput(WORKSPACE);
         if (!Validate.isValidPrice(inputCurrentPrice)) {
             ErrorMessage.displayEditPriceError();
             return;
@@ -53,7 +54,7 @@ public class EditInstrumentParser extends InputParser {
             return;
         }
         TextUi.displayEditSentiment();
-        String inputSentiment = getUserInput();
+        String inputSentiment = getUserInput(WORKSPACE);
         if (!Validate.isValidSentiment(inputSentiment)) {
             ErrorMessage.displayEditSentimentError();
             return;
@@ -66,7 +67,7 @@ public class EditInstrumentParser extends InputParser {
             return;
         }
         TextUi.displayEditRemark();
-        String inputRemark = getUserInput();
+        String inputRemark = getUserInput(WORKSPACE);
         editedParameters.put(REMARK_ATTRIBUTE, inputRemark);
     }
 
@@ -75,7 +76,7 @@ public class EditInstrumentParser extends InputParser {
             return;
         }
         TextUi.displayEditReturn();
-        String inputReturn = getUserInput();
+        String inputReturn = getUserInput(WORKSPACE);
         if (!Validate.isValidPastReturn(inputReturn)) {
             ErrorMessage.displayEditReturnError();
             return;
@@ -88,7 +89,7 @@ public class EditInstrumentParser extends InputParser {
             return;
         }
         TextUi.displayEditEntryPrice();
-        String inputEntryPrice = getUserInput();
+        String inputEntryPrice = getUserInput(WORKSPACE);
         if (!Validate.isValidPrice(inputEntryPrice)) {
             ErrorMessage.displayEditPriceError();
             return;
@@ -101,7 +102,7 @@ public class EditInstrumentParser extends InputParser {
             return;
         }
         TextUi.displayEditExitPrice();
-        String inputExitPrice = getUserInput();
+        String inputExitPrice = getUserInput(WORKSPACE);
         if (!Validate.isValidPrice(inputExitPrice)) {
             ErrorMessage.displayEditPriceError();
             return;
@@ -114,7 +115,7 @@ public class EditInstrumentParser extends InputParser {
             return;
         }
         TextUi.displayEditExpiry();
-        String inputExpiry = getUserInput();
+        String inputExpiry = getUserInput(WORKSPACE);
         if (!Validate.isValidExpiry(inputExpiry)) {
             ErrorMessage.displayEditExpiryError();
             return;
@@ -123,7 +124,7 @@ public class EditInstrumentParser extends InputParser {
     }
 
     public static void getEditedParameters(HashSet<String> parametersGiven, Instrument instrumentOfInterest) {
-        String instrumentType = instrumentOfInterest.getType();
+        String instrumentType = instrumentOfInterest.getType().toLowerCase();
         editNameParameter(instrumentType, parametersGiven);
         editCurrentPriceParameter(parametersGiven);
         editSentimentsParameter(parametersGiven);

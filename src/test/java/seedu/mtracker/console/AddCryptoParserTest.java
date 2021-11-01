@@ -2,17 +2,12 @@ package seedu.mtracker.console;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-class AddCryptoParserTest {
-
+class AddCryptoParserTest extends AddInstrumentParserTest {
     public static final int PARAMETER_SIZE = 5;
     public static final int DAYS_DIFFERENCE = 1;
     public static final LocalDate FUTURE_DATE = LocalDate.now().plusDays(DAYS_DIFFERENCE);
-    public static final String SEPARATOR_SPECIFIER = "%1$s";
 
     public static final String USER_INPUT_NO_REMARKS = "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
@@ -69,29 +64,15 @@ class AddCryptoParserTest {
             + SEPARATOR_SPECIFIER.repeat(2) + FUTURE_DATE
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
-    String formatConsoleInput(String input) {
-        return String.format(input, System.lineSeparator());
-    }
-
-    void simulateConsoleInput(String input) {
-        String formattedInput = formatConsoleInput(input);
-        ByteArrayInputStream inputStreamBytes = new ByteArrayInputStream(formattedInput.getBytes());
-        System.setIn(inputStreamBytes);
-    }
-
-    void checkParameters(AddCryptoParser testCryptoParser, String[] expectedParameters) {
-        for (int i = 0; i < PARAMETER_SIZE; i++) {
-            assertEquals(testCryptoParser.getParameters().get(i), expectedParameters[i]);
-        }
-    }
-
     void testCryptoParameters(String input, String[] expectedParameters) {
         simulateConsoleInput(input);
         AddCryptoParser testCryptoParser = new AddCryptoParser();
-        testCryptoParser.initParameters();
-        testCryptoParser.getInstrumentParameters();
-        checkParameters(testCryptoParser, expectedParameters);
+        verifyInstrumentParameters(testCryptoParser, expectedParameters);
+    }
 
+    @Override
+    public int getParameterSize() {
+        return PARAMETER_SIZE;
     }
 
     @Test

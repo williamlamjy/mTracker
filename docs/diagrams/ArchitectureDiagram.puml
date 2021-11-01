@@ -1,13 +1,6 @@
 @startuml
 !include Styles.puml
 
-!define COLOR_UI COLOR_DARK_BLUE
-!define COLOR_MAIN COLOR_BLACK
-!define COLOR_COMMANDS COLOR_DARK_GREEN
-!define COLOR_CONSOLE COLOR_TEAL
-!define COLOR_MODEL COLOR_PURPLE
-!define COLOR_STORAGE COLOR_BROWN
-
 Package " "<<Rectangle>>{
     Class ui COLOR_UI
     Class main COLOR_MAIN
@@ -15,7 +8,6 @@ Package " "<<Rectangle>>{
     Class console COLOR_CONSOLE
     Class model COLOR_MODEL
     Class storage COLOR_STORAGE
-}
 
 main -down[COLOR_MAIN]-> storage
 main -down[COLOR_MAIN]-> console
@@ -31,4 +23,4 @@ commands .down[COLOR_COMMANDS]->ui
 commands -down[COLOR_COMMANDS]->model
 ui .down[COLOR_UI]->model
 
-@endum
+@enduml
