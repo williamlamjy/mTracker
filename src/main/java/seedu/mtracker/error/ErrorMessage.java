@@ -6,17 +6,14 @@ public abstract class ErrorMessage {
             + "stock, crypto, forex or etf.";
     public static final String INVALID_COMMAND_GIVEN_ERROR = "Oops, I do not understand you...";
     public static final String INVALID_FOREX_NAME_GIVEN_ERROR = "Sorry forex pair codes must contain 6 letters! "
-
-            + "No numbers allowed.";
+            + "No numbers allowed. (Eg: AUDUSD, EURGBP, xauusd, GBPJPY, etc.)";
     public static final String INVALID_PRICE_EMPTY_ERROR = "Sorry price cannot be empty.";
     public static final String INVALID_NEGATIVE_PRICE_ERROR = "Sorry price cannot be negative. "
-
             + "It must be a positive number.";
     public static final String INVALID_PRICE_INPUT_ERROR = "Sorry please key in an appropriate "
             + "numeric value for price.";
     public static final String INVALID_SENTIMENT_EMPTY_ERROR = "Sorry sentiment cannot be empty. "
             + "Please enter either positive, negative or neutral.";
-
     public static final String INVALID_SENTIMENT_ERROR = "Sorry sentiment must be either "
             + "positive, negative or neutral.";
     public static final String INVALID_PAST_RETURN_TYPE_ERROR = "Sorry, past return must be a numeric value! "
