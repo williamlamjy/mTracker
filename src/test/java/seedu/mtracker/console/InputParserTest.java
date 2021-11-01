@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class InputParserTest {
-
     public static final int VALID_INDEX = 1;
 
     public static final String[] NO_INDEX_DELETE_INPUT = { "delete" };
