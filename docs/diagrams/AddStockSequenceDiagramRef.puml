@@ -2,10 +2,15 @@
 !include Styles.puml
 
 group sd Get stock details from user and create the AddStockCommand
+
+box console COLOR_CONSOLE_SEGMENT
 participant "<<Class>>\nAddInstrumentParser" as AddInstrumentParser COLOR_CONSOLE
 participant ":AddStockParser" as AddStockParser COLOR_CONSOLE
-participant ":AddStockCommand" as AddStockCommand COLOR_COMMANDS
+end box
 
+box command COLOR_FAINT_GREEN
+participant ":AddStockCommand" as AddStockCommand COLOR_COMMANDS
+end box
 activate AddInstrumentParser
 
 AddInstrumentParser-> AddStockParser : getInstrumentParameters()
