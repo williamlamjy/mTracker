@@ -17,6 +17,7 @@ import seedu.mtracker.error.InvalidEmptyIndexError;
 import seedu.mtracker.error.InvalidEmptyKeywordError;
 import seedu.mtracker.error.InvalidIndexError;
 import seedu.mtracker.error.InvalidInstrumentError;
+import seedu.mtracker.error.AlreadyDoneError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -44,8 +45,8 @@ public class InputParser {
         inputScanner = new Scanner(System.in);
     }
 
-    public static String getUserInput() {
-        TextUi.displayPrompter();
+    public static String getUserInput(String currentWorkspace) {
+        TextUi.displayPrompter(currentWorkspace);
         return inputScanner.nextLine().trim();
     }
 
@@ -55,7 +56,10 @@ public class InputParser {
 
     public AddInstrumentCommand getAddInstrumentParameters() throws InvalidInstrumentError {
         TextUi.displayAddInstrumentFirstInstruction();
-        String addInstrumentType = getUserInput();
+        String addInstrumentType;
+        do {
+            addInstrumentType = getUserInput(AddInstrumentCommand.COMMAND_WORD).toLowerCase();
+        } while (!Validate.isValidInstrument(addInstrumentType));
         return AddInstrumentParser.filterByInstrumentType(getCommandComponents(addInstrumentType));
     }
 
@@ -76,9 +80,10 @@ public class InputParser {
     }
 
     public DoneCommand getDoneInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
-            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError {
+            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError, AlreadyDoneError {
         DoneCommand doneCommand = new DoneCommand();
         getAndValidateIndexNumber(commandComponents, instruments);
+        getAndValidateDoneStatus(commandComponents, instruments);
         doneCommand.setIndex(instrumentNumber);
         return doneCommand;
     }
@@ -96,7 +101,7 @@ public class InputParser {
     }
 
     public HashSet<String> getParametersToEdit(HashSet<String> validAttributes) {
-        String parametersToEdit = getUserInput();
+        String parametersToEdit = getUserInput(EditInstrumentCommand.COMMAND_WORD);
         String[] parameters = getCommandComponents(parametersToEdit);
         return filterInvalidParameters(parameters, validAttributes);
     }
@@ -116,6 +121,12 @@ public class InputParser {
         Validate.validateIndexWithinBounds(instruments, instrumentNumber);
     }
 
+    private void getAndValidateDoneStatus(String[] commandComponents, ArrayList<Instrument> instruments)
+            throws AlreadyDoneError {
+        getIndexNumber(commandComponents);
+        Validate.checkIsNotDone(instruments, instrumentNumber);
+    }
+
     public FindCommand getFindInstrumentsCommand(String[] commandComponents)
             throws InvalidEmptyKeywordError {
         FindCommand findCommand = new FindCommand();
@@ -127,7 +138,7 @@ public class InputParser {
     public Command filterByCommandType(String[] commandComponents, ArrayList<Instrument> instruments)
             throws Exception {
         Command command;
-        switch (commandComponents[MAIN_COMMAND_INDEX]) {
+        switch (commandComponents[MAIN_COMMAND_INDEX].toLowerCase()) {
         case ListCommand.COMMAND_WORD:
             command = new ListCommand();
             break;

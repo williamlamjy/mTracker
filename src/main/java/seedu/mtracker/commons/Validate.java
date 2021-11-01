@@ -1,18 +1,25 @@
 package seedu.mtracker.commons;
 
 import seedu.mtracker.LogHelper;
+import seedu.mtracker.commands.AddCryptoCommand;
+import seedu.mtracker.commands.AddEtfCommand;
+import seedu.mtracker.commands.AddForexCommand;
+import seedu.mtracker.commands.AddStockCommand;
 import seedu.mtracker.console.AddForexParser;
 import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidDateFormatError;
 import seedu.mtracker.error.InvalidEmptyExpiryDateError;
 import seedu.mtracker.error.InvalidEmptyPriceError;
 import seedu.mtracker.error.InvalidEmptySentimentError;
+import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.error.InvalidNameError;
+import seedu.mtracker.error.InvalidNegativePriceError;
 import seedu.mtracker.error.InvalidPastDateError;
 import seedu.mtracker.error.InvalidPastReturnError;
 import seedu.mtracker.error.InvalidPastReturnTypeError;
 import seedu.mtracker.error.InvalidPriceError;
 import seedu.mtracker.error.InvalidSentimentError;
+import seedu.mtracker.error.AlreadyDoneError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -47,6 +54,38 @@ public class Validate {
         }
     }
 
+    public static boolean isInvalidInstrument(String instrument) {
+        switch (instrument) {
+        case AddStockCommand.COMMAND_WORD:
+            // Fallthrough
+        case AddCryptoCommand.COMMAND_WORD:
+            // Fallthrough
+        case AddForexCommand.COMMAND_WORD:
+            // Fallthrough
+        case AddEtfCommand.COMMAND_WORD:
+            return false;
+        default:
+            return true;
+        }
+    }
+
+    public static void checkInstrument(String instrument) throws InvalidInstrumentError {
+        if (isInvalidInstrument(instrument)) {
+            throw new InvalidInstrumentError();
+        }
+    }
+
+    public static boolean isValidInstrument(String instrument) {
+        try {
+            checkInstrument(instrument);
+        } catch (Exception e) {
+            logger.info(LogHelper.LOG_INVALID_INSTRUMENT);
+            TextUi.showErrorMessage(e);
+            return false;
+        }
+        return true;
+    }
+
     public static boolean isValidName(String name, String instrumentType) {
         try {
             checkName(name, instrumentType);
@@ -72,10 +111,10 @@ public class Validate {
         }
     }
 
-    public static void checkPriceIsNonNegative(String price) throws InvalidPriceError {
+    public static void checkPriceIsNonNegative(String price) throws InvalidNegativePriceError {
         double inputPrice = Double.parseDouble(price);
-        if (inputPrice < MINIMUM_PRICE) {
-            throw new InvalidPriceError();
+        if (inputPrice <= MINIMUM_PRICE) {
+            throw new InvalidNegativePriceError();
         }
     }
 
@@ -98,6 +137,15 @@ public class Validate {
         boolean isGreaterThanListSize = instrumentNumber >= instruments.size();
         if (isNegative || isGreaterThanListSize) {
             throw new InvalidBoundsError();
+        }
+    }
+
+    public static void checkIsNotDone(ArrayList<Instrument> instruments, int instrumentNumber)
+            throws AlreadyDoneError {
+        Instrument instrument = instruments.get(instrumentNumber);
+        boolean isDoneStatus = instrument.getIsDone();
+        if (isDoneStatus) {
+            throw new AlreadyDoneError();
         }
     }
 
@@ -191,4 +239,6 @@ public class Validate {
         }
         return true;
     }
+
+
 }
