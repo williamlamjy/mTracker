@@ -67,9 +67,7 @@ class AddCryptoParserTest extends AddInstrumentParserTest {
     void testCryptoParameters(String input, String[] expectedParameters) {
         simulateConsoleInput(input);
         AddCryptoParser testCryptoParser = new AddCryptoParser();
-        testCryptoParser.initParameters();
-        testCryptoParser.getInstrumentParameters();
-        checkParameters(testCryptoParser, expectedParameters);
+        verifyInstrumentParameters(testCryptoParser, expectedParameters);
     }
 
     @Override
