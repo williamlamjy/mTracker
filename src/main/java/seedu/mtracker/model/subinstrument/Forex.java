@@ -125,9 +125,9 @@ public class Forex extends Instrument {
 
     @Override
     public String textFileFormatting() {
-        return String.format(super.textFileFormatting() + FILE_SEPARATOR + entryPrice
+        return super.textFileFormatting() + FILE_SEPARATOR + entryPrice
                 + FILE_SEPARATOR + exitPrice + FILE_SEPARATOR + expiry
-                + FILE_SEPARATOR + remark);
+                + FILE_SEPARATOR + remark;
     }
 
     @Override
