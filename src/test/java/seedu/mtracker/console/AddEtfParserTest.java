@@ -2,14 +2,8 @@ package seedu.mtracker.console;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class AddEtfParserTest {
-
+public class AddEtfParserTest extends AddInstrumentParserTest {
     public static final int PARAMETER_SIZE = 5;
-    public static final String SEPARATOR_SPECIFIER = "%1$s";
 
     public static final String USER_INPUT_NO_REMARKS = "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
@@ -75,28 +69,15 @@ public class AddEtfParserTest {
             + SEPARATOR_SPECIFIER + ""
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
-    String formatConsoleInput(String input) {
-        return String.format(input, System.lineSeparator());
-    }
-
-    void simulateConsoleInput(String input) {
-        String formattedInput = formatConsoleInput(input);
-        ByteArrayInputStream inputStreamBytes = new ByteArrayInputStream(formattedInput.getBytes());
-        System.setIn(inputStreamBytes);
-    }
-
-    void checkParameters(AddEtfParser testEtfParser, String[] expectedParameters) {
-        for (int i = 0; i < PARAMETER_SIZE; i++) {
-            assertEquals(testEtfParser.getParameters().get(i), expectedParameters[i]);
-        }
-    }
-
-    void testEtfParameters(String input, String[] expectedParameters) {
+    void testEtfParameters(String input, String[] expectedEtfParameters) {
         simulateConsoleInput(input);
         AddEtfParser testEtfParser = new AddEtfParser();
-        testEtfParser.initParameters();
-        testEtfParser.getInstrumentParameters();
-        checkParameters(testEtfParser, expectedParameters);
+        verifyInstrumentParameters(testEtfParser, expectedEtfParameters);
+    }
+
+    @Override
+    public int getParameterSize() {
+        return PARAMETER_SIZE;
     }
 
     @Test
