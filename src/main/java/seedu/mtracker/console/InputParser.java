@@ -138,7 +138,7 @@ public class InputParser {
     public Command filterByCommandType(String[] commandComponents, ArrayList<Instrument> instruments)
             throws Exception {
         Command command;
-        switch (commandComponents[MAIN_COMMAND_INDEX].toLowerCase()) {
+        switch (commandComponents[MAIN_COMMAND_INDEX]) {
         case ListCommand.COMMAND_WORD:
             command = new ListCommand();
             break;
@@ -171,7 +171,7 @@ public class InputParser {
     }
 
     public String[] getCommandComponents(String commandInput) {
-        return commandInput.trim().split(SEPARATOR);
+        return commandInput.trim().toLowerCase().split(SEPARATOR);
     }
 
     public void getIndexNumber(String[] commandComponents) {
