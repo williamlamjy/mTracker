@@ -21,10 +21,15 @@ public class CryptoDecoder extends InstrumentDecoder {
     public static void addCryptoToList(String[] textSegment, InstrumentManager instrumentManager) {
         decodeGeneralAttributes(textSegment);
         decodeSpecificAttributes(textSegment);
-        Instrument crypto = new Crypto(decodedName, decodedCurrPrice, decodedSentiment,
-                decodedExpiry, decodedRemarks);
+        Instrument crypto = addDecodedInstrument();
         setDoneStatus(decodedIsDone, crypto);
         instrumentManager.addInstrument(crypto);
+    }
+
+    private static Instrument addDecodedInstrument() {
+        Instrument crypto = new Crypto(decodedName, decodedCurrPrice, decodedSentiment,
+                decodedExpiry, decodedRemarks);
+        return crypto;
     }
 
 }

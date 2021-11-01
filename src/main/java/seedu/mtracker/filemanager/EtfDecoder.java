@@ -21,10 +21,15 @@ public class EtfDecoder extends InstrumentDecoder {
     public static void addEtfToList(String[] textSegment, InstrumentManager instrumentManager) {
         decodeGeneralAttributes(textSegment);
         decodeSpecificAttributes(textSegment);
-        Instrument etf = new Etf(decodedName, decodedCurrPrice, decodedSentiment,
-                decodedPastReturns, decodedRemarks);
+        Instrument etf = addDecodedInstrument();
         setDoneStatus(decodedIsDone, etf);
         instrumentManager.addInstrument(etf);
+    }
+
+    private static Instrument addDecodedInstrument() {
+        Instrument etf = new Etf(decodedName, decodedCurrPrice, decodedSentiment,
+                decodedPastReturns, decodedRemarks);
+        return etf;
     }
 
 }

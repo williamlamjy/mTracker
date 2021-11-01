@@ -18,9 +18,14 @@ public class StockDecoder extends InstrumentDecoder {
     public static void addStockToList(String[] textSegment, InstrumentManager instrumentManager) {
         decodeGeneralAttributes(textSegment);
         decodeSpecificAttributes(textSegment);
-        Instrument stock = new Stock(decodedName, decodedCurrPrice, decodedSentiment, decodedRemarks);
+        Instrument stock = addDecodedInstrument();
         setDoneStatus(decodedIsDone, stock);
         instrumentManager.addInstrument(stock);
+    }
+
+    private static Instrument addDecodedInstrument() {
+        Instrument stock = new Stock(decodedName, decodedCurrPrice, decodedSentiment, decodedRemarks);
+        return stock;
     }
 
 }

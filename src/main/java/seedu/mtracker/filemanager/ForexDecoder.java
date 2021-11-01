@@ -27,9 +27,14 @@ public class ForexDecoder extends InstrumentDecoder {
     public static void addForexToList(String[] textSegment, InstrumentManager instrumentManager) {
         decodeGeneralAttributes(textSegment);
         decodeSpecificAttributes(textSegment);
-        Instrument forex = new Forex(decodedName, decodedCurrPrice, decodedSentiment,
-                decodedEntryPrice, decodedExitPrice, decodedExpiry, decodedRemarks);
+        Instrument forex = addDecodedInstrument();
         setDoneStatus(decodedIsDone, forex);
         instrumentManager.addInstrument(forex);
+    }
+
+    private static Instrument addDecodedInstrument() {
+        Instrument forex = new Forex(decodedName, decodedCurrPrice, decodedSentiment,
+                decodedEntryPrice, decodedExitPrice, decodedExpiry, decodedRemarks);
+        return forex;
     }
 }
