@@ -17,7 +17,7 @@ public class LogHelper {
     public static final String LOG_INVALID_EXPIRY = "User gave an invalid expiry input";
     public static final String LOG_INVALID_INSTRUMENT = "User tried to add an invalid instrument type here";
     public static final String LOG_INVALID_COMMAND = "User entered an invalid command to console here";
-    public static final String LOG_DATA_FILE_LOAD_ERROR = "Mtracker storage text file not loading";
+    public static final String LOG_DATA_FILE_LOAD_ERROR = "mtracker storage text file not loading";
     public static final String LOG_DATA_FILE_WRITE_ERROR = "Writing to storage text file not loading";
     public static final String LOG_DATA_FILE_CORRUPTED_ERROR = "Storage text file got corrupted";
 
