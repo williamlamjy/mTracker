@@ -2,14 +2,12 @@ package seedu.mtracker.filemanager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.mtracker.error.fileerror.FileLoadError;
 import seedu.mtracker.error.fileerror.InvalidCurrPriceSavedInFileError;
 import seedu.mtracker.error.fileerror.InvalidEntryPriceSavedInFileError;
 import seedu.mtracker.error.fileerror.InvalidExitPriceSavedInFileError;
 import seedu.mtracker.error.fileerror.InvalidExpirySavedInFileError;
 import seedu.mtracker.error.fileerror.InvalidInstrumentInFileError;
 import seedu.mtracker.error.fileerror.InvalidNameSavedInFileError;
-import seedu.mtracker.error.fileerror.InvalidRemarksInFileError;
 import seedu.mtracker.error.fileerror.InvalidSentimentSavedInFileError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
@@ -53,25 +51,25 @@ class InstrumentDecoderTest {
     public static final int LENGTH_OF_INSTRUMENT = 5;
 
     public static final String[] INVALID_INSTRUMENT_TYPE_TEXT_SEGMENT = {TEST_INVALID_TYPE,
-        TEST_NAME,
-        TEST_PRICE_STRING,
-        TEST_SENTIMENT,
-        TEST_DONE_STRING,
-        TEST_ENTRY_PRICE_STRING,
-        TEST_EXIT_PRICE_STRING,
-        FUTURE_DATE_STRING,
-        TEST_REMARK
+            TEST_NAME,
+            TEST_PRICE_STRING,
+            TEST_SENTIMENT,
+            TEST_DONE_STRING,
+            TEST_ENTRY_PRICE_STRING,
+            TEST_EXIT_PRICE_STRING,
+            FUTURE_DATE_STRING,
+            TEST_REMARK
     };
 
     public static final String[] INVALID_FOREX_NAME_TEXT_SEGMENT = {TEST_TYPE,
-        TEST_INVALID_FOREX_NAME,
-        TEST_PRICE_STRING,
-        TEST_SENTIMENT,
-        TEST_DONE_STRING,
-        TEST_ENTRY_PRICE_STRING,
-        TEST_EXIT_PRICE_STRING,
-        FUTURE_DATE_STRING,
-        TEST_REMARK
+            TEST_INVALID_FOREX_NAME,
+            TEST_PRICE_STRING,
+            TEST_SENTIMENT,
+            TEST_DONE_STRING,
+            TEST_ENTRY_PRICE_STRING,
+            TEST_EXIT_PRICE_STRING,
+            FUTURE_DATE_STRING,
+            TEST_REMARK
     };
 
     public static final String[] INVALID_FOREX_PRICE_TEXT_SEGMENT = {TEST_TYPE,
@@ -86,25 +84,25 @@ class InstrumentDecoderTest {
     };
 
     public static final String[] INVALID_FOREX_SENTIMENT_TEXT_SEGMENT = {TEST_TYPE,
-        TEST_NAME,
-        TEST_PRICE_STRING,
-        TEST_INVALID_SENTIMENT,
-        TEST_DONE_STRING,
-        TEST_ENTRY_PRICE_STRING,
-        TEST_EXIT_PRICE_STRING,
-        FUTURE_DATE_STRING,
-        TEST_REMARK
+            TEST_NAME,
+            TEST_PRICE_STRING,
+            TEST_INVALID_SENTIMENT,
+            TEST_DONE_STRING,
+            TEST_ENTRY_PRICE_STRING,
+            TEST_EXIT_PRICE_STRING,
+            FUTURE_DATE_STRING,
+            TEST_REMARK
     };
 
     public static final String[] INVALID_FOREX_EXPIRY_TEXT_SEGMENT = {TEST_TYPE,
-        TEST_NAME,
-        TEST_PRICE_STRING,
-        TEST_SENTIMENT,
-        TEST_DONE_STRING,
-        TEST_ENTRY_PRICE_STRING,
-        TEST_EXIT_PRICE_STRING,
-        FUTURE_INVALID_DATE_STRING,
-        TEST_REMARK
+            TEST_NAME,
+            TEST_PRICE_STRING,
+            TEST_SENTIMENT,
+            TEST_DONE_STRING,
+            TEST_ENTRY_PRICE_STRING,
+            TEST_EXIT_PRICE_STRING,
+            FUTURE_INVALID_DATE_STRING,
+            TEST_REMARK
     };
 
     public static final String[] INVALID_FOREX_ENTRY_PRICE_TEXT_SEGMENT = {TEST_TYPE,
@@ -151,29 +149,29 @@ class InstrumentDecoderTest {
     @Test
     void decodeGeneralAttributes_invalidName_expectException() {
         assertThrows(InvalidNameSavedInFileError.class,
-            () -> InstrumentDecoder
-                    .validateAndDecodeGeneralAttributes(INVALID_FOREX_NAME_TEXT_SEGMENT));
+                () -> InstrumentDecoder
+                        .validateAndDecodeGeneralAttributes(INVALID_FOREX_NAME_TEXT_SEGMENT));
     }
 
     @Test
     void decodeGeneralAttributes_invalidPrice_expectException() {
         assertThrows(InvalidCurrPriceSavedInFileError.class,
-            () -> InstrumentDecoder
-                    .validateAndDecodeGeneralAttributes(INVALID_FOREX_PRICE_TEXT_SEGMENT));
+                () -> InstrumentDecoder
+                        .validateAndDecodeGeneralAttributes(INVALID_FOREX_PRICE_TEXT_SEGMENT));
     }
 
     @Test
     void decodeGeneralAttributes_invalidSentiment_expectException() {
         assertThrows(InvalidSentimentSavedInFileError.class,
-            () -> InstrumentDecoder
-                    .validateAndDecodeGeneralAttributes(INVALID_FOREX_SENTIMENT_TEXT_SEGMENT));
+                () -> InstrumentDecoder
+                        .validateAndDecodeGeneralAttributes(INVALID_FOREX_SENTIMENT_TEXT_SEGMENT));
     }
 
     @Test
     void decodeSpecificAttributes_invalidExpiry_expectException() {
         assertThrows(InvalidExpirySavedInFileError.class,
-            () -> ForexDecoder
-                    .validateAndDecodeSpecificAttributes(INVALID_FOREX_EXPIRY_TEXT_SEGMENT));
+                () -> ForexDecoder
+                        .validateAndDecodeSpecificAttributes(INVALID_FOREX_EXPIRY_TEXT_SEGMENT));
     }
 
     @Test
@@ -193,7 +191,7 @@ class InstrumentDecoderTest {
     @Test
     void addSavedInstrumentToList_invalidType_expectException() {
         assertThrows(InvalidInstrumentInFileError.class,
-            () -> InstrumentDecoder
-                    .addSavedInstrumentToList(instrumentManager, INVALID_INSTRUMENT_TYPE_TEXT_SEGMENT));
+                () -> InstrumentDecoder
+                        .addSavedInstrumentToList(instrumentManager, INVALID_INSTRUMENT_TYPE_TEXT_SEGMENT));
     }
 }

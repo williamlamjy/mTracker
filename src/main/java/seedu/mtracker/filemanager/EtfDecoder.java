@@ -1,7 +1,6 @@
 package seedu.mtracker.filemanager;
 
 import seedu.mtracker.commons.Validate;
-
 import seedu.mtracker.error.fileerror.InvalidEmptyPastReturnsInFileError;
 import seedu.mtracker.error.fileerror.InvalidPastReturnsSavedInFileError;
 import seedu.mtracker.error.fileerror.InvalidRemarksInFileError;

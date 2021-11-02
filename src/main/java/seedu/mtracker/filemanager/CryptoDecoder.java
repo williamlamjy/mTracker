@@ -43,7 +43,7 @@ public class CryptoDecoder extends InstrumentDecoder {
     }
 
     public static void validateAndDecodeSpecificAttributes(String[] textSegment) throws InvalidEmptyExpiryInFileError,
-            InvalidRemarksInFileError,  InvalidExpirySavedInFileError {
+            InvalidRemarksInFileError, InvalidExpirySavedInFileError {
         String expiry = getExpiryFromFile(textSegment);
         String remarks = getRemarksFromFile(textSegment);
         if (!isValidExpiry(textSegment)) {

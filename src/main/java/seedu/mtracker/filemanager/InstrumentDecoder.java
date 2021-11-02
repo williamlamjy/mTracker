@@ -98,7 +98,7 @@ public class InstrumentDecoder {
         if (!isValidName(textSegment)) {
             throw new InvalidNameSavedInFileError();
         }
-        if(!isValidCurrPrice(textSegment)) {
+        if (!isValidCurrPrice(textSegment)) {
             throw new InvalidCurrPriceSavedInFileError();
         }
     }
