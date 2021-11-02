@@ -24,7 +24,7 @@ public abstract class Instrument {
     protected static final String NAME_ATTRIBUTE = "name";
     protected static final String CURRENT_PRICE_ATTRIBUTE = "current-price";
     protected static final String SENTIMENT_ATTRIBUTE = "sentiment";
-    protected static final String REMARK_ATTRIBUTE = "remark";
+    protected static final String REMARK_ATTRIBUTE = "remarks";
     protected static final String SEPARATOR = ", ";
     protected static final String REMARKS_FIELD = "Remarks: ";
 

@@ -16,7 +16,7 @@ public class EditInstrumentParser extends InputParser {
     protected static final String NAME_ATTRIBUTE = "name";
     protected static final String CURRENT_PRICE_ATTRIBUTE = "current-price";
     protected static final String SENTIMENT_ATTRIBUTE = "sentiment";
-    protected static final String REMARK_ATTRIBUTE = "remark";
+    protected static final String REMARK_ATTRIBUTE = "remarks";
     protected static final String RETURN_ATTRIBUTE = "returns";
     protected static final String ENTRY_PRICE_ATTRIBUTE = "entry-price";
     protected static final String EXIT_PRICE_ATTRIBUTE = "exit-price";
