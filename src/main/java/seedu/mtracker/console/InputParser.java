@@ -1,6 +1,5 @@
 package seedu.mtracker.console;
 
-import seedu.mtracker.LogHelper;
 import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commands.Command;
 import seedu.mtracker.commands.DeleteCommand;
@@ -18,6 +17,7 @@ import seedu.mtracker.error.InvalidEmptySearchStringError;
 import seedu.mtracker.error.InvalidIndexError;
 import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.error.AlreadyDoneError;
+import seedu.mtracker.LogHelper;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -101,7 +101,7 @@ public class InputParser {
     }
 
     public HashSet<String> getParametersToEdit(HashSet<String> validAttributes) {
-        String parametersToEdit = getUserInput(EditInstrumentCommand.COMMAND_WORD);
+        String parametersToEdit = getUserInput(EditInstrumentCommand.COMMAND_WORD).toLowerCase();
         String[] parameters = getCommandComponents(parametersToEdit);
         return filterInvalidParameters(parameters, validAttributes);
     }
@@ -116,13 +116,14 @@ public class InputParser {
         return editInstrumentParser.getParametersToEdit(parametersToEdit, instrumentToEdit, instrumentNumber);
     }
 
-    private void getAndValidateIndexNumber(String[] commandComponents, ArrayList<Instrument> instruments) {
+    private void getAndValidateIndexNumber(String[] commandComponents, ArrayList<Instrument> instruments)
+            throws InvalidEmptyIndexError, InvalidIndexError, InvalidBoundsError {
         getIndexNumber(commandComponents);
         Validate.validateIndexWithinBounds(instruments, instrumentNumber);
     }
 
     private void getAndValidateDoneStatus(String[] commandComponents, ArrayList<Instrument> instruments)
-            throws AlreadyDoneError {
+            throws AlreadyDoneError, InvalidEmptyIndexError, InvalidIndexError {
         getIndexNumber(commandComponents);
         Validate.checkIsNotDone(instruments, instrumentNumber);
     }
@@ -138,7 +139,7 @@ public class InputParser {
     public Command filterByCommandType(String[] commandComponents, ArrayList<Instrument> instruments)
             throws Exception {
         Command command;
-        switch (commandComponents[MAIN_COMMAND_INDEX]) {
+        switch (commandComponents[MAIN_COMMAND_INDEX].toLowerCase()) {
         case ListCommand.COMMAND_WORD:
             command = new ListCommand();
             break;
@@ -171,10 +172,10 @@ public class InputParser {
     }
 
     public String[] getCommandComponents(String commandInput) {
-        return commandInput.trim().toLowerCase().split(SEPARATOR);
+        return commandInput.trim().split(SEPARATOR);
     }
 
-    public void getIndexNumber(String[] commandComponents) {
+    public void getIndexNumber(String[] commandComponents) throws InvalidEmptyIndexError, InvalidIndexError {
         try {
             instrumentNumber = Integer.parseInt(commandComponents[INSTRUMENT_INDEX]) - INDEX_OFFSET;
         } catch (IndexOutOfBoundsException e) {
@@ -184,7 +185,7 @@ public class InputParser {
         }
     }
 
-    public void constructSearchString(String[] commandComponents) {
+    public void constructSearchString(String[] commandComponents) throws InvalidEmptySearchStringError {
         try {
             searchString = commandComponents[SEARCH_STR_INDEX_START];
             for (int i = SEARCH_STR_INDEX_START + 1; i < commandComponents.length; i++) {

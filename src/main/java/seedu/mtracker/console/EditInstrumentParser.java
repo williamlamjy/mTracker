@@ -8,6 +8,7 @@ import seedu.mtracker.ui.TextUi;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 
 public class EditInstrumentParser extends InputParser {
 
@@ -54,7 +55,7 @@ public class EditInstrumentParser extends InputParser {
             return;
         }
         TextUi.displayEditSentiment();
-        String inputSentiment = getUserInput(WORKSPACE);
+        String inputSentiment = getUserInput(WORKSPACE).toLowerCase();
         if (!Validate.isValidSentiment(inputSentiment)) {
             ErrorMessage.displayEditSentimentError();
             return;

@@ -47,74 +47,76 @@ class InputParserTest {
     }
 
     @Test
-    void getIndexNumber_validIndexProvided_expectSuccess() {
+    void getIndexNumber_validIndexProvided_expectSuccess() throws InvalidEmptyIndexError, InvalidIndexError {
         parser.getIndexNumber(VALID_INDEX_DELETE_INPUT);
         assertEquals(parser.getInstrumentNumber(), VALID_INDEX - INDEX_OFFSET);
     }
 
     @Test
-    void getIndexNumber_noIndexProvided_expectException() throws InvalidEmptyIndexError {
+    void getIndexNumber_noIndexProvided_expectException() {
         assertThrows(InvalidEmptyIndexError.class,
             () -> parser.getIndexNumber(NO_INDEX_DELETE_INPUT));
     }
 
     @Test
-    void getIndexNumber_invalidIndexProvided_expectException() throws InvalidIndexError {
+    void getIndexNumber_invalidIndexProvided_expectException() {
         assertThrows(InvalidIndexError.class,
             () -> parser.getIndexNumber(INVALID_INDEX_DELETE_INPUT));
     }
 
     @Test
-    void getDeleteInstrumentCommand_noIndexProvided_expectException() throws InvalidEmptyIndexError {
+    void getDeleteInstrumentCommand_noIndexProvided_expectException() {
         assertThrows(InvalidEmptyIndexError.class,
             () -> parser
                     .getDeleteInstrumentCommand(NO_INDEX_DELETE_INPUT, INSTRUMENTS));
     }
 
     @Test
-    void getDeleteInstrumentCommand_invalidIndexProvided_expectException() throws InvalidIndexError {
+    void getDeleteInstrumentCommand_invalidIndexProvided_expectException() {
         assertThrows(InvalidIndexError.class,
             () -> parser
                     .getDeleteInstrumentCommand(INVALID_INDEX_DELETE_INPUT, INSTRUMENTS));
     }
 
     @Test
-    void getDeleteInstrumentCommand_outOfBoundsIndexProvided_expectException() throws InvalidBoundsError {
+    void getDeleteInstrumentCommand_outOfBoundsIndexProvided_expectException() {
         assertThrows(InvalidBoundsError.class,
             () -> parser
                     .getDeleteInstrumentCommand(OUT_OF_BOUNDS_INDEX_DELETE_INPUT, INSTRUMENTS));
     }
 
     @Test
-    void getDeleteInstrumentCommand_validIndexProvided_expectSuccess() {
+    void getDeleteInstrumentCommand_validIndexProvided_expectSuccess()
+            throws InvalidEmptyIndexError, InvalidBoundsError, InvalidIndexError {
         DeleteCommand command = parser
                 .getDeleteInstrumentCommand(VALID_INDEX_DELETE_INPUT, INSTRUMENTS);
         assertEquals(command.getIndex(), VALID_INDEX - INDEX_OFFSET);
     }
 
     @Test
-    void getDoneInstrumentCommand_noIndexProvided_expectException() throws InvalidEmptyIndexError {
+    void getDoneInstrumentCommand_noIndexProvided_expectException() {
         assertThrows(InvalidEmptyIndexError.class,
             () -> parser
                     .getDoneInstrumentCommand(NO_INDEX_DONE_INPUT, INSTRUMENTS));
     }
 
     @Test
-    void getDoneInstrumentCommand_invalidIndexProvided_expectException() throws InvalidIndexError {
+    void getDoneInstrumentCommand_invalidIndexProvided_expectException() {
         assertThrows(InvalidIndexError.class,
             () -> parser
                     .getDoneInstrumentCommand(INVALID_INDEX_DONE_INPUT, INSTRUMENTS));
     }
 
     @Test
-    void getDoneInstrumentCommand_outOfBoundsIndexProvided_expectException() throws InvalidBoundsError {
+    void getDoneInstrumentCommand_outOfBoundsIndexProvided_expectException() {
         assertThrows(InvalidBoundsError.class,
             () -> parser
                     .getDoneInstrumentCommand(OUT_OF_BOUNDS_INDEX_DONE_INPUT, INSTRUMENTS));
     }
 
     @Test
-    void getDoneInstrumentCommand_validIndexProvided_expectSuccess() throws AlreadyDoneError {
+    void getDoneInstrumentCommand_validIndexProvided_expectSuccess()
+            throws AlreadyDoneError, InvalidEmptyIndexError, InvalidBoundsError, InvalidIndexError {
         DoneCommand command = parser
                 .getDoneInstrumentCommand(VALID_INDEX_DONE_INPUT, INSTRUMENTS);
         assertEquals(command.getIndex(), VALID_INDEX - INDEX_OFFSET);
