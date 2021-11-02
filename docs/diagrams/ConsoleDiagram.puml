@@ -3,7 +3,6 @@
 
 Class main COLOR_MAIN
 
-skinparam classAttributeIconSize 0
 Package "console                 "<<Rectangle>>{
     Class InputParser COLOR_CONSOLE {
         + filterByCommandType(String[], ArrayList<Instrument>): Command

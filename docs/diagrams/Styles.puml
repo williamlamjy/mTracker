@@ -26,6 +26,7 @@ skinparam Participant {
     FontColor #FFFFFF
 }
 
+skinparam classAttributeIconSize 0
 skinparam Shadowing false
 
 hide members
