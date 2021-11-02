@@ -33,11 +33,6 @@ class StorageTest {
     }
 
     @Test
-    void writeFileData_validInstrument_expectSuccess() {
-        assertDoesNotThrow(() -> storage.writeFileData(instrumentManager.getInstruments()));
-    }
-
-    @Test
     void loadFileData_validInstrument_expectSuccess() {
         assertDoesNotThrow(() -> storage.loadFileData(instrumentManager));
     }
