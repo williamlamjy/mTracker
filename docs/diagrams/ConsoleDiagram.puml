@@ -16,7 +16,7 @@ Package "console                 "<<Rectangle>>{
     }
     Class EditInstrumentParser COLOR_CONSOLE {
         + {static} getEditedParameters(HashSet<String>, Instrument)
-        + {static} getParametersToEdit(HashSet<String>, Instrument, Int): EditInstrumentCommand
+        + {static} createEditCommand(HashSet<String>, Instrument, int): EditInstrumentCommand
     }
 }
 
