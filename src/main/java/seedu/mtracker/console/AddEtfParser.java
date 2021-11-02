@@ -2,7 +2,6 @@ package seedu.mtracker.console;
 
 import seedu.mtracker.asserthelpers.AssertParserHelper;
 import seedu.mtracker.commands.AddEtfCommand;
-import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commons.Validate;
 import seedu.mtracker.ui.TextUi;
 
@@ -41,7 +40,7 @@ public class AddEtfParser extends AddInstrumentParser {
     }
 
     @Override
-    public AddInstrumentCommand getInstrumentParameters() {
+    public AddEtfCommand getInstrumentParameters() {
         getGeneralParameters(INSTRUMENT_TYPE);
         getEtfSpecificParameters();
         AssertParserHelper.assertNoMissingEtfParameters(parameters);

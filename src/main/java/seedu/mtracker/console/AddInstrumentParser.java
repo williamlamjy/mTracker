@@ -12,7 +12,6 @@ import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.ui.TextUi;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public abstract class AddInstrumentParser extends InputParser {
 
@@ -52,7 +51,7 @@ public abstract class AddInstrumentParser extends InputParser {
         String currentPrice;
         do {
             currentPrice = getCurrentPriceFromUser();
-        } while (!Validate.isValidPrice(currentPrice));;
+        } while (!Validate.isValidPrice(currentPrice));
         parameters.add(currentPrice);
         AssertParserHelper.assertInputNotEmpty(currentPrice);
         AssertParserHelper.assertPriceNonNegative(currentPrice);
