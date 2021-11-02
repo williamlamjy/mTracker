@@ -4,7 +4,7 @@ import java.io.ByteArrayInputStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public abstract class AddInstrumentParserTest {
+public abstract class GeneralInstrumentParserTest {
     public static final String SEPARATOR_SPECIFIER = "%1$s";
 
     String formatConsoleInput(String input) {

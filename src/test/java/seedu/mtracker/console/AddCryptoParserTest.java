@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-class AddCryptoParserTest extends AddInstrumentParserTest {
+class AddCryptoParserTest extends GeneralInstrumentParserTest {
     public static final int PARAMETER_SIZE = 5;
     public static final int DAYS_DIFFERENCE = 1;
     public static final LocalDate FUTURE_DATE = LocalDate.now().plusDays(DAYS_DIFFERENCE);
@@ -42,7 +42,7 @@ class AddCryptoParserTest extends AddInstrumentParserTest {
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + " ";
-    
+
     public static final String USER_INPUT_TRY_INVALID_PRICE = SEPARATOR_SPECIFIER + "TTTXXX"
             + SEPARATOR_SPECIFIER + "2sd3.4"
             + SEPARATOR_SPECIFIER + "23.4"

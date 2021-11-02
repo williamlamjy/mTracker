@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-class AddForexParserTest extends AddInstrumentParserTest {
+class AddForexParserTest extends GeneralInstrumentParserTest {
 
     public static final int PARAMETER_SIZE = 7;
     public static final int DAYS_DIFFERENCE = 1;

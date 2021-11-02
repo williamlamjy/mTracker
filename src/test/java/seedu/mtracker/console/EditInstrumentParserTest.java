@@ -4,16 +4,13 @@ import org.junit.jupiter.api.Test;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.subinstrument.Stock;
 
-import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class EditParserTest {
-
-    public static final String SEPARATOR_SPECIFIER = "%1$s";
+public class EditInstrumentParserTest extends GeneralInstrumentParserTest{
 
     public static final String USER_INPUT_EDIT_NAME_AND_REMARK = "TTTXXX" + SEPARATOR_SPECIFIER + "Test Remark";
     public static final String[] EXPECTED_KEYS_NAME_AND_REMARK = {"name", "remark"};
@@ -39,18 +36,13 @@ public class EditParserTest {
     public static final Instrument TEST_STOCK = new Stock(TEST_NAME, TEST_PRICE, TEST_SENTIMENT, TEST_REMARK);
     public static final int TEST_INDEX = 0;
 
-    String formatConsoleInput(String input) {
-        return String.format(input, System.lineSeparator());
-    }
-
-    void simulateConsoleInput(String input) {
-        String formattedInput = formatConsoleInput(input);
-        ByteArrayInputStream inputStreamBytes = new ByteArrayInputStream(formattedInput.getBytes());
-        System.setIn(inputStreamBytes);
+    @Override
+    public int getParameterSize() {
+        return 0;
     }
 
     HashMap<String,String> initialiseTestResources(String[] expectedKeys, String[] expectedValues) {
-        HashMap<String,String> expectedResult = new HashMap<>();
+        HashMap<String, String> expectedResult = new HashMap<>();
         for (int i = 0; i < expectedKeys.length; i++) {
             expectedResult.put(expectedKeys[i],expectedValues[i]);
         }
@@ -60,10 +52,10 @@ public class EditParserTest {
     void testEditInstrumentParameters(String input, HashSet<String> expectedParameters,
                                       String[] expectedKeys, String[] expectedValues) {
         simulateConsoleInput(input);
-        HashMap<String,String> expectedHash = initialiseTestResources(expectedKeys, expectedValues);
+        HashMap<String, String> expectedHash = initialiseTestResources(expectedKeys, expectedValues);
         EditInstrumentParser editInstrumentParser = new EditInstrumentParser();
-        editInstrumentParser.getParametersToEdit(expectedParameters, TEST_STOCK, TEST_INDEX);
-        HashMap<String,String> outputHash = EditInstrumentParser.getEditedParametersHash();
+        editInstrumentParser.createEditCommand(expectedParameters, TEST_STOCK, TEST_INDEX);
+        HashMap<String, String> outputHash = EditInstrumentParser.getEditedParametersHash();
         assertTrue(outputHash.equals(expectedHash));
     }
 

@@ -135,8 +135,8 @@ public class EditInstrumentParser extends InputParser {
         editRemarksParameter(parametersGiven);
     }
 
-    public EditInstrumentCommand getParametersToEdit(HashSet<String> parametersGiven,
-                                                     Instrument instrumentOfInterest, int instrumentIndex) {
+    public EditInstrumentCommand createEditCommand(HashSet<String> parametersGiven,
+                                                   Instrument instrumentOfInterest, int instrumentIndex) {
         EditInstrumentCommand command;
         editedParameters = new HashMap<>();
         EditInstrumentParser.getEditedParameters(parametersGiven, instrumentOfInterest);

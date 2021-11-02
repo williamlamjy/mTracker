@@ -113,7 +113,7 @@ public class InputParser {
         TextUi.displayEditInstrumentFirstInstruction(instrumentToEdit);
         HashSet<String> parametersToEdit = getParametersToEdit(instrumentToEdit.getValidAttribute());
         EditInstrumentParser editInstrumentParser = new EditInstrumentParser();
-        return editInstrumentParser.getParametersToEdit(parametersToEdit, instrumentToEdit, instrumentNumber);
+        return editInstrumentParser.createEditCommand(parametersToEdit, instrumentToEdit, instrumentNumber);
     }
 
     private void getAndValidateIndexNumber(String[] commandComponents, ArrayList<Instrument> instruments) {
