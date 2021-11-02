@@ -21,6 +21,7 @@ public class EditInstrumentParser extends InputParser {
     protected static final String ENTRY_PRICE_ATTRIBUTE = "entry-price";
     protected static final String EXIT_PRICE_ATTRIBUTE = "exit-price";
     protected static final String EXPIRY_ATTRIBUTE = "expiry";
+    protected static final String DONE_ATTRIBUTE = "undone";
     protected static final String WORKSPACE = EditInstrumentCommand.COMMAND_WORD;
 
     public static void editNameParameter(String instrumentType, HashSet<String> parametersGiven) {
@@ -123,6 +124,13 @@ public class EditInstrumentParser extends InputParser {
         editedParameters.put(EXPIRY_ATTRIBUTE, inputExpiry);
     }
 
+    public static void editDoneStatus(HashSet<String> parametersGiven) {
+        if (!parametersGiven.contains(DONE_ATTRIBUTE)) {
+            return;
+        }
+        editedParameters.put(DONE_ATTRIBUTE,DONE_ATTRIBUTE);
+    }
+
     public static void getEditedParameters(HashSet<String> parametersGiven, Instrument instrumentOfInterest) {
         String instrumentType = instrumentOfInterest.getType().toLowerCase();
         editNameParameter(instrumentType, parametersGiven);
@@ -133,6 +141,7 @@ public class EditInstrumentParser extends InputParser {
         editExitPriceParameter(parametersGiven);
         editExpiryParameter(parametersGiven);
         editRemarksParameter(parametersGiven);
+        editDoneStatus(parametersGiven);
     }
 
     public EditInstrumentCommand createEditCommand(HashSet<String> parametersGiven,
