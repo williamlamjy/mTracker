@@ -14,7 +14,7 @@
 The following diagram denotes the high-level design of the mTracker
 program:
 
-<img src="images/ArchitectureDiagram.png" width="345"/>
+<img src="images/ArchitectureDiagram.png" width="600"/>
 
 Major components of the app:
 * `MTracker` contains the `main` method responsible for launching and 
@@ -51,7 +51,7 @@ The main parent class in `console` package is the `InputParser` class which is d
 The figure below represents the class diagram of how all the parser classes interact with classes outside the `console`
 package:
 
-<img src="images/ConsoleDiagram.png" width="550"/>
+<img src="images/ConsoleDiagram.png" width="900"/>
 
 How the `InputParser` class works:
 1. When the user enters a command along with the relevant parameters if any, the
