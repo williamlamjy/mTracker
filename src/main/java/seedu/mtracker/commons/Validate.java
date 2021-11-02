@@ -26,6 +26,7 @@ import seedu.mtracker.ui.TextUi;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.logging.Logger;
 
 public class Validate {
@@ -240,5 +241,7 @@ public class Validate {
         return true;
     }
 
-
+    public static boolean isParametersInputEmpty(String input) {
+        return input.isEmpty();
+    }
 }
