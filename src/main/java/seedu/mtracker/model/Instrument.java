@@ -143,8 +143,7 @@ public abstract class Instrument {
         return getTypeIcon() + getStatusIcon()
                 + SPACE + name + SEMICOLON_SEP + currentPrice + SEMICOLON_SEP + sentiment;
     }
-
-
+    
     public HashSet<String> getValidAttribute() {
         validAttribute.add(NAME_ATTRIBUTE);
         validAttribute.add(CURRENT_PRICE_ATTRIBUTE);
