@@ -17,56 +17,54 @@ box error COLOR_ERROR_SEGMENT
 participant ":InvalidInstrumentInFileError" as InvalidInstrumentInFileError COLOR_ERROR
 end box
 
+activate InstrumentDecoder
 
+    loop each line in the file
+        InstrumentDecoder-> InstrumentDecoder: addSavedInstrumentToList(instrumentManager, textSegment)
+        activate InstrumentDecoder
 
-    activate InstrumentDecoder
+        note right
+        The parameter textSegment is
+        the array of Crypto parameters:
+        {"Crypto", "32.0", "positive", "2022-01-12", ""}
+        end note
 
-        loop each line in the file
-            InstrumentDecoder-> InstrumentDecoder: addSavedInstrumentToList(instrumentManager, textSegment)
-            activate InstrumentDecoder
+            alt Instrument type is Crypto/Etf/Stock/Forex
+                InstrumentDecoder-> CryptoDecoder: addCryptoToList(textSegment, instrumentManager)
+                activate CryptoDecoder
 
-            note right
-            The parameter textSegment is
-            the array of Crypto parameters:
-            {"Crypto", "32.0", "positive", "2022-01-12", ""}
-            end note
+                ref over CryptoDecoder, InstrumentManager, Crypto
 
-                alt Instrument type is Crypto/Etf/Stock/Forex
-                    InstrumentDecoder-> CryptoDecoder: addCryptoToList(textSegment, instrumentManager)
-                    activate CryptoDecoder
+                Decode crypto attributes and create and add crypto to InstrumentManager
 
-                    ref over CryptoDecoder, InstrumentManager, Crypto
+                endref
 
-                    Decode crypto attributes and create and add crypto to InstrumentManager
+                note bottom
+                Displaying only the outcome of adding
+                a pre-existing Crypto to list. This if
+                statement is supposed to be a switch statement
+                amongst the 4 different instruments
+                end note
 
-                    endref
+                CryptoDecoder--> InstrumentDecoder
+                deactivate CryptoDecoder
 
-                    note bottom
-                    Displaying only the outcome of adding
-                    a pre-existing Crypto to list. This if
-                    statement is supposed to be a switch statement
-                    amongst the 4 different instruments
-                    end note
+            else
+                create InvalidInstrumentInFileError
+                InstrumentDecoder-> InvalidInstrumentInFileError: throw new InvalidInstrumentInFileError()
+                activate InvalidInstrumentInFileError
+                InvalidInstrumentInFileError--> InstrumentDecoder
+                deactivate InvalidInstrumentInFileError
 
-                    CryptoDecoder--> InstrumentDecoder
-                    deactivate CryptoDecoder
+                end
 
-                else
-                    create InvalidInstrumentInFileError
-                    InstrumentDecoder-> InvalidInstrumentInFileError: throw new InvalidInstrumentInFileError()
-                    activate InvalidInstrumentInFileError
-                    InvalidInstrumentInFileError--> InstrumentDecoder
-                    deactivate InvalidInstrumentInFileError
+                InstrumentDecoder--> InstrumentDecoder
+                deactivate InstrumentDecoder
 
-                    end
+                end
 
-                    InstrumentDecoder--> InstrumentDecoder
-                    deactivate InstrumentDecoder
-
-                    end
-
-                    end
-                    deactivate InstrumentDecoder
+                end
+                deactivate InstrumentDecoder
 
 
 @enduml
