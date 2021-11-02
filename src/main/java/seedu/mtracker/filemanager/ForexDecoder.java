@@ -1,7 +1,13 @@
 package seedu.mtracker.filemanager;
 
 import seedu.mtracker.commons.Validate;
-import seedu.mtracker.error.FileLoadError;
+import seedu.mtracker.error.fileerror.InvalidEmptyEntryPriceInFileError;
+import seedu.mtracker.error.fileerror.InvalidEmptyExitPriceInFileError;
+import seedu.mtracker.error.fileerror.InvalidEmptyExpiryInFileError;
+import seedu.mtracker.error.fileerror.InvalidEntryPriceSavedInFileError;
+import seedu.mtracker.error.fileerror.InvalidExitPriceSavedInFileError;
+import seedu.mtracker.error.fileerror.InvalidExpirySavedInFileError;
+import seedu.mtracker.error.fileerror.InvalidRemarksInFileError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.model.subinstrument.Forex;
@@ -20,20 +26,78 @@ public class ForexDecoder extends InstrumentDecoder {
     protected static LocalDate decodedExpiry;
     protected static String decodedRemarks;
 
-    public static boolean isValidEntryAndExitPrice(String[] textSegment) {
-        return Validate.isValidPrice(textSegment[ENTRY_PRICE_INDEX])
-                && Validate.isValidPrice(textSegment[EXIT_PRICE_INDEX]);
+    public static boolean isValidEntryPrice(String[] textSegment) {
+        return Validate.isValidPrice(textSegment[ENTRY_PRICE_INDEX]);
+    }
+
+    public static String getEntryPriceFromFile(String[] textSegment) throws InvalidEmptyEntryPriceInFileError {
+        String entryPrice;
+        try {
+            entryPrice = textSegment[ENTRY_PRICE_INDEX];
+        } catch (IllegalArgumentException e) {
+            throw new InvalidEmptyEntryPriceInFileError();
+        }
+        return entryPrice;
+    }
+
+    public static boolean isValidExitPrice(String[] textSegment) {
+        return Validate.isValidPrice(textSegment[EXIT_PRICE_INDEX]);
+    }
+
+    public static String getExitPriceFromFile(String[] textSegment) throws InvalidEmptyExitPriceInFileError {
+        String exitPrice;
+        try {
+            exitPrice = textSegment[EXIT_PRICE_INDEX];
+        } catch (IllegalArgumentException e) {
+            throw new InvalidEmptyExitPriceInFileError();
+        }
+        return exitPrice;
     }
 
     public static boolean isValidExpiry(String[] textSegment) {
         return Validate.isValidExpiry(textSegment[FOREX_EXPIRY_INDEX]);
     }
 
-    public static void validateAndDecodeSpecificAttributes(String[] textSegment) throws FileLoadError {
-        if (isValidSpecificAttributes(textSegment)) {
-            decodeSpecificAttributes(textSegment);
+    public static String getExpiryFromFile(String[] textSegment) throws InvalidEmptyExpiryInFileError {
+        String expiry;
+        try {
+            expiry = textSegment[FOREX_EXPIRY_INDEX];
+        } catch (IllegalArgumentException e) {
+            throw new InvalidEmptyExpiryInFileError();
         }
-        throw new FileLoadError();
+        return expiry;
+    }
+
+    public static String getRemarksFromFile(String[] textSegment) throws InvalidRemarksInFileError {
+        String remarks;
+        try {
+            remarks = textSegment[FOREX_REMARKS_INDEX];
+        } catch (IllegalArgumentException e) {
+            throw new InvalidRemarksInFileError();
+        }
+        return remarks;
+    }
+
+    public static void validateAndDecodeSpecificAttributes(String[] textSegment) throws Exception {
+        String entryPrice = getEntryPriceFromFile(textSegment);
+        String exitPrice = getExitPriceFromFile(textSegment);
+        String expiry = getExpiryFromFile(textSegment);
+        String remarks = getRemarksFromFile(textSegment);
+        validateSpecificAttributes(textSegment);
+        decodeSpecificAttributes(entryPrice, exitPrice, expiry, remarks);
+    }
+
+    private static void validateSpecificAttributes(String[] textSegment) throws InvalidExpirySavedInFileError,
+            InvalidExitPriceSavedInFileError, InvalidEntryPriceSavedInFileError {
+        if (!isValidExpiry(textSegment)) {
+            throw new InvalidExpirySavedInFileError();
+        }
+        if (!isValidEntryPrice(textSegment)) {
+            throw new InvalidEntryPriceSavedInFileError();
+        }
+        if (!isValidExitPrice(textSegment)) {
+            throw new InvalidExitPriceSavedInFileError();
+        }
     }
 
     public static void tryValidateAndDecodeSpecificAttributes(String[] textSegment) {
@@ -44,15 +108,11 @@ public class ForexDecoder extends InstrumentDecoder {
         }
     }
 
-    private static boolean isValidSpecificAttributes(String[] textSegment) {
-        return isValidEntryAndExitPrice(textSegment) && isValidExpiry(textSegment);
-    }
-
-    private static void decodeSpecificAttributes(String[] textSegment) {
-        decodedEntryPrice = Double.parseDouble(textSegment[ENTRY_PRICE_INDEX]);
-        decodedExitPrice = Double.parseDouble(textSegment[EXIT_PRICE_INDEX]);
-        decodedExpiry = LocalDate.parse(textSegment[FOREX_EXPIRY_INDEX]);
-        decodedRemarks = textSegment[FOREX_REMARKS_INDEX];
+    private static void decodeSpecificAttributes(String entryPrice, String exitPrice, String expiry, String remarks) {
+        decodedEntryPrice = Double.parseDouble(entryPrice);
+        decodedExitPrice = Double.parseDouble(exitPrice);
+        decodedExpiry = LocalDate.parse(expiry);
+        decodedRemarks = remarks;
     }
 
     public static void addForexToList(String[] textSegment, InstrumentManager instrumentManager) {

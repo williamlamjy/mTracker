@@ -2,7 +2,6 @@ package seedu.mtracker.model;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Locale;
 
 public abstract class Instrument {
 

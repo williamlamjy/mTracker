@@ -2,8 +2,15 @@ package seedu.mtracker.filemanager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.mtracker.error.FileLoadError;
-import seedu.mtracker.error.InvalidInstrumentInFileError;
+import seedu.mtracker.error.fileerror.FileLoadError;
+import seedu.mtracker.error.fileerror.InvalidCurrPriceSavedInFileError;
+import seedu.mtracker.error.fileerror.InvalidEntryPriceSavedInFileError;
+import seedu.mtracker.error.fileerror.InvalidExitPriceSavedInFileError;
+import seedu.mtracker.error.fileerror.InvalidExpirySavedInFileError;
+import seedu.mtracker.error.fileerror.InvalidInstrumentInFileError;
+import seedu.mtracker.error.fileerror.InvalidNameSavedInFileError;
+import seedu.mtracker.error.fileerror.InvalidRemarksInFileError;
+import seedu.mtracker.error.fileerror.InvalidSentimentSavedInFileError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.model.subinstrument.Forex;
@@ -17,18 +24,20 @@ class InstrumentDecoderTest {
 
     public static final String TEST_TYPE = "forex";
     public static final String TEST_INVALID_TYPE = "nft";
-    public static final String TEST_NAME = "Test12";
+    public static final String TEST_NAME = "USDSGD";
     public static final String TEST_INVALID_FOREX_NAME = "Test";
     public static final double TEST_PRICE = 34.5;
     public static final String TEST_PRICE_STRING = "34.5";
-    public static final String TEST_INVALID_PRICE_STRING = "-1";
+    public static final String TEST_INVALID_PRICE_STRING = "0";
     public static final String TEST_SENTIMENT = "negative";
     public static final String TEST_INVALID_SENTIMENT = "+";
     public static final String TEST_DONE_STRING = "false";
     public static final double TEST_ENTRY_PRICE = 30.0;
     public static final String TEST_ENTRY_PRICE_STRING = "30.0";
+    public static final String TEST_INVALID_ENTRY_PRICE_STRING = "-1";
     public static final double TEST_EXIT_PRICE = 31.0;
     public static final String TEST_EXIT_PRICE_STRING = "31.0";
+    public static final String TEST_INVALID_EXIT_PRICE_STRING = "-1";
     public static final int DAYS_DIFFERENCE = 1;
     public static final LocalDate FUTURE_DATE = LocalDate.now().plusDays(DAYS_DIFFERENCE);
     public static final String FUTURE_DATE_STRING = "2021-12-02";
@@ -66,14 +75,14 @@ class InstrumentDecoderTest {
     };
 
     public static final String[] INVALID_FOREX_PRICE_TEXT_SEGMENT = {TEST_TYPE,
-        TEST_NAME,
-        TEST_INVALID_PRICE_STRING,
-        TEST_SENTIMENT,
-        TEST_DONE_STRING,
-        TEST_ENTRY_PRICE_STRING,
-        TEST_EXIT_PRICE_STRING,
-        FUTURE_DATE_STRING,
-        TEST_REMARK
+            TEST_NAME,
+            TEST_INVALID_PRICE_STRING,
+            TEST_SENTIMENT,
+            TEST_DONE_STRING,
+            TEST_ENTRY_PRICE_STRING,
+            TEST_EXIT_PRICE_STRING,
+            FUTURE_DATE_STRING,
+            TEST_REMARK
     };
 
     public static final String[] INVALID_FOREX_SENTIMENT_TEXT_SEGMENT = {TEST_TYPE,
@@ -90,12 +99,34 @@ class InstrumentDecoderTest {
     public static final String[] INVALID_FOREX_EXPIRY_TEXT_SEGMENT = {TEST_TYPE,
         TEST_NAME,
         TEST_PRICE_STRING,
-        TEST_INVALID_SENTIMENT,
+        TEST_SENTIMENT,
         TEST_DONE_STRING,
         TEST_ENTRY_PRICE_STRING,
         TEST_EXIT_PRICE_STRING,
         FUTURE_INVALID_DATE_STRING,
         TEST_REMARK
+    };
+
+    public static final String[] INVALID_FOREX_ENTRY_PRICE_TEXT_SEGMENT = {TEST_TYPE,
+            TEST_NAME,
+            TEST_PRICE_STRING,
+            TEST_SENTIMENT,
+            TEST_DONE_STRING,
+            TEST_INVALID_ENTRY_PRICE_STRING,
+            TEST_EXIT_PRICE_STRING,
+            FUTURE_DATE_STRING,
+            TEST_REMARK
+    };
+
+    public static final String[] INVALID_FOREX_EXIT_PRICE_TEXT_SEGMENT = {TEST_TYPE,
+            TEST_NAME,
+            TEST_PRICE_STRING,
+            TEST_SENTIMENT,
+            TEST_DONE_STRING,
+            TEST_ENTRY_PRICE_STRING,
+            TEST_INVALID_EXIT_PRICE_STRING,
+            FUTURE_DATE_STRING,
+            TEST_REMARK
     };
 
     private InstrumentManager instrumentManager;
@@ -119,30 +150,44 @@ class InstrumentDecoderTest {
 
     @Test
     void decodeGeneralAttributes_invalidName_expectException() {
-        assertThrows(FileLoadError.class,
+        assertThrows(InvalidNameSavedInFileError.class,
             () -> InstrumentDecoder
                     .validateAndDecodeGeneralAttributes(INVALID_FOREX_NAME_TEXT_SEGMENT));
     }
 
     @Test
     void decodeGeneralAttributes_invalidPrice_expectException() {
-        assertThrows(FileLoadError.class,
+        assertThrows(InvalidCurrPriceSavedInFileError.class,
             () -> InstrumentDecoder
                     .validateAndDecodeGeneralAttributes(INVALID_FOREX_PRICE_TEXT_SEGMENT));
     }
 
     @Test
     void decodeGeneralAttributes_invalidSentiment_expectException() {
-        assertThrows(FileLoadError.class,
+        assertThrows(InvalidSentimentSavedInFileError.class,
             () -> InstrumentDecoder
                     .validateAndDecodeGeneralAttributes(INVALID_FOREX_SENTIMENT_TEXT_SEGMENT));
     }
 
     @Test
     void decodeSpecificAttributes_invalidExpiry_expectException() {
-        assertThrows(FileLoadError.class,
+        assertThrows(InvalidExpirySavedInFileError.class,
             () -> ForexDecoder
                     .validateAndDecodeSpecificAttributes(INVALID_FOREX_EXPIRY_TEXT_SEGMENT));
+    }
+
+    @Test
+    void decodeSpecificAttributes_invalidEntryPrice_expectException() {
+        assertThrows(InvalidEntryPriceSavedInFileError.class,
+                () -> ForexDecoder
+                        .validateAndDecodeSpecificAttributes(INVALID_FOREX_ENTRY_PRICE_TEXT_SEGMENT));
+    }
+
+    @Test
+    void decodeSpecificAttributes_invalidExitPrice_expectException() {
+        assertThrows(InvalidExitPriceSavedInFileError.class,
+                () -> ForexDecoder
+                        .validateAndDecodeSpecificAttributes(INVALID_FOREX_EXIT_PRICE_TEXT_SEGMENT));
     }
 
     @Test

@@ -19,7 +19,7 @@ public abstract class ErrorMessage {
     public static final String INVALID_PAST_RETURN_TYPE_ERROR = "Sorry, past return must be a numeric value! "
             + "Input value will be ignored.";
     public static final String INVALID_PAST_RETURN_ERROR = "Sorry, past return inserted cannot be lesser than -100"
-            + "Input value will be ignored.";
+            + " Input value will be ignored.";
     public static final String INVALID_EXPIRY_DATE_EMPTY_ERROR = "Sorry there must be an expiry date "
             + "for this instrument signal!";
     public static final String INVALID_PAST_DATE_GIVEN_ERROR = "Oops, expiry cannot be a date in the past.";
@@ -39,6 +39,36 @@ public abstract class ErrorMessage {
     public static final String FILE_WRITE_ERROR = "Oh no! There seems to be an error writing to the file";
     public static final String FILE_LOAD_ERROR = "Oh no! There seems to be an error loading this file";
     public static final String FILE_TAMPERED_ERROR = "Oh no! Looks like file has been tampered, aborting load file";
+
+    public static final String EMPTY_EXPIRY_IN_FILE_ERROR = "Oh no! Looks like the expiry entry in the file is empty!";
+    public static final String REMARKS_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting "
+            + "of the remarks entry in the file";
+    public static final String EXPIRY_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting "
+            + "of the expiry entry in the file." + System.lineSeparator() + "Please check that it is of YYYY-MM-DD format.";
+    public static final String ENTRY_PRICE_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting"
+            + " of the entry price entry in the file.";
+    public static final String CURR_PRICE_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting"
+            + " of the current price entry in the file.";
+    public static final String SENTIMENT_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting"
+            + " of the sentiment entry in the file.";
+    public static final String NAME_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting"
+            + " of the name entry in the file.";
+    public static final String EXIT_PRICE_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting"
+            + " of the exit price entry in the file.";
+    public static final String PAST_RETURNS_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting"
+            + " of the past returns entry in the file.";
+    public static final String EMPTY_ENTRY_PRICE_IN_FILE_ERROR = "Oh no! Looks like the entry price entry in the file"
+            + " is empty.";
+    public static final String EMPTY_EXIT_PRICE_IN_FILE_ERROR = "Oh no! Looks like the exit price entry in the file"
+            + " is empty.";
+    public static final String EMPTY_PAST_RETURNS_IN_FILE_ERROR = "Oh no! Looks like the past returns entry in the file"
+            + " is empty.";
+    public static final String EMPTY_NAME_IN_FILE_ERROR = "Oh no! Looks like the name entry in the file"
+            + " is empty.";
+    public static final String EMPTY_SENTIMENT_IN_FILE_ERROR = "Oh no! Looks like the sentiment entry in the file"
+            + " is empty.";
+    public static final String EMPTY_CURR_PRICE_IN_FILE_ERROR = "Oh no! Looks like the curr price entry in the file"
+            + " is empty.";
 
     public static String addInstrumentNameError(String instrumentType) {
         return "Sorry " + instrumentType + " cannot have an empty name!";
@@ -67,4 +97,5 @@ public abstract class ErrorMessage {
     public static void displayEditExpiryError() {
         System.out.println("Expiry entered is invalid. Ignoring edited Expiry value.");
     }
+
 }

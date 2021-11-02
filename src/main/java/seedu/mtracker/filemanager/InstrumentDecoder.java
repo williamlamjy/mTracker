@@ -1,8 +1,13 @@
 package seedu.mtracker.filemanager;
 
 import seedu.mtracker.commons.Validate;
-import seedu.mtracker.error.FileLoadError;
-import seedu.mtracker.error.InvalidInstrumentInFileError;
+import seedu.mtracker.error.fileerror.InvalidCurrPriceSavedInFileError;
+import seedu.mtracker.error.fileerror.InvalidEmptyCurrPriceInFileError;
+import seedu.mtracker.error.fileerror.InvalidEmptyNameInFileError;
+import seedu.mtracker.error.fileerror.InvalidEmptySentimentInFileError;
+import seedu.mtracker.error.fileerror.InvalidInstrumentInFileError;
+import seedu.mtracker.error.fileerror.InvalidNameSavedInFileError;
+import seedu.mtracker.error.fileerror.InvalidSentimentSavedInFileError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.ui.TextUi;
@@ -33,7 +38,7 @@ public class InstrumentDecoder {
     protected static final char FILE_SEPARATOR = (char) ASCII_CODE;
 
 
-    public static boolean isValidPrice(String[] textSegment) {
+    public static boolean isValidCurrPrice(String[] textSegment) {
         return Validate.isValidPrice(textSegment[CURR_PRICE_INDEX]);
     }
 
@@ -45,11 +50,57 @@ public class InstrumentDecoder {
         return Validate.isValidName(textSegment[NAME_INDEX], textSegment[TYPE_INDEX]);
     }
 
-    public static void validateAndDecodeGeneralAttributes(String[] textSegment) throws FileLoadError {
-        if (isValidGeneralAttributes(textSegment)) {
-            decodeGeneralAttributes(textSegment);
+    public static String getNameFromFile(String[] textSegment) throws InvalidEmptyNameInFileError {
+        String name;
+        try {
+            name = textSegment[NAME_INDEX];
+        } catch (IllegalArgumentException e) {
+            throw new InvalidEmptyNameInFileError();
         }
-        throw new FileLoadError();
+        return name;
+    }
+
+    public static String getSentimentFromFile(String[] textSegment) throws InvalidEmptySentimentInFileError {
+        String sentiment;
+        try {
+            sentiment = textSegment[SENTIMENT_INDEX];
+        } catch (IllegalArgumentException e) {
+            throw new InvalidEmptySentimentInFileError();
+        }
+        return sentiment;
+    }
+
+    public static String getCurrPriceFromFile(String[] textSegment) throws InvalidEmptyCurrPriceInFileError {
+        String currPrice;
+        try {
+            currPrice = textSegment[CURR_PRICE_INDEX];
+        } catch (IllegalArgumentException e) {
+            throw new InvalidEmptyCurrPriceInFileError();
+        }
+        return currPrice;
+    }
+
+    public static void validateAndDecodeGeneralAttributes(String[] textSegment) throws InvalidEmptyNameInFileError,
+            InvalidEmptyCurrPriceInFileError, InvalidEmptySentimentInFileError, InvalidSentimentSavedInFileError,
+            InvalidNameSavedInFileError, InvalidCurrPriceSavedInFileError {
+        String name = getNameFromFile(textSegment);
+        String currPrice = getCurrPriceFromFile(textSegment);
+        String sentiment = getSentimentFromFile(textSegment);
+        validateGeneralAttributes(textSegment);
+        decodeGeneralAttributes(name, currPrice, sentiment, textSegment);
+    }
+
+    private static void validateGeneralAttributes(String[] textSegment) throws InvalidSentimentSavedInFileError,
+            InvalidNameSavedInFileError, InvalidCurrPriceSavedInFileError {
+        if (!isValidSentiment(textSegment)) {
+            throw new InvalidSentimentSavedInFileError();
+        }
+        if (!isValidName(textSegment)) {
+            throw new InvalidNameSavedInFileError();
+        }
+        if(!isValidCurrPrice(textSegment)) {
+            throw new InvalidCurrPriceSavedInFileError();
+        }
     }
 
     public static void tryValidateAndDecodeGeneralAttributes(String[] textSegment) {
@@ -60,14 +111,10 @@ public class InstrumentDecoder {
         }
     }
 
-    private static boolean isValidGeneralAttributes(String[] textSegment) {
-        return isValidName(textSegment) && isValidPrice(textSegment) && isValidSentiment(textSegment);
-    }
-
-    public static void decodeGeneralAttributes(String[] textSegment) {
-        decodedName = textSegment[NAME_INDEX];
-        decodedSentiment = textSegment[SENTIMENT_INDEX];
-        decodedCurrPrice = Double.parseDouble(textSegment[CURR_PRICE_INDEX]);
+    public static void decodeGeneralAttributes(String name, String currPrice, String sentiment, String[] textSegment) {
+        decodedName = name;
+        decodedCurrPrice = Double.parseDouble(currPrice);
+        decodedSentiment = sentiment;
         decodedIsDone = Boolean.parseBoolean(textSegment[IS_DONE_INDEX]);
     }
 

@@ -1,7 +1,9 @@
 package seedu.mtracker.filemanager;
 
 import seedu.mtracker.commons.Validate;
-import seedu.mtracker.error.FileLoadError;
+import seedu.mtracker.error.fileerror.InvalidEmptyExpiryInFileError;
+import seedu.mtracker.error.fileerror.InvalidExpirySavedInFileError;
+import seedu.mtracker.error.fileerror.InvalidRemarksInFileError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.model.subinstrument.Crypto;
@@ -20,11 +22,34 @@ public class CryptoDecoder extends InstrumentDecoder {
         return Validate.isValidExpiry(textSegment[CRYPTO_EXPIRY_INDEX]);
     }
 
-    public static void validateAndDecodeSpecificAttributes(String[] textSegment) throws FileLoadError {
-        if (isValidExpiry(textSegment)) {
-            decodeSpecificAttributes(textSegment);
+    public static String getExpiryFromFile(String[] textSegment) throws InvalidEmptyExpiryInFileError {
+        String expiry;
+        try {
+            expiry = textSegment[CRYPTO_EXPIRY_INDEX];
+        } catch (IllegalArgumentException e) {
+            throw new InvalidEmptyExpiryInFileError();
         }
-        throw new FileLoadError();
+        return expiry;
+    }
+
+    public static String getRemarksFromFile(String[] textSegment) throws InvalidRemarksInFileError {
+        String remarks;
+        try {
+            remarks = textSegment[CRYPTO_REMARKS_INDEX];
+        } catch (IllegalArgumentException e) {
+            throw new InvalidRemarksInFileError();
+        }
+        return remarks;
+    }
+
+    public static void validateAndDecodeSpecificAttributes(String[] textSegment) throws InvalidEmptyExpiryInFileError,
+            InvalidRemarksInFileError,  InvalidExpirySavedInFileError {
+        String expiry = getExpiryFromFile(textSegment);
+        String remarks = getRemarksFromFile(textSegment);
+        if (!isValidExpiry(textSegment)) {
+            throw new InvalidExpirySavedInFileError();
+        }
+        decodeSpecificAttributes(expiry, remarks);
     }
 
     public static void tryValidateAndDecodeSpecificAttributes(String[] textSegment) {
@@ -35,9 +60,9 @@ public class CryptoDecoder extends InstrumentDecoder {
         }
     }
 
-    private static void decodeSpecificAttributes(String[] textSegment) {
-        decodedExpiry = LocalDate.parse(textSegment[CRYPTO_EXPIRY_INDEX]);
-        decodedRemarks = textSegment[CRYPTO_REMARKS_INDEX];
+    private static void decodeSpecificAttributes(String expiry, String remarks) {
+        decodedExpiry = LocalDate.parse(expiry);
+        decodedRemarks = remarks;
     }
 
     public static void addCryptoToList(String[] textSegment, InstrumentManager instrumentManager) {
