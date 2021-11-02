@@ -51,80 +51,80 @@ class InstrumentDecoderTest {
     public static final int LENGTH_OF_INSTRUMENT = 5;
 
     public static final String[] INVALID_INSTRUMENT_TYPE_TEXT_SEGMENT = {TEST_INVALID_TYPE,
-            TEST_NAME,
-            TEST_PRICE_STRING,
-            TEST_SENTIMENT,
-            TEST_DONE_STRING,
-            TEST_ENTRY_PRICE_STRING,
-            TEST_EXIT_PRICE_STRING,
-            FUTURE_DATE_STRING,
-            TEST_REMARK
+        TEST_NAME,
+        TEST_PRICE_STRING,
+        TEST_SENTIMENT,
+        TEST_DONE_STRING,
+        TEST_ENTRY_PRICE_STRING,
+        TEST_EXIT_PRICE_STRING,
+        FUTURE_DATE_STRING,
+        TEST_REMARK
     };
 
     public static final String[] INVALID_FOREX_NAME_TEXT_SEGMENT = {TEST_TYPE,
-            TEST_INVALID_FOREX_NAME,
-            TEST_PRICE_STRING,
-            TEST_SENTIMENT,
-            TEST_DONE_STRING,
-            TEST_ENTRY_PRICE_STRING,
-            TEST_EXIT_PRICE_STRING,
-            FUTURE_DATE_STRING,
-            TEST_REMARK
+        TEST_INVALID_FOREX_NAME,
+        TEST_PRICE_STRING,
+        TEST_SENTIMENT,
+        TEST_DONE_STRING,
+        TEST_ENTRY_PRICE_STRING,
+        TEST_EXIT_PRICE_STRING,
+        FUTURE_DATE_STRING,
+        TEST_REMARK
     };
 
     public static final String[] INVALID_FOREX_PRICE_TEXT_SEGMENT = {TEST_TYPE,
-            TEST_NAME,
-            TEST_INVALID_PRICE_STRING,
-            TEST_SENTIMENT,
-            TEST_DONE_STRING,
-            TEST_ENTRY_PRICE_STRING,
-            TEST_EXIT_PRICE_STRING,
-            FUTURE_DATE_STRING,
-            TEST_REMARK
+        TEST_NAME,
+        TEST_INVALID_PRICE_STRING,
+        TEST_SENTIMENT,
+        TEST_DONE_STRING,
+        TEST_ENTRY_PRICE_STRING,
+        TEST_EXIT_PRICE_STRING,
+        FUTURE_DATE_STRING,
+        TEST_REMARK
     };
 
     public static final String[] INVALID_FOREX_SENTIMENT_TEXT_SEGMENT = {TEST_TYPE,
-            TEST_NAME,
-            TEST_PRICE_STRING,
-            TEST_INVALID_SENTIMENT,
-            TEST_DONE_STRING,
-            TEST_ENTRY_PRICE_STRING,
-            TEST_EXIT_PRICE_STRING,
-            FUTURE_DATE_STRING,
-            TEST_REMARK
+        TEST_NAME,
+        TEST_PRICE_STRING,
+        TEST_INVALID_SENTIMENT,
+        TEST_DONE_STRING,
+        TEST_ENTRY_PRICE_STRING,
+        TEST_EXIT_PRICE_STRING,
+        FUTURE_DATE_STRING,
+        TEST_REMARK
     };
 
     public static final String[] INVALID_FOREX_EXPIRY_TEXT_SEGMENT = {TEST_TYPE,
-            TEST_NAME,
-            TEST_PRICE_STRING,
-            TEST_SENTIMENT,
-            TEST_DONE_STRING,
-            TEST_ENTRY_PRICE_STRING,
-            TEST_EXIT_PRICE_STRING,
-            FUTURE_INVALID_DATE_STRING,
-            TEST_REMARK
+        TEST_NAME,
+        TEST_PRICE_STRING,
+        TEST_SENTIMENT,
+        TEST_DONE_STRING,
+        TEST_ENTRY_PRICE_STRING,
+        TEST_EXIT_PRICE_STRING,
+        FUTURE_INVALID_DATE_STRING,
+        TEST_REMARK
     };
 
     public static final String[] INVALID_FOREX_ENTRY_PRICE_TEXT_SEGMENT = {TEST_TYPE,
-            TEST_NAME,
-            TEST_PRICE_STRING,
-            TEST_SENTIMENT,
-            TEST_DONE_STRING,
-            TEST_INVALID_ENTRY_PRICE_STRING,
-            TEST_EXIT_PRICE_STRING,
-            FUTURE_DATE_STRING,
-            TEST_REMARK
+        TEST_NAME,
+        TEST_PRICE_STRING,
+        TEST_SENTIMENT,
+        TEST_DONE_STRING,
+        TEST_INVALID_ENTRY_PRICE_STRING,
+        TEST_EXIT_PRICE_STRING,
+        FUTURE_DATE_STRING,
+        TEST_REMARK
     };
 
     public static final String[] INVALID_FOREX_EXIT_PRICE_TEXT_SEGMENT = {TEST_TYPE,
-            TEST_NAME,
-            TEST_PRICE_STRING,
-            TEST_SENTIMENT,
-            TEST_DONE_STRING,
-            TEST_ENTRY_PRICE_STRING,
-            TEST_INVALID_EXIT_PRICE_STRING,
-            FUTURE_DATE_STRING,
-            TEST_REMARK
+        TEST_NAME,
+        TEST_PRICE_STRING,
+        TEST_SENTIMENT,
+        TEST_DONE_STRING,
+        TEST_ENTRY_PRICE_STRING,
+        TEST_INVALID_EXIT_PRICE_STRING,
+        FUTURE_DATE_STRING,
+        TEST_REMARK
     };
 
     private InstrumentManager instrumentManager;
@@ -149,49 +149,49 @@ class InstrumentDecoderTest {
     @Test
     void decodeGeneralAttributes_invalidName_expectException() {
         assertThrows(InvalidNameSavedInFileError.class,
-                () -> InstrumentDecoder
-                        .validateAndDecodeGeneralAttributes(INVALID_FOREX_NAME_TEXT_SEGMENT));
+            () -> InstrumentDecoder
+                    .validateAndDecodeGeneralAttributes(INVALID_FOREX_NAME_TEXT_SEGMENT));
     }
 
     @Test
     void decodeGeneralAttributes_invalidPrice_expectException() {
         assertThrows(InvalidCurrPriceSavedInFileError.class,
-                () -> InstrumentDecoder
-                        .validateAndDecodeGeneralAttributes(INVALID_FOREX_PRICE_TEXT_SEGMENT));
+            () -> InstrumentDecoder
+                    .validateAndDecodeGeneralAttributes(INVALID_FOREX_PRICE_TEXT_SEGMENT));
     }
 
     @Test
     void decodeGeneralAttributes_invalidSentiment_expectException() {
         assertThrows(InvalidSentimentSavedInFileError.class,
-                () -> InstrumentDecoder
-                        .validateAndDecodeGeneralAttributes(INVALID_FOREX_SENTIMENT_TEXT_SEGMENT));
+            () -> InstrumentDecoder
+                    .validateAndDecodeGeneralAttributes(INVALID_FOREX_SENTIMENT_TEXT_SEGMENT));
     }
 
     @Test
     void decodeSpecificAttributes_invalidExpiry_expectException() {
         assertThrows(InvalidExpirySavedInFileError.class,
-                () -> ForexDecoder
-                        .validateAndDecodeSpecificAttributes(INVALID_FOREX_EXPIRY_TEXT_SEGMENT));
+            () -> ForexDecoder
+                    .validateAndDecodeSpecificAttributes(INVALID_FOREX_EXPIRY_TEXT_SEGMENT));
     }
 
     @Test
     void decodeSpecificAttributes_invalidEntryPrice_expectException() {
         assertThrows(InvalidEntryPriceSavedInFileError.class,
-                () -> ForexDecoder
-                        .validateAndDecodeSpecificAttributes(INVALID_FOREX_ENTRY_PRICE_TEXT_SEGMENT));
+            () -> ForexDecoder
+                    .validateAndDecodeSpecificAttributes(INVALID_FOREX_ENTRY_PRICE_TEXT_SEGMENT));
     }
 
     @Test
     void decodeSpecificAttributes_invalidExitPrice_expectException() {
         assertThrows(InvalidExitPriceSavedInFileError.class,
-                () -> ForexDecoder
-                        .validateAndDecodeSpecificAttributes(INVALID_FOREX_EXIT_PRICE_TEXT_SEGMENT));
+            () -> ForexDecoder
+                    .validateAndDecodeSpecificAttributes(INVALID_FOREX_EXIT_PRICE_TEXT_SEGMENT));
     }
 
     @Test
     void addSavedInstrumentToList_invalidType_expectException() {
         assertThrows(InvalidInstrumentInFileError.class,
-                () -> InstrumentDecoder
-                        .addSavedInstrumentToList(instrumentManager, INVALID_INSTRUMENT_TYPE_TEXT_SEGMENT));
+            () -> InstrumentDecoder
+                    .addSavedInstrumentToList(instrumentManager, INVALID_INSTRUMENT_TYPE_TEXT_SEGMENT));
     }
 }
