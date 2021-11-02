@@ -43,8 +43,9 @@ public class EditInstrumentParserTest extends GeneralInstrumentParserTest {
 
     HashMap<String,String> initialiseTestResources(String[] expectedKeys, String[] expectedValues) {
         HashMap<String, String> expectedResult = new HashMap<>();
+        assert(expectedKeys.length == expectedValues.length);
         for (int i = 0; i < expectedKeys.length; i++) {
-            expectedResult.put(expectedKeys[i],expectedValues[i]);
+            expectedResult.put(expectedKeys[i], expectedValues[i]);
         }
         return expectedResult;
     }

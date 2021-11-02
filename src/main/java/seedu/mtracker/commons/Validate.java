@@ -241,7 +241,7 @@ public class Validate {
         return true;
     }
 
-    public static boolean isParametersInputEmpty(String input) {
-        return input.isEmpty();
+    public static boolean isNonEmptyEditParameters(String input) {
+        return !input.isEmpty();
     }
 }

@@ -11,7 +11,7 @@ import seedu.mtracker.commands.ListCommand;
 import seedu.mtracker.commands.FindCommand;
 import seedu.mtracker.commons.Validate;
 import seedu.mtracker.commands.ViewCommand;
-import seedu.mtracker.error.EditEmptyParameter;
+import seedu.mtracker.error.EditEmptyParameterError;
 import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidCommandError;
 import seedu.mtracker.error.InvalidEmptyIndexError;
@@ -101,17 +101,17 @@ public class InputParser {
         return filteredAttributes;
     }
 
-    public HashSet<String> getParametersToEdit(HashSet<String> validAttributes) throws EditEmptyParameter {
+    public HashSet<String> getParametersToEdit(HashSet<String> validAttributes) throws EditEmptyParameterError {
         String parametersToEdit = getUserInput(EditInstrumentCommand.COMMAND_WORD);
-        if (Validate.isParametersInputEmpty(parametersToEdit)) {
-            throw new EditEmptyParameter();
+        if (!Validate.isNonEmptyEditParameters(parametersToEdit)) {
+            throw new EditEmptyParameterError();
         }
         String[] parameters = getCommandComponents(parametersToEdit);
         return filterInvalidParameters(parameters, validAttributes);
     }
 
     public EditInstrumentCommand getEditInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
-            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError, EditEmptyParameter {
+            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError, EditEmptyParameterError {
         getAndValidateIndexNumber(commandComponents, instruments);
         Instrument instrumentToEdit = instruments.get(instrumentNumber);
         TextUi.displayEditInstrumentFirstInstruction(instrumentToEdit);
