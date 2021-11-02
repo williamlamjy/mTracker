@@ -138,15 +138,6 @@ class InstrumentDecoderTest {
     }
 
     @Test
-    void checkNoOfParameters() {
-        String textFileFormattedInstrument = instrumentManager.getInstrument(0).textFileFormatting();
-        String combinedString = TEST_NAME + TEST_SENTIMENT + TEST_REMARK;
-        int lengthOfFormattedInstrument = combinedString.length() + NUMBER_OF_PARAMS + LENGTH_OF_DATE
-                + LENGTH_OF_PRICES + LENGTH_OF_DONE + LENGTH_OF_INSTRUMENT;
-        assertEquals(lengthOfFormattedInstrument, textFileFormattedInstrument.length());
-    }
-
-    @Test
     void decodeGeneralAttributes_invalidName_expectException() {
         assertThrows(InvalidNameSavedInFileError.class,
             () -> InstrumentDecoder
