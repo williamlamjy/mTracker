@@ -10,7 +10,7 @@ import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class EditInstrumentParserTest extends GeneralInstrumentParserTest{
+public class EditInstrumentParserTest extends GeneralInstrumentParserTest {
 
     public static final String USER_INPUT_EDIT_NAME_AND_REMARK = "TTTXXX" + SEPARATOR_SPECIFIER + "Test Remark";
     public static final String[] EXPECTED_KEYS_NAME_AND_REMARK = {"name", "remark"};
