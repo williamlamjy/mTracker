@@ -12,6 +12,7 @@ import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.ui.TextUi;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public abstract class AddInstrumentParser extends InputParser {
 
@@ -66,7 +67,7 @@ public abstract class AddInstrumentParser extends InputParser {
     public static void addSentimentToParameters() {
         String sentiment;
         do {
-            sentiment = getInstrumentSentimentFromUser();
+            sentiment = getInstrumentSentimentFromUser().toLowerCase();
         } while (!Validate.isValidSentiment(sentiment));
         parameters.add(sentiment);
         AssertParserHelper.assertInputNotEmpty(sentiment);
