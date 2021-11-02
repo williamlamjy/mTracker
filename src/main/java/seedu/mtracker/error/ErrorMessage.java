@@ -51,22 +51,22 @@ public abstract class ErrorMessage {
     }
 
     public static void displayEditNameError() {
-        System.out.println("Name entered is invalid. Ignoring edited Name value.");
+        System.out.println("Name entered is invalid. Please enter in a valid name.");
     }
 
     public static void displayEditPriceError() {
-        System.out.println("Price entered is invalid. Ignoring edited Price value.");
+        System.out.println("Price entered is invalid. Please enter in a valid Price value.");
     }
 
     public static void displayEditSentimentError() {
-        System.out.println("Sentiment entered is invalid. Ignoring edited Sentiments value.");
+        System.out.println("Sentiment entered is invalid. Please enter in a valid Sentiments value.");
     }
 
     public static void displayEditReturnError() {
-        System.out.println("Past Returns entered is invalid. Ignoring edited Past Returns value.");
+        System.out.println("Past Returns entered is invalid. Please enter in a valid name. Past Returns value.");
     }
 
     public static void displayEditExpiryError() {
-        System.out.println("Expiry entered is invalid. Ignoring edited Expiry value.");
+        System.out.println("Expiry entered is invalid. Please enter in a valid Expiry value.");
     }
 }

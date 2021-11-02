@@ -1,6 +1,5 @@
 package seedu.mtracker.commands;
 
-import seedu.mtracker.asserthelpers.AssertCommandHelpers;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -21,7 +20,11 @@ public class EditInstrumentCommand extends IndexedCommand {
         String instrumentBefore = instrumentToEdit.getAllParams();
         instrumentManager.editInstrument(index, editedParameters);
         String instrumentAfter = instrumentToEdit.getAllParams();
-        TextUi.displayEditBeforeAfter(instrumentBefore, instrumentAfter);
+        if (instrumentBefore.equals(instrumentAfter)) {
+            TextUi.displayEditNoChange();
+        } else {
+            TextUi.displayEditBeforeAfter(instrumentBefore, instrumentAfter);
+        }
         return COMMAND_WORD;
     }
 }

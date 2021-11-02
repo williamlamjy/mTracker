@@ -213,6 +213,10 @@ public class TextUi {
         System.out.println(LINE_DECORATOR);
     }
 
+    public static void displayEditNoChange() {
+        System.out.println("No changes to instrument was made.");
+    }
+
     public static void greetAtStartUp() {
         System.out.println(LINE_DECORATOR);
         System.out.println(LOGO);
