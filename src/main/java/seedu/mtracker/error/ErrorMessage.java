@@ -44,19 +44,20 @@ public abstract class ErrorMessage {
     public static final String REMARKS_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting "
             + "of the remarks entry in the file";
     public static final String EXPIRY_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting "
-            + "of the expiry entry in the file." + System.lineSeparator() + "Please check that it is of YYYY-MM-DD format.";
-    public static final String ENTRY_PRICE_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting"
-            + " of the entry price entry in the file.";
-    public static final String CURR_PRICE_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting"
-            + " of the current price entry in the file.";
-    public static final String SENTIMENT_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting"
-            + " of the sentiment entry in the file.";
-    public static final String NAME_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting"
-            + " of the name entry in the file.";
-    public static final String EXIT_PRICE_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting"
-            + " of the exit price entry in the file.";
-    public static final String PAST_RETURNS_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting"
-            + " of the past returns entry in the file.";
+            + "of the expiry entry in the file." + System.lineSeparator() + "Please check that it is of YYYY-MM-DD "
+            + "format.";
+    public static final String ENTRY_PRICE_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the "
+            + "formatting of the entry price entry in the file.";
+    public static final String CURR_PRICE_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the "
+            + "formatting of the current price entry in the file.";
+    public static final String SENTIMENT_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the "
+            + "formatting of the sentiment entry in the file.";
+    public static final String NAME_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting "
+            + "of the name entry in the file.";
+    public static final String EXIT_PRICE_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the "
+            + "formatting of the exit price entry in the file.";
+    public static final String PAST_RETURNS_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the "
+            + "formatting of the past returns entry in the file.";
     public static final String EMPTY_ENTRY_PRICE_IN_FILE_ERROR = "Oh no! Looks like the entry price entry in the file"
             + " is empty.";
     public static final String EMPTY_EXIT_PRICE_IN_FILE_ERROR = "Oh no! Looks like the exit price entry in the file"
