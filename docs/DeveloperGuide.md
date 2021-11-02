@@ -51,7 +51,7 @@ The main parent class in `console` package is the `InputParser` class which is d
 The figure below represents the class diagram of how all the parser classes interact with classes outside the `console`
 package:
 
-<img src="images/ConsoleDiagram.png" width="900"/>
+<img src="images/ConsoleDiagram.png" width="1040"/>
 
 How the `InputParser` class works:
 1. When the user enters a command along with the relevant parameters if any, the
