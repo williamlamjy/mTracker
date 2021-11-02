@@ -1,9 +1,11 @@
 package seedu.mtracker.filemanager;
 
 import seedu.mtracker.commons.Validate;
+import seedu.mtracker.error.FileLoadError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.model.subinstrument.Etf;
+import seedu.mtracker.ui.TextUi;
 
 public class EtfDecoder extends InstrumentDecoder {
 
@@ -13,15 +15,21 @@ public class EtfDecoder extends InstrumentDecoder {
     protected static String decodedRemarks;
 
     public static boolean isValidPastReturns(String[] textSegment) {
-        if(Validate.isValidPastReturns(textSegment[PAST_RETURNS_INDEX])) {
-            return true;
-        }
-        return false;
+        return Validate.isValidPastReturns(textSegment[PAST_RETURNS_INDEX]);
     }
 
-    public static void validateAndDecodeSpecificAttributes(String[] textSegment) {
-        if(isValidPastReturns(textSegment)) {
+    public static void validateAndDecodeSpecificAttributes(String[] textSegment) throws FileLoadError {
+        if (isValidPastReturns(textSegment)) {
             decodeSpecificAttributes(textSegment);
+        }
+        throw new FileLoadError();
+    }
+
+    public static void tryValidateAndDecodeSpecificAttributes(String[] textSegment) {
+        try {
+            validateAndDecodeSpecificAttributes(textSegment);
+        } catch (Exception e) {
+            TextUi.showErrorMessage(e);
         }
     }
 
@@ -31,8 +39,8 @@ public class EtfDecoder extends InstrumentDecoder {
     }
 
     public static void addEtfToList(String[] textSegment, InstrumentManager instrumentManager) {
-        validateAndDecodeGeneralAttributes(textSegment);
-        validateAndDecodeSpecificAttributes(textSegment);
+        tryValidateAndDecodeGeneralAttributes(textSegment);
+        tryValidateAndDecodeSpecificAttributes(textSegment);
         Instrument etf = createDecodedInstrument();
         setDoneStatus(decodedIsDone, etf);
         instrumentManager.addInstrument(etf);

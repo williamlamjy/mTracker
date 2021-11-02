@@ -1,6 +1,7 @@
 package seedu.mtracker.filemanager;
 
 import seedu.mtracker.commons.Validate;
+import seedu.mtracker.error.FileLoadError;
 import seedu.mtracker.error.InvalidInstrumentInFileError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
@@ -29,33 +30,33 @@ public class InstrumentDecoder {
     public static boolean decodedIsDone;
 
     protected static final int ASCII_CODE = 127;
-    protected static final char FILE_SEPARATOR = (char)ASCII_CODE;
+    protected static final char FILE_SEPARATOR = (char) ASCII_CODE;
 
 
     public static boolean isValidPrice(String[] textSegment) {
-        if(Validate.isValidPrice(textSegment[CURR_PRICE_INDEX])) {
-            return true;
-        }
-        return false;
+        return Validate.isValidPrice(textSegment[CURR_PRICE_INDEX]);
     }
 
     public static boolean isValidSentiment(String[] textSegment) {
-        if(Validate.isValidSentiment(textSegment[SENTIMENT_INDEX])) {
-            return true;
-        }
-        return false;
+        return Validate.isValidSentiment(textSegment[SENTIMENT_INDEX]);
     }
 
     public static boolean isValidName(String[] textSegment) {
-        if(Validate.isValidName(textSegment[NAME_INDEX], textSegment[TYPE_INDEX])){
-            return true;
-        }
-        return false;
+        return Validate.isValidName(textSegment[NAME_INDEX], textSegment[TYPE_INDEX]);
     }
 
-    public static void validateAndDecodeGeneralAttributes(String[] textSegment) {
-        if(isValidGeneralAttributes(textSegment)) {
+    public static void validateAndDecodeGeneralAttributes(String[] textSegment) throws FileLoadError {
+        if (isValidGeneralAttributes(textSegment)) {
             decodeGeneralAttributes(textSegment);
+        }
+        throw new FileLoadError();
+    }
+
+    public static void tryValidateAndDecodeGeneralAttributes(String[] textSegment) {
+        try {
+            validateAndDecodeGeneralAttributes(textSegment);
+        } catch (Exception e) {
+            TextUi.showErrorMessage(e);
         }
     }
 
@@ -64,10 +65,10 @@ public class InstrumentDecoder {
     }
 
     public static void decodeGeneralAttributes(String[] textSegment) {
-            decodedName = textSegment[NAME_INDEX];
-            decodedSentiment = textSegment[SENTIMENT_INDEX];
-            decodedCurrPrice = Double.parseDouble(textSegment[CURR_PRICE_INDEX]);
-            decodedIsDone = Boolean.parseBoolean(textSegment[IS_DONE_INDEX]);
+        decodedName = textSegment[NAME_INDEX];
+        decodedSentiment = textSegment[SENTIMENT_INDEX];
+        decodedCurrPrice = Double.parseDouble(textSegment[CURR_PRICE_INDEX]);
+        decodedIsDone = Boolean.parseBoolean(textSegment[IS_DONE_INDEX]);
     }
 
     public static void setDoneStatus(boolean isDone, Instrument doneInstrument) {
@@ -89,9 +90,7 @@ public class InstrumentDecoder {
                 });
     }
 
-
-
-    private static void addSavedInstrumentToList(InstrumentManager instrumentManager, String[] textSegment)
+    public static void addSavedInstrumentToList(InstrumentManager instrumentManager, String[] textSegment)
             throws InvalidInstrumentInFileError {
         switch (textSegment[TYPE_INDEX]) {
         case TYPE_CRYPTO:

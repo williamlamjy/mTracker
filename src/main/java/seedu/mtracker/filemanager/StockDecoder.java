@@ -14,7 +14,7 @@ public class StockDecoder extends InstrumentDecoder {
     }
 
     public static void addStockToList(String[] textSegment, InstrumentManager instrumentManager) {
-        validateAndDecodeGeneralAttributes(textSegment);
+        tryValidateAndDecodeGeneralAttributes(textSegment);
         decodeSpecificAttributes(textSegment);
         Instrument stock = createDecodedInstrument();
         setDoneStatus(decodedIsDone, stock);

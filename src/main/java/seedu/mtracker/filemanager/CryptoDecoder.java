@@ -1,9 +1,11 @@
 package seedu.mtracker.filemanager;
 
 import seedu.mtracker.commons.Validate;
+import seedu.mtracker.error.FileLoadError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.model.subinstrument.Crypto;
+import seedu.mtracker.ui.TextUi;
 
 import java.time.LocalDate;
 
@@ -15,15 +17,21 @@ public class CryptoDecoder extends InstrumentDecoder {
     protected static String decodedRemarks;
 
     public static boolean isValidExpiry(String[] textSegment) {
-        if(Validate.isValidExpiry(textSegment[CRYPTO_EXPIRY_INDEX])) {
-            return true;
-        }
-        return false;
+        return Validate.isValidExpiry(textSegment[CRYPTO_EXPIRY_INDEX]);
     }
 
-    public static void validateAndDecodeSpecificAttributes(String[] textSegment) {
-        if(isValidExpiry(textSegment)) {
+    public static void validateAndDecodeSpecificAttributes(String[] textSegment) throws FileLoadError {
+        if (isValidExpiry(textSegment)) {
             decodeSpecificAttributes(textSegment);
+        }
+        throw new FileLoadError();
+    }
+
+    public static void tryValidateAndDecodeSpecificAttributes(String[] textSegment) {
+        try {
+            validateAndDecodeSpecificAttributes(textSegment);
+        } catch (Exception e) {
+            TextUi.showErrorMessage(e);
         }
     }
 
@@ -33,8 +41,8 @@ public class CryptoDecoder extends InstrumentDecoder {
     }
 
     public static void addCryptoToList(String[] textSegment, InstrumentManager instrumentManager) {
-        validateAndDecodeGeneralAttributes(textSegment);
-        validateAndDecodeSpecificAttributes(textSegment);
+        tryValidateAndDecodeGeneralAttributes(textSegment);
+        tryValidateAndDecodeSpecificAttributes(textSegment);
         Instrument crypto = createDecodedInstrument();
         setDoneStatus(decodedIsDone, crypto);
         instrumentManager.addInstrument(crypto);
