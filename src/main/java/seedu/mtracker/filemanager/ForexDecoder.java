@@ -21,8 +21,8 @@ public class ForexDecoder extends InstrumentDecoder {
     protected static String decodedRemarks;
 
     public static boolean isValidEntryAndExitPrice(String[] textSegment) {
-        return Validate.isValidPrice(textSegment[ENTRY_PRICE_INDEX]) &&
-                Validate.isValidPrice(textSegment[EXIT_PRICE_INDEX]);
+        return Validate.isValidPrice(textSegment[ENTRY_PRICE_INDEX])
+                && Validate.isValidPrice(textSegment[EXIT_PRICE_INDEX]);
     }
 
     public static boolean isValidExpiry(String[] textSegment) {
