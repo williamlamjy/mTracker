@@ -90,11 +90,7 @@ is needed to filter out all the other parameters that are irrelevant to the inst
  
 In addition, the current design is able to parse multiple input parameters and display the relevant instructions to
 users in editing those parameters for a particular instrument. This allows the user to edit multiple parameters of a
-instrument at once which increases its user-friendliness. 
-
-
-
-
+instrument at once which increases its user-friendliness.
 
 ### Model Component
 
@@ -148,15 +144,20 @@ the user.
 
 The Command component contains all the commands classes, where its respective class is instantiated when a valid command is entered by the user. 
 
-Commands include:
+Some of the key command classes include:
 ```
 1) AddCrytoCommand
 2) AddEtfCommand
 3) AddForexCommand
 3) AddStockCommand
-4) ExitCommand
-5) InvalidCommand
+4) DeleteCommand
+5) DoneCommand
+6) EditInstrumentCommand
+7) FindCommand
 6) ListCommand
+7) ViewCommand
+8) InvalidCommand
+9) ExitCommand
 ```
 This figure below shows the class diagram of all the commands classes:
 <>
@@ -171,7 +172,9 @@ Command component:
 * The command classes are dependent on the `TextUi` class. This allows the command class to display its execution results to the user.
 
 
-The figure below represents the sequence diagram when the user executes a done command:
+The figure below represents the sequence diagram when the user executes a done command. In this scenario the user
+gave the command "done 1". Here "done" is the command keyword and "1" represents the current position of the instrument 
+in the list of instruments:
 
 <img src="images/DoneCryptoSequenceDiagram.png" width="1040"/>
 
