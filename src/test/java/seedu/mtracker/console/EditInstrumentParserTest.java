@@ -13,9 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class EditInstrumentParserTest extends GeneralInstrumentParserTest {
 
     public static final String USER_INPUT_EDIT_NAME_AND_REMARK = "TTTXXX" + SEPARATOR_SPECIFIER + "Test Remark";
-    public static final String[] EXPECTED_KEYS_NAME_AND_REMARK = {"name", "remark"};
+    public static final String[] EXPECTED_KEYS_NAME_AND_REMARK = {"name", "remarks"};
     public static final String[] EXPECTED_OUTPUT_NAME_AND_REMARK = {"TTTXXX", "Test Remark"};
-    public static final HashSet<String> PARAM_INPUT_NAME_AND_REMARK = new HashSet<>(Arrays.asList("name", "remark"));
+    public static final HashSet<String> PARAM_INPUT_NAME_AND_REMARK = new HashSet<>(Arrays.asList("name", "remarks"));
 
     public static final String USER_INPUT_EDIT_CURRENT_PRICE_AND_SENTIMENT = "100" + SEPARATOR_SPECIFIER + "neutral";
     public static final String[] EXPECTED_KEYS_CURRENT_PRICE_AND_SENTIMENT = {"current-price", "sentiment"};
