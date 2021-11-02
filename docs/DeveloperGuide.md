@@ -199,10 +199,10 @@ prompt to get user to provide information for that attribute. This is done throu
 the `TextUi` class.
 
 ### Loading pre-existing data
-The loading of pre-existing data is mainly handled by the `filemanager` and `model` components. The main method calls `loadFileData(instrumentManager)` 
-in the `Storage` class which implements `InstrumentDecoder#readFile(instrumentManager, fileData)`. This method calls 
-`addSavedInstrumentToList(instrumentManager, textSegment)` for each pre-existing instrument which will add the corresponding 
-instrument in the `InstrumentManager` through calling the `addXYZToList` method in the XYZDecoder classes. In the event
+The loading of pre-existing data is mainly handled by the `filemanager` and `model` components. The main method calls 
+`Storage#loadFileData(instrumentManager)` which uses `InstrumentDecoder#readFile(instrumentManager, fileData)`. This method calls 
+`InstrumentDecoder#addSavedInstrumentToList(instrumentManager, textSegment)` for each pre-existing instrument which will add the 
+corresponding instrument in the `InstrumentManager` through calling the `XYZDecoder#addXYZToList`. In the event
 the instrument is not one of the 4 types of instruments, the `InstrumentDecoder` will throw a new `InvalidInstrumentInFileError`
 and display the corresponding error message.
 
@@ -210,7 +210,9 @@ The figures below represents the sequence diagrams when the user loads a pre-exi
 
 <img src="images/FileManagerSeqBetweenStorageAndDecoder.png" width="800"/>
 
-<img src="images/FileManagerSequenceDiagram.png" width="1040" height="800"/>
+More details about the reference frame for decoding and updating the `InstrumentManager` is shown below:
+
+<img src="images/FileManagerSequenceDiagram.png" width="1040" height="600"/>
 
 More details about the reference frame for adding the decoded instrument into the `InstrumentManager` is shown below:
 
@@ -218,17 +220,17 @@ More details about the reference frame for adding the decoded instrument into th
 
 The process for loading other pre-existing instruments follow a similar process to the sequence above. The main difference
 would be the type of instrument decoder called, the different instrument specific decoded parameters and the type of instrument
-added to the `InstrumentManager`. For example when loading a stock instead of calling `addCryptoToList(textSegment, instrumentManager`
-it will call `addStockToList(textSegement, instrumentManager)`.
+added to the `InstrumentManager`. For example when loading a stock instead of calling `CryptoDecoder#addCryptoToList(textSegment, instrumentManager`
+it will call `StockDecoder#addStockToList(textSegement, instrumentManager)`.
 
 If loading the file data has any error, it will throw the corresponding file error. This file error will display the
 appropriate message through the `TextUi` class.
 
 ### Storing current data
 The storing of current data is mainly handled by the `filemanager` and `model` components. The main method calls
-the `updateFileData(instruments)` in the Storage class which implements the `writeFile(instruments, writeToFile)` method
-in the `InstrumentEncoder`. This method calls the `textFileFormatting()` method in the Instrument class for every instrument
-that is being stored. The formatted instrument details are then written to the `MTracker` text file.
+the `Storage#updateFileData(instruments)` which implements the `InstrumentEncoder#writeFile(instruments, writeToFile)` method. 
+This method calls the `Instrument#textFileFormatting()` method for every instrument that is being stored. The formatted 
+instrument details are then written to the `MTracker` text file.
 
 The figure below represents the sequence diagram when the user stores current data:
 <img src="images/FileManagerEncodingSequenceDiag.png" width="700"/>

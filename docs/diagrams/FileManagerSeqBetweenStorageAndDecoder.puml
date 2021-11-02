@@ -31,6 +31,14 @@ else
 
     Storage-> InstrumentDecoder: readFile(instrumentManager, fileData)
     activate InstrumentDecoder
+
+    ref over InstrumentDecoder
+
+    Decodes the text file and
+    updates InstrumentManager
+
+    end ref
+
     InstrumentDecoder--> Storage
     deactivate InstrumentDecoder
     end

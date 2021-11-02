@@ -2,6 +2,7 @@
 'https://plantuml.com/sequence-diagram
 !include Styles.puml
 
+group sd Decodes the text file and updates InstrumentManager
 box filemanager COLOR_STORAGE_SEGMENT
 participant ":InstrumentDecoder" as InstrumentDecoder COLOR_STORAGE
 participant ":CryptoDecoder" as CryptoDecoder COLOR_STORAGE
@@ -17,7 +18,7 @@ participant ":InvalidInstrumentInFileError" as InvalidInstrumentInFileError COLO
 end box
 
 
-    [-> InstrumentDecoder: readFile(instrumentManager, fileData)
+
     activate InstrumentDecoder
 
         loop each line in the file
@@ -64,7 +65,8 @@ end box
 
                     end
 
-                    [<--InstrumentDecoder
+                    end
                     deactivate InstrumentDecoder
+
 
 @enduml
