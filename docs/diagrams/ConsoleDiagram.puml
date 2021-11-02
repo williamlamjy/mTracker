@@ -33,7 +33,7 @@ Class IndexedCommand COLOR_COMMANDS
 Class TextUi COLOR_UI
 Class "{abstract}\nInstrument" as Instrument COLOR_MODEL
 
-main -down[COLOR_MAIN]-> InputParser
+main -down[COLOR_MAIN]->"1" InputParser
 AddInstrumentParser -up[COLOR_CONSOLE]-|> InputParser
 AddXYZParser -up[COLOR_CONSOLE]-|> AddInstrumentParser
 
