@@ -34,8 +34,8 @@ class InstrumentDecoderTest {
     public static final String FUTURE_DATE_STRING = "2021-12-02";
     public static final String FUTURE_INVALID_DATE_STRING = "2 November";
     public static final String TEST_REMARK = "";
-    public static final Instrument TEST_FOREX = new Forex(TEST_NAME, TEST_PRICE, TEST_SENTIMENT
-            , TEST_ENTRY_PRICE, TEST_EXIT_PRICE, FUTURE_DATE, TEST_REMARK);
+    public static final Instrument TEST_FOREX = new Forex(TEST_NAME, TEST_PRICE, TEST_SENTIMENT,
+            TEST_ENTRY_PRICE, TEST_EXIT_PRICE, FUTURE_DATE, TEST_REMARK);
 
     public static final int NUMBER_OF_PARAMS = 8;
     public static final int LENGTH_OF_DATE = 10;
