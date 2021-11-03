@@ -53,8 +53,8 @@ public class EditInstrumentParser extends InputParser {
         }
         String inputSentiment;
         do {
-        TextUi.displayEditSentiment();
-        inputSentiment = getUserInput(WORKSPACE);
+            TextUi.displayEditSentiment();
+            inputSentiment = getUserInput(WORKSPACE);
         } while (!Validate.isValidSentiment(inputSentiment));
         editedParameters.put(SENTIMENT_ATTRIBUTE, inputSentiment);
     }
@@ -72,20 +72,11 @@ public class EditInstrumentParser extends InputParser {
         if (!parametersGiven.contains(RETURN_ATTRIBUTE)) {
             return;
         }
-<<<<<<< HEAD
         String inputReturn;
         do {
             TextUi.displayEditReturn();
             inputReturn = getUserInput(WORKSPACE);
-        } while (!Validate.isValidPastReturn(inputReturn));
-=======
-        TextUi.displayEditReturn();
-        String inputReturn = getUserInput(WORKSPACE);
-        if (!Validate.isValidPastReturns(inputReturn)) {
-            ErrorMessage.displayEditReturnError();
-            return;
-        }
->>>>>>> master
+        } while (!Validate.isValidPastReturns(inputReturn));
         editedParameters.put(RETURN_ATTRIBUTE, inputReturn);
     }
 

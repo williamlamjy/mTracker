@@ -40,10 +40,6 @@ public abstract class ErrorMessage {
     public static final String FILE_LOAD_ERROR = "Oh no! There seems to be an error loading this file";
     public static final String FILE_TAMPERED_ERROR = "Oh no! Looks like file has been tampered, aborting load file";
 
-<<<<<<< HEAD
-    public static final String EDIT_EMPTY_ERROR = "Edit parameters cannot be empty, aborting edit process.";
-    public static final String INVALID_EDIT_STATUS = "Sorry status must not be empty and either y/n for done or not done.";
-=======
     public static final String EMPTY_EXPIRY_IN_FILE_ERROR = "Oh no! Looks like the expiry entry in the file is empty!";
     public static final String REMARKS_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting "
             + "of the remarks entry in the file";
@@ -74,7 +70,9 @@ public abstract class ErrorMessage {
             + " is empty.";
     public static final String EMPTY_CURR_PRICE_IN_FILE_ERROR = "Oh no! Looks like the curr price entry in the file"
             + " is empty.";
->>>>>>> master
+
+    public static final String EDIT_EMPTY_ERROR = "Edit parameters cannot be empty, aborting edit process.";
+    public static final String INVALID_EDIT_STATUS = "Sorry status must not be empty and either y/n for done or not done.";
 
     public static String addInstrumentNameError(String instrumentType) {
         return "Sorry " + instrumentType + " cannot have an empty name!";
