@@ -1,7 +1,6 @@
 package seedu.mtracker.console;
 
 import seedu.mtracker.commands.AddForexCommand;
-import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commons.Validate;
 import seedu.mtracker.error.OperationAbortedError;
 import seedu.mtracker.ui.TextUi;
@@ -77,7 +76,7 @@ public class AddForexParser extends AddInstrumentParser {
     }
 
     @Override
-    public AddInstrumentCommand getInstrumentParameters() throws OperationAbortedError {
+    public AddForexCommand getInstrumentParameters() throws OperationAbortedError {
         getGeneralParameters(INSTRUMENT_TYPE);
         getForexSpecificParameters();
         AssertParserHelper.assertNoMissingForexParameters(parameters);
