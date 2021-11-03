@@ -5,6 +5,9 @@ import seedu.mtracker.error.OperationAbortedError;
 
 import java.time.LocalDate;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+// @@KVignesh122
 class AddForexParserTest extends AddInstrumentParserTest {
 
     public static final int PARAMETER_SIZE = 7;
@@ -39,6 +42,14 @@ class AddForexParserTest extends AddInstrumentParserTest {
             + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + " ";
 
+    public static final String USER_INPUT_TRY_ABORT_AT_REMARKS = "TTTXXX"
+            + SEPARATOR_SPECIFIER + "1.11"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER + "1.15"
+            + SEPARATOR_SPECIFIER + "1.30"
+            + SEPARATOR_SPECIFIER + FUTURE_DATE
+            + SEPARATOR_SPECIFIER + ABORT;
+
     public static final String USER_INPUT_WITH_REMARKS = "TTTXXX"
             + SEPARATOR_SPECIFIER + "0.81"
             + SEPARATOR_SPECIFIER + "negative"
@@ -56,6 +67,9 @@ class AddForexParserTest extends AddInstrumentParserTest {
             + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + " ";
 
+    public static final String USER_INPUT_TRY_ABORT_AT_NAME = SEPARATOR_SPECIFIER.repeat(2) + DONT_ABORT
+            + SEPARATOR_SPECIFIER + ABORT;
+
     public static final String USER_INPUT_TRY_INVALID_PRICE = SEPARATOR_SPECIFIER + "TTTXXX"
             + SEPARATOR_SPECIFIER + "lol"
             + SEPARATOR_SPECIFIER + "0.81"
@@ -66,6 +80,11 @@ class AddForexParserTest extends AddInstrumentParserTest {
             + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
+    public static final String USER_INPUT_TRY_ABORT_AT_CURRENT_PRICE = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "lol"
+            + SEPARATOR_SPECIFIER + DONT_ABORT
+            + SEPARATOR_SPECIFIER + ABORT;
+
     public static final String USER_INPUT_TRY_INVALID_SENTIMENT = SEPARATOR_SPECIFIER + "TTTXXX"
             + SEPARATOR_SPECIFIER + "0.81"
             + SEPARATOR_SPECIFIER + "foobar"
@@ -74,6 +93,35 @@ class AddForexParserTest extends AddInstrumentParserTest {
             + SEPARATOR_SPECIFIER + "0.70"
             + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + "fooRemarks";
+
+    public static final String USER_INPUT_TRY_ABORT_AT_SENTIMENT = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "0.81"
+            + SEPARATOR_SPECIFIER + DONT_ABORT
+            + SEPARATOR_SPECIFIER.repeat(2) + ABORT;
+
+    public static final String USER_INPUT_TRY_ABORT_AT_ENTRY_PRICE = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "lol"
+            + SEPARATOR_SPECIFIER + "0.81"
+            + SEPARATOR_SPECIFIER + "negative"
+            + SEPARATOR_SPECIFIER + DONT_ABORT
+            + SEPARATOR_SPECIFIER + ABORT;
+
+    public static final String USER_INPUT_TRY_ABORT_AT_EXIT_PRICE = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "lol"
+            + SEPARATOR_SPECIFIER + "0.81"
+            + SEPARATOR_SPECIFIER + "negative"
+            + SEPARATOR_SPECIFIER + "0.81"
+            + SEPARATOR_SPECIFIER + DONT_ABORT
+            + SEPARATOR_SPECIFIER + ABORT;
+
+    public static final String USER_INPUT_TRY_ABORT_AT_EXPIRY = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "0.81"
+            + SEPARATOR_SPECIFIER + "foobar"
+            + SEPARATOR_SPECIFIER.repeat(2) + "negative"
+            + SEPARATOR_SPECIFIER + "0.79"
+            + SEPARATOR_SPECIFIER + "0.70"
+            + SEPARATOR_SPECIFIER + DONT_ABORT
+            + SEPARATOR_SPECIFIER + ABORT;
 
     void testForexParameters(String input, String[] expectedForexParameters) throws OperationAbortedError {
         simulateConsoleInput(input);
@@ -109,5 +157,48 @@ class AddForexParserTest extends AddInstrumentParserTest {
     @Test
     void addForexParams_tryInvalidSentimentMultipleTimes_expectSuccess() throws OperationAbortedError {
         testForexParameters(USER_INPUT_TRY_INVALID_SENTIMENT, EXPECTED_PARAMS_WITH_REMARKS);
+    }
+
+    // @@KVignesh122
+    @Test
+    void addForexParams_abortAtName_expectException() {
+        assertThrows(OperationAbortedError.class,
+                () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_NAME, EXPECTED_PARAMS_NO_REMARKS));
+    }
+
+    @Test
+    void addForexParams_abortAtCurrentPrice_expectException() {
+        assertThrows(OperationAbortedError.class,
+                () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_CURRENT_PRICE, EXPECTED_PARAMS_NO_REMARKS));
+    }
+
+    @Test
+    void addForexParams_abortAtSentiment_expectException() {
+        assertThrows(OperationAbortedError.class,
+                () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_SENTIMENT, EXPECTED_PARAMS_NO_REMARKS));
+    }
+
+    @Test
+    void addForexParams_abortAtExpiry_expectException() {
+        assertThrows(OperationAbortedError.class,
+                () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_EXPIRY, EXPECTED_PARAMS_NO_REMARKS));
+    }
+
+    @Test
+    void addForexParams_abortAtRemark_expectException() {
+        assertThrows(OperationAbortedError.class,
+                () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_REMARKS, EXPECTED_PARAMS_NO_REMARKS));
+    }
+
+    @Test
+    void addForexParams_abortAtEntryPrice_expectException() {
+        assertThrows(OperationAbortedError.class,
+                () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_ENTRY_PRICE, EXPECTED_PARAMS_NO_REMARKS));
+    }
+
+    @Test
+    void addForexParams_abortAtExitPrice_expectException() {
+        assertThrows(OperationAbortedError.class,
+                () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_EXIT_PRICE, EXPECTED_PARAMS_NO_REMARKS));
     }
 }

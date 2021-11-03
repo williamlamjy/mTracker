@@ -30,8 +30,9 @@ public class AddForexParser extends AddInstrumentParser {
         return getUserInput(WORKSPACE);
     }
 
-    public void addForexRemarksToParameter() {
+    public void addForexRemarksToParameter() throws OperationAbortedError {
         String remarks = getForexRemarksFromUser();
+        checkIfAbort(remarks, WORKSPACE);
         parameters.add(remarks);
     }
 

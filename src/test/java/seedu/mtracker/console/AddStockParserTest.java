@@ -3,6 +3,8 @@ package seedu.mtracker.console;
 import org.junit.jupiter.api.Test;
 import seedu.mtracker.error.OperationAbortedError;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 class AddStockParserTest extends AddInstrumentParserTest {
     public static final int PARAMETER_SIZE = 4;
 
@@ -15,6 +17,7 @@ class AddStockParserTest extends AddInstrumentParserTest {
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + "fooRemarks";
+
 
     public static final String[] EXPECTED_PARAMS_NO_REMARKS = {
         "TTTXXX",
@@ -30,14 +33,15 @@ class AddStockParserTest extends AddInstrumentParserTest {
         "fooRemarks"
     };
 
-    public static final String USER_INPUT_TRY_INVALID_NAME = SEPARATOR_SPECIFIER.repeat(2) + "TTTXXX"
+    public static final String USER_INPUT_TRY_INVALID_NAME = SEPARATOR_SPECIFIER.repeat(2) + " "
+            + SEPARATOR_SPECIFIER + "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + " ";
 
-
     public static final String USER_INPUT_TRY_INVALID_PRICE = SEPARATOR_SPECIFIER + "TTTXXX"
             + SEPARATOR_SPECIFIER + "2sd3.4"
+            + SEPARATOR_SPECIFIER + DONT_ABORT
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + "fooRemarks";
@@ -45,8 +49,26 @@ class AddStockParserTest extends AddInstrumentParserTest {
     public static final String USER_INPUT_TRY_INVALID_SENTIMENT = SEPARATOR_SPECIFIER + "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "foobar"
-            + SEPARATOR_SPECIFIER.repeat(2) + "positive"
+            + SEPARATOR_SPECIFIER.repeat(2) + DONT_ABORT
+            + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + "fooRemarks";
+
+    public static final String USER_INPUT_TRY_ABORT_AT_NAME = ABORT;
+
+    public static final String USER_INPUT_TRY_ABORT_AT_PRICE = "TTTXXX"
+            + SEPARATOR_SPECIFIER + DONT_ABORT
+            + SEPARATOR_SPECIFIER + ABORT;
+
+    public static final String USER_INPUT_TRY_ABORT_AT_SENTIMENT = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "foobar"
+            + SEPARATOR_SPECIFIER.repeat(2) + DONT_ABORT
+            + SEPARATOR_SPECIFIER + ABORT;
+
+    public static final String USER_INPUT_TRY_ABORT_AT_REMARK = "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER + ABORT;
 
     void testStockParameters(String input, String[] expectedStockParameters) throws OperationAbortedError {
         simulateConsoleInput(input);
@@ -82,5 +104,30 @@ class AddStockParserTest extends AddInstrumentParserTest {
     @Test
     void addStockParams_tryInvalidSentimentMultipleTimes_expectSuccess() throws OperationAbortedError {
         testStockParameters(USER_INPUT_TRY_INVALID_SENTIMENT, EXPECTED_PARAMS_WITH_REMARKS);
+    }
+
+    // @@KVignesh122
+    @Test
+    void addStockParams_abortAtName_expectException() {
+        assertThrows(OperationAbortedError.class,
+                () -> testStockParameters(USER_INPUT_TRY_ABORT_AT_NAME, EXPECTED_PARAMS_NO_REMARKS));
+    }
+
+    @Test
+    void addStockParams_abortAtPrice_expectException() {
+        assertThrows(OperationAbortedError.class,
+                () -> testStockParameters(USER_INPUT_TRY_ABORT_AT_PRICE, EXPECTED_PARAMS_NO_REMARKS));
+    }
+
+    @Test
+    void addStockParams_abortAtSentiment_expectException() {
+        assertThrows(OperationAbortedError.class,
+                () -> testStockParameters(USER_INPUT_TRY_ABORT_AT_SENTIMENT, EXPECTED_PARAMS_NO_REMARKS));
+    }
+
+    @Test
+    void addStockParams_abortAtRemark_expectException() {
+        assertThrows(OperationAbortedError.class,
+                () -> testStockParameters(USER_INPUT_TRY_ABORT_AT_REMARK, EXPECTED_PARAMS_NO_REMARKS));
     }
 }

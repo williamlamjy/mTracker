@@ -9,6 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public abstract class AddInstrumentParserTest {
     public static final String SEPARATOR_SPECIFIER = "%1$s";
 
+    public static final String ABORT = "abort";
+    public static final String DONT_ABORT = "don't abort";
+
     String formatConsoleInput(String input) {
         return String.format(input, System.lineSeparator());
     }

@@ -5,6 +5,8 @@ import seedu.mtracker.error.OperationAbortedError;
 
 import java.time.LocalDate;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 class AddCryptoParserTest extends AddInstrumentParserTest {
     public static final int PARAMETER_SIZE = 5;
     public static final int DAYS_DIFFERENCE = 1;
@@ -47,6 +49,7 @@ class AddCryptoParserTest extends AddInstrumentParserTest {
 
     public static final String USER_INPUT_TRY_INVALID_PRICE = SEPARATOR_SPECIFIER + "TTTXXX"
             + SEPARATOR_SPECIFIER + "2sd3.4"
+            + SEPARATOR_SPECIFIER + DONT_ABORT
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + FUTURE_DATE
@@ -55,6 +58,7 @@ class AddCryptoParserTest extends AddInstrumentParserTest {
     public static final String USER_INPUT_TRY_INVALID_SENTIMENT = SEPARATOR_SPECIFIER + "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "foobar"
+            + SEPARATOR_SPECIFIER + DONT_ABORT
             + SEPARATOR_SPECIFIER.repeat(2) + "positive"
             + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + "fooRemarks";
@@ -64,6 +68,32 @@ class AddCryptoParserTest extends AddInstrumentParserTest {
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER.repeat(2) + FUTURE_DATE
             + SEPARATOR_SPECIFIER + "fooRemarks";
+
+    // @@KVignesh122
+    public static final String USER_INPUT_TRY_ABORT_AT_REMARKS = "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER + FUTURE_DATE
+            + SEPARATOR_SPECIFIER + ABORT;
+
+    public static final String USER_INPUT_TRY_ABORT_AT_NAME = SEPARATOR_SPECIFIER + ABORT;
+
+    public static final String USER_INPUT_TRY_ABORT_AT_PRICE = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "2sd3.4"
+            + SEPARATOR_SPECIFIER + DONT_ABORT
+            + SEPARATOR_SPECIFIER + ABORT;
+
+    public static final String USER_INPUT_TRY_ABORT_AT_SENTIMENT = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "foobar"
+            + SEPARATOR_SPECIFIER + DONT_ABORT
+            + SEPARATOR_SPECIFIER.repeat(2) + ABORT;
+
+    public static final String USER_INPUT_TRY_ABORT_AT_EXPIRY = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER + DONT_ABORT
+            + SEPARATOR_SPECIFIER.repeat(2) + ABORT;
 
     void testCryptoParameters(String input, String[] expectedParameters) throws OperationAbortedError {
         simulateConsoleInput(input);
@@ -110,4 +140,34 @@ class AddCryptoParserTest extends AddInstrumentParserTest {
                 EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY);
     }
 
+    // @@KVignesh122
+    @Test
+    void addCryptoParams_abortAtName_expectException() {
+        assertThrows(OperationAbortedError.class,
+                () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_NAME, EXPECTED_PARAMS_NO_REMARKS));
+    }
+
+    @Test
+    void addCryptoParams_abortAtPrice_expectException() {
+        assertThrows(OperationAbortedError.class,
+                () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_PRICE, EXPECTED_PARAMS_NO_REMARKS));
+    }
+
+    @Test
+    void addCryptoParams_abortAtSentiment_expectException() {
+        assertThrows(OperationAbortedError.class,
+                () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_SENTIMENT, EXPECTED_PARAMS_NO_REMARKS));
+    }
+
+    @Test
+    void addCryptoParams_abortAtExpiry_expectException() {
+        assertThrows(OperationAbortedError.class,
+                () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_EXPIRY, EXPECTED_PARAMS_NO_REMARKS));
+    }
+
+    @Test
+    void addCryptoParams_abortAtRemark_expectException() {
+        assertThrows(OperationAbortedError.class,
+                () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_REMARKS, EXPECTED_PARAMS_NO_REMARKS));
+    }
 }
