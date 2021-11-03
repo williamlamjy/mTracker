@@ -105,7 +105,7 @@ public abstract class Instrument {
     public abstract String getType();
 
     public String textFileFormatting() {
-        return getType() + FILE_SEPARATOR + name + FILE_SEPARATOR
+        return getType().toLowerCase() + FILE_SEPARATOR + name + FILE_SEPARATOR
                 + currentPrice + FILE_SEPARATOR + sentiment + FILE_SEPARATOR
                 + isDone;
     }

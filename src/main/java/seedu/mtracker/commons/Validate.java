@@ -191,7 +191,7 @@ public class Validate {
         }
     }
 
-    public static boolean isValidPastReturn(String pastReturn) {
+    public static boolean isValidPastReturns(String pastReturn) {
         if (pastReturn.isEmpty()) {
             return false;
         }

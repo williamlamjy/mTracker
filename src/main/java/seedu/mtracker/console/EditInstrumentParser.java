@@ -77,7 +77,7 @@ public class EditInstrumentParser extends InputParser {
         }
         TextUi.displayEditReturn();
         String inputReturn = getUserInput(WORKSPACE);
-        if (!Validate.isValidPastReturn(inputReturn)) {
+        if (!Validate.isValidPastReturns(inputReturn)) {
             ErrorMessage.displayEditReturnError();
             return;
         }
