@@ -42,7 +42,7 @@ public class TextUi {
     private static final String EDIT_ENTRY_MESSAGE = "Enter new Entry Price:";
     private static final String EDIT_EXIT_MESSAGE = "Enter new Exit Price:";
     private static final String EDIT_EXPIRY_MESSAGE = "Enter new Expiry (YYYY-MM-DD):";
-    private static final String EDIT_STATUS_MESSAGE = "Enter new Status:";
+    private static final String EDIT_STATUS_MESSAGE = "Enter new Status (please enter either done or undone)";
     private static final String WATCHLIST_HEADER = "CURRENT WATCHLIST";
 
     private static final int NONE_FOUND = 0;

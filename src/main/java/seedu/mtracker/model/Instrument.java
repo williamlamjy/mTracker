@@ -27,7 +27,8 @@ public abstract class Instrument {
     protected static final String REMARK_ATTRIBUTE = "remarks";
     protected static final String DONE_ATTRIBUTE = "done-status";
     protected static final String SEPARATOR = ", ";
-    protected static final String DONE_INDICATOR = "y";
+    protected static final String DONE_INDICATOR = "done";
+    protected static final String UNDONE_INDICATOR = "undone";
     protected static final String REMARKS_FIELD = "Remarks: ";
 
     private static final String TYPE_FIELD = "Type: ";
@@ -90,6 +91,7 @@ public abstract class Instrument {
         if (editedParameters.get(DONE_ATTRIBUTE).equals(DONE_INDICATOR)) {
             markAsDone();
         } else {
+            assert(editedParameters.get(DONE_ATTRIBUTE).equals(UNDONE_INDICATOR));
             markAsNotDone();
         }
     }

@@ -37,8 +37,8 @@ public class Validate {
     public static final String POSITIVE_SENTIMENT = "positive";
     public static final String NEUTRAL_SENTIMENT = "neutral";
     public static final String NEGATIVE_SENTIMENT = "negative";
-    public static final String DONE_INDICATOR = "y";
-    public static final String NOT_DONE_INDICATOR = "n";
+    public static final String DONE_INDICATOR = "done";
+    public static final String NOT_DONE_INDICATOR = "undone";
 
     private static final String FOREX_VALID_NAME_REGEX = "^[a-zA-Z]{3}/?[a-zA-Z]{3}$";
 
