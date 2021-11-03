@@ -15,7 +15,6 @@ import seedu.mtracker.model.subinstrument.Forex;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class InstrumentDecoderTest {
