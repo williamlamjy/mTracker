@@ -212,7 +212,7 @@ The figures below represents the sequence diagrams when the user loads a pre-exi
 
 More details about the reference frame for decoding and updating the `InstrumentManager` is shown below:
 
-<img src="images/FileManagerSequenceDiagram.png" width="1040" height="550"/>
+<img src="images/FileManagerSequenceDiagram.png" width="1080" height="500"/>
 
 More details about the reference frame for adding the decoded instrument into the `InstrumentManager` is shown below:
 
