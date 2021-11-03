@@ -14,8 +14,6 @@ import seedu.mtracker.ui.TextUi;
 
 import java.util.ArrayList;
 
-import static seedu.mtracker.commons.Validate.checkIfAbort;
-
 public abstract class AddInstrumentParser extends InputParser {
 
     public static final int INSTRUMENT_COMMAND_INDEX = 0;

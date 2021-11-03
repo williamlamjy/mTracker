@@ -7,10 +7,6 @@ import seedu.mtracker.error.OperationAbortedError;
 import seedu.mtracker.ui.TextUi;
 import seedu.mtracker.asserthelpers.AssertParserHelper;
 
-import javax.management.openmbean.OpenDataException;
-
-import static seedu.mtracker.commons.Validate.checkIfAbort;
-
 public class AddForexParser extends AddInstrumentParser {
     public static String INSTRUMENT_TYPE = "forex";
 

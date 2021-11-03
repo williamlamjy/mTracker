@@ -27,14 +27,13 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-import static seedu.mtracker.commons.Validate.checkIfAbort;
-
 public class InputParser {
 
     public static final String SEPARATOR = " ";
     public static final int INDEX_OFFSET = 1;
     public static final int INSTRUMENT_INDEX = 1;
     public static final int SEARCH_STR_INDEX_START = 1;
+    public static final String ABORTED = "abort";
 
     public static final int MAIN_COMMAND_INDEX = 0;
 
@@ -199,6 +198,13 @@ public class InputParser {
             }
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidEmptySearchStringError();
+        }
+    }
+
+    public static void checkIfAbort(String userInput, String currentProcess)
+            throws OperationAbortedError {
+        if (userInput.equalsIgnoreCase(ABORTED)) {
+            throw new OperationAbortedError(currentProcess);
         }
     }
 }

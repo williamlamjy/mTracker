@@ -37,7 +37,6 @@ public class Validate {
     public static final String POSITIVE_SENTIMENT = "positive";
     public static final String NEUTRAL_SENTIMENT = "neutral";
     public static final String NEGATIVE_SENTIMENT = "negative";
-    public static final String ABORTED = "abort";
 
     private static final String FOREX_VALID_NAME_REGEX = "^[a-zA-Z]{3}/?[a-zA-Z]{3}$";
 
@@ -240,12 +239,5 @@ public class Validate {
             return false;
         }
         return true;
-    }
-
-    public static void checkIfAbort(String userInput, String currentProcess)
-            throws OperationAbortedError {
-        if (userInput.equalsIgnoreCase(ABORTED)) {
-            throw new OperationAbortedError(currentProcess);
-        }
     }
 }

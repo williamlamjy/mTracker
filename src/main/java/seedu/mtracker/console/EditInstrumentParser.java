@@ -9,8 +9,6 @@ import seedu.mtracker.ui.TextUi;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import static seedu.mtracker.commons.Validate.checkIfAbort;
-
 public class EditInstrumentParser extends InputParser {
 
     protected static HashMap<String, String> editedParameters;
