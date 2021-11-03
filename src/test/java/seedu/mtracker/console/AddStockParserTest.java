@@ -1,6 +1,7 @@
 package seedu.mtracker.console;
 
 import org.junit.jupiter.api.Test;
+import seedu.mtracker.error.OperationAbortedError;
 
 class AddStockParserTest extends AddInstrumentParserTest {
     public static final int PARAMETER_SIZE = 4;
@@ -47,7 +48,7 @@ class AddStockParserTest extends AddInstrumentParserTest {
             + SEPARATOR_SPECIFIER.repeat(2) + "positive"
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
-    void testStockParameters(String input, String[] expectedStockParameters) {
+    void testStockParameters(String input, String[] expectedStockParameters) throws OperationAbortedError {
         simulateConsoleInput(input);
         AddStockParser testStockParser = new AddStockParser();
         verifyInstrumentParameters(testStockParser, expectedStockParameters);
@@ -59,27 +60,27 @@ class AddStockParserTest extends AddInstrumentParserTest {
     }
 
     @Test
-    void addStockParams_allValidParameters_expectSuccess() {
+    void addStockParams_allValidParameters_expectSuccess() throws OperationAbortedError {
         testStockParameters(USER_INPUT_NO_REMARKS, EXPECTED_PARAMS_NO_REMARKS);
     }
 
     @Test
-    void addStockParams_allValidParametersWithRemarks_expectSuccess() {
+    void addStockParams_allValidParametersWithRemarks_expectSuccess() throws OperationAbortedError {
         testStockParameters(USER_INPUT_WITH_REMARKS, EXPECTED_PARAMS_WITH_REMARKS);
     }
 
     @Test
-    void addStockParams_tryInvalidNameMultipleTimes_expectSuccess() {
+    void addStockParams_tryInvalidNameMultipleTimes_expectSuccess() throws OperationAbortedError {
         testStockParameters(USER_INPUT_TRY_INVALID_NAME, EXPECTED_PARAMS_NO_REMARKS);
     }
 
     @Test
-    void addStockParams_tryInvalidPriceMultipleTimes_expectSuccess() {
+    void addStockParams_tryInvalidPriceMultipleTimes_expectSuccess() throws OperationAbortedError {
         testStockParameters(USER_INPUT_TRY_INVALID_PRICE, EXPECTED_PARAMS_WITH_REMARKS);
     }
 
     @Test
-    void addStockParams_tryInvalidSentimentMultipleTimes_expectSuccess() {
+    void addStockParams_tryInvalidSentimentMultipleTimes_expectSuccess() throws OperationAbortedError {
         testStockParameters(USER_INPUT_TRY_INVALID_SENTIMENT, EXPECTED_PARAMS_WITH_REMARKS);
     }
 }

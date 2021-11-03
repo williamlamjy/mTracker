@@ -1,6 +1,7 @@
 package seedu.mtracker.console;
 
 import org.junit.jupiter.api.Test;
+import seedu.mtracker.error.OperationAbortedError;
 
 import java.time.LocalDate;
 
@@ -64,7 +65,7 @@ class AddCryptoParserTest extends AddInstrumentParserTest {
             + SEPARATOR_SPECIFIER.repeat(2) + FUTURE_DATE
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
-    void testCryptoParameters(String input, String[] expectedParameters) {
+    void testCryptoParameters(String input, String[] expectedParameters) throws OperationAbortedError {
         simulateConsoleInput(input);
         AddCryptoParser testCryptoParser = new AddCryptoParser();
         verifyInstrumentParameters(testCryptoParser, expectedParameters);
@@ -76,35 +77,35 @@ class AddCryptoParserTest extends AddInstrumentParserTest {
     }
 
     @Test
-    void addCryptoParams_noRemarks_expectSuccess() {
+    void addCryptoParams_noRemarks_expectSuccess() throws OperationAbortedError {
         testCryptoParameters(USER_INPUT_NO_REMARKS, EXPECTED_PARAMS_NO_REMARKS);
     }
 
     @Test
-    void addCryptoParams_allValidParametersWithRemarksAndExpiry_expectSuccess() {
+    void addCryptoParams_allValidParametersWithRemarksAndExpiry_expectSuccess() throws OperationAbortedError {
         testCryptoParameters(USER_INPUT_WITH_REMARKS_AND_EXPIRY,
                 EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY);
     }
 
     @Test
-    void addCryptoParams_tryInvalidNameMultipleTimes_expectSuccess() {
+    void addCryptoParams_tryInvalidNameMultipleTimes_expectSuccess() throws OperationAbortedError {
         testCryptoParameters(USER_INPUT_TRY_INVALID_NAME, EXPECTED_PARAMS_NO_REMARKS);
     }
 
     @Test
-    void addCryptoParams_tryInvalidPriceMultipleTimes_expectSuccess() {
+    void addCryptoParams_tryInvalidPriceMultipleTimes_expectSuccess() throws OperationAbortedError {
         testCryptoParameters(USER_INPUT_TRY_INVALID_PRICE,
                 EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY);
     }
 
     @Test
-    void addCryptoParams_tryInvalidSentimentMultipleTimes_expectSuccess() {
+    void addCryptoParams_tryInvalidSentimentMultipleTimes_expectSuccess() throws OperationAbortedError {
         testCryptoParameters(USER_INPUT_TRY_INVALID_SENTIMENT,
                 EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY);
     }
 
     @Test
-    void addCryptoParams_tryEmptyExpiryMultipleTimes_expectSuccess() {
+    void addCryptoParams_tryEmptyExpiryMultipleTimes_expectSuccess() throws OperationAbortedError {
         testCryptoParameters(USER_INPUT_TRY_EMPTY_EXPIRY,
                 EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY);
     }

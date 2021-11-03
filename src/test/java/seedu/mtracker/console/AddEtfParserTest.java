@@ -1,6 +1,7 @@
 package seedu.mtracker.console;
 
 import org.junit.jupiter.api.Test;
+import seedu.mtracker.error.OperationAbortedError;
 
 public class AddEtfParserTest extends AddInstrumentParserTest {
     public static final int PARAMETER_SIZE = 5;
@@ -69,7 +70,7 @@ public class AddEtfParserTest extends AddInstrumentParserTest {
             + SEPARATOR_SPECIFIER + ""
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
-    void testEtfParameters(String input, String[] expectedEtfParameters) {
+    void testEtfParameters(String input, String[] expectedEtfParameters) throws OperationAbortedError {
         simulateConsoleInput(input);
         AddEtfParser testEtfParser = new AddEtfParser();
         verifyInstrumentParameters(testEtfParser, expectedEtfParameters);
@@ -81,32 +82,32 @@ public class AddEtfParserTest extends AddInstrumentParserTest {
     }
 
     @Test
-    void addEtfParams_noRemarks_expectSuccess() {
+    void addEtfParams_noRemarks_expectSuccess() throws OperationAbortedError {
         testEtfParameters(USER_INPUT_NO_REMARKS, EXPECTED_PARAMS_NO_REMARKS);
     }
 
     @Test
-    void addEtfParams_noPastReturn_expectSuccess() {
+    void addEtfParams_noPastReturn_expectSuccess() throws OperationAbortedError {
         testEtfParameters(USER_INPUT_TRY_INVALID_RETURNS, EXPECTED_PARAMS_INVALID_RETURNS);
     }
 
     @Test
-    void addEtfParams_allParameters_expectSuccess() {
+    void addEtfParams_allParameters_expectSuccess() throws OperationAbortedError {
         testEtfParameters(USER_INPUT_All_PARAM, EXPECTED_PARAMS_ALL_PARAM);
     }
 
     @Test
-    void addEftParams_InvalidName_expectSuccess() {
+    void addEftParams_InvalidName_expectSuccess() throws OperationAbortedError {
         testEtfParameters(USER_INPUT_TRY_INVALID_NAME, EXPECTED_PARAMS_ALL_PARAM);
     }
 
     @Test
-    void addEftParams_InvalidPrice_expectSuccess() {
+    void addEftParams_InvalidPrice_expectSuccess() throws OperationAbortedError {
         testEtfParameters(USER_INPUT_TRY_INVALID_PRICE, EXPECTED_PARAMS_ALL_PARAM);
     }
 
     @Test
-    void addEtfParams_InvalidSentiment_expectSuccess() {
+    void addEtfParams_InvalidSentiment_expectSuccess() throws OperationAbortedError {
         testEtfParameters(USER_INPUT_TRY_INVALID_SENTIMENT, EXPECTED_PARAMS_ALL_PARAM);
     }
 }

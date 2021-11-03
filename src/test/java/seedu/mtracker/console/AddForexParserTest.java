@@ -1,6 +1,7 @@
 package seedu.mtracker.console;
 
 import org.junit.jupiter.api.Test;
+import seedu.mtracker.error.OperationAbortedError;
 
 import java.time.LocalDate;
 
@@ -74,7 +75,7 @@ class AddForexParserTest extends AddInstrumentParserTest {
             + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
-    void testForexParameters(String input, String[] expectedForexParameters) {
+    void testForexParameters(String input, String[] expectedForexParameters) throws OperationAbortedError {
         simulateConsoleInput(input);
         AddForexParser testForexParser = new AddForexParser();
         verifyInstrumentParameters(testForexParser, expectedForexParameters);
@@ -86,27 +87,27 @@ class AddForexParserTest extends AddInstrumentParserTest {
     }
 
     @Test
-    void addForexParams_allValidParameters_expectSuccess() {
+    void addForexParams_allValidParameters_expectSuccess() throws OperationAbortedError {
         testForexParameters(USER_INPUT_NO_REMARKS, EXPECTED_PARAMS_NO_REMARKS);
     }
 
     @Test
-    void addForexParams_allValidParametersWithRemarks_expectSuccess() {
+    void addForexParams_allValidParametersWithRemarks_expectSuccess() throws OperationAbortedError {
         testForexParameters(USER_INPUT_WITH_REMARKS, EXPECTED_PARAMS_WITH_REMARKS);
     }
 
     @Test
-    void addForexParams_tryInvalidNameMultipleTimes_expectSuccess() {
+    void addForexParams_tryInvalidNameMultipleTimes_expectSuccess() throws OperationAbortedError {
         testForexParameters(USER_INPUT_TRY_INVALID_NAME, EXPECTED_PARAMS_NO_REMARKS);
     }
 
     @Test
-    void addForexParams_tryInvalidPriceMultipleTimes_expectSuccess() {
+    void addForexParams_tryInvalidPriceMultipleTimes_expectSuccess() throws OperationAbortedError {
         testForexParameters(USER_INPUT_TRY_INVALID_PRICE, EXPECTED_PARAMS_WITH_REMARKS);
     }
 
     @Test
-    void addForexParams_tryInvalidSentimentMultipleTimes_expectSuccess() {
+    void addForexParams_tryInvalidSentimentMultipleTimes_expectSuccess() throws OperationAbortedError {
         testForexParameters(USER_INPUT_TRY_INVALID_SENTIMENT, EXPECTED_PARAMS_WITH_REMARKS);
     }
 }
