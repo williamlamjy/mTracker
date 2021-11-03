@@ -8,6 +8,6 @@ public abstract class AssertOperationHelper {
             + "nor EDIT workspaces.";
 
     public static void assertAddEditOperation(String workspace) {
-        assert workspace.equals(ADD_PROCESS) | workspace.equals(EDIT_PROCESS) : NOT_IN_ADD_OR_EDIT;
+        assert workspace.equals(ADD_PROCESS) || workspace.equals(EDIT_PROCESS) : NOT_IN_ADD_OR_EDIT;
     }
 }
