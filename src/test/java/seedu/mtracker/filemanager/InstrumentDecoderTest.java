@@ -83,22 +83,22 @@ class InstrumentDecoderTest {
         TEST_REMARK
     };
 
-    public static final String[] INVALID_NO_NAME_TEXT_SEGMENT = {
+    public static final String[] INVALID_EMPTY_NAME_TEXT_SEGMENT = {
         TEST_TYPE
     };
 
-    public static final String[] INVALID_NO_CURRENT_PRICE_TEXT_SEGMENT = {
+    public static final String[] INVALID_EMPTY_CURRENT_PRICE_TEXT_SEGMENT = {
         TEST_TYPE,
         TEST_NAME
     };
 
-    public static final String[] INVALID_NO_SENTIMENT_TEXT_SEGMENT = {
+    public static final String[] INVALID_EMPTY_SENTIMENT_TEXT_SEGMENT = {
         TEST_TYPE,
         TEST_NAME,
         TEST_PRICE_STRING
     };
 
-    public static final String[] INVALID_NO_STATUS_TEXT_SEGMENT = {
+    public static final String[] INVALID_EMPTY_STATUS_TEXT_SEGMENT = {
         TEST_TYPE,
         TEST_NAME,
         TEST_PRICE_STRING,
@@ -149,31 +149,31 @@ class InstrumentDecoderTest {
     }
 
     @Test
-    void addSavedInstrumentToList_noName_expectException() {
+    void addSavedInstrumentToList_emptyName_expectException() {
         assertThrows(InvalidEmptyNameInFileError.class,
                 () -> InstrumentDecoder
-                        .addSavedInstrumentToList(instrumentManager, INVALID_NO_NAME_TEXT_SEGMENT));
+                        .addSavedInstrumentToList(instrumentManager, INVALID_EMPTY_NAME_TEXT_SEGMENT));
     }
 
     @Test
     void addSavedInstrumentToList_noPrice_expectException() {
         assertThrows(InvalidEmptyCurrPriceInFileError.class,
                 () -> InstrumentDecoder
-                        .addSavedInstrumentToList(instrumentManager, INVALID_NO_CURRENT_PRICE_TEXT_SEGMENT));
+                        .addSavedInstrumentToList(instrumentManager, INVALID_EMPTY_CURRENT_PRICE_TEXT_SEGMENT));
     }
 
     @Test
     void addSavedInstrumentToList_noSentiment_expectException() {
         assertThrows(InvalidEmptySentimentInFileError.class,
                 () -> InstrumentDecoder
-                        .addSavedInstrumentToList(instrumentManager, INVALID_NO_SENTIMENT_TEXT_SEGMENT));
+                        .addSavedInstrumentToList(instrumentManager, INVALID_EMPTY_SENTIMENT_TEXT_SEGMENT));
     }
 
     @Test
     void addSavedInstrumentToList_noStatus_expectException() {
         assertThrows(InvalidEmptyStatusInFileError.class,
                 () -> InstrumentDecoder
-                        .addSavedInstrumentToList(instrumentManager, INVALID_NO_STATUS_TEXT_SEGMENT));
+                        .addSavedInstrumentToList(instrumentManager, INVALID_EMPTY_STATUS_TEXT_SEGMENT));
     }
 
     @Test
