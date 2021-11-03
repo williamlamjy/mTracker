@@ -1,5 +1,7 @@
 package seedu.mtracker.console;
 
+import seedu.mtracker.error.OperationAbortedError;
+
 import java.io.ByteArrayInputStream;
 import java.time.LocalDate;
 
@@ -10,6 +12,11 @@ public abstract class AddInstrumentParserTest {
     protected static final int DAYS_DIFFERENCE = 1;
     protected static final LocalDate FUTURE_DATE = LocalDate.now().plusDays(DAYS_DIFFERENCE);
     protected static final LocalDate PAST_DATE = LocalDate.now().minusDays(DAYS_DIFFERENCE);
+
+    public static final String ABORT = "abort";
+    public static final String DONT_ABORT = "don't abort";
+
+    public static final String[] NO_PARAMS_EXPECTED = {};
 
     String formatConsoleInput(String input) {
         return String.format(input, System.lineSeparator());
@@ -27,7 +34,8 @@ public abstract class AddInstrumentParserTest {
         }
     }
 
-    void verifyInstrumentParameters(AddInstrumentParser testInstrumentParser, String[] expectedParameters) {
+    void verifyInstrumentParameters(AddInstrumentParser testInstrumentParser, String[] expectedParameters)
+            throws OperationAbortedError {
         testInstrumentParser.initParameters();
         testInstrumentParser.getInstrumentParameters();
         checkParameters(testInstrumentParser, expectedParameters);
