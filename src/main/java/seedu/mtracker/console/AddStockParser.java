@@ -6,6 +6,8 @@ import seedu.mtracker.commands.AddStockCommand;
 import seedu.mtracker.error.OperationAbortedError;
 import seedu.mtracker.ui.TextUi;
 
+import static seedu.mtracker.commons.Validate.checkIfAbort;
+
 public class AddStockParser extends AddInstrumentParser {
 
     public static String STOCK_TYPE = "stock";

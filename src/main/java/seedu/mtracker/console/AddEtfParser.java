@@ -7,6 +7,8 @@ import seedu.mtracker.commons.Validate;
 import seedu.mtracker.error.OperationAbortedError;
 import seedu.mtracker.ui.TextUi;
 
+import static seedu.mtracker.commons.Validate.checkIfAbort;
+
 public class AddEtfParser extends AddInstrumentParser {
 
     public static String INSTRUMENT_TYPE = "etf";

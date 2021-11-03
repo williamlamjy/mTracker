@@ -2,13 +2,14 @@ package seedu.mtracker.console;
 
 import seedu.mtracker.commands.EditInstrumentCommand;
 import seedu.mtracker.commons.Validate;
-import seedu.mtracker.error.ErrorMessage;
 import seedu.mtracker.error.OperationAbortedError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
 import java.util.HashMap;
 import java.util.HashSet;
+
+import static seedu.mtracker.commons.Validate.checkIfAbort;
 
 public class EditInstrumentParser extends InputParser {
 

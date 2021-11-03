@@ -27,6 +27,8 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import static seedu.mtracker.commons.Validate.checkIfAbort;
+
 public class InputParser {
 
     public static final String SEPARATOR = " ";
@@ -41,8 +43,6 @@ public class InputParser {
 
     private int instrumentNumber;
     private String searchString;
-
-    protected static String ABORTED = "abort";
 
     public InputParser() {
         inputScanner = new Scanner(System.in);
@@ -199,13 +199,6 @@ public class InputParser {
             }
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidEmptySearchStringError();
-        }
-    }
-
-    public static void checkIfAbort(String userInput, String currentProcess)
-            throws OperationAbortedError {
-        if (userInput.equalsIgnoreCase(ABORTED)) {
-            throw new OperationAbortedError(currentProcess);
         }
     }
 }
