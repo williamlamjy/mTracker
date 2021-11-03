@@ -44,12 +44,6 @@ class InstrumentDecoderTest {
     public static final Instrument TEST_FOREX = new Forex(TEST_NAME, TEST_PRICE, TEST_SENTIMENT,
             TEST_ENTRY_PRICE, TEST_EXIT_PRICE, FUTURE_DATE, TEST_REMARK);
 
-    public static final int NUMBER_OF_PARAMS = 8;
-    public static final int LENGTH_OF_DATE = 10;
-    public static final int LENGTH_OF_PRICES = 12;
-    public static final int LENGTH_OF_DONE = 5;
-    public static final int LENGTH_OF_INSTRUMENT = 5;
-
     public static final String[] INVALID_INSTRUMENT_TYPE_TEXT_SEGMENT = {TEST_INVALID_TYPE,
         TEST_NAME,
         TEST_PRICE_STRING,
@@ -128,11 +122,9 @@ class InstrumentDecoderTest {
     };
 
     private InstrumentManager instrumentManager;
-    private Storage storage;
 
     @BeforeEach
     void initialiseTestResources() {
-        storage = new Storage();
         instrumentManager = InstrumentManager.getInstance();
         instrumentManager.addInstrument(TEST_FOREX);
     }

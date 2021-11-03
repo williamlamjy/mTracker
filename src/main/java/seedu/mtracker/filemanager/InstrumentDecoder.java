@@ -26,6 +26,8 @@ public class InstrumentDecoder {
     public static final String TYPE_ETF = "etf";
     public static final String TYPE_FOREX = "forex";
 
+    public static final int INDEX_START = 1;
+
     public static final int TYPE_INDEX = 0;
     public static final int NAME_INDEX = 1;
     public static final int CURR_PRICE_INDEX = 2;
@@ -123,7 +125,7 @@ public class InstrumentDecoder {
     }
 
     public static void readFile(InstrumentManager instrumentManager, List<String> fileData) {
-        AtomicInteger idx = new AtomicInteger(1);
+        AtomicInteger idx = new AtomicInteger(INDEX_START);
         fileData.stream()
                 .forEach((line) -> {
                     String[] textSegment = line.split(String.valueOf(FILE_SEPARATOR), SPLIT_FUNCTION_LIMIT_VALUE);
