@@ -17,9 +17,7 @@ public class AddStockParser extends AddInstrumentParser {
 
     public void addStockRemarksToParameters() throws OperationAbortedError {
         String remarks = getStockRemarksFromUser();
-        if (remarks.equalsIgnoreCase(ABORTED)) {
-            throw new OperationAbortedError();
-        }
+        checkIfAbort(remarks, WORKSPACE);
         parameters.add(remarks);
     }
 

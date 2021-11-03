@@ -35,7 +35,10 @@ public abstract class ErrorMessage {
             + " keyword after 'find' command.";
     public static final String INSTRUMENT_MARKED_DONE_ERROR = "Instrument at provided index "
             + "has already been marked as completed!";
-    public static final String ADD_OPERATION_ABORTED = "Addition of new instrument has been aborted!";
+    public static final String ADD_OPERATION_ABORTED = "Addition of new instrument has been aborted! "
+            + "You are in the main workspace now.";
+    public static final String EDIT_OPERATION_ABORTED = "Edit process has been aborted! "
+            + "You are in the main workspace now.";
 
     public static final String FILE_WRITE_ERROR = "Oh no! There seems to be an error writing to the file";
     public static final String FILE_LOAD_ERROR = "Oh no! There seems to be an error loading this file";

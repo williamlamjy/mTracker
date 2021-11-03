@@ -20,9 +20,7 @@ public class AddEtfParser extends AddInstrumentParser {
     public String getEtfPastReturnFromUser() throws OperationAbortedError {
         TextUi.displayAddPastReturnsInstruction();
         String userInput = getUserInput(WORKSPACE);
-        if (userInput.equalsIgnoreCase(ABORTED)) {
-            throw new OperationAbortedError();
-        }
+        checkIfAbort(userInput, WORKSPACE);
         if (!Validate.isValidPastReturn(userInput)) {
             return String.valueOf(UNDEFINED_PAST_RETURN_VALUE);
         }
@@ -31,9 +29,7 @@ public class AddEtfParser extends AddInstrumentParser {
 
     public void addEtfRemarkToParameters() throws OperationAbortedError {
         String remarks = getEtfRemarkFromUser();
-        if (remarks.equalsIgnoreCase(ABORTED)) {
-            throw new OperationAbortedError();
-        }
+        checkIfAbort(remarks, WORKSPACE);
         parameters.add(remarks);
     }
 

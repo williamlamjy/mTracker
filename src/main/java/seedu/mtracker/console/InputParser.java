@@ -35,7 +35,7 @@ public class InputParser {
     private int instrumentNumber;
     private String searchString;
 
-    private String ABORTED = "abort";
+    protected static String ABORTED = "abort";
 
     public InputParser() {
         inputScanner = new Scanner(System.in);
@@ -56,9 +56,7 @@ public class InputParser {
         String addInstrumentType;
         do {
             addInstrumentType = getUserInput(AddInstrumentCommand.COMMAND_WORD).toLowerCase();
-            if (addInstrumentType.equals(ABORTED)) {
-                throw new OperationAbortedError();
-            }
+            checkIfAbort(addInstrumentType, AddInstrumentCommand.COMMAND_WORD);
         } while (!Validate.isValidInstrument(addInstrumentType));
         return AddInstrumentParser.filterByInstrumentType(getCommandComponents(addInstrumentType));
     }
@@ -100,14 +98,16 @@ public class InputParser {
         return filteredAttributes;
     }
 
-    public HashSet<String> getParametersToEdit(HashSet<String> validAttributes) {
+    public HashSet<String> getParametersToEdit(HashSet<String> validAttributes)
+            throws OperationAbortedError {
         String parametersToEdit = getUserInput(EditInstrumentCommand.COMMAND_WORD);
+        checkIfAbort(parametersToEdit, EditInstrumentCommand.COMMAND_WORD);
         String[] parameters = getCommandComponents(parametersToEdit);
         return filterInvalidParameters(parameters, validAttributes);
     }
 
     public EditInstrumentCommand getEditInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
-            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError {
+            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError, OperationAbortedError {
         getAndValidateIndexNumber(commandComponents, instruments);
         Instrument instrumentToEdit = instruments.get(instrumentNumber);
         TextUi.displayEditInstrumentFirstInstruction(instrumentToEdit);
@@ -192,6 +192,13 @@ public class InputParser {
             }
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidEmptySearchStringError();
+        }
+    }
+
+    public static void checkIfAbort(String userInput, String currentProcess)
+            throws OperationAbortedError {
+        if (userInput.equalsIgnoreCase(ABORTED)) {
+            throw new OperationAbortedError(currentProcess);
         }
     }
 }

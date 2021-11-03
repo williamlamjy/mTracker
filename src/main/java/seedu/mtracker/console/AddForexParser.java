@@ -41,9 +41,7 @@ public class AddForexParser extends AddInstrumentParser {
         String entryPrice;
         do {
             entryPrice = getForexEntryFromUser();
-            if (entryPrice.equalsIgnoreCase(ABORTED)) {
-                throw new OperationAbortedError();
-            }
+            checkIfAbort(entryPrice, WORKSPACE);
         } while (!Validate.isValidPrice(entryPrice));
         parameters.add(entryPrice);
         AssertParserHelper.assertInputNotEmpty(entryPrice);
@@ -54,9 +52,7 @@ public class AddForexParser extends AddInstrumentParser {
         String exitPrice;
         do {
             exitPrice = getForexExitFromUser();
-            if (exitPrice.equalsIgnoreCase(ABORTED)) {
-                throw new OperationAbortedError();
-            }
+            checkIfAbort(exitPrice, WORKSPACE);
         } while (!Validate.isValidPrice(exitPrice));
         parameters.add(exitPrice);
         AssertParserHelper.assertInputNotEmpty(exitPrice);
@@ -67,9 +63,7 @@ public class AddForexParser extends AddInstrumentParser {
         String expiry;
         do {
             expiry = getForexExpiryFromUser();
-            if (expiry.equalsIgnoreCase(ABORTED)) {
-                throw new OperationAbortedError();
-            }
+            checkIfAbort(expiry, WORKSPACE);
         } while (!Validate.isValidExpiry(expiry));
         parameters.add(expiry);
         AssertParserHelper.assertExpiryInTheFuture(expiry);

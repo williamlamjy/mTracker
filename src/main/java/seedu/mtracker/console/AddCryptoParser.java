@@ -25,9 +25,7 @@ public class AddCryptoParser extends AddInstrumentParser {
         String expiry;
         do {
             expiry = getCryptoExpiryFromUser();
-            if (expiry.equalsIgnoreCase(ABORTED)) {
-                throw new OperationAbortedError();
-            }
+            checkIfAbort(expiry, WORKSPACE);
         } while (!Validate.isValidExpiry(expiry));
         parameters.add(expiry);
         AssertParserHelper.assertExpiryInTheFuture(expiry);
@@ -35,9 +33,7 @@ public class AddCryptoParser extends AddInstrumentParser {
 
     public void addCryptoRemarksToParameters() throws OperationAbortedError {
         String remarks = getCryptoRemarksFromUser();
-        if (remarks.equalsIgnoreCase(ABORTED)) {
-            throw new OperationAbortedError();
-        }
+        checkIfAbort(remarks, WORKSPACE);
         parameters.add(remarks);
     }
 

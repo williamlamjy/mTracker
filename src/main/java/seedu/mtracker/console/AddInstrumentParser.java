@@ -13,7 +13,6 @@ import seedu.mtracker.error.OperationAbortedError;
 import seedu.mtracker.ui.TextUi;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public abstract class AddInstrumentParser extends InputParser {
 
@@ -21,7 +20,6 @@ public abstract class AddInstrumentParser extends InputParser {
 
     protected static ArrayList<String> parameters;
     protected static final String WORKSPACE = AddInstrumentCommand.COMMAND_WORD;
-    protected static final String ABORTED = "abort";
 
     public void initParameters() {
         parameters = new ArrayList<>();
@@ -40,9 +38,7 @@ public abstract class AddInstrumentParser extends InputParser {
         String name;
         do {
             name = getInstrumentNameFromUser(instrumentType);
-            if (name.equalsIgnoreCase(ABORTED)) {
-                throw new OperationAbortedError();
-            }
+            checkIfAbort(name, WORKSPACE);
         } while (!Validate.isValidName(name, instrumentType));
         parameters.add(name);
         AssertParserHelper.assertInputNotEmpty(name);
@@ -57,9 +53,7 @@ public abstract class AddInstrumentParser extends InputParser {
         String currentPrice;
         do {
             currentPrice = getCurrentPriceFromUser();
-            if (currentPrice.equalsIgnoreCase(ABORTED)) {
-                throw new OperationAbortedError();
-            }
+            checkIfAbort(currentPrice, WORKSPACE);
         } while (!Validate.isValidPrice(currentPrice));
         parameters.add(currentPrice);
         AssertParserHelper.assertInputNotEmpty(currentPrice);
@@ -76,9 +70,7 @@ public abstract class AddInstrumentParser extends InputParser {
         String sentiment;
         do {
             sentiment = getInstrumentSentimentFromUser().toLowerCase();
-            if (sentiment.equalsIgnoreCase(ABORTED)) {
-                throw new OperationAbortedError();
-            }
+            checkIfAbort(sentiment, WORKSPACE);
         } while (!Validate.isValidSentiment(sentiment));
         parameters.add(sentiment);
         AssertParserHelper.assertInputNotEmpty(sentiment);
