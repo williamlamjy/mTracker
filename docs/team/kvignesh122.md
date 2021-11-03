@@ -1,6 +1,6 @@
-#Vignesh's Project Portfolio Page
+# Vignesh's Project Portfolio Page
 
-##Project Overview: mTracker
+## Project Overview: mTracker
 
 mTracker is a **CLI-based trading journal** that allows
 user to store and view important trading-related information on their
@@ -8,7 +8,7 @@ shortlisted financial instruments. The program allows users to store
 information on 4 types of instruments: Stock, ETF, Forex, Cryptocurrency. 
 mTracker is written in Java 11 and contains over 5000 LoC.
 
-###My key contributions to the project:
+### My key contributions to the project:
 
 - Tested out various real-time market data API provider for initial idea of 
   implementing real-time capabailities in program. Coded and tried out a HTTP client
@@ -31,11 +31,11 @@ to depend on.
 - Improved overall code quality by abstracting out repetitive codeblocks as
   methods, and removed redundant setters and getters.
   
-###Code contributed
+### Code contributed
 
 [Vignesh's tP Code Dashboard](https://nus-cs2113-ay2122s1.github.io/tp-dashboard/?search=vignesh&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-25&tabOpen=true&tabType=authorship&tabAuthor=KVignesh122&tabRepo=AY2122S1-CS2113T-T12-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
-###Enhancements
+### Enhancements
 - Improved user-friendliness and aesthetics of program by
   making list command to display only the 3 main parameters for all instruments
   in the watchlist. Implemented a separate View feature for user to 
@@ -45,14 +45,14 @@ the process of adding/editing an instrument prematurely.
 - Wrote extensive Junit tests for testing abort and addition of instrument features
 for crypto and forex.
   
-###Documentation:
+### Documentation:
 - Reviewed grammar and sentence structure of all UG and DG content; made edits to enhance clarity.
 - Contributed UML class diagrams for Command and TextUi sections.
 - Copied over relevant user stories to DG.
 - Wrote more than 60% of the UG. ([#88](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/88))
 - Wrote Architecture section in DG.
 
-###Team contributions:
+### Team contributions:
 - Major PRs reviewed: [#211](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/211) 
   [#95](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/95)
   [#91](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/91)
