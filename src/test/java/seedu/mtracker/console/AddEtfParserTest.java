@@ -142,30 +142,30 @@ public class AddEtfParserTest extends AddInstrumentParserTest {
     @Test
     void addEtfParams_abortAtName_expectException() {
         assertThrows(OperationAbortedError.class,
-            () -> testEtfParameters(USER_INPUT_TRY_ABORT_AT_NAME, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testEtfParameters(USER_INPUT_TRY_ABORT_AT_NAME, NO_PARAMS_EXPECTED));
     }
 
     @Test
     void addEtfParams_abortAtPrice_expectException() {
         assertThrows(OperationAbortedError.class,
-            () -> testEtfParameters(USER_INPUT_TRY_ABORT_AT_PRICE, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testEtfParameters(USER_INPUT_TRY_ABORT_AT_PRICE, NO_PARAMS_EXPECTED));
     }
 
     @Test
     void addEtfParams_abortAtSentiment_expectException() {
         assertThrows(OperationAbortedError.class,
-            () -> testEtfParameters(USER_INPUT_TRY_ABORT_AT_SENTIMENT, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testEtfParameters(USER_INPUT_TRY_ABORT_AT_SENTIMENT, NO_PARAMS_EXPECTED));
     }
 
     @Test
     void addEtfParams_abortAtReturns_expectException() {
         assertThrows(OperationAbortedError.class,
-            () -> testEtfParameters(USER_INPUT_TRY_ABORT_AT_RETURNS, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testEtfParameters(USER_INPUT_TRY_ABORT_AT_RETURNS, NO_PARAMS_EXPECTED));
     }
 
     @Test
     void addEtfParams_abortAtRemark_expectException() {
         assertThrows(OperationAbortedError.class,
-            () -> testEtfParameters(USER_INPUT_TRY_ABORT_AT_REMARKS, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testEtfParameters(USER_INPUT_TRY_ABORT_AT_REMARKS, NO_PARAMS_EXPECTED));
     }
 }

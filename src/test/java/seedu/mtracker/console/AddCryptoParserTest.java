@@ -144,30 +144,30 @@ class AddCryptoParserTest extends AddInstrumentParserTest {
     @Test
     void addCryptoParams_abortAtName_expectException() {
         assertThrows(OperationAbortedError.class,
-            () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_NAME, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_NAME, NO_PARAMS_EXPECTED));
     }
 
     @Test
     void addCryptoParams_abortAtPrice_expectException() {
         assertThrows(OperationAbortedError.class,
-            () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_PRICE, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_PRICE, NO_PARAMS_EXPECTED));
     }
 
     @Test
     void addCryptoParams_abortAtSentiment_expectException() {
         assertThrows(OperationAbortedError.class,
-            () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_SENTIMENT, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_SENTIMENT, NO_PARAMS_EXPECTED));
     }
 
     @Test
     void addCryptoParams_abortAtExpiry_expectException() {
         assertThrows(OperationAbortedError.class,
-            () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_EXPIRY, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_EXPIRY, NO_PARAMS_EXPECTED));
     }
 
     @Test
     void addCryptoParams_abortAtRemark_expectException() {
         assertThrows(OperationAbortedError.class,
-            () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_REMARKS, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_REMARKS, NO_PARAMS_EXPECTED));
     }
 }
