@@ -3,8 +3,8 @@ package seedu.mtracker.error;
 import seedu.mtracker.asserthelpers.AssertOperationHelper;
 
 public class OperationAbortedError extends Exception {
-    private final String EDIT_PROCESS = "edit";
-    private final String ADD_PROCESS = "add";
+    private static final String EDIT_PROCESS = "edit";
+    private static final String ADD_PROCESS = "add";
 
     private String process;
 
