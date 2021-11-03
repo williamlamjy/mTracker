@@ -86,7 +86,7 @@ public class EditInstrumentParser extends InputParser {
         do {
             inputReturn = getUserInput(WORKSPACE);
             checkIfAbort(inputReturn, WORKSPACE);
-        } while (!Validate.isValidPastReturn(inputReturn));
+        } while (!Validate.isValidPastReturns(inputReturn));
         editedParameters.put(RETURN_ATTRIBUTE, inputReturn);
     }
 
