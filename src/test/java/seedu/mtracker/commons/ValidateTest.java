@@ -2,13 +2,12 @@ package seedu.mtracker.commons;
 
 
 import org.junit.jupiter.api.Test;
-import seedu.mtracker.console.AddInstrumentParser;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ValidateTest {
 

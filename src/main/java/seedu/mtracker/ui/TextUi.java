@@ -3,6 +3,7 @@ package seedu.mtracker.ui;
 import seedu.mtracker.model.Instrument;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class TextUi {
 
@@ -149,6 +150,11 @@ public class TextUi {
 
     public static void showErrorMessage(Exception e) {
         System.out.println(e.getMessage());
+    }
+
+    public static void ignoreCorruptedInstrument(AtomicInteger idx) {
+        System.out.println("Ignoring saved instrument " + idx + " as it was corrupted.");
+        System.out.println(LINE_DECORATOR);
     }
 
     public static void displayExitMessage() {

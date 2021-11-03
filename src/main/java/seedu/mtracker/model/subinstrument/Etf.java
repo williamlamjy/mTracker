@@ -57,10 +57,6 @@ public class Etf extends Instrument {
         editSpecificParameters(editedParameters);
     }
 
-    public String getReturnsForFileFormat() {
-        return String.valueOf(pastReturns);
-    }
-
     public String getReturns() {
         if (pastReturns == UNDEFINED_VALUE) {
             return EMPTY_STRING;
