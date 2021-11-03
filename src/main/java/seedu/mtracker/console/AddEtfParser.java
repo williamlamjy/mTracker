@@ -19,7 +19,7 @@ public class AddEtfParser extends AddInstrumentParser {
     public String getEtfPastReturnFromUser() {
         TextUi.displayAddPastReturnsInstruction();
         String userInput = getUserInput(WORKSPACE);
-        if (!Validate.isValidPastReturn(userInput)) {
+        if (!Validate.isValidPastReturns(userInput)) {
             return String.valueOf(UNDEFINED_PAST_RETURN_VALUE);
         }
         return userInput;

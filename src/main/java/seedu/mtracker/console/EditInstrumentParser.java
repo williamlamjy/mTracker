@@ -72,11 +72,20 @@ public class EditInstrumentParser extends InputParser {
         if (!parametersGiven.contains(RETURN_ATTRIBUTE)) {
             return;
         }
+<<<<<<< HEAD
         String inputReturn;
         do {
             TextUi.displayEditReturn();
             inputReturn = getUserInput(WORKSPACE);
         } while (!Validate.isValidPastReturn(inputReturn));
+=======
+        TextUi.displayEditReturn();
+        String inputReturn = getUserInput(WORKSPACE);
+        if (!Validate.isValidPastReturns(inputReturn)) {
+            ErrorMessage.displayEditReturnError();
+            return;
+        }
+>>>>>>> master
         editedParameters.put(RETURN_ATTRIBUTE, inputReturn);
     }
 
