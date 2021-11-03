@@ -138,6 +138,7 @@ public class InstrumentDecoder {
                     } catch (Exception e) {
                         TextUi.showErrorMessage(e);
                         TextUi.ignoreCorruptedInstrument(idx);
+                        logger.warning(LogHelper.LOG_DATA_FILE_INSTRUMENT_CORRUPTED_ERROR);
                     } finally {
                         idx.getAndIncrement();
                     }
@@ -160,7 +161,7 @@ public class InstrumentDecoder {
             EtfDecoder.addEtfToList(textSegment, instrumentManager);
             break;
         default:
-            logger.warning(LogHelper.LOG_DATA_FILE_CORRUPTED_ERROR);
+            logger.warning(LogHelper.LOG_DATA_FILE_INSTRUMENT_TYPE_CORRUPTED_ERROR);
             throw new InvalidInstrumentInFileError();
         }
     }
