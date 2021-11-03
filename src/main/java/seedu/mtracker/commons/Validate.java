@@ -39,6 +39,9 @@ public class Validate {
 
     private static final String FOREX_VALID_NAME_REGEX = "^[a-zA-Z]{3}/?[a-zA-Z]{3}$";
 
+    public static final String STATUS_DONE = "true";
+    public static final String STATUS_NOT_DONE = "false";
+
     protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public static boolean isInvalidNameCondition(String name, String instrumentType) {
@@ -240,5 +243,9 @@ public class Validate {
         return true;
     }
 
-
+    public static boolean isValidStatus(String savedStatusFromFile) {
+        boolean isValidDoneStatus = savedStatusFromFile.equals(STATUS_DONE);
+        boolean isValidNotDoneStatus = savedStatusFromFile.equals(STATUS_NOT_DONE);
+        return isValidDoneStatus || isValidNotDoneStatus;
+    }
 }
