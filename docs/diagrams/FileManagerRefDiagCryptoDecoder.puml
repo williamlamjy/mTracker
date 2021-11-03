@@ -14,20 +14,27 @@ end box
 
 activate CryptoDecoder
 
-CryptoDecoder-> CryptoDecoder: decodeGeneralAttributes(textSegment)
+CryptoDecoder-> CryptoDecoder: validateAndDecodeGeneralAttributes(textSegment)
 activate CryptoDecoder
 CryptoDecoder--> CryptoDecoder
 deactivate CryptoDecoder
 
+CryptoDecoder-> CryptoDecoder: validateAndDecodeSpecificAttributes(textSegment)
+activate CryptoDecoder
+CryptoDecoder--> CryptoDecoder
+deactivate CryptoDecoder
+
+CryptoDecoder-> CryptoDecoder: createDecodedInstrument()
+activate CryptoDecoder
+
 create Crypto
 CryptoDecoder-> Crypto: Crypto("Crypto", "32.0", "positive","true", "2022-12-12", "")
 activate Crypto
-
-
 Crypto--> CryptoDecoder: return crypto
 deactivate Crypto
 
-
+CryptoDecoder--> CryptoDecoder
+deactivate CryptoDecoder
 
 CryptoDecoder-> InstrumentManager: addInstrument(crypto)
 activate InstrumentManager
