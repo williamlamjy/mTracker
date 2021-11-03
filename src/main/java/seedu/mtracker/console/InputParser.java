@@ -11,13 +11,14 @@ import seedu.mtracker.commands.ListCommand;
 import seedu.mtracker.commands.FindCommand;
 import seedu.mtracker.commons.Validate;
 import seedu.mtracker.commands.ViewCommand;
+import seedu.mtracker.error.AlreadyDoneError;
 import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidCommandError;
 import seedu.mtracker.error.InvalidEmptyIndexError;
 import seedu.mtracker.error.InvalidEmptySearchStringError;
 import seedu.mtracker.error.InvalidIndexError;
 import seedu.mtracker.error.InvalidInstrumentError;
-import seedu.mtracker.error.AlreadyDoneError;
+import seedu.mtracker.error.OperationAbortedError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -32,6 +33,7 @@ public class InputParser {
     public static final int INDEX_OFFSET = 1;
     public static final int INSTRUMENT_INDEX = 1;
     public static final int SEARCH_STR_INDEX_START = 1;
+    public static final String ABORTED = "abort";
 
     public static final int MAIN_COMMAND_INDEX = 0;
 
@@ -54,11 +56,13 @@ public class InputParser {
         return instrumentNumber;
     }
 
-    public AddInstrumentCommand getAddInstrumentParameters() throws InvalidInstrumentError {
+    public AddInstrumentCommand getAddInstrumentParameters()
+            throws InvalidInstrumentError, OperationAbortedError {
         TextUi.displayAddInstrumentFirstInstruction();
         String addInstrumentType;
         do {
             addInstrumentType = getUserInput(AddInstrumentCommand.COMMAND_WORD).toLowerCase();
+            checkIfAbort(addInstrumentType, AddInstrumentCommand.COMMAND_WORD);
         } while (!Validate.isValidInstrument(addInstrumentType));
         return AddInstrumentParser.filterByInstrumentType(getCommandComponents(addInstrumentType));
     }
@@ -100,14 +104,16 @@ public class InputParser {
         return filteredAttributes;
     }
 
-    public HashSet<String> getParametersToEdit(HashSet<String> validAttributes) {
+    public HashSet<String> getParametersToEdit(HashSet<String> validAttributes)
+            throws OperationAbortedError {
         String parametersToEdit = getUserInput(EditInstrumentCommand.COMMAND_WORD);
+        checkIfAbort(parametersToEdit, EditInstrumentCommand.COMMAND_WORD);
         String[] parameters = getCommandComponents(parametersToEdit);
         return filterInvalidParameters(parameters, validAttributes);
     }
 
     public EditInstrumentCommand getEditInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
-            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError {
+            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError, OperationAbortedError {
         getAndValidateIndexNumber(commandComponents, instruments);
         Instrument instrumentToEdit = instruments.get(instrumentNumber);
         TextUi.displayEditInstrumentFirstInstruction(instrumentToEdit);
@@ -192,6 +198,13 @@ public class InputParser {
             }
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidEmptySearchStringError();
+        }
+    }
+
+    public static void checkIfAbort(String userInput, String currentProcess)
+            throws OperationAbortedError {
+        if (userInput.equalsIgnoreCase(ABORTED)) {
+            throw new OperationAbortedError(currentProcess);
         }
     }
 }

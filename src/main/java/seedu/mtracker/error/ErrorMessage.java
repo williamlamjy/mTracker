@@ -6,7 +6,7 @@ public abstract class ErrorMessage {
             + "stock, crypto, forex or etf.";
     public static final String INVALID_COMMAND_GIVEN_ERROR = "Oops, I do not understand you...";
     public static final String INVALID_FOREX_NAME_GIVEN_ERROR = "Sorry forex pair codes must contain 6 letters! "
-            + "No numbers allowed. (Eg: AUDUSD, EUR/GBP, xauusd, GBPjpy, usd/sgd, etc.)";
+            + "\nNo numbers allowed. (Eg: AUDUSD, EUR/GBP, xauusd, GBPjpy, usd/sgd, etc.)";
     public static final String INVALID_PRICE_EMPTY_ERROR = "Sorry price cannot be empty.";
     public static final String INVALID_NEGATIVE_PRICE_ERROR = "Sorry price cannot be negative. "
             + "It must be a positive number.";
@@ -33,6 +33,10 @@ public abstract class ErrorMessage {
             + " keyword after 'find' command.";
     public static final String INSTRUMENT_MARKED_DONE_ERROR = "Instrument at provided index "
             + "has already been marked as completed!";
+    public static final String ADD_OPERATION_ABORTED = "Addition of new instrument has been aborted! "
+            + "You are in the main workspace now.";
+    public static final String EDIT_OPERATION_ABORTED = "Edit process has been aborted! "
+            + "You are in the main workspace now.";
 
     public static final String FILE_WRITE_ERROR = "Oh no! There seems to be an error writing to the file";
     public static final String FILE_LOAD_ERROR = "Oh no! There seems to be an error loading this file";
