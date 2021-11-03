@@ -1,4 +1,6 @@
-package seedu.mtracker.error;
+package seedu.mtracker.error.fileerror;
+
+import seedu.mtracker.error.ErrorMessage;
 
 public class FileLoadError extends Exception {
     @Override
