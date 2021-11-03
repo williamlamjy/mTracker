@@ -163,42 +163,42 @@ class AddForexParserTest extends AddInstrumentParserTest {
     @Test
     void addForexParams_abortAtName_expectException() {
         assertThrows(OperationAbortedError.class,
-                () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_NAME, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_NAME, EXPECTED_PARAMS_NO_REMARKS));
     }
 
     @Test
     void addForexParams_abortAtCurrentPrice_expectException() {
         assertThrows(OperationAbortedError.class,
-                () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_CURRENT_PRICE, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_CURRENT_PRICE, EXPECTED_PARAMS_NO_REMARKS));
     }
 
     @Test
     void addForexParams_abortAtSentiment_expectException() {
         assertThrows(OperationAbortedError.class,
-                () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_SENTIMENT, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_SENTIMENT, EXPECTED_PARAMS_NO_REMARKS));
     }
 
     @Test
     void addForexParams_abortAtExpiry_expectException() {
         assertThrows(OperationAbortedError.class,
-                () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_EXPIRY, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_EXPIRY, EXPECTED_PARAMS_NO_REMARKS));
     }
 
     @Test
     void addForexParams_abortAtRemark_expectException() {
         assertThrows(OperationAbortedError.class,
-                () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_REMARKS, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_REMARKS, EXPECTED_PARAMS_NO_REMARKS));
     }
 
     @Test
     void addForexParams_abortAtEntryPrice_expectException() {
         assertThrows(OperationAbortedError.class,
-                () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_ENTRY_PRICE, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_ENTRY_PRICE, EXPECTED_PARAMS_NO_REMARKS));
     }
 
     @Test
     void addForexParams_abortAtExitPrice_expectException() {
         assertThrows(OperationAbortedError.class,
-                () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_EXIT_PRICE, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_EXIT_PRICE, EXPECTED_PARAMS_NO_REMARKS));
     }
 }

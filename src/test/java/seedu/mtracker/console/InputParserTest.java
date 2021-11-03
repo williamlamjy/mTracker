@@ -129,12 +129,12 @@ class InputParserTest {
     @Test
     void abortOperation_validAbortInAdd_expectException() {
         assertThrows(OperationAbortedError.class,
-                () -> parser.checkIfAbort(ABORT, ADD_WORKSPACE));
+            () -> parser.checkIfAbort(ABORT, ADD_WORKSPACE));
     }
 
     @Test
     void abortOperation_validAbortInEdit_expectException() {
         assertThrows(OperationAbortedError.class,
-                () -> parser.checkIfAbort(ABORT, EDIT_WORKSPACE));
+            () -> parser.checkIfAbort(ABORT, EDIT_WORKSPACE));
     }
 }

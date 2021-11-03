@@ -110,24 +110,24 @@ class AddStockParserTest extends AddInstrumentParserTest {
     @Test
     void addStockParams_abortAtName_expectException() {
         assertThrows(OperationAbortedError.class,
-                () -> testStockParameters(USER_INPUT_TRY_ABORT_AT_NAME, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testStockParameters(USER_INPUT_TRY_ABORT_AT_NAME, EXPECTED_PARAMS_NO_REMARKS));
     }
 
     @Test
     void addStockParams_abortAtPrice_expectException() {
         assertThrows(OperationAbortedError.class,
-                () -> testStockParameters(USER_INPUT_TRY_ABORT_AT_PRICE, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testStockParameters(USER_INPUT_TRY_ABORT_AT_PRICE, EXPECTED_PARAMS_NO_REMARKS));
     }
 
     @Test
     void addStockParams_abortAtSentiment_expectException() {
         assertThrows(OperationAbortedError.class,
-                () -> testStockParameters(USER_INPUT_TRY_ABORT_AT_SENTIMENT, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testStockParameters(USER_INPUT_TRY_ABORT_AT_SENTIMENT, EXPECTED_PARAMS_NO_REMARKS));
     }
 
     @Test
     void addStockParams_abortAtRemark_expectException() {
         assertThrows(OperationAbortedError.class,
-                () -> testStockParameters(USER_INPUT_TRY_ABORT_AT_REMARK, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testStockParameters(USER_INPUT_TRY_ABORT_AT_REMARK, EXPECTED_PARAMS_NO_REMARKS));
     }
 }
