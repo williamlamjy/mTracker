@@ -2,7 +2,6 @@ package seedu.mtracker.console;
 
 import seedu.mtracker.commands.EditInstrumentCommand;
 import seedu.mtracker.commons.Validate;
-import seedu.mtracker.error.ErrorMessage;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -21,19 +20,18 @@ public class EditInstrumentParser extends InputParser {
     protected static final String ENTRY_PRICE_ATTRIBUTE = "entry-price";
     protected static final String EXIT_PRICE_ATTRIBUTE = "exit-price";
     protected static final String EXPIRY_ATTRIBUTE = "expiry";
-    protected static final String DONE_ATTRIBUTE = "undone";
+    protected static final String DONE_ATTRIBUTE = "done-status";
     protected static final String WORKSPACE = EditInstrumentCommand.COMMAND_WORD;
 
     public static void editNameParameter(String instrumentType, HashSet<String> parametersGiven) {
         if (!parametersGiven.contains(NAME_ATTRIBUTE)) {
             return;
         }
-        TextUi.displayEditName();
-        String inputName = getUserInput(WORKSPACE);
-        while (!Validate.isValidName(inputName, instrumentType)) {
-            ErrorMessage.displayEditNameError();
+        String inputName;
+        do {
+            TextUi.displayEditName();
             inputName = getUserInput(WORKSPACE);
-        }
+        } while (!Validate.isValidName(inputName, instrumentType));
         editedParameters.put(NAME_ATTRIBUTE, inputName);
     }
 
@@ -41,12 +39,11 @@ public class EditInstrumentParser extends InputParser {
         if (!parametersGiven.contains(CURRENT_PRICE_ATTRIBUTE)) {
             return;
         }
-        TextUi.displayEditCurrentPrice();
-        String inputCurrentPrice = getUserInput(WORKSPACE);
-        while (!Validate.isValidPrice(inputCurrentPrice)) {
-            ErrorMessage.displayEditPriceError();
+        String inputCurrentPrice;
+        do {
+            TextUi.displayEditCurrentPrice();
             inputCurrentPrice = getUserInput(WORKSPACE);
-        }
+        } while (!Validate.isValidPrice(inputCurrentPrice));
         editedParameters.put(CURRENT_PRICE_ATTRIBUTE, inputCurrentPrice);
     }
 
@@ -54,12 +51,11 @@ public class EditInstrumentParser extends InputParser {
         if (!parametersGiven.contains(SENTIMENT_ATTRIBUTE)) {
             return;
         }
+        String inputSentiment;
+        do {
         TextUi.displayEditSentiment();
-        String inputSentiment = getUserInput(WORKSPACE);
-        while (!Validate.isValidSentiment(inputSentiment)) {
-            ErrorMessage.displayEditSentimentError();
-            inputSentiment = getUserInput(WORKSPACE);
-        }
+        inputSentiment = getUserInput(WORKSPACE);
+        } while (!Validate.isValidSentiment(inputSentiment));
         editedParameters.put(SENTIMENT_ATTRIBUTE, inputSentiment);
     }
 
@@ -76,12 +72,11 @@ public class EditInstrumentParser extends InputParser {
         if (!parametersGiven.contains(RETURN_ATTRIBUTE)) {
             return;
         }
-        TextUi.displayEditReturn();
-        String inputReturn = getUserInput(WORKSPACE);
-        while (!Validate.isValidPastReturn(inputReturn)) {
-            ErrorMessage.displayEditReturnError();
+        String inputReturn;
+        do {
+            TextUi.displayEditReturn();
             inputReturn = getUserInput(WORKSPACE);
-        }
+        } while (!Validate.isValidPastReturn(inputReturn));
         editedParameters.put(RETURN_ATTRIBUTE, inputReturn);
     }
 
@@ -89,12 +84,11 @@ public class EditInstrumentParser extends InputParser {
         if (!parametersGiven.contains(ENTRY_PRICE_ATTRIBUTE)) {
             return;
         }
-        TextUi.displayEditEntryPrice();
-        String inputEntryPrice = getUserInput(WORKSPACE);
-        while (!Validate.isValidPrice(inputEntryPrice)) {
-            ErrorMessage.displayEditPriceError();
+        String inputEntryPrice;
+        do {
+            TextUi.displayEditEntryPrice();
             inputEntryPrice = getUserInput(WORKSPACE);
-        }
+        } while (!Validate.isValidPrice(inputEntryPrice));
         editedParameters.put(ENTRY_PRICE_ATTRIBUTE, inputEntryPrice);
     }
 
@@ -102,12 +96,11 @@ public class EditInstrumentParser extends InputParser {
         if (!parametersGiven.contains(EXIT_PRICE_ATTRIBUTE)) {
             return;
         }
-        TextUi.displayEditExitPrice();
-        String inputExitPrice = getUserInput(WORKSPACE);
-        while (!Validate.isValidPrice(inputExitPrice)) {
-            ErrorMessage.displayEditPriceError();
+        String inputExitPrice;
+        do {
+            TextUi.displayEditExitPrice();
             inputExitPrice = getUserInput(WORKSPACE);
-        }
+        } while (!Validate.isValidPrice(inputExitPrice));
         editedParameters.put(EXIT_PRICE_ATTRIBUTE, inputExitPrice);
     }
 
@@ -115,12 +108,11 @@ public class EditInstrumentParser extends InputParser {
         if (!parametersGiven.contains(EXPIRY_ATTRIBUTE)) {
             return;
         }
-        TextUi.displayEditExpiry();
-        String inputExpiry = getUserInput(WORKSPACE);
-        while (!Validate.isValidExpiry(inputExpiry)) {
-            ErrorMessage.displayEditExpiryError();
+        String inputExpiry;
+        do {
+            TextUi.displayEditExpiry();
             inputExpiry = getUserInput(WORKSPACE);
-        }
+        } while (!Validate.isValidExpiry(inputExpiry));
         editedParameters.put(EXPIRY_ATTRIBUTE, inputExpiry);
     }
 
@@ -128,7 +120,12 @@ public class EditInstrumentParser extends InputParser {
         if (!parametersGiven.contains(DONE_ATTRIBUTE)) {
             return;
         }
-        editedParameters.put(DONE_ATTRIBUTE,DONE_ATTRIBUTE);
+        String inputStatus;
+        do {
+            TextUi.displayEditStatus();
+            inputStatus = getUserInput(WORKSPACE);
+        } while (!Validate.isValidStatus(inputStatus));
+        editedParameters.put(DONE_ATTRIBUTE, inputStatus);
     }
 
     public static void getEditedParameters(HashSet<String> parametersGiven, Instrument instrumentOfInterest) {

@@ -6,6 +6,7 @@ import seedu.mtracker.commands.AddEtfCommand;
 import seedu.mtracker.commands.AddForexCommand;
 import seedu.mtracker.commands.AddStockCommand;
 import seedu.mtracker.console.AddForexParser;
+import seedu.mtracker.error.AlreadyDoneError;
 import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidDateFormatError;
 import seedu.mtracker.error.InvalidEmptyExpiryDateError;
@@ -19,14 +20,13 @@ import seedu.mtracker.error.InvalidPastReturnError;
 import seedu.mtracker.error.InvalidPastReturnTypeError;
 import seedu.mtracker.error.InvalidPriceError;
 import seedu.mtracker.error.InvalidSentimentError;
-import seedu.mtracker.error.AlreadyDoneError;
+import seedu.mtracker.error.InvalidStatusError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.logging.Logger;
 
 public class Validate {
@@ -37,6 +37,8 @@ public class Validate {
     public static final String POSITIVE_SENTIMENT = "positive";
     public static final String NEUTRAL_SENTIMENT = "neutral";
     public static final String NEGATIVE_SENTIMENT = "negative";
+    public static final String DONE_INDICATOR = "y";
+    public static final String NOT_DONE_INDICATOR = "n";
 
     private static final String FOREX_VALID_NAME_REGEX = "^[a-zA-Z]{3}/?[a-zA-Z]{3}$";
 
@@ -235,6 +237,24 @@ public class Validate {
             checkDateIsInPast(expiryInput);
         } catch (Exception e) {
             logger.info(LogHelper.LOG_INVALID_EXPIRY);
+            TextUi.showErrorMessage(e);
+            return false;
+        }
+        return true;
+    }
+
+    public static void checkStatus(String doneStatus) throws InvalidStatusError {
+        boolean isValidCompletedStatus = doneStatus.equals(DONE_INDICATOR);
+        boolean isValidNotCompletedStatus = doneStatus.equals(NOT_DONE_INDICATOR);
+        if (!isValidCompletedStatus && !isValidNotCompletedStatus) {
+            throw new InvalidStatusError();
+        }
+    }
+
+    public static boolean isValidStatus (String doneStatus) {
+        try {
+            checkStatus(doneStatus);
+        } catch (Exception e) {
             TextUi.showErrorMessage(e);
             return false;
         }

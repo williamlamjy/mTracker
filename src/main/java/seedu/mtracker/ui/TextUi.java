@@ -42,6 +42,7 @@ public class TextUi {
     private static final String EDIT_ENTRY_MESSAGE = "Enter new Entry Price:";
     private static final String EDIT_EXIT_MESSAGE = "Enter new Exit Price:";
     private static final String EDIT_EXPIRY_MESSAGE = "Enter new Expiry (YYYY-MM-DD):";
+    private static final String EDIT_STATUS_MESSAGE = "Enter new Status:";
     private static final String WATCHLIST_HEADER = "CURRENT WATCHLIST";
 
     private static final int NONE_FOUND = 0;
@@ -201,6 +202,10 @@ public class TextUi {
 
     public static void displayEditExpiry() {
         System.out.println(TAB + EDIT_EXPIRY_MESSAGE);
+    }
+
+    public static void displayEditStatus() {
+        System.out.println(TAB + EDIT_STATUS_MESSAGE);
     }
 
     public static void displayEditBeforeAfter(String beforeEdit, String afterEdit) {
