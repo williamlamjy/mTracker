@@ -11,13 +11,7 @@ import seedu.mtracker.commands.ListCommand;
 import seedu.mtracker.commands.FindCommand;
 import seedu.mtracker.commons.Validate;
 import seedu.mtracker.commands.ViewCommand;
-import seedu.mtracker.error.InvalidBoundsError;
-import seedu.mtracker.error.InvalidCommandError;
-import seedu.mtracker.error.InvalidEmptyIndexError;
-import seedu.mtracker.error.InvalidEmptySearchStringError;
-import seedu.mtracker.error.InvalidIndexError;
-import seedu.mtracker.error.InvalidInstrumentError;
-import seedu.mtracker.error.AlreadyDoneError;
+import seedu.mtracker.error.*;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -41,6 +35,8 @@ public class InputParser {
     private int instrumentNumber;
     private String searchString;
 
+    private String ABORTED = "abort";
+
     public InputParser() {
         inputScanner = new Scanner(System.in);
     }
@@ -54,11 +50,15 @@ public class InputParser {
         return instrumentNumber;
     }
 
-    public AddInstrumentCommand getAddInstrumentParameters() throws InvalidInstrumentError {
+    public AddInstrumentCommand getAddInstrumentParameters()
+            throws InvalidInstrumentError, OperationAbortedError {
         TextUi.displayAddInstrumentFirstInstruction();
         String addInstrumentType;
         do {
             addInstrumentType = getUserInput(AddInstrumentCommand.COMMAND_WORD).toLowerCase();
+            if (addInstrumentType.equals(ABORTED)) {
+                throw new OperationAbortedError();
+            }
         } while (!Validate.isValidInstrument(addInstrumentType));
         return AddInstrumentParser.filterByInstrumentType(getCommandComponents(addInstrumentType));
     }

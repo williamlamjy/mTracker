@@ -3,8 +3,11 @@ package seedu.mtracker.console;
 import seedu.mtracker.commands.AddForexCommand;
 import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commons.Validate;
+import seedu.mtracker.error.OperationAbortedError;
 import seedu.mtracker.ui.TextUi;
 import seedu.mtracker.asserthelpers.AssertParserHelper;
+
+import javax.management.openmbean.OpenDataException;
 
 public class AddForexParser extends AddInstrumentParser {
     public static String INSTRUMENT_TYPE = "forex";
@@ -34,37 +37,46 @@ public class AddForexParser extends AddInstrumentParser {
         parameters.add(remarks);
     }
 
-    public void addForexEntryToParameter() {
+    public void addForexEntryToParameter() throws OperationAbortedError {
         String entryPrice;
         do {
             entryPrice = getForexEntryFromUser();
+            if (entryPrice.equalsIgnoreCase(ABORTED)) {
+                throw new OperationAbortedError();
+            }
         } while (!Validate.isValidPrice(entryPrice));
         parameters.add(entryPrice);
         AssertParserHelper.assertInputNotEmpty(entryPrice);
         AssertParserHelper.assertPriceNonNegative(entryPrice);
     }
 
-    public void addForexExitToParameter() {
+    public void addForexExitToParameter() throws OperationAbortedError {
         String exitPrice;
         do {
             exitPrice = getForexExitFromUser();
+            if (exitPrice.equalsIgnoreCase(ABORTED)) {
+                throw new OperationAbortedError();
+            }
         } while (!Validate.isValidPrice(exitPrice));
         parameters.add(exitPrice);
         AssertParserHelper.assertInputNotEmpty(exitPrice);
         AssertParserHelper.assertPriceNonNegative(exitPrice);
     }
 
-    public void addForexExpiryToParameter() {
+    public void addForexExpiryToParameter() throws OperationAbortedError {
         String expiry;
         do {
             expiry = getForexExpiryFromUser();
+            if (expiry.equalsIgnoreCase(ABORTED)) {
+                throw new OperationAbortedError();
+            }
         } while (!Validate.isValidExpiry(expiry));
         parameters.add(expiry);
         AssertParserHelper.assertExpiryInTheFuture(expiry);
         AssertParserHelper.assertInputNotEmpty(expiry);
     }
 
-    public void getForexSpecificParameters() {
+    public void getForexSpecificParameters() throws OperationAbortedError {
         addForexEntryToParameter();
         addForexExitToParameter();
         addForexExpiryToParameter();
@@ -72,7 +84,7 @@ public class AddForexParser extends AddInstrumentParser {
     }
 
     @Override
-    public AddInstrumentCommand getInstrumentParameters() {
+    public AddInstrumentCommand getInstrumentParameters() throws OperationAbortedError {
         getGeneralParameters(INSTRUMENT_TYPE);
         getForexSpecificParameters();
         AssertParserHelper.assertNoMissingForexParameters(parameters);

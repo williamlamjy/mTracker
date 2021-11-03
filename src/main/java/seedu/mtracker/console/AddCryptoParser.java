@@ -4,6 +4,7 @@ import seedu.mtracker.asserthelpers.AssertParserHelper;
 import seedu.mtracker.commands.AddCryptoCommand;
 import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commons.Validate;
+import seedu.mtracker.error.OperationAbortedError;
 import seedu.mtracker.ui.TextUi;
 
 public class AddCryptoParser extends AddInstrumentParser {
@@ -20,27 +21,33 @@ public class AddCryptoParser extends AddInstrumentParser {
         return getUserInput(WORKSPACE);
     }
 
-    public void addCryptoExpiryToParameters() {
+    public void addCryptoExpiryToParameters() throws OperationAbortedError {
         String expiry;
         do {
             expiry = getCryptoExpiryFromUser();
+            if (expiry.equalsIgnoreCase(ABORTED)) {
+                throw new OperationAbortedError();
+            }
         } while (!Validate.isValidExpiry(expiry));
         parameters.add(expiry);
         AssertParserHelper.assertExpiryInTheFuture(expiry);
     }
 
-    public void addCryptoRemarksToParameters() {
+    public void addCryptoRemarksToParameters() throws OperationAbortedError {
         String remarks = getCryptoRemarksFromUser();
+        if (remarks.equalsIgnoreCase(ABORTED)) {
+            throw new OperationAbortedError();
+        }
         parameters.add(remarks);
     }
 
-    public void getCryptoSpecificParameters() {
+    public void getCryptoSpecificParameters() throws OperationAbortedError {
         addCryptoExpiryToParameters();
         addCryptoRemarksToParameters();
     }
 
     @Override
-    public AddInstrumentCommand getInstrumentParameters() {
+    public AddInstrumentCommand getInstrumentParameters() throws OperationAbortedError {
         getGeneralParameters(INSTRUMENT_TYPE);
         getCryptoSpecificParameters();
         AssertParserHelper.assertNoMissingCryptoParameters(parameters);

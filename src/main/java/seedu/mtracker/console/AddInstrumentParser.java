@@ -9,6 +9,7 @@ import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commands.AddStockCommand;
 import seedu.mtracker.commons.Validate;
 import seedu.mtracker.error.InvalidInstrumentError;
+import seedu.mtracker.error.OperationAbortedError;
 import seedu.mtracker.ui.TextUi;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public abstract class AddInstrumentParser extends InputParser {
 
     protected static ArrayList<String> parameters;
     protected static final String WORKSPACE = AddInstrumentCommand.COMMAND_WORD;
+    protected static final String ABORTED = "abort";
 
     public void initParameters() {
         parameters = new ArrayList<>();
@@ -34,10 +36,13 @@ public abstract class AddInstrumentParser extends InputParser {
         return getUserInput(WORKSPACE);
     }
 
-    public static void addNameToParameters(String instrumentType) {
+    public static void addNameToParameters(String instrumentType) throws OperationAbortedError {
         String name;
         do {
             name = getInstrumentNameFromUser(instrumentType);
+            if (name.equalsIgnoreCase(ABORTED)) {
+                throw new OperationAbortedError();
+            }
         } while (!Validate.isValidName(name, instrumentType));
         parameters.add(name);
         AssertParserHelper.assertInputNotEmpty(name);
@@ -48,11 +53,14 @@ public abstract class AddInstrumentParser extends InputParser {
         return getUserInput(WORKSPACE);
     }
 
-    public static void addCurrentPriceToParameters() {
+    public static void addCurrentPriceToParameters() throws OperationAbortedError {
         String currentPrice;
         do {
             currentPrice = getCurrentPriceFromUser();
-        } while (!Validate.isValidPrice(currentPrice));;
+            if (currentPrice.equalsIgnoreCase(ABORTED)) {
+                throw new OperationAbortedError();
+            }
+        } while (!Validate.isValidPrice(currentPrice));
         parameters.add(currentPrice);
         AssertParserHelper.assertInputNotEmpty(currentPrice);
         AssertParserHelper.assertPriceNonNegative(currentPrice);
@@ -64,26 +72,29 @@ public abstract class AddInstrumentParser extends InputParser {
     }
 
 
-    public static void addSentimentToParameters() {
+    public static void addSentimentToParameters() throws OperationAbortedError {
         String sentiment;
         do {
             sentiment = getInstrumentSentimentFromUser().toLowerCase();
+            if (sentiment.equalsIgnoreCase(ABORTED)) {
+                throw new OperationAbortedError();
+            }
         } while (!Validate.isValidSentiment(sentiment));
         parameters.add(sentiment);
         AssertParserHelper.assertInputNotEmpty(sentiment);
     }
 
-    public static void getGeneralParameters(String instrumentType) {
+    public static void getGeneralParameters(String instrumentType) throws OperationAbortedError {
         addNameToParameters(instrumentType);
         addCurrentPriceToParameters();
         addSentimentToParameters();
         AssertParserHelper.assertNoMissingGeneralParameters(parameters);
     }
 
-    public abstract AddInstrumentCommand getInstrumentParameters();
+    public abstract AddInstrumentCommand getInstrumentParameters() throws OperationAbortedError;
 
     public static AddInstrumentCommand filterByInstrumentType(String[] commandComponents)
-            throws InvalidInstrumentError {
+            throws InvalidInstrumentError, OperationAbortedError {
         AddInstrumentCommand command;
         AddInstrumentParser addInstrumentParser;
         switch (commandComponents[INSTRUMENT_COMMAND_INDEX]) {

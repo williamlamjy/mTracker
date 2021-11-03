@@ -4,6 +4,7 @@ import seedu.mtracker.asserthelpers.AssertParserHelper;
 import seedu.mtracker.commands.AddEtfCommand;
 import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commons.Validate;
+import seedu.mtracker.error.OperationAbortedError;
 import seedu.mtracker.ui.TextUi;
 
 public class AddEtfParser extends AddInstrumentParser {
@@ -16,32 +17,38 @@ public class AddEtfParser extends AddInstrumentParser {
         return getUserInput(WORKSPACE);
     }
 
-    public String getEtfPastReturnFromUser() {
+    public String getEtfPastReturnFromUser() throws OperationAbortedError {
         TextUi.displayAddPastReturnsInstruction();
         String userInput = getUserInput(WORKSPACE);
+        if (userInput.equalsIgnoreCase(ABORTED)) {
+            throw new OperationAbortedError();
+        }
         if (!Validate.isValidPastReturn(userInput)) {
             return String.valueOf(UNDEFINED_PAST_RETURN_VALUE);
         }
         return userInput;
     }
 
-    public void addEtfRemarkToParameters() {
+    public void addEtfRemarkToParameters() throws OperationAbortedError {
         String remarks = getEtfRemarkFromUser();
+        if (remarks.equalsIgnoreCase(ABORTED)) {
+            throw new OperationAbortedError();
+        }
         parameters.add(remarks);
     }
 
-    public void addEtfPastReturnToParameters() {
+    public void addEtfPastReturnToParameters() throws OperationAbortedError {
         String pastReturns = getEtfPastReturnFromUser();
         parameters.add(pastReturns);
     }
 
-    public void getEtfSpecificParameters() {
+    public void getEtfSpecificParameters() throws OperationAbortedError {
         addEtfPastReturnToParameters();
         addEtfRemarkToParameters();
     }
 
     @Override
-    public AddInstrumentCommand getInstrumentParameters() {
+    public AddInstrumentCommand getInstrumentParameters() throws OperationAbortedError {
         getGeneralParameters(INSTRUMENT_TYPE);
         getEtfSpecificParameters();
         AssertParserHelper.assertNoMissingEtfParameters(parameters);

@@ -3,6 +3,7 @@ package seedu.mtracker.console;
 import seedu.mtracker.asserthelpers.AssertParserHelper;
 import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commands.AddStockCommand;
+import seedu.mtracker.error.OperationAbortedError;
 import seedu.mtracker.ui.TextUi;
 
 public class AddStockParser extends AddInstrumentParser {
@@ -14,17 +15,20 @@ public class AddStockParser extends AddInstrumentParser {
         return getUserInput(WORKSPACE);
     }
 
-    public void addStockRemarksToParameters() {
+    public void addStockRemarksToParameters() throws OperationAbortedError {
         String remarks = getStockRemarksFromUser();
+        if (remarks.equalsIgnoreCase(ABORTED)) {
+            throw new OperationAbortedError();
+        }
         parameters.add(remarks);
     }
 
-    public void getStockSpecificParameters() {
+    public void getStockSpecificParameters() throws OperationAbortedError {
         addStockRemarksToParameters();
     }
 
     @Override
-    public AddInstrumentCommand getInstrumentParameters() {
+    public AddInstrumentCommand getInstrumentParameters() throws OperationAbortedError {
         getGeneralParameters(STOCK_TYPE);
         getStockSpecificParameters();
         AssertParserHelper.assertNoMissingStockParameters(parameters);

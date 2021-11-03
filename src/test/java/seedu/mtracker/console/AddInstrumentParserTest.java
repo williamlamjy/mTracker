@@ -1,5 +1,7 @@
 package seedu.mtracker.console;
 
+import seedu.mtracker.error.OperationAbortedError;
+
 import java.io.ByteArrayInputStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,7 +25,8 @@ public abstract class AddInstrumentParserTest {
         }
     }
 
-    void verifyInstrumentParameters(AddInstrumentParser testInstrumentParser, String[] expectedParameters) {
+    void verifyInstrumentParameters(AddInstrumentParser testInstrumentParser, String[] expectedParameters)
+            throws OperationAbortedError {
         testInstrumentParser.initParameters();
         testInstrumentParser.getInstrumentParameters();
         checkParameters(testInstrumentParser, expectedParameters);
