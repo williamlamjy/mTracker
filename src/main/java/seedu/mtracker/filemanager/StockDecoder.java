@@ -1,10 +1,17 @@
 package seedu.mtracker.filemanager;
 
+import seedu.mtracker.error.fileerror.InvalidCurrPriceSavedInFileError;
+import seedu.mtracker.error.fileerror.InvalidEmptyCurrPriceInFileError;
+import seedu.mtracker.error.fileerror.InvalidEmptyNameInFileError;
+import seedu.mtracker.error.fileerror.InvalidEmptySentimentInFileError;
+import seedu.mtracker.error.fileerror.InvalidEmptyStatusInFileError;
+import seedu.mtracker.error.fileerror.InvalidNameSavedInFileError;
 import seedu.mtracker.error.fileerror.InvalidRemarksInFileError;
+import seedu.mtracker.error.fileerror.InvalidSentimentSavedInFileError;
+import seedu.mtracker.error.fileerror.InvalidStatusSavedInFileError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.model.subinstrument.Stock;
-import seedu.mtracker.ui.TextUi;
 
 public class StockDecoder extends InstrumentDecoder {
 
@@ -15,10 +22,14 @@ public class StockDecoder extends InstrumentDecoder {
         String remarks;
         try {
             remarks = textSegment[STOCK_REMARKS_INDEX];
-        } catch (IllegalArgumentException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new InvalidRemarksInFileError();
         }
         return remarks;
+    }
+
+    private static void decodeSpecificAttributes(String remarks) {
+        decodedRemarks = remarks;
     }
 
     public static void validateAndDecodeSpecificAttributes(String[] textSegment) throws InvalidRemarksInFileError {
@@ -26,21 +37,12 @@ public class StockDecoder extends InstrumentDecoder {
         decodeSpecificAttributes(remarks);
     }
 
-    private static void decodeSpecificAttributes(String remarks) {
-        decodedRemarks = remarks;
-    }
-
-    public static void tryValidateAndDecodeSpecificAttributes(String[] textSegment) {
-        try {
-            validateAndDecodeSpecificAttributes(textSegment);
-        } catch (Exception e) {
-            TextUi.showErrorMessage(e);
-        }
-    }
-
-    public static void addStockToList(String[] textSegment, InstrumentManager instrumentManager) {
-        tryValidateAndDecodeGeneralAttributes(textSegment);
-        tryValidateAndDecodeSpecificAttributes(textSegment);
+    public static void addStockToList(String[] textSegment, InstrumentManager instrumentManager)
+            throws InvalidNameSavedInFileError, InvalidSentimentSavedInFileError, InvalidCurrPriceSavedInFileError,
+            InvalidEmptyNameInFileError, InvalidEmptySentimentInFileError, InvalidEmptyStatusInFileError,
+            InvalidStatusSavedInFileError, InvalidEmptyCurrPriceInFileError, InvalidRemarksInFileError {
+        validateAndDecodeGeneralAttributes(textSegment);
+        validateAndDecodeSpecificAttributes(textSegment);
         Instrument stock = createDecodedInstrument();
         setDoneStatus(decodedIsDone, stock);
         instrumentManager.addInstrument(stock);

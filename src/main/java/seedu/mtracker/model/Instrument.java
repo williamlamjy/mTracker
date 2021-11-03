@@ -16,7 +16,7 @@ public abstract class Instrument {
 
     protected static final String TAB = "\t";
     protected static final int ASCII_CODE = 127;
-    protected static final char FILE_SEPARATOR = (char)ASCII_CODE;
+    protected static final char FILE_SEPARATOR = (char) ASCII_CODE;
     protected static final String DONE_SYMBOL = "[X]";
     protected static final String NOT_DONE_SYMBOL = "[ ]";
     protected static HashSet<String> validAttribute;
