@@ -3,8 +3,6 @@ package seedu.mtracker.console;
 import org.junit.jupiter.api.Test;
 import seedu.mtracker.error.OperationAbortedError;
 
-import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AddCryptoParserTest extends AddInstrumentParserTest {
@@ -16,7 +14,7 @@ class AddCryptoParserTest extends AddInstrumentParserTest {
             + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + " ";
 
-    public static final String USER_INPUT_WITH_REMARKS_AND_EXPIRY = "TTTXXX"
+    public static final String USER_INPUT_WITH_REMARKS = "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + FUTURE_DATE
@@ -126,8 +124,8 @@ class AddCryptoParserTest extends AddInstrumentParserTest {
     }
 
     @Test
-    void addCryptoParams_allValidParametersWithRemarksAndExpiry_expectSuccess() throws OperationAbortedError {
-        testCryptoParameters(USER_INPUT_WITH_REMARKS_AND_EXPIRY,
+    void addCryptoParams_allValidParametersWithRemarks_expectSuccess() throws OperationAbortedError {
+        testCryptoParameters(USER_INPUT_WITH_REMARKS,
                 EXPECTED_PARAMS_WITH_REMARKS);
     }
 
