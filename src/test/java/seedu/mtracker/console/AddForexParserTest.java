@@ -3,16 +3,11 @@ package seedu.mtracker.console;
 import org.junit.jupiter.api.Test;
 import seedu.mtracker.error.OperationAbortedError;
 
-import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 // @@KVignesh122
 class AddForexParserTest extends AddInstrumentParserTest {
-
     public static final int PARAMETER_SIZE = 7;
-    public static final int DAYS_DIFFERENCE = 1;
-    public static final LocalDate FUTURE_DATE = LocalDate.now().plusDays(DAYS_DIFFERENCE);
 
     public static final String[] EXPECTED_PARAMS_NO_REMARKS = {
         "TTTXXX",
@@ -94,6 +89,29 @@ class AddForexParserTest extends AddInstrumentParserTest {
             + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
+    public static final String USER_INPUT_TRY_INVALID_EXPIRY = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "0.81"
+            + SEPARATOR_SPECIFIER + "foobar"
+            + SEPARATOR_SPECIFIER + "negative"
+            + SEPARATOR_SPECIFIER + "0.79"
+            + SEPARATOR_SPECIFIER + "0.70"
+            + SEPARATOR_SPECIFIER.repeat(2) + "testDate"
+            + SEPARATOR_SPECIFIER + "31/12/2021"
+            + SEPARATOR_SPECIFIER + "2021.01.01"
+            + SEPARATOR_SPECIFIER + FUTURE_DATE
+            + SEPARATOR_SPECIFIER + "fooRemarks";
+
+    public static final String USER_INPUT_TRY_PAST_EXPIRY = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "0.81"
+            + SEPARATOR_SPECIFIER + "foobar"
+            + SEPARATOR_SPECIFIER + "negative"
+            + SEPARATOR_SPECIFIER + "0.79"
+            + SEPARATOR_SPECIFIER + "0.70"
+            + SEPARATOR_SPECIFIER + PAST_DATE
+            + SEPARATOR_SPECIFIER + PAST_DATE
+            + SEPARATOR_SPECIFIER + FUTURE_DATE
+            + SEPARATOR_SPECIFIER + "fooRemarks";
+
     public static final String USER_INPUT_TRY_ABORT_AT_SENTIMENT = SEPARATOR_SPECIFIER + "TTTXXX"
             + SEPARATOR_SPECIFIER + "0.81"
             + SEPARATOR_SPECIFIER + DONT_ABORT
@@ -157,6 +175,16 @@ class AddForexParserTest extends AddInstrumentParserTest {
     @Test
     void addForexParams_tryInvalidSentimentMultipleTimes_expectSuccess() throws OperationAbortedError {
         testForexParameters(USER_INPUT_TRY_INVALID_SENTIMENT, EXPECTED_PARAMS_WITH_REMARKS);
+    }
+
+    @Test
+    void addForexParams_tryInvalidDateMultipleTimes_expectSuccess() throws OperationAbortedError {
+        testForexParameters(USER_INPUT_TRY_INVALID_EXPIRY, EXPECTED_PARAMS_WITH_REMARKS);
+    }
+
+    @Test
+    void addForexParams_tryPastDateMultipleTimes_expectSuccess() throws OperationAbortedError {
+        testForexParameters(USER_INPUT_TRY_PAST_EXPIRY, EXPECTED_PARAMS_WITH_REMARKS);
     }
 
     // @@KVignesh122
