@@ -251,7 +251,7 @@ public class Validate {
         }
     }
 
-    public static boolean isValidStatus (String doneStatus) {
+    public static boolean isValidStatus(String doneStatus) {
         try {
             checkStatus(doneStatus);
         } catch (Exception e) {
