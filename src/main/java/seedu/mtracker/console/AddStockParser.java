@@ -1,7 +1,6 @@
 package seedu.mtracker.console;
 
 import seedu.mtracker.asserthelpers.AssertParserHelper;
-import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commands.AddStockCommand;
 import seedu.mtracker.ui.TextUi;
 
@@ -24,7 +23,7 @@ public class AddStockParser extends AddInstrumentParser {
     }
 
     @Override
-    public AddInstrumentCommand getInstrumentParameters() {
+    public AddStockCommand getInstrumentParameters() {
         getGeneralParameters(STOCK_TYPE);
         getStockSpecificParameters();
         AssertParserHelper.assertNoMissingStockParameters(parameters);
