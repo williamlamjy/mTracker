@@ -53,6 +53,7 @@ class AddStockParserTest extends AddInstrumentParserTest {
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
+    // @@KVignesh122
     public static final String USER_INPUT_TRY_ABORT_AT_NAME = ABORT;
 
     public static final String USER_INPUT_TRY_ABORT_AT_PRICE = "TTTXXX"
