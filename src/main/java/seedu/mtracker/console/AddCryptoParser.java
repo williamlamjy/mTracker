@@ -2,7 +2,6 @@ package seedu.mtracker.console;
 
 import seedu.mtracker.asserthelpers.AssertParserHelper;
 import seedu.mtracker.commands.AddCryptoCommand;
-import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commons.Validate;
 import seedu.mtracker.ui.TextUi;
 
@@ -40,7 +39,7 @@ public class AddCryptoParser extends AddInstrumentParser {
     }
 
     @Override
-    public AddInstrumentCommand getInstrumentParameters() {
+    public AddCryptoCommand getInstrumentParameters() {
         getGeneralParameters(INSTRUMENT_TYPE);
         getCryptoSpecificParameters();
         AssertParserHelper.assertNoMissingCryptoParameters(parameters);
