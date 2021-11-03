@@ -1,8 +1,8 @@
 package seedu.mtracker.filemanager;
 
+import seedu.mtracker.error.fileerror.FileLoadError;
+import seedu.mtracker.error.fileerror.FileWriteError;
 import seedu.mtracker.LogHelper;
-import seedu.mtracker.error.FileLoadError;
-import seedu.mtracker.error.FileWriteError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.ui.TextUi;

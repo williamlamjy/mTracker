@@ -6,6 +6,7 @@ import seedu.mtracker.commands.AddEtfCommand;
 import seedu.mtracker.commands.AddForexCommand;
 import seedu.mtracker.commands.AddStockCommand;
 import seedu.mtracker.console.AddForexParser;
+import seedu.mtracker.error.AlreadyDoneError;
 import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidDateFormatError;
 import seedu.mtracker.error.InvalidEmptyExpiryDateError;
@@ -19,7 +20,7 @@ import seedu.mtracker.error.InvalidPastReturnError;
 import seedu.mtracker.error.InvalidPastReturnTypeError;
 import seedu.mtracker.error.InvalidPriceError;
 import seedu.mtracker.error.InvalidSentimentError;
-import seedu.mtracker.error.AlreadyDoneError;
+import seedu.mtracker.error.OperationAbortedError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -37,13 +38,16 @@ public class Validate {
     public static final String NEUTRAL_SENTIMENT = "neutral";
     public static final String NEGATIVE_SENTIMENT = "negative";
 
-    public static final int FX_PAIR_NAME_LENGTH = 6;
+    private static final String FOREX_VALID_NAME_REGEX = "^[a-zA-Z]{3}/?[a-zA-Z]{3}$";
+
+    public static final String STATUS_DONE = "true";
+    public static final String STATUS_NOT_DONE = "false";
 
     protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public static boolean isInvalidNameCondition(String name, String instrumentType) {
         if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
-            return (name.length() != FX_PAIR_NAME_LENGTH);
+            return (!name.matches(FOREX_VALID_NAME_REGEX));
         }
         return name.isEmpty();
     }
@@ -191,7 +195,7 @@ public class Validate {
         }
     }
 
-    public static boolean isValidPastReturn(String pastReturn) {
+    public static boolean isValidPastReturns(String pastReturn) {
         if (pastReturn.isEmpty()) {
             return false;
         }
@@ -240,5 +244,9 @@ public class Validate {
         return true;
     }
 
-
+    public static boolean isValidStatus(String savedStatusFromFile) {
+        boolean isValidDoneStatus = savedStatusFromFile.equals(STATUS_DONE);
+        boolean isValidNotDoneStatus = savedStatusFromFile.equals(STATUS_NOT_DONE);
+        return isValidDoneStatus || isValidNotDoneStatus;
+    }
 }

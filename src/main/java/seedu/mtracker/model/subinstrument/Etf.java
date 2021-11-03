@@ -57,10 +57,6 @@ public class Etf extends Instrument {
         editSpecificParameters(editedParameters);
     }
 
-    public String getReturnsForFileFormat() {
-        return String.valueOf(pastReturns);
-    }
-
     public String getReturns() {
         if (pastReturns == UNDEFINED_VALUE) {
             return EMPTY_STRING;
@@ -81,8 +77,8 @@ public class Etf extends Instrument {
 
     @Override
     public String textFileFormatting() {
-        return String.format(super.textFileFormatting() + FILE_SEPARATOR + getReturnsForFileFormat()
-                + FILE_SEPARATOR + remark);
+        return super.textFileFormatting() + FILE_SEPARATOR + getReturns()
+                + FILE_SEPARATOR + remark;
     }
 
     @Override
