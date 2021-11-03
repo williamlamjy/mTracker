@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.mtracker.commands.DeleteCommand;
 import seedu.mtracker.commands.DoneCommand;
+import seedu.mtracker.error.AlreadyDoneError;
 import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidIndexError;
 import seedu.mtracker.error.InvalidEmptyIndexError;
@@ -16,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class InputParserTest {
-
     public static final int VALID_INDEX = 1;
 
     public static final String[] NO_INDEX_DELETE_INPUT = { "delete" };
@@ -114,7 +114,7 @@ class InputParserTest {
     }
 
     @Test
-    void getDoneInstrumentCommand_validIndexProvided_expectSuccess() {
+    void getDoneInstrumentCommand_validIndexProvided_expectSuccess() throws AlreadyDoneError {
         DoneCommand command = parser
                 .getDoneInstrumentCommand(VALID_INDEX_DONE_INPUT, INSTRUMENTS);
         assertEquals(command.getIndex(), VALID_INDEX - INDEX_OFFSET);

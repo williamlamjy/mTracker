@@ -39,7 +39,6 @@ public class Forex extends Instrument {
         this.exitPrice = exitPrice;
         this.expiry = expiry;
         this.remark = remark;
-
     }
 
     @Override
@@ -50,24 +49,8 @@ public class Forex extends Instrument {
                 + REMARK_ATTRIBUTE;
     }
 
-    public double getEntryPrice() {
-        return entryPrice;
-    }
-
-    public double getExitPrice() {
-        return exitPrice;
-    }
-
-    public LocalDate getExpiry() {
-        return expiry;
-    }
-
     public String formatExpiry() {
         return expiry.format(DateTimeFormatter.ofPattern(DATE_REGEX));
-    }
-
-    public String getRemark() {
-        return remark;
     }
 
     public void setRemark(String inputRemark) {
@@ -142,9 +125,9 @@ public class Forex extends Instrument {
 
     @Override
     public String textFileFormatting() {
-        return String.format(super.textFileFormatting() + FILE_SEPARATOR + getEntryPrice()
-                + FILE_SEPARATOR + getExitPrice() + FILE_SEPARATOR + getExpiry()
-                + FILE_SEPARATOR + getRemark());
+        return super.textFileFormatting() + FILE_SEPARATOR + entryPrice
+                + FILE_SEPARATOR + exitPrice + FILE_SEPARATOR + expiry
+                + FILE_SEPARATOR + remark;
     }
 
     @Override

@@ -12,12 +12,14 @@ import seedu.mtracker.error.InvalidInstrumentError;
 import seedu.mtracker.ui.TextUi;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public abstract class AddInstrumentParser extends InputParser {
 
     public static final int INSTRUMENT_COMMAND_INDEX = 0;
 
     protected static ArrayList<String> parameters;
+    protected static final String WORKSPACE = AddInstrumentCommand.COMMAND_WORD;
 
     public void initParameters() {
         parameters = new ArrayList<>();
@@ -29,28 +31,28 @@ public abstract class AddInstrumentParser extends InputParser {
 
     public static String getInstrumentNameFromUser(String instrumentType) {
         TextUi.displayAddInstrumentNameInstruction(instrumentType);
-        return getUserInput();
+        return getUserInput(WORKSPACE);
     }
 
     public static void addNameToParameters(String instrumentType) {
-        String name = getInstrumentNameFromUser(instrumentType);
-        while (!Validate.isValidName(name, instrumentType)) {
+        String name;
+        do {
             name = getInstrumentNameFromUser(instrumentType);
-        }
+        } while (!Validate.isValidName(name, instrumentType));
         parameters.add(name);
         AssertParserHelper.assertInputNotEmpty(name);
     }
 
     public static String getCurrentPriceFromUser() {
         TextUi.displayAddInstrumentCurrentPriceInstruction();
-        return getUserInput();
+        return getUserInput(WORKSPACE);
     }
 
     public static void addCurrentPriceToParameters() {
-        String currentPrice = getCurrentPriceFromUser();
-        while (!Validate.isValidPrice(currentPrice)) {
+        String currentPrice;
+        do {
             currentPrice = getCurrentPriceFromUser();
-        }
+        } while (!Validate.isValidPrice(currentPrice));;
         parameters.add(currentPrice);
         AssertParserHelper.assertInputNotEmpty(currentPrice);
         AssertParserHelper.assertPriceNonNegative(currentPrice);
@@ -58,15 +60,15 @@ public abstract class AddInstrumentParser extends InputParser {
 
     public static String getInstrumentSentimentFromUser() {
         TextUi.displayAddInstrumentSentimentInstruction();
-        return getUserInput();
+        return getUserInput(WORKSPACE);
     }
 
 
     public static void addSentimentToParameters() {
-        String sentiment = getInstrumentSentimentFromUser();
-        while (!Validate.isValidSentiment(sentiment)) {
-            sentiment = getInstrumentSentimentFromUser();
-        }
+        String sentiment;
+        do {
+            sentiment = getInstrumentSentimentFromUser().toLowerCase();
+        } while (!Validate.isValidSentiment(sentiment));
         parameters.add(sentiment);
         AssertParserHelper.assertInputNotEmpty(sentiment);
     }

@@ -17,7 +17,6 @@ public class TextUi {
     private static final String RETURNS_HEADER = "Past Returns (optional): ";
 
     private static final String LINE_DECORATOR = "_".repeat(80);
-    private static final String CONSOLE_PROMPTER = "mTracker$> ";
     private static final String LOGO = "            _________                      __\n"
             + "           |  _   _  |                    [  |  _\n"
             + " _ .--..--.|_/ | | \\_| .--.  ,--.   .---.  | | / ] .---.  _ .--.\n"
@@ -102,12 +101,12 @@ public class TextUi {
         System.out.println(LINE_DECORATOR);
     }
 
-    private static void displayFoundMessage(int numFound, String keyword) {
+    private static void displayFoundMessage(int numFound, String searchTerm) {
         if (numFound == NONE_FOUND) {
-            System.out.println("There were no instruments found for keyword, " + keyword);
+            System.out.println("There were no instruments found for search string, " + searchTerm + ".");
             return;
         }
-        System.out.println("There were " + numFound + " instrument(s) found for keyword, " + keyword + ".");
+        System.out.println("There were " + numFound + " instrument(s) found for search string, " + searchTerm + ".");
     }
 
     public static void displayInstrumentsFound(ArrayList<Instrument> instruments, String searchString) {
@@ -157,8 +156,9 @@ public class TextUi {
                 + "MAY THE MARKETS BE WITH YOU!!!");
     }
 
-    public static void displayPrompter() {
-        System.out.print(CONSOLE_PROMPTER);
+    public static void displayPrompter(String workspace) {
+        String prompter = "mTracker$" + workspace + "> ";
+        System.out.print(prompter);
     }
 
     public static void displayEditInstrumentFirstInstruction(Instrument instrument) {

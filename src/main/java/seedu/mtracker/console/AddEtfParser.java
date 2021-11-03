@@ -13,13 +13,13 @@ public class AddEtfParser extends AddInstrumentParser {
 
     public String getEtfRemarkFromUser() {
         TextUi.displayAddRemarksInstruction();
-        return getUserInput();
+        return getUserInput(WORKSPACE);
     }
 
     public String getEtfPastReturnFromUser() {
         TextUi.displayAddPastReturnsInstruction();
-        String userInput = getUserInput();
-        if (!Validate.isValidPastReturn(userInput)) {
+        String userInput = getUserInput(WORKSPACE);
+        if (!Validate.isValidPastReturns(userInput)) {
             return String.valueOf(UNDEFINED_PAST_RETURN_VALUE);
         }
         return userInput;

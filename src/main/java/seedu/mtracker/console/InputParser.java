@@ -14,9 +14,10 @@ import seedu.mtracker.commands.ViewCommand;
 import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidCommandError;
 import seedu.mtracker.error.InvalidEmptyIndexError;
-import seedu.mtracker.error.InvalidEmptyKeywordError;
+import seedu.mtracker.error.InvalidEmptySearchStringError;
 import seedu.mtracker.error.InvalidIndexError;
 import seedu.mtracker.error.InvalidInstrumentError;
+import seedu.mtracker.error.AlreadyDoneError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -30,7 +31,7 @@ public class InputParser {
     public static final String SEPARATOR = " ";
     public static final int INDEX_OFFSET = 1;
     public static final int INSTRUMENT_INDEX = 1;
-    public static final int SEARCH_STR_INDEX = 1;
+    public static final int SEARCH_STR_INDEX_START = 1;
 
     public static final int MAIN_COMMAND_INDEX = 0;
 
@@ -44,8 +45,8 @@ public class InputParser {
         inputScanner = new Scanner(System.in);
     }
 
-    public static String getUserInput() {
-        TextUi.displayPrompter();
+    public static String getUserInput(String currentWorkspace) {
+        TextUi.displayPrompter(currentWorkspace);
         return inputScanner.nextLine().trim();
     }
 
@@ -55,7 +56,10 @@ public class InputParser {
 
     public AddInstrumentCommand getAddInstrumentParameters() throws InvalidInstrumentError {
         TextUi.displayAddInstrumentFirstInstruction();
-        String addInstrumentType = getUserInput();
+        String addInstrumentType;
+        do {
+            addInstrumentType = getUserInput(AddInstrumentCommand.COMMAND_WORD).toLowerCase();
+        } while (!Validate.isValidInstrument(addInstrumentType));
         return AddInstrumentParser.filterByInstrumentType(getCommandComponents(addInstrumentType));
     }
 
@@ -76,9 +80,10 @@ public class InputParser {
     }
 
     public DoneCommand getDoneInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
-            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError {
+            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError, AlreadyDoneError {
         DoneCommand doneCommand = new DoneCommand();
         getAndValidateIndexNumber(commandComponents, instruments);
+        getAndValidateDoneStatus(commandComponents, instruments);
         doneCommand.setIndex(instrumentNumber);
         return doneCommand;
     }
@@ -96,7 +101,7 @@ public class InputParser {
     }
 
     public HashSet<String> getParametersToEdit(HashSet<String> validAttributes) {
-        String parametersToEdit = getUserInput();
+        String parametersToEdit = getUserInput(EditInstrumentCommand.COMMAND_WORD);
         String[] parameters = getCommandComponents(parametersToEdit);
         return filterInvalidParameters(parameters, validAttributes);
     }
@@ -116,11 +121,17 @@ public class InputParser {
         Validate.validateIndexWithinBounds(instruments, instrumentNumber);
     }
 
+    private void getAndValidateDoneStatus(String[] commandComponents, ArrayList<Instrument> instruments)
+            throws AlreadyDoneError {
+        getIndexNumber(commandComponents);
+        Validate.checkIsNotDone(instruments, instrumentNumber);
+    }
+
     public FindCommand getFindInstrumentsCommand(String[] commandComponents)
-            throws InvalidEmptyKeywordError {
+            throws InvalidEmptySearchStringError {
         FindCommand findCommand = new FindCommand();
-        getSearchString(commandComponents);
-        findCommand.setKeyword(searchString);
+        constructSearchString(commandComponents);
+        findCommand.setSearchString(searchString);
         return findCommand;
     }
 
@@ -160,7 +171,7 @@ public class InputParser {
     }
 
     public String[] getCommandComponents(String commandInput) {
-        return commandInput.trim().split(SEPARATOR);
+        return commandInput.trim().toLowerCase().split(SEPARATOR);
     }
 
     public void getIndexNumber(String[] commandComponents) {
@@ -173,11 +184,14 @@ public class InputParser {
         }
     }
 
-    public void getSearchString(String[] commandComponents) {
+    public void constructSearchString(String[] commandComponents) {
         try {
-            searchString = commandComponents[SEARCH_STR_INDEX];
+            searchString = commandComponents[SEARCH_STR_INDEX_START];
+            for (int i = SEARCH_STR_INDEX_START + 1; i < commandComponents.length; i++) {
+                searchString += SEPARATOR + commandComponents[i];
+            }
         } catch (IndexOutOfBoundsException e) {
-            throw new InvalidEmptyKeywordError();
+            throw new InvalidEmptySearchStringError();
         }
     }
 }

@@ -22,16 +22,8 @@ public class Crypto extends Instrument {
         this.remark = remark;
     }
 
-    public LocalDate getExpiry() {
-        return expiry;
-    }
-
     public String formatExpiry() {
         return expiry.format(DateTimeFormatter.ofPattern(DATE_REGEX));
-    }
-
-    public String getRemark() {
-        return remark;
     }
 
     public void setExpiry(LocalDate inputExpiry) {
@@ -75,8 +67,8 @@ public class Crypto extends Instrument {
 
     @Override
     public String textFileFormatting() {
-        return String.format(super.textFileFormatting() + FILE_SEPARATOR + getExpiry()
-                + FILE_SEPARATOR + getRemark());
+        return super.textFileFormatting() + FILE_SEPARATOR + expiry
+                + FILE_SEPARATOR + remark;
     }
 
     @Override
