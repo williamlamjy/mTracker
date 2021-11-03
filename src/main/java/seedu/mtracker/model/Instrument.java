@@ -91,7 +91,7 @@ public abstract class Instrument {
         if (editedParameters.get(DONE_ATTRIBUTE).equals(DONE_INDICATOR)) {
             markAsDone();
         } else {
-            assert(editedParameters.get(DONE_ATTRIBUTE).equals(UNDONE_INDICATOR));
+            assert (editedParameters.get(DONE_ATTRIBUTE).equals(UNDONE_INDICATOR));
             markAsNotDone();
         }
     }
