@@ -109,9 +109,10 @@ public class ForexDecoder extends InstrumentDecoder {
             throws InvalidNameSavedInFileError, InvalidSentimentSavedInFileError, InvalidCurrPriceSavedInFileError,
             InvalidEmptyNameInFileError, InvalidEmptySentimentInFileError, InvalidEmptyStatusInFileError,
             InvalidStatusSavedInFileError, InvalidEmptyCurrPriceInFileError, InvalidEntryPriceSavedInFileError,
-            InvalidExitPriceSavedInFileError, InvalidExpirySavedInFileError {
+            InvalidExitPriceSavedInFileError, InvalidExpirySavedInFileError, InvalidEmptyExitPriceInFileError,
+            InvalidEmptyExpiryInFileError, InvalidEmptyEntryPriceInFileError, InvalidRemarksInFileError {
         validateAndDecodeGeneralAttributes(textSegment);
-        validateSpecificAttributes(textSegment);
+        validateAndDecodeSpecificAttributes(textSegment);
         Instrument forex = createDecodedInstrument();
         setDoneStatus(decodedIsDone, forex);
         instrumentManager.addInstrument(forex);
