@@ -40,16 +40,6 @@ activate TextUi
 TextUi-> Instrument: getGeneralParams()
 activate Instrument
 
-Instrument-> Instrument: getTypeIcon()
-activate Instrument
-Instrument--> Instrument
-deactivate Instrument
-
-Instrument-> Instrument: getStatusIcon()
-activate Instrument
-Instrument--> Instrument
-deactivate Instrument
-
 Instrument--> TextUi
 deactivate Instrument
 

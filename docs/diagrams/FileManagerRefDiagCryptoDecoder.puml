@@ -20,17 +20,14 @@ CryptoDecoder--> CryptoDecoder
 deactivate CryptoDecoder
 
 create Crypto
-CryptoDecoder-> Crypto: Crypto("Crypto", "32.0", "positive","true", "2022-01-12", "")
+CryptoDecoder-> Crypto: Crypto("Crypto", "32.0", "positive","true", "2022-12-12", "")
 activate Crypto
 
 
 Crypto--> CryptoDecoder: return crypto
 deactivate Crypto
 
-CryptoDecoder-> CryptoDecoder: setDoneStatus(true, crypto)
-activate CryptoDecoder
-CryptoDecoder--> CryptoDecoder
-deactivate CryptoDecoder
+
 
 CryptoDecoder-> InstrumentManager: addInstrument(crypto)
 activate InstrumentManager

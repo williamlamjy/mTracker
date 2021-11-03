@@ -17,7 +17,7 @@ Class InstrumentManager COLOR_MODEL
 
 Class outside COLOR_WHITE
  outside -down[COLOR_STORAGE]-> Storage
- XYZDecoder -up[COLOR_STORAGE].|>InstrumentDecoder
+ XYZDecoder -up[COLOR_STORAGE]-|>InstrumentDecoder
  Storage -right[COLOR_STORAGE].> InstrumentEncoder
  Storage -down[COLOR_STORAGE].> InstrumentDecoder
  Storage -down[COLOR_STORAGE].> Instrument
