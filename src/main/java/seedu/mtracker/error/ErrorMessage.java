@@ -29,8 +29,8 @@ public abstract class ErrorMessage {
     public static final String INVALID_INSTRUMENT_NONEXISTENT_ERROR = "Oops, instrument does not exist at that index.";
     public static final String INVALID_INSTRUMENT_IN_FILE_ERROR = "Oops, it appears that the incorrect instrument "
             + "type is provided in the mTracker.txt file";
-    public static final String INVALID_NO_KEYWORD_GIVEN_ERROR = "Oops, please input a search"
-            + " keyword after 'find' command.";
+    public static final String INVALID_NO_SEARCH_STRING_GIVEN_ERROR = "Oops, please input a search"
+            + " string after 'find' command.";
     public static final String INSTRUMENT_MARKED_DONE_ERROR = "Instrument at provided index "
             + "has already been marked as completed!";
     public static final String ADD_OPERATION_ABORTED = "Addition of new instrument has been aborted! "
