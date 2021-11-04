@@ -10,6 +10,7 @@ import seedu.mtracker.commands.ListCommand;
 import seedu.mtracker.commands.FindCommand;
 import seedu.mtracker.commons.Validate;
 import seedu.mtracker.commands.ViewCommand;
+import seedu.mtracker.error.EditEmptyParameterError;
 import seedu.mtracker.error.AlreadyDoneError;
 import seedu.mtracker.error.InvalidBoundsError;
 import seedu.mtracker.error.InvalidCommandError;
@@ -58,9 +59,9 @@ public class InputParser {
 
     public AddInstrumentCommand getAddInstrumentParameters()
             throws InvalidInstrumentError, OperationAbortedError {
-        TextUi.displayAddInstrumentFirstInstruction();
         String addInstrumentType;
         do {
+            TextUi.displayAddInstrumentFirstInstruction();
             addInstrumentType = getUserInput(AddInstrumentCommand.COMMAND_WORD).toLowerCase();
             checkIfAbort(addInstrumentType, AddInstrumentCommand.COMMAND_WORD);
         } while (!Validate.isValidInstrument(addInstrumentType));
@@ -115,21 +116,25 @@ public class InputParser {
     }
 
     public HashSet<String> getParametersToEdit(HashSet<String> validAttributes)
-            throws OperationAbortedError {
+            throws OperationAbortedError, EditEmptyParameterError {
         String parametersToEdit = getUserInput(EditInstrumentCommand.COMMAND_WORD).toLowerCase();
+        if (!Validate.isNonEmptyEditParameters(parametersToEdit)) {
+            throw new EditEmptyParameterError();
+        }
         checkIfAbort(parametersToEdit, EditInstrumentCommand.COMMAND_WORD);
         String[] parameters = getCommandComponents(parametersToEdit);
         return filterInvalidParameters(parameters, validAttributes);
     }
 
     public EditInstrumentCommand getEditInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
-            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError, OperationAbortedError {
+            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError,
+            OperationAbortedError, EditEmptyParameterError {
         getAndValidateIndexNumber(commandComponents, instruments);
         Instrument instrumentToEdit = instruments.get(instrumentNumber);
         TextUi.displayEditInstrumentFirstInstruction(instrumentToEdit);
         HashSet<String> parametersToEdit = getParametersToEdit(instrumentToEdit.getValidAttribute());
         EditInstrumentParser editInstrumentParser = new EditInstrumentParser();
-        return editInstrumentParser.getParametersToEdit(parametersToEdit, instrumentToEdit, instrumentNumber);
+        return editInstrumentParser.createEditCommand(parametersToEdit, instrumentToEdit, instrumentNumber);
     }
 
     private void getAndValidateIndexNumber(String[] commandComponents, ArrayList<Instrument> instruments)

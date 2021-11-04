@@ -76,6 +76,10 @@ public abstract class ErrorMessage {
             + " is empty.";
     public static final String EMPTY_EXPIRY_IN_FILE_ERROR = "Oh no! Looks like the expiry entry in the file is empty!";
 
+    public static final String EDIT_EMPTY_ERROR = "Edit parameters cannot be empty, aborting edit process.";
+    public static final String INVALID_EDIT_STATUS = "Sorry status entered is invalid or empty."
+            + "Enter either done or undone.";
+
     public static String addInstrumentNameError(String instrumentType) {
         return "Sorry " + instrumentType + " cannot have an empty name!";
     }
@@ -83,25 +87,4 @@ public abstract class ErrorMessage {
     public static String addForexNameError() {
         return INVALID_FOREX_NAME_GIVEN_ERROR;
     }
-
-    public static void displayEditNameError() {
-        System.out.println("Name entered is invalid. Ignoring edited Name value.");
-    }
-
-    public static void displayEditPriceError() {
-        System.out.println("Price entered is invalid. Ignoring edited Price value.");
-    }
-
-    public static void displayEditSentimentError() {
-        System.out.println("Sentiment entered is invalid. Ignoring edited Sentiments value.");
-    }
-
-    public static void displayEditReturnError() {
-        System.out.println("Past Returns entered is invalid. Ignoring edited Past Returns value.");
-    }
-
-    public static void displayEditExpiryError() {
-        System.out.println("Expiry entered is invalid. Ignoring edited Expiry value.");
-    }
-
 }

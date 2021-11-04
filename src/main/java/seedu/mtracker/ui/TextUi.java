@@ -44,6 +44,7 @@ public class TextUi {
     private static final String EDIT_ENTRY_MESSAGE = "Enter new Entry Price:";
     private static final String EDIT_EXIT_MESSAGE = "Enter new Exit Price:";
     private static final String EDIT_EXPIRY_MESSAGE = "Enter new Expiry (YYYY-MM-DD):";
+    private static final String EDIT_STATUS_MESSAGE = "Enter new Status (please enter either done or undone)";
     private static final String WATCHLIST_HEADER = "CURRENT WATCHLIST";
 
     private static final int NONE_FOUND = 0;
@@ -210,7 +211,11 @@ public class TextUi {
         System.out.println(TAB + EDIT_EXPIRY_MESSAGE);
     }
 
-    public static void displayEditBeforeAfter(String beforeEdit, String afterEdit) {
+    public static void displayEditStatus() {
+        System.out.println(TAB + EDIT_STATUS_MESSAGE);
+    }
+
+    public static void displayEditChanges(String beforeEdit, String afterEdit) {
         System.out.println(LINE_DECORATOR);
         System.out.println("Before:");
         System.out.println(beforeEdit);
@@ -218,6 +223,18 @@ public class TextUi {
         System.out.println("Changed To:");
         System.out.println(afterEdit);
         System.out.println(LINE_DECORATOR);
+    }
+
+    public static void displayEditBeforeAfter(String beforeEdit, String afterEdit) {
+        if (beforeEdit.equals(afterEdit)) {
+            displayEditNoChange();
+        } else {
+            displayEditChanges(beforeEdit,afterEdit);
+        }
+    }
+
+    public static void displayEditNoChange() {
+        System.out.println("No changes to instrument was made.");
     }
 
     public static void greetAtStartUp() {
