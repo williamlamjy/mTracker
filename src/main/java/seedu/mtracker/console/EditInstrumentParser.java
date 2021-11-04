@@ -24,7 +24,7 @@ public class EditInstrumentParser extends InputParser {
     protected static final String DONE_ATTRIBUTE = "done-status";
     protected static final String WORKSPACE = EditInstrumentCommand.COMMAND_WORD;
 
-    public static final double UNDEFINED_PAST_RETURN_VALUE = -101;
+    protected static final double UNDEFINED_PAST_RETURN_VALUE = -101;
 
     public void editNameParameter(String instrumentType, HashSet<String> parametersGiven)
             throws OperationAbortedError {
