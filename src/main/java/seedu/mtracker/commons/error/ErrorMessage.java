@@ -75,6 +75,10 @@ public abstract class ErrorMessage {
             + " is empty.";
     public static final String EMPTY_EXPIRY_IN_FILE_ERROR = "Oh no! Looks like the expiry entry in the file is empty!";
 
+    public static final String EDIT_EMPTY_ERROR = "Edit parameters cannot be empty, aborting edit process.";
+    public static final String INVALID_EDIT_STATUS = "Sorry status entered is invalid or empty."
+            + "Enter either done or undone.";
+
     public static String addInstrumentNameError(String instrumentType) {
         return "Sorry " + instrumentType + " cannot have an empty name!";
     }
