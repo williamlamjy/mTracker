@@ -29,9 +29,9 @@ public class EditInstrumentParser extends InputParser {
         if (!parametersGiven.contains(NAME_ATTRIBUTE)) {
             return;
         }
-        TextUi.displayEditName();
         String inputName;
         do {
+            TextUi.displayEditName();
             inputName = getUserInput(WORKSPACE);
             checkIfAbort(inputName, WORKSPACE);
         } while (!Validate.isValidName(inputName, instrumentType));
@@ -43,9 +43,9 @@ public class EditInstrumentParser extends InputParser {
         if (!parametersGiven.contains(CURRENT_PRICE_ATTRIBUTE)) {
             return;
         }
-        TextUi.displayEditCurrentPrice();
         String inputCurrentPrice;
         do {
+            TextUi.displayEditCurrentPrice();
             inputCurrentPrice = getUserInput(WORKSPACE);
             checkIfAbort(inputCurrentPrice, WORKSPACE);
         } while (!Validate.isValidPrice(inputCurrentPrice));
@@ -57,9 +57,9 @@ public class EditInstrumentParser extends InputParser {
         if (!parametersGiven.contains(SENTIMENT_ATTRIBUTE)) {
             return;
         }
-        TextUi.displayEditSentiment();
         String inputSentiment;
         do {
+            TextUi.displayEditSentiment();
             inputSentiment = getUserInput(WORKSPACE).toLowerCase();
             checkIfAbort(inputSentiment, WORKSPACE);
         } while (!Validate.isValidSentiment(inputSentiment));
@@ -82,9 +82,9 @@ public class EditInstrumentParser extends InputParser {
         if (!parametersGiven.contains(RETURN_ATTRIBUTE)) {
             return;
         }
-        TextUi.displayEditReturn();
         String inputReturn;
         do {
+            TextUi.displayEditReturn();
             inputReturn = getUserInput(WORKSPACE);
             checkIfAbort(inputReturn, WORKSPACE);
         } while (!Validate.isValidPastReturns(inputReturn));
@@ -96,9 +96,9 @@ public class EditInstrumentParser extends InputParser {
         if (!parametersGiven.contains(ENTRY_PRICE_ATTRIBUTE)) {
             return;
         }
-        TextUi.displayEditEntryPrice();
         String inputEntryPrice;
         do {
+            TextUi.displayEditEntryPrice();
             inputEntryPrice = getUserInput(WORKSPACE);
             checkIfAbort(inputEntryPrice, WORKSPACE);
         } while (!Validate.isValidPrice(inputEntryPrice));
@@ -110,9 +110,9 @@ public class EditInstrumentParser extends InputParser {
         if (!parametersGiven.contains(EXIT_PRICE_ATTRIBUTE)) {
             return;
         }
-        TextUi.displayEditExitPrice();
         String inputExitPrice;
         do {
+            TextUi.displayEditExitPrice();
             inputExitPrice = getUserInput(WORKSPACE);
             checkIfAbort(inputExitPrice, WORKSPACE);
         } while (!Validate.isValidPrice(inputExitPrice));
@@ -137,9 +137,9 @@ public class EditInstrumentParser extends InputParser {
         if (!parametersGiven.contains(EXPIRY_ATTRIBUTE)) {
             return;
         }
-        TextUi.displayEditExpiry();
         String inputExpiry;
         do {
+            TextUi.displayEditExpiry();
             inputExpiry = getUserInput(WORKSPACE);
             checkIfAbort(inputExpiry, WORKSPACE);
         } while (!Validate.isValidExpiry(inputExpiry));

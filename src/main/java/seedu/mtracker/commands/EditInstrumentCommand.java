@@ -20,11 +20,7 @@ public class EditInstrumentCommand extends IndexedCommand {
         String instrumentBefore = instrumentToEdit.getAllParams();
         instrumentManager.editInstrument(index, editedParameters);
         String instrumentAfter = instrumentToEdit.getAllParams();
-        if (instrumentBefore.equals(instrumentAfter)) {
-            TextUi.displayEditNoChange();
-        } else {
-            TextUi.displayEditBeforeAfter(instrumentBefore, instrumentAfter);
-        }
+        TextUi.displayEditBeforeAfter(instrumentBefore, instrumentAfter);
         return COMMAND_WORD;
     }
 }

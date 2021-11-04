@@ -43,10 +43,11 @@ public class EditInstrumentParserTest extends GeneralInstrumentParserTest {
     public static final String TEST_REMARK = "";
     public static final Instrument TEST_STOCK = new Stock(TEST_NAME, TEST_PRICE, TEST_SENTIMENT, TEST_REMARK);
     public static final int TEST_INDEX = 0;
+    public static final int SIZE_ZERO = 0;
 
     @Override
     public int getParameterSize() {
-        return 0;
+        return SIZE_ZERO;
     }
 
     HashMap<String,String> initialiseTestResources(String[] expectedKeys, String[] expectedValues) {
@@ -75,7 +76,6 @@ public class EditInstrumentParserTest extends GeneralInstrumentParserTest {
                 EXPECTED_KEYS_NAME_AND_REMARK,
                 EXPECTED_OUTPUT_NAME_AND_REMARK);
     }
-
 
     @Test
     void editInstrumentParam_currentPriceAndSentiment_expectSuccess() throws OperationAbortedError {

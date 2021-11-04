@@ -90,10 +90,12 @@ public abstract class Instrument {
         }
         if (editedParameters.get(DONE_ATTRIBUTE).equals(DONE_INDICATOR)) {
             markAsDone();
-        } else {
-            assert (editedParameters.get(DONE_ATTRIBUTE).equals(UNDONE_INDICATOR));
-            markAsNotDone();
+            assert (editedParameters.get(DONE_ATTRIBUTE).equals(DONE_INDICATOR));
+            return;
         }
+        markAsNotDone();
+        assert (editedParameters.get(DONE_ATTRIBUTE).equals(UNDONE_INDICATOR));
+        return;
     }
 
     public void editCurrentPrice(HashMap<String, String> editedParameters) {

@@ -59,9 +59,9 @@ public class InputParser {
 
     public AddInstrumentCommand getAddInstrumentParameters()
             throws InvalidInstrumentError, OperationAbortedError {
-        TextUi.displayAddInstrumentFirstInstruction();
         String addInstrumentType;
         do {
+            TextUi.displayAddInstrumentFirstInstruction();
             addInstrumentType = getUserInput(AddInstrumentCommand.COMMAND_WORD).toLowerCase();
             checkIfAbort(addInstrumentType, AddInstrumentCommand.COMMAND_WORD);
         } while (!Validate.isValidInstrument(addInstrumentType));
