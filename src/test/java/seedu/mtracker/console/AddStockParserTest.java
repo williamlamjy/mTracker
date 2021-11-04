@@ -1,7 +1,7 @@
 package seedu.mtracker.console;
 
 import org.junit.jupiter.api.Test;
-import seedu.mtracker.error.OperationAbortedError;
+import seedu.mtracker.commons.error.OperationAbortedError;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
