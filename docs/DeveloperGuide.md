@@ -99,7 +99,7 @@ The `model` package contains the `InstrumentManager` class and `Instrument` clas
 in `InstrumentManager.java` and `Instrument.java` respectively. This figure below represents the class diagram of 
 how the different class work together:
 
-<img src="images/ModelDiagram.png" width="550" height="400"/>
+<img src="images/ModelDiagram.png" width="450" height="400"/>
 
 The `Model` component:
 
@@ -180,7 +180,7 @@ in the list of instruments:
 
 More details about the reference frame for executing the done command is shown below:
 
-<img src="images/DoneCryptoExecuteDiagram.png" width="800"/>
+<img src="images/DoneCryptoExecuteDiagram.png" width="600"/>
 
 ### FileManager Component
 The `filemanager` package contains the `Storage`, `InstrumentEncoder` and `InstrumentDecoder` classes. It is defined in
