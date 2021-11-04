@@ -20,9 +20,9 @@ Below are some of my contributions to the project
   * Implemented the foundations for `add` functionality. Seen in PR
   [#18](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/18) and 
   [#20](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/20)
-  * Designed how the add instrument functionality would work by taking into consideration how the design of user 
+  * Designed how the add instrument functionality would work by taking into consideration how the user would provide
   inputs, using Object Oriented Programming (OOP) to represent the different instruments. For 
-  example, the `AddInstrumentParser` class which serves as the foundation for the add functionality which provides 
+  example, the `AddInstrumentParser` class which serves as the foundation for the add functionality provides 
   easy extensibility to allow the developers to adopt and implement different types of instruments.
   * Proposed `edit` functionality design through this PR [#130](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/130).
     * Came up with a design that implements edit feature with only one parser class `EditInstrumentParser` and one command 
@@ -57,20 +57,22 @@ Below are some of my contributions to the project
     * Wrote the `parser` section under Design with the design considerations for add and edit functionality.
     * Wrote the `add instrument feature` section under Implementation.
     * Created 4 diagrams:
-      * Architecture [#here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/ArchitectureDiagram.png).
-      * Console diagram [#here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/ConsoleDiagram.png).
-      * Add stock diagram [#here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/AddStockSequenceDiagram.png).
-      * Add stock reference diagram [#here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/AddStockSequenceDiagramRef.png).
+      * Architecture [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/ArchitectureDiagram.png).
+      * Console diagram [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/ConsoleDiagram.png).
+      * Add stock diagram [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/AddStockSequenceDiagram.png).
+      * Add stock reference diagram [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/AddStockSequenceDiagramRef.png).
 * **Contributions to team-based tasks**
   * Set up the Github team org/repo.
-  * Contributed to some code refactorings such as standardising the error handling and creating custom exception from 
-  PR [#144](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/144)
+  * Contributed to some code refactorings:
+    * Standardising the error handling and creating custom exception from 
+    PR [#144](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/144)
+    * Decoupling some functionality from unrelated classes. PR [#142](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/142)
   * Reviewed most of the PRs to ensure that the code quality standards are met and the implementation follow the
   sound design principles. Example of such PRs: [#35](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/35)
     [#41](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/41)
     [#76](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/76)
     [#98](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/98)
-  * Reviewed sequence diagram PRs to ensure that the uml conventions and styles are followed. Example PR [#here](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/131)
+  * Reviewed sequence diagram PRs to ensure that the uml conventions and styles are followed. Example PR [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/131)
   * Updated the issue tracker by reporting bugs and code quality issues. Example of issues:
     [#26](https://github.com/AY2122S1-CS2113T-T12-1/tp/issues/26)
     [#92](https://github.com/AY2122S1-CS2113T-T12-1/tp/issues/92)
