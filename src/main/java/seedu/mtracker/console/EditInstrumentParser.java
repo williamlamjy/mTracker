@@ -24,6 +24,8 @@ public class EditInstrumentParser extends InputParser {
     protected static final String DONE_ATTRIBUTE = "done-status";
     protected static final String WORKSPACE = EditInstrumentCommand.COMMAND_WORD;
 
+    public static final double UNDEFINED_PAST_RETURN_VALUE = -101;
+
     public void editNameParameter(String instrumentType, HashSet<String> parametersGiven)
             throws OperationAbortedError {
         if (!parametersGiven.contains(NAME_ATTRIBUTE)) {
@@ -82,12 +84,14 @@ public class EditInstrumentParser extends InputParser {
         if (!parametersGiven.contains(RETURN_ATTRIBUTE)) {
             return;
         }
-        String inputReturn;
-        do {
-            TextUi.displayEditReturn();
-            inputReturn = getUserInput(WORKSPACE);
-            checkIfAbort(inputReturn, WORKSPACE);
-        } while (!Validate.isValidPastReturns(inputReturn));
+        TextUi.displayEditReturn();
+        String inputReturn = getUserInput(WORKSPACE);
+        checkIfAbort(inputReturn, WORKSPACE);
+        if (!Validate.isValidPastReturns(inputReturn)) {
+            inputReturn = String.valueOf(UNDEFINED_PAST_RETURN_VALUE);
+            editedParameters.put(RETURN_ATTRIBUTE, inputReturn);
+            return;
+        }
         editedParameters.put(RETURN_ATTRIBUTE, inputReturn);
     }
 

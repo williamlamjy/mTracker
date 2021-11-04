@@ -5,6 +5,7 @@ import seedu.mtracker.commands.AddCryptoCommand;
 import seedu.mtracker.commands.AddEtfCommand;
 import seedu.mtracker.commands.AddForexCommand;
 import seedu.mtracker.commands.AddStockCommand;
+import seedu.mtracker.commons.error.InvalidEmptyStatusError;
 import seedu.mtracker.console.AddForexParser;
 import seedu.mtracker.commons.error.AlreadyDoneError;
 import seedu.mtracker.commons.error.InvalidBoundsError;
@@ -246,6 +247,12 @@ public class Validate {
         return true;
     }
 
+    public static void checkStatusIsEmpty(String doneStatus) throws InvalidEmptyStatusError {
+        if (doneStatus.isEmpty()) {
+            throw new InvalidEmptyStatusError();
+        }
+    }
+
     public static void checkStatus(String doneStatus) throws InvalidStatusError {
         boolean isValidCompletedStatus = doneStatus.equals(DONE_INDICATOR);
         boolean isValidNotCompletedStatus = doneStatus.equals(NOT_DONE_INDICATOR);
@@ -256,6 +263,7 @@ public class Validate {
 
     public static boolean isValidInputStatus(String doneStatus) {
         try {
+            checkStatusIsEmpty(doneStatus);
             checkStatus(doneStatus);
         } catch (Exception e) {
             TextUi.showErrorMessage(e);

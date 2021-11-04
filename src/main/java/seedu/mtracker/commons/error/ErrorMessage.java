@@ -31,6 +31,10 @@ public abstract class ErrorMessage {
             + "type is provided in the mTracker.txt file";
     public static final String INVALID_NO_SEARCH_STRING_GIVEN_ERROR = "Oops, please input a search"
             + " string after 'find' command.";
+    public static final String INVALID_STATUS_EDIT_ERROR = "Sorry status entered is invalid. "
+            + "Enter either done or undone.";
+    public static final String INVALID_STATUS_EDIT_EMPTY_ERROR = "Sorry status cannot be empty. "
+            + "Enter either done or undone.";
     public static final String INSTRUMENT_MARKED_DONE_ERROR = "Instrument at provided index "
             + "has already been marked as completed!";
     public static final String ADD_OPERATION_ABORTED = "Addition of new instrument has been aborted! "
@@ -76,8 +80,6 @@ public abstract class ErrorMessage {
     public static final String EMPTY_EXPIRY_IN_FILE_ERROR = "Oh no! Looks like the expiry entry in the file is empty!";
 
     public static final String EDIT_EMPTY_ERROR = "Edit parameters cannot be empty, aborting edit process.";
-    public static final String INVALID_EDIT_STATUS = "Sorry status entered is invalid or empty."
-            + "Enter either done or undone.";
 
     public static String addInstrumentNameError(String instrumentType) {
         return "Sorry " + instrumentType + " cannot have an empty name!";
