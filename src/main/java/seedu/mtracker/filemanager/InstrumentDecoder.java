@@ -36,10 +36,10 @@ public class InstrumentDecoder {
     public static final int SENTIMENT_INDEX = 3;
     public static final int IS_DONE_INDEX = 4;
 
-    public static String decodedSentiment;
-    public static String decodedName;
-    public static double decodedCurrPrice;
-    public static boolean decodedIsDone;
+    protected static String decodedSentiment;
+    protected static String decodedName;
+    protected static double decodedCurrPrice;
+    protected static boolean decodedIsDone;
 
     protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 

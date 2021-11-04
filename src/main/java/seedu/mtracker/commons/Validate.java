@@ -41,12 +41,12 @@ public class Validate {
     public static final String DONE_INDICATOR = "done";
     public static final String NOT_DONE_INDICATOR = "undone";
 
-    private static final String FOREX_VALID_NAME_REGEX = "^[a-zA-Z]{3}/?[a-zA-Z]{3}$";
-
     public static final String STATUS_DONE = "true";
     public static final String STATUS_NOT_DONE = "false";
 
     protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+    private static final String FOREX_VALID_NAME_REGEX = "^[a-zA-Z]{3}/?[a-zA-Z]{3}$";
 
     public static boolean isInvalidNameCondition(String name, String instrumentType) {
         if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
