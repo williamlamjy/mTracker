@@ -19,7 +19,7 @@ Package "filemanager"  <<Rectangle>> {
      + {static} writeFile(ArrayList<Instrument>, FileWriter)
      }
      Class XYZDecoder COLOR_STORAGE {
-     + {static} addStockToList(String[], InstrumentManager)
+     + {static} addXYZToList(String[], InstrumentManager)
      }
 
 }

@@ -99,7 +99,7 @@ The `model` package contains the `InstrumentManager` class and `Instrument` clas
 in `InstrumentManager.java` and `Instrument.java` respectively. This figure below represents the class diagram of 
 how the different class work together:
 
-<img src="images/ModelDiagram.png" width="1040"/>
+<img src="images/ModelDiagram.png" width="450"/>
 
 The `Model` component:
 
@@ -187,7 +187,7 @@ The `filemanager` package contains the `Storage`, `InstrumentEncoder` and `Instr
 the `Storage.java`, `InstrumentEncoder.java` and `InstrumentDecoder.java` respectively. This figure below represents the class diagram of
 how the different class work together:
 
-<img src="images/FileManagerDiagram.png" width="550"/>
+<img src="images/FileManagerDiagram.png" width="1040"/>
 
 The FileManager Component:
 
@@ -243,15 +243,15 @@ and display the corresponding error message.
 
 The figures below represents the sequence diagrams when the user loads a pre-existing crypto:
 
-<img src="images/FileManagerSeqBetweenStorageAndDecoder.png" width="800"/>
+<img src="images/FileManagerSeqBetweenStorageAndDecoder.png" width="700"/>
 
 More details about the reference frame for decoding and updating the `InstrumentManager` is shown below:
 
-<img src="images/FileManagerSequenceDiagram.png" width="1080" height="500"/>
+<img src="images/FileManagerSequenceDiagram.png" width="1080" height="460"/>
 
 More details about the reference frame for adding the decoded instrument into the `InstrumentManager` is shown below:
 
-<img src="images/FileManagerRefDiagCryptoDecoder.png" width="950"/>
+<img src="images/FileManagerRefDiagCryptoDecoder.png" width="750"/>
 
 The process for loading other pre-existing instruments follow a similar process to the sequence above. The main difference
 would be the type of instrument decoder called, the different instrument specific decoded parameters and the type of instrument
