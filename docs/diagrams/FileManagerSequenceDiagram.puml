@@ -4,8 +4,8 @@
 
 group sd Decodes the text file and updates InstrumentManager
 box filemanager COLOR_STORAGE_SEGMENT
-participant ":InstrumentDecoder" as InstrumentDecoder COLOR_STORAGE
-participant ":CryptoDecoder" as CryptoDecoder COLOR_STORAGE
+participant "<<Class>>\nInstrumentDecoder" as InstrumentDecoder COLOR_STORAGE
+participant "<<Class>>\nCryptoDecoder" as CryptoDecoder COLOR_STORAGE
 end box
 
 box model COLOR_MODEL_SEGMENT

@@ -16,7 +16,7 @@ participant ":Instrument" as Instrument COLOR_MODEL
 end box
 
 box ui COLOR_LIGHT_BLUE
-participant ":TextUi" as TextUi COLOR_UI
+participant "<<Class>>\nTextUi" as TextUi COLOR_UI
 end box
 
 
@@ -33,12 +33,17 @@ activate DoneCommand
 DoneCommand --> InputParser
 deactivate DoneCommand
 
-InputParser ->InputParser: getIndex({"done", "1"})
+InputParser-> InputParser: getAndValidateIndex({"done", "1"}, instruments)
 activate InputParser
-InputParser --> InputParser
+InputParser--> InputParser
 deactivate InputParser
 
-InputParser ->DoneCommand: setIndex(1)
+InputParser-> InputParser: getAndValidateDoneStatus({"done", "1"}, instruments)
+activate InputParser
+InputParser--> InputParser
+deactivate InputParser
+
+InputParser->DoneCommand: setIndex(1)
 activate DoneCommand
 
 DoneCommand--> InputParser

@@ -3,7 +3,7 @@
 
 group sd Decode crypto attributes and create and add crypto to InstrumentManager
 box filemanager COLOR_STORAGE_SEGMENT
-participant ":CryptoDecoder" as CryptoDecoder COLOR_STORAGE
+participant "<<Class>>\nCryptoDecoder" as CryptoDecoder COLOR_STORAGE
 end box
 
 box model COLOR_MODEL_SEGMENT
@@ -18,13 +18,6 @@ CryptoDecoder-> CryptoDecoder: validateAndDecodeGeneralAttributes(textSegment)
 activate CryptoDecoder
 CryptoDecoder--> CryptoDecoder
 deactivate CryptoDecoder
-
-note left
-both validateAndDecode methods
-gets attributes from the textSegment
-and self-invokes a validate method
-and a decode method.
-end note
 
 CryptoDecoder-> CryptoDecoder: validateAndDecodeSpecificAttributes(textSegment)
 activate CryptoDecoder

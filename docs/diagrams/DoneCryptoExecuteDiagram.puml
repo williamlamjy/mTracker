@@ -12,27 +12,24 @@ participant ":Instrument" as Instrument COLOR_MODEL
 end box
 
 box ui COLOR_LIGHT_BLUE
-participant ":TextUi" as TextUi COLOR_UI
+participant "<<Class>>\nTextUi" as TextUi COLOR_UI
 end box
 
 activate DoneCommand
+DoneCommand-> DoneCommand: getInstrumentAtIndex()
+activate DoneCommand
+
 DoneCommand-> InstrumentManager: getInstrument(1)
 activate InstrumentManager
-
-InstrumentManager--> DoneCommand: return instrument
+InstrumentManager--> DoneCommand: return instrumentToComplete
 deactivate InstrumentManager
+DoneCommand--> DoneCommand: return instrumentToComplete
+deactivate DoneCommand
 
-DoneCommand-> InstrumentManager: doneInstrument(1)
-activate InstrumentManager
-
-InstrumentManager-> Instrument: markAsDone()
+DoneCommand-> Instrument: markAsDone()
 activate Instrument
-
-Instrument--> InstrumentManager
+Instrument--> DoneCommand
 deactivate Instrument
-
-InstrumentManager--> DoneCommand
-deactivate InstrumentManager
 
 DoneCommand-> TextUi: displayDoneInstrument(instrument)
 activate TextUi

@@ -3,11 +3,11 @@
 
 box filemanager COLOR_STORAGE_SEGMENT
 participant ":Storage" as Storage COLOR_STORAGE
-participant ":InstrumentDecoder" as InstrumentDecoder COLOR_STORAGE
+participant "<<Class>>\nInstrumentDecoder" as InstrumentDecoder COLOR_STORAGE
 end box
 
 box ui COLOR_LIGHT_BLUE
-participant ":TextUi" as TextUi COLOR_UI
+participant "<<Class>>\nTextUi" as TextUi COLOR_UI
 end box
 
 [-->Storage: loadFileData(instrumentManager)
