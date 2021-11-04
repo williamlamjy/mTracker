@@ -1,5 +1,8 @@
 package seedu.mtracker.error;
 
+/**
+ * An ErrorMessage class that displays all the user facing errors.
+ */
 public abstract class ErrorMessage {
 
     public static final String INVALID_INSTRUMENT_GIVEN_ERROR = "Sorry instrument must be either "
@@ -76,10 +79,21 @@ public abstract class ErrorMessage {
             + " is empty.";
     public static final String EMPTY_EXPIRY_IN_FILE_ERROR = "Oh no! Looks like the expiry entry in the file is empty!";
 
+    /**
+     * Returns an error message when name provided is empty.
+     *
+     * @param instrumentType The type of instrument the user is providing a name for.
+     * @return A string error message that the instrument name cannot be empty.
+     */
     public static String addInstrumentNameError(String instrumentType) {
         return "Sorry " + instrumentType + " cannot have an empty name!";
     }
 
+    /**
+     * Returns a forex error message when forex name provided is in the wrong format.
+     *
+     * @return A string error message that the forex name is not in the right format.
+     */
     public static String addForexNameError() {
         return INVALID_FOREX_NAME_GIVEN_ERROR;
     }
