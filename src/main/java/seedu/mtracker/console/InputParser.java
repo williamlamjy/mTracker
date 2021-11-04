@@ -150,7 +150,8 @@ public class InputParser {
     public Command filterByCommandType(String[] commandComponents, ArrayList<Instrument> instruments)
             throws Exception {
         Command command;
-        switch (commandComponents[MAIN_COMMAND_INDEX].toLowerCase()) {
+        String commandGiven = commandComponents[MAIN_COMMAND_INDEX].toLowerCase();
+        switch (commandGiven) {
         case ListCommand.COMMAND_WORD:
             command = new ListCommand();
             break;
@@ -177,7 +178,7 @@ public class InputParser {
             break;
         default:
             logger.info(LogHelper.LOG_INVALID_COMMAND);
-            throw new InvalidCommandError();
+            throw new InvalidCommandError(commandGiven);
         }
         return command;
     }
