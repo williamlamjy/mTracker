@@ -243,7 +243,7 @@ More details about the reference frame for decoding and updating the `Instrument
 
 More details about the reference frame for adding the decoded instrument into the `InstrumentManager` is shown below:
 
-<img src="images/FileManagerRefDiagCryptoDecoder.png" width="800"/>
+<img src="images/FileManagerRefDiagCryptoDecoder.png" width="950"/>
 
 The process for loading other pre-existing instruments follow a similar process to the sequence above. The main difference
 would be the type of instrument decoder called, the different instrument specific decoded parameters and the type of instrument

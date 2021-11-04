@@ -19,8 +19,16 @@ activate CryptoDecoder
 CryptoDecoder--> CryptoDecoder
 deactivate CryptoDecoder
 
+note left
+both validateAndDecode methods
+gets attributes from the textSegment
+and self-invokes a validate method
+and a decode method.
+end note
+
 CryptoDecoder-> CryptoDecoder: validateAndDecodeSpecificAttributes(textSegment)
 activate CryptoDecoder
+
 CryptoDecoder--> CryptoDecoder
 deactivate CryptoDecoder
 
@@ -33,7 +41,7 @@ activate Crypto
 Crypto--> CryptoDecoder: return crypto
 deactivate Crypto
 
-CryptoDecoder--> CryptoDecoder
+CryptoDecoder--> CryptoDecoder: return crypto
 deactivate CryptoDecoder
 
 CryptoDecoder-> InstrumentManager: addInstrument(crypto)

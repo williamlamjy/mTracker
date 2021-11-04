@@ -51,8 +51,8 @@ loop each instrument
     deactivate InstrumentEncoder
 
     note right
-    editFile writes to the txt file with
-    the formatted instrument
+    editFile writes to the text file
+    with the formatted instrument
     end note
 
 end
