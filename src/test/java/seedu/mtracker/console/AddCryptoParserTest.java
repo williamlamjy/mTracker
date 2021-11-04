@@ -5,13 +5,9 @@ import seedu.mtracker.error.OperationAbortedError;
 
 import java.time.LocalDate;
 
-<<<<<<< HEAD
-class AddCryptoParserTest extends GeneralInstrumentParserTest {
-=======
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class AddCryptoParserTest extends AddInstrumentParserTest {
->>>>>>> master
+class AddCryptoParserTest extends GeneralInstrumentParserTest {
     public static final int PARAMETER_SIZE = 5;
     public static final int DAYS_DIFFERENCE = 1;
     public static final LocalDate FUTURE_DATE = LocalDate.now().plusDays(DAYS_DIFFERENCE);

@@ -5,14 +5,10 @@ import seedu.mtracker.error.OperationAbortedError;
 
 import java.time.LocalDate;
 
-<<<<<<< HEAD
-class AddForexParserTest extends GeneralInstrumentParserTest {
-=======
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 // @@KVignesh122
-class AddForexParserTest extends AddInstrumentParserTest {
->>>>>>> master
+class AddForexParserTest extends GeneralInstrumentParserTest {
 
     public static final int PARAMETER_SIZE = 7;
     public static final int DAYS_DIFFERENCE = 1;

@@ -20,11 +20,7 @@ import seedu.mtracker.error.InvalidPastReturnError;
 import seedu.mtracker.error.InvalidPastReturnTypeError;
 import seedu.mtracker.error.InvalidPriceError;
 import seedu.mtracker.error.InvalidSentimentError;
-<<<<<<< HEAD
 import seedu.mtracker.error.InvalidStatusError;
-=======
-import seedu.mtracker.error.OperationAbortedError;
->>>>>>> master
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -250,7 +246,6 @@ public class Validate {
         return true;
     }
 
-<<<<<<< HEAD
     public static void checkStatus(String doneStatus) throws InvalidStatusError {
         boolean isValidCompletedStatus = doneStatus.equals(DONE_INDICATOR);
         boolean isValidNotCompletedStatus = doneStatus.equals(NOT_DONE_INDICATOR);
@@ -259,7 +254,7 @@ public class Validate {
         }
     }
 
-    public static boolean isValidStatus(String doneStatus) {
+    public static boolean isValidInputStatus(String doneStatus) {
         try {
             checkStatus(doneStatus);
         } catch (Exception e) {
@@ -271,11 +266,12 @@ public class Validate {
 
     public static boolean isNonEmptyEditParameters(String input) {
         return !input.isEmpty();
-=======
+    }
+
     public static boolean isValidStatus(String savedStatusFromFile) {
         boolean isValidDoneStatus = savedStatusFromFile.equals(STATUS_DONE);
         boolean isValidNotDoneStatus = savedStatusFromFile.equals(STATUS_NOT_DONE);
         return isValidDoneStatus || isValidNotDoneStatus;
->>>>>>> master
+
     }
 }
