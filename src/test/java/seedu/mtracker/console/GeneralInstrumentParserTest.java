@@ -1,6 +1,6 @@
 package seedu.mtracker.console;
 
-import seedu.mtracker.error.OperationAbortedError;
+import seedu.mtracker.commons.error.OperationAbortedError;
 
 import java.io.ByteArrayInputStream;
 import java.time.LocalDate;

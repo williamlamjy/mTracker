@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.mtracker.commands.DeleteCommand;
 import seedu.mtracker.commands.DoneCommand;
-import seedu.mtracker.error.AlreadyDoneError;
-import seedu.mtracker.error.InvalidBoundsError;
-import seedu.mtracker.error.InvalidEmptyIndexError;
-import seedu.mtracker.error.InvalidIndexError;
-import seedu.mtracker.error.OperationAbortedError;
+import seedu.mtracker.commons.error.AlreadyDoneError;
+import seedu.mtracker.commons.error.InvalidBoundsError;
+import seedu.mtracker.commons.error.InvalidEmptyIndexError;
+import seedu.mtracker.commons.error.InvalidIndexError;
+import seedu.mtracker.commons.error.OperationAbortedError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.subinstrument.Stock;
 

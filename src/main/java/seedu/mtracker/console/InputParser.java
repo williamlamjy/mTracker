@@ -8,17 +8,17 @@ import seedu.mtracker.commands.EditInstrumentCommand;
 import seedu.mtracker.commands.ExitCommand;
 import seedu.mtracker.commands.ListCommand;
 import seedu.mtracker.commands.FindCommand;
-import seedu.mtracker.commons.Validate;
 import seedu.mtracker.commands.ViewCommand;
-import seedu.mtracker.error.EditEmptyParameterError;
-import seedu.mtracker.error.AlreadyDoneError;
-import seedu.mtracker.error.InvalidBoundsError;
-import seedu.mtracker.error.InvalidCommandError;
-import seedu.mtracker.error.InvalidEmptyIndexError;
-import seedu.mtracker.error.InvalidEmptySearchStringError;
-import seedu.mtracker.error.InvalidIndexError;
-import seedu.mtracker.error.InvalidInstrumentError;
-import seedu.mtracker.error.OperationAbortedError;
+import seedu.mtracker.commons.error.AlreadyDoneError;
+import seedu.mtracker.commons.error.EditEmptyParameterError;
+import seedu.mtracker.commons.error.InvalidBoundsError;
+import seedu.mtracker.commons.error.InvalidCommandError;
+import seedu.mtracker.commons.error.InvalidEmptyIndexError;
+import seedu.mtracker.commons.error.InvalidEmptySearchStringError;
+import seedu.mtracker.commons.error.InvalidIndexError;
+import seedu.mtracker.commons.error.InvalidInstrumentError;
+import seedu.mtracker.commons.error.OperationAbortedError;
+import seedu.mtracker.commons.Validate;
 import seedu.mtracker.LogHelper;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
@@ -150,7 +150,8 @@ public class InputParser {
     public Command filterByCommandType(String[] commandComponents, ArrayList<Instrument> instruments)
             throws Exception {
         Command command;
-        switch (commandComponents[MAIN_COMMAND_INDEX].toLowerCase()) {
+        String commandGiven = commandComponents[MAIN_COMMAND_INDEX].toLowerCase();
+        switch (commandGiven) {
         case ListCommand.COMMAND_WORD:
             command = new ListCommand();
             break;
@@ -177,7 +178,7 @@ public class InputParser {
             break;
         default:
             logger.info(LogHelper.LOG_INVALID_COMMAND);
-            throw new InvalidCommandError();
+            throw new InvalidCommandError(commandGiven);
         }
         return command;
     }
