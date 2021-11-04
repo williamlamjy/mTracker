@@ -6,7 +6,7 @@ public abstract class ErrorMessage {
             + "stock, crypto, forex or etf.";
     public static final String INVALID_ABORT_IN_MAIN_ERROR = "Oops you can only abort if you are in add/edit workflow. "
             + "Try 'bye' if you would like to exit the program.";
-    public static final String INVALID_COMMAND_ERROR = " Oops, I do not understand you...";
+    public static final String INVALID_COMMAND_ERROR = "Oops, I do not understand you...";
     public static final String INVALID_FOREX_NAME_GIVEN_ERROR = "Sorry forex pair codes must contain 6 letters! "
             + "\nNo numbers allowed. (Eg: AUDUSD, EUR/GBP, xauusd, GBPjpy, usd/sgd, etc.)";
     public static final String INVALID_PRICE_EMPTY_ERROR = "Sorry price cannot be empty.";
