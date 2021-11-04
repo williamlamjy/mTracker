@@ -1,12 +1,13 @@
 package seedu.mtracker.model.subinstrument;
 
 import seedu.mtracker.model.Instrument;
-import seedu.mtracker.ui.TextUi;
+
+import java.util.HashMap;
 
 public class Stock extends Instrument {
 
     protected String remark;
-    protected static final String STOCK_ICON = "S";
+    protected static final String STOCK_ICON = "[S]";
     protected static final String TYPE_INSTRUMENT = "Stock";
 
     public Stock(String name, double currentPrice, String sentiment, String remark) {
@@ -18,9 +19,26 @@ public class Stock extends Instrument {
         return remark;
     }
 
+    public void setRemark(String inputRemark) {
+        remark = inputRemark;
+    }
+
+    public void editRemark(HashMap<String, String> editedParameters) {
+        if (!editedParameters.containsKey(REMARK_ATTRIBUTE)) {
+            return;
+        }
+        setRemark(editedParameters.get(REMARK_ATTRIBUTE));
+    }
+
     @Override
-    public String toString() {
-        return TextUi.createBoxDisplay(STOCK_ICON) + getName();
+    public void editParameter(HashMap<String, String> editedParameters) {
+        editGeneralParameter(editedParameters);
+        editRemark(editedParameters);
+    }
+
+    @Override
+    public String editParameterInstructions() {
+        return super.editParameterInstructions() + SEPARATOR + REMARK_ATTRIBUTE;
     }
 
     @Override
@@ -29,8 +47,19 @@ public class Stock extends Instrument {
     }
 
     @Override
-    public String toList() {
-        return super.toList()
-                + System.lineSeparator() + REMARKS_HEADER + getRemark();
+    public String textFileFormatting() {
+        return super.textFileFormatting()
+                + FILE_SEPARATOR + getRemark();
+    }
+
+    @Override
+    public String getTypeIcon() {
+        return STOCK_ICON;
+    }
+
+    @Override
+    public String getAllParams() {
+        return super.getAllParams()
+                + REMARKS_FIELD + remark;
     }
 }

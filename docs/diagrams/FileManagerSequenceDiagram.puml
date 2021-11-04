@@ -1,0 +1,88 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include Styles.puml
+
+box filemanager COLOR_STORAGE_SEGMENT
+participant ":InstrumentDecoder" as InstrumentDecoder COLOR_STORAGE
+participant ":CryptoDecoder" as CryptoDecoder COLOR_STORAGE
+end box
+
+box model COLOR_MODEL_SEGMENT
+participant ":InstrumentManager" as InstrumentManager COLOR_MODEL
+participant ":Crypto" as Crypto COLOR_MODEL
+end box
+
+box error COLOR_ERROR_SEGMENT
+participant ":InvalidInstrumentInFileError" as InvalidInstrumentInFileError COLOR_ERROR
+end box
+
+
+    [-> InstrumentDecoder: readFile(instrumentManager, fileData)
+    activate InstrumentDecoder
+
+        loop each line in the file
+            InstrumentDecoder-> InstrumentDecoder: addSavedInstrumentToList(instrumentManager, textSegment)
+            activate InstrumentDecoder
+
+            note right
+            The parameter textSegment is
+            the array of Crypto parameters:
+            {"Crypto", "32.0", "positive", "2022-01-12", ""}
+            end note
+
+                alt Instrument type is Crypto/Etf/Stock/Forex
+                    InstrumentDecoder-> CryptoDecoder: addCryptoToList(textSegment, instrumentManager)
+                    activate CryptoDecoder
+
+                    CryptoDecoder-> CryptoDecoder: decodeGeneralAttributes(textSegment)
+                    activate CryptoDecoder
+                    CryptoDecoder--> CryptoDecoder
+                    deactivate CryptoDecoder
+
+                    note bottom
+                    Displaying only the outcome of adding
+                    a pre-existing Crypto to list. This if
+                    statement is supposed to be a switch statement
+                    amongst the 4 different instruments
+                    end note
+
+                    create Crypto
+                    CryptoDecoder-> Crypto: Crypto("Crypto", "32.0", "positive","true", "2022-01-12", "")
+                    activate Crypto
+
+
+                    Crypto--> CryptoDecoder: return crypto
+                    deactivate Crypto
+
+                    CryptoDecoder-> CryptoDecoder: setDoneStatus(true, crypto)
+                    activate CryptoDecoder
+                    CryptoDecoder--> CryptoDecoder
+                    deactivate CryptoDecoder
+
+                    CryptoDecoder-> InstrumentManager: addInstrument(crypto)
+                    activate InstrumentManager
+
+                    InstrumentManager--> CryptoDecoder
+                    deactivate InstrumentManager
+
+                    CryptoDecoder--> InstrumentDecoder
+                    deactivate CryptoDecoder
+
+                else
+                    create InvalidInstrumentInFileError
+                    InstrumentDecoder-> InvalidInstrumentInFileError: throw new InvalidInstrumentInFileError()
+                    activate InvalidInstrumentInFileError
+                    InvalidInstrumentInFileError--> InstrumentDecoder
+                    deactivate InvalidInstrumentInFileError
+
+                    end
+
+                    InstrumentDecoder--> InstrumentDecoder
+                    deactivate InstrumentDecoder
+
+                    end
+
+                    [<--InstrumentDecoder
+                    deactivate InstrumentDecoder
+
+@enduml

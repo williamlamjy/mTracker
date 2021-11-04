@@ -1,61 +1,45 @@
 package seedu.mtracker.console;
 
-import org.junit.jupiter.api.Test;
+import seedu.mtracker.error.OperationAbortedError;
 
-import java.util.Arrays;
+import java.io.ByteArrayInputStream;
+import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class AddInstrumentParserTest {
+public abstract class AddInstrumentParserTest {
+    protected static final String SEPARATOR_SPECIFIER = "%1$s";
+    protected static final int DAYS_DIFFERENCE = 1;
+    protected static final LocalDate FUTURE_DATE = LocalDate.now().plusDays(DAYS_DIFFERENCE);
+    protected static final LocalDate PAST_DATE = LocalDate.now().minusDays(DAYS_DIFFERENCE);
 
-    public static String emptyInput = "";
-    public static String validTestName = "testName";
-    public static String validPrice = "123.43";
-    public static String invalidPrice = "32fvr";
-    public static String[] validSentiments = {"positive", "neutral", "negative"};
-    public static String invalidSentiment = "invalid";
+    public static final String ABORT = "abort";
+    public static final String DONT_ABORT = "don't abort";
 
-    public static String validTestInstrument = "testInstrument";
+    public static final String[] NO_PARAMS_EXPECTED = {};
 
-    @Test
-    void addName_validName_expectSuccess() {
-        assertTrue(AddInstrumentParser.isValidName(validTestName, validTestInstrument));
+    String formatConsoleInput(String input) {
+        return String.format(input, System.lineSeparator());
     }
 
-    @Test
-    void addName_emptyName_expectFailure() {
-        assertFalse(AddInstrumentParser.isValidName(emptyInput, validTestInstrument));
+    void simulateConsoleInput(String input) {
+        String formattedInput = formatConsoleInput(input);
+        ByteArrayInputStream inputStreamBytes = new ByteArrayInputStream(formattedInput.getBytes());
+        System.setIn(inputStreamBytes);
     }
 
-    @Test
-    void addCurrentPrice_validNumber_expectSuccess() {
-        assertTrue(AddInstrumentParser.isValidPrice(validPrice));
+    void checkParameters(AddInstrumentParser testInstrumentParser, String[] expectedParameters) {
+        for (int i = 0; i < getParameterSize(); i++) {
+            assertEquals(testInstrumentParser.getParameters().get(i), expectedParameters[i]);
+        }
     }
 
-    @Test
-    void addCurrentPrice_invalidNumber_expectFailure() {
-        assertFalse(AddInstrumentParser.isValidPrice(invalidPrice));
+    void verifyInstrumentParameters(AddInstrumentParser testInstrumentParser, String[] expectedParameters)
+            throws OperationAbortedError {
+        testInstrumentParser.initParameters();
+        testInstrumentParser.getInstrumentParameters();
+        checkParameters(testInstrumentParser, expectedParameters);
     }
 
-    @Test
-    void addCurrentPrice_emptyNumber_expectFailure() {
-        assertFalse(AddInstrumentParser.isValidPrice(emptyInput));
-    }
-
-    @Test
-    void addSentiment_validSentiment_expectSuccess() {
-        Arrays.stream(validSentiments)
-                .forEach((sentiment) -> assertTrue(AddInstrumentParser.isValidSentiment(sentiment)));
-    }
-
-    @Test
-    void addSentiment_invalidSentiment_expectFailure() {
-        assertFalse(AddInstrumentParser.isValidSentiment(invalidSentiment));
-    }
-
-    @Test
-    void addSentiment_emptySentiment_expectFailure() {
-        assertFalse(AddInstrumentParser.isValidSentiment(emptyInput));
-    }
+    public abstract int getParameterSize();
 }

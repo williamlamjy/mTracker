@@ -7,20 +7,19 @@ import seedu.mtracker.commands.AddEtfCommand;
 import seedu.mtracker.commands.AddForexCommand;
 import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commands.AddStockCommand;
-import seedu.mtracker.error.ErrorMessage;
+import seedu.mtracker.commons.Validate;
 import seedu.mtracker.error.InvalidInstrumentError;
+import seedu.mtracker.error.OperationAbortedError;
 import seedu.mtracker.ui.TextUi;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 public abstract class AddInstrumentParser extends InputParser {
 
     public static final int INSTRUMENT_COMMAND_INDEX = 0;
-    public static final double MINIMUM_PRICE = 0;
-    private static final int FX_PAIR_NAME_LENGTH = 6;
 
     protected static ArrayList<String> parameters;
+    protected static final String WORKSPACE = AddInstrumentCommand.COMMAND_WORD;
 
     public void initParameters() {
         parameters = new ArrayList<>();
@@ -32,82 +31,30 @@ public abstract class AddInstrumentParser extends InputParser {
 
     public static String getInstrumentNameFromUser(String instrumentType) {
         TextUi.displayAddInstrumentNameInstruction(instrumentType);
-        return getUserInput();
+        return getUserInput(WORKSPACE);
     }
 
-    public static boolean isInvalidNameCondition(String name, String instrumentType) {
-        if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
-            return (name.length() != FX_PAIR_NAME_LENGTH);
-        }
-        return name.isEmpty();
-    }
-
-    public static boolean isValidName(String name, String instrumentType) {
-        boolean isValid = true;
-        try {
-            if (isInvalidNameCondition(name, instrumentType)) {
-                throw new IllegalArgumentException();
-            }
-        } catch (IllegalArgumentException e) {
-            logger.info(LogHelper.LOG_INVALID_NAME);
-            if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
-                ErrorMessage.displayAddForexNameError();
-            } else {
-                ErrorMessage.displayAddInstrumentNameError(instrumentType);
-            }
-            isValid = false;
-        }
-        return isValid;
-    }
-
-    public static void addNameToParameters(String instrumentType) {
-        String name = getInstrumentNameFromUser(instrumentType);
-        while (!isValidName(name, instrumentType)) {
+    public static void addNameToParameters(String instrumentType) throws OperationAbortedError {
+        String name;
+        do {
             name = getInstrumentNameFromUser(instrumentType);
-        }
+            checkIfAbort(name, WORKSPACE);
+        } while (!Validate.isValidName(name, instrumentType));
         parameters.add(name);
         AssertParserHelper.assertInputNotEmpty(name);
     }
 
     public static String getCurrentPriceFromUser() {
         TextUi.displayAddInstrumentCurrentPriceInstruction();
-        return getUserInput();
+        return getUserInput(WORKSPACE);
     }
 
-    public static boolean isValidPrice(String currentPrice) {
-        boolean isValid = true;
-        try {
-            double inputPrice = Double.parseDouble(currentPrice);
-            if (inputPrice < MINIMUM_PRICE) {
-                throw new IllegalArgumentException();
-            }
-        } catch (IllegalArgumentException e) {
-            logger.info(LogHelper.LOG_INVALID_PRICE);
-            ErrorMessage.displayAddInstrumentPriceError();
-            isValid = false;
-        }
-        return isValid;
-    }
-
-    public static boolean isExpiryFilled(String expiryInput) {
-        boolean isFilled = true;
-        try {
-            if (expiryInput.isEmpty()) {
-                throw new IllegalArgumentException();
-            }
-        } catch (IllegalArgumentException e) {
-            logger.info(LogHelper.LOG_EMPTY_EXPIRY);
-            ErrorMessage.displayEmptyExpiryError();
-            isFilled = false;
-        }
-        return isFilled;
-    }
-
-    public static void addCurrentPriceToParameters() {
-        String currentPrice = getCurrentPriceFromUser();
-        while (!isValidPrice(currentPrice)) {
+    public static void addCurrentPriceToParameters() throws OperationAbortedError {
+        String currentPrice;
+        do {
             currentPrice = getCurrentPriceFromUser();
-        }
+            checkIfAbort(currentPrice, WORKSPACE);
+        } while (!Validate.isValidPrice(currentPrice));
         parameters.add(currentPrice);
         AssertParserHelper.assertInputNotEmpty(currentPrice);
         AssertParserHelper.assertPriceNonNegative(currentPrice);
@@ -115,42 +62,31 @@ public abstract class AddInstrumentParser extends InputParser {
 
     public static String getInstrumentSentimentFromUser() {
         TextUi.displayAddInstrumentSentimentInstruction();
-        return getUserInput();
+        return getUserInput(WORKSPACE);
     }
 
-    public static boolean isValidSentiment(String sentiment) {
-        boolean isValidPositiveSentiment = sentiment.equals(POSITIVE_SENTIMENT);
-        boolean isValidNegativeSentiment = sentiment.equals(NEGATIVE_SENTIMENT);
-        boolean isValidNeutralSentiment = sentiment.equals(NEUTRAL_SENTIMENT);
-        if (!isValidPositiveSentiment && !isValidNeutralSentiment && !isValidNegativeSentiment) {
-            logger.info(LogHelper.LOG_INVALID_SENTIMENT);
-            ErrorMessage.displayAddInstrumentSentimentError();
-            return false;
-        }
 
-        return true;
-    }
-
-    public static void addSentimentToParameters() {
-        String sentiment = getInstrumentSentimentFromUser();
-        while (!isValidSentiment(sentiment)) {
-            sentiment = getInstrumentSentimentFromUser();
-        }
+    public static void addSentimentToParameters() throws OperationAbortedError {
+        String sentiment;
+        do {
+            sentiment = getInstrumentSentimentFromUser().toLowerCase();
+            checkIfAbort(sentiment, WORKSPACE);
+        } while (!Validate.isValidSentiment(sentiment));
         parameters.add(sentiment);
         AssertParserHelper.assertInputNotEmpty(sentiment);
     }
 
-    public static void getGeneralParameters(String instrumentType) {
+    public static void getGeneralParameters(String instrumentType) throws OperationAbortedError {
         addNameToParameters(instrumentType);
         addCurrentPriceToParameters();
         addSentimentToParameters();
         AssertParserHelper.assertNoMissingGeneralParameters(parameters);
     }
 
-    public abstract AddInstrumentCommand getInstrumentParameters();
+    public abstract AddInstrumentCommand getInstrumentParameters() throws OperationAbortedError;
 
     public static AddInstrumentCommand filterByInstrumentType(String[] commandComponents)
-            throws InvalidInstrumentError {
+            throws InvalidInstrumentError, OperationAbortedError {
         AddInstrumentCommand command;
         AddInstrumentParser addInstrumentParser;
         switch (commandComponents[INSTRUMENT_COMMAND_INDEX]) {
