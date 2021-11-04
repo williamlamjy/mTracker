@@ -291,7 +291,8 @@ appropriate message through the `TextUi` class.
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1. The program should work on operating systems with `Java 11` installed.
+2. 
 
 ## Glossary
 

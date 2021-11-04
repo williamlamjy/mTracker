@@ -1,6 +1,6 @@
 package seedu.mtracker.filemanager;
 
-import seedu.mtracker.error.fileerror.FileWriteError;
+import seedu.mtracker.commons.error.fileerror.FileWriteError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.LogHelper;
 import seedu.mtracker.ui.TextUi;
