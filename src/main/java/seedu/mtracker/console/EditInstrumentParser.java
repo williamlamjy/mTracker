@@ -60,7 +60,7 @@ public class EditInstrumentParser extends InputParser {
         TextUi.displayEditSentiment();
         String inputSentiment;
         do {
-            inputSentiment = getUserInput(WORKSPACE);
+            inputSentiment = getUserInput(WORKSPACE).toLowerCase();
             checkIfAbort(inputSentiment, WORKSPACE);
         } while (!Validate.isValidSentiment(inputSentiment));
         editedParameters.put(SENTIMENT_ATTRIBUTE, inputSentiment);

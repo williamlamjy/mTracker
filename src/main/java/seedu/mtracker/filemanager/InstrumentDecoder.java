@@ -10,11 +10,13 @@ import seedu.mtracker.error.fileerror.InvalidInstrumentInFileError;
 import seedu.mtracker.error.fileerror.InvalidNameSavedInFileError;
 import seedu.mtracker.error.fileerror.InvalidSentimentSavedInFileError;
 import seedu.mtracker.error.fileerror.InvalidStatusSavedInFileError;
+import seedu.mtracker.LogHelper;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.ui.TextUi;
 
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class InstrumentDecoder {
@@ -38,6 +40,8 @@ public class InstrumentDecoder {
     public static String decodedName;
     public static double decodedCurrPrice;
     public static boolean decodedIsDone;
+
+    protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     protected static final int ASCII_CODE = 127;
     protected static final char FILE_SEPARATOR = (char) ASCII_CODE;
@@ -134,6 +138,7 @@ public class InstrumentDecoder {
                     } catch (Exception e) {
                         TextUi.showErrorMessage(e);
                         TextUi.ignoreCorruptedInstrument(idx);
+                        logger.warning(LogHelper.LOG_DATA_FILE_INSTRUMENT_CORRUPTED_ERROR);
                     } finally {
                         idx.getAndIncrement();
                     }
@@ -156,6 +161,7 @@ public class InstrumentDecoder {
             EtfDecoder.addEtfToList(textSegment, instrumentManager);
             break;
         default:
+            logger.warning(LogHelper.LOG_DATA_FILE_INSTRUMENT_TYPE_CORRUPTED_ERROR);
             throw new InvalidInstrumentInFileError();
         }
     }

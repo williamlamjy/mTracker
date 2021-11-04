@@ -9,11 +9,9 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    private ArrayList<Instrument> instruments;
-
     @Override
     public String execute() {
-        instruments = instrumentManager.getInstruments();
+        ArrayList<Instrument> instruments = instrumentManager.getInstruments();
         TextUi.displayAllInstruments(instruments);
         return COMMAND_WORD;
     }
