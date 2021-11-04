@@ -95,25 +95,29 @@ public class EditInstrumentParserTest extends GeneralInstrumentParserTest {
 
     @Test
     void editInstrumentParam_abortAtName_expectException() {
-        assertThrows(OperationAbortedError.class,
-                () -> testEditInstrumentParameters(USER_INPUT_ABORT, PARAM_INPUT_NAME, NO_PARAMS_EXPECTED, NO_PARAMS_EXPECTED));
+        assertThrows(OperationAbortedError.class,() ->
+                testEditInstrumentParameters(USER_INPUT_ABORT, PARAM_INPUT_NAME,
+                        NO_PARAMS_EXPECTED, NO_PARAMS_EXPECTED));
     }
 
     @Test
     void editInstrumentParam_abortAtCurrentPrice_expectException() {
-        assertThrows(OperationAbortedError.class,
-                () -> testEditInstrumentParameters(USER_INPUT_ABORT, PARAM_INPUT_CURRENT_PRICE, NO_PARAMS_EXPECTED, NO_PARAMS_EXPECTED));
+        assertThrows(OperationAbortedError.class, () ->
+                testEditInstrumentParameters(USER_INPUT_ABORT, PARAM_INPUT_CURRENT_PRICE,
+                        NO_PARAMS_EXPECTED, NO_PARAMS_EXPECTED));
     }
 
     @Test
     void editInstrumentParam_abortAtSentiments_expectException() {
-        assertThrows(OperationAbortedError.class,
-                () -> testEditInstrumentParameters(USER_INPUT_ABORT, PARAM_INPUT_SENTIMENT, NO_PARAMS_EXPECTED, NO_PARAMS_EXPECTED));
+        assertThrows(OperationAbortedError.class, () ->
+                testEditInstrumentParameters(USER_INPUT_ABORT, PARAM_INPUT_SENTIMENT,
+                        NO_PARAMS_EXPECTED, NO_PARAMS_EXPECTED));
     }
 
     @Test
     void editInstrumentParam_abortAtRemarks_expectException() {
-        assertThrows(OperationAbortedError.class,
-                () -> testEditInstrumentParameters(USER_INPUT_ABORT, PARAM_INPUT_REMARKS, NO_PARAMS_EXPECTED, NO_PARAMS_EXPECTED));
+        assertThrows(OperationAbortedError.class, () ->
+                testEditInstrumentParameters(USER_INPUT_ABORT, PARAM_INPUT_REMARKS,
+                        NO_PARAMS_EXPECTED, NO_PARAMS_EXPECTED));
     }
 }

@@ -106,23 +106,19 @@ public class InputParser {
     }
 
     public HashSet<String> getParametersToEdit(HashSet<String> validAttributes)
-<<<<<<< HEAD
             throws OperationAbortedError, EditEmptyParameterError {
-        String parametersToEdit = getUserInput(EditInstrumentCommand.COMMAND_WORD);
+        String parametersToEdit = getUserInput(EditInstrumentCommand.COMMAND_WORD).toLowerCase();
         if (!Validate.isNonEmptyEditParameters(parametersToEdit)) {
             throw new EditEmptyParameterError();
         }
-=======
-            throws OperationAbortedError {
-        String parametersToEdit = getUserInput(EditInstrumentCommand.COMMAND_WORD).toLowerCase();
->>>>>>> master
         checkIfAbort(parametersToEdit, EditInstrumentCommand.COMMAND_WORD);
         String[] parameters = getCommandComponents(parametersToEdit);
         return filterInvalidParameters(parameters, validAttributes);
     }
 
     public EditInstrumentCommand getEditInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
-            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError, OperationAbortedError, EditEmptyParameterError {
+            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError,
+            OperationAbortedError, EditEmptyParameterError {
         getAndValidateIndexNumber(commandComponents, instruments);
         Instrument instrumentToEdit = instruments.get(instrumentNumber);
         TextUi.displayEditInstrumentFirstInstruction(instrumentToEdit);

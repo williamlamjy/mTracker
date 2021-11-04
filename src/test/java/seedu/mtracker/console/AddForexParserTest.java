@@ -6,12 +6,9 @@ import seedu.mtracker.error.OperationAbortedError;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 // @@KVignesh122
-<<<<<<< HEAD
+
 class AddForexParserTest extends GeneralInstrumentParserTest {
 
-=======
-class AddForexParserTest extends AddInstrumentParserTest {
->>>>>>> master
     public static final int PARAMETER_SIZE = 7;
 
     public static final String[] EXPECTED_PARAMS_NO_REMARKS = {

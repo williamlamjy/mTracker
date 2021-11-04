@@ -128,7 +128,7 @@ public class EditInstrumentParser extends InputParser {
             TextUi.displayEditStatus();
             inputStatus = getUserInput(WORKSPACE).toLowerCase();
             checkIfAbort(inputStatus, WORKSPACE);
-        } while (!Validate.isValidStatus(inputStatus));
+        } while (!Validate.isValidInputStatus(inputStatus));
         editedParameters.put(DONE_ATTRIBUTE, inputStatus);
     }
 
@@ -142,7 +142,7 @@ public class EditInstrumentParser extends InputParser {
         do {
             inputExpiry = getUserInput(WORKSPACE);
             checkIfAbort(inputExpiry, WORKSPACE);
-        } while (!Validate.isValidInputStatus(inputExpiry));
+        } while (!Validate.isValidExpiry(inputExpiry));
         editedParameters.put(EXPIRY_ATTRIBUTE, inputExpiry);
     }
 
