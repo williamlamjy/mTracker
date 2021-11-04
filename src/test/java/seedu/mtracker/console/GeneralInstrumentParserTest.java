@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //@@author KVignesh122
-public abstract class AddInstrumentParserTest {
+public abstract class GeneralInstrumentParserTest {
     protected static final String SEPARATOR_SPECIFIER = "%1$s";
     protected static final int DAYS_DIFFERENCE = 1;
     protected static final LocalDate FUTURE_DATE = LocalDate.now().plusDays(DAYS_DIFFERENCE);
