@@ -20,7 +20,7 @@ public abstract class AssertOperationHelper {
     }
 
     /**
-     * Asserts that current workspace has to be in 'add'
+     * Asserts that current workspace has to be in 'add'.
      *
      * @param workspace A string representing the workspace the user is in.
      */
