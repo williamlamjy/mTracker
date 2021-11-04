@@ -33,7 +33,7 @@ public abstract class AssertParserHelper {
     /**
      * Asserts that the price after parsing is not negative.
      *
-     * @param price The price obtained by the user.
+     * @param price The price obtained after parsing the user price input.
      */
     public static void assertPriceNonNegative(String price) {
         assert Double.parseDouble(price) >= MINIMUM_PRICE : NEGATIVE_PRICE;
