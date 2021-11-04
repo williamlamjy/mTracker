@@ -99,13 +99,13 @@ The `model` package contains the `InstrumentManager` class and `Instrument` clas
 in `InstrumentManager.java` and `Instrument.java` respectively. This figure below represents the class diagram of 
 how the different class work together:
 
-<img src="images/ModelDiagram.png" width="550"/>
+<img src="images/ModelDiagram.png" width="450"/>
 
 The `Model` component:
 
 * Stores the instrument data through `Instrument` objects which are contained and managed by the `InstrumentManager`
 * Contains an abstract parent `Instrument` class. The 4 child sub-instrument classes `Crypto`, `Etf`, `Forex` and 
-`Stock` implements the Overridden methods (e.g. `toList()`).
+`Stock` implements the Overridden methods (e.g. `textFileFormatting()`).
 * Contains the `InstrumentManager` class which manages the list of instruments (e.g. add a new instrument to 
 the list). `InstrumentManager` is implemented as a singleton class to ensure that only one instrument list exists.
 This ensures the user only edits one list and prevents possible data corruption (e.g. adding a new instrument to 
@@ -178,12 +178,16 @@ in the list of instruments:
 
 <img src="images/DoneCryptoSequenceDiagram.png" width="1040"/>
 
+More details about the reference frame for executing the done command is shown below:
+
+<img src="images/DoneCryptoExecuteDiagram.png" width="600"/>
+
 ### FileManager Component
 The `filemanager` package contains the `Storage`, `InstrumentEncoder` and `InstrumentDecoder` classes. It is defined in
 the `Storage.java`, `InstrumentEncoder.java` and `InstrumentDecoder.java` respectively. This figure below represents the class diagram of
 how the different class work together:
 
-<img src="images/FileManagerDiagram.png" width="550"/>
+<img src="images/FileManagerDiagram.png" width="1040"/>
 
 The FileManager Component:
 
@@ -195,11 +199,13 @@ a new text file to store the data. It updates the file by calling the `writeFile
 `InstrumentManager` enabling the program to load pre-existing data.
 * Has some dependencies on the `Model` component as it saves and retrieves data from `Model` objects.
 
-Putting the implementation for decoding here first
-<img src="images/FileManagerSequenceDiagram.png" width="1040"/>
-
-Putting the implementation for encoding here first
-<img src="images/FileManagerEncodingSequenceDiag.png" width="700"/>
+#### Design considerations for decoding functionality
+Given the different types of financial instruments supported by mTracker, the `InstrumentDecoder` class is implemented. 
+Multiple `XYZDecoder` (`XYZ` is a placeholder for the different instrument types, for example `EtfDecoder`) child classes of
+`InstrumentDecoder` support the decoding of different instruments and their parameters.
+This implementation provides greater extensibility and code re-usability to the decoding functionality to support more 
+instrument types. Greater cohesion is achieved by separating the classes to give more focus on each instrument type and
+a higher level of abstraction.
 
 ## Implementation
 
@@ -227,6 +233,46 @@ From the notes in the sequence diagram above, for every attribute in the instrum
 prompt to get user to provide information for that attribute. This is done through a series of methods in
 the `TextUi` class.
 
+### Loading pre-existing data
+The loading of pre-existing data is mainly handled by the `filemanager` and `model` components. The main method calls 
+`Storage#loadFileData(instrumentManager)` which uses `InstrumentDecoder#readFile(instrumentManager, fileData)`. This method calls 
+`InstrumentDecoder#addSavedInstrumentToList(instrumentManager, textSegment)` for each pre-existing instrument which will add the 
+corresponding instrument in the `InstrumentManager` through calling the `XYZDecoder#addXYZToList(textSegment, instrumentManager)`. 
+In the event the instrument is not one of the 4 types of instruments, the `InstrumentDecoder` will throw a new `InvalidInstrumentInFileError`
+and display the corresponding error message.
+
+The figures below represents the sequence diagrams when the user loads a pre-existing crypto:
+
+<img src="images/FileManagerSeqBetweenStorageAndDecoder.png" width="700"/>
+
+More details about the reference frame for decoding and updating the `InstrumentManager` is shown below:
+
+<img src="images/FileManagerSequenceDiagram.png" width="1080" height="460"/>
+
+More details about the reference frame for adding the decoded instrument into the `InstrumentManager` is shown below:
+
+<img src="images/FileManagerRefDiagCryptoDecoder.png" width="750"/>
+
+The process for loading other pre-existing instruments follow a similar process to the sequence above. The main difference
+would be the type of instrument decoder called, the different instrument specific decoded parameters and the type of instrument
+added to the `InstrumentManager`. For example when loading a stock instead of calling `CryptoDecoder#addCryptoToList(textSegment, instrumentManager)`
+it will call `StockDecoder#addStockToList(textSegement, instrumentManager)`.
+
+If loading the file data has any error, it will throw the corresponding file error. This file error will display the
+appropriate message through the `TextUi` class.
+
+### Storing current data
+The storing of current data is mainly handled by the `filemanager` and `model` components. The main method calls
+the `Storage#updateFileData(instruments)` which implements the `InstrumentEncoder#writeFile(instruments, writeToFile)` method. 
+This method calls the `Instrument#textFileFormatting()` method for every instrument that is being stored. The formatted 
+instrument details are then written to the `MTracker` text file.
+
+The figure below represents the sequence diagram when the user stores current data:
+<img src="images/FileManagerEncodingSequenceDiag.png" width="700"/>
+
+If storing the file data has any error, it will throw the corresponding file error. This file error will display the
+appropriate message through the `TextUi` class.
+
 ## Product scope
 ### Target user profile
 
@@ -245,7 +291,8 @@ the `TextUi` class.
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1. The program should work on operating systems with `Java 11` installed.
+2. 
 
 ## Glossary
 

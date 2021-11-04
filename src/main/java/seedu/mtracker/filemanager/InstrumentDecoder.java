@@ -1,15 +1,15 @@
 package seedu.mtracker.filemanager;
 
 import seedu.mtracker.commons.Validate;
-import seedu.mtracker.error.fileerror.InvalidCurrPriceSavedInFileError;
-import seedu.mtracker.error.fileerror.InvalidEmptyCurrPriceInFileError;
-import seedu.mtracker.error.fileerror.InvalidEmptyNameInFileError;
-import seedu.mtracker.error.fileerror.InvalidEmptySentimentInFileError;
-import seedu.mtracker.error.fileerror.InvalidEmptyStatusInFileError;
-import seedu.mtracker.error.fileerror.InvalidInstrumentInFileError;
-import seedu.mtracker.error.fileerror.InvalidNameSavedInFileError;
-import seedu.mtracker.error.fileerror.InvalidSentimentSavedInFileError;
-import seedu.mtracker.error.fileerror.InvalidStatusSavedInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidCurrPriceSavedInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidEmptyCurrPriceInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidEmptyNameInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidEmptySentimentInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidEmptyStatusInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidInstrumentInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidNameSavedInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidSentimentSavedInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidStatusSavedInFileError;
 import seedu.mtracker.LogHelper;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
@@ -36,10 +36,10 @@ public class InstrumentDecoder {
     public static final int SENTIMENT_INDEX = 3;
     public static final int IS_DONE_INDEX = 4;
 
-    public static String decodedSentiment;
-    public static String decodedName;
-    public static double decodedCurrPrice;
-    public static boolean decodedIsDone;
+    protected static String decodedSentiment;
+    protected static String decodedName;
+    protected static double decodedCurrPrice;
+    protected static boolean decodedIsDone;
 
     protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 

@@ -39,12 +39,12 @@ public class TextUi {
     private static final String EDIT_NAME_MESSAGE = "Enter new name:";
     private static final String EDIT_CURRENT_PRICE_MESSAGE = "Enter new Current price:";
     private static final String EDIT_SENTIMENT_MESSAGE = "Enter new Sentiment:";
-    private static final String EDIT_REMARKS_MESSAGE = "Enter new Remark:";
+    private static final String EDIT_REMARKS_MESSAGE = "Enter new Remarks:";
     private static final String EDIT_RETURN_MESSAGE = "Enter new Past Returns:";
     private static final String EDIT_ENTRY_MESSAGE = "Enter new Entry Price:";
     private static final String EDIT_EXIT_MESSAGE = "Enter new Exit Price:";
     private static final String EDIT_EXPIRY_MESSAGE = "Enter new Expiry (YYYY-MM-DD):";
-    private static final String EDIT_STATUS_MESSAGE = "Enter new Status (please enter either done or undone)";
+    private static final String EDIT_STATUS_MESSAGE = "Enter new Status (please enter either done or undone):";
     private static final String WATCHLIST_HEADER = "CURRENT WATCHLIST";
 
     private static final int NONE_FOUND = 0;
@@ -171,7 +171,7 @@ public class TextUi {
 
     public static void displayEditInstrumentFirstInstruction(Instrument instrument) {
         System.out.println(TAB + "Please enter one or more " + instrument.getType()
-                + " parameters to edit." + System.lineSeparator()
+                + " parameters to edit separated by spaces only." + System.lineSeparator()
                 + TAB + instrument.editParameterInstructions());
     }
 

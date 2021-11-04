@@ -23,7 +23,7 @@ public class MTracker {
         try {
             logger = LogHelper.getInstance();
             storage = new Storage();
-            instrumentManager = instrumentManager.getInstance();
+            instrumentManager = InstrumentManager.getInstance();
             parser = new InputParser();
             storage.loadFileData(instrumentManager);
         } catch (Exception e) {
@@ -39,7 +39,7 @@ public class MTracker {
         String[] commandComponents;
 
         do {
-            userInput = parser.getUserInput(MAIN_WORKSPACE);
+            userInput = InputParser.getUserInput(MAIN_WORKSPACE);
             commandComponents = parser.getCommandComponents(userInput);
             try {
                 command = parser.filterByCommandType(commandComponents, instrumentManager.getInstruments());
