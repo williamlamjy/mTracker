@@ -3,7 +3,7 @@ package seedu.mtracker.console;
 import seedu.mtracker.asserthelpers.AssertParserHelper;
 import seedu.mtracker.commands.AddEtfCommand;
 import seedu.mtracker.commons.Validate;
-import seedu.mtracker.error.OperationAbortedError;
+import seedu.mtracker.commons.error.OperationAbortedError;
 import seedu.mtracker.ui.TextUi;
 
 public class AddEtfParser extends AddInstrumentParser {
