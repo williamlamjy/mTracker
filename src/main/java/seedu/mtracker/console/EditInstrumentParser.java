@@ -89,8 +89,6 @@ public class EditInstrumentParser extends InputParser {
         checkIfAbort(inputReturn, WORKSPACE);
         if (!Validate.isValidPastReturns(inputReturn)) {
             inputReturn = String.valueOf(UNDEFINED_PAST_RETURN_VALUE);
-            editedParameters.put(RETURN_ATTRIBUTE, inputReturn);
-            return;
         }
         editedParameters.put(RETURN_ATTRIBUTE, inputReturn);
     }
