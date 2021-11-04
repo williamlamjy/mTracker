@@ -6,6 +6,7 @@ group sd Get stock details from user and create the AddStockCommand
 box console COLOR_CONSOLE_SEGMENT
 participant "<<Class>>\nAddInstrumentParser" as AddInstrumentParser COLOR_CONSOLE
 participant ":AddStockParser" as AddStockParser COLOR_CONSOLE
+participant "<<Class>>\nAddStockParser" as ClassAddStockParser COLOR_CONSOLE
 end box
 
 box command COLOR_FAINT_GREEN
@@ -15,10 +16,10 @@ activate AddInstrumentParser
 
 AddInstrumentParser-> AddStockParser : getInstrumentParameters()
 activate AddStockParser
-AddInstrumentParser<-AddStockParser : getGeneralParameters("stock")
-activate AddInstrumentParser
-AddInstrumentParser--> AddStockParser
-deactivate AddInstrumentParser
+AddStockParser->ClassAddStockParser : getGeneralParameters("stock")
+activate ClassAddStockParser
+ClassAddStockParser--> AddStockParser
+deactivate ClassAddStockParser
 
 
 note right
