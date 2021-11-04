@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include Styles.puml
+
+participant ":Instrument" as Instrument COLOR_MODEL
+group sd check if parameter exist in HashMap and edit
+
+[->Instrument: editParameter()
+activate Instrument
+
+Instrument ->Instrument: editGeneralParameter({"name, new name"})
+activate Instrument
+Instrument -> Instrument: editName({"name, new name"})
+activate Instrument
+Instrument --> Instrument
+deactivate Instrument
+Instrument -> Instrument: editCurrentPrice({"name, new name"})
+activate Instrument
+Instrument --> Instrument
+deactivate Instrument
+Instrument -> Instrument: editSentiment({"name, new name"})
+activate Instrument
+Instrument --> Instrument
+deactivate Instrument
+Instrument --> Instrument
+deactivate Instrument
+Instrument -->[
+deactivate Instrument
+
+end
+@enduml

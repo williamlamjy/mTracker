@@ -1,0 +1,57 @@
+@startuml
+'https://plantuml.com/class-diagram
+!include Styles.puml
+
+box console COLOR_CONSOLE_SEGMENT
+participant ":InputParser" as InputParser COLOR_CONSOLE
+participant ":EditInstrumentParser" as EditInstrumentParser COLOR_MODEL
+end box
+
+box command COLOR_FAINT_GREEN
+participant ":EditInstrumentCommand" as EditInstrumentCommand COLOR_COMMANDS
+end box
+
+[-> InputParser : filterByCommandType({"edit", "1"},\n instruments)
+activate InputParser
+
+InputParser -> InputParser: getEditInstrumentCommand({"edit", "1"},\n instruments)
+activate InputParser
+
+InputParser -> InputParser: getAndValidateIndexNumber({"edit", "1"})
+activate InputParser
+InputParser --> InputParser
+deactivate InputParser
+
+ref over InputParser
+get parameters from user and
+check if parameter entered is valid parameters
+endref
+
+create EditInstrumentParser
+InputParser -> EditInstrumentParser: EditInstrumentParser()
+
+InputParser -> EditInstrumentParser: getParametersToEdit({"name"}, instrument, 1);
+activate EditInstrumentParser
+
+ref over EditInstrumentParser
+check if parameter is entered and add to HashMap
+endref
+
+create EditInstrumentCommand
+EditInstrumentParser -> EditInstrumentCommand
+
+EditInstrumentParser -> EditInstrumentCommand: setIndex()
+activate EditInstrumentCommand
+EditInstrumentCommand --> EditInstrumentParser
+deactivate EditInstrumentCommand
+
+EditInstrumentParser --> InputParser: return HashSet of parameters to edit
+deactivate EditInstrumentParser
+
+InputParser --> InputParser: return editInstrumentCommand
+
+deactivate InputParser
+[<--InputParser: return editInstrumentCommand
+deactivate InputParser
+
+@enduml

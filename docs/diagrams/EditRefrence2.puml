@@ -1,0 +1,60 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include Styles.puml
+
+participant ":EditInstrumentParser" as EditInstrumentParser COLOR_COMMANDS
+group sd check if parameter is entered and \n add to HashMap
+
+[-> EditInstrumentParser: getParametersToEdit({"name"}, instrument, 1);
+activate EditInstrumentParser
+
+EditInstrumentParser -> EditInstrumentParser: getEditedParameters({"name"}, instrument)
+activate EditInstrumentParser
+
+EditInstrumentParser -> EditInstrumentParser: editNameParameter("etf",{"name"})
+activate EditInstrumentParser
+EditInstrumentParser --> EditInstrumentParser
+deactivate EditInstrumentParser
+
+EditInstrumentParser -> EditInstrumentParser: editCurrentPriceParameter({"name"})
+activate EditInstrumentParser
+EditInstrumentParser --> EditInstrumentParser
+deactivate EditInstrumentParser
+
+EditInstrumentParser -> EditInstrumentParser: editSentimentsParameter({"name"})
+activate EditInstrumentParser
+EditInstrumentParser --> EditInstrumentParser
+deactivate EditInstrumentParser
+
+EditInstrumentParser -> EditInstrumentParser: editReturnParameter({"name"})
+activate EditInstrumentParser
+EditInstrumentParser --> EditInstrumentParser
+deactivate EditInstrumentParser
+
+EditInstrumentParser -> EditInstrumentParser: editEntryPriceParameter({"name"})
+activate EditInstrumentParser
+EditInstrumentParser --> EditInstrumentParser
+deactivate EditInstrumentParser
+
+EditInstrumentParser -> EditInstrumentParser: editExitPriceParameter({"name"})
+activate EditInstrumentParser
+EditInstrumentParser --> EditInstrumentParser
+deactivate EditInstrumentParser
+
+EditInstrumentParser -> EditInstrumentParser: editExpiryParameter({"name"})
+activate EditInstrumentParser
+EditInstrumentParser --> EditInstrumentParser
+deactivate EditInstrumentParser
+
+EditInstrumentParser -> EditInstrumentParser: editRemarksParameter({"name"})
+activate EditInstrumentParser
+EditInstrumentParser --> EditInstrumentParser
+deactivate EditInstrumentParser
+
+EditInstrumentParser --> EditInstrumentParser
+deactivate EditInstrumentParser
+EditInstrumentParser -->[
+deactivate EditInstrumentParser
+
+end
+@enduml
