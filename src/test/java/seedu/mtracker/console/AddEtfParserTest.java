@@ -73,7 +73,7 @@ public class AddEtfParserTest extends AddInstrumentParserTest {
             + SEPARATOR_SPECIFIER + ""
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
-    // @@KVignesh122
+    //@@KVignesh122
     public static final String USER_INPUT_TRY_ABORT_AT_NAME = SEPARATOR_SPECIFIER.repeat(2) + ABORT;
 
     public static final String USER_INPUT_TRY_ABORT_AT_PRICE = SEPARATOR_SPECIFIER + "TTTXXX"
@@ -102,6 +102,7 @@ public class AddEtfParserTest extends AddInstrumentParserTest {
         AddEtfParser testEtfParser = new AddEtfParser();
         verifyInstrumentParameters(testEtfParser, expectedEtfParameters);
     }
+    //@@author
 
     @Override
     public int getParameterSize() {
@@ -138,7 +139,7 @@ public class AddEtfParserTest extends AddInstrumentParserTest {
         testEtfParameters(USER_INPUT_TRY_INVALID_SENTIMENT, EXPECTED_PARAMS_ALL_PARAM);
     }
 
-    // @@KVignesh122
+    //@@KVignesh122
     @Test
     void addEtfParams_abortAtName_expectException() {
         assertThrows(OperationAbortedError.class,
@@ -168,4 +169,5 @@ public class AddEtfParserTest extends AddInstrumentParserTest {
         assertThrows(OperationAbortedError.class,
             () -> testEtfParameters(USER_INPUT_TRY_ABORT_AT_REMARKS, NO_PARAMS_EXPECTED));
     }
+    //@@author
 }

@@ -6,6 +6,7 @@ import seedu.mtracker.error.OperationAbortedError;
 import seedu.mtracker.ui.TextUi;
 import seedu.mtracker.asserthelpers.AssertParserHelper;
 
+//@@author KVignesh122
 public class AddForexParser extends AddInstrumentParser {
     public static String INSTRUMENT_TYPE = "forex";
 

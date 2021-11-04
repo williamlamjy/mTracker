@@ -75,6 +75,7 @@ public class InputParser {
         return deleteCommand;
     }
 
+    //@@author KVignesh122
     public ViewCommand getViewInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
             throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError {
         ViewCommand viewCommand = new ViewCommand();
@@ -82,6 +83,15 @@ public class InputParser {
         viewCommand.setIndex(instrumentNumber);
         return viewCommand;
     }
+
+    public FindCommand getFindInstrumentsCommand(String[] commandComponents)
+            throws InvalidEmptySearchStringError {
+        FindCommand findCommand = new FindCommand();
+        constructSearchString(commandComponents);
+        findCommand.setSearchString(searchString);
+        return findCommand;
+    }
+    //@@author
 
     public DoneCommand getDoneInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
             throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError, AlreadyDoneError {
@@ -134,14 +144,6 @@ public class InputParser {
         Validate.checkIsNotDone(instruments, instrumentNumber);
     }
 
-    public FindCommand getFindInstrumentsCommand(String[] commandComponents)
-            throws InvalidEmptySearchStringError {
-        FindCommand findCommand = new FindCommand();
-        constructSearchString(commandComponents);
-        findCommand.setSearchString(searchString);
-        return findCommand;
-    }
-
     public Command filterByCommandType(String[] commandComponents, ArrayList<Instrument> instruments)
             throws Exception {
         Command command;
@@ -191,6 +193,7 @@ public class InputParser {
         }
     }
 
+    //@@author KVignesh122
     public void constructSearchString(String[] commandComponents) throws InvalidEmptySearchStringError {
         try {
             searchString = commandComponents[SEARCH_STR_INDEX_START];
@@ -208,4 +211,5 @@ public class InputParser {
             throw new OperationAbortedError(currentProcess);
         }
     }
+    //@@author
 }

@@ -10,6 +10,7 @@ public class InvalidNameError extends Exception {
         this.instrumentType = instrumentType;
     }
 
+    //@@author KVignesh122
     @Override
     public String getMessage() {
         if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
@@ -17,4 +18,5 @@ public class InvalidNameError extends Exception {
         }
         return ErrorMessage.addInstrumentNameError(instrumentType);
     }
+    //@@author
 }

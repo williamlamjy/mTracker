@@ -1,5 +1,6 @@
 package seedu.mtracker.error;
 
+//@@author KVignesh122
 public class InvalidEmptySearchStringError extends Exception {
     @Override
     public String getMessage() {

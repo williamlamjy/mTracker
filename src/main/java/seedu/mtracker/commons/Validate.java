@@ -20,7 +20,6 @@ import seedu.mtracker.error.InvalidPastReturnError;
 import seedu.mtracker.error.InvalidPastReturnTypeError;
 import seedu.mtracker.error.InvalidPriceError;
 import seedu.mtracker.error.InvalidSentimentError;
-import seedu.mtracker.error.OperationAbortedError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -38,12 +37,13 @@ public class Validate {
     public static final String NEUTRAL_SENTIMENT = "neutral";
     public static final String NEGATIVE_SENTIMENT = "negative";
 
-    private static final String FOREX_VALID_NAME_REGEX = "^[a-zA-Z]{3}/?[a-zA-Z]{3}$";
-
     public static final String STATUS_DONE = "true";
     public static final String STATUS_NOT_DONE = "false";
 
     protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+    //@@author KVignesh122
+    private static final String FOREX_VALID_NAME_REGEX = "^[a-zA-Z]{3}/?[a-zA-Z]{3}$";
 
     public static boolean isInvalidNameCondition(String name, String instrumentType) {
         if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
@@ -57,6 +57,7 @@ public class Validate {
             throw new InvalidNameError(instrumentType);
         }
     }
+    //@@author
 
     public static boolean isInvalidInstrument(String instrument) {
         switch (instrument) {

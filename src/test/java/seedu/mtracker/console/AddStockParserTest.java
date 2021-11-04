@@ -76,6 +76,7 @@ class AddStockParserTest extends AddInstrumentParserTest {
         AddStockParser testStockParser = new AddStockParser();
         verifyInstrumentParameters(testStockParser, expectedStockParameters);
     }
+    //@@author
 
     @Override
     public int getParameterSize() {
@@ -107,7 +108,7 @@ class AddStockParserTest extends AddInstrumentParserTest {
         testStockParameters(USER_INPUT_TRY_INVALID_SENTIMENT, EXPECTED_PARAMS_WITH_REMARKS);
     }
 
-    // @@KVignesh122
+    //@@KVignesh122
     @Test
     void addStockParams_abortAtName_expectException() {
         assertThrows(OperationAbortedError.class,
@@ -131,4 +132,5 @@ class AddStockParserTest extends AddInstrumentParserTest {
         assertThrows(OperationAbortedError.class,
             () -> testStockParameters(USER_INPUT_TRY_ABORT_AT_REMARK, NO_PARAMS_EXPECTED));
     }
+    //@@author
 }
