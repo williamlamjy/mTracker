@@ -2,7 +2,7 @@ package seedu.mtracker.console;
 
 import seedu.mtracker.asserthelpers.AssertParserHelper;
 import seedu.mtracker.commands.AddStockCommand;
-import seedu.mtracker.error.OperationAbortedError;
+import seedu.mtracker.commons.error.OperationAbortedError;
 import seedu.mtracker.ui.TextUi;
 
 public class AddStockParser extends AddInstrumentParser {

@@ -2,7 +2,7 @@ package seedu.mtracker.console;
 
 import seedu.mtracker.commands.EditInstrumentCommand;
 import seedu.mtracker.commons.Validate;
-import seedu.mtracker.error.OperationAbortedError;
+import seedu.mtracker.commons.error.OperationAbortedError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 

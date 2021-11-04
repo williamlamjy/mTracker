@@ -8,8 +8,8 @@ import seedu.mtracker.commands.AddForexCommand;
 import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commands.AddStockCommand;
 import seedu.mtracker.commons.Validate;
-import seedu.mtracker.error.InvalidInstrumentError;
-import seedu.mtracker.error.OperationAbortedError;
+import seedu.mtracker.commons.error.InvalidInstrumentError;
+import seedu.mtracker.commons.error.OperationAbortedError;
 import seedu.mtracker.ui.TextUi;
 
 import java.util.ArrayList;
