@@ -1,0 +1,48 @@
+@startuml
+!include Styles.puml
+
+box filemanager COLOR_STORAGE_SEGMENT
+participant ":Storage" as Storage COLOR_STORAGE
+participant "<<Class>>\nInstrumentDecoder" as InstrumentDecoder COLOR_STORAGE
+end box
+
+box ui COLOR_LIGHT_BLUE
+participant "<<Class>>\nTextUi" as TextUi COLOR_UI
+end box
+
+[-->Storage: loadFileData(instrumentManager)
+activate Storage
+
+alt File does not exist or is not regular
+    Storage->TextUi: displayCreateFile()
+    activate TextUi
+    TextUi--> Storage
+    deactivate TextUi
+
+    note bottom
+    if file does not exist or is not regular,
+    a new text file will be created
+    end note
+else
+    Storage->TextUi: displayLoadingFile()
+    activate TextUi
+    TextUi--> Storage
+    deactivate TextUi
+
+    Storage-> InstrumentDecoder: readFile(instrumentManager, fileData)
+    activate InstrumentDecoder
+
+    ref over InstrumentDecoder
+
+    Decodes the text file and
+    updates InstrumentManager
+
+    end ref
+
+    InstrumentDecoder--> Storage
+    deactivate InstrumentDecoder
+    end
+
+[<--Storage
+deactivate Storage
+@enduml
