@@ -4,7 +4,7 @@
 'https://plantuml.com/sequence-diagram
 box filemanager COLOR_STORAGE_SEGMENT
 participant ":Storage" as Storage COLOR_STORAGE
-participant ":InstrumentEncoder" as InstrumentEncoder COLOR_STORAGE
+participant "<<Class>>\nInstrumentEncoder" as InstrumentEncoder COLOR_STORAGE
 end box
 
 box model COLOR_MODEL_SEGMENT
@@ -13,6 +13,16 @@ end box
 
 [-> Storage: updateFileData(instruments)
 activate Storage
+
+Storage-> Storage: writeFileData(instruments)
+activate Storage
+
+note bottom
+writeFileData initialises a new
+FileWriter to write into the txt file
+and calls the writeFile method in
+InstrumentEncoder
+end note
 
 Storage-> InstrumentEncoder: writeFile(instruments, writeToFile)
 activate InstrumentEncoder
@@ -34,9 +44,23 @@ loop each instrument
     {"Stock;AAPL;32.0;
     positive;false;Nil"}
     end note
+
+    InstrumentEncoder-> InstrumentEncoder: editFile(InstrumentInFileFormat, writeToFile)
+    activate InstrumentEncoder
+    InstrumentEncoder--> InstrumentEncoder
+    deactivate InstrumentEncoder
+
+    note right
+    editFile writes to the text file
+    with the formatted instrument
+    end note
+
 end
 InstrumentEncoder--> Storage
 deactivate InstrumentEncoder
+
+Storage--> Storage
+deactivate Storage
 
 [<-- Storage
 deactivate Storage
