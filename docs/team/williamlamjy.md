@@ -66,6 +66,7 @@ Below are some of my contributions to the project
       * Crypto Decoder ref diagram [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/FileManagerRefDiagCryptoDecoder.png)
       * Done Command Diagram [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/DoneCryptoSequenceDiagram.png)
       * Done Command ref diagram [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/DoneCryptoExecuteDiagram.png)
+    * Provided user stories through PR [#152](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/152)
   * **Contributions to team-based tasks**
     * Contributed to some code refactorings:
       * Refactoring validation methods into `Validate` in the `commons` package from
@@ -79,11 +80,14 @@ Below are some of my contributions to the project
       PR [#198](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/198)
       * Enabling upper-casing for command inputs from
       PR [#204](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/204)
-      * Handling file separator issues in input by using a special char from
-      PR [#199](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/199)
+      * Handling file separator issues in input by using a special char from PR (shared contribution)
+      [#199](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/199)
     * Reviewed some PRs to ensure that the code quality standards are met and the implementation follow the
       sound design principles. Example of such PRs: [#144](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/144)
     [#20](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/20)
     [#79](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/79)
     * Managed issues in the issue tracker by addressing issues with comments and assigning issues to the corresponding
-    developer.
+    developer. Examples: [#191](https://github.com/AY2122S1-CS2113T-T12-1/tp/issues/191)
+    [#186](https://github.com/AY2122S1-CS2113T-T12-1/tp/issues/186)
+    [#182](https://github.com/AY2122S1-CS2113T-T12-1/tp/issues/182)
+    [#179](https://github.com/AY2122S1-CS2113T-T12-1/tp/issues/179)
