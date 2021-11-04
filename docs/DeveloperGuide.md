@@ -7,18 +7,18 @@
 ## Design
 
 > Tip: The diagrams in this guide were designed using PlantUML.
-> Their original .puml files can be found in the diagrams folder here.
+> Their original .puml files can be found in the diagrams folder [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/tree/master/docs/diagrams).
 
 ### Architecture
 
 The following diagram denotes the high-level design of the mTracker
 program:
 
-<img src="images/ArchitectureDiagram.png" width="345"/>
+<img src="images/ArchitectureDiagram.png" width="600"/>
 
 Major components of the app:
 * `MTracker` contains the `main` method responsible for launching and 
-running the app. It first initializes the other components in the correct sequence
+running the app. It first initializes the required components
   and executes the overall program.
 * `ui` holds the `TextUi` class, which is responsible for displaying various greetings, 
 instructions for user input, and other display texts. The class contains both
@@ -37,6 +37,10 @@ executing particular commands determined by the necessary parser classes in cons
       objects of their said type containing their necessary financial information recorded from the user.
 * `filemanager` is responsible for saving the session's instruments data to local file, updating
 them during runtime, and restoring data from previous session when the program is relaunched.
+* `commons` contains classes which are utilised by the other components to execute their functionality:
+  * The `Validate` class is responsible for doing various checks on the user inputs and the file data.
+  * The `error` package contains different exception classes that displays user specific error messages to guide the 
+  user in the usage of the program.
 
 The subsequent sections will elaborate on the more technical design and implementation details of
 the architectural components briefly explained in this section.
@@ -47,7 +51,7 @@ The main parent class in `console` package is the `InputParser` class which is d
 The figure below represents the class diagram of how all the parser classes interact with classes outside the `console`
 package:
 
-<img src="images/ConsoleDiagram.png" width="550"/>
+<img src="images/ConsoleDiagram.png" width="1040"/>
 
 How the `InputParser` class works:
 1. When the user enters a command along with the relevant parameters if any, the
@@ -55,6 +59,7 @@ How the `InputParser` class works:
 2. The command is then determined by using the `filterByCommandType()` method which would return the corresponding
    command type. Examples of different command types are `AddInstrumentCommand`, `DeleteCommand`, `ListCommand` etc.
 
+#### Design considerations for parsing inputs for add functionality 
 Given the different types of financial instruments supported by mTracker, an abstract class `AddInstrumentParser`
 which inherits from `InputParser` is implemented. Multiple `AddXYZParser` (`XYZ` is
 a placeholder for the different instrument types, for example `AddStockParser`) child classes of
@@ -76,6 +81,16 @@ user-friendly.
 
 Therefore, the current implementation prompts the user on the information required to add a particular instrument.
 This helps to support the user through the process of adding a new instrument.
+
+#### Design considerations for parsing inputs for edit functionality
+Despite currently supporting 4 types of financial instruments, the parsing of inputs for the edit functionality does not require
+4 edit classes for each instrument. This is because the edit functionality is done on an existing instrument which
+contains information on what parameters can be edited on. Therefore, only a single EditInstrumentParser 
+is needed to filter out all the other parameters that are irrelevant to the instrument.
+ 
+In addition, the current design is able to parse multiple input parameters and display the relevant instructions to
+users in editing those parameters for a particular instrument. This allows the user to edit multiple parameters of a
+instrument at once which increases its user-friendliness.
 
 ### Model Component
 
@@ -129,15 +144,20 @@ the user.
 
 The Command component contains all the commands classes, where its respective class is instantiated when a valid command is entered by the user. 
 
-Commands include:
+Some of the key command classes include:
 ```
 1) AddCrytoCommand
 2) AddEtfCommand
 3) AddForexCommand
 3) AddStockCommand
-4) ExitCommand
-5) InvalidCommand
+4) DeleteCommand
+5) DoneCommand
+6) EditInstrumentCommand
+7) FindCommand
 6) ListCommand
+7) ViewCommand
+8) InvalidCommand
+9) ExitCommand
 ```
 This figure below shows the class diagram of all the commands classes:
 <>
@@ -152,7 +172,9 @@ Command component:
 * The command classes are dependent on the `TextUi` class. This allows the command class to display its execution results to the user.
 
 
-The figure below represents the sequence diagram when the user executes a done command:
+The figure below represents the sequence diagram when the user executes a done command. In this scenario the user
+gave the command "done 1". Here "done" is the command keyword and "1" represents the current position of the instrument 
+in the list of instruments:
 
 <img src="images/DoneCryptoSequenceDiagram.png" width="1040"/>
 

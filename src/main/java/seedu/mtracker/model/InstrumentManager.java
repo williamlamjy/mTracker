@@ -30,14 +30,8 @@ public class InstrumentManager {
         return instruments;
     }
 
-    public Instrument getInstrument(int index) throws InvalidBoundsError {
-        Instrument instrument;
-        try {
-            instrument = instruments.get(index);
-        } catch (IndexOutOfBoundsException e) {
-            throw new InvalidBoundsError();
-        }
-        return instrument;
+    public Instrument getInstrument(int index) {
+        return instruments.get(index);
     }
 
     public void addInstrument(Instrument addedInstrument) {
