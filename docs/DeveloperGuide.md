@@ -99,7 +99,7 @@ The `model` package contains the `InstrumentManager` class and `Instrument` clas
 in `InstrumentManager.java` and `Instrument.java` respectively. This figure below represents the class diagram of 
 how the different class work together:
 
-<img src="images/ModelDiagram.png" width="450"/>
+<img src="images/ModelDiagram.png" width="420" height="400"/>
 
 The `Model` component:
 
@@ -251,7 +251,7 @@ More details about the reference frame for decoding and updating the `Instrument
 
 More details about the reference frame for adding the decoded instrument into the `InstrumentManager` is shown below:
 
-<img src="images/FileManagerRefDiagCryptoDecoder.png" width="750"/>
+<img src="images/FileManagerRefDiagCryptoDecoder.png" width="700"/>
 
 The process for loading other pre-existing instruments follow a similar process to the sequence above. The main difference
 would be the type of instrument decoder called, the different instrument specific decoded parameters and the type of instrument
