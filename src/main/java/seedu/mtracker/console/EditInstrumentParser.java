@@ -9,6 +9,9 @@ import seedu.mtracker.ui.TextUi;
 import java.util.HashMap;
 import java.util.HashSet;
 
+/**
+ * Handle getting all the new values of each parameter being edited.
+ */
 public class EditInstrumentParser extends InputParser {
 
     protected static HashMap<String, String> editedParameters;
