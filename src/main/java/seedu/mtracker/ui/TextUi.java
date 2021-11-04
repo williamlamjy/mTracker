@@ -170,7 +170,7 @@ public class TextUi {
 
     public static void displayEditInstrumentFirstInstruction(Instrument instrument) {
         System.out.println(TAB + "Please enter one or more " + instrument.getType()
-                + " parameters to edit." + System.lineSeparator()
+                + " parameters to edit separated by spaces only." + System.lineSeparator()
                 + TAB + instrument.editParameterInstructions());
     }
 
