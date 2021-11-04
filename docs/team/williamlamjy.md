@@ -30,7 +30,7 @@ Below are some of my contributions to the project
   * Implemented the foundations of the `Instrument`, `InstrumentManager` and `subinstrument` classes. Seen in PR
     [#19](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/19)
     * Designed the basic structure of how the instruments are stored and edited through the `InstrumentManager` such
-    that other developers could easily further enhance the respective subinstruments with their specific attributes and
+    that other developers could easily further enhance the respective sub-instruments with their specific attributes and
     methods.
 
 * **Enhancements**:
@@ -61,4 +61,29 @@ Below are some of my contributions to the project
       * Model Diagram [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/ModelDiagram.png)
       * FileManager Diagram [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/FileManagerDiagram.png)
       * Instrument Encoder Diagram [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/FileManagerEncodingSequenceDiag.png)
-      * 
+      * Instrument Decoder Diagram [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/FileManagerSeqBetweenStorageAndDecoder.png)
+      * Instrument Decoder ref diagram [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/FileManagerSequenceDiagram.png)
+      * Crypto Decoder ref diagram [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/FileManagerRefDiagCryptoDecoder.png)
+      * Done Command Diagram [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/DoneCryptoSequenceDiagram.png)
+      * Done Command ref diagram [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/DoneCryptoExecuteDiagram.png)
+  * **Contributions to team-based tasks**
+    * Contributed to some code refactorings:
+      * Refactoring validation methods into `Validate` in the `commons` package from
+      PR [#122](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/122)
+      * Standardising junit parser tests into the same format from
+      PR [#121](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/121)
+    * Contributed to some bug fixes:
+      * Fixing non-positive current price inputs from 
+      PR [#198](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/198)
+      * Enabling multiple invalid instrument type inputs when adding an instrument from
+      PR [#198](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/198)
+      * Enabling upper-casing for command inputs from
+      PR [#204](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/204)
+      * Handling file separator issues in input by using a special char from
+      PR [#199](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/199)
+    * Reviewed some PRs to ensure that the code quality standards are met and the implementation follow the
+      sound design principles. Example of such PRs: [#144](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/144)
+    [#20](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/20)
+    [#79](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/79)
+    * Managed issues in the issue tracker by addressing issues with comments and assigning issues to the corresponding
+    developer.
