@@ -1,7 +1,7 @@
 package seedu.mtracker.commons.error;
 
 /**
- * An ErrorMessage class that displays all the user facing errors.
+ * Displays all the user facing errors.
  */
 public abstract class ErrorMessage {
 
