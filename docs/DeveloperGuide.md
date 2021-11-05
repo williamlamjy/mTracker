@@ -327,25 +327,10 @@ Feel free to come up with more test cases to try for yourself.
 1) Ensure that you have `Java 11` installed.
 2) Download the latest jar file [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/releases). 
 3) In your terminal under the directory where the jar file is saved type `java -jar TP.jar`.
-   1) If it is successful you should see a greeting message like this. If you get an error message please create a new issue
-    [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/issues) along with a description of the error.
-```
-________________________________________________________________________________
-            _________                      __
-           |  _   _  |                    [  |  _
-_ .--..--.|_/ | | \_| .--.  ,--.   .---.  | | / ] .---.  _ .--.
-[ `.-. .-. |   | |  [ `/'`\]`'_\ : / /'`\] | '' < / /__\\[ `/'`\]
-| | | | | |  _| |_  | |    /| | |,| \__.  | |`\ \| \__., | |
-[___||__||__]|_____|[___]   \'-;__/'.___.'[__|  \_]'.__.'[___]
-
-Hello! I am mTracker, your personal assistant bot that
-helps you keep track of the markets.
-What should I do for you now?
-________________________________________________________________________________
-mTracker$main>
-```
+   1) If it is successful you should see a mTracker greet message. If you get an error message please create a new issue
+      [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/issues) along with a description of the error.
 4. Refer to the [userguide](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/UserGuide.md) to understand how
-   to use the program.
+to use the program.
 
 ###Add functionality Testing
 To test the add functionality, there are a few test cases you can try:
