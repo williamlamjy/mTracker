@@ -323,7 +323,8 @@ such information in a quick and easy way.
 In this section are some instructions for getting started with manual testing of the program.
 Feel free to come up with more test cases to try for yourself.
 
-###Launch and start up
+**Launch and start up**
+
 1) Ensure that you have `Java 11` installed.
 2) Download the latest jar file [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/releases). 
 3) In your terminal under the directory where the jar file is saved type `java -jar TP.jar`.
