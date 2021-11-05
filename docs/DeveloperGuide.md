@@ -7,18 +7,18 @@
 ## Design
 
 > Tip: The diagrams in this guide were designed using PlantUML.
-> Their original .puml files can be found in the diagrams folder here.
+> Their original .puml files can be found in the diagrams folder [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/tree/master/docs/diagrams).
 
 ### Architecture
 
 The following diagram denotes the high-level design of the mTracker
 program:
 
-<img src="images/ArchitectureDiagram.png" width="345"/>
+<img src="images/ArchitectureDiagram.png" width="600"/>
 
 Major components of the app:
 * `MTracker` contains the `main` method responsible for launching and 
-running the app. It first initializes the other components in the correct sequence
+running the app. It first initializes the required components
   and executes the overall program.
 * `ui` holds the `TextUi` class, which is responsible for displaying various greetings, 
 instructions for user input, and other display texts. The class contains both
@@ -37,6 +37,10 @@ executing particular commands determined by the necessary parser classes in cons
       objects of their said type containing their necessary financial information recorded from the user.
 * `filemanager` is responsible for saving the session's instruments data to local file, updating
 them during runtime, and restoring data from previous session when the program is relaunched.
+* `commons` contains classes which are utilised by the other components to execute their functionality:
+  * The `Validate` class is responsible for doing various checks on the user inputs and the file data.
+  * The `error` package contains different exception classes that displays user specific error messages to guide the 
+  user in the usage of the program.
 
 The subsequent sections will elaborate on the more technical design and implementation details of
 the architectural components briefly explained in this section.
@@ -47,7 +51,7 @@ The main parent class in `console` package is the `InputParser` class which is d
 The figure below represents the class diagram of how all the parser classes interact with classes outside the `console`
 package:
 
-<img src="images/ConsoleDiagram.png" width="550"/>
+<img src="images/ConsoleDiagram.png" width="1040"/>
 
 How the `InputParser` class works:
 1. When the user enters a command along with the relevant parameters if any, the
@@ -55,6 +59,7 @@ How the `InputParser` class works:
 2. The command is then determined by using the `filterByCommandType()` method which would return the corresponding
    command type. Examples of different command types are `AddInstrumentCommand`, `DeleteCommand`, `ListCommand` etc.
 
+#### Design considerations for parsing inputs for add functionality 
 Given the different types of financial instruments supported by mTracker, an abstract class `AddInstrumentParser`
 which inherits from `InputParser` is implemented. Multiple `AddXYZParser` (`XYZ` is
 a placeholder for the different instrument types, for example `AddStockParser`) child classes of
@@ -77,6 +82,16 @@ user-friendly.
 Therefore, the current implementation prompts the user on the information required to add a particular instrument.
 This helps to support the user through the process of adding a new instrument.
 
+#### Design considerations for parsing inputs for edit functionality
+Despite currently supporting 4 types of financial instruments, the parsing of inputs for the edit functionality does not require
+4 edit classes for each instrument. This is because the edit functionality is done on an existing instrument which
+contains information on what parameters can be edited on. Therefore, only a single EditInstrumentParser 
+is needed to filter out all the other parameters that are irrelevant to the instrument.
+ 
+In addition, the current design is able to parse multiple input parameters and display the relevant instructions to
+users in editing those parameters for a particular instrument. This allows the user to edit multiple parameters of a
+instrument at once which increases its user-friendliness.
+
 ### Model Component
 
 
@@ -84,13 +99,13 @@ The `model` package contains the `InstrumentManager` class and `Instrument` clas
 in `InstrumentManager.java` and `Instrument.java` respectively. This figure below represents the class diagram of 
 how the different class work together:
 
-<img src="images/ModelDiagram.png" width="550"/>
+<img src="images/ModelDiagram.png" width="450"/>
 
 The `Model` component:
 
 * Stores the instrument data through `Instrument` objects which are contained and managed by the `InstrumentManager`
 * Contains an abstract parent `Instrument` class. The 4 child sub-instrument classes `Crypto`, `Etf`, `Forex` and 
-`Stock` implements the Overridden methods (e.g. `toList()`).
+`Stock` implements the Overridden methods (e.g. `textFileFormatting()`).
 * Contains the `InstrumentManager` class which manages the list of instruments (e.g. add a new instrument to 
 the list). `InstrumentManager` is implemented as a singleton class to ensure that only one instrument list exists.
 This ensures the user only edits one list and prevents possible data corruption (e.g. adding a new instrument to 
@@ -129,15 +144,20 @@ the user.
 
 The Command component contains all the commands classes, where its respective class is instantiated when a valid command is entered by the user. 
 
-Commands include:
+Some of the key command classes include:
 ```
 1) AddCrytoCommand
 2) AddEtfCommand
 3) AddForexCommand
 3) AddStockCommand
-4) ExitCommand
-5) InvalidCommand
+4) DeleteCommand
+5) DoneCommand
+6) EditInstrumentCommand
+7) FindCommand
 6) ListCommand
+7) ViewCommand
+8) InvalidCommand
+9) ExitCommand
 ```
 This figure below shows the class diagram of all the commands classes:
 <>
@@ -152,16 +172,22 @@ Command component:
 * The command classes are dependent on the `TextUi` class. This allows the command class to display its execution results to the user.
 
 
-The figure below represents the sequence diagram when the user executes a done command:
+The figure below represents the sequence diagram when the user executes a done command. In this scenario the user
+gave the command "done 1". Here "done" is the command keyword and "1" represents the current position of the instrument 
+in the list of instruments:
 
 <img src="images/DoneCryptoSequenceDiagram.png" width="1040"/>
+
+More details about the reference frame for executing the done command is shown below:
+
+<img src="images/DoneCryptoExecuteDiagram.png" width="600"/>
 
 ### FileManager Component
 The `filemanager` package contains the `Storage`, `InstrumentEncoder` and `InstrumentDecoder` classes. It is defined in
 the `Storage.java`, `InstrumentEncoder.java` and `InstrumentDecoder.java` respectively. This figure below represents the class diagram of
 how the different class work together:
 
-<img src="images/FileManagerDiagram.png" width="550"/>
+<img src="images/FileManagerDiagram.png" width="1040"/>
 
 The FileManager Component:
 
@@ -173,11 +199,13 @@ a new text file to store the data. It updates the file by calling the `writeFile
 `InstrumentManager` enabling the program to load pre-existing data.
 * Has some dependencies on the `Model` component as it saves and retrieves data from `Model` objects.
 
-Putting the implementation for decoding here first
-<img src="images/FileManagerSequenceDiagram.png" width="1040"/>
-
-Putting the implementation for encoding here first
-<img src="images/FileManagerEncodingSequenceDiag.png" width="700"/>
+#### Design considerations for decoding functionality
+Given the different types of financial instruments supported by mTracker, the `InstrumentDecoder` class is implemented. 
+Multiple `XYZDecoder` (`XYZ` is a placeholder for the different instrument types, for example `EtfDecoder`) child classes of
+`InstrumentDecoder` support the decoding of different instruments and their parameters.
+This implementation provides greater extensibility and code re-usability to the decoding functionality to support more 
+instrument types. Greater cohesion is achieved by separating the classes to give more focus on each instrument type and
+a higher level of abstraction.
 
 ## Implementation
 
@@ -189,7 +217,12 @@ instrument.
 
 The figure below represents the sequence diagram when the user wants to add a stock:
 
-<img src="images/AddStockSequenceDiagram.png" width="1040"/>
+<img src="images/AddStockSequenceDiagram.png" width="800"/>
+
+More details about the reference frame for obtaining the stock details and creating the AddStockCommand object are shown
+below.
+
+<img src="images/AddStockSequenceDiagramRef.png" width="600"/>
 
 The process for adding the other instruments follow a similar process to the sequence above. The main difference would
 be the type of instrument parser called, the parameters collected from the user and the command type returned. For
@@ -199,6 +232,46 @@ example instead of calling `AddStockParser#getStockSpecificParameters()`, its eq
 From the notes in the sequence diagram above, for every attribute in the instrument, there would be an instructional
 prompt to get user to provide information for that attribute. This is done through a series of methods in
 the `TextUi` class.
+
+### Loading pre-existing data
+The loading of pre-existing data is mainly handled by the `filemanager` and `model` components. The main method calls 
+`Storage#loadFileData(instrumentManager)` which uses `InstrumentDecoder#readFile(instrumentManager, fileData)`. This method calls 
+`InstrumentDecoder#addSavedInstrumentToList(instrumentManager, textSegment)` for each pre-existing instrument which will add the 
+corresponding instrument in the `InstrumentManager` through calling the `XYZDecoder#addXYZToList(textSegment, instrumentManager)`. 
+In the event the instrument is not one of the 4 types of instruments, the `InstrumentDecoder` will throw a new `InvalidInstrumentInFileError`
+and display the corresponding error message.
+
+The figures below represents the sequence diagrams when the user loads a pre-existing crypto:
+
+<img src="images/FileManagerSeqBetweenStorageAndDecoder.png" width="700"/>
+
+More details about the reference frame for decoding and updating the `InstrumentManager` is shown below:
+
+<img src="images/FileManagerSequenceDiagram.png" width="1080" height="460"/>
+
+More details about the reference frame for adding the decoded instrument into the `InstrumentManager` is shown below:
+
+<img src="images/FileManagerRefDiagCryptoDecoder.png" width="750"/>
+
+The process for loading other pre-existing instruments follow a similar process to the sequence above. The main difference
+would be the type of instrument decoder called, the different instrument specific decoded parameters and the type of instrument
+added to the `InstrumentManager`. For example when loading a stock instead of calling `CryptoDecoder#addCryptoToList(textSegment, instrumentManager)`
+it will call `StockDecoder#addStockToList(textSegement, instrumentManager)`.
+
+If loading the file data has any error, it will throw the corresponding file error. This file error will display the
+appropriate message through the `TextUi` class.
+
+### Storing current data
+The storing of current data is mainly handled by the `filemanager` and `model` components. The main method calls
+the `Storage#updateFileData(instruments)` which implements the `InstrumentEncoder#writeFile(instruments, writeToFile)` method. 
+This method calls the `Instrument#textFileFormatting()` method for every instrument that is being stored. The formatted 
+instrument details are then written to the `MTracker` text file.
+
+The figure below represents the sequence diagram when the user stores current data:
+<img src="images/FileManagerEncodingSequenceDiag.png" width="700"/>
+
+If storing the file data has any error, it will throw the corresponding file error. This file error will display the
+appropriate message through the `TextUi` class.
 
 ## Product scope
 ### Target user profile
@@ -228,7 +301,8 @@ the `TextUi` class.
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1. The program should work on operating systems with `Java 11` installed.
+2. 
 
 ## Glossary
 

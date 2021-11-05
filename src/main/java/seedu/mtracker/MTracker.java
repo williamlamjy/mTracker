@@ -17,11 +17,13 @@ public class MTracker {
     private InputParser parser;
     private LogHelper logger;
 
+    private static final String MAIN_WORKSPACE = "main";
+
     public MTracker() {
         try {
             logger = LogHelper.getInstance();
             storage = new Storage();
-            instrumentManager = instrumentManager.getInstance();
+            instrumentManager = InstrumentManager.getInstance();
             parser = new InputParser();
             storage.loadFileData(instrumentManager);
         } catch (Exception e) {
@@ -30,13 +32,14 @@ public class MTracker {
         }
     }
 
+    // @@KVignesh122
     public void run() {
         Command command;
         String userInput;
         String[] commandComponents;
 
         do {
-            userInput = parser.getUserInput();
+            userInput = InputParser.getUserInput(MAIN_WORKSPACE);
             commandComponents = parser.getCommandComponents(userInput);
             try {
                 command = parser.filterByCommandType(commandComponents, instrumentManager.getInstruments());

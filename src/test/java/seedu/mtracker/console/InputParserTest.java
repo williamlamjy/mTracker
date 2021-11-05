@@ -2,11 +2,14 @@ package seedu.mtracker.console;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.mtracker.commands.DeleteCommand;
 import seedu.mtracker.commands.DoneCommand;
-import seedu.mtracker.error.InvalidBoundsError;
-import seedu.mtracker.error.InvalidIndexError;
-import seedu.mtracker.error.InvalidEmptyIndexError;
+import seedu.mtracker.commons.error.AlreadyDoneError;
+import seedu.mtracker.commons.error.InvalidBoundsError;
+import seedu.mtracker.commons.error.InvalidEmptyIndexError;
+import seedu.mtracker.commons.error.InvalidIndexError;
+import seedu.mtracker.commons.error.OperationAbortedError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.subinstrument.Stock;
 
@@ -16,7 +19,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class InputParserTest {
-
     public static final int VALID_INDEX = 1;
 
     public static final String[] NO_INDEX_DELETE_INPUT = { "delete" };
@@ -37,6 +39,10 @@ class InputParserTest {
     public static final int INDEX_OFFSET = 1;
     public static ArrayList<Instrument> INSTRUMENTS;
 
+    public static final String ABORT = "abort";
+    public static final String ADD_WORKSPACE = "add";
+    public static final String EDIT_WORKSPACE = "edit";
+
     private InputParser parser;
 
     @BeforeEach
@@ -47,76 +53,90 @@ class InputParserTest {
     }
 
     @Test
-    void getIndexNumber_validIndexProvided_expectSuccess() {
+    void getIndexNumber_validIndexProvided_expectSuccess() throws InvalidEmptyIndexError, InvalidIndexError {
         parser.getIndexNumber(VALID_INDEX_DELETE_INPUT);
         assertEquals(parser.getInstrumentNumber(), VALID_INDEX - INDEX_OFFSET);
     }
 
     @Test
-    void getIndexNumber_noIndexProvided_expectException() throws InvalidEmptyIndexError {
+    void getIndexNumber_noIndexProvided_expectException() {
         assertThrows(InvalidEmptyIndexError.class,
             () -> parser.getIndexNumber(NO_INDEX_DELETE_INPUT));
     }
 
     @Test
-    void getIndexNumber_invalidIndexProvided_expectException() throws InvalidIndexError {
+    void getIndexNumber_invalidIndexProvided_expectException() {
         assertThrows(InvalidIndexError.class,
             () -> parser.getIndexNumber(INVALID_INDEX_DELETE_INPUT));
     }
 
     @Test
-    void getDeleteInstrumentCommand_noIndexProvided_expectException() throws InvalidEmptyIndexError {
+    void getDeleteInstrumentCommand_noIndexProvided_expectException() {
         assertThrows(InvalidEmptyIndexError.class,
             () -> parser
                     .getDeleteInstrumentCommand(NO_INDEX_DELETE_INPUT, INSTRUMENTS));
     }
 
     @Test
-    void getDeleteInstrumentCommand_invalidIndexProvided_expectException() throws InvalidIndexError {
+    void getDeleteInstrumentCommand_invalidIndexProvided_expectException() {
         assertThrows(InvalidIndexError.class,
             () -> parser
                     .getDeleteInstrumentCommand(INVALID_INDEX_DELETE_INPUT, INSTRUMENTS));
     }
 
     @Test
-    void getDeleteInstrumentCommand_outOfBoundsIndexProvided_expectException() throws InvalidBoundsError {
+    void getDeleteInstrumentCommand_outOfBoundsIndexProvided_expectException() {
         assertThrows(InvalidBoundsError.class,
             () -> parser
                     .getDeleteInstrumentCommand(OUT_OF_BOUNDS_INDEX_DELETE_INPUT, INSTRUMENTS));
     }
 
     @Test
-    void getDeleteInstrumentCommand_validIndexProvided_expectSuccess() {
+    void getDeleteInstrumentCommand_validIndexProvided_expectSuccess()
+            throws InvalidEmptyIndexError, InvalidBoundsError, InvalidIndexError {
         DeleteCommand command = parser
                 .getDeleteInstrumentCommand(VALID_INDEX_DELETE_INPUT, INSTRUMENTS);
         assertEquals(command.getIndex(), VALID_INDEX - INDEX_OFFSET);
     }
 
     @Test
-    void getDoneInstrumentCommand_noIndexProvided_expectException() throws InvalidEmptyIndexError {
+    void getDoneInstrumentCommand_noIndexProvided_expectException() {
         assertThrows(InvalidEmptyIndexError.class,
             () -> parser
                     .getDoneInstrumentCommand(NO_INDEX_DONE_INPUT, INSTRUMENTS));
     }
 
     @Test
-    void getDoneInstrumentCommand_invalidIndexProvided_expectException() throws InvalidIndexError {
+    void getDoneInstrumentCommand_invalidIndexProvided_expectException() {
         assertThrows(InvalidIndexError.class,
             () -> parser
                     .getDoneInstrumentCommand(INVALID_INDEX_DONE_INPUT, INSTRUMENTS));
     }
 
     @Test
-    void getDoneInstrumentCommand_outOfBoundsIndexProvided_expectException() throws InvalidBoundsError {
+    void getDoneInstrumentCommand_outOfBoundsIndexProvided_expectException() {
         assertThrows(InvalidBoundsError.class,
             () -> parser
                     .getDoneInstrumentCommand(OUT_OF_BOUNDS_INDEX_DONE_INPUT, INSTRUMENTS));
     }
 
     @Test
-    void getDoneInstrumentCommand_validIndexProvided_expectSuccess() {
+    void getDoneInstrumentCommand_validIndexProvided_expectSuccess()
+            throws AlreadyDoneError, InvalidEmptyIndexError, InvalidBoundsError, InvalidIndexError {
         DoneCommand command = parser
                 .getDoneInstrumentCommand(VALID_INDEX_DONE_INPUT, INSTRUMENTS);
         assertEquals(command.getIndex(), VALID_INDEX - INDEX_OFFSET);
+    }
+
+    @Test
+    void abortOperation_validAbortInAdd_expectException() {
+        assertThrows(OperationAbortedError.class,
+            () -> parser.checkIfAbort(ABORT, ADD_WORKSPACE));
+    }
+
+    @Test
+    void abortOperation_validAbortInEdit_expectException() {
+        assertThrows(OperationAbortedError.class,
+            () -> parser.checkIfAbort(ABORT, EDIT_WORKSPACE));
     }
 }

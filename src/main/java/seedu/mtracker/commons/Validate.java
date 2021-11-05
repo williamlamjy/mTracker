@@ -1,18 +1,27 @@
 package seedu.mtracker.commons;
 
 import seedu.mtracker.LogHelper;
+import seedu.mtracker.commands.AddCryptoCommand;
+import seedu.mtracker.commands.AddEtfCommand;
+import seedu.mtracker.commands.AddForexCommand;
+import seedu.mtracker.commands.AddStockCommand;
+import seedu.mtracker.commons.error.InvalidEmptyStatusError;
 import seedu.mtracker.console.AddForexParser;
-import seedu.mtracker.error.InvalidBoundsError;
-import seedu.mtracker.error.InvalidDateFormatError;
-import seedu.mtracker.error.InvalidEmptyExpiryDateError;
-import seedu.mtracker.error.InvalidEmptyPriceError;
-import seedu.mtracker.error.InvalidEmptySentimentError;
-import seedu.mtracker.error.InvalidNameError;
-import seedu.mtracker.error.InvalidPastDateError;
-import seedu.mtracker.error.InvalidPastReturnError;
-import seedu.mtracker.error.InvalidPastReturnTypeError;
-import seedu.mtracker.error.InvalidPriceError;
-import seedu.mtracker.error.InvalidSentimentError;
+import seedu.mtracker.commons.error.AlreadyDoneError;
+import seedu.mtracker.commons.error.InvalidBoundsError;
+import seedu.mtracker.commons.error.InvalidDateFormatError;
+import seedu.mtracker.commons.error.InvalidEmptyExpiryDateError;
+import seedu.mtracker.commons.error.InvalidEmptyPriceError;
+import seedu.mtracker.commons.error.InvalidEmptySentimentError;
+import seedu.mtracker.commons.error.InvalidInstrumentError;
+import seedu.mtracker.commons.error.InvalidNameError;
+import seedu.mtracker.commons.error.InvalidNegativePriceError;
+import seedu.mtracker.commons.error.InvalidPastDateError;
+import seedu.mtracker.commons.error.InvalidPastReturnError;
+import seedu.mtracker.commons.error.InvalidPastReturnTypeError;
+import seedu.mtracker.commons.error.InvalidPriceError;
+import seedu.mtracker.commons.error.InvalidSentimentError;
+import seedu.mtracker.commons.error.InvalidStatusError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -29,14 +38,19 @@ public class Validate {
     public static final String POSITIVE_SENTIMENT = "positive";
     public static final String NEUTRAL_SENTIMENT = "neutral";
     public static final String NEGATIVE_SENTIMENT = "negative";
+    public static final String DONE_INDICATOR = "done";
+    public static final String NOT_DONE_INDICATOR = "undone";
 
-    public static final int FX_PAIR_NAME_LENGTH = 6;
+    public static final String STATUS_DONE = "true";
+    public static final String STATUS_NOT_DONE = "false";
 
     protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
+    private static final String FOREX_VALID_NAME_REGEX = "^[a-zA-Z]{3}/?[a-zA-Z]{3}$";
+
     public static boolean isInvalidNameCondition(String name, String instrumentType) {
         if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
-            return (name.length() != FX_PAIR_NAME_LENGTH);
+            return (!name.matches(FOREX_VALID_NAME_REGEX));
         }
         return name.isEmpty();
     }
@@ -45,6 +59,38 @@ public class Validate {
         if (isInvalidNameCondition(name, instrumentType)) {
             throw new InvalidNameError(instrumentType);
         }
+    }
+
+    public static boolean isInvalidInstrument(String instrument) {
+        switch (instrument) {
+        case AddStockCommand.COMMAND_WORD:
+            // Fallthrough
+        case AddCryptoCommand.COMMAND_WORD:
+            // Fallthrough
+        case AddForexCommand.COMMAND_WORD:
+            // Fallthrough
+        case AddEtfCommand.COMMAND_WORD:
+            return false;
+        default:
+            return true;
+        }
+    }
+
+    public static void checkInstrument(String instrument) throws InvalidInstrumentError {
+        if (isInvalidInstrument(instrument)) {
+            throw new InvalidInstrumentError();
+        }
+    }
+
+    public static boolean isValidInstrument(String instrument) {
+        try {
+            checkInstrument(instrument);
+        } catch (Exception e) {
+            logger.info(LogHelper.LOG_INVALID_INSTRUMENT);
+            TextUi.showErrorMessage(e);
+            return false;
+        }
+        return true;
     }
 
     public static boolean isValidName(String name, String instrumentType) {
@@ -72,10 +118,10 @@ public class Validate {
         }
     }
 
-    public static void checkPriceIsNonNegative(String price) throws InvalidPriceError {
+    public static void checkPriceIsNonNegative(String price) throws InvalidNegativePriceError {
         double inputPrice = Double.parseDouble(price);
-        if (inputPrice < MINIMUM_PRICE) {
-            throw new InvalidPriceError();
+        if (inputPrice <= MINIMUM_PRICE) {
+            throw new InvalidNegativePriceError();
         }
     }
 
@@ -98,6 +144,15 @@ public class Validate {
         boolean isGreaterThanListSize = instrumentNumber >= instruments.size();
         if (isNegative || isGreaterThanListSize) {
             throw new InvalidBoundsError();
+        }
+    }
+
+    public static void checkIsNotDone(ArrayList<Instrument> instruments, int instrumentNumber)
+            throws AlreadyDoneError {
+        Instrument instrument = instruments.get(instrumentNumber);
+        boolean isDoneStatus = instrument.getIsDone();
+        if (isDoneStatus) {
+            throw new AlreadyDoneError();
         }
     }
 
@@ -143,7 +198,7 @@ public class Validate {
         }
     }
 
-    public static boolean isValidPastReturn(String pastReturn) {
+    public static boolean isValidPastReturns(String pastReturn) {
         if (pastReturn.isEmpty()) {
             return false;
         }
@@ -190,5 +245,41 @@ public class Validate {
             return false;
         }
         return true;
+    }
+
+    public static void checkStatusIsEmpty(String doneStatus) throws InvalidEmptyStatusError {
+        if (doneStatus.isEmpty()) {
+            throw new InvalidEmptyStatusError();
+        }
+    }
+
+    public static void checkStatus(String doneStatus) throws InvalidStatusError {
+        boolean isValidCompletedStatus = doneStatus.equals(DONE_INDICATOR);
+        boolean isValidNotCompletedStatus = doneStatus.equals(NOT_DONE_INDICATOR);
+        if (!isValidCompletedStatus && !isValidNotCompletedStatus) {
+            throw new InvalidStatusError();
+        }
+    }
+
+    public static boolean isValidInputStatus(String doneStatus) {
+        try {
+            checkStatusIsEmpty(doneStatus);
+            checkStatus(doneStatus);
+        } catch (Exception e) {
+            TextUi.showErrorMessage(e);
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isNonEmptyEditParameters(String input) {
+        return !input.isEmpty();
+    }
+
+    public static boolean isValidStatus(String savedStatusFromFile) {
+        boolean isValidDoneStatus = savedStatusFromFile.equals(STATUS_DONE);
+        boolean isValidNotDoneStatus = savedStatusFromFile.equals(STATUS_NOT_DONE);
+        return isValidDoneStatus || isValidNotDoneStatus;
+
     }
 }

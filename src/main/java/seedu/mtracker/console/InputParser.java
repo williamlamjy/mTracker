@@ -1,6 +1,5 @@
 package seedu.mtracker.console;
 
-import seedu.mtracker.LogHelper;
 import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commands.Command;
 import seedu.mtracker.commands.DeleteCommand;
@@ -9,14 +8,18 @@ import seedu.mtracker.commands.EditInstrumentCommand;
 import seedu.mtracker.commands.ExitCommand;
 import seedu.mtracker.commands.ListCommand;
 import seedu.mtracker.commands.FindCommand;
-import seedu.mtracker.commons.Validate;
 import seedu.mtracker.commands.ViewCommand;
-import seedu.mtracker.error.InvalidBoundsError;
-import seedu.mtracker.error.InvalidCommandError;
-import seedu.mtracker.error.InvalidEmptyIndexError;
-import seedu.mtracker.error.InvalidEmptyKeywordError;
-import seedu.mtracker.error.InvalidIndexError;
-import seedu.mtracker.error.InvalidInstrumentError;
+import seedu.mtracker.commons.error.AlreadyDoneError;
+import seedu.mtracker.commons.error.EditEmptyParameterError;
+import seedu.mtracker.commons.error.InvalidBoundsError;
+import seedu.mtracker.commons.error.InvalidCommandError;
+import seedu.mtracker.commons.error.InvalidEmptyIndexError;
+import seedu.mtracker.commons.error.InvalidEmptySearchStringError;
+import seedu.mtracker.commons.error.InvalidIndexError;
+import seedu.mtracker.commons.error.InvalidInstrumentError;
+import seedu.mtracker.commons.error.OperationAbortedError;
+import seedu.mtracker.commons.Validate;
+import seedu.mtracker.LogHelper;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -30,7 +33,8 @@ public class InputParser {
     public static final String SEPARATOR = " ";
     public static final int INDEX_OFFSET = 1;
     public static final int INSTRUMENT_INDEX = 1;
-    public static final int SEARCH_STR_INDEX = 1;
+    public static final int SEARCH_STR_INDEX_START = 1;
+    public static final String ABORTED = "abort";
 
     public static final int MAIN_COMMAND_INDEX = 0;
 
@@ -44,8 +48,8 @@ public class InputParser {
         inputScanner = new Scanner(System.in);
     }
 
-    public static String getUserInput() {
-        TextUi.displayPrompter();
+    public static String getUserInput(String currentWorkspace) {
+        TextUi.displayPrompter(currentWorkspace);
         return inputScanner.nextLine().trim();
     }
 
@@ -53,9 +57,14 @@ public class InputParser {
         return instrumentNumber;
     }
 
-    public AddInstrumentCommand getAddInstrumentParameters() throws InvalidInstrumentError {
-        TextUi.displayAddInstrumentFirstInstruction();
-        String addInstrumentType = getUserInput();
+    public AddInstrumentCommand getAddInstrumentParameters()
+            throws InvalidInstrumentError, OperationAbortedError {
+        String addInstrumentType;
+        do {
+            TextUi.displayAddInstrumentFirstInstruction();
+            addInstrumentType = getUserInput(AddInstrumentCommand.COMMAND_WORD).toLowerCase();
+            checkIfAbort(addInstrumentType, AddInstrumentCommand.COMMAND_WORD);
+        } while (!Validate.isValidInstrument(addInstrumentType));
         return AddInstrumentParser.filterByInstrumentType(getCommandComponents(addInstrumentType));
     }
 
@@ -76,9 +85,10 @@ public class InputParser {
     }
 
     public DoneCommand getDoneInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
-            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError {
+            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError, AlreadyDoneError {
         DoneCommand doneCommand = new DoneCommand();
         getAndValidateIndexNumber(commandComponents, instruments);
+        getAndValidateDoneStatus(commandComponents, instruments);
         doneCommand.setIndex(instrumentNumber);
         return doneCommand;
     }
@@ -95,39 +105,53 @@ public class InputParser {
         return filteredAttributes;
     }
 
-    public HashSet<String> getParametersToEdit(HashSet<String> validAttributes) {
-        String parametersToEdit = getUserInput();
+    public HashSet<String> getParametersToEdit(HashSet<String> validAttributes)
+            throws OperationAbortedError, EditEmptyParameterError {
+        String parametersToEdit = getUserInput(EditInstrumentCommand.COMMAND_WORD).toLowerCase();
+        if (!Validate.isNonEmptyEditParameters(parametersToEdit)) {
+            throw new EditEmptyParameterError();
+        }
+        checkIfAbort(parametersToEdit, EditInstrumentCommand.COMMAND_WORD);
         String[] parameters = getCommandComponents(parametersToEdit);
         return filterInvalidParameters(parameters, validAttributes);
     }
 
     public EditInstrumentCommand getEditInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
-            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError {
+            throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError,
+            OperationAbortedError, EditEmptyParameterError {
         getAndValidateIndexNumber(commandComponents, instruments);
         Instrument instrumentToEdit = instruments.get(instrumentNumber);
         TextUi.displayEditInstrumentFirstInstruction(instrumentToEdit);
         HashSet<String> parametersToEdit = getParametersToEdit(instrumentToEdit.getValidAttribute());
         EditInstrumentParser editInstrumentParser = new EditInstrumentParser();
-        return editInstrumentParser.getParametersToEdit(parametersToEdit, instrumentToEdit, instrumentNumber);
+        return editInstrumentParser.createEditCommand(parametersToEdit, instrumentToEdit, instrumentNumber);
     }
 
-    private void getAndValidateIndexNumber(String[] commandComponents, ArrayList<Instrument> instruments) {
+    private void getAndValidateIndexNumber(String[] commandComponents, ArrayList<Instrument> instruments)
+            throws InvalidEmptyIndexError, InvalidIndexError, InvalidBoundsError {
         getIndexNumber(commandComponents);
         Validate.validateIndexWithinBounds(instruments, instrumentNumber);
     }
 
+    private void getAndValidateDoneStatus(String[] commandComponents, ArrayList<Instrument> instruments)
+            throws AlreadyDoneError, InvalidEmptyIndexError, InvalidIndexError {
+        getIndexNumber(commandComponents);
+        Validate.checkIsNotDone(instruments, instrumentNumber);
+    }
+
     public FindCommand getFindInstrumentsCommand(String[] commandComponents)
-            throws InvalidEmptyKeywordError {
+            throws InvalidEmptySearchStringError {
         FindCommand findCommand = new FindCommand();
-        getSearchString(commandComponents);
-        findCommand.setKeyword(searchString);
+        constructSearchString(commandComponents);
+        findCommand.setSearchString(searchString);
         return findCommand;
     }
 
     public Command filterByCommandType(String[] commandComponents, ArrayList<Instrument> instruments)
             throws Exception {
         Command command;
-        switch (commandComponents[MAIN_COMMAND_INDEX]) {
+        String commandGiven = commandComponents[MAIN_COMMAND_INDEX].toLowerCase();
+        switch (commandGiven) {
         case ListCommand.COMMAND_WORD:
             command = new ListCommand();
             break;
@@ -154,7 +178,7 @@ public class InputParser {
             break;
         default:
             logger.info(LogHelper.LOG_INVALID_COMMAND);
-            throw new InvalidCommandError();
+            throw new InvalidCommandError(commandGiven);
         }
         return command;
     }
@@ -163,7 +187,7 @@ public class InputParser {
         return commandInput.trim().split(SEPARATOR);
     }
 
-    public void getIndexNumber(String[] commandComponents) {
+    public void getIndexNumber(String[] commandComponents) throws InvalidEmptyIndexError, InvalidIndexError {
         try {
             instrumentNumber = Integer.parseInt(commandComponents[INSTRUMENT_INDEX]) - INDEX_OFFSET;
         } catch (IndexOutOfBoundsException e) {
@@ -173,11 +197,21 @@ public class InputParser {
         }
     }
 
-    public void getSearchString(String[] commandComponents) {
+    public void constructSearchString(String[] commandComponents) throws InvalidEmptySearchStringError {
         try {
-            searchString = commandComponents[SEARCH_STR_INDEX];
+            searchString = commandComponents[SEARCH_STR_INDEX_START];
+            for (int i = SEARCH_STR_INDEX_START + 1; i < commandComponents.length; i++) {
+                searchString += SEPARATOR + commandComponents[i];
+            }
         } catch (IndexOutOfBoundsException e) {
-            throw new InvalidEmptyKeywordError();
+            throw new InvalidEmptySearchStringError();
+        }
+    }
+
+    public static void checkIfAbort(String userInput, String currentProcess)
+            throws OperationAbortedError {
+        if (userInput.equalsIgnoreCase(ABORTED)) {
+            throw new OperationAbortedError(currentProcess);
         }
     }
 }

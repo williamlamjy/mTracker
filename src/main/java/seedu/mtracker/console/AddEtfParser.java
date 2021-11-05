@@ -2,8 +2,8 @@ package seedu.mtracker.console;
 
 import seedu.mtracker.asserthelpers.AssertParserHelper;
 import seedu.mtracker.commands.AddEtfCommand;
-import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commons.Validate;
+import seedu.mtracker.commons.error.OperationAbortedError;
 import seedu.mtracker.ui.TextUi;
 
 public class AddEtfParser extends AddInstrumentParser {
@@ -13,35 +13,37 @@ public class AddEtfParser extends AddInstrumentParser {
 
     public String getEtfRemarkFromUser() {
         TextUi.displayAddRemarksInstruction();
-        return getUserInput();
+        return getUserInput(WORKSPACE);
     }
 
-    public String getEtfPastReturnFromUser() {
+    public String getEtfPastReturnFromUser() throws OperationAbortedError {
         TextUi.displayAddPastReturnsInstruction();
-        String userInput = getUserInput();
-        if (!Validate.isValidPastReturn(userInput)) {
+        String userInput = getUserInput(WORKSPACE);
+        checkIfAbort(userInput, WORKSPACE);
+        if (!Validate.isValidPastReturns(userInput)) {
             return String.valueOf(UNDEFINED_PAST_RETURN_VALUE);
         }
         return userInput;
     }
 
-    public void addEtfRemarkToParameters() {
+    public void addEtfRemarkToParameters() throws OperationAbortedError {
         String remarks = getEtfRemarkFromUser();
+        checkIfAbort(remarks, WORKSPACE);
         parameters.add(remarks);
     }
 
-    public void addEtfPastReturnToParameters() {
+    public void addEtfPastReturnToParameters() throws OperationAbortedError {
         String pastReturns = getEtfPastReturnFromUser();
         parameters.add(pastReturns);
     }
 
-    public void getEtfSpecificParameters() {
+    public void getEtfSpecificParameters() throws OperationAbortedError {
         addEtfPastReturnToParameters();
         addEtfRemarkToParameters();
     }
 
     @Override
-    public AddInstrumentCommand getInstrumentParameters() {
+    public AddEtfCommand getInstrumentParameters() throws OperationAbortedError {
         getGeneralParameters(INSTRUMENT_TYPE);
         getEtfSpecificParameters();
         AssertParserHelper.assertNoMissingEtfParameters(parameters);

@@ -1,15 +1,12 @@
 package seedu.mtracker.console;
 
 import org.junit.jupiter.api.Test;
+import seedu.mtracker.commons.error.OperationAbortedError;
 
-import java.io.ByteArrayInputStream;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class AddEtfParserTest {
-
+public class AddEtfParserTest extends GeneralInstrumentParserTest {
     public static final int PARAMETER_SIZE = 5;
-    public static final String SEPARATOR_SPECIFIER = "%1$s";
 
     public static final String USER_INPUT_NO_REMARKS = "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
@@ -56,6 +53,7 @@ public class AddEtfParserTest {
 
     public static final String USER_INPUT_TRY_INVALID_PRICE = SEPARATOR_SPECIFIER + "TTTXXX"
             + SEPARATOR_SPECIFIER + "2sd3.4"
+            + SEPARATOR_SPECIFIER + DONT_ABORT
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + "50.0"
@@ -64,68 +62,110 @@ public class AddEtfParserTest {
     public static final String USER_INPUT_TRY_INVALID_SENTIMENT = SEPARATOR_SPECIFIER + "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "foobar"
+            + SEPARATOR_SPECIFIER + DONT_ABORT
             + SEPARATOR_SPECIFIER.repeat(2) + "positive"
             + SEPARATOR_SPECIFIER + "50.0"
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
-
-    public static final String USER_INPUT_TRY_INVALID_RETURNS = SEPARATOR_SPECIFIER + "TTTXXX"
+    public static final String USER_INPUT_TRY_EMPTY_RETURNS = SEPARATOR_SPECIFIER + "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + ""
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
-    String formatConsoleInput(String input) {
-        return String.format(input, System.lineSeparator());
-    }
+    // @@KVignesh122
+    public static final String USER_INPUT_TRY_ABORT_AT_NAME = SEPARATOR_SPECIFIER.repeat(2) + ABORT;
 
-    void simulateConsoleInput(String input) {
-        String formattedInput = formatConsoleInput(input);
-        ByteArrayInputStream inputStreamBytes = new ByteArrayInputStream(formattedInput.getBytes());
-        System.setIn(inputStreamBytes);
-    }
+    public static final String USER_INPUT_TRY_ABORT_AT_PRICE = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "2sd3.4"
+            + SEPARATOR_SPECIFIER + DONT_ABORT
+            + SEPARATOR_SPECIFIER + ABORT;
 
-    void checkParameters(AddEtfParser testEtfParser, String[] expectedParameters) {
-        for (int i = 0; i < PARAMETER_SIZE; i++) {
-            assertEquals(testEtfParser.getParameters().get(i), expectedParameters[i]);
-        }
-    }
+    public static final String USER_INPUT_TRY_ABORT_AT_SENTIMENT = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + DONT_ABORT
+            + SEPARATOR_SPECIFIER.repeat(2) + ABORT;
 
-    void testEtfParameters(String input, String[] expectedParameters) {
+    public static final String USER_INPUT_TRY_ABORT_AT_RETURNS = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER + ABORT;
+
+    public static final String USER_INPUT_TRY_ABORT_AT_REMARKS = "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER + "50.0"
+            + SEPARATOR_SPECIFIER + ABORT;
+
+    void testEtfParameters(String input, String[] expectedEtfParameters) throws OperationAbortedError {
         simulateConsoleInput(input);
         AddEtfParser testEtfParser = new AddEtfParser();
-        testEtfParser.initParameters();
-        testEtfParser.getInstrumentParameters();
-        checkParameters(testEtfParser, expectedParameters);
+        verifyInstrumentParameters(testEtfParser, expectedEtfParameters);
+    }
+
+    @Override
+    public int getParameterSize() {
+        return PARAMETER_SIZE;
     }
 
     @Test
-    void addEtfParams_noRemarks_expectSuccess() {
+    void addEtfParams_noRemarks_expectSuccess() throws OperationAbortedError {
         testEtfParameters(USER_INPUT_NO_REMARKS, EXPECTED_PARAMS_NO_REMARKS);
     }
 
     @Test
-    void addEtfParams_noPastReturn_expectSuccess() {
-        testEtfParameters(USER_INPUT_TRY_INVALID_RETURNS, EXPECTED_PARAMS_INVALID_RETURNS);
+    void addEtfParams_noPastReturn_expectSuccess() throws OperationAbortedError {
+        testEtfParameters(USER_INPUT_TRY_EMPTY_RETURNS, EXPECTED_PARAMS_INVALID_RETURNS);
     }
 
     @Test
-    void addEtfParams_allParameters_expectSuccess() {
+    void addEtfParams_allParameters_expectSuccess() throws OperationAbortedError {
         testEtfParameters(USER_INPUT_All_PARAM, EXPECTED_PARAMS_ALL_PARAM);
     }
 
     @Test
-    void addEftParams_InvalidName_expectSuccess() {
+    void addEftParams_InvalidName_expectSuccess() throws OperationAbortedError {
         testEtfParameters(USER_INPUT_TRY_INVALID_NAME, EXPECTED_PARAMS_ALL_PARAM);
     }
 
     @Test
-    void addEftParams_InvalidPrice_expectSuccess() {
+    void addEftParams_InvalidPrice_expectSuccess() throws OperationAbortedError {
         testEtfParameters(USER_INPUT_TRY_INVALID_PRICE, EXPECTED_PARAMS_ALL_PARAM);
     }
 
     @Test
-    void addEtfParams_InvalidSentiment_expectSuccess() {
+    void addEtfParams_InvalidSentiment_expectSuccess() throws OperationAbortedError {
         testEtfParameters(USER_INPUT_TRY_INVALID_SENTIMENT, EXPECTED_PARAMS_ALL_PARAM);
+    }
+
+    // @@KVignesh122
+    @Test
+    void addEtfParams_abortAtName_expectException() {
+        assertThrows(OperationAbortedError.class,
+            () -> testEtfParameters(USER_INPUT_TRY_ABORT_AT_NAME, NO_PARAMS_EXPECTED));
+    }
+
+    @Test
+    void addEtfParams_abortAtPrice_expectException() {
+        assertThrows(OperationAbortedError.class,
+            () -> testEtfParameters(USER_INPUT_TRY_ABORT_AT_PRICE, NO_PARAMS_EXPECTED));
+    }
+
+    @Test
+    void addEtfParams_abortAtSentiment_expectException() {
+        assertThrows(OperationAbortedError.class,
+            () -> testEtfParameters(USER_INPUT_TRY_ABORT_AT_SENTIMENT, NO_PARAMS_EXPECTED));
+    }
+
+    @Test
+    void addEtfParams_abortAtReturns_expectException() {
+        assertThrows(OperationAbortedError.class,
+            () -> testEtfParameters(USER_INPUT_TRY_ABORT_AT_RETURNS, NO_PARAMS_EXPECTED));
+    }
+
+    @Test
+    void addEtfParams_abortAtRemark_expectException() {
+        assertThrows(OperationAbortedError.class,
+            () -> testEtfParameters(USER_INPUT_TRY_ABORT_AT_REMARKS, NO_PARAMS_EXPECTED));
     }
 }

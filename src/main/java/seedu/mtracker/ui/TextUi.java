@@ -3,6 +3,7 @@ package seedu.mtracker.ui;
 import seedu.mtracker.model.Instrument;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class TextUi {
 
@@ -17,7 +18,6 @@ public class TextUi {
     private static final String RETURNS_HEADER = "Past Returns (optional): ";
 
     private static final String LINE_DECORATOR = "_".repeat(80);
-    private static final String CONSOLE_PROMPTER = "mTracker$> ";
     private static final String LOGO = "            _________                      __\n"
             + "           |  _   _  |                    [  |  _\n"
             + " _ .--..--.|_/ | | \\_| .--.  ,--.   .---.  | | / ] .---.  _ .--.\n"
@@ -38,11 +38,12 @@ public class TextUi {
     private static final String EDIT_NAME_MESSAGE = "Enter new name:";
     private static final String EDIT_CURRENT_PRICE_MESSAGE = "Enter new Current price:";
     private static final String EDIT_SENTIMENT_MESSAGE = "Enter new Sentiment:";
-    private static final String EDIT_REMARKS_MESSAGE = "Enter new Remark:";
+    private static final String EDIT_REMARKS_MESSAGE = "Enter new Remarks:";
     private static final String EDIT_RETURN_MESSAGE = "Enter new Past Returns:";
     private static final String EDIT_ENTRY_MESSAGE = "Enter new Entry Price:";
     private static final String EDIT_EXIT_MESSAGE = "Enter new Exit Price:";
     private static final String EDIT_EXPIRY_MESSAGE = "Enter new Expiry (YYYY-MM-DD):";
+    private static final String EDIT_STATUS_MESSAGE = "Enter new Status (please enter either done or undone):";
     private static final String WATCHLIST_HEADER = "CURRENT WATCHLIST";
 
     private static final int NONE_FOUND = 0;
@@ -102,12 +103,12 @@ public class TextUi {
         System.out.println(LINE_DECORATOR);
     }
 
-    private static void displayFoundMessage(int numFound, String keyword) {
+    private static void displayFoundMessage(int numFound, String searchTerm) {
         if (numFound == NONE_FOUND) {
-            System.out.println("There were no instruments found for keyword, " + keyword);
+            System.out.println("There were no instruments found for search string, " + searchTerm + ".");
             return;
         }
-        System.out.println("There were " + numFound + " instrument(s) found for keyword, " + keyword + ".");
+        System.out.println("There were " + numFound + " instrument(s) found for search string, " + searchTerm + ".");
     }
 
     public static void displayInstrumentsFound(ArrayList<Instrument> instruments, String searchString) {
@@ -151,19 +152,25 @@ public class TextUi {
         System.out.println(e.getMessage());
     }
 
+    public static void ignoreCorruptedInstrument(AtomicInteger idx) {
+        System.out.println("Ignoring saved instrument " + idx + " as it was corrupted.");
+        System.out.println(LINE_DECORATOR);
+    }
+
     public static void displayExitMessage() {
         System.out.println(BYE_LOGO);
         System.out.println("Thank you for using mTracker.\n"
                 + "MAY THE MARKETS BE WITH YOU!!!");
     }
 
-    public static void displayPrompter() {
-        System.out.print(CONSOLE_PROMPTER);
+    public static void displayPrompter(String workspace) {
+        String prompter = "mTracker$" + workspace + "> ";
+        System.out.print(prompter);
     }
 
     public static void displayEditInstrumentFirstInstruction(Instrument instrument) {
         System.out.println(TAB + "Please enter one or more " + instrument.getType()
-                + " parameters to edit." + System.lineSeparator()
+                + " parameters to edit separated by spaces only." + System.lineSeparator()
                 + TAB + instrument.editParameterInstructions());
     }
 
@@ -203,7 +210,11 @@ public class TextUi {
         System.out.println(TAB + EDIT_EXPIRY_MESSAGE);
     }
 
-    public static void displayEditBeforeAfter(String beforeEdit, String afterEdit) {
+    public static void displayEditStatus() {
+        System.out.println(TAB + EDIT_STATUS_MESSAGE);
+    }
+
+    public static void displayEditChanges(String beforeEdit, String afterEdit) {
         System.out.println(LINE_DECORATOR);
         System.out.println("Before:");
         System.out.println(beforeEdit);
@@ -211,6 +222,18 @@ public class TextUi {
         System.out.println("Changed To:");
         System.out.println(afterEdit);
         System.out.println(LINE_DECORATOR);
+    }
+
+    public static void displayEditBeforeAfter(String beforeEdit, String afterEdit) {
+        if (beforeEdit.equals(afterEdit)) {
+            displayEditNoChange();
+        } else {
+            displayEditChanges(beforeEdit,afterEdit);
+        }
+    }
+
+    public static void displayEditNoChange() {
+        System.out.println("No changes to instrument was made.");
     }
 
     public static void greetAtStartUp() {

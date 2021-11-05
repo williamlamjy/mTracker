@@ -1,5 +1,17 @@
 package seedu.mtracker.filemanager;
 
+import seedu.mtracker.commons.Validate;
+import seedu.mtracker.commons.error.fileerror.InvalidCurrPriceSavedInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidEmptyCurrPriceInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidEmptyExpiryInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidEmptyNameInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidEmptySentimentInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidEmptyStatusInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidExpirySavedInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidNameSavedInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidRemarksInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidSentimentSavedInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidStatusSavedInFileError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.model.subinstrument.Crypto;
@@ -10,16 +22,63 @@ public class CryptoDecoder extends InstrumentDecoder {
 
     public static final int CRYPTO_EXPIRY_INDEX = 5;
     public static final int CRYPTO_REMARKS_INDEX = 6;
+    protected static LocalDate decodedExpiry;
+    protected static String decodedRemarks;
 
-    public static void addCryptoToList(String[] textSegment, InstrumentManager instrumentManager) {
-        decodeGeneralAttributes(textSegment);
-        // todo: abstract out to decode instrument attributes for the different decoders
-        LocalDate decodedExpiry = LocalDate.parse(textSegment[CRYPTO_EXPIRY_INDEX]);
-        String decodedRemarks = textSegment[CRYPTO_REMARKS_INDEX];
-        Instrument crypto = new Crypto(decodedName, decodedCurrPrice, decodedSentiment,
-                decodedExpiry, decodedRemarks);
+    public static String getExpiryFromFile(String[] textSegment) throws InvalidEmptyExpiryInFileError {
+        String expiry;
+        try {
+            expiry = textSegment[CRYPTO_EXPIRY_INDEX];
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidEmptyExpiryInFileError();
+        }
+        return expiry;
+    }
+
+    public static String getRemarksFromFile(String[] textSegment) throws InvalidRemarksInFileError {
+        String remarks;
+        try {
+            remarks = textSegment[CRYPTO_REMARKS_INDEX];
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidRemarksInFileError();
+        }
+        return remarks;
+    }
+
+    private static void validateSpecificAttributes(String[] textSegment) throws InvalidExpirySavedInFileError {
+        if (!Validate.isValidExpiry(textSegment[CRYPTO_EXPIRY_INDEX])) {
+            throw new InvalidExpirySavedInFileError();
+        }
+    }
+
+    private static void decodeSpecificAttributes(String expiry, String remarks) {
+        decodedExpiry = LocalDate.parse(expiry);
+        decodedRemarks = remarks;
+    }
+
+    public static void validateAndDecodeSpecificAttributes(String[] textSegment) throws InvalidEmptyExpiryInFileError,
+            InvalidRemarksInFileError, InvalidExpirySavedInFileError {
+        String expiry = getExpiryFromFile(textSegment);
+        String remarks = getRemarksFromFile(textSegment);
+        validateSpecificAttributes(textSegment);
+        decodeSpecificAttributes(expiry, remarks);
+    }
+
+    public static void addCryptoToList(String[] textSegment, InstrumentManager instrumentManager)
+            throws InvalidNameSavedInFileError, InvalidSentimentSavedInFileError, InvalidCurrPriceSavedInFileError,
+            InvalidEmptyNameInFileError, InvalidEmptySentimentInFileError, InvalidEmptyStatusInFileError,
+            InvalidStatusSavedInFileError, InvalidEmptyCurrPriceInFileError, InvalidEmptyExpiryInFileError,
+            InvalidRemarksInFileError, InvalidExpirySavedInFileError {
+        validateAndDecodeGeneralAttributes(textSegment);
+        validateAndDecodeSpecificAttributes(textSegment);
+        Instrument crypto = createDecodedInstrument();
         setDoneStatus(decodedIsDone, crypto);
         instrumentManager.addInstrument(crypto);
+    }
+
+    private static Instrument createDecodedInstrument() {
+        return new Crypto(decodedName, decodedCurrPrice, decodedSentiment,
+                decodedExpiry, decodedRemarks);
     }
 
 }

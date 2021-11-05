@@ -1,18 +1,12 @@
 package seedu.mtracker.console;
 
 import org.junit.jupiter.api.Test;
+import seedu.mtracker.commons.error.OperationAbortedError;
 
-import java.io.ByteArrayInputStream;
-import java.time.LocalDate;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-class AddCryptoParserTest {
-
+class AddCryptoParserTest extends GeneralInstrumentParserTest {
     public static final int PARAMETER_SIZE = 5;
-    public static final int DAYS_DIFFERENCE = 1;
-    public static final LocalDate FUTURE_DATE = LocalDate.now().plusDays(DAYS_DIFFERENCE);
-    public static final String SEPARATOR_SPECIFIER = "%1$s";
 
     public static final String USER_INPUT_NO_REMARKS = "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
@@ -20,7 +14,7 @@ class AddCryptoParserTest {
             + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + " ";
 
-    public static final String USER_INPUT_WITH_REMARKS_AND_EXPIRY = "TTTXXX"
+    public static final String USER_INPUT_WITH_REMARKS = "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + FUTURE_DATE
@@ -34,7 +28,7 @@ class AddCryptoParserTest {
         "",
     };
 
-    public static final String[] EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY = {
+    public static final String[] EXPECTED_PARAMS_WITH_REMARKS = {
         "TTTXXX",
         "23.4",
         "positive",
@@ -48,9 +42,9 @@ class AddCryptoParserTest {
             + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + " ";
 
-
     public static final String USER_INPUT_TRY_INVALID_PRICE = SEPARATOR_SPECIFIER + "TTTXXX"
             + SEPARATOR_SPECIFIER + "2sd3.4"
+            + SEPARATOR_SPECIFIER + DONT_ABORT
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + FUTURE_DATE
@@ -59,6 +53,7 @@ class AddCryptoParserTest {
     public static final String USER_INPUT_TRY_INVALID_SENTIMENT = SEPARATOR_SPECIFIER + "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "foobar"
+            + SEPARATOR_SPECIFIER + DONT_ABORT
             + SEPARATOR_SPECIFIER.repeat(2) + "positive"
             + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + "fooRemarks";
@@ -69,63 +64,131 @@ class AddCryptoParserTest {
             + SEPARATOR_SPECIFIER.repeat(2) + FUTURE_DATE
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
-    String formatConsoleInput(String input) {
-        return String.format(input, System.lineSeparator());
-    }
+    public static final String USER_INPUT_TRY_INVALID_EXPIRY = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER + "2021/11/1"
+            + SEPARATOR_SPECIFIER + "1 January 2021"
+            + SEPARATOR_SPECIFIER + FUTURE_DATE
+            + SEPARATOR_SPECIFIER + "fooRemarks";
 
-    void simulateConsoleInput(String input) {
-        String formattedInput = formatConsoleInput(input);
-        ByteArrayInputStream inputStreamBytes = new ByteArrayInputStream(formattedInput.getBytes());
-        System.setIn(inputStreamBytes);
-    }
+    public static final String USER_INPUT_TRY_PAST_EXPIRY = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER + PAST_DATE
+            + SEPARATOR_SPECIFIER + PAST_DATE
+            + SEPARATOR_SPECIFIER + FUTURE_DATE
+            + SEPARATOR_SPECIFIER + "fooRemarks";
 
-    void checkParameters(AddCryptoParser testCryptoParser, String[] expectedParameters) {
-        for (int i = 0; i < PARAMETER_SIZE; i++) {
-            assertEquals(testCryptoParser.getParameters().get(i), expectedParameters[i]);
-        }
-    }
+    // @@KVignesh122
+    public static final String USER_INPUT_TRY_ABORT_AT_REMARKS = "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER + FUTURE_DATE
+            + SEPARATOR_SPECIFIER + ABORT;
 
-    void testCryptoParameters(String input, String[] expectedParameters) {
+    public static final String USER_INPUT_TRY_ABORT_AT_NAME = SEPARATOR_SPECIFIER + ABORT;
+
+    public static final String USER_INPUT_TRY_ABORT_AT_PRICE = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "2sd3.4"
+            + SEPARATOR_SPECIFIER + DONT_ABORT
+            + SEPARATOR_SPECIFIER + ABORT;
+
+    public static final String USER_INPUT_TRY_ABORT_AT_SENTIMENT = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "foobar"
+            + SEPARATOR_SPECIFIER + DONT_ABORT
+            + SEPARATOR_SPECIFIER.repeat(2) + ABORT;
+
+    public static final String USER_INPUT_TRY_ABORT_AT_EXPIRY = SEPARATOR_SPECIFIER + "TTTXXX"
+            + SEPARATOR_SPECIFIER + "23.4"
+            + SEPARATOR_SPECIFIER + "positive"
+            + SEPARATOR_SPECIFIER + DONT_ABORT
+            + SEPARATOR_SPECIFIER.repeat(2) + ABORT;
+
+    void testCryptoParameters(String input, String[] expectedParameters) throws OperationAbortedError {
         simulateConsoleInput(input);
         AddCryptoParser testCryptoParser = new AddCryptoParser();
-        testCryptoParser.initParameters();
-        testCryptoParser.getInstrumentParameters();
-        checkParameters(testCryptoParser, expectedParameters);
+        verifyInstrumentParameters(testCryptoParser, expectedParameters);
+    }
 
+    @Override
+    public int getParameterSize() {
+        return PARAMETER_SIZE;
     }
 
     @Test
-    void addCryptoParams_noRemarks_expectSuccess() {
+    void addCryptoParams_noRemarks_expectSuccess() throws OperationAbortedError {
         testCryptoParameters(USER_INPUT_NO_REMARKS, EXPECTED_PARAMS_NO_REMARKS);
     }
 
     @Test
-    void addCryptoParams_allValidParametersWithRemarksAndExpiry_expectSuccess() {
-        testCryptoParameters(USER_INPUT_WITH_REMARKS_AND_EXPIRY,
-                EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY);
+    void addCryptoParams_allValidParametersWithRemarks_expectSuccess() throws OperationAbortedError {
+        testCryptoParameters(USER_INPUT_WITH_REMARKS,
+                EXPECTED_PARAMS_WITH_REMARKS);
     }
 
     @Test
-    void addCryptoParams_tryInvalidNameMultipleTimes_expectSuccess() {
+    void addCryptoParams_tryInvalidNameMultipleTimes_expectSuccess() throws OperationAbortedError {
         testCryptoParameters(USER_INPUT_TRY_INVALID_NAME, EXPECTED_PARAMS_NO_REMARKS);
     }
 
     @Test
-    void addCryptoParams_tryInvalidPriceMultipleTimes_expectSuccess() {
+    void addCryptoParams_tryInvalidPriceMultipleTimes_expectSuccess() throws OperationAbortedError {
         testCryptoParameters(USER_INPUT_TRY_INVALID_PRICE,
-                EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY);
+                EXPECTED_PARAMS_WITH_REMARKS);
     }
 
     @Test
-    void addCryptoParams_tryInvalidSentimentMultipleTimes_expectSuccess() {
+    void addCryptoParams_tryInvalidSentimentMultipleTimes_expectSuccess() throws OperationAbortedError {
         testCryptoParameters(USER_INPUT_TRY_INVALID_SENTIMENT,
-                EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY);
+                EXPECTED_PARAMS_WITH_REMARKS);
     }
 
     @Test
-    void addCryptoParams_tryEmptyExpiryMultipleTimes_expectSuccess() {
+    void addCryptoParams_tryEmptyExpiryMultipleTimes_expectSuccess() throws OperationAbortedError {
         testCryptoParameters(USER_INPUT_TRY_EMPTY_EXPIRY,
-                EXPECTED_PARAMS_WITH_REMARKS_AND_EXPIRY);
+                EXPECTED_PARAMS_WITH_REMARKS);
     }
 
+    @Test
+    void addForexParams_tryInvalidDateMultipleTimes_expectSuccess() throws OperationAbortedError {
+        testCryptoParameters(USER_INPUT_TRY_INVALID_EXPIRY, EXPECTED_PARAMS_WITH_REMARKS);
+    }
+
+    @Test
+    void addForexParams_tryPastDateMultipleTimes_expectSuccess() throws OperationAbortedError {
+        testCryptoParameters(USER_INPUT_TRY_PAST_EXPIRY, EXPECTED_PARAMS_WITH_REMARKS);
+    }
+
+    // @@KVignesh122
+    @Test
+    void addCryptoParams_abortAtName_expectException() {
+        assertThrows(OperationAbortedError.class,
+            () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_NAME, NO_PARAMS_EXPECTED));
+    }
+
+    @Test
+    void addCryptoParams_abortAtPrice_expectException() {
+        assertThrows(OperationAbortedError.class,
+            () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_PRICE, NO_PARAMS_EXPECTED));
+    }
+
+    @Test
+    void addCryptoParams_abortAtSentiment_expectException() {
+        assertThrows(OperationAbortedError.class,
+            () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_SENTIMENT, NO_PARAMS_EXPECTED));
+    }
+
+    @Test
+    void addCryptoParams_abortAtExpiry_expectException() {
+        assertThrows(OperationAbortedError.class,
+            () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_EXPIRY, NO_PARAMS_EXPECTED));
+    }
+
+    @Test
+    void addCryptoParams_abortAtRemark_expectException() {
+        assertThrows(OperationAbortedError.class,
+            () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_REMARKS, NO_PARAMS_EXPECTED));
+    }
 }

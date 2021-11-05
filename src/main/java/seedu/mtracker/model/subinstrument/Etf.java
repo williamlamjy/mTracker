@@ -14,17 +14,13 @@ public class Etf extends Instrument {
     protected static final String EMPTY_STRING = "";
 
     protected static final String RETURNS_FIELD = "Past Returns: ";
-    protected static final String RETURNS_ATTRIBUTE = "returns";
+    protected static final String RETURNS_ATTRIBUTE = "past-returns";
     protected static final double UNDEFINED_VALUE = -101.0;
 
     public Etf(String name, double currentPrice, String sentiment, double pastReturns, String remark) {
         super(name, currentPrice, sentiment);
         this.pastReturns = pastReturns;
         this.remark = remark;
-    }
-
-    public String getRemark() {
-        return remark;
     }
 
     public void setRemark(String inputRemark) {
@@ -61,10 +57,6 @@ public class Etf extends Instrument {
         editSpecificParameters(editedParameters);
     }
 
-    public String getReturnsForFileFormat() {
-        return String.valueOf(pastReturns);
-    }
-
     public String getReturns() {
         if (pastReturns == UNDEFINED_VALUE) {
             return EMPTY_STRING;
@@ -85,8 +77,8 @@ public class Etf extends Instrument {
 
     @Override
     public String textFileFormatting() {
-        return String.format(super.textFileFormatting() + FILE_SEPARATOR + getReturnsForFileFormat()
-                + FILE_SEPARATOR + getRemark());
+        return super.textFileFormatting() + FILE_SEPARATOR + getReturns()
+                + FILE_SEPARATOR + remark;
     }
 
     @Override
