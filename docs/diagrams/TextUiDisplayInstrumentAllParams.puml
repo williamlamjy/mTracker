@@ -17,21 +17,21 @@ TextUi -> Instrument : getAllParams()
 activate Instrument
 
 note left
-TextUi.displaySpecificInstrumentView()
+displaySpecificInstrumentView()
 invoked from ViewCommand.execute()
 end note
 
 Instrument --> TextUi
 deactivate Instrument
 
+TextUi -->[ : printout instrument's parameters
+
 deactivate TextUi
 
 note left
-instrument.getAllParams()
+The getAllParams() method
 returns all the stored information
 on the instrument back as String.
 end note
-
-deactivate TextUi
 
 @enduml

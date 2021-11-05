@@ -16,11 +16,6 @@ activate TextUi
 TextUi -> TextUi : displayInstruments()
 activate TextUi
 
-note bottom
-TextUi.displayAllInstruments()
-invoked from ListCommand.execute()
-end note
-
     loop each instrument
         TextUi -> TextUi : constructLineInList(idx, instrument)
         activate TextUi
@@ -29,10 +24,12 @@ end note
         activate Instrument
 
         Instrument --> TextUi
+
+        TextUi --> TextUi : printout instrument's \ngeneral parameters
         deactivate Instrument
 
         note bottom
-        Instrument.getGeneralParams()
+        The getGeneralParams() method
         returns the instrument's name, current price,
         and sentiment as String.
         end note
