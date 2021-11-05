@@ -6,35 +6,68 @@ import seedu.mtracker.commons.error.OperationAbortedError;
 import seedu.mtracker.ui.TextUi;
 import seedu.mtracker.asserthelpers.AssertParserHelper;
 
+/**
+ * A class responsible for parsing inputs when user is adding a new forex instrument.
+ */
 public class AddForexParser extends AddInstrumentParser {
     public static String INSTRUMENT_TYPE = "forex";
 
+    /**
+     * Queries the user for forex remarks.
+     *
+     * @return User remarks input.
+     */
     public String getForexRemarksFromUser() {
         TextUi.displayAddRemarksInstruction();
         return getUserInput(WORKSPACE);
     }
 
+    /**
+     * Queries the user for forex expiry date.
+     *
+     * @return User expiry date input.
+     */
     public String getForexExpiryFromUser() {
         TextUi.displayAddExpiryInstruction();
         return getUserInput(WORKSPACE);
     }
 
+    /**
+     * Queries the user for forex entry price.
+     *
+     * @return User entry price input.
+     */
     public String getForexEntryFromUser() {
         TextUi.displayAddEntryPriceInstruction();
         return getUserInput(WORKSPACE);
     }
 
+    /**
+     * Queries the user for forex exit price.
+     *
+     * @return User exit price input.
+     */
     public String getForexExitFromUser() {
         TextUi.displayAddExitPriceInstruction();
         return getUserInput(WORKSPACE);
     }
 
+    /**
+     * Gets the user forex remarks input and adds it into the parameters list.
+     *
+     * @throws OperationAbortedError If the user wants to abort the add forex process.
+     */
     public void addForexRemarksToParameter() throws OperationAbortedError {
         String remarks = getForexRemarksFromUser();
         checkIfAbort(remarks, WORKSPACE);
         parameters.add(remarks);
     }
 
+    /**
+     * Gets the user forex entry price input and adds it into the parameters list.
+     *
+     * @throws OperationAbortedError If the user wants to abort the add forex process.
+     */
     public void addForexEntryToParameter() throws OperationAbortedError {
         String entryPrice;
         do {
@@ -46,6 +79,11 @@ public class AddForexParser extends AddInstrumentParser {
         AssertParserHelper.assertPriceNonNegative(entryPrice);
     }
 
+    /**
+     * Gets the user forex exit price input and adds it into the parameters list.
+     *
+     * @throws OperationAbortedError If the user wants to abort the add forex process.
+     */
     public void addForexExitToParameter() throws OperationAbortedError {
         String exitPrice;
         do {
@@ -57,6 +95,11 @@ public class AddForexParser extends AddInstrumentParser {
         AssertParserHelper.assertPriceNonNegative(exitPrice);
     }
 
+    /**
+     * Gets the user forex expiry date input and adds it into the parameters.
+     *
+     * @throws OperationAbortedError If the user wants to abort the add forex process.
+     */
     public void addForexExpiryToParameter() throws OperationAbortedError {
         String expiry;
         do {
@@ -68,6 +111,11 @@ public class AddForexParser extends AddInstrumentParser {
         AssertParserHelper.assertInputNotEmpty(expiry);
     }
 
+    /**
+     * Gets from the user parameters that are specific to adding a new forex instrument.
+     *
+     * @throws OperationAbortedError If the user wants to abort the add forex process.
+     */
     public void getForexSpecificParameters() throws OperationAbortedError {
         addForexEntryToParameter();
         addForexExitToParameter();
@@ -75,6 +123,12 @@ public class AddForexParser extends AddInstrumentParser {
         addForexRemarksToParameter();
     }
 
+    /**
+     * Gets from the user all parameters needed to create a new forex instrument.
+     *
+     * @return A command for adding a new forex.
+     * @throws OperationAbortedError If the user wants to abort the add forex process.
+     */
     @Override
     public AddForexCommand getInstrumentParameters() throws OperationAbortedError {
         getGeneralParameters(INSTRUMENT_TYPE);

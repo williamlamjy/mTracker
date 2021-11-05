@@ -9,6 +9,9 @@ import seedu.mtracker.ui.TextUi;
 import java.util.HashMap;
 import java.util.HashSet;
 
+/**
+ * A class responsible for parsing inputs when the user wants to edit an existing instrument.
+ */
 public class EditInstrumentParser extends InputParser {
 
     protected static HashMap<String, String> editedParameters;
@@ -26,6 +29,14 @@ public class EditInstrumentParser extends InputParser {
 
     public static final double UNDEFINED_PAST_RETURN_VALUE = -101;
 
+    /**
+     * Gets the user new name input and store it in a hashmap that maps the name attribute to input.
+     * Process is skipped if the user does not want to edit the name.
+     *
+     * @param instrumentType The type of instrument user is editing.
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
     public void editNameParameter(String instrumentType, HashSet<String> parametersGiven)
             throws OperationAbortedError {
         if (!parametersGiven.contains(NAME_ATTRIBUTE)) {
@@ -40,6 +51,13 @@ public class EditInstrumentParser extends InputParser {
         editedParameters.put(NAME_ATTRIBUTE, inputName);
     }
 
+    /**
+     * Gets the user new current price input and store it in a hashmap that maps the current price attribute to input.
+     * Process is skipped if the user does not want to edit the current price.
+     *
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
     public void editCurrentPriceParameter(HashSet<String> parametersGiven)
             throws OperationAbortedError {
         if (!parametersGiven.contains(CURRENT_PRICE_ATTRIBUTE)) {
@@ -54,6 +72,13 @@ public class EditInstrumentParser extends InputParser {
         editedParameters.put(CURRENT_PRICE_ATTRIBUTE, inputCurrentPrice);
     }
 
+    /**
+     * Gets the user new sentiment input and store it in a hashmap that maps the sentiment attribute to input.
+     * Process is skipped if the user does not want to edit the sentiment.
+     *
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
     public void editSentimentsParameter(HashSet<String> parametersGiven)
             throws OperationAbortedError {
         if (!parametersGiven.contains(SENTIMENT_ATTRIBUTE)) {
@@ -68,6 +93,13 @@ public class EditInstrumentParser extends InputParser {
         editedParameters.put(SENTIMENT_ATTRIBUTE, inputSentiment);
     }
 
+    /**
+     * Gets the user new remarks input and store it in a hashmap that maps the remarks attribute to input.
+     * Process is skipped if the user does not want to edit the remarks.
+     *
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
     public void editRemarksParameter(HashSet<String> parametersGiven)
             throws OperationAbortedError {
         if (!parametersGiven.contains(REMARK_ATTRIBUTE)) {
@@ -79,6 +111,13 @@ public class EditInstrumentParser extends InputParser {
         editedParameters.put(REMARK_ATTRIBUTE, inputRemark);
     }
 
+    /**
+     * Gets the user new past returns input and store it in a hashmap that maps the past returns attribute to input.
+     * Process is skipped if the user does not want to edit the past returns.
+     *
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
     public void editReturnParameter(HashSet<String> parametersGiven)
             throws OperationAbortedError {
         if (!parametersGiven.contains(RETURN_ATTRIBUTE)) {
@@ -93,6 +132,13 @@ public class EditInstrumentParser extends InputParser {
         editedParameters.put(RETURN_ATTRIBUTE, inputReturn);
     }
 
+    /**
+     * Gets the user new entry price input and store it in a hashmap that maps the entry price attribute to input.
+     * Process is skipped if the user does not want to edit the entry price.
+     *
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
     public void editEntryPriceParameter(HashSet<String> parametersGiven)
             throws OperationAbortedError {
         if (!parametersGiven.contains(ENTRY_PRICE_ATTRIBUTE)) {
@@ -107,6 +153,13 @@ public class EditInstrumentParser extends InputParser {
         editedParameters.put(ENTRY_PRICE_ATTRIBUTE, inputEntryPrice);
     }
 
+    /**
+     * Gets the user new exit price input and store it in a hashmap that maps the exit price attribute to input.
+     * Process is skipped if the user does not want to edit the exit price.
+     *
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
     public void editExitPriceParameter(HashSet<String> parametersGiven)
             throws OperationAbortedError {
         if (!parametersGiven.contains(EXIT_PRICE_ATTRIBUTE)) {
@@ -121,6 +174,13 @@ public class EditInstrumentParser extends InputParser {
         editedParameters.put(EXIT_PRICE_ATTRIBUTE, inputExitPrice);
     }
 
+    /**
+     * Gets the user new done status input and store it in a hashmap that maps the status attribute to input.
+     * Process is skipped if the user does not want to edit the status.
+     *
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
     public void editDoneStatus(HashSet<String> parametersGiven) throws OperationAbortedError {
         if (!parametersGiven.contains(DONE_ATTRIBUTE)) {
             return;
@@ -134,6 +194,13 @@ public class EditInstrumentParser extends InputParser {
         editedParameters.put(DONE_ATTRIBUTE, inputStatus);
     }
 
+    /**
+     * Gets the user new expiry input and store it in a hashmap that maps the expiry attribute to input.
+     * Process is skipped if the user does not want to edit the expiry.
+     *
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
     public void editExpiryParameter(HashSet<String> parametersGiven)
             throws OperationAbortedError {
         if (!parametersGiven.contains(EXPIRY_ATTRIBUTE)) {
@@ -148,6 +215,13 @@ public class EditInstrumentParser extends InputParser {
         editedParameters.put(EXPIRY_ATTRIBUTE, inputExpiry);
     }
 
+    /**
+     * Gets from the user all the new values to needed to the update the existing instrument.
+     *
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @param instrumentOfInterest The instrument the user wants to edit.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
     public void getEditedParameters(HashSet<String> parametersGiven, Instrument instrumentOfInterest)
             throws OperationAbortedError {
         String instrumentType = instrumentOfInterest.getType().toLowerCase();
@@ -162,6 +236,15 @@ public class EditInstrumentParser extends InputParser {
         editDoneStatus(parametersGiven);
     }
 
+    /**
+     * Creates the edit command and gets from the user the new values to update the instrument with.
+     *
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @param instrumentOfInterest The instrument the user wants to edit.
+     * @param instrumentIndex The index number of the instrument to edit.
+     * @return A command for editing an existing instrument.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
     public EditInstrumentCommand createEditCommand(HashSet<String> parametersGiven,
                                                      Instrument instrumentOfInterest, int instrumentIndex)
             throws OperationAbortedError {
@@ -173,6 +256,11 @@ public class EditInstrumentParser extends InputParser {
         return command;
     }
 
+    /**
+     * Gets the hashmap containing the instrument attributes and its edited value.
+     *
+     * @return A hashmap that contains the instrument attributes and its new value.
+     */
     public static HashMap<String, String> getEditedParametersHash() {
         return editedParameters;
     }
