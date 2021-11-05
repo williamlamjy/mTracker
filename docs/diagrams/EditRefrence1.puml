@@ -41,7 +41,8 @@ InstrumentManager -> Instrument: editParameter({"name", "new name"})
 activate Instrument
 
 ref over Instrument
-check if parameter exist in HashMap and edit
+check if parameter exist in HashMap
+and if it exist, set it to the new value.
 endref
 
 Instrument --> InstrumentManager

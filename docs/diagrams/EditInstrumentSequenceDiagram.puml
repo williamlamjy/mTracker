@@ -23,7 +23,8 @@ activate InputParser
 InputParser --> InputParser
 deactivate InputParser
 
-InputParser -> InputParser: get parameters from user and check if parameter entered is valid parameters
+InputParser -> InputParser: filterInvalidParameters({"name"}, Valid Attributes)
+note right: Prompt user to enter in parameters and\ncheck if parameters entered are valid.
 activate InputParser
 InputParser --> InputParser
 deactivate InputParser

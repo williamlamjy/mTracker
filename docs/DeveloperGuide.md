@@ -227,6 +227,12 @@ From the notes in the sequence diagram above, for every attribute in the instrum
 prompt to get user to provide information for that attribute. This is done through a series of methods in
 the `TextUi` class.
 
+### Edit instrument feature
+<img src="images/EditInstrumentSequenceDiagram.png" width="600"/>
+<img src="images/EditRefrence1.png" width="600"/>
+<img src="images/EditRefrence2.png" width="600"/>
+<img src="images/EditRefrence3.png" width="600"/>
+
 ## Product scope
 ### Target user profile
 

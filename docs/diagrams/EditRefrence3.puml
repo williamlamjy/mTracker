@@ -11,10 +11,13 @@ activate Instrument
 Instrument ->Instrument: editGeneralParameter({"name, new name"})
 activate Instrument
 Instrument -> Instrument: editName({"name, new name"})
+note left: This method check is the key "name" exist in HashMap\nand if it exist, set name parameter to new name
 activate Instrument
 Instrument --> Instrument
 deactivate Instrument
+
 Instrument -> Instrument: editXYZ({"name, new name"})
+note left: This box represents methods that does the same as one above\nbut for all other parameters of the instrument
 activate Instrument
 Instrument --> Instrument
 deactivate Instrument

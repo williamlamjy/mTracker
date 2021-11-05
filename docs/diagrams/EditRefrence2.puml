@@ -13,6 +13,7 @@ activate EditInstrumentParser
 
 loop valid name is entered
 EditInstrumentParser -> EditInstrumentParser: editNameParameter("stock", {"name"})
+note left: This method check if the parameter is entered \nthen prompts user to input new value of the parameter.\nMethod loop until a valid value is input.
 activate EditInstrumentParser
 EditInstrumentParser --> EditInstrumentParser
 deactivate EditInstrumentParser
@@ -20,6 +21,7 @@ end
 
 loop valid parameter is entered
 EditInstrumentParser -> EditInstrumentParser: editXYZParameter({"name"})
+note left: This box represents methods that does the same\nas the one above but for all other parameters.
 activate EditInstrumentParser
 EditInstrumentParser --> EditInstrumentParser
 deactivate EditInstrumentParser
