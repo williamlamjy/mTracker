@@ -332,7 +332,8 @@ Feel free to come up with more test cases to try for yourself.
 4. Refer to the [userguide](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/UserGuide.md) to understand how
 to use the program.
 
-###Add functionality Testing
+**Add functionality Testing**
+
 To test the add functionality, there are a few test cases you can try:
 1. Testcase: Adding a stock with an empty name. 
 
@@ -344,7 +345,8 @@ To test the add functionality, there are a few test cases you can try:
 
    Expected: An error message that says past returns cannot be less than -100 and input will be ignored.     
 
-###Edit functionality Testing
+**Edit functionality Testing**
+
 To test the edit functionality, there are a few test cases you can try:
 1. Testcase: Edit an instrument at an index that is out of range.
    
@@ -353,7 +355,8 @@ To test the edit functionality, there are a few test cases you can try:
   
    Expected: An error message that says the parameter is invalid and will be ignored.
 
-###Delete functionality Testing
+**Delete functionality Testing**
+
 To test the delete functionality, there are a few test cases you can try:
 1. Testcase: Delete an instrument at an index that is out of range.
 
@@ -362,7 +365,8 @@ To test the delete functionality, there are a few test cases you can try:
 
    Expected: An error message that says the index provided is invalid.
 
-###Done functionality Testing
+**Done functionality Testing**
+
 To test the done functionality, there are a few test cases you can try:
 1. Testcase: Set an already done instrument as done.
 
@@ -371,7 +375,8 @@ To test the done functionality, there are a few test cases you can try:
 
    Expected: An error message that says the index provided is invalid.
 
-###Find functionality Testing
+**Find functionality Testing**
+
 To test the done functionality, there are a few test cases you can try:
 1. Testcase: Enter command `find`.
 
@@ -380,19 +385,22 @@ To test the done functionality, there are a few test cases you can try:
    
    Expected: Ensure that the instrument names shown contains the search string `test`.
 
-###List functionality Testing
+**List functionality Testing**
+
 To test the list functionality, there are a few test cases you can try:
 1. Testcase: Enter command `list extraneous parameters`.
 
    Expected: It should perform the list action ignoring the additional words.
 
-###View functionality Testing
+**View functionality Testing**
+
 To test the view functionality, there are a few test cases you can try:
 1. Testcase: Enter command `view 2 5`.
 
    Expected: It should return only the second instrument in the list ignoring the value `5`.
 
-###Loading storage file testing
+**Loading storage file testing**
+
 To test the program against corruption of saved file data, there are a few test cases you can try:
 1. Testcase: In the saved file write `This is a fake instrument`.
 
