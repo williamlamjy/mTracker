@@ -234,10 +234,38 @@ prompt to get user to provide information for that attribute. This is done throu
 the `TextUi` class.
 
 ### Edit instrument feature
+The edit instrument functionality mainly involves the `console`, `commands` and `model` components. Within the `console`
+component, the `InputParser` class implements the method `InputParser#getEditInstrumentCommand()`. This method calls
+`InputParser#getParametersToEdit` which will prompt the users to input which parameters of the instrument to edit
+and check if the parameters entered are valid. Invalid inputs will not be processed.
+
+The process of writing the new values of the parameters to be edited is handled by the `EditInstrumentParser` class.
+The method `EditInstrumentParser#createEditCommand()` calls `EditInstrumentParser#getEditedParameters()` which 
+calls multiple individual methods that check if its parameters is being edited and to enter a new value for the 
+parameters.
+
+The figure below represents the sequence diagram when the user wants to edit the name a stock:
+
 <img src="images/EditInstrumentSequenceDiagram.png" width="600"/>
-<img src="images/EditRefrence1.png" width="600"/>
-<img src="images/EditRefrence2.png" width="600"/>
-<img src="images/EditRefrence3.png" width="600"/>
+
+More details about the reference frame for checking if a parameters is entered and to add to HashMap if entered is given below:
+
+<img src="images/EditRefrence.png" width="600"/>
+
+More details about the execution of setting the stock with the new values is shown below: (in this case is setting the name parameter to new name)
+
+<img src="images/EditExecuteSequenceDiagram.png" width="600"/>
+
+More details about checking if parameters exist in HashMap and to edit the parameters if it exists is showm below:
+
+<img src="images/EditExecuteRefrence.png" width="600"/>
+
+The process for editing other instruments or other parameters follow a similar process to the sequence above.
+The main difference would be the parameters collected from the user and the parameters allowed to be edited.
+For example the user can edit Entry Price in Crypto but not in Stock.
+
+Though not mention in the sequences diagram above, for every step of the feature, 
+there would be an instructional prompt to guide the user. This is done through the `TextUi` class.
 
 ### Loading pre-existing data
 The loading of pre-existing data is mainly handled by the `filemanager` and `model` components. The main method calls 

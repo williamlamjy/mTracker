@@ -1,0 +1,53 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include Styles.puml
+
+box console COLOR_CONSOLE_SEGMENT
+participant ":EditInstrumentParser" as EditInstrumentParser COLOR_MODEL
+end box
+
+group sd check if parameter is entered and \n add to HashMap
+
+activate EditInstrumentParser
+
+EditInstrumentParser -> EditInstrumentParser: getEditedParameters({"name"}, instrument)
+activate EditInstrumentParser
+
+EditInstrumentParser -> EditInstrumentParser: editNameParameter("stock", {"name"})
+note left: This method check if the parameter is entered \nthen prompts user to input new value of the parameter.\nMethod loop until a valid value is input.
+activate EditInstrumentParser
+
+alt parameters to edit does not include "name"
+else parameters to edit includes "name"
+loop until valid name is entered
+EditInstrumentParser -> EditInstrumentParser: getUserInput()
+activate EditInstrumentParser
+EditInstrumentParser --> EditInstrumentParser: return new name
+deactivate EditInstrumentParser
+end
+end
+
+EditInstrumentParser --> EditInstrumentParser
+deactivate EditInstrumentParser
+
+EditInstrumentParser -> EditInstrumentParser: editXYZParameter({"name"})
+note left: This represents similar methods that does the same\nas the one above but for other parameters.\nXYZ represents the other parameters of\ncurrent price, sentiments and remarks for stock.
+activate EditInstrumentParser
+
+alt parameters to edit does not include parameter "XYZ"
+else parameters to edit includes parameter "XYZ"
+loop until valid parameter is entered
+EditInstrumentParser -> EditInstrumentParser: getUserInput()
+activate EditInstrumentParser
+EditInstrumentParser --> EditInstrumentParser: return new value of parameter
+deactivate EditInstrumentParser
+end
+end
+EditInstrumentParser --> EditInstrumentParser
+deactivate EditInstrumentParser
+
+EditInstrumentParser --> EditInstrumentParser
+deactivate EditInstrumentParser
+
+end
+@enduml
