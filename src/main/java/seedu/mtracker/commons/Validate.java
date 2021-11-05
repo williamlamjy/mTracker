@@ -5,22 +5,23 @@ import seedu.mtracker.commands.AddCryptoCommand;
 import seedu.mtracker.commands.AddEtfCommand;
 import seedu.mtracker.commands.AddForexCommand;
 import seedu.mtracker.commands.AddStockCommand;
+import seedu.mtracker.commons.error.InvalidEmptyStatusError;
 import seedu.mtracker.console.AddForexParser;
-import seedu.mtracker.error.AlreadyDoneError;
-import seedu.mtracker.error.InvalidBoundsError;
-import seedu.mtracker.error.InvalidDateFormatError;
-import seedu.mtracker.error.InvalidEmptyExpiryDateError;
-import seedu.mtracker.error.InvalidEmptyPriceError;
-import seedu.mtracker.error.InvalidEmptySentimentError;
-import seedu.mtracker.error.InvalidInstrumentError;
-import seedu.mtracker.error.InvalidNameError;
-import seedu.mtracker.error.InvalidNegativePriceError;
-import seedu.mtracker.error.InvalidPastDateError;
-import seedu.mtracker.error.InvalidPastReturnError;
-import seedu.mtracker.error.InvalidPastReturnTypeError;
-import seedu.mtracker.error.InvalidPriceError;
-import seedu.mtracker.error.InvalidSentimentError;
-import seedu.mtracker.error.InvalidStatusError;
+import seedu.mtracker.commons.error.AlreadyDoneError;
+import seedu.mtracker.commons.error.InvalidBoundsError;
+import seedu.mtracker.commons.error.InvalidDateFormatError;
+import seedu.mtracker.commons.error.InvalidEmptyExpiryDateError;
+import seedu.mtracker.commons.error.InvalidEmptyPriceError;
+import seedu.mtracker.commons.error.InvalidEmptySentimentError;
+import seedu.mtracker.commons.error.InvalidInstrumentError;
+import seedu.mtracker.commons.error.InvalidNameError;
+import seedu.mtracker.commons.error.InvalidNegativePriceError;
+import seedu.mtracker.commons.error.InvalidPastDateError;
+import seedu.mtracker.commons.error.InvalidPastReturnError;
+import seedu.mtracker.commons.error.InvalidPastReturnTypeError;
+import seedu.mtracker.commons.error.InvalidPriceError;
+import seedu.mtracker.commons.error.InvalidSentimentError;
+import seedu.mtracker.commons.error.InvalidStatusError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -40,12 +41,12 @@ public class Validate {
     public static final String DONE_INDICATOR = "done";
     public static final String NOT_DONE_INDICATOR = "undone";
 
-    private static final String FOREX_VALID_NAME_REGEX = "^[a-zA-Z]{3}/?[a-zA-Z]{3}$";
-
     public static final String STATUS_DONE = "true";
     public static final String STATUS_NOT_DONE = "false";
 
     protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+    private static final String FOREX_VALID_NAME_REGEX = "^[a-zA-Z]{3}/?[a-zA-Z]{3}$";
 
     public static boolean isInvalidNameCondition(String name, String instrumentType) {
         if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
@@ -246,6 +247,12 @@ public class Validate {
         return true;
     }
 
+    public static void checkStatusIsEmpty(String doneStatus) throws InvalidEmptyStatusError {
+        if (doneStatus.isEmpty()) {
+            throw new InvalidEmptyStatusError();
+        }
+    }
+
     public static void checkStatus(String doneStatus) throws InvalidStatusError {
         boolean isValidCompletedStatus = doneStatus.equals(DONE_INDICATOR);
         boolean isValidNotCompletedStatus = doneStatus.equals(NOT_DONE_INDICATOR);
@@ -256,6 +263,7 @@ public class Validate {
 
     public static boolean isValidInputStatus(String doneStatus) {
         try {
+            checkStatusIsEmpty(doneStatus);
             checkStatus(doneStatus);
         } catch (Exception e) {
             TextUi.showErrorMessage(e);

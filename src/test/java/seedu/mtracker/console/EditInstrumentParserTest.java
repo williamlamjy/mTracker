@@ -1,16 +1,17 @@
 package seedu.mtracker.console;
 
 import org.junit.jupiter.api.Test;
-import seedu.mtracker.error.OperationAbortedError;
+import seedu.mtracker.commons.error.OperationAbortedError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.subinstrument.Stock;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EditInstrumentParserTest extends GeneralInstrumentParserTest {
 
@@ -32,10 +33,10 @@ public class EditInstrumentParserTest extends GeneralInstrumentParserTest {
             new HashSet<>(Arrays.asList("entry-price", "exit-price"));
 
     public static final String USER_INPUT_ABORT = ABORT;
-    public static final HashSet<String> PARAM_INPUT_NAME = new HashSet<>(Arrays.asList("name"));
-    public static final HashSet<String> PARAM_INPUT_CURRENT_PRICE = new HashSet<>(Arrays.asList("current-price"));
-    public static final HashSet<String> PARAM_INPUT_SENTIMENT = new HashSet<>(Arrays.asList("sentiment"));
-    public static final HashSet<String> PARAM_INPUT_REMARKS = new HashSet<>(Arrays.asList("remarks"));
+    public static final HashSet<String> PARAM_INPUT_NAME = new HashSet<>(List.of("name"));
+    public static final HashSet<String> PARAM_INPUT_CURRENT_PRICE = new HashSet<>(List.of("current-price"));
+    public static final HashSet<String> PARAM_INPUT_SENTIMENT = new HashSet<>(List.of("sentiment"));
+    public static final HashSet<String> PARAM_INPUT_REMARKS = new HashSet<>(List.of("remarks"));
 
     public static final String TEST_NAME = "Test";
     public static final double TEST_PRICE = 1.0;
@@ -66,7 +67,7 @@ public class EditInstrumentParserTest extends GeneralInstrumentParserTest {
         EditInstrumentParser editInstrumentParser = new EditInstrumentParser();
         editInstrumentParser.createEditCommand(expectedParameters, TEST_STOCK, TEST_INDEX);
         HashMap<String, String> outputHash = EditInstrumentParser.getEditedParametersHash();
-        assertTrue(outputHash.equals(expectedHash));
+        assertEquals(outputHash, expectedHash);
     }
 
     @Test

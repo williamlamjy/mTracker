@@ -2,7 +2,7 @@ package seedu.mtracker.console;
 
 import seedu.mtracker.commands.EditInstrumentCommand;
 import seedu.mtracker.commons.Validate;
-import seedu.mtracker.error.OperationAbortedError;
+import seedu.mtracker.commons.error.OperationAbortedError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -23,6 +23,8 @@ public class EditInstrumentParser extends InputParser {
     protected static final String EXPIRY_ATTRIBUTE = "expiry";
     protected static final String DONE_ATTRIBUTE = "done-status";
     protected static final String WORKSPACE = EditInstrumentCommand.COMMAND_WORD;
+
+    public static final double UNDEFINED_PAST_RETURN_VALUE = -101;
 
     public void editNameParameter(String instrumentType, HashSet<String> parametersGiven)
             throws OperationAbortedError {
@@ -82,12 +84,12 @@ public class EditInstrumentParser extends InputParser {
         if (!parametersGiven.contains(RETURN_ATTRIBUTE)) {
             return;
         }
-        String inputReturn;
-        do {
-            TextUi.displayEditReturn();
-            inputReturn = getUserInput(WORKSPACE);
-            checkIfAbort(inputReturn, WORKSPACE);
-        } while (!Validate.isValidPastReturns(inputReturn));
+        TextUi.displayEditReturn();
+        String inputReturn = getUserInput(WORKSPACE);
+        checkIfAbort(inputReturn, WORKSPACE);
+        if (!Validate.isValidPastReturns(inputReturn)) {
+            inputReturn = String.valueOf(UNDEFINED_PAST_RETURN_VALUE);
+        }
         editedParameters.put(RETURN_ATTRIBUTE, inputReturn);
     }
 

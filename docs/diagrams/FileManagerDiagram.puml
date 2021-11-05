@@ -2,40 +2,50 @@
 !include Styles.puml
 'https://plantuml.com/class-diagram
 
-Package "filemanager"  <<Rectangle>>{
-     Class Storage COLOR_STORAGE
-     Class InstrumentDecoder COLOR_STORAGE
-     Class InstrumentEncoder COLOR_STORAGE
-     Class XYZDecoder COLOR_STORAGE
+Class main COLOR_MAIN
+
+Package "filemanager"  <<Rectangle>> {
+     Class Storage COLOR_STORAGE {
+     + loadFileData(InstrumentManager)
+     + writeFileData(ArrayList<Instrument>)
+     + updateFileData(ArrayList<Instrument>)
+     }
+     Class InstrumentDecoder COLOR_STORAGE {
+     + {static} readFile(InstrumentManager, List<String>)
+     + {static} addSavedInstrumentToList(InstrumentManager, String[])
+     }
+     Class InstrumentEncoder COLOR_STORAGE {
+     + {static} editFile(String, FileWriter)
+     + {static} writeFile(ArrayList<Instrument>, FileWriter)
+     }
+     Class XYZDecoder COLOR_STORAGE {
+     + {static} addXYZToList(String[], InstrumentManager)
+     }
+
 }
 
+show Storage members
+show InstrumentDecoder members
+show InstrumentEncoder members
+show XYZDecoder members
+
 Class TextUi COLOR_UI
-
-    Class FileLoadError COLOR_ERROR
-    Class InvalidInstrumentInFileError COLOR_ERROR
-    Class ErrorMessage COLOR_ERROR
-
 Class "{abstract}\n Instrument" as Instrument COLOR_MODEL
 Class InstrumentManager COLOR_MODEL
 
+main -down[COLOR_MAIN]->"1" Storage
 
 Class outside COLOR_WHITE
- outside -down[COLOR_STORAGE]-> Storage
- XYZDecoder -up[COLOR_STORAGE].|>InstrumentDecoder
- Storage -right[COLOR_STORAGE].> InstrumentEncoder
+ Storage -down[COLOR_STORAGE].> InstrumentEncoder
  Storage -down[COLOR_STORAGE].> InstrumentDecoder
  Storage -down[COLOR_STORAGE].> Instrument
  Storage -down[COLOR_STORAGE].> InstrumentManager
- Storage -up[COLOR_STORAGE].> FileLoadError
- Storage -up[COLOR_STORAGE].> ErrorMessage
  InstrumentEncoder -down[COLOR_STORAGE].> Instrument
- InstrumentEncoder -up[COLOR_STORAGE].> ErrorMessage
-
  InstrumentDecoder -down[COLOR_STORAGE].> InstrumentManager
- InstrumentDecoder -right[COLOR_STORAGE].> Instrument
- InstrumentDecoder -down[COLOR_STORAGE].> InvalidInstrumentInFileError
- XYZDecoder -up[COLOR_STORAGE].> Instrument
+ InstrumentDecoder -down[COLOR_STORAGE].> Instrument
+ XYZDecoder -right[COLOR_STORAGE].> Instrument
  XYZDecoder -down[COLOR_STORAGE].> InstrumentManager
+ XYZDecoder -up[COLOR_STORAGE]-|>InstrumentDecoder
  Storage -left[COLOR_STORAGE].> TextUi
  InstrumentDecoder -left[COLOR_STORAGE].> TextUi
 
