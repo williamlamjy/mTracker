@@ -2,7 +2,17 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Referenced the AB3 developer guide [here](https://se-education.org/addressbook-level3/DeveloperGuide.html).
+
+## Setting up and getting started
+First fork the mTracker repo from [here](https://github.com/AY2122S1-CS2113T-T12-1/tp) and clone the fork into your computer.
+
+Do read through this developer guide to understand the project software architecture.
+
+Writing code:
+  * Before starting, please familiarise yourself with the Java code style guidelines [here](https://se-education.org/guides/conventions/java/index.html).
+  * After coding if you would like to create a pull request, please ensure that your code passes the github checks before
+  asking for a reviewer.
 
 ## Design
 
@@ -276,11 +286,17 @@ appropriate message through the `TextUi` class.
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
+**Target user profile:**
+ * Busy individuals that need a convenient way to record financial information on the go.
+ * Familiar with using the terminal and command-line interface applications.
+ * Individuals that consistently keep up to date with financial news and events.
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+Given that financial information is rapidly evolving and growing beyond what the standard brokerages
+and traditional financial news provide. It is readily and easily accessible to any individual with an internet connection
+via social media and public forums. Therefore, mTracker aims to empower individuals with the capability to note and organise 
+such information in a quick and easy way. 
 
 ## User Stories
 
@@ -296,8 +312,103 @@ appropriate message through the `TextUi` class.
 
 ## Glossary
 
-* *glossary item* - Definition
+* *Instrument* - Represents assets that can be traded. Most common examples are stocks and foreign currency.
+* *Etf* - Known as Exchange Traded Funds, they are a type of instrument that tracks the performance of a particular asset. 
+* *Forex* - Foreign exchange market for trading currencies. An example include is the USDSGD exchange rate.
+* *Crypto* - Cryptocurrencies are digital currencies that is secured by cryptography methods.
+* *Stock* - Shares of a company that provide the owner a certain level of ownership of said company.
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+In this section are some instructions for getting started with manual testing of the program.
+Feel free to come up with more test cases to try for yourself.
+
+###Launch and start up
+1) Ensure that you have `Java 11` installed.
+2) Download the latest jar file [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/releases). 
+3) In your terminal under the directory where the jar file is saved type `java -jar TP.jar`.
+   1) If it is successful you should see a greeting message like this. If you get an error message please create a new issue
+    [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/issues) along with a description of the error.
+```
+________________________________________________________________________________
+            _________                      __
+           |  _   _  |                    [  |  _
+_ .--..--.|_/ | | \_| .--.  ,--.   .---.  | | / ] .---.  _ .--.
+[ `.-. .-. |   | |  [ `/'`\]`'_\ : / /'`\] | '' < / /__\\[ `/'`\]
+| | | | | |  _| |_  | |    /| | |,| \__.  | |`\ \| \__., | |
+[___||__||__]|_____|[___]   \'-;__/'.___.'[__|  \_]'.__.'[___]
+
+Hello! I am mTracker, your personal assistant bot that
+helps you keep track of the markets.
+What should I do for you now?
+________________________________________________________________________________
+mTracker$main>
+```
+4. Refer to the [userguide](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/UserGuide.md) to understand how
+   to use the program.
+
+###Add functionality Testing
+To test the add functionality, there are a few test cases you can try:
+1. Testcase: Adding a stock with an empty name. 
+
+   Expected: An error message that says name cannot be empty.
+2. Testcase: Adding a crypto with an empty current price. 
+
+   Expected: An error message that says current price cannot be empty.
+3. Testcase: Adding an etf with a past return of -150.
+
+   Expected: An error message that says past returns cannot be less than -100 and input will be ignored.     
+
+###Edit functionality Testing
+To test the edit functionality, there are a few test cases you can try:
+1. Testcase: Edit an instrument at an index that is out of range.
+   
+   Expected: An error message that says instrument does not exist at that index.
+2. Testcase: Enter parameters that are not supported by stock type. For example `entry-price`.
+  
+   Expected: An error message that says the parameter is invalid and will be ignored.
+
+###Delete functionality Testing
+To test the delete functionality, there are a few test cases you can try:
+1. Testcase: Delete an instrument at an index that is out of range.
+
+   Expected: An error message that says instrument does not exist at that index.
+2. Testcase: Enter command `delete notANumber`.
+
+   Expected: An error message that says the index provided is invalid.
+
+###Done functionality Testing
+To test the done functionality, there are a few test cases you can try:
+1. Testcase: Set an already done instrument as done.
+
+   Expected: An error message that says instrument is already done.
+2. Testcase: Enter command `done notANumber`.
+
+   Expected: An error message that says the index provided is invalid.
+
+###Find functionality Testing
+To test the done functionality, there are a few test cases you can try:
+1. Testcase: Enter command `find`.
+
+   Expected: An error message that says please enter a search string.
+2. Testcase: Enter command `find test`.
+   
+   Expected: Ensure that the instrument names shown contains the search string `test`.
+
+###List functionality Testing
+To test the list functionality, there are a few test cases you can try:
+1. Testcase: Enter command `list extraneous parameters`.
+
+   Expected: It should perform the list action ignoring the additional words.
+
+###View functionality Testing
+To test the view functionality, there are a few test cases you can try:
+1. Testcase: Enter command `view 2 5`.
+
+   Expected: It should return only the second instrument in the list ignoring the value `5`.
+
+###Loading storage file testing
+To test the program against corruption of saved file data, there are a few test cases you can try:
+1. Testcase: In the saved file write `This is a fake instrument`.
+
+   Expected: It should say that incorrect instrument type is provided and that instrument would be ignored.
