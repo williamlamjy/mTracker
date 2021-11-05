@@ -233,13 +233,12 @@ From the notes in the sequence diagram above, for every attribute in the instrum
 prompt to get user to provide information for that attribute. This is done through a series of methods in
 the `TextUi` class.
 
-<<<<<<< HEAD
 ### Edit instrument feature
 <img src="images/EditInstrumentSequenceDiagram.png" width="600"/>
 <img src="images/EditRefrence1.png" width="600"/>
 <img src="images/EditRefrence2.png" width="600"/>
 <img src="images/EditRefrence3.png" width="600"/>
-=======
+
 ### Loading pre-existing data
 The loading of pre-existing data is mainly handled by the `filemanager` and `model` components. The main method calls 
 `Storage#loadFileData(instrumentManager)` which uses `InstrumentDecoder#readFile(instrumentManager, fileData)`. This method calls 
@@ -279,7 +278,6 @@ The figure below represents the sequence diagram when the user stores current da
 
 If storing the file data has any error, it will throw the corresponding file error. This file error will display the
 appropriate message through the `TextUi` class.
->>>>>>> master
 
 ## Product scope
 ### Target user profile
