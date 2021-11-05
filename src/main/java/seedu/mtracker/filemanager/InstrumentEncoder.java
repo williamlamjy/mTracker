@@ -38,7 +38,7 @@ public class InstrumentEncoder {
      *
      * @param instruments Instruments to be saved.
      * @param writeToFile FileWriter that writes to the file.
-     * @throws IOException
+     * @throws IOException When there is an error writing to the file.
      */
     public static void writeFile(ArrayList<Instrument> instruments, FileWriter writeToFile) throws IOException {
         instruments.stream()
