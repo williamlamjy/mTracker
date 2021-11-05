@@ -179,7 +179,7 @@ the user wishes to `list` out all the instruments in the watchlist or if s/he wa
 one such instrument in detail. The following sequence diagram explains `TextUi`'s interaction with an `Instrument` class when
 ListCommand.execute() calls the `displayInstrument()` method when the user wishes to list out all instruments in the watchlist:
 
-<img src="images/TextUiDisplayInstrumentGeneralParams.png" width="200"/>
+<img src="images/TextUiDisplayInstrumentGeneralParams.png" width="850"/>
 
 Hence, in this scenario, `TextUi` relies on the particular `Instrument` class's `getGeneralParams()` method to retrieve
 all the general financial information recorded for that instrument like the instrument's name,
@@ -190,7 +190,7 @@ A similar approach is also taken when the user wishes to `view` a particular ins
 instead of a loop being iterated over in the `displayInstruments()` method, the `getAllParams()` method is called instead
 which fetches all the financial information of that particular instrument back to `TextUi` for display:
 
-<img src="images/TextUiDisplayInstrumentAllParams.png" width="200"/>
+<img src="images/TextUiDisplayInstrumentAllParams.png" width="850"/>
 
 ### FileManager Component
 The `filemanager` package contains the `Storage`, `InstrumentEncoder` and `InstrumentDecoder` classes. It is defined in
