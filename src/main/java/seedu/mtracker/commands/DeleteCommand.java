@@ -3,6 +3,7 @@ package seedu.mtracker.commands;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
+//@@author theodorekwok
 public class DeleteCommand extends IndexedCommand {
     public static final String COMMAND_WORD = "delete";
 

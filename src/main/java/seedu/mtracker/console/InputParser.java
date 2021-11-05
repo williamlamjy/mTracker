@@ -48,6 +48,7 @@ public class InputParser {
         inputScanner = new Scanner(System.in);
     }
 
+    //@@author theodorekwok
     public static String getUserInput(String currentWorkspace) {
         TextUi.displayPrompter(currentWorkspace);
         return inputScanner.nextLine().trim();
@@ -76,6 +77,7 @@ public class InputParser {
         return deleteCommand;
     }
 
+    //@@author
     public ViewCommand getViewInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
             throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError {
         ViewCommand viewCommand = new ViewCommand();
@@ -147,6 +149,7 @@ public class InputParser {
         return findCommand;
     }
 
+    //@@author theodorekwok
     public Command filterByCommandType(String[] commandComponents, ArrayList<Instrument> instruments)
             throws Exception {
         Command command;
@@ -197,6 +200,7 @@ public class InputParser {
         }
     }
 
+    //@@author
     public void constructSearchString(String[] commandComponents) throws InvalidEmptySearchStringError {
         try {
             searchString = commandComponents[SEARCH_STR_INDEX_START];

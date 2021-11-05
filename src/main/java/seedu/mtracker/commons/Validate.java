@@ -104,6 +104,7 @@ public class Validate {
         return true;
     }
 
+    //@@author theodorekwok
     public static void checkPriceIsEmpty(String price) throws InvalidEmptyPriceError {
         if (price.isEmpty()) {
             throw new InvalidEmptyPriceError();
@@ -147,6 +148,7 @@ public class Validate {
         }
     }
 
+    //@@author
     public static void checkIsNotDone(ArrayList<Instrument> instruments, int instrumentNumber)
             throws AlreadyDoneError {
         Instrument instrument = instruments.get(instrumentNumber);
@@ -156,6 +158,7 @@ public class Validate {
         }
     }
 
+    //@@author theodorekwok
     public static void checkSentimentIsEmpty(String sentiment) throws InvalidEmptySentimentError {
         if (sentiment.isEmpty()) {
             throw new InvalidEmptySentimentError();
@@ -171,6 +174,7 @@ public class Validate {
         }
     }
 
+    //@@author
     public static boolean isValidSentiment(String sentiment) {
         try {
             checkSentimentIsEmpty(sentiment);
@@ -183,6 +187,7 @@ public class Validate {
         return true;
     }
 
+    //@@author theodorekwok
     public static void checkPastReturnIsDouble(String pastReturn) throws InvalidPastReturnTypeError {
         try {
             Double.parseDouble(pastReturn);
@@ -198,6 +203,7 @@ public class Validate {
         }
     }
 
+    //@@author
     public static boolean isValidPastReturns(String pastReturn) {
         if (pastReturn.isEmpty()) {
             return false;
@@ -213,6 +219,7 @@ public class Validate {
         return true;
     }
 
+    //@@author theodorekwok
     public static void checkDateIsEmpty(String expiryInput) throws InvalidEmptyExpiryDateError {
         if (expiryInput.isEmpty()) {
             throw new InvalidEmptyExpiryDateError();
@@ -247,6 +254,7 @@ public class Validate {
         return true;
     }
 
+    //@@author
     public static void checkStatusIsEmpty(String doneStatus) throws InvalidEmptyStatusError {
         if (doneStatus.isEmpty()) {
             throw new InvalidEmptyStatusError();
@@ -276,6 +284,7 @@ public class Validate {
         return !input.isEmpty();
     }
 
+    //@@author theodorekwok
     public static boolean isValidStatus(String savedStatusFromFile) {
         boolean isValidDoneStatus = savedStatusFromFile.equals(STATUS_DONE);
         boolean isValidNotDoneStatus = savedStatusFromFile.equals(STATUS_NOT_DONE);

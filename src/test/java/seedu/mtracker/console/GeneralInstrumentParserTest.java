@@ -22,6 +22,7 @@ public abstract class GeneralInstrumentParserTest {
         return String.format(input, System.lineSeparator());
     }
 
+    //@@author theodorekwok
     void simulateConsoleInput(String input) {
         String formattedInput = formatConsoleInput(input);
         ByteArrayInputStream inputStreamBytes = new ByteArrayInputStream(formattedInput.getBytes());
@@ -34,6 +35,7 @@ public abstract class GeneralInstrumentParserTest {
         }
     }
 
+    //@@author
     void verifyInstrumentParameters(AddInstrumentParser testInstrumentParser, String[] expectedParameters)
             throws OperationAbortedError {
         testInstrumentParser.initParameters();

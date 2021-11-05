@@ -152,6 +152,7 @@ class InstrumentDecoderTest {
                     .addSavedInstrumentToList(instrumentManager, INVALID_INSTRUMENT_TYPE_TEXT_SEGMENT));
     }
 
+    //@@author theodorekwok
     @Test
     void addSavedInstrumentToList_emptyName_expectException() {
         assertThrows(InvalidEmptyNameInFileError.class,

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author theodorekwok
 class InputParserTest {
     public static final int VALID_INDEX = 1;
 
@@ -99,6 +100,7 @@ class InputParserTest {
         assertEquals(command.getIndex(), VALID_INDEX - INDEX_OFFSET);
     }
 
+    //@@author
     @Test
     void getDoneInstrumentCommand_noIndexProvided_expectException() {
         assertThrows(InvalidEmptyIndexError.class,

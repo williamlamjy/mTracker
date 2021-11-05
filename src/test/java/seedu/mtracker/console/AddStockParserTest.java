@@ -5,6 +5,7 @@ import seedu.mtracker.commons.error.OperationAbortedError;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author theodorekwok
 class AddStockParserTest extends GeneralInstrumentParserTest {
     public static final int PARAMETER_SIZE = 4;
 
@@ -71,6 +72,7 @@ class AddStockParserTest extends GeneralInstrumentParserTest {
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + ABORT;
 
+    //@@author theodorekwok
     void testStockParameters(String input, String[] expectedStockParameters) throws OperationAbortedError {
         simulateConsoleInput(input);
         AddStockParser testStockParser = new AddStockParser();

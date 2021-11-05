@@ -1,5 +1,6 @@
 package seedu.mtracker.commons.error;
 
+//@@author theodorekwok
 public class InvalidIndexError extends Exception {
     @Override
     public String getMessage() {

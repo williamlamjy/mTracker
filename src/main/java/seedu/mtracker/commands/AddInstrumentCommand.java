@@ -2,6 +2,7 @@ package seedu.mtracker.commands;
 
 import seedu.mtracker.model.Instrument;
 
+//@@author theodorekwok
 public class AddInstrumentCommand extends Command {
 
     public static final String COMMAND_WORD = "add";

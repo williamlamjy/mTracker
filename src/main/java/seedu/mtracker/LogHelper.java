@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+//@@author theodorekwok
 public class LogHelper {
 
     public static final String LOG_FILE_NAME = "logger.log";

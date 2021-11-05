@@ -5,6 +5,7 @@ import seedu.mtracker.commands.AddStockCommand;
 import seedu.mtracker.commons.error.OperationAbortedError;
 import seedu.mtracker.ui.TextUi;
 
+//@@author theodorekwok
 public class AddStockParser extends AddInstrumentParser {
 
     public static String STOCK_TYPE = "stock";

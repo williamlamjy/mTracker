@@ -36,6 +36,7 @@ public class InstrumentManager {
         instruments.add(addedInstrument);
     }
 
+    //@@author theodorekwok
     public ArrayList<Instrument> findInstruments(String keyword) {
         return (ArrayList<Instrument>) instruments.stream()
                 .filter((instrument) -> instrument.getName().contains(keyword))
@@ -46,6 +47,7 @@ public class InstrumentManager {
         instruments.remove(index);
     }
 
+    //@@author
     public void editInstrument(int index, HashMap<String, String> editedParameters) {
         Instrument instrument = instruments.get(index);
         instrument.editParameter(editedParameters);
