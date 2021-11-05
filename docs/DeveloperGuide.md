@@ -190,7 +190,7 @@ A similar approach is also taken when the user wishes to `view` a particular ins
 instead of a loop being iterated over in the `displayInstruments()` method, the `getAllParams()` method is called instead
 which fetches all the financial information of that particular instrument back to `TextUi` for display:
 
-<img src="images/TextUiDisplayInstrumentAllParams.png" width="650"/>
+<img src="images/TextUiDisplayInstrumentAllParams.png" width="550"/>
 
 ### FileManager Component
 The `filemanager` package contains the `Storage`, `InstrumentEncoder` and `InstrumentDecoder` classes. It is defined in
