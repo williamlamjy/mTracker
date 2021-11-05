@@ -30,7 +30,7 @@ public class EditInstrumentParser extends InputParser {
     public static final double UNDEFINED_PAST_RETURN_VALUE = -101;
 
     /**
-     * Gets the user new name input and store it in a hashmap that maps the name attribute to input.
+     * Gets the user new name input and stores it in a hashmap that maps the name attribute to input.
      * Process is skipped if the user does not want to edit the name.
      *
      * @param instrumentType The type of instrument user is editing.
@@ -52,7 +52,7 @@ public class EditInstrumentParser extends InputParser {
     }
 
     /**
-     * Gets the user new current price input and store it in a hashmap that maps the current price attribute to input.
+     * Gets the user new current price input and stores it in a hashmap that maps the current price attribute to input.
      * Process is skipped if the user does not want to edit the current price.
      *
      * @param parametersGiven The set of parameters of the instrument the user wants to edit.
@@ -73,7 +73,7 @@ public class EditInstrumentParser extends InputParser {
     }
 
     /**
-     * Gets the user new sentiment input and store it in a hashmap that maps the sentiment attribute to input.
+     * Gets the user new sentiment input and stores it in a hashmap that maps the sentiment attribute to input.
      * Process is skipped if the user does not want to edit the sentiment.
      *
      * @param parametersGiven The set of parameters of the instrument the user wants to edit.
@@ -94,7 +94,7 @@ public class EditInstrumentParser extends InputParser {
     }
 
     /**
-     * Gets the user new remarks input and store it in a hashmap that maps the remarks attribute to input.
+     * Gets the user new remarks input and stores it in a hashmap that maps the remarks attribute to input.
      * Process is skipped if the user does not want to edit the remarks.
      *
      * @param parametersGiven The set of parameters of the instrument the user wants to edit.
@@ -112,7 +112,7 @@ public class EditInstrumentParser extends InputParser {
     }
 
     /**
-     * Gets the user new past returns input and store it in a hashmap that maps the past returns attribute to input.
+     * Gets the user new past returns input and stores it in a hashmap that maps the past returns attribute to input.
      * Process is skipped if the user does not want to edit the past returns.
      *
      * @param parametersGiven The set of parameters of the instrument the user wants to edit.
@@ -133,7 +133,7 @@ public class EditInstrumentParser extends InputParser {
     }
 
     /**
-     * Gets the user new entry price input and store it in a hashmap that maps the entry price attribute to input.
+     * Gets the user new entry price input and stores it in a hashmap that maps the entry price attribute to input.
      * Process is skipped if the user does not want to edit the entry price.
      *
      * @param parametersGiven The set of parameters of the instrument the user wants to edit.
@@ -154,7 +154,7 @@ public class EditInstrumentParser extends InputParser {
     }
 
     /**
-     * Gets the user new exit price input and store it in a hashmap that maps the exit price attribute to input.
+     * Gets the user new exit price input and stores it in a hashmap that maps the exit price attribute to input.
      * Process is skipped if the user does not want to edit the exit price.
      *
      * @param parametersGiven The set of parameters of the instrument the user wants to edit.
@@ -175,7 +175,7 @@ public class EditInstrumentParser extends InputParser {
     }
 
     /**
-     * Gets the user new done status input and store it in a hashmap that maps the status attribute to input.
+     * Gets the user new done status input and stores it in a hashmap that maps the status attribute to input.
      * Process is skipped if the user does not want to edit the status.
      *
      * @param parametersGiven The set of parameters of the instrument the user wants to edit.
@@ -195,7 +195,7 @@ public class EditInstrumentParser extends InputParser {
     }
 
     /**
-     * Gets the user new expiry input and store it in a hashmap that maps the expiry attribute to input.
+     * Gets the user new expiry input and stores it in a hashmap that maps the expiry attribute to input.
      * Process is skipped if the user does not want to edit the expiry.
      *
      * @param parametersGiven The set of parameters of the instrument the user wants to edit.

@@ -15,7 +15,7 @@ public class AddEtfParser extends AddInstrumentParser {
     public static final double UNDEFINED_PAST_RETURN_VALUE = -101;
 
     /**
-     * Queries the user for etf remarks.
+     * Queries and gets etf remarks from the user.
      *
      * @return User remarks input.
      */
@@ -25,7 +25,7 @@ public class AddEtfParser extends AddInstrumentParser {
     }
 
     /**
-     * Queries the user for etf past returns.
+     * Queries and gets etf past returns from the user.
      *
      * @return User past returns input.
      * @throws OperationAbortedError If the user wants to abort the add etf process.
@@ -62,7 +62,7 @@ public class AddEtfParser extends AddInstrumentParser {
     }
 
     /**
-     * Gets from the user parameters that are specific to adding a new etf instrument.
+     * Gets etf specific parameters from the user when adding a new etf instrument.
      *
      * @throws OperationAbortedError If the user wants to abort the add etf process.
      */

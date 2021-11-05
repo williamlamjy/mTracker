@@ -36,7 +36,7 @@ public abstract class AddInstrumentParser extends InputParser {
     }
 
     /**
-     * Queries the user for instrument name.
+     * Queries and gets instrument name from the user.
      *
      * @param instrumentType The type of instrument the user is adding.
      * @return User name input.
@@ -63,7 +63,7 @@ public abstract class AddInstrumentParser extends InputParser {
     }
 
     /**
-     * Queries the user for instrument current price.
+     * Queries and gets instrument current price from the user.
      *
      * @return User current price input.
      */
@@ -89,7 +89,7 @@ public abstract class AddInstrumentParser extends InputParser {
     }
 
     /**
-     * Queries the user for instrument sentiment.
+     * Queries and gets instrument sentiment from the user.
      *
      * @return User sentiment input.
      */

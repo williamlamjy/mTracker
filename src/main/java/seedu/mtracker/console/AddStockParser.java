@@ -13,7 +13,7 @@ public class AddStockParser extends AddInstrumentParser {
     public static String STOCK_TYPE = "stock";
 
     /**
-     * Queries the user for stock remarks.
+     * Queries and gets stock remarks from the user.
      *
      * @return User remarks. input.
      */
@@ -34,7 +34,7 @@ public class AddStockParser extends AddInstrumentParser {
     }
 
     /**
-     * Gets from the user parameters that are specific to adding a new stock instrument.
+     * Gets stock specific parameters from the user when adding a new stock instrument.
      *
      * @throws OperationAbortedError If the user wants to abort the add stock process.
      */

@@ -14,7 +14,7 @@ public class AddCryptoParser extends AddInstrumentParser {
     public static String INSTRUMENT_TYPE = "crypto";
 
     /**
-     * Queries the user for crypto remarks.
+     * Queries and gets crypto remarks from the user.
      *
      * @return User remarks input.
      */
@@ -24,7 +24,7 @@ public class AddCryptoParser extends AddInstrumentParser {
     }
 
     /**
-     * Queries the user for crypto expiry date.
+     * Queries and gets crypto expiry date from the user.
      *
      * @return User expiry date input.
      */
@@ -60,7 +60,7 @@ public class AddCryptoParser extends AddInstrumentParser {
     }
 
     /**
-     * Gets from the user parameters that are specific to adding a new crypto instrument.
+     * Gets crypto specific parameters from the user when adding a new crypto instrument.
      *
      * @throws OperationAbortedError If the user wants to abort the add crypto process.
      */

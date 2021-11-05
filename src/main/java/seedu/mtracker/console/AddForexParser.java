@@ -13,7 +13,7 @@ public class AddForexParser extends AddInstrumentParser {
     public static String INSTRUMENT_TYPE = "forex";
 
     /**
-     * Queries the user for forex remarks.
+     * Queries and gets forex remarks from the user.
      *
      * @return User remarks input.
      */
@@ -23,7 +23,7 @@ public class AddForexParser extends AddInstrumentParser {
     }
 
     /**
-     * Queries the user for forex expiry date.
+     * Queries and gets forex expiry date from the user.
      *
      * @return User expiry date input.
      */
@@ -33,7 +33,7 @@ public class AddForexParser extends AddInstrumentParser {
     }
 
     /**
-     * Queries the user for forex entry price.
+     * Queries and gets forex entry price from the user.
      *
      * @return User entry price input.
      */
@@ -43,7 +43,7 @@ public class AddForexParser extends AddInstrumentParser {
     }
 
     /**
-     * Queries the user for forex exit price.
+     * Queries and gets forex exit price from the user.
      *
      * @return User exit price input.
      */
@@ -112,7 +112,7 @@ public class AddForexParser extends AddInstrumentParser {
     }
 
     /**
-     * Gets from the user parameters that are specific to adding a new forex instrument.
+     * Gets forex specific parameters from the user parameters when adding a new forex instrument.
      *
      * @throws OperationAbortedError If the user wants to abort the add forex process.
      */
