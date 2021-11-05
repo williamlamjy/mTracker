@@ -120,24 +120,35 @@ The ui component only contains the TextUi.java file and its API can be found
 [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/src/main/java/seedu/mtracker/ui/TextUi.java).
 
 It is a basic java class containing string attributes and helper methods for displaying the different features, texts and
-instructions to the user.
-As detailed by the UML diagrams in the other sections above, many other parser and command classes utilize
-the methods contained in `TextUi` to display instructions on the console for required user input. Hence, most other
-classes of this program are dependent on the methods of this `TextUi` class for their proper interaction with the user.
+instructions to the user. Hence, **under the single-responsibility principle (SRP), its only responsibility is to act as the primary interaction platform
+between the user and the rest of the program**.
 
-Thus, the `TextUi` class is highly-cohesive as it contains all the user text display methods for the various classes
-in itself. This enhances maintainability as only this class has to be modified to achieve a small change in
-the desired texted or instruction to be displayed by various classes, and increases reusability of the module
-as all aspects of texts or instruments to be displayed on the console have been localized.
+As detailed by the UML diagrams in the Architecture sections above, **many other parser and command classes utilize
+the methods contained in `TextUi`** to display instructions on the console for required user input. Hence, **most other
+classes of this program are dependent on the methods of this `TextUi` class** for their proper interaction with the user.
 
-Moreover, the following sequence diagram explains `TextUi`'s interaction with an `Instrument` class. This primarily occurs with the calling of the
-`displayInstrument()` method when the user wishes to list out all instruments of the watchlist:
+Thus, the **`TextUi` class is highly-cohesive** as it contains all the user text display methods for the various classes
+in itself. This **enhances maintainability** as only this class **has to be modified to achieve a small change in
+the desired texted or instruction to be displayed by various classes**, and **increases reusability of the module**
+as all aspects of texts or instruments to be displayed on the console **have been localized**.
 
-<>
+On the other hand, the `TextUi` class itself **has a dependency only on an Instrument class** whenever 
+the user wishes to `list` out all the instruments in the watchlist or if s/he wants to `view`
+one such instrument in detail. The following sequence diagram explains `TextUi`'s interaction with an `Instrument` class when 
+ListCommand.execute() calls the `displayInstrument()` method when the user wishes to list out all instruments in the watchlist:
 
-Hence, in this scenario, `TextUi` relies on the particular `Instrument` class's `toList()` method to retrieve
-all the financial information recorded for that instrument, and then displays them in an appropriate format to
+<img src="images/TextUiDisplayInstrumentGeneralParams.png" width="200"/>
+
+Hence, in this scenario, `TextUi` relies on the particular `Instrument` class's `getGeneralParams()` method to retrieve
+all the general financial information recorded for that instrument like the instrument's name,
+current price, and sentiment. Through this sequence process, `TextUi` displays this information in an appropriate format to
 the user.
+
+A similar approach is also taken when the user wishes to `view` a particular instrument. However,
+instead of a loop being iterated over in the `displayInstruments()` method, the `getAllParams()` method is called instead
+which fetches all the financial information of that particular instrument back to `TextUi` for display:
+
+<img src="images/TextUiDisplayInstrumentAllParams.png" width="200"/>
 
 ### Command Component
 
