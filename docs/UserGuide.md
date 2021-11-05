@@ -471,6 +471,8 @@ There were no instruments found for keyword, JPY.
 ________________________________________________________________________________
 ```
 
+_**Note: SEARCH_STRING is case-sensitive.**_
+
 ### 2.8.0 Exiting the bot: `bye`
 When you wish to quit the mTracker program, simply type in `bye`.
 
