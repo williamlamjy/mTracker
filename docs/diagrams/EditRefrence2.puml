@@ -11,45 +11,19 @@ activate EditInstrumentParser
 EditInstrumentParser -> EditInstrumentParser: getEditedParameters({"name"}, instrument)
 activate EditInstrumentParser
 
-EditInstrumentParser -> EditInstrumentParser: editNameParameter("etf",{"name"})
+loop valid name is entered
+EditInstrumentParser -> EditInstrumentParser: editNameParameter("stock", {"name"})
 activate EditInstrumentParser
 EditInstrumentParser --> EditInstrumentParser
 deactivate EditInstrumentParser
+end
 
-EditInstrumentParser -> EditInstrumentParser: editCurrentPriceParameter({"name"})
+loop valid parameter is entered
+EditInstrumentParser -> EditInstrumentParser: editXYZParameter({"name"})
 activate EditInstrumentParser
 EditInstrumentParser --> EditInstrumentParser
 deactivate EditInstrumentParser
-
-EditInstrumentParser -> EditInstrumentParser: editSentimentsParameter({"name"})
-activate EditInstrumentParser
-EditInstrumentParser --> EditInstrumentParser
-deactivate EditInstrumentParser
-
-EditInstrumentParser -> EditInstrumentParser: editReturnParameter({"name"})
-activate EditInstrumentParser
-EditInstrumentParser --> EditInstrumentParser
-deactivate EditInstrumentParser
-
-EditInstrumentParser -> EditInstrumentParser: editEntryPriceParameter({"name"})
-activate EditInstrumentParser
-EditInstrumentParser --> EditInstrumentParser
-deactivate EditInstrumentParser
-
-EditInstrumentParser -> EditInstrumentParser: editExitPriceParameter({"name"})
-activate EditInstrumentParser
-EditInstrumentParser --> EditInstrumentParser
-deactivate EditInstrumentParser
-
-EditInstrumentParser -> EditInstrumentParser: editExpiryParameter({"name"})
-activate EditInstrumentParser
-EditInstrumentParser --> EditInstrumentParser
-deactivate EditInstrumentParser
-
-EditInstrumentParser -> EditInstrumentParser: editRemarksParameter({"name"})
-activate EditInstrumentParser
-EditInstrumentParser --> EditInstrumentParser
-deactivate EditInstrumentParser
+end
 
 EditInstrumentParser --> EditInstrumentParser
 deactivate EditInstrumentParser

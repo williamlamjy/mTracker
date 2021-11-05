@@ -17,20 +17,25 @@ activate InputParser
 InputParser -> InputParser: getEditInstrumentCommand({"edit", "1"},\n instruments)
 activate InputParser
 
-InputParser -> InputParser: getAndValidateIndexNumber({"edit", "1"})
+InputParser -> InputParser: getAndValidateIndexNumber({"edit", "1"}, instrument)
+
 activate InputParser
 InputParser --> InputParser
 deactivate InputParser
 
-ref over InputParser
-get parameters from user and
-check if parameter entered is valid parameters
-endref
+InputParser -> InputParser: get parameters from user and check if parameter entered is valid parameters
+activate InputParser
+InputParser --> InputParser
+deactivate InputParser
+
 
 create EditInstrumentParser
 InputParser -> EditInstrumentParser: EditInstrumentParser()
+activate EditInstrumentParser
+EditInstrumentParser --> InputParser
+deactivate EditInstrumentParser
 
-InputParser -> EditInstrumentParser: getParametersToEdit({"name"}, instrument, 1);
+InputParser -> EditInstrumentParser: createEditCommand({"name"}, instrument, 1);
 activate EditInstrumentParser
 
 ref over EditInstrumentParser
@@ -38,18 +43,20 @@ check if parameter is entered and add to HashMap
 endref
 
 create EditInstrumentCommand
-EditInstrumentParser -> EditInstrumentCommand
+EditInstrumentParser -> EditInstrumentCommand: EditInstrumentCommand()
+activate EditInstrumentCommand
+EditInstrumentCommand --> EditInstrumentParser
+deactivate EditInstrumentCommand
 
 EditInstrumentParser -> EditInstrumentCommand: setIndex()
 activate EditInstrumentCommand
 EditInstrumentCommand --> EditInstrumentParser
 deactivate EditInstrumentCommand
 
-EditInstrumentParser --> InputParser: return HashSet of parameters to edit
+EditInstrumentParser --> InputParser: return editInstrumentCommand
 deactivate EditInstrumentParser
 
 InputParser --> InputParser: return editInstrumentCommand
-
 deactivate InputParser
 [<--InputParser: return editInstrumentCommand
 deactivate InputParser

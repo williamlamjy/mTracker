@@ -29,15 +29,15 @@ activate Instrument
 Instrument --> EditInstrumentCommand: return parameters before edit
 deactivate Instrument
 
-EditInstrumentCommand-> InstrumentManager: editInstrument(1, {"name", ""new name"})
+EditInstrumentCommand-> InstrumentManager: editInstrument(1, {"name", "new name"})
 activate InstrumentManager
 
 InstrumentManager -> InstrumentManager: getInstrument(1)
 activate InstrumentManager
-InstrumentManager --> InstrumentManager
+InstrumentManager --> InstrumentManager: return instrument
 deactivate InstrumentManager
 
-InstrumentManager -> Instrument: editParameter()
+InstrumentManager -> Instrument: editParameter({"name", "new name"})
 activate Instrument
 
 ref over Instrument
@@ -55,12 +55,12 @@ activate Instrument
 Instrument --> EditInstrumentCommand: return parameters after edit
 deactivate Instrument
 
-EditInstrumentCommand-> TextUi: displayEditBeforeAfter(parameters before, parameters after)
+EditInstrumentCommand-> TextUi: displayEditBeforeAfter(parameters before edit, parameters after edit)
 activate TextUi
 
 TextUi --> EditInstrumentCommand
 deactivate TextUi
 
-[<--EditInstrumentCommand
+[<--EditInstrumentCommand: return "edit"
 deactivate EditInstrumentCommand
 @enduml

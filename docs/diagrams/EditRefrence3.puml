@@ -5,7 +5,7 @@
 participant ":Instrument" as Instrument COLOR_MODEL
 group sd check if parameter exist in HashMap and edit
 
-[->Instrument: editParameter()
+[->Instrument: editParameter({"name", "new name"})
 activate Instrument
 
 Instrument ->Instrument: editGeneralParameter({"name, new name"})
@@ -14,11 +14,7 @@ Instrument -> Instrument: editName({"name, new name"})
 activate Instrument
 Instrument --> Instrument
 deactivate Instrument
-Instrument -> Instrument: editCurrentPrice({"name, new name"})
-activate Instrument
-Instrument --> Instrument
-deactivate Instrument
-Instrument -> Instrument: editSentiment({"name, new name"})
+Instrument -> Instrument: editXYZ({"name, new name"})
 activate Instrument
 Instrument --> Instrument
 deactivate Instrument
