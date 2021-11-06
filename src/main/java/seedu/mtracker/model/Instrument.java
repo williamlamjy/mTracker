@@ -24,8 +24,11 @@ public abstract class Instrument {
     protected static final String NAME_ATTRIBUTE = "name";
     protected static final String CURRENT_PRICE_ATTRIBUTE = "current-price";
     protected static final String SENTIMENT_ATTRIBUTE = "sentiment";
-    protected static final String REMARK_ATTRIBUTE = "remark";
+    protected static final String REMARK_ATTRIBUTE = "remarks";
+    protected static final String DONE_ATTRIBUTE = "done-status";
     protected static final String SEPARATOR = ", ";
+    protected static final String DONE_INDICATOR = "done";
+    protected static final String UNDONE_INDICATOR = "undone";
     protected static final String REMARKS_FIELD = "Remarks: ";
 
     private static final String TYPE_FIELD = "Type: ";
@@ -48,6 +51,10 @@ public abstract class Instrument {
 
     public void markAsDone() {
         isDone = true;
+    }
+
+    public void markAsNotDone() {
+        isDone = false;
     }
 
     public String getStatusIcon() {
@@ -77,6 +84,18 @@ public abstract class Instrument {
         setName(editedParameters.get(NAME_ATTRIBUTE));
     }
 
+    public void editDoneStatus(HashMap<String, String> editedParameters) {
+        if (!editedParameters.containsKey(DONE_ATTRIBUTE)) {
+            return;
+        }
+        if (editedParameters.get(DONE_ATTRIBUTE).equals(DONE_INDICATOR)) {
+            markAsDone();
+            return;
+        }
+        markAsNotDone();
+        assert (editedParameters.get(DONE_ATTRIBUTE).equals(UNDONE_INDICATOR));
+    }
+
     public void editCurrentPrice(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(CURRENT_PRICE_ATTRIBUTE)) {
             return;
@@ -96,6 +115,7 @@ public abstract class Instrument {
         editName(editedParameters);
         editCurrentPrice(editedParameters);
         editSentiment(editedParameters);
+        editDoneStatus(editedParameters);
     }
 
     public void editParameter(HashMap<String, String> editedParameters) {
@@ -111,7 +131,8 @@ public abstract class Instrument {
     }
 
     public String editParameterInstructions() {
-        return NAME_ATTRIBUTE + SEPARATOR
+        return DONE_ATTRIBUTE + SEPARATOR
+                + NAME_ATTRIBUTE + SEPARATOR
                 + CURRENT_PRICE_ATTRIBUTE + SEPARATOR
                 + SENTIMENT_ATTRIBUTE;
     }
@@ -130,12 +151,12 @@ public abstract class Instrument {
                 + SPACE + name + SEMICOLON_SEP + currentPrice + SEMICOLON_SEP + sentiment;
     }
 
-
     public HashSet<String> getValidAttribute() {
         validAttribute.add(NAME_ATTRIBUTE);
         validAttribute.add(CURRENT_PRICE_ATTRIBUTE);
         validAttribute.add(SENTIMENT_ATTRIBUTE);
         validAttribute.add(REMARK_ATTRIBUTE);
+        validAttribute.add(DONE_ATTRIBUTE);
         return validAttribute;
     }
 }

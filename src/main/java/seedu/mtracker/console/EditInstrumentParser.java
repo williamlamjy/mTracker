@@ -2,13 +2,16 @@ package seedu.mtracker.console;
 
 import seedu.mtracker.commands.EditInstrumentCommand;
 import seedu.mtracker.commons.Validate;
-import seedu.mtracker.error.OperationAbortedError;
+import seedu.mtracker.commons.error.OperationAbortedError;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
 import java.util.HashMap;
 import java.util.HashSet;
 
+/**
+ * A class responsible for parsing inputs when the user wants to edit an existing instrument.
+ */
 public class EditInstrumentParser extends InputParser {
 
     protected static HashMap<String, String> editedParameters;
@@ -16,56 +19,88 @@ public class EditInstrumentParser extends InputParser {
     protected static final String NAME_ATTRIBUTE = "name";
     protected static final String CURRENT_PRICE_ATTRIBUTE = "current-price";
     protected static final String SENTIMENT_ATTRIBUTE = "sentiment";
-    protected static final String REMARK_ATTRIBUTE = "remark";
-    protected static final String RETURN_ATTRIBUTE = "returns";
+    protected static final String REMARK_ATTRIBUTE = "remarks";
+    protected static final String RETURN_ATTRIBUTE = "past-returns";
     protected static final String ENTRY_PRICE_ATTRIBUTE = "entry-price";
     protected static final String EXIT_PRICE_ATTRIBUTE = "exit-price";
     protected static final String EXPIRY_ATTRIBUTE = "expiry";
+    protected static final String DONE_ATTRIBUTE = "done-status";
     protected static final String WORKSPACE = EditInstrumentCommand.COMMAND_WORD;
 
-    public static void editNameParameter(String instrumentType, HashSet<String> parametersGiven)
+    protected static final double UNDEFINED_PAST_RETURN_VALUE = -101;
+
+    /**
+     * Gets the user new name input and stores it in a hashmap that maps the name attribute to input.
+     * Process is skipped if the user does not want to edit the name.
+     *
+     * @param instrumentType The type of instrument user is editing.
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
+    public void editNameParameter(String instrumentType, HashSet<String> parametersGiven)
             throws OperationAbortedError {
         if (!parametersGiven.contains(NAME_ATTRIBUTE)) {
             return;
         }
-        TextUi.displayEditName();
         String inputName;
         do {
+            TextUi.displayEditName();
             inputName = getUserInput(WORKSPACE);
             checkIfAbort(inputName, WORKSPACE);
         } while (!Validate.isValidName(inputName, instrumentType));
         editedParameters.put(NAME_ATTRIBUTE, inputName);
     }
 
-    public static void editCurrentPriceParameter(HashSet<String> parametersGiven)
+    /**
+     * Gets the user new current price input and stores it in a hashmap that maps the current price attribute to input.
+     * Process is skipped if the user does not want to edit the current price.
+     *
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
+    public void editCurrentPriceParameter(HashSet<String> parametersGiven)
             throws OperationAbortedError {
         if (!parametersGiven.contains(CURRENT_PRICE_ATTRIBUTE)) {
             return;
         }
-        TextUi.displayEditCurrentPrice();
         String inputCurrentPrice;
         do {
+            TextUi.displayEditCurrentPrice();
             inputCurrentPrice = getUserInput(WORKSPACE);
             checkIfAbort(inputCurrentPrice, WORKSPACE);
         } while (!Validate.isValidPrice(inputCurrentPrice));
         editedParameters.put(CURRENT_PRICE_ATTRIBUTE, inputCurrentPrice);
     }
 
-    public static void editSentimentsParameter(HashSet<String> parametersGiven)
+    /**
+     * Gets the user new sentiment input and stores it in a hashmap that maps the sentiment attribute to input.
+     * Process is skipped if the user does not want to edit the sentiment.
+     *
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
+    public void editSentimentsParameter(HashSet<String> parametersGiven)
             throws OperationAbortedError {
         if (!parametersGiven.contains(SENTIMENT_ATTRIBUTE)) {
             return;
         }
-        TextUi.displayEditSentiment();
         String inputSentiment;
         do {
+            TextUi.displayEditSentiment();
             inputSentiment = getUserInput(WORKSPACE).toLowerCase();
             checkIfAbort(inputSentiment, WORKSPACE);
         } while (!Validate.isValidSentiment(inputSentiment));
         editedParameters.put(SENTIMENT_ATTRIBUTE, inputSentiment);
     }
 
-    public static void editRemarksParameter(HashSet<String> parametersGiven)
+    /**
+     * Gets the user new remarks input and stores it in a hashmap that maps the remarks attribute to input.
+     * Process is skipped if the user does not want to edit the remarks.
+     *
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
+    public void editRemarksParameter(HashSet<String> parametersGiven)
             throws OperationAbortedError {
         if (!parametersGiven.contains(REMARK_ATTRIBUTE)) {
             return;
@@ -76,63 +111,118 @@ public class EditInstrumentParser extends InputParser {
         editedParameters.put(REMARK_ATTRIBUTE, inputRemark);
     }
 
-    public static void editReturnParameter(HashSet<String> parametersGiven)
+    /**
+     * Gets the user new past returns input and stores it in a hashmap that maps the past returns attribute to input.
+     * Process is skipped if the user does not want to edit the past returns.
+     *
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
+    public void editReturnParameter(HashSet<String> parametersGiven)
             throws OperationAbortedError {
         if (!parametersGiven.contains(RETURN_ATTRIBUTE)) {
             return;
         }
         TextUi.displayEditReturn();
-        String inputReturn;
-        do {
-            inputReturn = getUserInput(WORKSPACE);
-            checkIfAbort(inputReturn, WORKSPACE);
-        } while (!Validate.isValidPastReturns(inputReturn));
+        String inputReturn = getUserInput(WORKSPACE);
+        checkIfAbort(inputReturn, WORKSPACE);
+        if (!Validate.isValidPastReturns(inputReturn)) {
+            inputReturn = String.valueOf(UNDEFINED_PAST_RETURN_VALUE);
+        }
         editedParameters.put(RETURN_ATTRIBUTE, inputReturn);
     }
 
-    public static void editEntryPriceParameter(HashSet<String> parametersGiven)
+    /**
+     * Gets the user new entry price input and stores it in a hashmap that maps the entry price attribute to input.
+     * Process is skipped if the user does not want to edit the entry price.
+     *
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
+    public void editEntryPriceParameter(HashSet<String> parametersGiven)
             throws OperationAbortedError {
         if (!parametersGiven.contains(ENTRY_PRICE_ATTRIBUTE)) {
             return;
         }
-        TextUi.displayEditEntryPrice();
         String inputEntryPrice;
         do {
+            TextUi.displayEditEntryPrice();
             inputEntryPrice = getUserInput(WORKSPACE);
             checkIfAbort(inputEntryPrice, WORKSPACE);
         } while (!Validate.isValidPrice(inputEntryPrice));
         editedParameters.put(ENTRY_PRICE_ATTRIBUTE, inputEntryPrice);
     }
 
-    public static void editExitPriceParameter(HashSet<String> parametersGiven)
+    /**
+     * Gets the user new exit price input and stores it in a hashmap that maps the exit price attribute to input.
+     * Process is skipped if the user does not want to edit the exit price.
+     *
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
+    public void editExitPriceParameter(HashSet<String> parametersGiven)
             throws OperationAbortedError {
         if (!parametersGiven.contains(EXIT_PRICE_ATTRIBUTE)) {
             return;
         }
-        TextUi.displayEditExitPrice();
         String inputExitPrice;
         do {
+            TextUi.displayEditExitPrice();
             inputExitPrice = getUserInput(WORKSPACE);
             checkIfAbort(inputExitPrice, WORKSPACE);
         } while (!Validate.isValidPrice(inputExitPrice));
         editedParameters.put(EXIT_PRICE_ATTRIBUTE, inputExitPrice);
     }
 
-    public static void editExpiryParameter(HashSet<String> parametersGiven)
+    /**
+     * Gets the user new done status input and stores it in a hashmap that maps the status attribute to input.
+     * Process is skipped if the user does not want to edit the status.
+     *
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
+    public void editDoneStatus(HashSet<String> parametersGiven) throws OperationAbortedError {
+        if (!parametersGiven.contains(DONE_ATTRIBUTE)) {
+            return;
+        }
+        String inputStatus;
+        do {
+            TextUi.displayEditStatus();
+            inputStatus = getUserInput(WORKSPACE).toLowerCase();
+            checkIfAbort(inputStatus, WORKSPACE);
+        } while (!Validate.isValidInputStatus(inputStatus));
+        editedParameters.put(DONE_ATTRIBUTE, inputStatus);
+    }
+
+    /**
+     * Gets the user new expiry input and stores it in a hashmap that maps the expiry attribute to input.
+     * Process is skipped if the user does not want to edit the expiry.
+     *
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
+    public void editExpiryParameter(HashSet<String> parametersGiven)
             throws OperationAbortedError {
         if (!parametersGiven.contains(EXPIRY_ATTRIBUTE)) {
             return;
         }
-        TextUi.displayEditExpiry();
         String inputExpiry;
         do {
+            TextUi.displayEditExpiry();
             inputExpiry = getUserInput(WORKSPACE);
             checkIfAbort(inputExpiry, WORKSPACE);
         } while (!Validate.isValidExpiry(inputExpiry));
         editedParameters.put(EXPIRY_ATTRIBUTE, inputExpiry);
     }
 
-    public static void getEditedParameters(HashSet<String> parametersGiven, Instrument instrumentOfInterest)
+    /**
+     * Gets from the user all the new values to needed to the update the existing instrument.
+     *
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @param instrumentOfInterest The instrument the user wants to edit.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
+    public void getEditedParameters(HashSet<String> parametersGiven, Instrument instrumentOfInterest)
             throws OperationAbortedError {
         String instrumentType = instrumentOfInterest.getType().toLowerCase();
         editNameParameter(instrumentType, parametersGiven);
@@ -143,16 +233,35 @@ public class EditInstrumentParser extends InputParser {
         editExitPriceParameter(parametersGiven);
         editExpiryParameter(parametersGiven);
         editRemarksParameter(parametersGiven);
+        editDoneStatus(parametersGiven);
     }
 
-    public EditInstrumentCommand getParametersToEdit(HashSet<String> parametersGiven,
+    /**
+     * Creates the edit command and gets from the user the new values to update the instrument with.
+     *
+     * @param parametersGiven The set of parameters of the instrument the user wants to edit.
+     * @param instrumentOfInterest The instrument the user wants to edit.
+     * @param instrumentIndex The index number of the instrument to edit.
+     * @return A command for editing an existing instrument.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     */
+    public EditInstrumentCommand createEditCommand(HashSet<String> parametersGiven,
                                                      Instrument instrumentOfInterest, int instrumentIndex)
             throws OperationAbortedError {
         EditInstrumentCommand command;
         editedParameters = new HashMap<>();
-        EditInstrumentParser.getEditedParameters(parametersGiven, instrumentOfInterest);
+        getEditedParameters(parametersGiven, instrumentOfInterest);
         command = new EditInstrumentCommand(editedParameters);
         command.setIndex(instrumentIndex);
         return command;
+    }
+
+    /**
+     * Gets the hashmap containing the instrument attributes and its edited value.
+     *
+     * @return A hashmap that contains the instrument attributes and its new value.
+     */
+    public static HashMap<String, String> getEditedParametersHash() {
+        return editedParameters;
     }
 }

@@ -1,11 +1,11 @@
 package seedu.mtracker.console;
 
 import org.junit.jupiter.api.Test;
-import seedu.mtracker.error.OperationAbortedError;
+import seedu.mtracker.commons.error.OperationAbortedError;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class AddStockParserTest extends AddInstrumentParserTest {
+class AddStockParserTest extends GeneralInstrumentParserTest {
     public static final int PARAMETER_SIZE = 4;
 
     public static final String USER_INPUT_NO_REMARKS = "TTTXXX"

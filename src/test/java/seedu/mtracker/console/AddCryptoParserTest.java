@@ -1,11 +1,11 @@
 package seedu.mtracker.console;
 
 import org.junit.jupiter.api.Test;
-import seedu.mtracker.error.OperationAbortedError;
+import seedu.mtracker.commons.error.OperationAbortedError;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class AddCryptoParserTest extends AddInstrumentParserTest {
+class AddCryptoParserTest extends GeneralInstrumentParserTest {
     public static final int PARAMETER_SIZE = 5;
 
     public static final String USER_INPUT_NO_REMARKS = "TTTXXX"
@@ -41,7 +41,6 @@ class AddCryptoParserTest extends AddInstrumentParserTest {
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + " ";
-
 
     public static final String USER_INPUT_TRY_INVALID_PRICE = SEPARATOR_SPECIFIER + "TTTXXX"
             + SEPARATOR_SPECIFIER + "2sd3.4"

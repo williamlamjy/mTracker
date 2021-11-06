@@ -1,0 +1,51 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include Styles.puml
+
+box model COLOR_MODEL_SEGMENT
+participant ":Stock" as Instrument COLOR_MODEL
+end box
+
+activate Instrument
+group sd check if parameter exist in HashMap and edit
+
+Instrument -> Instrument: editGeneralParameter({"name, new name"})
+activate Instrument
+
+Instrument -> Instrument: editName({"name, new name"})
+note left: editName checks if the key "name" exist in HashMap\nand if it exist, it updates the name parameter
+activate Instrument
+Instrument --> Instrument
+deactivate Instrument
+
+Instrument -> Instrument: editCurrentPrice({"name, new name"})
+activate Instrument
+Instrument --> Instrument
+deactivate Instrument
+
+Instrument -> Instrument: editSentiment({"name, new name"})
+activate Instrument
+Instrument --> Instrument
+deactivate Instrument
+
+note left: The rest of the edit methods are similar to editName.
+
+Instrument -> Instrument: editDoneStatus({"name, new name"})
+activate Instrument
+Instrument --> Instrument
+deactivate Instrument
+
+Instrument --> Instrument
+deactivate Instrument
+
+Instrument -> Instrument: editRemark({"name, new name"})
+activate Instrument
+
+Instrument --> Instrument
+deactivate Instrument
+
+end
+
+deactivate Instrument
+
+@enduml
