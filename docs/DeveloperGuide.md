@@ -238,22 +238,22 @@ The execution of setting the new values of the parameters is handled by the `Edi
 
 The figure below represents the sequence diagram when the user wants to edit the name a stock:
 
-<img src="images/EditInstrumentSequenceDiagram.png" width="700"/>
+<img src="images/EditInstrumentSequenceDiagram.png" width="800"/>
 
 More details about the reference frame for getting the new edited parameters from the user is given below:
 
-<img src="images/EditRefrence.png" width="700"/>
+<img src="images/EditRefrence.png" width="800"/>
 
 From the note in the reference diagram above, each parameter the user wants to edit,
 there would be an instructional prompt to guide the user to give a valid input. This is done through the `TextUi` class.
 
 Below is the sequence diagram detailing the command execution of setting the stock with the new values (in this case is setting the name parameter to new name):
 
-<img src="images/EditExecuteSequenceDiagram.png" width="700"/>
+<img src="images/EditExecuteSequenceDiagram.png" width="800"/>
 
 More details about checking if parameters exist in HashMap and to edit the parameters if it exists is shown below:
 
-<img src="images/EditExecuteRefrence.png" width="700"/>
+<img src="images/EditExecuteRefrence.png" width="800"/>
 
 The process for editing other instruments or other parameters follow a similar process to the sequence above.
 The main difference would be the parameters collected from the user and the parameters allowed to be edited.
