@@ -74,8 +74,7 @@ public class Etf extends Instrument {
 
     /**
      * Get the value past return in string.
-     * @return Empty string if past returns is undefined.
-     * else the value of the past return in string.
+     * @return Empty string if past returns is undefined else the value of the past return in string.
      */
     public String getReturns() {
         if (pastReturns == UNDEFINED_VALUE) {
