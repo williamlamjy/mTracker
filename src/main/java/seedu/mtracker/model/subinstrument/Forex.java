@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.time.LocalDate;
 
 /**
- * Represent a Forex type instrument.
+ * Represents a Forex type instrument.
  */
 public class Forex extends Instrument {
 
@@ -53,7 +53,7 @@ public class Forex extends Instrument {
     }
 
     /**
-     * Format date into String.
+     * Formats date into String.
      *
      * @return Expiry date formatted into string.
      */
@@ -78,7 +78,7 @@ public class Forex extends Instrument {
     }
 
     /**
-     * Set remarks parameter to the new remarks if remarks parameter is being edited.
+     * Sets remarks parameter to the new remarks if remarks parameter is being edited.
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
@@ -90,7 +90,7 @@ public class Forex extends Instrument {
     }
 
     /**
-     * Set expiry parameter to the new expiry if expiry parameter is being edited.
+     * Sets expiry parameter to the new expiry if expiry parameter is being edited.
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
@@ -103,7 +103,7 @@ public class Forex extends Instrument {
     }
 
     /**
-     * Set entry price parameter to the new price if entry price parameter is being edited.
+     * Sets entry price parameter to the new price if entry price parameter is being edited.
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
@@ -116,7 +116,7 @@ public class Forex extends Instrument {
     }
 
     /**
-     * Set exit price parameter to the new price if exit price parameter is being edited.
+     * Sets exit price parameter to the new price if exit price parameter is being edited.
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
@@ -129,7 +129,7 @@ public class Forex extends Instrument {
     }
 
     /**
-     * Set all instrument specific parameters being edited to its new values.
+     * Sets all instrument specific parameters being edited to its new values.
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */

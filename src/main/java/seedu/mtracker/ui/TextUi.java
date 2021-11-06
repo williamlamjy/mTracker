@@ -52,7 +52,7 @@ public class TextUi {
     private static final int NONE_FOUND = 0;
 
     /**
-     * Display the new instrument added along with its parameters.
+     * Displays the new instrument added along with its parameters.
      *
      * @param newInstrument The new instrument added to the list.
      */
@@ -61,14 +61,14 @@ public class TextUi {
     }
 
     /**
-     * Prompt user to enter the type of instrument being added.
+     * Prompts user to enter the type of instrument being added.
      */
     public static void displayAddInstrumentFirstInstruction() {
         System.out.println(TAB + TYPE_HEADER);
     }
 
     /**
-     * Prompt user to enter the name of the instrument being added.
+     * Prompts user to enter the name of the instrument being added.
      *
      * @param instrumentType The type of the instrument being added.
      */
@@ -77,56 +77,56 @@ public class TextUi {
     }
 
     /**
-     * Prompt user to enter the current price of the instrument being added.
+     * Prompts user to enter the current price of the instrument being added.
      */
     public static void displayAddInstrumentCurrentPriceInstruction() {
         System.out.println(TAB + CURRENT_PRICE_HEADER);
     }
 
     /**
-     * Prompt user to enter the sentiment of the instrument being added.
+     * Prompts user to enter the sentiment of the instrument being added.
      */
     public static void displayAddInstrumentSentimentInstruction() {
         System.out.println(TAB + SENTIMENT_HEADER);
     }
 
     /**
-     * Prompt user to enter the remarks of the instrument being added.
+     * Prompts user to enter the remarks of the instrument being added.
      */
     public static void displayAddRemarksInstruction() {
         System.out.println(TAB + REMARKS_HEADER);
     }
 
     /**
-     * Prompt user to enter the expiry of the instrument being added.
+     * Prompts user to enter the expiry of the instrument being added.
      */
     public static void displayAddExpiryInstruction() {
         System.out.println(TAB + EXPIRY_HEADER);
     }
 
     /**
-     * Prompt user to enter the entry price of the instrument being added.
+     * Prompts user to enter the entry price of the instrument being added.
      */
     public static void displayAddEntryPriceInstruction() {
         System.out.println(TAB + ENTRY_PRICE_HEADER);
     }
 
     /**
-     * Prompt user to enter the exit price of the instrument being added.
+     * Prompts user to enter the exit price of the instrument being added.
      */
     public static void displayAddExitPriceInstruction() {
         System.out.println(TAB + EXIT_PRICE_HEADER);
     }
 
     /**
-     * Prompt user to enter the past returns of the instrument being added.
+     * Prompts user to enter the past returns of the instrument being added.
      */
     public static void displayAddPastReturnsInstruction() {
         System.out.println(TAB + RETURNS_HEADER);
     }
 
     /**
-     * Display all the instruments and their general parameters.
+     * Displays all the instruments and their general parameters.
      *
      * @param instruments The list containing all the instruments.
      */
@@ -139,7 +139,7 @@ public class TextUi {
     }
 
     /**
-     * Display all the instruments and their general parameters, along with separators and header for readability.
+     * Displays all the instruments and their general parameters, along with separators and header for readability.
      *
      * @param instruments The list containing all instruments.
      */
@@ -151,8 +151,7 @@ public class TextUi {
     }
 
     /**
-     * Display to user the number of instruments found or
-     * message stating no instrument found if no instruments is found.
+     * Displays to user the number of instruments found or no instrument is found.
      *
      * @param numFound The number of instruments found.
      * @param searchTerm The keyword being search.
@@ -166,7 +165,7 @@ public class TextUi {
     }
 
     /**
-     * Display to the user the list of instruments with name containing a specific keyword.
+     * Displays to the user the list of instruments with name containing a specific keyword.
      *
      * @param instruments The list of instruments with name containing that keyword.
      * @param searchString The keyword being used to search.
@@ -179,7 +178,7 @@ public class TextUi {
     }
 
     /**
-     * Concat the instrument with its index and its general parameters.
+     * Concatenates the instrument with its index and its general parameters.
      *
      * @param idx The index of the instrument.
      * @param instrument The instrument to be displayed.
@@ -190,7 +189,7 @@ public class TextUi {
     }
 
     /**
-     * Display all the parameters of an instrument to the user.
+     * Displays all the parameters of an instrument to the user.
      *
      * @param instrument The instrument to display to the user.
      */
@@ -201,7 +200,7 @@ public class TextUi {
     }
 
     /**
-     * Inform the user of the instrument that has been marked as done.
+     * Informs the user of the instrument that has been marked as done.
      *
      * @param instrument The instrument that is marked as done.
      */
@@ -212,7 +211,7 @@ public class TextUi {
     }
 
     /**
-     * Inform the user that an instrument has been deleted from the list.
+     * Informs the user that an instrument has been deleted from the list.
      *
      * @param instrument The instrument that is deleted.
      */
@@ -223,21 +222,21 @@ public class TextUi {
     }
 
     /**
-     * Inform the user that the text file for saving cannot be detected and a new one will be created.
+     * Informs the user that the text file for saving cannot be detected and a new one will be created.
      */
     public static void displayCreateFile() {
         System.out.println("Unable to find a saved file. Creating a new one now...");
     }
 
     /**
-     * Inform the user that a text file used for saving have been detected and its content will be read.
+     * Informs the user that a text file used for saving have been detected and its content will be read.
      */
     public static void displayLoadingFile() {
         System.out.println("Found a saved file. Loading the saved data now...");
     }
 
     /**
-     * Display the respective error message to the user when an error is encountered.
+     * Displays the respective error message to the user when an error is encountered.
      *
      * @param e The error being encountered.
      */
@@ -246,7 +245,7 @@ public class TextUi {
     }
 
     /**
-     * Inform the user that an instrument in the text file is corrupted and will not be read from the file.
+     * Informs the user that an instrument in the text file is corrupted and will not be read from the file.
      *
      * @param idx The index of the instrument.
      */
@@ -256,7 +255,7 @@ public class TextUi {
     }
 
     /**
-     * Display a farewell message when the user exit the program.
+     * Displays a farewell message when the user exit the program.
      */
     public static void displayExitMessage() {
         System.out.println(BYE_LOGO);
@@ -265,7 +264,7 @@ public class TextUi {
     }
 
     /**
-     * Display to the user the current workspace the user is in.
+     * Displays to the user the current workspace the user is in.
      *
      * @param workspace The current workspace the user is in.
      */
@@ -275,7 +274,7 @@ public class TextUi {
     }
 
     /**
-     * Prompt the user to enter the parameters to edit.
+     * Prompts the user to enter the parameters to edit.
      *
      * @param instrument The instrument being edited.
      */
@@ -286,7 +285,7 @@ public class TextUi {
     }
 
     /**
-     * Inform the user that a certain input parameters is invalid and will not be processed.
+     * Informs the user that a certain input parameters is invalid and will not be processed.
      *
      * @param inputAttribute The input parameters that is invalid.
      */
@@ -295,70 +294,70 @@ public class TextUi {
     }
 
     /**
-     * Prompt the user to enter the new name.
+     * Prompts the user to enter the new name.
      */
     public static void displayEditName() {
         System.out.println(TAB + EDIT_NAME_MESSAGE);
     }
 
     /**
-     * Prompt the user to enter the new current price.
+     * Prompts the user to enter the new current price.
      */
     public static void displayEditCurrentPrice() {
         System.out.println(TAB + EDIT_CURRENT_PRICE_MESSAGE);
     }
 
     /**
-     * Prompt the user to enter the new sentiment value.
+     * Prompts the user to enter the new sentiment value.
      */
     public static void displayEditSentiment() {
         System.out.println(TAB + EDIT_SENTIMENT_MESSAGE);
     }
 
     /**
-     * Prompt the user to enter the new remarks.
+     * Prompts the user to enter the new remarks.
      */
     public static void displayEditRemark() {
         System.out.println(TAB + EDIT_REMARKS_MESSAGE);
     }
 
     /**
-     * Prompt the user to enter the new past return value.
+     * Prompts the user to enter the new past return value.
      */
     public static void displayEditReturn() {
         System.out.println(TAB + EDIT_RETURN_MESSAGE);
     }
 
     /**
-     * Prompt the user to enter the new entry price.
+     * Prompts the user to enter the new entry price.
      */
     public static void displayEditEntryPrice() {
         System.out.println(TAB + EDIT_ENTRY_MESSAGE);
     }
 
     /**
-     * Prompt the user to enter the new exit price.
+     * Prompts the user to enter the new exit price.
      */
     public static void displayEditExitPrice() {
         System.out.println(TAB + EDIT_EXIT_MESSAGE);
     }
 
     /**
-     * Prompt the user to enter the new expiry value.
+     * Prompts the user to enter the new expiry value.
      */
     public static void displayEditExpiry() {
         System.out.println(TAB + EDIT_EXPIRY_MESSAGE);
     }
 
     /**
-     * Prompt the user to enter the new done status.
+     * Prompts the user to enter the new done status.
      */
     public static void displayEditStatus() {
         System.out.println(TAB + EDIT_STATUS_MESSAGE);
     }
 
     /**
-     * Display the parameters of the instrument before and after editing.
+     * Displays the parameters of the instrument before and after editing.
      *
      * @param beforeEdit The parameters of the instrument before editing.
      * @param afterEdit The parameters of the instrument after editing.
@@ -374,7 +373,7 @@ public class TextUi {
     }
 
     /**
-     * Display the parameters of the instrument before and after editing if changes were made,
+     * Displays the parameters of the instrument before and after editing if changes were made,
      * else display that no changes were made.
      *
      * @param beforeEdit The parameters of the instrument before editing.
@@ -389,14 +388,14 @@ public class TextUi {
     }
 
     /**
-     * Inform the user no changes were made to if no changes were made in the edit function.
+     * Informs the user no changes were made to if no changes were made in the edit function.
      */
     public static void displayEditNoChange() {
         System.out.println("No changes to instrument was made.");
     }
 
     /**
-     * Display the message that greet the user on start up.
+     * Displays the message that greet the user on start up.
      */
     public static void greetAtStartUp() {
         System.out.println(LINE_DECORATOR);

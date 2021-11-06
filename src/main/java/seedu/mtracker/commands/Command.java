@@ -4,6 +4,9 @@ import seedu.mtracker.model.InstrumentManager;
 
 import java.util.ArrayList;
 
+/**
+ * Responsible for all different type of user commands.
+ */
 public abstract class Command {
 
     protected InstrumentManager instrumentManager;

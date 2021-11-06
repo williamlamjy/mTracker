@@ -54,21 +54,21 @@ public abstract class Instrument {
     }
 
     /**
-     * Set instrument as done.
+     * Sets instrument as done.
      */
     public void markAsDone() {
         isDone = true;
     }
 
     /**
-     * Set instrument as not done.
+     * Sets instrument as not done.
      */
     public void markAsNotDone() {
         isDone = false;
     }
 
     /**
-     * Get the icon representing the done status of the instrument.
+     * Gets the icon representing the done status of the instrument.
      *
      * @return DONE_SYMBOL if instrument is marked as done and NOT_DONE_SYMBOL if instrument is not marked as done.
      */
@@ -93,7 +93,7 @@ public abstract class Instrument {
     }
 
     /**
-     * Set name parameter to the new name if name parameter is being edited.
+     * Sets name parameter to the new name if name parameter is being edited.
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
@@ -105,7 +105,7 @@ public abstract class Instrument {
     }
 
     /**
-     * Set done status parameter to the new status if done status parameter is being edited.
+     * Sets done status parameter to the new status if done status parameter is being edited.
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
@@ -122,7 +122,7 @@ public abstract class Instrument {
     }
 
     /**
-     * Set current price parameter to the new price if current price parameter is being edited.
+     * Sets current price parameter to the new price if current price parameter is being edited.
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
@@ -135,7 +135,7 @@ public abstract class Instrument {
     }
 
     /**
-     * Set sentiment parameter to the new sentiment if sentiment parameter is being edited.
+     * Sets sentiment parameter to the new sentiment if sentiment parameter is being edited.
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
@@ -147,7 +147,7 @@ public abstract class Instrument {
     }
 
     /**
-     * Set name, current price, sentiment and done status to its respective new values, if parameters is being edited.
+     * Sets name, current price, sentiment and done status to its respective new values, if parameters is being edited.
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
@@ -159,7 +159,7 @@ public abstract class Instrument {
     }
 
     /**
-     * Set all the parameters being edited to its new values.
+     * Sets all the parameters being edited to its new values.
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
@@ -170,7 +170,7 @@ public abstract class Instrument {
     public abstract String getType();
 
     /**
-     * Format all the parameters of the instrument to save to text file.
+     * Formats all the parameters of the instrument to save to text file.
      *
      * @return A formatted string to save to text file.
      */
@@ -181,7 +181,7 @@ public abstract class Instrument {
     }
 
     /**
-     * Get all the type of parameters in the instrument in one string.
+     * Gets all the type of parameters in the instrument in one string.
      *
      * @return A string containing all the type of parameters of the instrument.
      */
@@ -195,7 +195,7 @@ public abstract class Instrument {
     public abstract String getTypeIcon();
 
     /**
-     * Get all the parameters of the instrument, with each parameter on a newline.
+     * Gets all the parameters of the instrument, with each parameter on a newline.
      *
      * @return A string containing all parameters of the instrument.
      */
@@ -207,7 +207,7 @@ public abstract class Instrument {
     }
 
     /**
-     * Get the done status, name, current price and sentiment parameters of the instrument.
+     * Gets the done status, name, current price and sentiment parameters of the instrument.
      *
      * @return A string containing the general parameters of the instrument.
      */
@@ -217,7 +217,7 @@ public abstract class Instrument {
     }
 
     /**
-     * Add all the type of parameters in an instrument into a HashSet.
+     * Adds all the type of parameters in an instrument into a HashSet.
      *
      * @return HashSet containing the type of parameters of the instrument.
      */

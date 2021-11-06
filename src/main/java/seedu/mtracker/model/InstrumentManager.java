@@ -17,7 +17,7 @@ public class InstrumentManager {
     }
 
     /**
-     * Allow other class to get the only instance of this class instead of creating a new instance.
+     * Allows other class to get the only instance of this class instead of creating a new instance.
      *
      * @return The only instance of this class.
      */
@@ -45,7 +45,7 @@ public class InstrumentManager {
     }
 
     /**
-     * Responsible for scanning through the list and filtering instruments with name contains a keyword entered by user.
+     * scans through the list and filter instruments with name contains a keyword entered by user.
      *
      * @param keyword The word input by user to find.
      * @return A list containing instruments containing keyword in its name.
@@ -61,7 +61,7 @@ public class InstrumentManager {
     }
 
     /**
-     * Responsible for editing of the parameters of the instruments.
+     * Set the parameters of the instruments to the new values.
      *
      * @param index The index of the instrument to edit.
      * @param editedParameters The parameters to be edited and its new values.

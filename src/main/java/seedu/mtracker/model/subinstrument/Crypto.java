@@ -26,7 +26,7 @@ public class Crypto extends Instrument {
     }
 
     /**
-     * Format date into String.
+     * Formats date into String.
      *
      * @return Expiry date formatted into string.
      */
@@ -43,7 +43,7 @@ public class Crypto extends Instrument {
     }
 
     /**
-     * Set remarks parameter to the new remarks if remarks parameter is being edited.
+     * Sets remarks parameter to the new remarks if remarks parameter is being edited.
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
@@ -55,7 +55,7 @@ public class Crypto extends Instrument {
     }
 
     /**
-     * Set expiry parameter to the new expiry if expiry parameter is being edited.
+     * Sets expiry parameter to the new expiry if expiry parameter is being edited.
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
@@ -68,7 +68,7 @@ public class Crypto extends Instrument {
     }
 
     /**
-     * Set all instrument specific parameters being edited to its new values.
+     * Sets all instrument specific parameters being edited to its new values.
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */

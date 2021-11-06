@@ -5,7 +5,7 @@ import seedu.mtracker.model.Instrument;
 import java.util.HashMap;
 
 /**
- * Represent a Stock type instrument.
+ * Represents a Stock type instrument.
  */
 public class Stock extends Instrument {
 
@@ -27,7 +27,7 @@ public class Stock extends Instrument {
     }
 
     /**
-     * Set remarks parameter to the new remarks if remarks parameter is being edited.
+     * Sets remarks parameter to the new remarks if remarks parameter is being edited.
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */

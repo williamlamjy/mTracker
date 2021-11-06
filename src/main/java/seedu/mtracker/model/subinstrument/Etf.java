@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 /**
- * Represent an Etf type instrument.
+ * Represents an Etf type instrument.
  */
 public class Etf extends Instrument {
 
@@ -35,7 +35,7 @@ public class Etf extends Instrument {
     }
 
     /**
-     * Set past return parameter to the new past return if past return parameter is being edited.
+     * Sets past return parameter to the new past return if past return parameter is being edited.
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
@@ -48,7 +48,7 @@ public class Etf extends Instrument {
     }
 
     /**
-     * Set remarks parameter to the new remarks if remarks parameter is being edited.
+     * Sets remarks parameter to the new remarks if remarks parameter is being edited.
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
@@ -60,7 +60,7 @@ public class Etf extends Instrument {
     }
 
     /**
-     * Set all instrument specific parameters being edited to its new values.
+     * Sets all instrument specific parameters being edited to its new values.
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
