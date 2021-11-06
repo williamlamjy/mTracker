@@ -1,60 +1,5 @@
 @startuml
-
-!define COLOR_WHITE #FFFFFF
-!define COLOR_SILVER #C0C0C0
-!define COLOR_GREY #A5A8AC
-!define COLOR_BLACK #000000
-!define COLOR_BROWN #800000
-!define COLOR_RED #FF0000
-!define COLOR_YELLOW #FFFF00
-!define COLOR_BRIGHT_GREEN #00FF00
-!define COLOR_DARK_GREEN #008000
-!define COLOR_LIGHT_BLUE #00FFFF
-!define COLOR_TEAL #008080
-!define COLOR_DARK_BLUE #0000FF
-!define COLOR_PINK #FF00FF
-!define COLOR_PURPLE #800080
-!define COLOR_FAINT_TEAL #BBF1F1
-!define COLOR_FAINT_GREEN #C2F5CC
-!define COLOR_LIGHT_PURPLE #CBC3E3
-!define COLOR_LIGHT_BROWN #C89D7C
-!define COLOR_ORANGE #CF5300
-!define COLOR_FAINT_ORANGE #FFD580
-
-
-!define COLOR_UI COLOR_DARK_BLUE
-!define COLOR_MAIN COLOR_BLACK
-!define COLOR_COMMANDS COLOR_DARK_GREEN
-!define COLOR_COMMANDS_SEGMENT COLOR_FAINT_GREEN
-!define COLOR_CONSOLE COLOR_TEAL
-!define COLOR_CONSOLE_SEGMENT COLOR_FAINT_TEAL
-!define COLOR_MODEL COLOR_PURPLE
-!define COLOR_MODEL_SEGMENT COLOR_LIGHT_PURPLE
-!define COLOR_STORAGE COLOR_BROWN
-!define COLOR_STORAGE_SEGMENT COLOR_LIGHT_BROWN
-!define COLOR_ERROR COLOR_ORANGE
-!define COLOR_ERROR_SEGMENT COLOR_FAINT_ORANGE
-!define COLOR_COMMONS COLOR_GREY
-!define COLOR_USER COLOR_RED
-
-skinparam Class {
-    FontColor #FFFFFF
-    BorderThickness 1
-    BorderColor #FFFFFF
-    FontName Arial
-}
-
-skinparam Participant {
-    FontColor #FFFFFF
-}
-
-skinparam classAttributeIconSize 0
-skinparam Shadowing false
-
-hide members
-hide footbox
-hide circle
-
+!include Styles.puml
 
 Package "Commands                    "  <<Rectangle>>{
      Class "{abstract}\nCommand" as Command COLOR_COMMANDS {
@@ -62,12 +7,12 @@ Package "Commands                    "  <<Rectangle>>{
      {method} + setParams
      {method} + execute: String
      }
-'     Class ViewCommand COLOR_COMMANDS
+     Class ViewCommand COLOR_COMMANDS
+     Class EditInstrumentCommand COLOR_COMMANDS
+     Class DoneCommand COLOR_COMMANDS
+     Class DeleteCommand COLOR_COMMANDS
+
      Class InvalidCommand COLOR_COMMANDS
-     Class XYZCommand COLOR_COMMANDS
-'     Class EditInstrumentCommand COLOR_COMMANDS
-'     Class DoneCommand COLOR_COMMANDS
-'     Class DeleteCommand COLOR_COMMANDS
      Class ABCCommand COLOR_COMMANDS
      Class AddInstrumentCommand COLOR_COMMANDS
      Class "{abstract}\nIndexedCommand" as IndexedCommand COLOR_COMMANDS
@@ -91,35 +36,24 @@ Class TextUi COLOR_UI
 show Command members
 show InstrumentManager members
 
-Command -down[COLOR_COMMANDS]->"1" InstrumentManager
+Command -up[COLOR_COMMANDS]->"1" InstrumentManager
 InvalidCommand -[COLOR_COMMANDS]-|>Command
-XYZCommand -[COLOR_COMMANDS]-|>Command
+ABCCommand -[COLOR_COMMANDS]-|>Command
 AddInstrumentCommand -[COLOR_COMMANDS]-|>Command
-IndexedCommand -[COLOR_COMMANDS]-|>Command
+IndexedCommand -up[COLOR_COMMANDS]-|>Command
 
 AddXYZCommand -[COLOR_COMMANDS]-|>AddInstrumentCommand
 
-ABCCommand -[COLOR_COMMANDS]-|>IndexedCommand
-'ViewCommand -[COLOR_COMMANDS]-|>IndexedCommand
-'EditInstrumentCommand -[COLOR_COMMANDS]-|>IndexedCommand
-'DoneCommand -[COLOR_COMMANDS]-|>IndexedCommand
-'DeleteCommand -[COLOR_COMMANDS]-|>IndexedCommand
+EditInstrumentCommand -[COLOR_COMMANDS]-|>IndexedCommand
+ViewCommand -[COLOR_COMMANDS]-|>IndexedCommand
+DoneCommand -[COLOR_COMMANDS]-|>IndexedCommand
+DeleteCommand -[COLOR_COMMANDS]-|>IndexedCommand
 
-XYZCommand -left[COLOR_COMMANDS].>TextUi
-ABCCommand -left[COLOR_COMMANDS].>TextUi
-AddXYZCommand -left[COLOR_COMMANDS].>TextUi
-'InvalidCommand -[COLOR_UI].>TextUi
-'ListCommand -[COLOR_UI].>TextUi
-'DeleteCommand -[COLOR_UI].>TextUi
-'DoneCommand -[COLOR_UI].>TextUi
-'EditInstrumentCommand -[COLOR_UI].>TextUi
-'ViewCommand -[COLOR_UI].>TextUi
-'ExitCommand -[COLOR_UI].>TextUi
-'FindCommand -[COLOR_UI].>TextUi
-'
-'AddCryptoCommand -[COLOR_UI].>TextUi
-'AddForexCommand -[COLOR_UI].>TextUi
-'AddEtfCommand -[COLOR_UI].>TextUi
-'AddStockCommand -[COLOR_UI].>TextUi
+AddXYZCommand -[COLOR_COMMANDS].>TextUi
+ABCCommand -[COLOR_COMMANDS].>TextUi
+DeleteCommand -[COLOR_COMMANDS].>TextUi
+DoneCommand -[COLOR_COMMANDS].>TextUi
+EditInstrumentCommand -[COLOR_COMMANDS].>TextUi
+ViewCommand -[COLOR_COMMANDS].>TextUi
 
 @enduml
