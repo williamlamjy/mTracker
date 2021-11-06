@@ -3,41 +3,71 @@
 
 Package "Commands                    "  <<Rectangle>>{
      Class "{abstract}\nCommand" as Command COLOR_COMMANDS {
-     {method} + setData
-     {method} + setParams
-     {method} + execute: String
+     {method} + setData(InstrumentManager)
+     {method} + setParams(ArrayList<String>)
+     {method} + <<abstract>> execute(): String
      }
-     Class ViewCommand COLOR_COMMANDS
-     Class EditInstrumentCommand COLOR_COMMANDS
-     Class DoneCommand COLOR_COMMANDS
-     Class DeleteCommand COLOR_COMMANDS
+     Class ViewCommand COLOR_COMMANDS {
+     {method} + execute(): String
+     }
+     Class EditInstrumentCommand COLOR_COMMANDS {
+     {method} + execute(): String
+     }
+     Class DoneCommand COLOR_COMMANDS {
+     {method} + execute(): String
+     }
+     Class DeleteCommand COLOR_COMMANDS {
+     {method} + execute(): String
+     }
 
-     Class InvalidCommand COLOR_COMMANDS
-     Class ABCCommand COLOR_COMMANDS
-     Class AddInstrumentCommand COLOR_COMMANDS
-     Class "{abstract}\nIndexedCommand" as IndexedCommand COLOR_COMMANDS
+     Class InvalidCommand COLOR_COMMANDS {
+     {method} + execute(): String
+     }
+     Class ABCCommand COLOR_COMMANDS {
+     {method} + execute(): String
+     }
+     Class AddInstrumentCommand COLOR_COMMANDS {
+     {method} + execute(): String
+     }
+     Class "{abstract}\nIndexedCommand" as IndexedCommand COLOR_COMMANDS {
+     {method} + <<abstract>> execute(): String
+     }
 
-     Class AddXYZCommand COLOR_COMMANDS
+     Class AddXYZCommand COLOR_COMMANDS {
+     {method} + execute(): String
+     }
 }
 
 
 Class InstrumentManager COLOR_MODEL {
-    {method} + getSize: int
-    {method} + getInstruments: ArrayList<Instrument>
-    {method} + getInstrument: Instrument
-    {method} + addInstrument: Instrument
-    {method} + findInstruments: ArrayList<Instrument>
-    {method} + deleteInstrument
-    {method} + editInstrument
+    {method} + getSize(): int
+    {method} + getInstruments(): ArrayList<Instrument>
+    {method} + getInstrument(int): Instrument
+    {method} + addInstrument(Instrument): Instrument
+    {method} + findInstruments(String): ArrayList<Instrument>
+    {method} + deleteInstrument(int)
+    {method} + editInstrument(int, Hashmap<String, String>)
 }
 
 Class TextUi COLOR_UI
 
 show Command members
 show InstrumentManager members
+show AddInstrumentCommand members
+show IndexedCommand members
+show InvalidCommand members
+show DeleteCommand members
+show DoneCommand members
+show EditInstrumentCommand members
+show ViewCommand members
+show ABCCommand members
+show AddXYZCommand members
 
 Command -up[COLOR_COMMANDS]->"1" InstrumentManager
 InvalidCommand -[COLOR_COMMANDS]-|>Command
+
+note right of ABCCommand: ABCCommand = ExitCommand, \nFindCommand, \nListCommand
+
 ABCCommand -[COLOR_COMMANDS]-|>Command
 AddInstrumentCommand -[COLOR_COMMANDS]-|>Command
 IndexedCommand -up[COLOR_COMMANDS]-|>Command
@@ -51,6 +81,8 @@ DeleteCommand -[COLOR_COMMANDS]-|>IndexedCommand
 
 AddXYZCommand -[COLOR_COMMANDS].>TextUi
 ABCCommand -[COLOR_COMMANDS].>TextUi
+
+
 DeleteCommand -[COLOR_COMMANDS].>TextUi
 DoneCommand -[COLOR_COMMANDS].>TextUi
 EditInstrumentCommand -[COLOR_COMMANDS].>TextUi
