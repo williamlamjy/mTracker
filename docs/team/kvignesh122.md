@@ -35,9 +35,8 @@ to depend on.
 
 ### Enhancements
 - Improved user-friendliness and aesthetics of program by
-  making list command to display only the 3 main parameters for all instruments
-  in the watchlist. Implemented a separate View feature for user to 
-  take deeper look into any one of the stored financial instruments.
+  making list command to display only the 3 main parameters for all instruments.
+  Implemented a separate View feature instead for user to take deeper look into any one of the stored financial instruments.
 - Implemented abort feature in Add and Edit operations for user to exit
 the process of adding/editing an instrument prematurely.
 - Wrote extensive Junit tests for testing abort and addition of instrument features
