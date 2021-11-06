@@ -171,17 +171,6 @@ Command component:
 * Other than ExitCommand and InvalidCommand, the other command classes are dependent of on the InstrumentManager in order to execute the required actions on the stored instruments.
 * The command classes are dependent on the `TextUi` class. This allows the command class to display its execution results to the user.
 
-
-The figure below represents the sequence diagram when the user executes a done command. In this scenario the user
-gave the command "done 1". Here "done" is the command keyword and "1" represents the current position of the instrument 
-in the list of instruments:
-
-<img src="images/DoneCryptoSequenceDiagram.png" width="1040"/>
-
-More details about the reference frame for executing the done command is shown below:
-
-<img src="images/DoneCryptoExecuteDiagram.png" width="600"/>
-
 ### FileManager Component
 The `filemanager` package contains the `Storage`, `InstrumentEncoder` and `InstrumentDecoder` classes. It is defined in
 the `Storage.java`, `InstrumentEncoder.java` and `InstrumentDecoder.java` respectively. This figure below represents the class diagram of
@@ -210,19 +199,19 @@ a higher level of abstraction.
 ## Implementation
 
 ### Add instrument feature
-The add instrument functionality is mainly handled by the `parser` and `commands` components. Within the `parser`
+The add instrument functionality is mainly handled by the `console` and `commands` components. Within the `console`
 component, the `InputParser` class implements the method `InputParser#getAddInstrumentParameters()`. This method calls
 `AddInstrumentParser#filterByInstrumentType()` which will then guide the user through the process of adding a new
 instrument. 
 
 The figure below represents the sequence diagram when the user wants to add a stock:
 
-<img src="images/AddStockSequenceDiagram.png" width="800"/>
+<img src="images/AddStockSequenceDiagram.png" width="1040"/>
 
 More details about the reference frame for obtaining the stock details and creating the AddStockCommand object are shown
 below.
 
-<img src="images/AddStockSequenceDiagramRef.png" width="600"/>
+<img src="images/AddStockSequenceDiagramRef.png" width="800"/>
 
 The process for adding the other instruments follow a similar process to the sequence above. The main difference would
 be the type of instrument parser called, the parameters collected from the user and the command type returned. For
@@ -232,6 +221,61 @@ example instead of calling `AddStockParser#getStockSpecificParameters()`, its eq
 From the notes in the sequence diagram above, for every attribute in the instrument, there would be an instructional
 prompt to get user to provide information for that attribute. This is done through a series of methods in
 the `TextUi` class.
+
+### Edit instrument feature
+
+The edit instrument functionality mainly involves the `console`, `commands` and `model` components. Within the `console`
+component, the `InputParser` class implements the method `InputParser#getEditInstrumentCommand()`. This method calls
+`InputParser#getParametersToEdit` which will prompt the users to input which parameters of the instrument to edit
+and check if the parameters entered are valid. Invalid inputs will not be processed.
+
+The process of writing the new values of the parameters to be edited is handled by the `EditInstrumentParser` class.
+The method `EditInstrumentParser#createEditCommand()` calls `EditInstrumentParser#getEditedParameters()` which 
+calls multiple individual methods that check if its parameters is being edited and to enter a new value for the 
+parameters.
+
+The execution of setting the new values of the parameters is handled by the `EditInstrumentCommand` class.
+
+The figure below represents the sequence diagram when the user wants to edit the name a stock:
+
+<img src="images/EditInstrumentSequenceDiagram.png" width="900"/>
+
+More details about the reference frame for getting the new edited parameters from the user is given below:
+
+<img src="images/EditRefrence.png" width="700"/>
+
+From the note in the reference diagram above, each parameter the user wants to edit,
+there would be an instructional prompt to guide the user to give a valid input. This is done through the `TextUi` class.
+
+Below is the sequence diagram detailing the command execution of setting the stock with the new values (in this case is setting the name parameter to new name):
+
+<img src="images/EditExecuteSequenceDiagram.png" width="900"/>
+
+More details about checking if parameters exist in HashMap and to edit the parameters if it exists is shown below:
+
+<img src="images/EditExecuteRefrence.png" width="700"/>
+
+The process for editing other instruments or other parameters follow a similar process to the sequence above.
+The main difference would be the parameters collected from the user and the parameters allowed to be edited.
+For example the user can edit the expiry parameter in Crypto but not in Stock.
+
+### Mark an instrument as done feature
+
+The done instrument functionality mainly involves the `console`, `commands` and `model` components. Within the `console`
+component, the `InputParser` class implements the method `InputParser#getDoneInstrumentCommand()`, which processes the index of instrument
+and check if the instrument has been previously marked as done. 
+
+The execution of marking the instrument as done is handled by the `DoneCommand`class.
+
+The figure below represents the sequence diagram when the user executes a done command. In this scenario the user
+gave the command "done 1". Here "done" is the command keyword and "1" represents the current position of the instrument
+in the list of instruments:
+
+<img src="images/DoneCryptoSequenceDiagram.png" width="1040"/>
+
+More details about the reference frame for executing the done command is shown below:
+
+<img src="images/DoneCryptoExecuteDiagram.png" width="600"/>
 
 ### Loading pre-existing data
 The loading of pre-existing data is mainly handled by the `filemanager` and `model` components. The main method calls 
@@ -284,15 +328,31 @@ appropriate message through the `TextUi` class.
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
-
+|Priority|Version| As a ... | I want to ... | So that I can ...|
+|----|---|---|------|------------|
+|`***`|v1.0|user|add a stock|record details of the stock
+|`***`|v1.0|user|add a cryptocurrency|record details of the cryptocurrency
+|`***`|v1.0|user|add a forex|record details of the forex
+|`***`|v1.0|user|add an etf|record details of the etf
+|`***`|v1.0|user|see my recorded instruments|refer to all of my instruments with their corresponding details
+|`**`|v1.0|user|add additional information about an instrument|keep track of information other than the instrument's traits
+|`***`|v2.0|user|see my previously recorded instruments|continue adding to my list of instruments for my day to day trading
+|`**`|v2.0|user|have a clear and concise list of my instruments|easily look through the list without having too many details
+|`*`|v2.0|user|view further details of my instruments|view excessive details of each instrument without cluttering the list
+|`**`|v2.0|user|edit an instrument|update certain details of an instrument when their traits change
+|`**`|v2.0|user|mark instruments|so that I can have a checklist of instruments to prioritise
+|`**`|v2.0|user|find an instrument|locate an instrument without having to go through the entire list|
+|`*`|v2.1|user|abort an add/edit process|cancel adding/editing an instrument if my mind changes during the process.
 ## Non-Functional Requirements
 
-1. The program should work on operating systems with `Java 11` installed.
-2. 
+1. The program should work on operating systems with `Java 11` installed. 
+2. The program should allow for persistent data storage of instruments. 
+3. The program should be able to store 1000 instruments in the storage text file and manage them during run-time. 
+4. The program should be usable for a novice user who is starting to learn about the financial markets. 
+5. The program should handle any corruption of storage text file data. 
+6. The program should have high extensibility for supporting more instrument types in the future.
+7. The price information stored in the program should never be negative.
+8. The program should not crash regardless of user's inputs.
 
 ## Glossary
 
