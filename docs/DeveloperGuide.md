@@ -241,6 +241,14 @@ From the notes in the sequence diagram above, for every attribute in the instrum
 prompt to get user to provide information for that attribute. This is done through a series of methods in
 the `TextUi` class.
 
+After getting the stock details from the user, the `AddStockCommand#execute()` will be called. This creates a new stock
+adds it to the list of instruments. Here below we have a sequence diagram detailing the process.
+
+<img src="images/AddStockSequenceExecuteDiagram.png" width="800"/>
+
+For other instrument types a different command will be executed. For example if the user is adding a new crypto,
+the equivalent command used would be the `AddCryptoCommand`.
+
 ### Edit instrument feature
 
 The edit instrument functionality mainly involves the `console`, `commands` and `model` components. Within the `console`

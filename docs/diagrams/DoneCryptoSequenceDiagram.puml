@@ -64,7 +64,7 @@ Mark instrument as done and displays it in the TextUi
 
 endref
 
-[<--DoneCommand
+[<--DoneCommand : return "done"
 deactivate DoneCommand
 
 @enduml
