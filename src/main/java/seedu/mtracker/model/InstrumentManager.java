@@ -61,7 +61,7 @@ public class InstrumentManager {
     }
 
     /**
-     * Set the parameters of the instruments to the new values.
+     * Sets the parameters of the instruments to the new values.
      *
      * @param index The index of the instrument to edit.
      * @param editedParameters The parameters to be edited and its new values.
