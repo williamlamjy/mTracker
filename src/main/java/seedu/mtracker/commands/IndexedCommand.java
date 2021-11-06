@@ -21,6 +21,7 @@ public abstract class IndexedCommand extends Command {
 
     /**
      * Gets a specific instrument via its index.
+     *
      * @return The instrument at a specific index.
      */
     public Instrument getInstrumentAtIndex() {

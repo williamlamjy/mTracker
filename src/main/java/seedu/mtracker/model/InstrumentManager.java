@@ -45,7 +45,7 @@ public class InstrumentManager {
     }
 
     /**
-     * scans through the list and filter instruments with name contains a keyword entered by user.
+     * Scans through the list and filter instruments with name contains a keyword entered by user.
      *
      * @param keyword The word input by user to find.
      * @return A list containing instruments containing keyword in its name.

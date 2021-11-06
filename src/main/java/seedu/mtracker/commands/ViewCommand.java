@@ -16,6 +16,7 @@ public class ViewCommand extends IndexedCommand {
 
     /**
      * Handles the execution of displaying all the parameters of a specific instrument.
+     *
      * @return The name of the command.
      */
     @Override

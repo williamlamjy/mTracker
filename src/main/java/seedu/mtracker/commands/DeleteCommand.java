@@ -16,6 +16,7 @@ public class DeleteCommand extends IndexedCommand {
 
     /**
      * Handles the execution of deleting an instrument from the list.
+     *
      * @return The name of the command.
      */
     @Override

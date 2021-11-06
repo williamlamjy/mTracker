@@ -16,6 +16,7 @@ public class DoneCommand extends IndexedCommand {
 
     /**
      * Handles the execution of marking an instrument as done.
+     *
      * @return The name of the command.
      */
     @Override
