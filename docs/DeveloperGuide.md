@@ -113,32 +113,6 @@ different lists).
 * Does not have any dependencies on any of the other components, as the `Model` component is meant to be responsible
 solely for the data representation and modification of instruments.
 
-  
-### Ui
-
-The ui component only contains the TextUi.java file and its API can be found
-[here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/src/main/java/seedu/mtracker/ui/TextUi.java).
-
-It is a basic java class containing string attributes and helper methods for displaying the different features, texts and
-instructions to the user.
-As detailed by the UML diagrams in the other sections above, many other parser and command classes utilize
-the methods contained in `TextUi` to display instructions on the console for required user input. Hence, most other
-classes of this program are dependent on the methods of this `TextUi` class for their proper interaction with the user.
-
-Thus, the `TextUi` class is highly-cohesive as it contains all the user text display methods for the various classes
-in itself. This enhances maintainability as only this class has to be modified to achieve a small change in
-the desired texted or instruction to be displayed by various classes, and increases reusability of the module
-as all aspects of texts or instruments to be displayed on the console have been localized.
-
-Moreover, the following sequence diagram explains `TextUi`'s interaction with an `Instrument` class. This primarily occurs with the calling of the
-`displayInstrument()` method when the user wishes to list out all instruments of the watchlist:
-
-<>
-
-Hence, in this scenario, `TextUi` relies on the particular `Instrument` class's `toList()` method to retrieve
-all the financial information recorded for that instrument, and then displays them in an appropriate format to
-the user.
-
 ### Command Component
 
 The Command component contains all the commands classes, where its respective class is instantiated when a valid command is entered by the user. 
@@ -181,6 +155,42 @@ More details about the reference frame for executing the done command is shown b
 
 <img src="images/DoneCryptoExecuteDiagram.png" width="600"/>
 
+### Ui Component
+
+The ui component only contains the `TextUi.java` file and its API can be found
+[here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/src/main/java/seedu/mtracker/ui/TextUi.java).
+
+It is a basic java class containing string attributes and helper methods for displaying the different features, texts and
+instructions to the user. Hence, **under the single-responsibility principle (SRP), its only responsibility is to act as the primary interaction platform
+between the user and the rest of the program**.
+
+As detailed by the UML diagrams in the Architecture sections above, **many other parser and command classes utilize
+the methods contained in `TextUi`** to display instructions on the console for required user input. Hence, **most other
+classes of this program are dependent on the methods of this `TextUi` class** for their proper interaction with the user.
+
+Thus, the **`TextUi` class has high cohesion** as it contains all the user text display methods for the various classes
+in itself. This **enhances maintainability** as only this class **has to be modified to achieve a small change in
+the desired texted or instruction to be displayed by various classes**, and **increases reusability of the module**
+as all aspects of texts or instruments to be displayed on the console **have been localized**.
+
+On the other hand, the `TextUi` class itself **has a dependency only on an Instrument class** whenever
+the user wishes to `list` out all the instruments in the watchlist or if s/he wants to `view`
+one such instrument in detail. The following sequence diagram explains `TextUi`'s interaction with an `Instrument` class when
+`ListCommand#execute()` calls the `displayAllInstruments(instruments)` method when the user wishes to list out all instruments in the watchlist:
+
+<img src="images/TextUiDisplayInstrumentGeneralParams.png" width="780"/>
+
+Hence, in this scenario, `TextUi` relies on the particular `Instrument` class's `getGeneralParams()` method to retrieve
+all the general financial information recorded for that instrument like the instrument's name,
+current price, and sentiment. Through this sequence process, `TextUi` displays this information in an appropriate format to
+the user.
+
+A similar approach is also taken when the user wishes to `view` a particular instrument. However,
+instead of a loop being iterated over in the `displayInstruments()` method, the `getAllParams()` method is called instead
+which fetches all the financial information of that particular instrument back to `TextUi` for display:
+
+<img src="images/TextUiDisplayInstrumentAllParams.png" width="550"/>
+
 ### FileManager Component
 The `filemanager` package contains the `Storage`, `InstrumentEncoder` and `InstrumentDecoder` classes. It is defined in
 the `Storage.java`, `InstrumentEncoder.java` and `InstrumentDecoder.java` respectively. This figure below represents the class diagram of
@@ -209,7 +219,7 @@ a higher level of abstraction.
 ## Implementation
 
 ### Add instrument feature
-The add instrument functionality is mainly handled by the `parser` and `commands` components. Within the `parser`
+The add instrument functionality is mainly handled by the `console` and `commands` components. Within the `console`
 component, the `InputParser` class implements the method `InputParser#getAddInstrumentParameters()`. This method calls
 `AddInstrumentParser#filterByInstrumentType()` which will then guide the user through the process of adding a new
 instrument. 
@@ -231,6 +241,61 @@ example instead of calling `AddStockParser#getStockSpecificParameters()`, its eq
 From the notes in the sequence diagram above, for every attribute in the instrument, there would be an instructional
 prompt to get user to provide information for that attribute. This is done through a series of methods in
 the `TextUi` class.
+
+### Edit instrument feature
+
+The edit instrument functionality mainly involves the `console`, `commands` and `model` components. Within the `console`
+component, the `InputParser` class implements the method `InputParser#getEditInstrumentCommand()`. This method calls
+`InputParser#getParametersToEdit` which will prompt the users to input which parameters of the instrument to edit
+and check if the parameters entered are valid. Invalid inputs will not be processed.
+
+The process of writing the new values of the parameters to be edited is handled by the `EditInstrumentParser` class.
+The method `EditInstrumentParser#createEditCommand()` calls `EditInstrumentParser#getEditedParameters()` which 
+calls multiple individual methods that check if its parameters is being edited and to enter a new value for the 
+parameters.
+
+The execution of setting the new values of the parameters is handled by the `EditInstrumentCommand` class.
+
+The figure below represents the sequence diagram when the user wants to edit the name a stock:
+
+<img src="images/EditInstrumentSequenceDiagram.png" width="900"/>
+
+More details about the reference frame for getting the new edited parameters from the user is given below:
+
+<img src="images/EditRefrence.png" width="700"/>
+
+From the note in the reference diagram above, each parameter the user wants to edit,
+there would be an instructional prompt to guide the user to give a valid input. This is done through the `TextUi` class.
+
+Below is the sequence diagram detailing the command execution of setting the stock with the new values (in this case is setting the name parameter to new name):
+
+<img src="images/EditExecuteSequenceDiagram.png" width="900"/>
+
+More details about checking if parameters exist in HashMap and to edit the parameters if it exists is shown below:
+
+<img src="images/EditExecuteRefrence.png" width="700"/>
+
+The process for editing other instruments or other parameters follow a similar process to the sequence above.
+The main difference would be the parameters collected from the user and the parameters allowed to be edited.
+For example the user can edit the expiry parameter in Crypto but not in Stock.
+
+### Mark an instrument as done feature
+
+The done instrument functionality mainly involves the `console`, `commands` and `model` components. Within the `console`
+component, the `InputParser` class implements the method `InputParser#getDoneInstrumentCommand()`, which processes the index of instrument
+and check if the instrument has been previously marked as done. 
+
+The execution of marking the instrument as done is handled by the `DoneCommand`class.
+
+The figure below represents the sequence diagram when the user executes a done command. In this scenario the user
+gave the command "done 1". Here "done" is the command keyword and "1" represents the current position of the instrument
+in the list of instruments:
+
+<img src="images/DoneCryptoSequenceDiagram.png" width="1040"/>
+
+More details about the reference frame for executing the done command is shown below:
+
+<img src="images/DoneCryptoExecuteDiagram.png" width="600"/>
 
 ### Loading pre-existing data
 The loading of pre-existing data is mainly handled by the `filemanager` and `model` components. The main method calls 
