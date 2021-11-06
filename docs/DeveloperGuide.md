@@ -397,7 +397,7 @@ Feel free to come up with more test cases to try for yourself.
 
 1) Ensure that you have `Java 11` installed.
 2) Download the latest jar file [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/releases). 
-3) In your terminal under the directory where the jar file is saved type `java -jar TP.jar`.
+3) In your terminal under the directory where the jar file is saved type `java -jar [CS2113T-T12-1][mTracker].jar`.
    1) If it is successful you should see a mTracker greet message. If you get an error message please create a new issue
       [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/issues) along with a description of the error.
 4. Refer to the [userguide](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/UserGuide.md) to understand how
