@@ -2,8 +2,8 @@
 
 ### Overview
 I was involved in the development of a greenfield project known as `mTracker`. The `mTracker` program
-serves as a command-line trading journal interface that allows busy individuals to store important financial instrument.
-Throughout the project development, my main responsibilities include:
+serves as a command-line trading journal interface that allows busy individuals to store important financial instruments.
+My main responsibilities include:
 * Being the main code reviewer, conducting code quality and implementation checks on pull requests (PR).
 * Designing and proposing software architectures to implement core features such as adding and editing
 the different financial instruments.
@@ -20,9 +20,8 @@ Below are some of my contributions to the project
   * Implemented the foundations for `add` functionality. Seen in PR
   [#18](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/18) and 
   [#20](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/20)
-  * Designed how the add instrument functionality would work by taking into consideration how the user would provide
-  inputs, using OOP to parse the different instrument types. Eg, the `AddInstrumentParser` class provides 
-  easy extensibility to allow the developers to adopt and implement add functionality for different types of instruments.
+  * Designed the add instrument functionality. Used OOP to handle parsing the different instrument types. Eg, the `AddInstrumentParser` class provides 
+  easy extensibility for add functionality for different types of instruments.
   * Proposed `edit` functionality design through this PR [#130](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/130).
     * Came up with a design that implements edit feature with only one parser class `EditInstrumentParser` and one command 
     class `EditInstrumentCommand`. The helps to reduce the amount of code we needed to write and allows user to edit 
