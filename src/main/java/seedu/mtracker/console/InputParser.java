@@ -1,14 +1,16 @@
 package seedu.mtracker.console;
 
+import seedu.mtracker.LogHelper;
 import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commands.Command;
 import seedu.mtracker.commands.DeleteCommand;
 import seedu.mtracker.commands.DoneCommand;
 import seedu.mtracker.commands.EditInstrumentCommand;
 import seedu.mtracker.commands.ExitCommand;
-import seedu.mtracker.commands.ListCommand;
 import seedu.mtracker.commands.FindCommand;
+import seedu.mtracker.commands.ListCommand;
 import seedu.mtracker.commands.ViewCommand;
+import seedu.mtracker.commons.Validate;
 import seedu.mtracker.commons.error.AlreadyDoneError;
 import seedu.mtracker.commons.error.EditEmptyParameterError;
 import seedu.mtracker.commons.error.InvalidBoundsError;
@@ -18,8 +20,6 @@ import seedu.mtracker.commons.error.InvalidEmptySearchStringError;
 import seedu.mtracker.commons.error.InvalidIndexError;
 import seedu.mtracker.commons.error.InvalidInstrumentError;
 import seedu.mtracker.commons.error.OperationAbortedError;
-import seedu.mtracker.commons.Validate;
-import seedu.mtracker.LogHelper;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 

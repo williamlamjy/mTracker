@@ -27,7 +27,7 @@ public class EditInstrumentParser extends InputParser {
     protected static final String DONE_ATTRIBUTE = "done-status";
     protected static final String WORKSPACE = EditInstrumentCommand.COMMAND_WORD;
 
-    public static final double UNDEFINED_PAST_RETURN_VALUE = -101;
+    protected static final double UNDEFINED_PAST_RETURN_VALUE = -101;
 
     /**
      * Gets a valid new name if name is being edited and stores it.

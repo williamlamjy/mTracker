@@ -1,10 +1,10 @@
 package seedu.mtracker.console;
 
+import seedu.mtracker.asserthelpers.AssertParserHelper;
 import seedu.mtracker.commands.AddForexCommand;
 import seedu.mtracker.commons.Validate;
 import seedu.mtracker.commons.error.OperationAbortedError;
 import seedu.mtracker.ui.TextUi;
-import seedu.mtracker.asserthelpers.AssertParserHelper;
 
 public class AddForexParser extends AddInstrumentParser {
     public static String INSTRUMENT_TYPE = "forex";
