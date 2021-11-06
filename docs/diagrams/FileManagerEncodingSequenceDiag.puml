@@ -4,7 +4,7 @@
 'https://plantuml.com/sequence-diagram
 box filemanager COLOR_STORAGE_SEGMENT
 participant ":Storage" as Storage COLOR_STORAGE
-participant "<<Class>>\nInstrumentEncoder" as InstrumentEncoder COLOR_STORAGE
+participant "<<class>>\nInstrumentEncoder" as InstrumentEncoder COLOR_STORAGE
 end box
 
 box model COLOR_MODEL_SEGMENT

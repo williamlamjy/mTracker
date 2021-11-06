@@ -35,15 +35,16 @@ Class "{abstract}\nInstrument" as Instrument COLOR_MODEL
 main -down[COLOR_MAIN]->"1" InputParser
 AddInstrumentParser -up[COLOR_CONSOLE]-|> InputParser
 AddXYZParser -up[COLOR_CONSOLE]-|> AddInstrumentParser
+EditInstrumentParser -left[COLOR_CONSOLE]-|> InputParser
 
 InputParser -down[COLOR_CONSOLE].> Command : creates >
 AddInstrumentParser -right[COLOR_CONSOLE].> AddInstrumentCommand : creates >
 AddXYZParser -right[COLOR_CONSOLE].> AddXYZCommand : creates >
 EditInstrumentParser -right[COLOR_CONSOLE].> EditInstrumentCommand : creates >
-
 InputParser -down[COLOR_CONSOLE].> TextUi
 AddInstrumentParser -left[COLOR_CONSOLE].> TextUi
 AddXYZParser -left[COLOR_CONSOLE].> TextUi
+EditInstrumentParser -down[COLOR_CONSOLE].> TextUi
 
 InputParser -left[COLOR_CONSOLE].> Instrument
 EditInstrumentParser -right[COLOR_CONSOLE].> Instrument

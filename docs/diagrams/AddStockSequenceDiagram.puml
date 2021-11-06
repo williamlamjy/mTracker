@@ -3,8 +3,8 @@
 
 box console COLOR_CONSOLE_SEGMENT
 participant ":InputParser" as InputParser COLOR_CONSOLE
-participant "<<Class>>\nInputParser" as ClassInputParser COLOR_CONSOLE
-participant "<<Class>>\nAddInstrumentParser" as AddInstrumentParser COLOR_CONSOLE
+participant "<<class>>\nInputParser" as ClassInputParser COLOR_CONSOLE
+participant "<<class>>\nAddInstrumentParser" as AddInstrumentParser COLOR_CONSOLE
 participant ":AddStockParser" as AddStockParser COLOR_CONSOLE
 participant ":AddStockCommand" as AddStockCommand COLOR_COMMANDS
 end box
@@ -14,7 +14,7 @@ participant ":AddStockCommand" as AddStockCommand COLOR_FAINT_GREEN
 end box
 
 box ui COLOR_LIGHT_BLUE
-participant "<<Class>>\nTextUi" as TextUi COLOR_UI
+participant "<<class>>\nTextUi" as TextUi COLOR_UI
 end box
 
 

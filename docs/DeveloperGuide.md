@@ -55,7 +55,7 @@ them during runtime, and restoring data from previous session when the program i
 The subsequent sections will elaborate on the more technical design and implementation details of
 the architectural components briefly explained in this section.
 
-### Parser component
+### Console component
 
 The main parent class in `console` package is the `InputParser` class which is defined in `InputParser.java`.
 The figure below represents the class diagram of how all the parser classes interact with classes outside the `console`
@@ -65,8 +65,8 @@ package:
 
 How the `InputParser` class works:
 1. When the user enters a command along with the relevant parameters if any, the
-   `getCommandComponents()` method in `InputParser` separates the user's command by spaces to return a string array.
-2. The command is then determined by using the `filterByCommandType()` method which would return the corresponding
+   `getCommandComponents(commandInput)` method in `InputParser` separates the user's command by spaces to return a string array.
+2. The command is then determined by using the `filterByCommandType(componentComponents, instruments)` method which would return the corresponding
    command type. Examples of different command types are `AddInstrumentCommand`, `DeleteCommand`, `ListCommand` etc.
 
 #### Design considerations for parsing inputs for add functionality 
@@ -95,7 +95,7 @@ This helps to support the user through the process of adding a new instrument.
 #### Design considerations for parsing inputs for edit functionality
 Despite currently supporting 4 types of financial instruments, the parsing of inputs for the edit functionality does not require
 4 edit classes for each instrument. This is because the edit functionality is done on an existing instrument which
-contains information on what parameters can be edited on. Therefore, only a single EditInstrumentParser 
+contains information on what parameters can be edited on. Therefore, only a single `EditInstrumentParser` 
 is needed to filter out all the other parameters that are irrelevant to the instrument.
  
 In addition, the current design is able to parse multiple input parameters and display the relevant instructions to
@@ -191,7 +191,7 @@ how the different class work together:
 The FileManager Component:
 
 * Contains the `Storage` class that loads data from any pre-existing text file. If the file does not exist, it creates 
-a new text file to store the data. It updates the file by calling the `writeFile()` method in the `InstrumentEncoder` class.
+a new text file to store the data. It updates the file by calling the `writeFile(instruments, writeToFile)` method in the `InstrumentEncoder` class.
 * Contains the `InstrumentEncoder` class which encodes the instrument data into a text file format for decoding.
 * Contains the `InstrumentDecoder` parent class which decodes the text file. The 4 sub-decoder classes `CryptoDecoder`,
 `EtfDecoder`, `ForexDecoder` and `StockDecoder` adds the respective instruments with their decoded attributes into the
@@ -211,7 +211,7 @@ a higher level of abstraction.
 ### Add instrument feature
 The add instrument functionality is mainly handled by the `console` and `commands` components. Within the `console`
 component, the `InputParser` class implements the method `InputParser#getAddInstrumentParameters()`. This method calls
-`AddInstrumentParser#filterByInstrumentType()` which will then guide the user through the process of adding a new
+`AddInstrumentParser#filterByInstrumentType(componentComponents)` which will then guide the user through the process of adding a new
 instrument. 
 
 The figure below represents the sequence diagram when the user wants to add a stock:
@@ -235,12 +235,12 @@ the `TextUi` class.
 ### Edit instrument feature
 
 The edit instrument functionality mainly involves the `console`, `commands` and `model` components. Within the `console`
-component, the `InputParser` class implements the method `InputParser#getEditInstrumentCommand()`. This method calls
-`InputParser#getParametersToEdit` which will prompt the users to input which parameters of the instrument to edit
+component, the `InputParser` class implements the method `InputParser#getEditInstrumentCommand(comandComponents, instruments)`. This method calls
+`InputParser#getParametersToEdit(validAttributes)` which will prompt the users to input which parameters of the instrument to edit
 and check if the parameters entered are valid. Invalid inputs will not be processed.
 
 The process of writing the new values of the parameters to be edited is handled by the `EditInstrumentParser` class.
-The method `EditInstrumentParser#createEditCommand()` calls `EditInstrumentParser#getEditedParameters()` which 
+The method `EditInstrumentParser#createEditCommand(parametersToEdit, instrumentToEdit, instrumentNumber)` calls `EditInstrumentParser#getEditedParameters(parametersToEdit, instrumentToEdit)` which 
 calls multiple individual methods that check if its parameters is being edited and to enter a new value for the 
 parameters.
 
@@ -272,7 +272,7 @@ For example the user can edit the expiry parameter in Crypto but not in Stock.
 ### Mark an instrument as done feature
 
 The done instrument functionality mainly involves the `console`, `commands` and `model` components. Within the `console`
-component, the `InputParser` class implements the method `InputParser#getDoneInstrumentCommand()`, which processes the index of instrument
+component, the `InputParser` class implements the method `InputParser#getDoneInstrumentCommand(commandComponents, instruments)`, which processes the index of instrument
 and check if the instrument has been previously marked as done. 
 
 The execution of marking the instrument as done is handled by the `DoneCommand`class.
