@@ -3,6 +3,12 @@ package seedu.mtracker.model;
 import java.util.HashMap;
 import java.util.HashSet;
 
+/**
+ *
+ * Represents a task in the TaskManager.
+ * It contains task basic information like name and completion status.
+ *
+ */
 public abstract class Instrument {
 
     public static final String DATE_REGEX = "MMM dd yyyy";
