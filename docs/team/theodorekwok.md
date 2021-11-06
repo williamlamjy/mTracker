@@ -53,11 +53,12 @@ Below are some of my contributions to the project
     * Wrote the `parser` section under Design with the design considerations for add and edit functionality.
     * Wrote the `add instrument feature` section under Implementation.
     * Wrote some of the extra sections in dg [#234](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/234).
-    * Created 4 diagrams:
+    * Created 5 diagrams:
       * [Architecture](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/ArchitectureDiagram.png) 
       [Console diagram](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/ConsoleDiagram.png)
       [Add stock diagram](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/AddStockSequenceDiagram.png) 
       [Add stock reference diagram](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/AddStockSequenceDiagramRef.png)
+      [Add stock execute diagram](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/AddStockSequenceExecuteDiagram.png)
 * **Contributions to team-based tasks**
   * Set up the Github team org/repo.
   * Contributed to some code refactorings:
