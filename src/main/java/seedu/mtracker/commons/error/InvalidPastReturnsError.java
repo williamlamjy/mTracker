@@ -3,7 +3,7 @@ package seedu.mtracker.commons.error;
 /**
  * The custom exception class that is thrown when past returns given is less than -100.
  */
-public class InvalidPastReturnError extends Exception {
+public class InvalidPastReturnsError extends Exception {
 
     /**
      * Returns the error message to the user stating that past returns given cannot be less than -100.
