@@ -155,17 +155,6 @@ Command component:
 * Other than ExitCommand and InvalidCommand, the other command classes are dependent of on the InstrumentManager in order to execute the required actions on the stored instruments.
 * The command classes are dependent on the `TextUi` class. This allows the command class to display its execution results to the user.
 
-
-The figure below represents the sequence diagram when the user executes a done command. In this scenario the user
-gave the command "done 1". Here "done" is the command keyword and "1" represents the current position of the instrument 
-in the list of instruments:
-
-<img src="images/DoneCryptoSequenceDiagram.png" width="1040"/>
-
-More details about the reference frame for executing the done command is shown below:
-
-<img src="images/DoneCryptoExecuteDiagram.png" width="600"/>
-
 ### Ui Component
 
 The ui component only contains the `TextUi.java` file and its API can be found
