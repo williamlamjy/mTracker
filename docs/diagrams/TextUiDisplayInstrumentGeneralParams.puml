@@ -37,6 +37,7 @@ activate TextUi
         deactivate TextUi
 end
 
+TextUi --> TextUi : All instruments' general \nparams printed out
 deactivate TextUi
 
 
