@@ -104,7 +104,6 @@ instrument at once which increases its user-friendliness.
 
 ### Model Component
 
-
 The `model` package contains the `InstrumentManager` class and `Instrument` class. It is defined
 in `InstrumentManager.java` and `Instrument.java` respectively. This figure below represents the class diagram of 
 how the different class work together:
@@ -125,7 +124,6 @@ solely for the data representation and modification of instruments.
 
 ### Command Component
 
-
 The Command component contains all the commands classes, where its respective class is instantiated when a valid command is entered by the user. 
 
 Some of the key command classes include:
@@ -144,15 +142,16 @@ Some of the key command classes include:
 9) ExitCommand
 ```
 This figure below shows the class diagram of all the commands classes:
-<>
+<img src="images/CommandsDiagram.png" width="1150"/>
 
 Command component:
 
-* Each command class is responsible in carrying out its respective function where each command will execute different actions on the model component. In addition they ensure that the user sees the correct messages based on their input.
+* All commands are child classes of the abstract parent `Command` class. 
+* Each command class is responsible for carrying out its respective function where each command will execute different actions. 
+  In addition, most of these command classes interact with `TextUi` to ensure that the user sees the correct responses from the program based on their input.
 * All Command classes have a method `execute()` that does the actions required according to the user's input.
-* Contains an abstract parent `Command` class. All commands are child classes of the Command class.
-* Contains a parent `AddInstrumentCommand` class where all commands related to adding an instrument inherits from.
-* Other than ExitCommand and InvalidCommand, the other command classes are dependent of on the InstrumentManager in order to execute the required actions on the stored instruments.
+* Commands component also contains a parent `AddInstrumentCommand` class that all commands related to adding an instrument inherits from.
+* Other than ExitCommand and InvalidCommand, the other command classes are dependent of on the InstrumentManager and its various methods in order to execute the required actions on the stored instruments.
 * The command classes are dependent on the `TextUi` class. This allows the command class to display its execution results to the user.
 
 ### Ui Component
