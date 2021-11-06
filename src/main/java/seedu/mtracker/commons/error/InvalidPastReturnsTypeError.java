@@ -3,7 +3,7 @@ package seedu.mtracker.commons.error;
 /**
  * The custom exception class that is thrown when past returns provided is not a number.
  */
-public class InvalidPastReturnTypeError extends Exception {
+public class InvalidPastReturnsTypeError extends Exception {
 
     /**
      * Returns the error message to the user stating that past returns given is not a number.
