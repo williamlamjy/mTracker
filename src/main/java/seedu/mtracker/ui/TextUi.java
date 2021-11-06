@@ -228,7 +228,7 @@ public class TextUi {
         if (beforeEdit.equals(afterEdit)) {
             displayEditNoChange();
         } else {
-            displayEditChanges(beforeEdit,afterEdit);
+            displayEditChanges(beforeEdit, afterEdit);
         }
     }
 
