@@ -1,14 +1,16 @@
 package seedu.mtracker.console;
 
+import seedu.mtracker.LogHelper;
 import seedu.mtracker.commands.AddInstrumentCommand;
 import seedu.mtracker.commands.Command;
 import seedu.mtracker.commands.DeleteCommand;
 import seedu.mtracker.commands.DoneCommand;
 import seedu.mtracker.commands.EditInstrumentCommand;
 import seedu.mtracker.commands.ExitCommand;
-import seedu.mtracker.commands.ListCommand;
 import seedu.mtracker.commands.FindCommand;
+import seedu.mtracker.commands.ListCommand;
 import seedu.mtracker.commands.ViewCommand;
+import seedu.mtracker.commons.Validate;
 import seedu.mtracker.commons.error.AlreadyDoneError;
 import seedu.mtracker.commons.error.EditEmptyParameterError;
 import seedu.mtracker.commons.error.InvalidBoundsError;
@@ -18,8 +20,6 @@ import seedu.mtracker.commons.error.InvalidEmptySearchStringError;
 import seedu.mtracker.commons.error.InvalidIndexError;
 import seedu.mtracker.commons.error.InvalidInstrumentError;
 import seedu.mtracker.commons.error.OperationAbortedError;
-import seedu.mtracker.commons.Validate;
-import seedu.mtracker.LogHelper;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -28,6 +28,9 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+/**
+ * A class responsible for all the user main command inputs.
+ */
 public class InputParser {
 
     public static final String SEPARATOR = " ";
@@ -44,10 +47,19 @@ public class InputParser {
     private int instrumentNumber;
     private String searchString;
 
+    /**
+     * Constructs the InputParser object and initialises it with a scanner for getting user input.
+     */
     public InputParser() {
         inputScanner = new Scanner(System.in);
     }
 
+    /**
+     * Prompts the user to provide an input.
+     *
+     * @param currentWorkspace The current workflow the user is in.
+     * @return The user input.
+     */
     public static String getUserInput(String currentWorkspace) {
         TextUi.displayPrompter(currentWorkspace);
         return inputScanner.nextLine().trim();
@@ -57,6 +69,13 @@ public class InputParser {
         return instrumentNumber;
     }
 
+    /**
+     * Starts the add instrument workflow and prompts the user provide the type of instrument to add.
+     *
+     * @return A command to add a new instrument.
+     * @throws InvalidInstrumentError If the user gave an invalid instrument type.
+     * @throws OperationAbortedError If the user wants to abort the add instrument process.
+     */
     public AddInstrumentCommand getAddInstrumentParameters()
             throws InvalidInstrumentError, OperationAbortedError {
         String addInstrumentType;
@@ -68,6 +87,16 @@ public class InputParser {
         return AddInstrumentParser.filterByInstrumentType(getCommandComponents(addInstrumentType));
     }
 
+    /**
+     * Checks and prepares the delete command when the user wants to delete an instrument.
+     *
+     * @param commandComponents A string array containing the command words the user gave.
+     * @param instruments The list of instruments currently in the user's watchlist.
+     * @return A command to delete an instrument.
+     * @throws InvalidIndexError If the user does not provide a valid number.
+     * @throws InvalidEmptyIndexError If the user does not provide any number.
+     * @throws InvalidBoundsError If the user gives a number that is outside the range of the instrument list.
+     */
     public DeleteCommand getDeleteInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
             throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError {
         DeleteCommand deleteCommand = new DeleteCommand();
@@ -77,6 +106,16 @@ public class InputParser {
     }
 
     //@@author KVignesh122
+    /**
+     * Checks and prepares the view command when the user wants to view a specific instrument.
+     *
+     * @param commandComponents A string array containing the command words the user gave.
+     * @param instruments The list of instruments currently in the user's watchlist.
+     * @return A command to view an instrument.
+     * @throws InvalidIndexError If the user does not provide a valid number.
+     * @throws InvalidEmptyIndexError If the user does not provide any number.
+     * @throws InvalidBoundsError If the user gives a number that is outside the range of the instrument list.
+     */
     public ViewCommand getViewInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
             throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError {
         ViewCommand viewCommand = new ViewCommand();
@@ -85,6 +124,13 @@ public class InputParser {
         return viewCommand;
     }
 
+    /**
+     * Checks and prepare the find command when a user wants to find instruments.
+     *
+     * @param commandComponents A string array containing the command words the user gave.
+     * @return A command to find instruments.
+     * @throws InvalidEmptySearchStringError If the user does not provide a search string.
+     */
     public FindCommand getFindInstrumentsCommand(String[] commandComponents)
             throws InvalidEmptySearchStringError {
         FindCommand findCommand = new FindCommand();
@@ -94,6 +140,17 @@ public class InputParser {
     }
     //@@author
 
+    /**
+     * Checks and prepares the done command when the user wants to set the instrument status as done.
+     *
+     * @param commandComponents A string array containing the command words the user gave.
+     * @param instruments The list of instruments currently in the user's watchlist.
+     * @return A command to set the status of an instrument as completed.
+     * @throws InvalidIndexError If the user does not provide a valid number.
+     * @throws InvalidEmptyIndexError If the user does not provide any number.
+     * @throws InvalidBoundsError If the user gives a number that is outside the range of the instrument list.
+     * @throws AlreadyDoneError If the user tries to set the status of an already done instrument.
+     */
     public DoneCommand getDoneInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
             throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError, AlreadyDoneError {
         DoneCommand doneCommand = new DoneCommand();
@@ -103,6 +160,13 @@ public class InputParser {
         return doneCommand;
     }
 
+    /**
+     * Checks and filters the user given parameters based on the instrument of interest set of valid attributes.
+     *
+     * @param parametersToEdit The set of parameters of the instrument the user wants to edit.
+     * @param validAttributes The set of acceptable attributes of the instrument of interest.
+     * @return A set containing the remaining valid parameters after filtering.
+     */
     public HashSet<String> filterInvalidParameters(String[] parametersToEdit, HashSet<String> validAttributes) {
         HashSet<String> filteredAttributes = new HashSet<>();
         for (String param : parametersToEdit) {
@@ -115,6 +179,14 @@ public class InputParser {
         return filteredAttributes;
     }
 
+    /**
+     * Gets from the user the attributes to edit.
+     *
+     * @param validAttributes The set of acceptable attributes of the instrument of interest.
+     * @return A set containing valid parameters.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     * @throws EditEmptyParameterError If the user did not provide any parameters.
+     */
     public HashSet<String> getParametersToEdit(HashSet<String> validAttributes)
             throws OperationAbortedError, EditEmptyParameterError {
         String parametersToEdit = getUserInput(EditInstrumentCommand.COMMAND_WORD).toLowerCase();
@@ -126,6 +198,18 @@ public class InputParser {
         return filterInvalidParameters(parameters, validAttributes);
     }
 
+    /**
+     * Checks and prepares the edit command when the user wants to edit an existing instrument.
+     *
+     * @param commandComponents A string array containing the command words the user gave.
+     * @param instruments The list of instruments currently in the user's watchlist.
+     * @return A command to edit an existing instrument.
+     * @throws InvalidIndexError If the user does not provide a valid number.
+     * @throws InvalidEmptyIndexError If the user does not provide any number.
+     * @throws InvalidBoundsError If the user gives a number that is outside the range of the instrument list.
+     * @throws OperationAbortedError If the user wants to abort the edit instrument process.
+     * @throws EditEmptyParameterError If the user did not provide any parameters.
+     */
     public EditInstrumentCommand getEditInstrumentCommand(String[] commandComponents, ArrayList<Instrument> instruments)
             throws InvalidIndexError, InvalidEmptyIndexError, InvalidBoundsError,
             OperationAbortedError, EditEmptyParameterError {
@@ -137,12 +221,30 @@ public class InputParser {
         return editInstrumentParser.createEditCommand(parametersToEdit, instrumentToEdit, instrumentNumber);
     }
 
+    /**
+     * Checks if the index number provided is valid.
+     *
+     * @param commandComponents A string array containing the command words the user gave.
+     * @param instruments The list of instruments currently in the user's watchlist.
+     * @throws InvalidIndexError If the user does not provide a valid number.
+     * @throws InvalidEmptyIndexError If the user does not provide any number.
+     * @throws InvalidBoundsError If the user gives a number that is outside the range of the instrument list.
+     */
     private void getAndValidateIndexNumber(String[] commandComponents, ArrayList<Instrument> instruments)
             throws InvalidEmptyIndexError, InvalidIndexError, InvalidBoundsError {
         getIndexNumber(commandComponents);
         Validate.validateIndexWithinBounds(instruments, instrumentNumber);
     }
 
+    /**
+     * Checks if the instrument is already done.
+     *
+     * @param commandComponents A string array containing the command words the user gave.
+     * @param instruments The list of instruments currently in the user's watchlist.
+     * @throws AlreadyDoneError If the user tries to set the status of an already done instrument.
+     * @throws InvalidIndexError If the user does not provide a valid number.
+     * @throws InvalidEmptyIndexError If the user does not provide any number.
+     */
     private void getAndValidateDoneStatus(String[] commandComponents, ArrayList<Instrument> instruments)
             throws AlreadyDoneError, InvalidEmptyIndexError, InvalidIndexError {
         getIndexNumber(commandComponents);
@@ -185,10 +287,24 @@ public class InputParser {
         return command;
     }
 
+    /**
+     * Takes the user input and split it into individual words.
+     * Removes any additional spaces in the front and back of the input.
+     *
+     * @param commandInput The user input.
+     * @return A string array containing the command words the user gave.
+     */
     public String[] getCommandComponents(String commandInput) {
         return commandInput.trim().split(SEPARATOR);
     }
 
+    /**
+     * Parses the user input and gets the index value.
+     *
+     * @param commandComponents A string array containing the command words the user gave.
+     * @throws InvalidEmptyIndexError If the user does not provide any number.
+     * @throws InvalidIndexError If the user does not provide a valid number.
+     */
     public void getIndexNumber(String[] commandComponents) throws InvalidEmptyIndexError, InvalidIndexError {
         try {
             instrumentNumber = Integer.parseInt(commandComponents[INSTRUMENT_INDEX]) - INDEX_OFFSET;
@@ -200,6 +316,12 @@ public class InputParser {
     }
 
     //@@author KVignesh122
+    /**
+     * Builds the search string the user wants to use to find the instruments.
+     *
+     * @param commandComponents A string array containing the command words the user gave.
+     * @throws InvalidEmptySearchStringError If the user does not provide a search string.
+     */
     public void constructSearchString(String[] commandComponents) throws InvalidEmptySearchStringError {
         try {
             searchString = commandComponents[SEARCH_STR_INDEX_START];
@@ -211,6 +333,13 @@ public class InputParser {
         }
     }
 
+    /**
+     * Checks whether the user wants to abort either the add or edit process.
+     *
+     * @param userInput The user input.
+     * @param currentProcess The current workflow the user is in.
+     * @throws OperationAbortedError If the user wants to abort the add/edit instrument process.
+     */
     public static void checkIfAbort(String userInput, String currentProcess)
             throws OperationAbortedError {
         if (userInput.equalsIgnoreCase(ABORTED)) {

@@ -5,6 +5,9 @@ import seedu.mtracker.model.Instrument;
 import java.util.HashMap;
 import java.util.HashSet;
 
+/**
+ * Represents an Etf type instrument.
+ */
 public class Etf extends Instrument {
 
     protected String remark;
@@ -31,6 +34,11 @@ public class Etf extends Instrument {
         pastReturns = inputPastReturn;
     }
 
+    /**
+     * Sets past return parameter to the new past return if past return parameter is being edited.
+     *
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editReturn(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(RETURNS_ATTRIBUTE)) {
             return;
@@ -39,6 +47,11 @@ public class Etf extends Instrument {
         setPastReturns(updateReturn);
     }
 
+    /**
+     * Sets remarks parameter to the new remarks if remarks parameter is being edited.
+     *
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editRemark(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(REMARK_ATTRIBUTE)) {
             return;
@@ -46,17 +59,32 @@ public class Etf extends Instrument {
         setRemark(editedParameters.get(REMARK_ATTRIBUTE));
     }
 
+    /**
+     * Sets all instrument specific parameters being edited to its new values.
+     *
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editSpecificParameters(HashMap<String, String> editedParameters) {
         editReturn(editedParameters);
         editRemark(editedParameters);
     }
 
+    /**
+     * Sets all the Etf parameters being edited to its new values.
+     *
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     @Override
     public void editParameter(HashMap<String, String> editedParameters) {
         editGeneralParameter(editedParameters);
         editSpecificParameters(editedParameters);
     }
 
+    /**
+     * Gets the value past return in string.
+     *
+     * @return Empty string if past returns is undefined else the value of the past return in string.
+     */
     public String getReturns() {
         if (pastReturns == UNDEFINED_VALUE) {
             return EMPTY_STRING;
@@ -64,6 +92,11 @@ public class Etf extends Instrument {
         return String.valueOf(pastReturns);
     }
 
+    /**
+     * Gets all the type of Etf parameters in one string.
+     *
+     * @return A string containing all the type of Etf parameters.
+     */
     @Override
     public String editParameterInstructions() {
         return super.editParameterInstructions() + SEPARATOR + RETURNS_ATTRIBUTE + SEPARATOR
@@ -75,6 +108,11 @@ public class Etf extends Instrument {
         return TYPE_INSTRUMENT;
     }
 
+    /**
+     * Formats all Etf parameters to save to text file.
+     *
+     * @return A formatted string to save to text file.
+     */
     @Override
     public String textFileFormatting() {
         return super.textFileFormatting() + FILE_SEPARATOR + getReturns()
@@ -86,6 +124,11 @@ public class Etf extends Instrument {
         return ETF_ICON;
     }
 
+    /**
+     * Gets all the Etf parameters, with each parameter on a newline.
+     *
+     * @return A string containing all the Etf parameters.
+     */
     @Override
     public String getAllParams() {
         return super.getAllParams()
@@ -93,6 +136,11 @@ public class Etf extends Instrument {
                 + REMARKS_FIELD + remark;
     }
 
+    /**
+     * Adds all the type of Etf parameters into a HashSet.
+     *
+     * @return HashSet containing the type of Etf parameters.
+     */
     @Override
     public HashSet<String> getValidAttribute() {
         super.getValidAttribute();

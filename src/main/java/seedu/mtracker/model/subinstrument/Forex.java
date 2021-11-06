@@ -8,6 +8,9 @@ import java.util.HashSet;
 import java.time.LocalDate;
 
 //@@author KVignesh122
+/**
+ * Represents a Forex type instrument.
+ */
 public class Forex extends Instrument {
 
     protected double entryPrice;
@@ -42,6 +45,11 @@ public class Forex extends Instrument {
         this.remark = remark;
     }
 
+    /**
+     * Gets all the type of Forex parameters in one string.
+     *
+     * @return A string containing all the type of Forex parameters.
+     */
     @Override
     public String editParameterInstructions() {
         return super.editParameterInstructions() + SEPARATOR + ENTRY_PRICE_ATTRIBUTE + SEPARATOR
@@ -50,6 +58,11 @@ public class Forex extends Instrument {
                 + REMARK_ATTRIBUTE;
     }
 
+    /**
+     * Formats date into String.
+     *
+     * @return Expiry date formatted into string.
+     */
     public String formatExpiry() {
         return expiry.format(DateTimeFormatter.ofPattern(DATE_REGEX));
     }
@@ -70,6 +83,11 @@ public class Forex extends Instrument {
         expiry = inputExpiry;
     }
 
+    /**
+     * Sets remarks parameter to the new remarks if remarks parameter is being edited.
+     *
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editRemark(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(REMARK_ATTRIBUTE)) {
             return;
@@ -77,6 +95,11 @@ public class Forex extends Instrument {
         setRemark(editedParameters.get(REMARK_ATTRIBUTE));
     }
 
+    /**
+     * Sets expiry parameter to the new expiry if expiry parameter is being edited.
+     *
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editExpiry(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(EXPIRY_ATTRIBUTE)) {
             return;
@@ -85,6 +108,11 @@ public class Forex extends Instrument {
         setExpiry(updateExpiry);
     }
 
+    /**
+     * Sets entry price parameter to the new price if entry price parameter is being edited.
+     *
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editEntryPrice(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(ENTRY_PRICE_ATTRIBUTE)) {
             return;
@@ -93,6 +121,11 @@ public class Forex extends Instrument {
         setEntryPrice(updateEntryPrice);
     }
 
+    /**
+     * Sets exit price parameter to the new price if exit price parameter is being edited.
+     *
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editExitPrice(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(EXIT_PRICE_FIELD)) {
             return;
@@ -101,6 +134,11 @@ public class Forex extends Instrument {
         setExitPrice(updateExitPrice);
     }
 
+    /**
+     * Sets all instrument specific parameters being edited to its new values.
+     *
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editSpecificParameter(HashMap<String, String> editedParameters) {
         editEntryPrice(editedParameters);
         editExitPrice(editedParameters);
@@ -108,6 +146,11 @@ public class Forex extends Instrument {
         editRemark(editedParameters);
     }
 
+    /**
+     * Sets all the Forex parameters being edited to its new values.
+     *
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     @Override
     public void editParameter(HashMap<String, String> editedParameters) {
         editGeneralParameter(editedParameters);
@@ -124,6 +167,11 @@ public class Forex extends Instrument {
         return FOREX_ICON;
     }
 
+    /**
+     * Formats all Forex parameters to save to text file.
+     *
+     * @return A formatted string to save to text file.
+     */
     @Override
     public String textFileFormatting() {
         return super.textFileFormatting() + FILE_SEPARATOR + entryPrice
@@ -131,6 +179,11 @@ public class Forex extends Instrument {
                 + FILE_SEPARATOR + remark;
     }
 
+    /**
+     * Gets all the Forex parameters, with each parameter on a newline.
+     *
+     * @return A string containing all the Forex parameters.
+     */
     @Override
     public String getAllParams() {
         return super.getAllParams()
@@ -141,6 +194,11 @@ public class Forex extends Instrument {
     }
 
     //@@author kum-wh
+    /**
+     * Adds all the type of Forex parameters into a HashSet.
+     *
+     * @return HashSet containing the type of Forex parameters.
+     */
     @Override
     public HashSet<String> getValidAttribute() {
         super.getValidAttribute();
