@@ -40,10 +40,15 @@ InstrumentManager -> Instrument: editParameter({"name", "new name"})
 activate Instrument
 
 ref over Instrument
-check if stock parameters
-exist in HashMap
-and if it exists,
-update its parameters.
+check if
+stock
+parameters
+exist in
+HashMap
+and if it
+exists,
+update its
+parameters.
 endref
 
 Instrument --> InstrumentManager

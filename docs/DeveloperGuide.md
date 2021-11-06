@@ -199,7 +199,7 @@ a higher level of abstraction.
 ## Implementation
 
 ### Add instrument feature
-The add instrument functionality is mainly handled by the `console` and `commands` components. Within the `parser`
+The add instrument functionality is mainly handled by the `console` and `commands` components. Within the `console`
 component, the `InputParser` class implements the method `InputParser#getAddInstrumentParameters()`. This method calls
 `AddInstrumentParser#filterByInstrumentType()` which will then guide the user through the process of adding a new
 instrument. 

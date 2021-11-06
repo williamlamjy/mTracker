@@ -41,11 +41,6 @@ deactivate Instrument
 Instrument -> Instrument: editRemark({"name, new name"})
 activate Instrument
 
-Instrument -> Instrument: setRemark(new value)
-activate Instrument
-Instrument --> Instrument
-deactivate Instrument
-
 Instrument --> Instrument
 deactivate Instrument
 

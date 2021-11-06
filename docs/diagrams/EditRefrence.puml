@@ -3,7 +3,7 @@
 !include Styles.puml
 
 box console COLOR_CONSOLE_SEGMENT
-participant ":EditInstrumentParser" as EditInstrumentParser COLOR_MODEL
+participant ":EditInstrumentParser" as EditInstrumentParser COLOR_CONSOLE
 end box
 
 group sd Get new edited parameters from user \nand create a hashmap associating the parameter type and its new value
@@ -31,7 +31,7 @@ EditInstrumentParser --> EditInstrumentParser
 deactivate EditInstrumentParser
 
 EditInstrumentParser -> EditInstrumentParser: editXYZParameter({"name"})
-note left: This represents similar methods that does the same\nas the one above but for other parameters.\nXYZ represents the other parameters of\ncurrent price, sentiments and remarks for stock.
+note left: This represents similar methods that does the same\nas the one above but for other parameters.\nXYZ represents all other parameters of\ncurrent price, sentiments past returns, entry price,\nexit price, expiry, remarks, status.
 activate EditInstrumentParser
 
 alt parameters to edit does not include parameter "XYZ"
