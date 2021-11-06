@@ -36,6 +36,7 @@ public class Etf extends Instrument {
 
     /**
      * Set past return parameter to the new past return if past return parameter is being edited.
+     *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
     public void editReturn(HashMap<String, String> editedParameters) {
@@ -48,6 +49,7 @@ public class Etf extends Instrument {
 
     /**
      * Set remarks parameter to the new remarks if remarks parameter is being edited.
+     *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
     public void editRemark(HashMap<String, String> editedParameters) {
@@ -59,6 +61,7 @@ public class Etf extends Instrument {
 
     /**
      * Set all instrument specific parameters being edited to its new values.
+     *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
     public void editSpecificParameters(HashMap<String, String> editedParameters) {
@@ -74,6 +77,7 @@ public class Etf extends Instrument {
 
     /**
      * Get the value past return in string.
+     *
      * @return Empty string if past returns is undefined else the value of the past return in string.
      */
     public String getReturns() {

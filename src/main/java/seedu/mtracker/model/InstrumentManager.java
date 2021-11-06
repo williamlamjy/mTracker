@@ -17,8 +17,8 @@ public class InstrumentManager {
     }
 
     /**
-     * Allow other class to get the only instance of this class instead of creating a new instance,
-     * creating a singleton pattern.
+     * Allow other class to get the only instance of this class instead of creating a new instance.
+     *
      * @return The only instance of this class.
      */
     public static InstrumentManager getInstance() {
@@ -45,9 +45,8 @@ public class InstrumentManager {
     }
 
     /**
-     * Responsible for scanning through the list and
-     * filtering instruments with name contains a keyword entered by user,
-     * to find instruments with a specific name.
+     * Responsible for scanning through the list and filtering instruments with name contains a keyword entered by user.
+     *
      * @param keyword The word input by user to find.
      * @return A list containing instruments containing keyword in its name.
      */
@@ -63,6 +62,7 @@ public class InstrumentManager {
 
     /**
      * Responsible for editing of the parameters of the instruments.
+     *
      * @param index The index of the instrument to edit.
      * @param editedParameters The parameters to be edited and its new values.
      */

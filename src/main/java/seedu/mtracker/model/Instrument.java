@@ -69,6 +69,7 @@ public abstract class Instrument {
 
     /**
      * Get the icon representing the done status of the instrument.
+     *
      * @return DONE_SYMBOL if instrument is marked as done and NOT_DONE_SYMBOL if instrument is not marked as done.
      */
     public String getStatusIcon() {
@@ -93,6 +94,7 @@ public abstract class Instrument {
 
     /**
      * Set name parameter to the new name if name parameter is being edited.
+     *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
     public void editName(HashMap<String, String> editedParameters) {
@@ -104,6 +106,7 @@ public abstract class Instrument {
 
     /**
      * Set done status parameter to the new status if done status parameter is being edited.
+     *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
     public void editDoneStatus(HashMap<String, String> editedParameters) {
@@ -120,6 +123,7 @@ public abstract class Instrument {
 
     /**
      * Set current price parameter to the new price if current price parameter is being edited.
+     *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
     public void editCurrentPrice(HashMap<String, String> editedParameters) {
@@ -132,6 +136,7 @@ public abstract class Instrument {
 
     /**
      * Set sentiment parameter to the new sentiment if sentiment parameter is being edited.
+     *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
     public void editSentiment(HashMap<String, String> editedParameters) {
@@ -142,8 +147,8 @@ public abstract class Instrument {
     }
 
     /**
-     * Set name, current price, sentiment and done status to its respective new values,
-     * if that parameters is being edited.
+     * Set name, current price, sentiment and done status to its respective new values, if parameters is being edited.
+     *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
     public void editGeneralParameter(HashMap<String, String> editedParameters) {
@@ -155,6 +160,7 @@ public abstract class Instrument {
 
     /**
      * Set all the parameters being edited to its new values.
+     *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
     public void editParameter(HashMap<String, String> editedParameters) {
@@ -165,6 +171,7 @@ public abstract class Instrument {
 
     /**
      * Format all the parameters of the instrument to save to text file.
+     *
      * @return A formatted string to save to text file.
      */
     public String textFileFormatting() {
@@ -175,6 +182,7 @@ public abstract class Instrument {
 
     /**
      * Get all the type of parameters in the instrument in one string.
+     *
      * @return A string containing all the type of parameters of the instrument.
      */
     public String editParameterInstructions() {
@@ -188,6 +196,7 @@ public abstract class Instrument {
 
     /**
      * Get all the parameters of the instrument, with each parameter on a newline.
+     *
      * @return A string containing all parameters of the instrument.
      */
     public String getAllParams() {
@@ -199,6 +208,7 @@ public abstract class Instrument {
 
     /**
      * Get the done status, name, current price and sentiment parameters of the instrument.
+     *
      * @return A string containing the general parameters of the instrument.
      */
     public String getGeneralParams() {
@@ -208,6 +218,7 @@ public abstract class Instrument {
 
     /**
      * Add all the type of parameters in an instrument into a HashSet.
+     *
      * @return HashSet containing the type of parameters of the instrument.
      */
     public HashSet<String> getValidAttribute() {

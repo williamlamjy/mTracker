@@ -28,6 +28,7 @@ public class Stock extends Instrument {
 
     /**
      * Set remarks parameter to the new remarks if remarks parameter is being edited.
+     *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
     public void editRemark(HashMap<String, String> editedParameters) {
