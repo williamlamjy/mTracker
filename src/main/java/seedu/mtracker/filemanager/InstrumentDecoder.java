@@ -1,5 +1,6 @@
 package seedu.mtracker.filemanager;
 
+import seedu.mtracker.LogHelper;
 import seedu.mtracker.commons.Validate;
 import seedu.mtracker.commons.error.fileerror.InvalidCurrPriceSavedInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidEmptyCurrPriceInFileError;
@@ -10,7 +11,6 @@ import seedu.mtracker.commons.error.fileerror.InvalidInstrumentInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidNameSavedInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidSentimentSavedInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidStatusSavedInFileError;
-import seedu.mtracker.LogHelper;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.ui.TextUi;

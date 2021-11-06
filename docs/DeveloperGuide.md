@@ -217,12 +217,12 @@ instrument.
 
 The figure below represents the sequence diagram when the user wants to add a stock:
 
-<img src="images/AddStockSequenceDiagram.png" width="800"/>
+<img src="images/AddStockSequenceDiagram.png" width="1040"/>
 
 More details about the reference frame for obtaining the stock details and creating the AddStockCommand object are shown
 below.
 
-<img src="images/AddStockSequenceDiagramRef.png" width="600"/>
+<img src="images/AddStockSequenceDiagramRef.png" width="800"/>
 
 The process for adding the other instruments follow a similar process to the sequence above. The main difference would
 be the type of instrument parser called, the parameters collected from the user and the command type returned. For
@@ -291,8 +291,14 @@ appropriate message through the `TextUi` class.
 
 ## Non-Functional Requirements
 
-1. The program should work on operating systems with `Java 11` installed.
-2. 
+1. The program should work on operating systems with `Java 11` installed. 
+2. The program should allow for persistent data storage of instruments. 
+3. The program should be able to store 1000 instruments in the storage text file and manage them during run-time. 
+4. The program should be usable for a novice user who is starting to learn about the financial markets. 
+5. The program should handle any corruption of storage text file data. 
+6. The program should have high extensibility for supporting more instrument types in the future.
+7. The price information stored in the program should never be negative.
+8. The program should not crash regardless of user's inputs.
 
 ## Glossary
 

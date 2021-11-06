@@ -1,18 +1,18 @@
 package seedu.mtracker.commons;
 
+
 import seedu.mtracker.LogHelper;
 import seedu.mtracker.commands.AddCryptoCommand;
 import seedu.mtracker.commands.AddEtfCommand;
 import seedu.mtracker.commands.AddForexCommand;
 import seedu.mtracker.commands.AddStockCommand;
-import seedu.mtracker.commons.error.InvalidEmptyStatusError;
-import seedu.mtracker.console.AddForexParser;
 import seedu.mtracker.commons.error.AlreadyDoneError;
 import seedu.mtracker.commons.error.InvalidBoundsError;
 import seedu.mtracker.commons.error.InvalidDateFormatError;
 import seedu.mtracker.commons.error.InvalidEmptyExpiryDateError;
 import seedu.mtracker.commons.error.InvalidEmptyPriceError;
 import seedu.mtracker.commons.error.InvalidEmptySentimentError;
+import seedu.mtracker.commons.error.InvalidEmptyStatusError;
 import seedu.mtracker.commons.error.InvalidInstrumentError;
 import seedu.mtracker.commons.error.InvalidNameError;
 import seedu.mtracker.commons.error.InvalidNegativePriceError;
@@ -22,6 +22,7 @@ import seedu.mtracker.commons.error.InvalidPastReturnTypeError;
 import seedu.mtracker.commons.error.InvalidPriceError;
 import seedu.mtracker.commons.error.InvalidSentimentError;
 import seedu.mtracker.commons.error.InvalidStatusError;
+import seedu.mtracker.console.AddForexParser;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
@@ -280,6 +281,5 @@ public class Validate {
         boolean isValidDoneStatus = savedStatusFromFile.equals(STATUS_DONE);
         boolean isValidNotDoneStatus = savedStatusFromFile.equals(STATUS_NOT_DONE);
         return isValidDoneStatus || isValidNotDoneStatus;
-
     }
 }
