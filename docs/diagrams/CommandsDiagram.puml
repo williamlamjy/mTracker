@@ -1,0 +1,115 @@
+@startuml
+
+!define COLOR_WHITE #FFFFFF
+!define COLOR_SILVER #C0C0C0
+!define COLOR_GREY #A5A8AC
+!define COLOR_BLACK #000000
+!define COLOR_BROWN #800000
+!define COLOR_RED #FF0000
+!define COLOR_YELLOW #FFFF00
+!define COLOR_BRIGHT_GREEN #00FF00
+!define COLOR_DARK_GREEN #008000
+!define COLOR_LIGHT_BLUE #00FFFF
+!define COLOR_TEAL #008080
+!define COLOR_DARK_BLUE #0000FF
+!define COLOR_PINK #FF00FF
+!define COLOR_PURPLE #800080
+!define COLOR_FAINT_TEAL #BBF1F1
+!define COLOR_FAINT_GREEN #C2F5CC
+!define COLOR_LIGHT_PURPLE #CBC3E3
+!define COLOR_LIGHT_BROWN #C89D7C
+!define COLOR_ORANGE #CF5300
+!define COLOR_FAINT_ORANGE #FFD580
+
+
+!define COLOR_UI COLOR_DARK_BLUE
+!define COLOR_MAIN COLOR_BLACK
+!define COLOR_COMMANDS COLOR_DARK_GREEN
+!define COLOR_COMMANDS_SEGMENT COLOR_FAINT_GREEN
+!define COLOR_CONSOLE COLOR_TEAL
+!define COLOR_CONSOLE_SEGMENT COLOR_FAINT_TEAL
+!define COLOR_MODEL COLOR_PURPLE
+!define COLOR_MODEL_SEGMENT COLOR_LIGHT_PURPLE
+!define COLOR_STORAGE COLOR_BROWN
+!define COLOR_STORAGE_SEGMENT COLOR_LIGHT_BROWN
+!define COLOR_ERROR COLOR_ORANGE
+!define COLOR_ERROR_SEGMENT COLOR_FAINT_ORANGE
+!define COLOR_COMMONS COLOR_GREY
+!define COLOR_USER COLOR_RED
+
+skinparam Class {
+    FontColor #FFFFFF
+    BorderThickness 1
+    BorderColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Participant {
+    FontColor #FFFFFF
+}
+
+skinparam classAttributeIconSize 0
+skinparam Shadowing false
+
+hide members
+hide footbox
+hide circle
+
+
+Package "Commands                    "  <<Rectangle>>{
+     Class "{abstract}\nCommand" as Command COLOR_COMMANDS {
+     + setData
+     + setParams
+     + execute: String
+     }
+     Class ViewCommand COLOR_COMMANDS
+     Class ListCommand COLOR_COMMANDS
+     Class InvalidCommand COLOR_COMMANDS
+     Class FindCommand COLOR_COMMANDS
+     Class ExitCommand COLOR_COMMANDS
+     Class EditInstrumentCommand COLOR_COMMANDS
+     Class DoneCommand COLOR_COMMANDS
+     Class DeleteCommand COLOR_COMMANDS
+     Class AddInstrumentCommand COLOR_COMMANDS
+     Class "{abstract}\nIndexedCommand" as IndexedCommand COLOR_COMMANDS
+
+     Class AddCryptoCommand COLOR_COMMANDS
+     Class AddForexCommand COLOR_COMMANDS
+     Class AddStockCommand COLOR_COMMANDS
+     Class AddEtfCommand COLOR_COMMANDS
+}
+
+Package "Model                    "  <<Rectangle>>{
+     Class InstrumentManager COLOR_MODEL {
+        + getSize: int
+        + getInstruments: ArrayList<Instrument>
+        + getInstrument: Instrument
+        + addInstrument: Instrument
+        + findInstruments: ArrayList<Instrument>
+        + deleteInstrument
+        + editInstrument
+     }
+}
+
+show Command members
+show InstrumentManager members
+
+Command -left[COLOR_MODEL]->"1" InstrumentManager
+ListCommand -up[COLOR_COMMANDS]-|>Command
+InvalidCommand -up[COLOR_COMMANDS]-|>Command
+FindCommand -up[COLOR_COMMANDS]-|>Command
+ExitCommand -up[COLOR_COMMANDS]-|>Command
+AddInstrumentCommand -[COLOR_COMMANDS]-|>Command
+IndexedCommand -[COLOR_COMMANDS]-|>Command
+
+AddCryptoCommand -[COLOR_COMMANDS]-|>AddInstrumentCommand
+AddEtfCommand -[COLOR_COMMANDS]-|>AddInstrumentCommand
+AddForexCommand -[COLOR_COMMANDS]-|>AddInstrumentCommand
+AddStockCommand -[COLOR_COMMANDS]-|>AddInstrumentCommand
+
+ViewCommand -[COLOR_COMMANDS]-|>IndexedCommand
+EditInstrumentCommand -[COLOR_COMMANDS]-|>IndexedCommand
+DoneCommand -[COLOR_COMMANDS]-|>IndexedCommand
+DeleteCommand -[COLOR_COMMANDS]-|>IndexedCommand
+
+@enduml
