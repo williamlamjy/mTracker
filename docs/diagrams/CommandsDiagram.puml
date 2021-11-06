@@ -5,7 +5,7 @@ Package "Commands                    "  <<Rectangle>>{
      Class "{abstract}\nCommand" as Command COLOR_COMMANDS {
      {method} + setData(InstrumentManager)
      {method} + setParams(ArrayList<String>)
-     {method} + <<abstract>> execute(): String
+     {method} + execute() {abstract}: String
      }
      Class ViewCommand COLOR_COMMANDS {
      {method} + execute(): String
@@ -30,7 +30,7 @@ Package "Commands                    "  <<Rectangle>>{
      {method} + execute(): String
      }
      Class "{abstract}\nIndexedCommand" as IndexedCommand COLOR_COMMANDS {
-     {method} + <<abstract>> execute(): String
+     {method} + execute() {abstract}: String
      }
 
      Class AddXYZCommand COLOR_COMMANDS {
