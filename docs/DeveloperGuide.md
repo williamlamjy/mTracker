@@ -171,17 +171,6 @@ Command component:
 * Other than ExitCommand and InvalidCommand, the other command classes are dependent of on the InstrumentManager in order to execute the required actions on the stored instruments.
 * The command classes are dependent on the `TextUi` class. This allows the command class to display its execution results to the user.
 
-
-The figure below represents the sequence diagram when the user executes a done command. In this scenario the user
-gave the command "done 1". Here "done" is the command keyword and "1" represents the current position of the instrument 
-in the list of instruments:
-
-<img src="images/DoneCryptoSequenceDiagram.png" width="1040"/>
-
-More details about the reference frame for executing the done command is shown below:
-
-<img src="images/DoneCryptoExecuteDiagram.png" width="600"/>
-
 ### FileManager Component
 The `filemanager` package contains the `Storage`, `InstrumentEncoder` and `InstrumentDecoder` classes. It is defined in
 the `Storage.java`, `InstrumentEncoder.java` and `InstrumentDecoder.java` respectively. This figure below represents the class diagram of
@@ -210,7 +199,7 @@ a higher level of abstraction.
 ## Implementation
 
 ### Add instrument feature
-The add instrument functionality is mainly handled by the `parser` and `commands` components. Within the `parser`
+The add instrument functionality is mainly handled by the `console` and `commands` components. Within the `console`
 component, the `InputParser` class implements the method `InputParser#getAddInstrumentParameters()`. This method calls
 `AddInstrumentParser#filterByInstrumentType()` which will then guide the user through the process of adding a new
 instrument. 
@@ -232,6 +221,61 @@ example instead of calling `AddStockParser#getStockSpecificParameters()`, its eq
 From the notes in the sequence diagram above, for every attribute in the instrument, there would be an instructional
 prompt to get user to provide information for that attribute. This is done through a series of methods in
 the `TextUi` class.
+
+### Edit instrument feature
+
+The edit instrument functionality mainly involves the `console`, `commands` and `model` components. Within the `console`
+component, the `InputParser` class implements the method `InputParser#getEditInstrumentCommand()`. This method calls
+`InputParser#getParametersToEdit` which will prompt the users to input which parameters of the instrument to edit
+and check if the parameters entered are valid. Invalid inputs will not be processed.
+
+The process of writing the new values of the parameters to be edited is handled by the `EditInstrumentParser` class.
+The method `EditInstrumentParser#createEditCommand()` calls `EditInstrumentParser#getEditedParameters()` which 
+calls multiple individual methods that check if its parameters is being edited and to enter a new value for the 
+parameters.
+
+The execution of setting the new values of the parameters is handled by the `EditInstrumentCommand` class.
+
+The figure below represents the sequence diagram when the user wants to edit the name a stock:
+
+<img src="images/EditInstrumentSequenceDiagram.png" width="900"/>
+
+More details about the reference frame for getting the new edited parameters from the user is given below:
+
+<img src="images/EditRefrence.png" width="700"/>
+
+From the note in the reference diagram above, each parameter the user wants to edit,
+there would be an instructional prompt to guide the user to give a valid input. This is done through the `TextUi` class.
+
+Below is the sequence diagram detailing the command execution of setting the stock with the new values (in this case is setting the name parameter to new name):
+
+<img src="images/EditExecuteSequenceDiagram.png" width="900"/>
+
+More details about checking if parameters exist in HashMap and to edit the parameters if it exists is shown below:
+
+<img src="images/EditExecuteRefrence.png" width="700"/>
+
+The process for editing other instruments or other parameters follow a similar process to the sequence above.
+The main difference would be the parameters collected from the user and the parameters allowed to be edited.
+For example the user can edit the expiry parameter in Crypto but not in Stock.
+
+### Mark an instrument as done feature
+
+The done instrument functionality mainly involves the `console`, `commands` and `model` components. Within the `console`
+component, the `InputParser` class implements the method `InputParser#getDoneInstrumentCommand()`, which processes the index of instrument
+and check if the instrument has been previously marked as done. 
+
+The execution of marking the instrument as done is handled by the `DoneCommand`class.
+
+The figure below represents the sequence diagram when the user executes a done command. In this scenario the user
+gave the command "done 1". Here "done" is the command keyword and "1" represents the current position of the instrument
+in the list of instruments:
+
+<img src="images/DoneCryptoSequenceDiagram.png" width="1040"/>
+
+More details about the reference frame for executing the done command is shown below:
+
+<img src="images/DoneCryptoExecuteDiagram.png" width="600"/>
 
 ### Loading pre-existing data
 The loading of pre-existing data is mainly handled by the `filemanager` and `model` components. The main method calls 

@@ -1,0 +1,74 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include Styles.puml
+
+box command COLOR_FAINT_GREEN
+participant ":EditInstrumentCommand" as EditInstrumentCommand COLOR_COMMANDS
+end box
+
+box model COLOR_MODEL_SEGMENT
+participant ":InstrumentManager" as InstrumentManager COLOR_MODEL
+participant ":Stock" as Instrument COLOR_MODEL
+end box
+
+box ui COLOR_LIGHT_BLUE
+participant "<<Class>>\n:TextUi" as TextUi COLOR_UI
+end box
+
+[->EditInstrumentCommand:execute()
+activate EditInstrumentCommand
+
+EditInstrumentCommand -> EditInstrumentCommand: getInstrumentAtIndex()
+activate EditInstrumentCommand
+EditInstrumentCommand-> InstrumentManager: getInstrument(1)
+activate InstrumentManager
+InstrumentManager--> EditInstrumentCommand: return instrumentToEdit
+deactivate InstrumentManager
+EditInstrumentCommand--> EditInstrumentCommand: return instrumentToEdit
+deactivate EditInstrumentCommand
+
+
+EditInstrumentCommand -> Instrument: getAllParams()
+activate Instrument
+Instrument --> EditInstrumentCommand: return parameters before edit
+deactivate Instrument
+
+EditInstrumentCommand-> InstrumentManager: editInstrument(1, {"name", "new name"})
+activate InstrumentManager
+
+InstrumentManager -> Instrument: editParameter({"name", "new name"})
+activate Instrument
+
+ref over Instrument
+check if
+stock
+parameters
+exist in
+HashMap
+and if it
+exists,
+update its
+parameters.
+endref
+
+Instrument --> InstrumentManager
+deactivate Instrument
+
+InstrumentManager --> EditInstrumentCommand
+deactivate InstrumentManager
+
+EditInstrumentCommand -> Instrument: getAllParams()
+activate Instrument
+Instrument --> EditInstrumentCommand: return parameters after edit
+deactivate Instrument
+
+EditInstrumentCommand-> TextUi: displayEditBeforeAfter(parameters before edit, parameters after edit)
+activate TextUi
+
+TextUi --> EditInstrumentCommand
+deactivate TextUi
+
+[<--EditInstrumentCommand: return "edit"
+deactivate EditInstrumentCommand
+
+@enduml
