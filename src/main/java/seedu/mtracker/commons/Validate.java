@@ -1,6 +1,5 @@
 package seedu.mtracker.commons;
 
-
 import seedu.mtracker.LogHelper;
 import seedu.mtracker.commands.AddCryptoCommand;
 import seedu.mtracker.commands.AddEtfCommand;
