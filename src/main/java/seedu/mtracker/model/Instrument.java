@@ -80,6 +80,7 @@ public abstract class Instrument {
         return name;
     }
 
+    //@@author kum-wh
     public void setName(String inputName) {
         name = inputName;
     }
@@ -167,6 +168,7 @@ public abstract class Instrument {
         editGeneralParameter(editedParameters);
     }
 
+    //@@author
     public abstract String getType();
 
     /**
@@ -180,6 +182,7 @@ public abstract class Instrument {
                 + isDone;
     }
 
+    //@@ author kum-wh
     /**
      * Gets all the type of parameters in the instrument in one string.
      *
@@ -192,6 +195,7 @@ public abstract class Instrument {
                 + SENTIMENT_ATTRIBUTE;
     }
 
+    //@@author
     public abstract String getTypeIcon();
 
     /**
@@ -216,6 +220,7 @@ public abstract class Instrument {
                 + SPACE + name + SEMICOLON_SEP + currentPrice + SEMICOLON_SEP + sentiment;
     }
 
+    //@@author kum-wh
     /**
      * Adds all the type of parameters in an instrument into a HashSet.
      *

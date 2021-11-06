@@ -44,6 +44,7 @@ public class Forex extends Instrument {
         this.remark = remark;
     }
 
+    //@@author kum-wh
     /**
      * Gets all the type of Forex parameters in one string.
      *
@@ -57,6 +58,7 @@ public class Forex extends Instrument {
                 + REMARK_ATTRIBUTE;
     }
 
+    //@@author
     /**
      * Formats date into String.
      *
@@ -66,6 +68,7 @@ public class Forex extends Instrument {
         return expiry.format(DateTimeFormatter.ofPattern(DATE_REGEX));
     }
 
+    //@@author kum-wh
     public void setRemark(String inputRemark) {
         remark = inputRemark;
     }
@@ -156,6 +159,7 @@ public class Forex extends Instrument {
         editSpecificParameter(editedParameters);
     }
 
+    //@@author
     @Override
     public String getType() {
         return TYPE_INSTRUMENT;
@@ -192,6 +196,7 @@ public class Forex extends Instrument {
                 + REMARKS_FIELD + remark;
     }
 
+    //@@author kum-wh
     /**
      * Adds all the type of Forex parameters into a HashSet.
      *

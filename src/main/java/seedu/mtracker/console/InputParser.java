@@ -143,6 +143,7 @@ public class InputParser {
         return doneCommand;
     }
 
+    //@@author kum-wh
     /**
      * Checks and filters the user given parameters based on the instrument of interest set of valid attributes.
      *
@@ -204,6 +205,7 @@ public class InputParser {
         return editInstrumentParser.createEditCommand(parametersToEdit, instrumentToEdit, instrumentNumber);
     }
 
+    //@@author
     /**
      * Checks if the index number provided is valid.
      *
