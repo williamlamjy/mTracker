@@ -31,6 +31,9 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+/**
+ * Validates parameters of instruments to ensure they are of the right format.
+ */
 public class Validate {
 
     public static final double MINIMUM_PRICE = 0;
@@ -49,6 +52,13 @@ public class Validate {
 
     private static final String FOREX_VALID_NAME_REGEX = "^[a-zA-Z]{3}/?[a-zA-Z]{3}$";
 
+    /**
+     * Checks the instrument's name is not empty.
+     * If the instrument is of type forex, it checks that the name is 6 letters.
+     * @param name
+     * @param instrumentType
+     * @return
+     */
     public static boolean isInvalidNameCondition(String name, String instrumentType) {
         if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
             return (!name.matches(FOREX_VALID_NAME_REGEX));
