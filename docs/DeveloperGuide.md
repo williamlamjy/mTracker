@@ -94,7 +94,6 @@ instrument at once which increases its user-friendliness.
 
 ### Model Component
 
-
 The `model` package contains the `InstrumentManager` class and `Instrument` class. It is defined
 in `InstrumentManager.java` and `Instrument.java` respectively. This figure below represents the class diagram of 
 how the different class work together:
