@@ -5,6 +5,9 @@ import seedu.mtracker.ui.TextUi;
 
 import java.util.HashMap;
 
+/**
+ * Handles changing the parameters to the new values.
+ */
 public class EditInstrumentCommand extends IndexedCommand {
     public static final String COMMAND_WORD = "edit";
     protected HashMap<String, String> editedParameters;
@@ -14,6 +17,12 @@ public class EditInstrumentCommand extends IndexedCommand {
         this.editedParameters = editedParameters;
     }
 
+    /**
+     * Handles the execution of the command,
+     * which is to change parameters to new values.
+     * 
+     * @return name of the command.
+     */
     @Override
     public String execute() {
         Instrument instrumentToEdit = getInstrumentAtIndex();
