@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.time.LocalDate;
 
+/**
+ * Represent a Forex type instrument.
+ */
 public class Forex extends Instrument {
 
     protected double entryPrice;
@@ -49,6 +52,10 @@ public class Forex extends Instrument {
                 + REMARK_ATTRIBUTE;
     }
 
+    /**
+     * Format date into String.
+     * @return Expiry date formatted into string.
+     */
     public String formatExpiry() {
         return expiry.format(DateTimeFormatter.ofPattern(DATE_REGEX));
     }
@@ -69,6 +76,10 @@ public class Forex extends Instrument {
         expiry = inputExpiry;
     }
 
+    /**
+     * Set remarks parameter to the new remarks if remarks parameter is being edited.
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editRemark(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(REMARK_ATTRIBUTE)) {
             return;
@@ -76,6 +87,10 @@ public class Forex extends Instrument {
         setRemark(editedParameters.get(REMARK_ATTRIBUTE));
     }
 
+    /**
+     * Set expiry parameter to the new expiry if expiry parameter is being edited.
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editExpiry(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(EXPIRY_ATTRIBUTE)) {
             return;
@@ -84,6 +99,10 @@ public class Forex extends Instrument {
         setExpiry(updateExpiry);
     }
 
+    /**
+     * Set entry price parameter to the new price if entry price parameter is being edited.
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editEntryPrice(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(ENTRY_PRICE_ATTRIBUTE)) {
             return;
@@ -92,6 +111,10 @@ public class Forex extends Instrument {
         setEntryPrice(updateEntryPrice);
     }
 
+    /**
+     * Set exit price parameter to the new price if exit price parameter is being edited.
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editExitPrice(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(EXIT_PRICE_FIELD)) {
             return;
@@ -100,6 +123,10 @@ public class Forex extends Instrument {
         setExitPrice(updateExitPrice);
     }
 
+    /**
+     * Set all instrument specific parameters being edited to its new values.
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editSpecificParameter(HashMap<String, String> editedParameters) {
         editEntryPrice(editedParameters);
         editExitPrice(editedParameters);

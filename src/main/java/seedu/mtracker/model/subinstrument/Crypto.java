@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.time.LocalDate;
 
+/**
+ * Represents a Crypto type instrument.
+ */
 public class Crypto extends Instrument {
 
     protected LocalDate expiry;
@@ -22,6 +25,10 @@ public class Crypto extends Instrument {
         this.remark = remark;
     }
 
+    /**
+     * Format date into String.
+     * @return Expiry date formatted into string.
+     */
     public String formatExpiry() {
         return expiry.format(DateTimeFormatter.ofPattern(DATE_REGEX));
     }
@@ -34,6 +41,10 @@ public class Crypto extends Instrument {
         remark = inputRemark;
     }
 
+    /**
+     * Set remarks parameter to the new remarks if remarks parameter is being edited.
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editRemark(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(REMARK_ATTRIBUTE)) {
             return;
@@ -41,6 +52,10 @@ public class Crypto extends Instrument {
         setRemark(editedParameters.get(REMARK_ATTRIBUTE));
     }
 
+    /**
+     * Set expiry parameter to the new expiry if expiry parameter is being edited.
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editExpiry(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(EXPIRY_ATTRIBUTE)) {
             return;
@@ -49,6 +64,10 @@ public class Crypto extends Instrument {
         setExpiry(updateExpiry);
     }
 
+    /**
+     * Set all instrument specific parameters being edited to its new values.
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editSpecificParameter(HashMap<String, String> editedParameters) {
         editExpiry(editedParameters);
         editRemark(editedParameters);

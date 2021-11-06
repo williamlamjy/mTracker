@@ -4,10 +4,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 /**
- *
- * Represents a task in the TaskManager.
- * It contains task basic information like name and completion status.
- *
+ * Represents an instrument in the InstrumentManager.
+ * Contains common instrument parameters.
  */
 public abstract class Instrument {
 
@@ -55,14 +53,24 @@ public abstract class Instrument {
         return isDone;
     }
 
+    /**
+     * Set instrument as done.
+     */
     public void markAsDone() {
         isDone = true;
     }
 
+    /**
+     * Set instrument as not done.
+     */
     public void markAsNotDone() {
         isDone = false;
     }
 
+    /**
+     * Get the icon representing the done status of the instrument.
+     * @return DONE_SYMBOL if instrument is marked as done and NOT_DONE_SYMBOL if instrument is not marked as done.
+     */
     public String getStatusIcon() {
         return (isDone ? DONE_SYMBOL : NOT_DONE_SYMBOL);
     }
@@ -83,6 +91,10 @@ public abstract class Instrument {
         sentiment = inputSentiment;
     }
 
+    /**
+     * Set name parameter to the new name if name parameter is being edited.
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editName(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(NAME_ATTRIBUTE)) {
             return;
@@ -90,6 +102,10 @@ public abstract class Instrument {
         setName(editedParameters.get(NAME_ATTRIBUTE));
     }
 
+    /**
+     * Set done status parameter to the new status if done status parameter is being edited.
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editDoneStatus(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(DONE_ATTRIBUTE)) {
             return;
@@ -102,6 +118,10 @@ public abstract class Instrument {
         assert (editedParameters.get(DONE_ATTRIBUTE).equals(UNDONE_INDICATOR));
     }
 
+    /**
+     * Set current price parameter to the new price if current price parameter is being edited.
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editCurrentPrice(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(CURRENT_PRICE_ATTRIBUTE)) {
             return;
@@ -110,6 +130,10 @@ public abstract class Instrument {
         setCurrentPrice(updatedPrice);
     }
 
+    /**
+     * Set sentiment parameter to the new sentiment if sentiment parameter is being edited.
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editSentiment(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(SENTIMENT_ATTRIBUTE)) {
             return;
@@ -117,6 +141,11 @@ public abstract class Instrument {
         setSentiment(editedParameters.get(SENTIMENT_ATTRIBUTE));
     }
 
+    /**
+     * Set name, current price, sentiment and done status to its respective new values,
+     * if that parameters is being edited.
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editGeneralParameter(HashMap<String, String> editedParameters) {
         editName(editedParameters);
         editCurrentPrice(editedParameters);
@@ -124,18 +153,30 @@ public abstract class Instrument {
         editDoneStatus(editedParameters);
     }
 
+    /**
+     * Set all the parameters being edited to its new values.
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editParameter(HashMap<String, String> editedParameters) {
         editGeneralParameter(editedParameters);
     }
 
     public abstract String getType();
 
+    /**
+     * Format all the parameters of the instrument to save to text file.
+     * @return A formatted string to save to text file.
+     */
     public String textFileFormatting() {
         return getType().toLowerCase() + FILE_SEPARATOR + name + FILE_SEPARATOR
                 + currentPrice + FILE_SEPARATOR + sentiment + FILE_SEPARATOR
                 + isDone;
     }
 
+    /**
+     * Get all the type of parameters in the instrument in one string.
+     * @return A string containing all the type of parameters of the instrument.
+     */
     public String editParameterInstructions() {
         return DONE_ATTRIBUTE + SEPARATOR
                 + NAME_ATTRIBUTE + SEPARATOR
@@ -145,6 +186,10 @@ public abstract class Instrument {
 
     public abstract String getTypeIcon();
 
+    /**
+     * Get all the parameters of the instrument, with each parameter on a newline.
+     * @return A string containing all parameters of the instrument.
+     */
     public String getAllParams() {
         return TYPE_FIELD + getType() + TAB + getStatusIcon() + System.lineSeparator()
                 + NAME_FIELD + name + System.lineSeparator()
@@ -152,11 +197,19 @@ public abstract class Instrument {
                 + SENTIMENT_FIELD + sentiment + System.lineSeparator();
     }
 
+    /**
+     * Get the done status, name, current price and sentiment parameters of the instrument.
+     * @return A string containing the general parameters of the instrument.
+     */
     public String getGeneralParams() {
         return getTypeIcon() + getStatusIcon()
                 + SPACE + name + SEMICOLON_SEP + currentPrice + SEMICOLON_SEP + sentiment;
     }
 
+    /**
+     * Add all the type of parameters in an instrument into a HashSet.
+     * @return HashSet containing the type of parameters of the instrument.
+     */
     public HashSet<String> getValidAttribute() {
         validAttribute.add(NAME_ATTRIBUTE);
         validAttribute.add(CURRENT_PRICE_ATTRIBUTE);

@@ -5,6 +5,9 @@ import seedu.mtracker.model.Instrument;
 import java.util.HashMap;
 import java.util.HashSet;
 
+/**
+ * Represent an Etf type instrument.
+ */
 public class Etf extends Instrument {
 
     protected String remark;
@@ -31,6 +34,10 @@ public class Etf extends Instrument {
         pastReturns = inputPastReturn;
     }
 
+    /**
+     * Set past return parameter to the new past return if past return parameter is being edited.
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editReturn(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(RETURNS_ATTRIBUTE)) {
             return;
@@ -39,6 +46,10 @@ public class Etf extends Instrument {
         setPastReturns(updateReturn);
     }
 
+    /**
+     * Set remarks parameter to the new remarks if remarks parameter is being edited.
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editRemark(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(REMARK_ATTRIBUTE)) {
             return;
@@ -46,6 +57,10 @@ public class Etf extends Instrument {
         setRemark(editedParameters.get(REMARK_ATTRIBUTE));
     }
 
+    /**
+     * Set all instrument specific parameters being edited to its new values.
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editSpecificParameters(HashMap<String, String> editedParameters) {
         editReturn(editedParameters);
         editRemark(editedParameters);
@@ -57,6 +72,11 @@ public class Etf extends Instrument {
         editSpecificParameters(editedParameters);
     }
 
+    /**
+     * Get the value past return in string.
+     * @return Empty string if past returns is undefined.
+     * else the value of the past return in string.
+     */
     public String getReturns() {
         if (pastReturns == UNDEFINED_VALUE) {
             return EMPTY_STRING;
