@@ -211,9 +211,6 @@ out:
 	[E][ ] SPY; 445.87; positive - has been added to list.
 ```
 
-_**Note: If any of the non-optional parameters `Name`, `Current price` and `Sentiment` are provided with invalid
-inputs, you would be prompted to give a valid input.**_
-
 ### *2.1.4 Adding a new `forex`*
 Bilateral currency pairs, known as forex pairs, are traded in the currency market
 and mTracker provides the ability to add forex pairs to its watchlist too.
