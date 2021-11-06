@@ -44,6 +44,11 @@ public class Forex extends Instrument {
         this.remark = remark;
     }
 
+    /**
+     * Gets all the type of Forex parameters in one string.
+     *
+     * @return A string containing all the type of Forex parameters.
+     */
     @Override
     public String editParameterInstructions() {
         return super.editParameterInstructions() + SEPARATOR + ENTRY_PRICE_ATTRIBUTE + SEPARATOR
@@ -140,6 +145,11 @@ public class Forex extends Instrument {
         editRemark(editedParameters);
     }
 
+    /**
+     * Sets all the Forex parameters being edited to its new values.
+     *
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     @Override
     public void editParameter(HashMap<String, String> editedParameters) {
         editGeneralParameter(editedParameters);
@@ -156,6 +166,11 @@ public class Forex extends Instrument {
         return FOREX_ICON;
     }
 
+    /**
+     * Formats all Forex parameters to save to text file.
+     *
+     * @return A formatted string to save to text file.
+     */
     @Override
     public String textFileFormatting() {
         return super.textFileFormatting() + FILE_SEPARATOR + entryPrice
@@ -163,6 +178,11 @@ public class Forex extends Instrument {
                 + FILE_SEPARATOR + remark;
     }
 
+    /**
+     * Gets all the Forex parameters, with each parameter on a newline.
+     *
+     * @return A string containing all the Forex parameters.
+     */
     @Override
     public String getAllParams() {
         return super.getAllParams()
@@ -172,6 +192,11 @@ public class Forex extends Instrument {
                 + REMARKS_FIELD + remark;
     }
 
+    /**
+     * Adds all the type of Forex parameters into a HashSet.
+     *
+     * @return HashSet containing the type of Forex parameters.
+     */
     @Override
     public HashSet<String> getValidAttribute() {
         super.getValidAttribute();
