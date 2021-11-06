@@ -5,6 +5,9 @@ import seedu.mtracker.ui.TextUi;
 
 import java.time.LocalDate;
 
+/**
+ * Responsible for adding Crypto to the list.
+ */
 public class AddCryptoCommand extends AddInstrumentCommand {
 
     public static final String COMMAND_WORD = "crypto";
@@ -25,6 +28,11 @@ public class AddCryptoCommand extends AddInstrumentCommand {
                 sentimentParameter, expiryParameter, remarkParameter);
     }
 
+    /**
+     * Handles the execution of adding Crypto to the list.
+     *
+     * @return The name of the command.
+     */
     @Override
     public String execute() {
         setAddGeneralParameters();

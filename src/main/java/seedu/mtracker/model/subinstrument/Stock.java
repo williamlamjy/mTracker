@@ -4,6 +4,9 @@ import seedu.mtracker.model.Instrument;
 
 import java.util.HashMap;
 
+/**
+ * Represents a Stock type instrument.
+ */
 public class Stock extends Instrument {
 
     protected String remark;
@@ -23,6 +26,11 @@ public class Stock extends Instrument {
         remark = inputRemark;
     }
 
+    /**
+     * Sets remarks parameter to the new remarks if remarks parameter is being edited.
+     *
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editRemark(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(REMARK_ATTRIBUTE)) {
             return;
