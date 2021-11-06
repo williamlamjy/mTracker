@@ -96,13 +96,14 @@ public class AddEtfParserTest extends GeneralInstrumentParserTest {
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + "50.0"
             + SEPARATOR_SPECIFIER + ABORT;
+    //@@author
 
+    //@@author kum-wh
     void testEtfParameters(String input, String[] expectedEtfParameters) throws OperationAbortedError {
         simulateConsoleInput(input);
         AddEtfParser testEtfParser = new AddEtfParser();
         verifyInstrumentParameters(testEtfParser, expectedEtfParameters);
     }
-    //@@author
 
     @Override
     public int getParameterSize() {
@@ -169,5 +170,4 @@ public class AddEtfParserTest extends GeneralInstrumentParserTest {
         assertThrows(OperationAbortedError.class,
             () -> testEtfParameters(USER_INPUT_TRY_ABORT_AT_REMARKS, NO_PARAMS_EXPECTED));
     }
-    //@@author
 }

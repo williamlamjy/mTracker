@@ -105,13 +105,14 @@ class AddCryptoParserTest extends GeneralInstrumentParserTest {
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + DONT_ABORT
             + SEPARATOR_SPECIFIER.repeat(2) + ABORT;
+    //@@author
 
+    //@@author williamlamjy
     void testCryptoParameters(String input, String[] expectedParameters) throws OperationAbortedError {
         simulateConsoleInput(input);
         AddCryptoParser testCryptoParser = new AddCryptoParser();
         verifyInstrumentParameters(testCryptoParser, expectedParameters);
     }
-    //@@author
 
     @Override
     public int getParameterSize() {
@@ -192,5 +193,4 @@ class AddCryptoParserTest extends GeneralInstrumentParserTest {
         assertThrows(OperationAbortedError.class,
             () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_REMARKS, NO_PARAMS_EXPECTED));
     }
-    //@@author
 }

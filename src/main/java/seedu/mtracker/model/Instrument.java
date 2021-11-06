@@ -137,6 +137,7 @@ public abstract class Instrument {
                 + SENTIMENT_ATTRIBUTE;
     }
 
+    //@@author KVignesh122
     public abstract String getTypeIcon();
 
     public String getAllParams() {
@@ -150,6 +151,7 @@ public abstract class Instrument {
         return getTypeIcon() + getStatusIcon()
                 + SPACE + name + SEMICOLON_SEP + currentPrice + SEMICOLON_SEP + sentiment;
     }
+    //@@author
 
     public HashSet<String> getValidAttribute() {
         validAttribute.add(NAME_ATTRIBUTE);

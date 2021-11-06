@@ -217,5 +217,4 @@ public class InputParser {
             throw new OperationAbortedError(currentProcess);
         }
     }
-    //@@author
 }

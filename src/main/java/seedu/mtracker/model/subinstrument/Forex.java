@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.time.LocalDate;
 
+//@@author KVignesh122
 public class Forex extends Instrument {
 
     protected double entryPrice;
@@ -139,6 +140,7 @@ public class Forex extends Instrument {
                 + REMARKS_FIELD + remark;
     }
 
+    //@@author kum-wh
     @Override
     public HashSet<String> getValidAttribute() {
         super.getValidAttribute();

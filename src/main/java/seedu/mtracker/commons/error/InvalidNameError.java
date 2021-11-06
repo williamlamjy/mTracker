@@ -2,6 +2,7 @@ package seedu.mtracker.commons.error;
 
 import seedu.mtracker.console.AddForexParser;
 
+//@@author KVignesh122
 public class InvalidNameError extends Exception {
 
     private final String instrumentType;
@@ -9,8 +10,6 @@ public class InvalidNameError extends Exception {
     public InvalidNameError(String instrumentType) {
         this.instrumentType = instrumentType;
     }
-
-    //@@author KVignesh122
     @Override
     public String getMessage() {
         if (instrumentType.equals(AddForexParser.INSTRUMENT_TYPE)) {
@@ -18,5 +17,4 @@ public class InvalidNameError extends Exception {
         }
         return ErrorMessage.addInstrumentNameError(instrumentType);
     }
-    //@@author
 }

@@ -65,5 +65,4 @@ public class MTracker {
     public static void main(String[] args) {
         new MTracker().executeProgram();
     }
-    //@@author
 }

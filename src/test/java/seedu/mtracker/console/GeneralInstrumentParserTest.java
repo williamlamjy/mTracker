@@ -19,6 +19,16 @@ public abstract class GeneralInstrumentParserTest {
 
     public static final String[] NO_PARAMS_EXPECTED = {};
 
+    void verifyInstrumentParameters(AddInstrumentParser testInstrumentParser, String[] expectedParameters)
+            throws OperationAbortedError {
+        testInstrumentParser.initParameters();
+        testInstrumentParser.getInstrumentParameters();
+        checkParameters(testInstrumentParser, expectedParameters);
+    }
+
+    public abstract int getParameterSize();
+
+    //@@author theodorekwok
     String formatConsoleInput(String input) {
         return String.format(input, System.lineSeparator());
     }
@@ -34,13 +44,4 @@ public abstract class GeneralInstrumentParserTest {
             assertEquals(testInstrumentParser.getParameters().get(i), expectedParameters[i]);
         }
     }
-
-    void verifyInstrumentParameters(AddInstrumentParser testInstrumentParser, String[] expectedParameters)
-            throws OperationAbortedError {
-        testInstrumentParser.initParameters();
-        testInstrumentParser.getInstrumentParameters();
-        checkParameters(testInstrumentParser, expectedParameters);
-    }
-
-    public abstract int getParameterSize();
 }
