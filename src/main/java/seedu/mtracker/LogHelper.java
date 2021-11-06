@@ -7,6 +7,9 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 //@@author theodorekwok
+/**
+ * A class responsible for handling the error logging and the messages to log.
+ */
 public class LogHelper {
 
     public static final String LOG_FILE_NAME = "logger.log";
@@ -35,6 +38,11 @@ public class LogHelper {
         setupLogger();
     }
 
+    /**
+     * Checks and create an instance of logHelper if it does not exist.
+     *
+     * @return The main instance of logHelper.
+     */
     public static LogHelper getInstance() {
         if (logHelper == null) {
             logHelper = new LogHelper();
@@ -47,6 +55,9 @@ public class LogHelper {
         return logger;
     }
 
+    /**
+     * Prepares the log files and set the logging level.
+     */
     public void setupLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);

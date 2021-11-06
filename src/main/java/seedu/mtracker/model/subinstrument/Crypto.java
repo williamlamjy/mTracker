@@ -7,6 +7,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.HashSet;
 
+/**
+ * Represents a Crypto type instrument.
+ */
 public class Crypto extends Instrument {
 
     protected LocalDate expiry;
@@ -22,6 +25,11 @@ public class Crypto extends Instrument {
         this.remark = remark;
     }
 
+    /**
+     * Formats date into String.
+     *
+     * @return Expiry date formatted into string.
+     */
     public String formatExpiry() {
         return expiry.format(DateTimeFormatter.ofPattern(DATE_REGEX));
     }
@@ -34,6 +42,11 @@ public class Crypto extends Instrument {
         remark = inputRemark;
     }
 
+    /**
+     * Sets remarks parameter to the new remarks if remarks parameter is being edited.
+     *
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editRemark(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(REMARK_ATTRIBUTE)) {
             return;
@@ -41,6 +54,11 @@ public class Crypto extends Instrument {
         setRemark(editedParameters.get(REMARK_ATTRIBUTE));
     }
 
+    /**
+     * Sets expiry parameter to the new expiry if expiry parameter is being edited.
+     *
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editExpiry(HashMap<String, String> editedParameters) {
         if (!editedParameters.containsKey(EXPIRY_ATTRIBUTE)) {
             return;
@@ -49,11 +67,21 @@ public class Crypto extends Instrument {
         setExpiry(updateExpiry);
     }
 
+    /**
+     * Sets all instrument specific parameters being edited to its new values.
+     *
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     public void editSpecificParameter(HashMap<String, String> editedParameters) {
         editExpiry(editedParameters);
         editRemark(editedParameters);
     }
 
+    /**
+     * Sets all the Crypto parameters being edited to its new values.
+     *
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     @Override
     public void editParameter(HashMap<String, String> editedParameters) {
         editGeneralParameter(editedParameters);
@@ -65,12 +93,22 @@ public class Crypto extends Instrument {
         return TYPE_INSTRUMENT;
     }
 
+    /**
+     * Formats all Crypto parameters to save to text file.
+     *
+     * @return A formatted string to save to text file.
+     */
     @Override
     public String textFileFormatting() {
         return super.textFileFormatting() + FILE_SEPARATOR + expiry
                 + FILE_SEPARATOR + remark;
     }
 
+    /**
+     * Gets all the type of Crypto parameters in one string.
+     *
+     * @return A string containing all the type of Crypto parameters.
+     */
     @Override
     public String editParameterInstructions() {
         return super.editParameterInstructions() + SEPARATOR + EXPIRY_ATTRIBUTE + SEPARATOR
@@ -82,6 +120,11 @@ public class Crypto extends Instrument {
         return CRYPTO_ICON;
     }
 
+    /**
+     * Gets all the Crypto parameters, with each parameter on a newline.
+     *
+     * @return A string containing all the Crypto parameters.
+     */
     @Override
     public String getAllParams() {
         return super.getAllParams()
@@ -89,6 +132,11 @@ public class Crypto extends Instrument {
                 + REMARKS_FIELD + remark;
     }
 
+    /**
+     * Adds all the type of Crypto parameters into a HashSet.
+     *
+     * @return HashSet containing the type of Crypto parameters.
+     */
     @Override
     public HashSet<String> getValidAttribute() {
         super.getValidAttribute();

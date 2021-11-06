@@ -4,6 +4,9 @@ import seedu.mtracker.model.subinstrument.Stock;
 import seedu.mtracker.ui.TextUi;
 
 //@@author theodorekwok
+/**
+ * Responsible for adding Stock to the list.
+ */
 public class AddStockCommand extends AddInstrumentCommand {
 
     public static final String COMMAND_WORD = "stock";
@@ -19,6 +22,11 @@ public class AddStockCommand extends AddInstrumentCommand {
         newInstrument = new Stock(nameParameter, currentPriceParameter, sentimentParameter, remarkParameter);
     }
 
+    /**
+     * Handles the execution of adding Stock to the list.
+     *
+     * @return The name of the command.
+     */
     @Override
     public String execute() {
         setAddGeneralParameters();
