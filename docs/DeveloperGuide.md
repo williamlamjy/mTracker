@@ -338,8 +338,6 @@ appropriate message through the `TextUi` class.
 
 ## Product scope
 ### Target user profile
-
-**Target user profile:**
  * Busy individuals that need a convenient way to record financial information on the go.
  * Familiar with using the terminal and command-line interface applications.
  * Individuals that consistently keep up to date with financial news and events.
