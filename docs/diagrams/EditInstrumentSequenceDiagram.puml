@@ -4,7 +4,7 @@
 
 box console COLOR_CONSOLE_SEGMENT
 participant ":InputParser" as InputParser COLOR_CONSOLE
-participant ":EditInstrumentParser" as EditInstrumentParser COLOR_MODEL
+participant ":EditInstrumentParser" as EditInstrumentParser COLOR_CONSOLE
 end box
 
 box command COLOR_FAINT_GREEN
@@ -45,7 +45,7 @@ InputParser -> InputParser: getParametersToEdit(validAttributes)
 activate InputParser
 
 InputParser -> InputParser: filterInvalidParameters({"name"}, validAttributes)
-note right: Prompt user to enter in parameters and\ncheck if parameters entered are valid.\nError is thrown if there is no input.\nvalidAttributes for Stock are Name,\nCurrent Price, Sentiment and Remarks.
+note right: Prompt user to enter in parameters and\ncheck if parameters entered are valid.\nError is thrown if there is no input.\nvalidAttributes for Stock are name,\ncurrent price, sentiment and remarks.
 activate InputParser
 InputParser --> InputParser: return filteredParameters
 deactivate InputParser
@@ -62,7 +62,10 @@ InputParser -> EditInstrumentParser: createEditCommand({"name"}, instrument, 1);
 activate EditInstrumentParser
 
 ref over EditInstrumentParser
-check if parameter is entered and add to HashMap
+Get new edited parameters
+from user and create a hashmap
+associating the parameter type
+and its new value
 endref
 
 create EditInstrumentCommand

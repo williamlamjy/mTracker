@@ -6,7 +6,7 @@ box console COLOR_CONSOLE_SEGMENT
 participant ":EditInstrumentParser" as EditInstrumentParser COLOR_MODEL
 end box
 
-group sd check if parameter is entered and \n add to HashMap
+group sd Get new edited parameters from user \nand create a hashmap associating the parameter type and its new value
 
 activate EditInstrumentParser
 
@@ -14,11 +14,11 @@ EditInstrumentParser -> EditInstrumentParser: getEditedParameters({"name"}, inst
 activate EditInstrumentParser
 
 EditInstrumentParser -> EditInstrumentParser: editNameParameter("stock", {"name"})
-note left: This method check if the parameter is entered \nthen prompts user to input new value of the parameter.\nMethod loop until a valid value is input.
+note left: editNameParameters check if the name is entered \nthen prompts user to provide a new name.\nMethod loop until a valid name is given.
 activate EditInstrumentParser
 
 alt parameters to edit does not include "name"
-else parameters to edit includes "name"
+else
 loop until valid name is entered
 EditInstrumentParser -> EditInstrumentParser: getUserInput()
 activate EditInstrumentParser
@@ -35,7 +35,7 @@ note left: This represents similar methods that does the same\nas the one above 
 activate EditInstrumentParser
 
 alt parameters to edit does not include parameter "XYZ"
-else parameters to edit includes parameter "XYZ"
+else
 loop until valid parameter is entered
 EditInstrumentParser -> EditInstrumentParser: getUserInput()
 activate EditInstrumentParser
@@ -50,4 +50,6 @@ EditInstrumentParser --> EditInstrumentParser
 deactivate EditInstrumentParser
 
 end
+
 @enduml
+
