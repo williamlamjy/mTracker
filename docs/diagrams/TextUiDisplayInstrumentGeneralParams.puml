@@ -10,7 +10,7 @@ box model COLOR_MODEL_SEGMENT
 participant ":Instrument" as Instrument COLOR_MODEL
 end box
 
-[-> TextUi : displayAllInstruments(ArrayList<Instrument> instruments)
+[-> TextUi : displayAllInstruments(instruments)
 activate TextUi
 
 TextUi -> TextUi : displayInstruments()

@@ -177,7 +177,7 @@ as all aspects of texts or instruments to be displayed on the console **have bee
 On the other hand, the `TextUi` class itself **has a dependency only on an Instrument class** whenever
 the user wishes to `list` out all the instruments in the watchlist or if s/he wants to `view`
 one such instrument in detail. The following sequence diagram explains `TextUi`'s interaction with an `Instrument` class when
-ListCommand#execute() calls the `displayInstrument()` method when the user wishes to list out all instruments in the watchlist:
+`ListCommand#execute()` calls the `displayAllInstruments(instruments)` method when the user wishes to list out all instruments in the watchlist:
 
 <img src="images/TextUiDisplayInstrumentGeneralParams.png" width="780"/>
 
