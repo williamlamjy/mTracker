@@ -1,5 +1,8 @@
 package seedu.mtracker.commons.error;
 
+/**
+ * Displays all the user facing errors.
+ */
 public abstract class ErrorMessage {
 
     public static final String INVALID_INSTRUMENT_GIVEN_ERROR = "Sorry instrument must be either "
@@ -83,10 +86,21 @@ public abstract class ErrorMessage {
 
     public static final String EDIT_EMPTY_ERROR = "Edit parameters cannot be empty, aborting edit process.";
 
+    /**
+     * Returns an error message when name provided is empty.
+     *
+     * @param instrumentType The type of instrument the user is providing a name for.
+     * @return A string error message that the instrument name cannot be empty.
+     */
     public static String addInstrumentNameError(String instrumentType) {
         return "Sorry " + instrumentType + " cannot have an empty name!";
     }
 
+    /**
+     * Returns a forex error message when forex name provided is in the wrong format.
+     *
+     * @return A string error message that the forex name is not in the right format.
+     */
     public static String addForexNameError() {
         return INVALID_FOREX_NAME_GIVEN_ERROR;
     }

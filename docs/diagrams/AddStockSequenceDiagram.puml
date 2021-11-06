@@ -3,6 +3,7 @@
 
 box console COLOR_CONSOLE_SEGMENT
 participant ":InputParser" as InputParser COLOR_CONSOLE
+participant "<<Class>>\nInputParser" as ClassInputParser COLOR_CONSOLE
 participant "<<Class>>\nAddInstrumentParser" as AddInstrumentParser COLOR_CONSOLE
 participant ":AddStockParser" as AddStockParser COLOR_CONSOLE
 participant ":AddStockCommand" as AddStockCommand COLOR_COMMANDS
@@ -13,7 +14,7 @@ participant ":AddStockCommand" as AddStockCommand COLOR_FAINT_GREEN
 end box
 
 box ui COLOR_LIGHT_BLUE
-participant ":TextUi" as TextUi COLOR_UI
+participant "<<Class>>\nTextUi" as TextUi COLOR_UI
 end box
 
 
@@ -23,11 +24,17 @@ activate InputParser
 InputParser -> InputParser : getAddInstrumentParameters()
 activate InputParser
 
-InputParser -> TextUi : displayAddInstrumentFirstInstruction()
-activate TextUi
+    loop until user enters a valid instrument type or aborts
+        InputParser -> TextUi : displayAddInstrumentFirstInstruction()
+        activate TextUi
 
-TextUi --> InputParser
-deactivate TextUi
+        TextUi --> InputParser
+        deactivate TextUi
+        InputParser -> ClassInputParser : getUserInput("add")
+        activate ClassInputParser
+        ClassInputParser --> InputParser : return instrumentType
+        deactivate ClassInputParser
+    end loop
 
 InputParser -> AddInstrumentParser : filterByInstrumentType({"stock"})
 activate AddInstrumentParser
@@ -56,6 +63,7 @@ endref
 
 AddInstrumentParser --> InputParser : return command
 deactivate AddInstrumentParser
+InputParser --> InputParser : return command
 deactivate InputParser
 [<-- InputParser : return command
 deactivate InputParser
