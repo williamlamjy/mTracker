@@ -217,12 +217,12 @@ instrument.
 
 The figure below represents the sequence diagram when the user wants to add a stock:
 
-<img src="images/AddStockSequenceDiagram.png" width="800"/>
+<img src="images/AddStockSequenceDiagram.png" width="1040"/>
 
 More details about the reference frame for obtaining the stock details and creating the AddStockCommand object are shown
 below.
 
-<img src="images/AddStockSequenceDiagramRef.png" width="600"/>
+<img src="images/AddStockSequenceDiagramRef.png" width="800"/>
 
 The process for adding the other instruments follow a similar process to the sequence above. The main difference would
 be the type of instrument parser called, the parameters collected from the user and the command type returned. For
@@ -284,11 +284,21 @@ appropriate message through the `TextUi` class.
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
-
+|Priority|Version| As a ... | I want to ... | So that I can ...|
+|----|---|---|------|------------|
+|`***`|v1.0|user|add a stock|record details of the stock
+|`***`|v1.0|user|add a cryptocurrency|record details of the cryptocurrency
+|`***`|v1.0|user|add a forex|record details of the forex
+|`***`|v1.0|user|add an etf|record details of the etf
+|`***`|v1.0|user|see my recorded instruments|refer to all of my instruments with their corresponding details
+|`**`|v1.0|user|add additional information about an instrument|keep track of information other than the instrument's traits
+|`***`|v2.0|user|see my previously recorded instruments|continue adding to my list of instruments for my day to day trading
+|`**`|v2.0|user|have a clear and concise list of my instruments|easily look through the list without having too many details
+|`*`|v2.0|user|view further details of my instruments|view excessive details of each instrument without cluttering the list
+|`**`|v2.0|user|edit an instrument|update certain details of an instrument when their traits change
+|`**`|v2.0|user|mark instruments|so that I can have a checklist of instruments to prioritise
+|`**`|v2.0|user|find an instrument|locate an instrument without having to go through the entire list|
+|`*`|v2.1|user|abort an add/edit process|cancel adding/editing an instrument if my mind changes during the process.
 ## Non-Functional Requirements
 
 1. The program should work on operating systems with `Java 11` installed. 
