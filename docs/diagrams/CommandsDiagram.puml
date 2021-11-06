@@ -58,36 +58,32 @@ hide circle
 
 Package "Commands                    "  <<Rectangle>>{
      Class "{abstract}\nCommand" as Command COLOR_COMMANDS {
-     + setData
-     + setParams
-     + execute: String
+     {method} + setData
+     {method} + setParams
+     {method} + execute: String
      }
-     Class ViewCommand COLOR_COMMANDS
-     Class ListCommand COLOR_COMMANDS
+'     Class ViewCommand COLOR_COMMANDS
      Class InvalidCommand COLOR_COMMANDS
-     Class FindCommand COLOR_COMMANDS
-     Class ExitCommand COLOR_COMMANDS
-     Class EditInstrumentCommand COLOR_COMMANDS
-     Class DoneCommand COLOR_COMMANDS
-     Class DeleteCommand COLOR_COMMANDS
+     Class XYZCommand COLOR_COMMANDS
+'     Class EditInstrumentCommand COLOR_COMMANDS
+'     Class DoneCommand COLOR_COMMANDS
+'     Class DeleteCommand COLOR_COMMANDS
+     Class ABCCommand COLOR_COMMANDS
      Class AddInstrumentCommand COLOR_COMMANDS
      Class "{abstract}\nIndexedCommand" as IndexedCommand COLOR_COMMANDS
 
-     Class AddCryptoCommand COLOR_COMMANDS
-     Class AddForexCommand COLOR_COMMANDS
-     Class AddStockCommand COLOR_COMMANDS
-     Class AddEtfCommand COLOR_COMMANDS
+     Class AddXYZCommand COLOR_COMMANDS
 }
 
 
 Class InstrumentManager COLOR_MODEL {
-    + getSize: int
-    + getInstruments: ArrayList<Instrument>
-    + getInstrument: Instrument
-    + addInstrument: Instrument
-    + findInstruments: ArrayList<Instrument>
-    + deleteInstrument
-    + editInstrument
+    {method} + getSize: int
+    {method} + getInstruments: ArrayList<Instrument>
+    {method} + getInstrument: Instrument
+    {method} + addInstrument: Instrument
+    {method} + findInstruments: ArrayList<Instrument>
+    {method} + deleteInstrument
+    {method} + editInstrument
 }
 
 Class TextUi COLOR_UI
@@ -95,26 +91,23 @@ Class TextUi COLOR_UI
 show Command members
 show InstrumentManager members
 
-Command -down[COLOR_MODEL]->"1" InstrumentManager
-ListCommand -right[COLOR_COMMANDS]-|>Command
+Command -down[COLOR_COMMANDS]->"1" InstrumentManager
 InvalidCommand -[COLOR_COMMANDS]-|>Command
-FindCommand -left[COLOR_COMMANDS]-|>Command
-ExitCommand -[COLOR_COMMANDS]-|>Command
+XYZCommand -[COLOR_COMMANDS]-|>Command
 AddInstrumentCommand -[COLOR_COMMANDS]-|>Command
 IndexedCommand -[COLOR_COMMANDS]-|>Command
 
-AddCryptoCommand -[COLOR_COMMANDS]-|>AddInstrumentCommand
-AddEtfCommand -[COLOR_COMMANDS]-|>AddInstrumentCommand
-AddForexCommand -[COLOR_COMMANDS]-|>AddInstrumentCommand
-AddStockCommand -[COLOR_COMMANDS]-|>AddInstrumentCommand
+AddXYZCommand -[COLOR_COMMANDS]-|>AddInstrumentCommand
 
-ViewCommand -[COLOR_COMMANDS]-|>IndexedCommand
-EditInstrumentCommand -[COLOR_COMMANDS]-|>IndexedCommand
-DoneCommand -[COLOR_COMMANDS]-|>IndexedCommand
-DeleteCommand -[COLOR_COMMANDS]-|>IndexedCommand
+ABCCommand -[COLOR_COMMANDS]-|>IndexedCommand
+'ViewCommand -[COLOR_COMMANDS]-|>IndexedCommand
+'EditInstrumentCommand -[COLOR_COMMANDS]-|>IndexedCommand
+'DoneCommand -[COLOR_COMMANDS]-|>IndexedCommand
+'DeleteCommand -[COLOR_COMMANDS]-|>IndexedCommand
 
-
-Command -[COLOR_UI].>TextUi
+XYZCommand -left[COLOR_COMMANDS].>TextUi
+ABCCommand -left[COLOR_COMMANDS].>TextUi
+AddXYZCommand -left[COLOR_COMMANDS].>TextUi
 'InvalidCommand -[COLOR_UI].>TextUi
 'ListCommand -[COLOR_UI].>TextUi
 'DeleteCommand -[COLOR_UI].>TextUi
