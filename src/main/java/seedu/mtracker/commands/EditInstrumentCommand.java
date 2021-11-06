@@ -18,8 +18,7 @@ public class EditInstrumentCommand extends IndexedCommand {
     }
 
     /**
-     * Handles the execution of the command,
-     * which is to change parameters to new values.
+     * Handles the execution of the command, which is to change parameters to new values.
      * 
      * @return name of the command.
      */
