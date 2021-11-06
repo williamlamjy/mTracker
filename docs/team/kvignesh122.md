@@ -28,8 +28,6 @@ program.
 managing it alongside view, delete, done, and edit command classes.
 - Abstracted out AddInstrumentParserTest class for all other instruments' addition parser test classes
 to depend on.
-- Improved overall code quality by abstracting out repetitive codeblocks as
-  methods, and removed redundant setters and getters.
   
 ### Code contributed
 
@@ -47,16 +45,21 @@ for crypto and forex.
   
 ### Documentation:
 - Reviewed grammar and sentence structure of all UG and DG content; made edits to enhance clarity.
-- Contributed UML class diagrams for Command and TextUi sections.
-- Copied over relevant user stories to DG.
+- Contributed UML class diagram for Command classes in DG: [#238](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/238)
+- Designed TextUi sequence diagram for List and View commands in DG: [#231](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/231)
 - Wrote more than 60% of the UG. ([#88](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/88))
-- Wrote Architecture section in DG.
+- Wrote Architecture section in DG: [#89](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/89)
 
 ### Team contributions:
 - Major PRs reviewed: [#211](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/211) 
   [#95](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/95)
   [#91](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/91)
   [#83](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/83)
-- Scheduled and conducted weekly project meetings outside of tutorial/lecture time.
+- Prepared the agenda, scheduled and conducted weekly project meetings outside of tutorial/lecture time.
 - Assisted team members with Gradle setup.
-- Planed and maintained team's GitHub issue tracker: [AY2122S1-T12-1](https://github.com/AY2122S1-CS2113T-T12-1/tp/issues)
+- Planned and maintained team's GitHub issue tracker: [#29](https://github.com/AY2122S1-CS2113T-T12-1/tp/issues/29)
+[#36](https://github.com/AY2122S1-CS2113T-T12-1/tp/issues/36)
+  [#84](https://github.com/AY2122S1-CS2113T-T12-1/tp/issues/84)
+  [#141](https://github.com/AY2122S1-CS2113T-T12-1/tp/issues/141)
+- Improved overall code quality by abstracting out repetitive codeblocks as
+    methods, and removed redundant setters and getters. [#92](https://github.com/AY2122S1-CS2113T-T12-1/tp/issues/92)
