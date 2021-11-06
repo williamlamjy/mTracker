@@ -79,26 +79,27 @@ Package "Commands                    "  <<Rectangle>>{
      Class AddEtfCommand COLOR_COMMANDS
 }
 
-Package "Model                    "  <<Rectangle>>{
-     Class InstrumentManager COLOR_MODEL {
-        + getSize: int
-        + getInstruments: ArrayList<Instrument>
-        + getInstrument: Instrument
-        + addInstrument: Instrument
-        + findInstruments: ArrayList<Instrument>
-        + deleteInstrument
-        + editInstrument
-     }
+
+Class InstrumentManager COLOR_MODEL {
+    + getSize: int
+    + getInstruments: ArrayList<Instrument>
+    + getInstrument: Instrument
+    + addInstrument: Instrument
+    + findInstruments: ArrayList<Instrument>
+    + deleteInstrument
+    + editInstrument
 }
+
+Class TextUi COLOR_UI
 
 show Command members
 show InstrumentManager members
 
-Command -left[COLOR_MODEL]->"1" InstrumentManager
-ListCommand -up[COLOR_COMMANDS]-|>Command
-InvalidCommand -up[COLOR_COMMANDS]-|>Command
-FindCommand -up[COLOR_COMMANDS]-|>Command
-ExitCommand -up[COLOR_COMMANDS]-|>Command
+Command -down[COLOR_MODEL]->"1" InstrumentManager
+ListCommand -right[COLOR_COMMANDS]-|>Command
+InvalidCommand -[COLOR_COMMANDS]-|>Command
+FindCommand -left[COLOR_COMMANDS]-|>Command
+ExitCommand -[COLOR_COMMANDS]-|>Command
 AddInstrumentCommand -[COLOR_COMMANDS]-|>Command
 IndexedCommand -[COLOR_COMMANDS]-|>Command
 
@@ -111,5 +112,21 @@ ViewCommand -[COLOR_COMMANDS]-|>IndexedCommand
 EditInstrumentCommand -[COLOR_COMMANDS]-|>IndexedCommand
 DoneCommand -[COLOR_COMMANDS]-|>IndexedCommand
 DeleteCommand -[COLOR_COMMANDS]-|>IndexedCommand
+
+
+Command -[COLOR_UI].>TextUi
+'InvalidCommand -[COLOR_UI].>TextUi
+'ListCommand -[COLOR_UI].>TextUi
+'DeleteCommand -[COLOR_UI].>TextUi
+'DoneCommand -[COLOR_UI].>TextUi
+'EditInstrumentCommand -[COLOR_UI].>TextUi
+'ViewCommand -[COLOR_UI].>TextUi
+'ExitCommand -[COLOR_UI].>TextUi
+'FindCommand -[COLOR_UI].>TextUi
+'
+'AddCryptoCommand -[COLOR_UI].>TextUi
+'AddForexCommand -[COLOR_UI].>TextUi
+'AddEtfCommand -[COLOR_UI].>TextUi
+'AddStockCommand -[COLOR_UI].>TextUi
 
 @enduml
