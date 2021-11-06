@@ -244,7 +244,7 @@ the `TextUi` class.
 After getting the stock details from the user, the `AddStockCommand#execute()` will be called. This creates a new stock
 adds it to the list of instruments. Here below we have a sequence diagram detailing the process.
 
-<img src="images/AddStockSequenceExecuteDiagram.png" width="800"/>
+<img src="images/AddStockSequenceExecuteDiagram.png" width="600"/>
 
 For other instrument types a different command will be executed. For example if the user is adding a new crypto,
 the equivalent command used would be the `AddCryptoCommand`.
