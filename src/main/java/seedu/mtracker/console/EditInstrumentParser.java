@@ -27,7 +27,7 @@ public class EditInstrumentParser extends InputParser {
     protected static final String DONE_ATTRIBUTE = "done-status";
     protected static final String WORKSPACE = EditInstrumentCommand.COMMAND_WORD;
 
-    public static final double UNDEFINED_PAST_RETURN_VALUE = -101;
+    protected static final double UNDEFINED_PAST_RETURN_VALUE = -101;
 
     /**
      * Gets the user new name input and stores it in a hashmap that maps the name attribute to input.
