@@ -217,7 +217,7 @@ instrument.
 
 The figure below represents the sequence diagram when the user wants to add a stock:
 
-<img src="images/AddStockSequenceDiagram.png" width="900"/>
+<img src="images/AddStockSequenceDiagram.png" width="1040"/>
 
 More details about the reference frame for obtaining the stock details and creating the AddStockCommand object are shown
 below.
