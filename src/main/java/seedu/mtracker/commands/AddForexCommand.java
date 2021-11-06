@@ -5,6 +5,9 @@ import seedu.mtracker.ui.TextUi;
 
 import java.time.LocalDate;
 
+/**
+ * Responsible for adding Forex to the list.
+ */
 public class AddForexCommand extends AddInstrumentCommand {
     public static final String COMMAND_WORD = "forex";
 
@@ -37,6 +40,11 @@ public class AddForexCommand extends AddInstrumentCommand {
         );
     }
 
+    /**
+     * Handles the execution of adding Forex to the list.
+     *
+     * @return The name of the command.
+     */
     @Override
     public String execute() {
         setAddGeneralParameters();

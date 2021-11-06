@@ -3,6 +3,9 @@ package seedu.mtracker.commands;
 import seedu.mtracker.model.subinstrument.Etf;
 import seedu.mtracker.ui.TextUi;
 
+/**
+ * Responsible for adding Etf to the list.
+ */
 public class AddEtfCommand extends AddInstrumentCommand {
 
     public static final String COMMAND_WORD = "etf";
@@ -23,6 +26,11 @@ public class AddEtfCommand extends AddInstrumentCommand {
                 sentimentParameter, pastReturnParameter, remarkParameter);
     }
 
+    /**
+     * Handles the execution of adding Etf to the list.
+     *
+     * @return The name of the command.
+     */
     @Override
     public String execute() {
         setAddGeneralParameters();
