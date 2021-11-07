@@ -28,7 +28,7 @@ Class "{abstract}\nCommand" as Command COLOR_COMMANDS
 Class AddInstrumentCommand COLOR_COMMANDS
 Class AddXYZCommand COLOR_COMMANDS
 Class EditInstrumentCommand COLOR_COMMANDS
-Class IndexedCommand COLOR_COMMANDS
+Class "{abstract}\nIndexedCommand" as IndexedCommand COLOR_COMMANDS
 Class TextUi COLOR_UI
 Class "{abstract}\nInstrument" as Instrument COLOR_MODEL
 
