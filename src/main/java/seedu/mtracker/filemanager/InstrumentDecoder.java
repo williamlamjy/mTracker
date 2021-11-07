@@ -193,11 +193,11 @@ public class InstrumentDecoder {
      * Adds the decoded instruments into the InstrumentManager.
      *
      * @param instrumentManager Current InstrumentManager.
-     * @param fileData List of lines in the mTracker file.
+     * @param fileLines List of lines in the mTracker file.
      */
-    public static void readFile(InstrumentManager instrumentManager, List<String> fileData) {
+    public static void readFile(InstrumentManager instrumentManager, List<String> fileLines) {
         AtomicInteger idx = new AtomicInteger(INDEX_START);
-        fileData.stream()
+        fileLines.stream()
                 .forEach((line) -> {
                     String[] textSegment = line.split(String.valueOf(FILE_SEPARATOR), SPLIT_FUNCTION_LIMIT_VALUE);
                     try {
