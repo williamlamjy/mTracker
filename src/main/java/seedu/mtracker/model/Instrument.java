@@ -195,7 +195,11 @@ public abstract class Instrument {
                 + SENTIMENT_ATTRIBUTE;
     }
 
+<<<<<<< HEAD
     //@@author
+=======
+    //@@author KVignesh122
+>>>>>>> master
     public abstract String getTypeIcon();
 
     /**
@@ -219,6 +223,7 @@ public abstract class Instrument {
         return getTypeIcon() + getStatusIcon()
                 + SPACE + name + SEMICOLON_SEP + currentPrice + SEMICOLON_SEP + sentiment;
     }
+    //@@author
 
     //@@author kum-wh
     /**

@@ -1,5 +1,6 @@
 package seedu.mtracker.commons.error;
 
+//@@author KVignesh122
 /**
  * The custom exception class that is thrown when search string is not provided.
  */

@@ -50,6 +50,7 @@ public class Validate {
 
     protected static final Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
+    //@@author KVignesh122
     private static final String FOREX_VALID_NAME_REGEX = "^[a-zA-Z]{3}/?[a-zA-Z]{3}$";
 
     /**
@@ -79,6 +80,7 @@ public class Validate {
             throw new InvalidNameError(instrumentType);
         }
     }
+    //@@author
 
     /**
      * Checks if instrument type is one of the 4 valid types.
