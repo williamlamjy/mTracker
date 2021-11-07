@@ -46,7 +46,7 @@ command-line commands mTracker intakes to execute the various functionalities.
 1) Ensure that you have Java `11` installed on your computer.
 2) Download the latest version of `mTracker` from [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/releases).
 3) Copy the jar file to a folder that you want to run mTracker from.
-4) At the folder where you copied the jar file run the command `java -jar TP.jar` in terminal.
+4) At the folder where you copied the jar file run the command `java -jar [CS2113T-T12-1][mTracker].jar` in terminal.
 5) If mTracker starts successfully, you should see the following greeting:
 
 ```
@@ -74,21 +74,23 @@ ________________________________________________________________________________
 >      * For example, the first instrument in the list would have a position index of 1 while 
 >      the 3rd instrument in the list would have a
 >position index of 3.
->    * `SEARCH_STRING` represents the phrase or word user would like to search for in the watchlist with the `find` command. 
+>    * `SEARCH_STRING` represents the phrase or word user would like to search for in the watchlist with the `find` command.
 >* Extraneous parameters for all commands would be ignored.
 >    * For example, the command `bye 123`
 >      would be interpreted as `bye`.
->    * Similarly, the command `find hello world` would be interpreted as `find hello`, so 
-> only instruments in the watchlist containing `hello` will be displayed back.
 >    * The command `view 2 5` will be interpreted as `view 2`, so financial details of the second item in the watchlist
 > will be printed out.
+>* Instrument attributes that require fixed inputs and all commands are case-insensitive.
+   >    * For example, the command `ADd` would be interpreted as `add`.
+   >    * The `sentiment` input `POsiTive` would be accepted as `positive`.
 
 ### 2.1.0 Adding a new instrument: `add`
-Adds a new instrument to the watchlist of instruments. 
+Adds a new instrument to the watchlist of instruments. If at any point in time you want to terminate the `add`
+process, type in `abort` without any additional characters and mTracker will bring you back to the main workspace.
 
 **Example usage**
 ```
-mTracker$> add
+mTracker$main> add
 ```
 
 **Expected outcome**
@@ -97,9 +99,9 @@ Upon entering the `add` command, mTracker prompts for the type of
 instrument to be added:
 
 ```
-mTracker$> add
+mTracker$main> add
 	Please key in the type of instrument:
-mTracker$> TYPE 
+mTracker$add> TYPE 
 ```
 
 After the desired instrument type is input, instruction prompts would be displayed to guide you through the process of
@@ -109,22 +111,22 @@ adding the new instrument. They are explained for the respective instrument type
 After keying in `stock` as type of instrument to be added, the following 4 parameters are expected:
 * `Name` Name of the stock. Empty name is not allowed.
 * `Current price` Current price of the stock. Requires a positive number.
-* `Sentiment` Sentiment of user towards the stock.
+* `Sentiment` Sentiment of user towards the stock. Only accepts `positive`, `neutral` and `negative`.
 * `Remarks` Any additional optional remarks about the stock that the user would like to record.
 
 **Example usage**
 ```
-mTracker$> add
+mTracker$main> add
 	Please key in the type of instrument: 
-mTracker$> stock
+mTracker$add> stock
 	Name of stock: 
-mTracker$> IBM
+mTracker$add> IBM
 	Current Price: 
-mTracker$> 144.61
+mTracker$add> 144.61
 	Sentiment for instrument: 
-mTracker$> positive
+mTracker$add> positive
 	Remarks (optional): 
-mTracker$> 
+mTracker$add> 
 ```
 
 **Expected outcome**
@@ -142,27 +144,27 @@ inputs, mTracker would prompt you once again to give a valid input.**_
 The addition of a new `crypto` expects 5 parameters:
 * `Name` Name of the crypto. Empty name is not allowed.
 * `Current Price`  Current price of the crypto. Requires a positive number.
-* `Sentiment` Sentiment of the crypto.
-* `Expiry` Expiry date of the crypto. Date only in the `YYYY-MM-DD` format is allowed and it should be a date in the future.
+* `Sentiment` Sentiment of the crypto. Only accepts `positive`, `neutral` and `negative`.
+* `Expiry` Expiry date of the crypto. Date only in the `YYYY-MM-DD` format is allowed, and it should be a date in the future.
 * `Remarks` Any additional optional remarks about the cryptocurrency the user would like to keep
   note of in mTracker.
 
 **Example usage**
 
 ```
-mTracker$> add
+mTracker$main> add
 	Please key in the type of instrument: 
-mTracker$> crypto
+mTracker$add> crypto
 	Name of crypto: 
-mTracker$> bitcoin
+mTracker$add> bitcoin
 	Current Price: 
-mTracker$> 14442.22
+mTracker$add> 14442.22
 	Sentiment for instrument: 
-mTracker$> positive
+mTracker$add> positive
 	Expiry (YYYY-MM-DD): 
-mTracker$> 2021 12 14
-	Remarks (optional):
-mTracker$> 
+mTracker$add> 2021-12-14
+	Remarks (optional): 
+mTracker$add> 
 ```
 
 **Expected outcome**
@@ -182,26 +184,26 @@ An exchange-traded fund (ETF) is a security that tracks an index, sector, commod
 other asset. After keying in `etf` as the type of instrument, mTracker expects the 
 following parameters:
 * `Name` Name of the ETF. Empty name is not allowed.
-* `Current price` Current price of the stock. Requires a positive number.
-* `Sentiment` Sentiment of user towards the stock.
-* `Returns` Optional input for past returns of the etf.
+* `Current price` Current price of the etf. Requires a positive number.
+* `Sentiment` Sentiment of user towards the etf. Only accepts `positive`, `neutral` and `negative`.
+* `Past returns` Optional input for past returns of the etf.
 * `Remarks` Any additional optional remarks about the etf that the user would like to record.
 
 **Example usage**
 ```
-mTracker$> add
+mTracker$main> add
 	Please key in the type of instrument: 
-mTracker$> etf
+mTracker$add> etf
 	Name of etf: 
-mTracker$> SPY
+mTracker$add> SPY
 	Current Price: 
-mTracker$> 445.87
+mTracker$add> 445.87
 	Sentiment for instrument: 
-mTracker$> positive
-    Past Returns (optional): 
-mTracker$> 1200
+mTracker$add> positive
+	Past Returns (optional): 
+mTracker$add> 1200
 	Remarks (optional): 
-mTracker$> Prices will plateau out in a few days.
+mTracker$add> Prices will plateau out in a few days.
 ```
 **Expected outcome**
 
@@ -218,8 +220,8 @@ After keying in `forex` as the type of instrument, mTracker prompts for the
 following parameters:
 * `Name` Name of forex. Empty name is not allowed and forex pairs' names should be 
   6 letters long. (Eg. AUDUSD instead of AUD USD, or Australian dollar-US dollar, or AUD/USD)
-* `Current Price` Current price of the stock. Requires a positive number.
-* `Sentiment` Sentiment of user towards the stock.
+* `Current Price` Current price of the etf. Requires a positive number.
+* `Sentiment` Sentiment of user towards the etf. Only accepts `positive`, `neutral` and `negative`.
 * `Entry Price` Price at which to open an order for the forex pair.
 * `Exit Price` Price at which to close the order.
 * `Expiry` The date by which this trade setup should be executed. Dates only in the `YYYY-MM-DD` format and in the future are allowed.
@@ -230,23 +232,23 @@ following parameters:
 **Example usage**
 
 ```
-mTracker$> add
+mTracker$main> add
 	Please key in the type of instrument: 
-mTracker$> forex
+mTracker$add> forex
 	Name of forex: 
-mTracker$> USDJPY
+mTracker$add> USDJPY
 	Current Price: 
-mTracker$> 114.289
+mTracker$add> 114.289
 	Sentiment for instrument: 
-mTracker$> negative
-	Entry price: 
-mTracker$> 114.20
-	Exit price: 
-mTracker$> 110.0
+mTracker$add> negative
+	Entry Price: 
+mTracker$add> 114.20
+	Exit Price: 
+mTracker$add> 110.0
 	Expiry (YYYY-MM-DD): 
-mTracker$> 2021 10 13
+mTracker$add> 2021-12-13
 	Remarks (optional): 
-mTracker$> USD is losing momentum. Technical levels are holding firm.
+mTracker$add> USD is losing momentum. Technical levels are holding firm.
 ```
 **Expected outcome**
 
@@ -264,12 +266,12 @@ inputs, you would be prompted to give a valid input.**_
 
 mTracker displays the 3 general parameters of `Name`, `Current Price`, 
 and `Sentiment` for all instruments added in an easy-to-view format, alongside
-their execution status marked by an [X].
+their execution status marked by an `[X]`.
 
 **Example usage**
 
 ```
-mTracker$> list
+mTracker$main> list
 ```
 
 **Expected outcome**
@@ -293,13 +295,13 @@ by the output of the `list` command, the `view` command can be used.
 **Format**
 
 ```
-mTracker$> view INDEX
+mTracker$main> view INDEX
 ```
 
 **Example usage**
 
 ```
-mTracker$> view 2
+mTracker$main> view 2
 ```
 
 **Expected outcome**
@@ -326,12 +328,12 @@ record of an instrument in the watchlist as executed or acted upon.
 **Format**
 
 ```
-mTracker$> done INDEX
+mTracker$main> done INDEX
 ```
 
 **Example usage**
 ```
-mTracker$> done 1
+mTracker$main> done 1
 ```
 
 **Expected output**
@@ -348,16 +350,17 @@ In this example, the first instrument is `IBM` so it has been
 checked as complete with an 'X'.
 
 ### 2.5.0 Editing an instrument: `edit`
-Edit an existing instrument parameters.
+Edit an existing instrument parameters. If at any point in time you want to terminate the `edit`
+process, type in `abort` without any additional characters and mTracker will bring you back to the main workspace.
 
 **Format**
 ```
-mTracker$> edit INDEX
+mTracker$main> edit INDEX
 ```
 **Example usage**
 
 ```
-mTracker$> edit 2
+mTracker$main> edit 2
 ```
 
 **Expected outcome:**
@@ -366,14 +369,14 @@ Upon entering the `edit` command, mTracker prompts for the parameters of
 instrument to be edited:
 
 ```
-mTracker$> edit 2
-	Please enter one or more Etf parameters to edit.
-	name, current-price, sentiment, returns, remark
-mTracker$> name current-price
+mTracker$main> edit 2
+	Please enter one or more Etf parameters to edit separated by spaces only.
+	done-status, name, current-price, sentiment, past-returns, remarks
+mTracker$edit> name current-price
 	Enter new name:
-mTracker$> XLF
+mTracker$edit> XLF
 	Enter new Current price:
-mTracker$> 148.76
+mTracker$edit> 148.76
 ```
 
 _**Note: If unknown/invalid parameters are input when mTracker prompts for the parameters to edit,
@@ -409,13 +412,13 @@ fit with the index number of the instrument in inventory.
 **Format**
 
 ```
-mTracker$> delete INDEX
+mTracker$main> delete INDEX
 ```
 
 **Example usage**
 
 ```
-mTracker$> delete 4
+mTracker$main> delete 4
 ```
 
 **Expected outcome**
@@ -438,24 +441,23 @@ You can find specific instruments in the watchlist by searching for them through
 **Format**
 
 ```
-mTracker$> find SEARCH_STRING
+mTracker$main> find SEARCH_STRING
 ```
 
 **Example usage**
 
 ```
-mTracker$> find coin
+mTracker$main> find coin
 ```
 
 **Expected outcome:**
 
-Any instrument name which contains the SEARCH_STRING will be returned 
-- regardless of character case - alongside their watchlist index:
+Any instrument name which contains the SEARCH_STRING will be returned:
 
 ```
 ________________________________________________________________________________
 1) [C][ ] bitcoin; 14442.22; positive
-3) [C][ ] dogecoin; 21.14; positive
+2) [C][ ] dogecoin; 21.14; positive
 There were 2 instrument(s) found for keyword, coin.
 ________________________________________________________________________________
 ```
@@ -465,9 +467,11 @@ SEARCH_STRING, the following message will be printed out:
 
 ```
 ________________________________________________________________________________
-There were no instruments found for keyword, JPY
+There were no instruments found for keyword, JPY.
 ________________________________________________________________________________
 ```
+
+_**Note: SEARCH_STRING is case-sensitive.**_
 
 ### 2.8.0 Exiting the bot: `bye`
 When you wish to quit the mTracker program, simply type in `bye`.
@@ -475,7 +479,7 @@ When you wish to quit the mTracker program, simply type in `bye`.
 **Example usage**
 
 ```
-mTracker$> bye
+mTracker$main> bye
 ```
 
 **Expected outcome**
@@ -506,18 +510,17 @@ will be stored and retrieved back by mTracker once it is relaunched.**_
 
 **A**: You can open the `mTracker.txt` file located in the same directory as the jar file
 to edit/add instruments manually. However, please make sure that the each line
-contains details on only one instrument. The different parameters of 
-the instrument should be separated by a semicolon (;) without spaces in between.
+contains details on only one instrument.
 
 ## 4.0 Command Summary
 
 Action | Format | Examples
  --------- | ------ |------
 Add an instrument | `add` | Read [2.1.0 Add a new instrument: `add`](#210-adding-a-new-instrument-add) for detailed instructions and examples.
-List all instruments in watchlist | `list` | `mTracker$> list` prints out all instruments in watchlist, and their respective general parameters' information.
-View all info of an instrument | `view INDEX` | `mTracker$> view 1` prints out all financial details recorded for the first instrument in watchlist.
-Mark an instrument's trade setup as completed | `done INDEX` | `mTracker$> done 2` marks second instrument in watchlist as acted upon.
+List all instruments in watchlist | `list` | `mTracker$main> list` prints out all instruments in watchlist, and their respective general parameters' information.
+View all info of an instrument | `view INDEX` | `mTracker$main> view 1` prints out all financial details recorded for the first instrument in watchlist.
+Mark an instrument's trade setup as completed | `done INDEX` | `mTracker$main> done 2` marks second instrument in watchlist as acted upon.
 Edit details recorded for an instrument | `edit INDEX` | Read [2.5.0 Edit an instrument: `edit`](#250-editing-an-instrument-edit) for detailed instructions and examples.
-Delete an instrument from watchlist | `delete INDEX` | `mTracker$> delete 5` deletes the fifth instrument in watchlist.
-Search for recorded instrument(s) | `find SEARCH_STRING` | `mTracker$> find USD` returns all financial instruments in watchlist that contain "USD". **(Note: SEARCH_STRING is case-sensitive.)**
-Exit program | `bye` | `mTracker$> bye` prints out farewell message and program ends.
+Delete an instrument from watchlist | `delete INDEX` | `mTracker$main> delete 5` deletes the fifth instrument in watchlist.
+Search for recorded instrument(s) | `find SEARCH_STRING` | `mTracker$main> find USD` returns all financial instruments in watchlist that contain "USD". **(Note: SEARCH_STRING is case-sensitive.)**
+Exit program | `bye` | `mTracker$main> bye` prints out farewell message and program ends.
