@@ -16,8 +16,8 @@ import seedu.mtracker.commons.error.InvalidInstrumentError;
 import seedu.mtracker.commons.error.InvalidNameError;
 import seedu.mtracker.commons.error.InvalidNegativePriceError;
 import seedu.mtracker.commons.error.InvalidPastDateError;
-import seedu.mtracker.commons.error.InvalidPastReturnsError;
-import seedu.mtracker.commons.error.InvalidPastReturnsTypeError;
+import seedu.mtracker.commons.error.InvalidPastReturnError;
+import seedu.mtracker.commons.error.InvalidPastReturnTypeError;
 import seedu.mtracker.commons.error.InvalidPriceError;
 import seedu.mtracker.commons.error.InvalidSentimentError;
 import seedu.mtracker.commons.error.InvalidStatusError;
@@ -36,7 +36,7 @@ import java.util.logging.Logger;
 public class Validate {
 
     public static final double MINIMUM_PRICE = 0;
-    public static final double MINIMUM_RETURN = -100;
+    public static final double MINIMUM_PAST_RETURN = -100;
 
     public static final String POSITIVE_SENTIMENT = "positive";
     public static final String NEUTRAL_SENTIMENT = "neutral";
@@ -290,49 +290,49 @@ public class Validate {
     }
 
     /**
-     * Checks if past returns is a valid numerical.
+     * Checks if past return is a valid numerical.
      *
-     * @param pastReturn Etf's past returns.
-     * @throws InvalidPastReturnsTypeError When past returns is an invalid numerical.
+     * @param pastReturn Etf's past return.
+     * @throws InvalidPastReturnTypeError When past return is an invalid numerical.
      */
-    public static void checkPastReturnsIsDouble(String pastReturn) throws InvalidPastReturnsTypeError {
+    public static void checkPastReturnIsDouble(String pastReturn) throws InvalidPastReturnTypeError {
         try {
             Double.parseDouble(pastReturn);
         } catch (IllegalArgumentException e) {
-            throw new InvalidPastReturnsTypeError();
+            throw new InvalidPastReturnTypeError();
         }
     }
 
     /**
-     * Checks if past returns is less than the minimum value.
+     * Checks if past return is less than the minimum value.
      *
-     * @param pastReturn Etf's past returns.
-     * @throws InvalidPastReturnsError When past returns is less than the minimum value.
+     * @param pastReturn Etf's past return.
+     * @throws InvalidPastReturnError When past return is less than the minimum value.
      */
-    public static void checkPastReturnsIsValid(String pastReturn) throws InvalidPastReturnsError {
+    public static void checkPastReturnIsValid(String pastReturn) throws InvalidPastReturnError {
         double pastReturnValue = Double.parseDouble(pastReturn);
-        if (pastReturnValue < MINIMUM_RETURN) {
-            throw new InvalidPastReturnsError();
+        if (pastReturnValue < MINIMUM_PAST_RETURN) {
+            throw new InvalidPastReturnError();
         }
     }
 
     //@@author kum-wh
     /**
-     * Checks if past returns is valid.
-     * Catches and displays any errors if past returns is invalid.
+     * Checks if past return is valid.
+     * Catches and displays any errors if past return is invalid.
      *
-     * @param pastReturn Etf's past returns.
-     * @return True if past returns is valid.
+     * @param pastReturn Etf's past return.
+     * @return True if past return is valid.
      */
-    public static boolean isValidPastReturns(String pastReturn) {
+    public static boolean isValidPastReturn(String pastReturn) {
         if (pastReturn.isEmpty()) {
             return false;
         }
         try {
-            checkPastReturnsIsDouble(pastReturn);
-            checkPastReturnsIsValid(pastReturn);
+            checkPastReturnIsDouble(pastReturn);
+            checkPastReturnIsValid(pastReturn);
         } catch (Exception e) {
-            logger.info(LogHelper.LOG_INVALID_PAST_RETURNS);
+            logger.info(LogHelper.LOG_INVALID_PAST_RETURN);
             TextUi.showErrorMessage(e);
             return false;
         }

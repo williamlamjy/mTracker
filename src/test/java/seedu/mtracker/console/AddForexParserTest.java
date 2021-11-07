@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class AddForexParserTest extends GeneralInstrumentParserTest {
     public static final int PARAMETER_SIZE = 7;
 
-    public static final String[] EXPECTED_PARAMS_NO_REMARKS = {
+    public static final String[] EXPECTED_PARAMS_NO_REMARK = {
         "TTTXXX",
         "1.11",
         "positive",
@@ -19,7 +19,7 @@ class AddForexParserTest extends GeneralInstrumentParserTest {
         ""
     };
 
-    public static final String[] EXPECTED_PARAMS_WITH_REMARKS = {
+    public static final String[] EXPECTED_PARAMS_WITH_REMARK = {
         "TTTXXX",
         "0.81",
         "negative",
@@ -29,7 +29,7 @@ class AddForexParserTest extends GeneralInstrumentParserTest {
         "fooRemarks"
     };
 
-    public static final String USER_INPUT_NO_REMARKS = "TTTXXX"
+    public static final String USER_INPUT_NO_REMARK = "TTTXXX"
             + SEPARATOR_SPECIFIER + "1.11"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + "1.15"
@@ -37,7 +37,7 @@ class AddForexParserTest extends GeneralInstrumentParserTest {
             + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + " ";
 
-    public static final String USER_INPUT_TRY_ABORT_AT_REMARKS = "TTTXXX"
+    public static final String USER_INPUT_TRY_ABORT_AT_REMARK = "TTTXXX"
             + SEPARATOR_SPECIFIER + "1.11"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + "1.15"
@@ -45,7 +45,7 @@ class AddForexParserTest extends GeneralInstrumentParserTest {
             + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + ABORT;
 
-    public static final String USER_INPUT_WITH_REMARKS = "TTTXXX"
+    public static final String USER_INPUT_WITH_REMARK = "TTTXXX"
             + SEPARATOR_SPECIFIER + "0.81"
             + SEPARATOR_SPECIFIER + "negative"
             + SEPARATOR_SPECIFIER + "0.79"
@@ -154,37 +154,37 @@ class AddForexParserTest extends GeneralInstrumentParserTest {
 
     @Test
     void addForexParams_allValidParameters_expectSuccess() throws OperationAbortedError {
-        testForexParameters(USER_INPUT_NO_REMARKS, EXPECTED_PARAMS_NO_REMARKS);
+        testForexParameters(USER_INPUT_NO_REMARK, EXPECTED_PARAMS_NO_REMARK);
     }
 
     @Test
-    void addForexParams_allValidParametersWithRemarks_expectSuccess() throws OperationAbortedError {
-        testForexParameters(USER_INPUT_WITH_REMARKS, EXPECTED_PARAMS_WITH_REMARKS);
+    void addForexParams_allValidParametersWithRemark_expectSuccess() throws OperationAbortedError {
+        testForexParameters(USER_INPUT_WITH_REMARK, EXPECTED_PARAMS_WITH_REMARK);
     }
 
     @Test
     void addForexParams_tryInvalidNameMultipleTimes_expectSuccess() throws OperationAbortedError {
-        testForexParameters(USER_INPUT_TRY_INVALID_NAME, EXPECTED_PARAMS_NO_REMARKS);
+        testForexParameters(USER_INPUT_TRY_INVALID_NAME, EXPECTED_PARAMS_NO_REMARK);
     }
 
     @Test
     void addForexParams_tryInvalidPriceMultipleTimes_expectSuccess() throws OperationAbortedError {
-        testForexParameters(USER_INPUT_TRY_INVALID_PRICE, EXPECTED_PARAMS_WITH_REMARKS);
+        testForexParameters(USER_INPUT_TRY_INVALID_PRICE, EXPECTED_PARAMS_WITH_REMARK);
     }
 
     @Test
     void addForexParams_tryInvalidSentimentMultipleTimes_expectSuccess() throws OperationAbortedError {
-        testForexParameters(USER_INPUT_TRY_INVALID_SENTIMENT, EXPECTED_PARAMS_WITH_REMARKS);
+        testForexParameters(USER_INPUT_TRY_INVALID_SENTIMENT, EXPECTED_PARAMS_WITH_REMARK);
     }
 
     @Test
     void addForexParams_tryInvalidDateMultipleTimes_expectSuccess() throws OperationAbortedError {
-        testForexParameters(USER_INPUT_TRY_INVALID_EXPIRY, EXPECTED_PARAMS_WITH_REMARKS);
+        testForexParameters(USER_INPUT_TRY_INVALID_EXPIRY, EXPECTED_PARAMS_WITH_REMARK);
     }
 
     @Test
     void addForexParams_tryPastDateMultipleTimes_expectSuccess() throws OperationAbortedError {
-        testForexParameters(USER_INPUT_TRY_PAST_EXPIRY, EXPECTED_PARAMS_WITH_REMARKS);
+        testForexParameters(USER_INPUT_TRY_PAST_EXPIRY, EXPECTED_PARAMS_WITH_REMARK);
     }
 
     @Test
@@ -214,7 +214,7 @@ class AddForexParserTest extends GeneralInstrumentParserTest {
     @Test
     void addForexParams_abortAtRemark_expectException() {
         assertThrows(OperationAbortedError.class,
-            () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_REMARKS, NO_PARAMS_EXPECTED));
+            () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_REMARK, NO_PARAMS_EXPECTED));
     }
 
     @Test
@@ -226,6 +226,6 @@ class AddForexParserTest extends GeneralInstrumentParserTest {
     @Test
     void addForexParams_abortAtExitPrice_expectException() {
         assertThrows(OperationAbortedError.class,
-            () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_EXIT_PRICE, EXPECTED_PARAMS_NO_REMARKS));
+            () -> testForexParameters(USER_INPUT_TRY_ABORT_AT_EXIT_PRICE, EXPECTED_PARAMS_NO_REMARK));
     }
 }

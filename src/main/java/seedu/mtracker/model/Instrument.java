@@ -33,7 +33,7 @@ public abstract class Instrument {
     protected static final String SEPARATOR = ", ";
     protected static final String DONE_INDICATOR = "done";
     protected static final String UNDONE_INDICATOR = "undone";
-    protected static final String REMARKS_FIELD = "Remarks: ";
+    protected static final String REMARK_FIELD = "Remarks: ";
 
     private static final String TYPE_FIELD = "Type: ";
     private static final String NAME_FIELD = "Name: ";

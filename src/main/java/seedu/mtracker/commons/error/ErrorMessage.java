@@ -20,9 +20,9 @@ public abstract class ErrorMessage {
             + "It must be either positive, negative or neutral.";
     public static final String INVALID_SENTIMENT_ERROR = "Sorry sentiment must be either "
             + "positive, negative or neutral.";
-    public static final String INVALID_PAST_RETURN_TYPE_ERROR = "Sorry, past return must be a numeric value! "
+    public static final String INVALID_PAST_RETURN_TYPE_ERROR = "Sorry, past returns must be a numeric value! "
             + "Input value will be ignored.";
-    public static final String INVALID_PAST_RETURN_ERROR = "Sorry, past return inserted cannot be lesser than -100."
+    public static final String INVALID_PAST_RETURN_ERROR = "Sorry, past returns inserted cannot be lesser than -100."
             + " Input value will be ignored.";
     public static final String INVALID_EXPIRY_DATE_EMPTY_ERROR = "Sorry expiry date cannot be empty.";
     public static final String INVALID_PAST_DATE_GIVEN_ERROR = "Oops, expiry cannot be a date in the past.";
@@ -51,7 +51,7 @@ public abstract class ErrorMessage {
     public static final String FILE_LOAD_ERROR = "Oh no! There seems to be an error loading this file";
 
     //@@author williamlamjy
-    public static final String REMARKS_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting "
+    public static final String REMARK_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting "
             + "of the remarks entry in the file";
     public static final String EXPIRY_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting "
             + "of the expiry entry in the file." + System.lineSeparator() + "Please check that it is of YYYY-MM-DD "
@@ -68,7 +68,7 @@ public abstract class ErrorMessage {
             + "of the name entry in the file.";
     public static final String EXIT_PRICE_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the "
             + "formatting of the exit price entry in the file.";
-    public static final String PAST_RETURNS_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the "
+    public static final String PAST_RETURN_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the "
             + "formatting of the past returns entry in the file.";
 
     public static final String EMPTY_ENTRY_PRICE_IN_FILE_ERROR = "Oh no! Looks like the entry price entry in the file"

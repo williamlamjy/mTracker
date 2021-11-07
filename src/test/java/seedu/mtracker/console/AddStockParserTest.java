@@ -9,25 +9,25 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class AddStockParserTest extends GeneralInstrumentParserTest {
     public static final int PARAMETER_SIZE = 4;
 
-    public static final String USER_INPUT_NO_REMARKS = "TTTXXX"
+    public static final String USER_INPUT_NO_REMARK = "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + " ";
 
-    public static final String USER_INPUT_WITH_REMARKS = "TTTXXX"
+    public static final String USER_INPUT_WITH_REMARK = "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
 
-    public static final String[] EXPECTED_PARAMS_NO_REMARKS = {
+    public static final String[] EXPECTED_PARAMS_NO_REMARK = {
         "TTTXXX",
         "23.4",
         "positive",
         "",
     };
 
-    public static final String[] EXPECTED_PARAMS_WITH_REMARKS = {
+    public static final String[] EXPECTED_PARAMS_WITH_REMARK = {
         "TTTXXX",
         "23.4",
         "positive",
@@ -86,27 +86,27 @@ class AddStockParserTest extends GeneralInstrumentParserTest {
 
     @Test
     void addStockParams_allValidParameters_expectSuccess() throws OperationAbortedError {
-        testStockParameters(USER_INPUT_NO_REMARKS, EXPECTED_PARAMS_NO_REMARKS);
+        testStockParameters(USER_INPUT_NO_REMARK, EXPECTED_PARAMS_NO_REMARK);
     }
 
     @Test
-    void addStockParams_allValidParametersWithRemarks_expectSuccess() throws OperationAbortedError {
-        testStockParameters(USER_INPUT_WITH_REMARKS, EXPECTED_PARAMS_WITH_REMARKS);
+    void addStockParams_allValidParametersWithRemark_expectSuccess() throws OperationAbortedError {
+        testStockParameters(USER_INPUT_WITH_REMARK, EXPECTED_PARAMS_WITH_REMARK);
     }
 
     @Test
     void addStockParams_tryInvalidNameMultipleTimes_expectSuccess() throws OperationAbortedError {
-        testStockParameters(USER_INPUT_TRY_INVALID_NAME, EXPECTED_PARAMS_NO_REMARKS);
+        testStockParameters(USER_INPUT_TRY_INVALID_NAME, EXPECTED_PARAMS_NO_REMARK);
     }
 
     @Test
     void addStockParams_tryInvalidPriceMultipleTimes_expectSuccess() throws OperationAbortedError {
-        testStockParameters(USER_INPUT_TRY_INVALID_PRICE, EXPECTED_PARAMS_WITH_REMARKS);
+        testStockParameters(USER_INPUT_TRY_INVALID_PRICE, EXPECTED_PARAMS_WITH_REMARK);
     }
 
     @Test
     void addStockParams_tryInvalidSentimentMultipleTimes_expectSuccess() throws OperationAbortedError {
-        testStockParameters(USER_INPUT_TRY_INVALID_SENTIMENT, EXPECTED_PARAMS_WITH_REMARKS);
+        testStockParameters(USER_INPUT_TRY_INVALID_SENTIMENT, EXPECTED_PARAMS_WITH_REMARK);
     }
 
     //@@KVignesh122

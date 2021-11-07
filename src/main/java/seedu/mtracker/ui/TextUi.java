@@ -13,13 +13,13 @@ public class TextUi {
 
     private static final String INDEX_BRACKET = ") ";
     private static final String TYPE_HEADER = "Please key in the type of instrument: ";
-    private static final String REMARKS_HEADER = "Remarks (optional): ";
+    private static final String REMARK_HEADER = "Remarks (optional): ";
     private static final String SENTIMENT_HEADER = "Sentiment for instrument: ";
     private static final String CURRENT_PRICE_HEADER = "Current Price: ";
     private static final String ENTRY_PRICE_HEADER = "Entry Price: ";
     private static final String EXIT_PRICE_HEADER = "Exit Price: ";
     private static final String EXPIRY_HEADER = "Expiry (YYYY-MM-DD): ";
-    private static final String RETURNS_HEADER = "Past Returns (optional): ";
+    private static final String PAST_RETURN_HEADER = "Past Returns (optional): ";
 
     private static final String LINE_DECORATOR = "_".repeat(80);
     private static final String LOGO = "            _________                      __\n"
@@ -42,8 +42,8 @@ public class TextUi {
     private static final String EDIT_NAME_MESSAGE = "Enter new name:";
     private static final String EDIT_CURRENT_PRICE_MESSAGE = "Enter new Current price:";
     private static final String EDIT_SENTIMENT_MESSAGE = "Enter new Sentiment:";
-    private static final String EDIT_REMARKS_MESSAGE = "Enter new Remarks:";
-    private static final String EDIT_RETURN_MESSAGE = "Enter new Past Returns:";
+    private static final String EDIT_REMARK_MESSAGE = "Enter new Remarks:";
+    private static final String EDIT_PAST_RETURN_MESSAGE = "Enter new Past Returns:";
     private static final String EDIT_ENTRY_MESSAGE = "Enter new Entry Price:";
     private static final String EDIT_EXIT_MESSAGE = "Enter new Exit Price:";
     private static final String EDIT_EXPIRY_MESSAGE = "Enter new Expiry (YYYY-MM-DD):";
@@ -92,10 +92,10 @@ public class TextUi {
     }
 
     /**
-     * Prompts user to enter the remarks of the instrument being added.
+     * Prompts user to enter the remark of the instrument being added.
      */
-    public static void displayAddRemarksInstruction() {
-        System.out.println(TAB + REMARKS_HEADER);
+    public static void displayAddRemarkInstruction() {
+        System.out.println(TAB + REMARK_HEADER);
     }
 
     /**
@@ -120,10 +120,10 @@ public class TextUi {
     }
 
     /**
-     * Prompts user to enter the past returns of the instrument being added.
+     * Prompts user to enter the past return of the instrument being added.
      */
-    public static void displayAddPastReturnsInstruction() {
-        System.out.println(TAB + RETURNS_HEADER);
+    public static void displayAddPastReturnInstruction() {
+        System.out.println(TAB + PAST_RETURN_HEADER);
     }
 
     /**
@@ -322,17 +322,17 @@ public class TextUi {
     }
 
     /**
-     * Prompts the user to enter the new remarks.
+     * Prompts the user to enter the new remark.
      */
     public static void displayEditRemark() {
-        System.out.println(TAB + EDIT_REMARKS_MESSAGE);
+        System.out.println(TAB + EDIT_REMARK_MESSAGE);
     }
 
     /**
      * Prompts the user to enter the new past return value.
      */
-    public static void displayEditReturn() {
-        System.out.println(TAB + EDIT_RETURN_MESSAGE);
+    public static void displayEditPastReturn() {
+        System.out.println(TAB + EDIT_PAST_RETURN_MESSAGE);
     }
 
     /**

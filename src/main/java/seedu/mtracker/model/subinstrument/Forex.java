@@ -87,7 +87,7 @@ public class Forex extends Instrument {
     }
 
     /**
-     * Sets remarks parameter to the new remarks if remarks parameter is being edited.
+     * Sets remark parameter to the new remark if remark parameter is being edited.
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
@@ -196,7 +196,7 @@ public class Forex extends Instrument {
                 + ENTRY_PRICE_FIELD + entryPrice + System.lineSeparator()
                 + EXIT_PRICE_FIELD + exitPrice + System.lineSeparator()
                 + EXPIRY_FIELD + formatExpiry() + System.lineSeparator()
-                + REMARKS_FIELD + remark;
+                + REMARK_FIELD + remark;
     }
 
     //@@author kum-wh
