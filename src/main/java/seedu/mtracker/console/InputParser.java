@@ -28,6 +28,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+//@@author theodorekwok
 /**
  * A class responsible for all the user main command inputs.
  */
@@ -253,6 +254,7 @@ public class InputParser {
         Validate.checkIsNotDone(instruments, instrumentNumber);
     }
 
+    //@@author theodorekwok
     /**
      * Filters and returns the command type based on the user input.
      *

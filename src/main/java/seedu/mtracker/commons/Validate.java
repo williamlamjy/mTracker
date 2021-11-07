@@ -1,6 +1,5 @@
 package seedu.mtracker.commons;
 
-
 import seedu.mtracker.LogHelper;
 import seedu.mtracker.commands.AddCryptoCommand;
 import seedu.mtracker.commands.AddEtfCommand;
@@ -119,7 +118,7 @@ public class Validate {
      * Validates the instrument.
      * Catches and displays any errors if instrument is invalid.
      *
-     * @param instrument Instrument that is being validdated.
+     * @param instrument Instrument that is being validated.
      * @return True if instrument is valid.
      */
     public static boolean isValidInstrument(String instrument) {
@@ -152,6 +151,7 @@ public class Validate {
         return true;
     }
 
+    //@@author theodorekwok
     /**
      * Checks if price is empty.
      *
@@ -226,6 +226,7 @@ public class Validate {
         }
     }
 
+    //@@author
     /**
      * Checks if instrument is already done.
      *
@@ -242,6 +243,7 @@ public class Validate {
         }
     }
 
+    //@@author theodorekwok
     /**
      * Checks if sentiment is empty.
      *
@@ -268,6 +270,7 @@ public class Validate {
         }
     }
 
+    //@@author
     /**
      * Checks if sentiment is valid.
      * Catches and displays any errors if sentiment is invalid.
@@ -287,6 +290,7 @@ public class Validate {
         return true;
     }
 
+    //@@author theodorekwok
     /**
      * Checks if past returns is a valid numerical.
      *
@@ -337,8 +341,7 @@ public class Validate {
         return true;
     }
 
-
-    //@@author
+    //@@author theodorekwok
     /**
      * Checks if expiry is empty.
      *
@@ -452,8 +455,8 @@ public class Validate {
     public static boolean isNonEmptyEditParameters(String input) {
         return !input.isEmpty();
     }
-
-    //@@author
+    
+    //@@author theodorekwok
     /**
      * Checks if done status is of valid format in the mTracker file.
      *

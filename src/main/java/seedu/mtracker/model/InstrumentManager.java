@@ -44,6 +44,7 @@ public class InstrumentManager {
         instruments.add(addedInstrument);
     }
 
+    //@@author theodorekwok
     /**
      * Scans through the list and filter instruments with name contains a keyword entered by user.
      *

@@ -3,6 +3,7 @@ package seedu.mtracker.asserthelpers;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+//@@author theodorekwok
 /**
  * The helper class that contains all assertions related parser classes.
  */
@@ -57,6 +58,7 @@ public abstract class AssertParserHelper {
         assert stockParameters.size() == NUM_STOCK_PARAMETERS : MISSING_STOCK_PARAMETERS;
     }
 
+    //@@author
     /**
      * Asserts that the number of crypto parameters that is collected after parsing is correct.
      *
@@ -84,6 +86,7 @@ public abstract class AssertParserHelper {
         assert etfParameters.size() == NUM_ETF_PARAMETERS : MISSING_ETF_PARAMETERS;
     }
 
+    //@@author theodorekwok
     /**
      * Asserts that the input parsed is not empty.
      *

@@ -5,6 +5,7 @@ import seedu.mtracker.commons.error.OperationAbortedError;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author theodorekwok
 class AddStockParserTest extends GeneralInstrumentParserTest {
     public static final int PARAMETER_SIZE = 4;
 

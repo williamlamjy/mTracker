@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+//@@author theodorekwok
 /**
  * A class responsible for handling the error logging and the messages to log.
  */
