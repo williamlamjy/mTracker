@@ -389,7 +389,7 @@ such information in a quick and easy way.
 
 * *Instrument* - Represents assets that can be traded. Most common examples are stocks and foreign currency.
 * *Etf* - Known as Exchange Traded Funds, they are a type of instrument that tracks the performance of a particular asset. 
-* *Forex* - Foreign exchange market for trading currencies. An example include is the USDSGD exchange rate.
+* *Forex* - Foreign exchange market for trading currencies. An example included is the USDSGD exchange rate.
 * *Crypto* - Cryptocurrencies are digital currencies that is secured by cryptography methods.
 * *Stock* - Shares of a company that provide the owner a certain level of ownership of said company.
 
@@ -405,7 +405,7 @@ Feel free to come up with more test cases to try for yourself.
 3) In your terminal under the directory where the jar file is saved type `java -jar [CS2113T-T12-1][mTracker].jar`.
    1) If it is successful you should see a mTracker greet message. If you get an error message please create a new issue
       [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/issues) along with a description of the error.
-4. Refer to the [userguide](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/UserGuide.md) to understand how
+4) Refer to the [userguide](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/UserGuide.md) to understand how
 to use the program.
 
 **Add functionality Testing**
@@ -521,7 +521,7 @@ Instrument at provided index has already been marked as completed!
 
 **Find functionality Testing**
 
-To test the done functionality, there are a few test cases you can try:
+To test the find functionality, there are a few test cases you can try:
 1. Testcase: Try the find command without any search string.
 ```
 mTracker$main> find
@@ -554,4 +554,8 @@ Expected: It should return only the 8th instrument in the list ignoring the valu
 To test the program against corruption of saved file data, there are a few test cases you can try:
 1. Testcase: In the saved file on a newline write `This is a fake instrument`.
 
-   Expected: It should say that incorrect instrument type is provided and that instrument would be ignored.
+   Expected: It should say that incorrect instrument type is provided and that instrument would be ignored. 
+```
+Oops, it appears that the incorrect instrument type is provided in the mTracker.txt file
+Ignoring saved instrument 1 as it was corrupted.
+```
