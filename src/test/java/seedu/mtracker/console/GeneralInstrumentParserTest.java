@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author KVignesh122
 public abstract class GeneralInstrumentParserTest {
     protected static final String SEPARATOR_SPECIFIER = "%1$s";
     protected static final int DAYS_DIFFERENCE = 1;
@@ -18,11 +19,20 @@ public abstract class GeneralInstrumentParserTest {
 
     public static final String[] NO_PARAMS_EXPECTED = {};
 
+    void verifyInstrumentParameters(AddInstrumentParser testInstrumentParser, String[] expectedParameters)
+            throws OperationAbortedError {
+        testInstrumentParser.initParameters();
+        testInstrumentParser.getInstrumentParameters();
+        checkParameters(testInstrumentParser, expectedParameters);
+    }
+
+    public abstract int getParameterSize();
+
+    //@@author theodorekwok
     String formatConsoleInput(String input) {
         return String.format(input, System.lineSeparator());
     }
 
-    //@@author theodorekwok
     void simulateConsoleInput(String input) {
         String formattedInput = formatConsoleInput(input);
         ByteArrayInputStream inputStreamBytes = new ByteArrayInputStream(formattedInput.getBytes());
@@ -34,14 +44,4 @@ public abstract class GeneralInstrumentParserTest {
             assertEquals(testInstrumentParser.getParameters().get(i), expectedParameters[i]);
         }
     }
-
-    //@@author
-    void verifyInstrumentParameters(AddInstrumentParser testInstrumentParser, String[] expectedParameters)
-            throws OperationAbortedError {
-        testInstrumentParser.initParameters();
-        testInstrumentParser.getInstrumentParameters();
-        checkParameters(testInstrumentParser, expectedParameters);
-    }
-
-    public abstract int getParameterSize();
 }

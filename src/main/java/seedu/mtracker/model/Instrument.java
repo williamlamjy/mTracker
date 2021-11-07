@@ -192,6 +192,7 @@ public abstract class Instrument {
                 + SENTIMENT_ATTRIBUTE;
     }
 
+    //@@author KVignesh122
     public abstract String getTypeIcon();
 
     /**
@@ -215,6 +216,7 @@ public abstract class Instrument {
         return getTypeIcon() + getStatusIcon()
                 + SPACE + name + SEMICOLON_SEP + currentPrice + SEMICOLON_SEP + sentiment;
     }
+    //@@author
 
     /**
      * Adds all the type of parameters in an instrument into a HashSet.

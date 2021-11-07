@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.HashSet;
 
+//@@author KVignesh122
 /**
  * Represents a Forex type instrument.
  */
@@ -192,6 +193,7 @@ public class Forex extends Instrument {
                 + REMARKS_FIELD + remark;
     }
 
+    //@@author kum-wh
     /**
      * Adds all the type of Forex parameters into a HashSet.
      *
