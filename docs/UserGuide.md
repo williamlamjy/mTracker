@@ -454,7 +454,7 @@ mTracker$edit> abort
 Edit process has been aborted! You are in the main workspace now.
 ```
 
-_**Note: You can use this feature to cancel add or edit functionality. Calling abort in any other functionality will
+_**Note: You can use this feature to exit an add or edit process. Calling abort in any other functionality will
 result in an error message being displayed.**_
 
 ### 2.7.0 Removing an instrument record: `delete`
