@@ -108,7 +108,7 @@ After the desired instrument type is input, instruction prompts would be display
 adding the new instrument. They are explained for the respective instrument types in the following sections below.
 
 ### *2.1.1 Adding a new `stock`*
-After keying in `stock` as type of instrument to be added, the following 4 parameters are expected:
+After keying in `stock` as the type of instrument, mTracker prompts for the following parameters:
 * `Name` Name of the stock. Empty name is not allowed.
 * `Current price` Current price of the stock. Requires a positive number.
 * `Sentiment` Sentiment of user towards the stock. Only accepts `positive`, `neutral` and `negative`.
@@ -141,13 +141,12 @@ _**Note: If any of the non-optional parameters `Name`, `Current price` and `Sent
 inputs, mTracker would prompt you once again to give a valid input.**_
 
 ### *2.1.2 Add a new `crypto`*
-The addition of a new `crypto` expects 5 parameters:
+After keying in `crypto` as the type of instrument, mTracker prompts for the following parameters:
 * `Name` Name of the crypto. Empty name is not allowed.
 * `Current Price`  Current price of the crypto. Requires a positive number.
 * `Sentiment` Sentiment of the crypto. Only accepts `positive`, `neutral` and `negative`.
-* `Expiry` Expiry date of the crypto. Date only in the `YYYY-MM-DD` format is allowed, and it should be a date in the future.
-* `Remarks` Any additional optional remarks about the cryptocurrency the user would like to keep
-  note of in mTracker.
+* `Expiry` The date by which this trade setup should be executed. Date only in the `YYYY-MM-DD` format is allowed, and it should be a date in the future.
+* `Remarks` Any additional optional remarks about the cryptocurrency the user would like record.
 
 **Example usage**
 
@@ -181,8 +180,7 @@ inputs, you would be prompted to give a valid input.**_
 
 ### *2.1.3 Adding a new `etf`*
 An exchange-traded fund (ETF) is a security that tracks an index, sector, commodity, or any
-other asset. After keying in `etf` as the type of instrument, mTracker expects the 
-following parameters:
+other asset. After keying in `etf` as the type of instrument, mTracker prompts for the following parameters:
 * `Name` Name of the ETF. Empty name is not allowed.
 * `Current price` Current price of the etf. Requires a positive number.
 * `Sentiment` Sentiment of user towards the etf. Only accepts `positive`, `neutral` and `negative`.
@@ -213,9 +211,12 @@ out:
 	[E][ ] SPY; 445.87; positive - has been added to list.
 ```
 
+_**Note: If any of the non-optional parameters `Name`, `Current price` and `Sentiment` are provided with invalid
+inputs, you would be prompted to give a valid input.**_
+
 ### *2.1.4 Adding a new `forex`*
 Bilateral currency pairs, known as forex pairs, are traded in the currency market
-and mTracker provides the ability to add forex pairs to its watchlist too.
+and mTracker provides the ability to add forex pairs to its watchlist.
 After keying in `forex` as the type of instrument, mTracker prompts for the
 following parameters:
 * `Name` Name of forex. Empty name is not allowed and forex pairs' names should be 
@@ -258,14 +259,14 @@ out:
 	[F][ ] USDJPY; 114.289; negative - has been added to list.
 ```
 
-_**Note: If any of the non-optional parameters `Name`, `Current price`, `Sentiment`, `Extry Price`, `Exit Price`,
+_**Note: If any of the non-optional parameters `Name`, `Current price`, `Sentiment`, `Entry Price`, `Exit Price`,
 and `Expiry` are provided with invalid
 inputs, you would be prompted to give a valid input.**_
 
 ### 2.2.0 Displaying general info of all instruments added: `list`
 
 mTracker displays the 3 general parameters of `Name`, `Current Price`, 
-and `Sentiment` for all instruments added in an easy-to-view format, alongside
+and `Sentiment` for all instruments in an easy-to-view format, alongside
 their execution status marked by an `[X]`.
 
 **Example usage**
@@ -406,8 +407,8 @@ ________________________________________________________________________________
 
 ### 2.6.0 Removing an instrument record: `delete`
 
-You can remove an instrument from the watchlist as you deem 
-fit with the index number of the instrument in inventory.
+You can remove an instrument from the watchlist with 
+the index number of the instrument in the watchlist.
 
 **Format**
 
@@ -509,8 +510,8 @@ will be stored and retrieved back by mTracker once it is relaunched.**_
 **Q**: Can I edit the data without launching the mTracker? 
 
 **A**: You can open the `mTracker.txt` file located in the same directory as the jar file
-to edit/add instruments manually. However, please make sure that the each line
-contains details on only one instrument.
+to edit/add instruments manually. However, please make sure that each line
+contains details of only one instrument.
 
 ## 4.0 Command Summary
 
