@@ -33,6 +33,10 @@ public class MTracker {
     }
 
     // @@KVignesh122
+    /**
+     * Runs the overall logic of the program. Methods takes in user input command
+     * and does the necessary execution, continuously until the user exits program.
+     */
     public void run() {
         Command command;
         String userInput;
@@ -54,13 +58,17 @@ public class MTracker {
         } while (!(command instanceof ExitCommand));
     }
 
+    /**
+     * Greets user at the start of program and runs the whole program.
+     */
     public void executeProgram() {
         TextUi.greetAtStartUp();
         run();
     }
 
     /**
-     * Main entry-point for the mTracker application.
+     * Constructs a new instance of MTracker and executes the program.
+     * This method is the main entry-point for the mTracker application.
      */
     public static void main(String[] args) {
         new MTracker().executeProgram();
