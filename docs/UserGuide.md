@@ -216,7 +216,7 @@ inputs, you would be prompted to give a valid input.**_
 
 ### *2.1.4 Adding a new `forex`*
 Bilateral currency pairs, known as forex pairs, are traded in the currency market
-and mTracker provides the ability to add forex pairs to its watchlist too.
+and mTracker provides the ability to add forex pairs to its watchlist.
 After keying in `forex` as the type of instrument, mTracker prompts for the
 following parameters:
 * `Name` Name of forex. Empty name is not allowed and forex pairs' names should be 
@@ -266,7 +266,7 @@ inputs, you would be prompted to give a valid input.**_
 ### 2.2.0 Displaying general info of all instruments added: `list`
 
 mTracker displays the 3 general parameters of `Name`, `Current Price`, 
-and `Sentiment` for all instruments added in an easy-to-view format, alongside
+and `Sentiment` for all instruments in an easy-to-view format, alongside
 their execution status marked by an `[X]`.
 
 **Example usage**
