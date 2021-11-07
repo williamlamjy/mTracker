@@ -411,73 +411,147 @@ to use the program.
 **Add functionality Testing**
 
 To test the add functionality, there are a few test cases you can try:
-1. Testcase: Adding a stock with an empty name. 
-
-   Expected: An error message that says name cannot be empty.
+1. Testcase: Adding a stock with an empty name.
+```
+    mTracker$main> add
+    Please key in the type of instrument:
+    mTracker$add> stock
+    Name of stock:
+```
+Expected: An error message that says name cannot be empty.
+```
+Sorry stock cannot have an empty name!
+	Name of stock: 
+mTracker$add> 
+```
 2. Testcase: Adding a crypto with an empty current price. 
-
-   Expected: An error message that says current price cannot be empty.
+```
+mTracker$main> add
+	Please key in the type of instrument: 
+mTracker$add> crypto
+	Name of crypto: 
+mTracker$add> bitcoin
+	Current Price: 
+mTracker$add> 
+```
+Expected: An error message that says current price cannot be empty.
+```
+Sorry price cannot be empty.
+	Current Price: 
+mTracker$add> 
+```
 3. Testcase: Adding an etf with a past return of -150.
-
-   Expected: An error message that says past returns cannot be less than -100 and input will be ignored.     
-
+```
+mTracker$main> add
+	Please key in the type of instrument: 
+mTracker$add> etf
+	Name of etf: 
+mTracker$add> SPY
+	Current Price: 
+mTracker$add> 468.53
+	Sentiment for instrument: 
+mTracker$add> neutral
+	Past Returns (optional): 
+mTracker$add> -150
+```
+Expected: An error message that says past returns cannot be less than -100 and input will be ignored.     
+```
+Sorry, past return inserted cannot be lesser than -100. Input value will be ignored.
+	Remarks (optional): 
+mTracker$add> 
+```
 **Edit functionality Testing**
 
 To test the edit functionality, there are a few test cases you can try:
-1. Testcase: Edit an instrument at an index that is out of range.
-   
-   Expected: An error message that says instrument does not exist at that index.
-2. Testcase: Enter parameters that are not supported by stock type. For example `entry-price`.
-  
-   Expected: An error message that says the parameter is invalid and will be ignored.
-
+1. Testcase: Edit an instrument at an index that is out of range. For example if you have less than 100 instruments in
+your list, you can try the example below.
+```
+mTracker$main> edit 100
+```
+Expected: An error message that says instrument does not exist at that index.
+```
+Oops, instrument does not exist at that index.
+```
+2. Testcase: Enter parameters that are not supported by stock type.
+```
+mTracker$main> edit 7
+	Please enter one or more Stock parameters to edit separated by spaces only.
+	done-status, name, current-price, sentiment, remarks
+mTracker$edit> entry-price
+```  
+Expected: An error message that says the parameter is invalid and will be ignored.
+```
+entry-price is an invalid attribute of this instrument and will be ignored.
+```
 **Delete functionality Testing**
 
 To test the delete functionality, there are a few test cases you can try:
-1. Testcase: Delete an instrument at an index that is out of range.
-
-   Expected: An error message that says instrument does not exist at that index.
-2. Testcase: Enter command `delete notANumber`.
-
-   Expected: An error message that says the index provided is invalid.
-
+1. Testcase: Delete an instrument at an index that is out of range. For example if you have less than 100 instruments in
+your list, you can try the example below.
+```
+mTracker$main> delete 100
+```
+Expected: An error message that says instrument does not exist at that index.
+```
+Oops, instrument does not exist at that index.
+```
+2. Testcase: Deleting by providing a non-numerical index value.
+```
+mTracker$main> delete notANumber
+```
+Expected: An error message that says the index provided is invalid.
+```
+Oops an invalid index is given. 
+Please provide an acceptable index number corresponding to the instruments in the watchlist.
+```
 **Done functionality Testing**
 
 To test the done functionality, there are a few test cases you can try:
 1. Testcase: Set an already done instrument as done.
-
-   Expected: An error message that says instrument is already done.
-2. Testcase: Enter command `done notANumber`.
-
-   Expected: An error message that says the index provided is invalid.
+```
+mTracker$main> done 7
+	Nice! I have marked this instrument as completed:
+		[S][X] IBM; 144.61; positive
+mTracker$main> done 7
+```
+Expected: An error message that says instrument is already done.
+```
+Instrument at provided index has already been marked as completed!
+```
 
 **Find functionality Testing**
 
 To test the done functionality, there are a few test cases you can try:
-1. Testcase: Enter command `find`.
-
-   Expected: An error message that says please enter a search string.
-2. Testcase: Enter command `find test`.
-   
-   Expected: Ensure that the instrument names shown contains the search string `test`.
+1. Testcase: Try the find command without any search string.
+```
+mTracker$main> find
+```
+Expected: An error message that says please enter a search string.
+```
+Oops, please input a search string after 'find' command.
+```
 
 **List functionality Testing**
 
 To test the list functionality, there are a few test cases you can try:
-1. Testcase: Enter command `list extraneous parameters`.
-
-   Expected: It should perform the list action ignoring the additional words.
+1. Testcase: Listing instruments with extraneous parameters.
+```
+mTracker$main> list extraneous parameters
+```
+Expected: It should perform the list action ignoring the additional words.
 
 **View functionality Testing**
 
 To test the view functionality, there are a few test cases you can try:
-1. Testcase: Enter command `view 2 5`.
-
-   Expected: It should return only the second instrument in the list ignoring the value `5`.
+1. Testcase: Viewing an instrument with extraneous parameters.
+```
+mTracker$main> view 8 10
+```
+Expected: It should return only the 8th instrument in the list ignoring the value `10`.
 
 **Loading storage file testing**
 
 To test the program against corruption of saved file data, there are a few test cases you can try:
-1. Testcase: In the saved file write `This is a fake instrument`.
+1. Testcase: In the saved file on a newline write `This is a fake instrument`.
 
    Expected: It should say that incorrect instrument type is provided and that instrument would be ignored.
