@@ -142,7 +142,7 @@ Some of the key command classes include:
 9) ExitCommand
 ```
 This figure below shows the class diagram of all the commands classes:
-<img src="images/CommandsDiagram.png" width="1400"/>
+<img src="images/CommandsDiagram.png" width="1150" height="500"/>
 
 Command component:
 
