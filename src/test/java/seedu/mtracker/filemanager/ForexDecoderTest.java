@@ -11,6 +11,7 @@ import seedu.mtracker.commons.error.fileerror.InvalidRemarksInFileError;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author williamlamjy
 class ForexDecoderTest extends InstrumentDecoderTest {
 
     public static final String[] INVALID_FOREX_EXPIRY_TEXT_SEGMENT = {

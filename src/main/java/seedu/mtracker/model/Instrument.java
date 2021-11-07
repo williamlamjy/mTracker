@@ -49,6 +49,7 @@ public abstract class Instrument {
         validAttribute = new HashSet<>();
     }
 
+    //@@author williamlamjy
     public boolean getIsDone() {
         return isDone;
     }
@@ -168,9 +169,9 @@ public abstract class Instrument {
         editGeneralParameter(editedParameters);
     }
 
-    //@@author
     public abstract String getType();
 
+    //@@author williamlamjy
     /**
      * Formats all the parameters of the instrument to save to text file.
      *

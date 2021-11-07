@@ -79,8 +79,8 @@ public class Validate {
             throw new InvalidNameError(instrumentType);
         }
     }
-    //@@author
 
+    //@@author williamlamjy
     /**
      * Checks if instrument type is one of the 4 valid types.
      *

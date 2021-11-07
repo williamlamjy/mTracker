@@ -50,6 +50,7 @@ public abstract class ErrorMessage {
     public static final String FILE_WRITE_ERROR = "Oh no! There seems to be an error writing to the file";
     public static final String FILE_LOAD_ERROR = "Oh no! There seems to be an error loading this file";
 
+    //@@author williamlamjy
     public static final String REMARKS_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting "
             + "of the remarks entry in the file";
     public static final String EXPIRY_FORMATTING_IN_FILE_ERROR = "Oh no! There seems to be an error in the formatting "
@@ -83,6 +84,7 @@ public abstract class ErrorMessage {
     public static final String EMPTY_STATUS_IN_FILE_ERROR = "Oh no! Looks like the status entry in the file"
             + " is empty.";
     public static final String EMPTY_EXPIRY_IN_FILE_ERROR = "Oh no! Looks like the expiry entry in the file is empty!";
+    //@@author
 
     public static final String EDIT_EMPTY_ERROR = "Edit parameters cannot be empty, aborting edit process.";
 

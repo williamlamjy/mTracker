@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Logger;
 
+//@@author williamlamjy
 /**
  * Decodes the pre-existing instruments saved in the mTracker file.
  * Adds the decoded instruments into the current InstrumentManager.

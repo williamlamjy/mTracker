@@ -171,6 +171,7 @@ public class Forex extends Instrument {
         return FOREX_ICON;
     }
 
+    //@@author williamlamjy
     /**
      * Formats all Forex parameters to save to text file.
      *
@@ -182,6 +183,7 @@ public class Forex extends Instrument {
                 + FILE_SEPARATOR + exitPrice + FILE_SEPARATOR + expiry
                 + FILE_SEPARATOR + remark;
     }
+    //@@author
 
     /**
      * Gets all the Forex parameters, with each parameter on a newline.
