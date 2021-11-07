@@ -398,7 +398,7 @@ public class Validate {
         return true;
     }
 
-    //@@hauthor kum-wh
+    //@@author kum-wh
     /**
      * Checks if done status is empty.
      *

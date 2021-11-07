@@ -182,7 +182,7 @@ public abstract class Instrument {
                 + isDone;
     }
 
-    //@@ author kum-wh
+    //@@author kum-wh
     /**
      * Gets all the type of parameters in the instrument in one string.
      *
@@ -194,7 +194,6 @@ public abstract class Instrument {
                 + CURRENT_PRICE_ATTRIBUTE + SEPARATOR
                 + SENTIMENT_ATTRIBUTE;
     }
-
 
     //@@author KVignesh122
     public abstract String getTypeIcon();
