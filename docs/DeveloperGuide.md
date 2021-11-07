@@ -352,8 +352,8 @@ appropriate message through the `TextUi` class.
 
 ### Value proposition
 
-Given that financial information is rapidly evolving and growing beyond what the standard brokerages
-and traditional financial news provide. It is readily and easily accessible to any individual with an internet connection
+Financial information is rapidly evolving and growing beyond what the standard brokerages
+and traditional financial news provide. The information is readily and easily accessible to any individual with an internet connection
 via social media and public forums. Therefore, mTracker aims to empower individuals with the capability to note and organise 
 such information in a quick and easy way. 
 
@@ -390,7 +390,7 @@ such information in a quick and easy way.
 * *Instrument* - Represents assets that can be traded. Most common examples are stocks and foreign currency.
 * *Etf* - Known as Exchange Traded Funds, they are a type of instrument that tracks the performance of a particular asset. 
 * *Forex* - Foreign exchange market for trading currencies. An example included is the USDSGD exchange rate.
-* *Crypto* - Cryptocurrencies are digital currencies that is secured by cryptography methods.
+* *Crypto* - Digital currencies that is secured by cryptography methods.
 * *Stock* - Shares of a company that provide the owner a certain level of ownership of said company.
 
 ## Instructions for manual testing
