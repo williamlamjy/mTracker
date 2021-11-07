@@ -221,7 +221,8 @@ a higher level of abstraction.
 The add instrument functionality is mainly handled by the `console` and `commands` components. Within the `console`
 component, the `InputParser` class implements the method `InputParser#getAddInstrumentParameters()`. This method calls
 `AddInstrumentParser#filterByInstrumentType(componentComponents)` which will then guide the user through the process of adding a new
-instrument. 
+instrument. `AddInstrumentParser#filterByInstrumentType(componentComponents)` will throw an `InvalidInstrumentError` if the
+user provides an instrument type that is invalid.
 
 The figure below represents the sequence diagram when the user wants to add a stock:
 
