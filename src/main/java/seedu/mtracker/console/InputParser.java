@@ -139,8 +139,9 @@ public class InputParser {
         findCommand.setSearchString(searchString);
         return findCommand;
     }
-
     //@@author
+
+    //@@author williamlamjy
     /**
      * Checks and prepares the done command when the user wants to set the instrument status as done.
      *
@@ -160,6 +161,7 @@ public class InputParser {
         doneCommand.setIndex(instrumentNumber);
         return doneCommand;
     }
+    //@@author
 
     //@@author kum-wh
     /**

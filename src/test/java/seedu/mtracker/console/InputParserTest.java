@@ -101,6 +101,8 @@ class InputParserTest {
     }
 
     //@@author
+
+    //@@author williamlamjy
     @Test
     void getDoneInstrumentCommand_noIndexProvided_expectException() {
         assertThrows(InvalidEmptyIndexError.class,
@@ -129,6 +131,7 @@ class InputParserTest {
                 .getDoneInstrumentCommand(VALID_INDEX_DONE_INPUT, INSTRUMENTS);
         assertEquals(command.getIndex(), VALID_INDEX - INDEX_OFFSET);
     }
+    //@@author
 
     //@@author KVignesh122
     @Test

@@ -15,6 +15,7 @@ import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.model.subinstrument.Etf;
 
+//@@author williamlamjy
 public class EtfDecoder extends InstrumentDecoder {
 
     public static final int PAST_RETURNS_INDEX = 5;

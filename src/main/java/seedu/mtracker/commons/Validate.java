@@ -81,6 +81,7 @@ public class Validate {
     }
     //@@author
 
+    //@@author williamlamjy
     /**
      * Checks if instrument type is one of the 4 valid types.
      *
@@ -150,6 +151,7 @@ public class Validate {
         }
         return true;
     }
+    //@@author
 
     //@@author theodorekwok
     /**

@@ -109,6 +109,7 @@ public class Etf extends Instrument {
         return TYPE_INSTRUMENT;
     }
 
+    //@@author williamlamjy
     /**
      * Formats all Etf parameters to save to text file.
      *
@@ -119,6 +120,7 @@ public class Etf extends Instrument {
         return super.textFileFormatting() + FILE_SEPARATOR + getReturns()
                 + FILE_SEPARATOR + remark;
     }
+    //@@author
 
     @Override
     public String getTypeIcon() {

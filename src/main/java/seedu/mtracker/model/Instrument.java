@@ -171,6 +171,7 @@ public abstract class Instrument {
     //@@author
     public abstract String getType();
 
+    //@@author williamlamjy
     /**
      * Formats all the parameters of the instrument to save to text file.
      *
@@ -181,6 +182,7 @@ public abstract class Instrument {
                 + currentPrice + FILE_SEPARATOR + sentiment + FILE_SEPARATOR
                 + isDone;
     }
+    //@@author
 
     //@@author kum-wh
     /**
