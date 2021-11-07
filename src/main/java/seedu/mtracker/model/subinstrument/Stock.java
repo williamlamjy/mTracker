@@ -23,6 +23,7 @@ public class Stock extends Instrument {
         return remark;
     }
 
+    //@@author kum-wh
     public void setRemark(String inputRemark) {
         remark = inputRemark;
     }
@@ -61,6 +62,7 @@ public class Stock extends Instrument {
         return super.editParameterInstructions() + SEPARATOR + REMARK_ATTRIBUTE;
     }
 
+    //@@author
     @Override
     public String getType() {
         return TYPE_INSTRUMENT;

@@ -5,6 +5,7 @@ import seedu.mtracker.model.Instrument;
 import java.util.HashMap;
 import java.util.HashSet;
 
+//@@author kum-wh
 /**
  * Represents an Etf type instrument.
  */

@@ -318,7 +318,7 @@ public class Validate {
         }
     }
 
-    //@@author
+    //@@author kum-wh
     /**
      * Checks if past returns is valid.
      * Catches and displays any errors if past returns is invalid.
@@ -401,7 +401,7 @@ public class Validate {
         return true;
     }
 
-    //@@author
+    //@@author kum-wh
     /**
      * Checks if done status is empty.
      *
@@ -455,7 +455,7 @@ public class Validate {
     public static boolean isNonEmptyEditParameters(String input) {
         return !input.isEmpty();
     }
-
+    
     //@@author theodorekwok
     /**
      * Checks if done status is of valid format in the mTracker file.

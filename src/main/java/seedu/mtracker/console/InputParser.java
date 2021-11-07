@@ -139,8 +139,8 @@ public class InputParser {
         findCommand.setSearchString(searchString);
         return findCommand;
     }
-    //@@author
 
+    //@@author
     /**
      * Checks and prepares the done command when the user wants to set the instrument status as done.
      *
@@ -161,6 +161,7 @@ public class InputParser {
         return doneCommand;
     }
 
+    //@@author kum-wh
     /**
      * Checks and filters the user given parameters based on the instrument of interest set of valid attributes.
      *
@@ -222,6 +223,7 @@ public class InputParser {
         return editInstrumentParser.createEditCommand(parametersToEdit, instrumentToEdit, instrumentNumber);
     }
 
+    //@@author
     /**
      * Checks if the index number provided is valid.
      *

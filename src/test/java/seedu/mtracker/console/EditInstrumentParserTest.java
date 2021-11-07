@@ -13,6 +13,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author kum-wh
 public class EditInstrumentParserTest extends GeneralInstrumentParserTest {
 
     public static final String USER_INPUT_EDIT_NAME_AND_REMARK = "TTTXXX" + SEPARATOR_SPECIFIER + "Test Remark";

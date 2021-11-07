@@ -274,6 +274,7 @@ public class TextUi {
         System.out.print(prompter);
     }
 
+    //@@author kum-wh
     /**
      * Prompts the user to enter the parameters to edit.
      *
@@ -395,6 +396,7 @@ public class TextUi {
         System.out.println("No changes to instrument was made.");
     }
 
+    //@@author
     /**
      * Displays the message that greet the user on start up.
      */

@@ -5,6 +5,7 @@ import seedu.mtracker.commons.error.OperationAbortedError;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author kum-wh
 public class AddEtfParserTest extends GeneralInstrumentParserTest {
     public static final int PARAMETER_SIZE = 5;
 
@@ -96,7 +97,6 @@ public class AddEtfParserTest extends GeneralInstrumentParserTest {
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + "50.0"
             + SEPARATOR_SPECIFIER + ABORT;
-    //@@author
 
     //@@author kum-wh
     void testEtfParameters(String input, String[] expectedEtfParameters) throws OperationAbortedError {

@@ -61,7 +61,7 @@ public class InstrumentManager {
         instruments.remove(index);
     }
 
-    //@@author
+    //@@author kum-wh
     /**
      * Sets the parameters of the instruments to the new values.
      *
