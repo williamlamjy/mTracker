@@ -14,8 +14,8 @@ Package "console                 "<<Rectangle>>{
         <color:WHITE>+ getInstrumentParameters(): AddXYZCommand</color>
     }
     Class EditInstrumentParser COLOR_CONSOLE {
-        <color:WHITE>+ {static} getEditedParameters(HashSet<String>, Instrument)</color>
-        <color:WHITE>+ {static} createEditCommand(HashSet<String>, Instrument, int): EditInstrumentCommand</color>
+        <color:WHITE>+ getEditedParameters(HashSet<String>, Instrument)</color>
+        <color:WHITE>+ createEditCommand(HashSet<String>, Instrument, int): EditInstrumentCommand</color>
     }
 }
 
