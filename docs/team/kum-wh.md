@@ -43,7 +43,7 @@ The code I contributed can be found in the reposense link [here](https://nus-cs2
   * Wrote the done instrument feature section under Implementation.
   * Wrote the edit instrument feature section under Implementation.[#230](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/230/files)
   * Created 4 diagrams:
-    * Edit Parser Sequence Diagram [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/.EditInstrumentSequenceDiagram.png).
+    * Edit Parser Sequence Diagram [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/EditInstrumentSequenceDiagram.png).
     * Edit Parser Reference Diagram [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/EditRefrence.png).
     * Edit Execution Sequence Diagram [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/EditExecuteSequenceDiagram.png).
     * Edit Execution Reference Diagram [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/images/EditExecuteRefrence.png).
