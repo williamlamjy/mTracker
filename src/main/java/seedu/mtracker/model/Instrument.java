@@ -49,6 +49,7 @@ public abstract class Instrument {
         validAttribute = new HashSet<>();
     }
 
+    //@@author williamlamjy
     public boolean getIsDone() {
         return isDone;
     }
@@ -168,7 +169,6 @@ public abstract class Instrument {
         editGeneralParameter(editedParameters);
     }
 
-    //@@author
     public abstract String getType();
 
     //@@author williamlamjy
@@ -182,7 +182,6 @@ public abstract class Instrument {
                 + currentPrice + FILE_SEPARATOR + sentiment + FILE_SEPARATOR
                 + isDone;
     }
-    //@@author
 
     //@@author kum-wh
     /**

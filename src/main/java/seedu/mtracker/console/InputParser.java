@@ -139,7 +139,6 @@ public class InputParser {
         findCommand.setSearchString(searchString);
         return findCommand;
     }
-    //@@author
 
     //@@author williamlamjy
     /**
@@ -161,7 +160,6 @@ public class InputParser {
         doneCommand.setIndex(instrumentNumber);
         return doneCommand;
     }
-    //@@author
 
     //@@author kum-wh
     /**
@@ -224,8 +222,8 @@ public class InputParser {
         EditInstrumentParser editInstrumentParser = new EditInstrumentParser();
         return editInstrumentParser.createEditCommand(parametersToEdit, instrumentToEdit, instrumentNumber);
     }
-
     //@@author
+
     /**
      * Checks if the index number provided is valid.
      *

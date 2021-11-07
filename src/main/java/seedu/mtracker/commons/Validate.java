@@ -79,7 +79,6 @@ public class Validate {
             throw new InvalidNameError(instrumentType);
         }
     }
-    //@@author
 
     //@@author williamlamjy
     /**
@@ -151,7 +150,6 @@ public class Validate {
         }
         return true;
     }
-    //@@author
 
     //@@author theodorekwok
     /**
