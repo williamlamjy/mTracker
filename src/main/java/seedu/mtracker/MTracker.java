@@ -10,8 +10,10 @@ import seedu.mtracker.ui.TextUi;
 
 import java.util.logging.Level;
 
+/**
+ * Main class responsible for the running of the whole mTracker application.
+ */
 public class MTracker {
-
     private Storage storage;
     private InstrumentManager instrumentManager;
     private InputParser parser;
