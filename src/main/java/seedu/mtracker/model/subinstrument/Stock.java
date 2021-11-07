@@ -28,7 +28,6 @@ public class Stock extends Instrument {
         remark = inputRemark;
     }
 
-    //@@author
     /**
      * Sets remarks parameter to the new remarks if remarks parameter is being edited.
      *

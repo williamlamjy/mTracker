@@ -270,7 +270,6 @@ public class Validate {
         }
     }
 
-    //@@author
     /**
      * Checks if sentiment is valid.
      * Catches and displays any errors if sentiment is invalid.
@@ -290,7 +289,6 @@ public class Validate {
         return true;
     }
 
-    //@@author theodorekwok
     /**
      * Checks if past returns is a valid numerical.
      *

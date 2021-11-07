@@ -187,7 +187,6 @@ class AddForexParserTest extends GeneralInstrumentParserTest {
         testForexParameters(USER_INPUT_TRY_PAST_EXPIRY, EXPECTED_PARAMS_WITH_REMARKS);
     }
 
-    // @@KVignesh122
     @Test
     void addForexParams_abortAtName_expectException() {
         assertThrows(OperationAbortedError.class,

@@ -106,7 +106,6 @@ class AddCryptoParserTest extends GeneralInstrumentParserTest {
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + DONT_ABORT
             + SEPARATOR_SPECIFIER.repeat(2) + ABORT;
-    //@@author
 
     //@@author williamlamjy
     void testCryptoParameters(String input, String[] expectedParameters) throws OperationAbortedError {

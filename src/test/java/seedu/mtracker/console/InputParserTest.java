@@ -2,7 +2,6 @@ package seedu.mtracker.console;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import seedu.mtracker.commands.DeleteCommand;
 import seedu.mtracker.commands.DoneCommand;
 import seedu.mtracker.commons.error.AlreadyDoneError;
@@ -100,8 +99,6 @@ class InputParserTest {
         assertEquals(command.getIndex(), VALID_INDEX - INDEX_OFFSET);
     }
 
-    //@@author
-
     //@@author williamlamjy
     @Test
     void getDoneInstrumentCommand_noIndexProvided_expectException() {
@@ -131,19 +128,17 @@ class InputParserTest {
                 .getDoneInstrumentCommand(VALID_INDEX_DONE_INPUT, INSTRUMENTS);
         assertEquals(command.getIndex(), VALID_INDEX - INDEX_OFFSET);
     }
-    //@@author
 
     //@@author KVignesh122
     @Test
     void abortOperation_validAbortInAdd_expectException() {
         assertThrows(OperationAbortedError.class,
-            () -> parser.checkIfAbort(ABORT, ADD_WORKSPACE));
+            () -> InputParser.checkIfAbort(ABORT, ADD_WORKSPACE));
     }
 
     @Test
     void abortOperation_validAbortInEdit_expectException() {
         assertThrows(OperationAbortedError.class,
-            () -> parser.checkIfAbort(ABORT, EDIT_WORKSPACE));
+            () -> InputParser.checkIfAbort(ABORT, EDIT_WORKSPACE));
     }
-    //@@author
 }

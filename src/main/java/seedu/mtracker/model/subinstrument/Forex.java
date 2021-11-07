@@ -59,7 +59,7 @@ public class Forex extends Instrument {
                 + REMARK_ATTRIBUTE;
     }
 
-    //@@author
+    //@@author theodorekwok
     /**
      * Formats date into String.
      *

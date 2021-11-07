@@ -71,7 +71,6 @@ class AddStockParserTest extends GeneralInstrumentParserTest {
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + ABORT;
-    //@@author
 
     //@@author theodorekwok
     void testStockParameters(String input, String[] expectedStockParameters) throws OperationAbortedError {

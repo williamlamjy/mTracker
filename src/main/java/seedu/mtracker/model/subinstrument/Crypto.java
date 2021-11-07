@@ -96,6 +96,7 @@ public class Crypto extends Instrument {
         return TYPE_INSTRUMENT;
     }
 
+    //@@author williamlamjy
     /**
      * Formats all Crypto parameters to save to text file.
      *

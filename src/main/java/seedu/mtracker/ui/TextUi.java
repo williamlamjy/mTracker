@@ -211,8 +211,8 @@ public class TextUi {
                 + System.lineSeparator() + TAB + TAB
                 + instrument.getGeneralParams());
     }
-    //@@author
 
+    //@@author theodorekwok
     /**
      * Informs the user that an instrument has been deleted from the list.
      *
@@ -238,7 +238,6 @@ public class TextUi {
     public static void displayLoadingFile() {
         System.out.println("Found a saved file. Loading the saved data now...");
     }
-    //@@author
 
     /**
      * Displays the respective error message to the user when an error is encountered.
@@ -249,6 +248,7 @@ public class TextUi {
         System.out.println(e.getMessage());
     }
 
+    //@@author theodorekwok
     /**
      * Informs the user that an instrument in the text file is corrupted and will not be read from the file.
      *
@@ -259,6 +259,7 @@ public class TextUi {
         System.out.println(LINE_DECORATOR);
     }
 
+    //@@author KVignesh122
     /**
      * Displays a farewell message when the user exit the program.
      */
@@ -400,7 +401,7 @@ public class TextUi {
         System.out.println("No changes to instrument was made.");
     }
 
-    //@@author
+    //@@author KVignesh122
     /**
      * Displays the message that greet the user on start up.
      */
