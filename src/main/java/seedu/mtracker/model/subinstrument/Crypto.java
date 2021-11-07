@@ -118,6 +118,7 @@ public class Crypto extends Instrument {
                 + REMARK_ATTRIBUTE;
     }
 
+    //@@author
     @Override
     public String getTypeIcon() {
         return CRYPTO_ICON;

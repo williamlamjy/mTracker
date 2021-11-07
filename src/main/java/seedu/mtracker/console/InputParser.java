@@ -138,8 +138,8 @@ public class InputParser {
         findCommand.setSearchString(searchString);
         return findCommand;
     }
-    //@@author
 
+    //@@author
     /**
      * Checks and prepares the done command when the user wants to set the instrument status as done.
      *

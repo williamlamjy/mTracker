@@ -314,6 +314,7 @@ public class Validate {
         }
     }
 
+    //@@author kum-wh
     /**
      * Checks if past returns is valid.
      * Catches and displays any errors if past returns is invalid.
@@ -336,6 +337,8 @@ public class Validate {
         return true;
     }
 
+
+    //@@author
     /**
      * Checks if expiry is empty.
      *
@@ -395,6 +398,7 @@ public class Validate {
         return true;
     }
 
+    //@@hauthor kum-wh
     /**
      * Checks if done status is empty.
      *
@@ -449,6 +453,7 @@ public class Validate {
         return !input.isEmpty();
     }
 
+    //@@author
     /**
      * Checks if done status is of valid format in the mTracker file.
      *

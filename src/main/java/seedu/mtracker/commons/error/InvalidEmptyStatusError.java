@@ -1,5 +1,6 @@
 package seedu.mtracker.commons.error;
 
+//@@author kum-wh
 public class InvalidEmptyStatusError extends Exception {
     @Override
     public String getMessage() {

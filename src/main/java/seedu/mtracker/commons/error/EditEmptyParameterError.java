@@ -1,5 +1,7 @@
 package seedu.mtracker.commons.error;
 
+//@@author kum-wh
+
 public class EditEmptyParameterError extends Exception {
     @Override
     public String getMessage() {
