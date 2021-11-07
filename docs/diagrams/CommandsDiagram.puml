@@ -64,20 +64,20 @@ show ABCCommand members
 show AddXYZCommand members
 
 InvalidCommand -[COLOR_COMMANDS]-|>Command
-Command -up[COLOR_COMMANDS]->"1" InstrumentManager
+Command -left[COLOR_COMMANDS]->"1" InstrumentManager
 
-note right of ABCCommand: ABC = \nExit, \nFind, \nList
+note right of ABCCommand: ABCCommand = \nExitCommand, \nFindCommand, \nListCommand
 
 ABCCommand -[COLOR_COMMANDS]-|>Command
-AddInstrumentCommand -[COLOR_COMMANDS]-|>Command
+AddInstrumentCommand -up[COLOR_COMMANDS]-|>Command
 IndexedCommand -up[COLOR_COMMANDS]-|>Command
 
-AddXYZCommand -[COLOR_COMMANDS]-|>AddInstrumentCommand
+AddXYZCommand -up[COLOR_COMMANDS]-|>AddInstrumentCommand
 
-EditInstrumentCommand -[COLOR_COMMANDS]-|>IndexedCommand
+EditInstrumentCommand -left[COLOR_COMMANDS]-|>IndexedCommand
 ViewCommand -[COLOR_COMMANDS]-|>IndexedCommand
-DoneCommand -[COLOR_COMMANDS]-|>IndexedCommand
-DeleteCommand -[COLOR_COMMANDS]-|>IndexedCommand
+DoneCommand -down[COLOR_COMMANDS]-|>IndexedCommand
+DeleteCommand -up[COLOR_COMMANDS]-|>IndexedCommand
 
 AddXYZCommand -[COLOR_COMMANDS].>TextUi
 ABCCommand -[COLOR_COMMANDS].>TextUi
