@@ -566,6 +566,7 @@ List all instruments in watchlist | `list` | `mTracker$main> list` prints out al
 View all info of an instrument | `view INDEX` | `mTracker$main> view 1` prints out all financial details recorded for the first instrument in watchlist.
 Mark an instrument's trade setup as completed | `done INDEX` | `mTracker$main> done 2` marks second instrument in watchlist as acted upon.
 Edit details recorded for an instrument | `edit INDEX` | Read [2.5.0 Edit an instrument: `edit`](#250-editing-an-instrument-edit) for detailed instructions and examples.
+Abort an operation | `abort`| `mTracker$add> abort` cancels the add operation.
 Delete an instrument from watchlist | `delete INDEX` | `mTracker$main> delete 5` deletes the fifth instrument in watchlist.
 Search for recorded instrument(s) | `find SEARCH_STRING` | `mTracker$main> find USD` returns all financial instruments in watchlist that contain "USD". **(Note: SEARCH_STRING is case-sensitive.)**
 Exit program | `bye` | `mTracker$main> bye` prints out farewell message and program ends.
