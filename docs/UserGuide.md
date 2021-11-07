@@ -33,9 +33,10 @@ command-line commands mTracker intakes to execute the various functionalities.
     * [2.3.0 View instrument info: `view`](#230-viewing-more-info-recorded-for-an-instrument-view)
     * [2.4.0 Mark an instrument done: `done`](#240-marking-a-setup-as-acted-upon-done)
     * [2.5.0 Edit an instrument: `edit`](#250-editing-an-instrument-edit)
-    * [2.6.0 Remove an instrument: `delete`](#260-removing-an-instrument-record-delete)
-    * [2.7.0 Search for an instrument: `find`](#270-search-for-instruments-in-watchlist-find)
-    * [2.8.0 Exit the application : `bye`](#280-exiting-the-bot-bye)
+    * [2.6.0 Abort an operation: `abort`](#260-aborting-an-operation-abort)
+    * [2.7.0 Remove an instrument: `delete`](#260-removing-an-instrument-record-delete)
+    * [2.8.0 Search for an instrument: `find`](#270-search-for-instruments-in-watchlist-find)
+    * [2.9.0 Exit the application : `bye`](#280-exiting-the-bot-bye)
 * [3.0 FAQ](#30-faq)
 * [4.0 Command Summary](#40-command-summary)
 
@@ -403,8 +404,52 @@ Past Returns: 1200.0
 Remarks: Prices will plateau out in a few days.
 ________________________________________________________________________________
 ```
+### 2.6.0 Aborting an operation: `abort`
 
-### 2.6.0 Removing an instrument record: `delete`
+Abort a current process. If you want to terminate the `add` or `edit` operation at any stage, enter `abort`
+and the operation will be terminated.
+
+Aborting an Add Operation:
+
+**Example usage**
+```
+mTracker$add> abort
+```
+**Expected outcome:**
+
+```
+mTracker$main> add
+Please key in the type of instrument:
+mTracker$add> stock
+Name of stock:
+mTracker$add> abort
+Addition of new instrument has been aborted! You are in the main workspace now.
+```
+
+Aborting an Edit Operation:
+
+**Example usage**
+
+```
+mTracker$edit> abort
+```
+
+**Expected outcome:**
+
+```
+mTracker$main> edit 2
+	Please enter one or more StocEtf parameters to edit separated by spaces only.
+	done-status, name, current-price, sentiment, remarks
+mTracker$edit> name current-price
+	Enter new name:
+mTracker$edit> abort
+Edit process has been aborted! You are in the main workspace now.
+```
+
+_**Note: You can use this feature to cancel add or edit functionality. Calling abort in any other functionality will
+result in an error message being displayed.**_
+
+### 2.7.0 Removing an instrument record: `delete`
 
 You can remove an instrument from the watchlist as you deem 
 fit with the index number of the instrument in inventory.
@@ -434,7 +479,7 @@ ________________________________________________________________________________
 
 You can key in `list` once again to view the latest watchlist.
 
-### 2.7.0 Search for instruments in watchlist: `find`
+### 2.8.0 Search for instruments in watchlist: `find`
 
 You can find specific instruments in the watchlist by searching for them through `find` command.
 
@@ -473,7 +518,7 @@ ________________________________________________________________________________
 
 _**Note: SEARCH_STRING is case-sensitive.**_
 
-### 2.8.0 Exiting the bot: `bye`
+### 2.9.0 Exiting the bot: `bye`
 When you wish to quit the mTracker program, simply type in `bye`.
 
 **Example usage**
