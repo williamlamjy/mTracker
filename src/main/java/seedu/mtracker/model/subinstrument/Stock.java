@@ -68,6 +68,7 @@ public class Stock extends Instrument {
         return TYPE_INSTRUMENT;
     }
 
+    //@@author williamlamjy
     /**
      * Formats all Stock parameters to save to text file.
      *
@@ -78,6 +79,7 @@ public class Stock extends Instrument {
         return super.textFileFormatting()
                 + FILE_SEPARATOR + getRemark();
     }
+    //@@author
 
     @Override
     public String getTypeIcon() {

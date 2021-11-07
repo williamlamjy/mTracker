@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+//@@author williamlamjy
 /**
  * Encodes the pre-existing instruments into a savable format to store into the mTracker file.
  */

@@ -140,7 +140,7 @@ public class InputParser {
         return findCommand;
     }
 
-    //@@author
+    //@@author williamlamjy
     /**
      * Checks and prepares the done command when the user wants to set the instrument status as done.
      *
@@ -222,8 +222,8 @@ public class InputParser {
         EditInstrumentParser editInstrumentParser = new EditInstrumentParser();
         return editInstrumentParser.createEditCommand(parametersToEdit, instrumentToEdit, instrumentNumber);
     }
-
     //@@author
+
     /**
      * Checks if the index number provided is valid.
      *
