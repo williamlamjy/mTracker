@@ -251,6 +251,14 @@ public class InputParser {
         Validate.checkIsNotDone(instruments, instrumentNumber);
     }
 
+    /**
+     * Filters and returns the command type based on the user input.
+     *
+     * @param commandComponents A string array containing the command words the user gave.
+     * @param instruments The list of instruments currently in the user's watchlist.
+     * @return The command the user wants to execute.
+     * @throws Exception If any of the user's addition or lack of inputs violates the command requirements.
+     */
     public Command filterByCommandType(String[] commandComponents, ArrayList<Instrument> instruments)
             throws Exception {
         Command command;
