@@ -267,7 +267,7 @@ inputs, you would be prompted to give a valid input.**_
 
 ### 2.2.0 Displaying general info of all instruments added: `list`
 
-mTracker displays the 3 general parameters of `Name`, `Current Price`, 
+Displays the 3 general parameters of `Name`, `Current Price`, 
 and `Sentiment` for all instruments in an easy-to-view format, alongside
 their execution status marked by an `[X]`.
 
@@ -325,8 +325,7 @@ ________________________________________________________________________________
 
 ### 2.4.0 Marking a setup as acted upon: `done`
 
-mTracker provides the ability for you to mark a particular
-record of an instrument in the watchlist as executed or acted upon.
+Mark a particular record of an instrument in the watchlist as executed or acted upon.
 
 **Format**
 
@@ -384,6 +383,9 @@ mTracker$edit> 148.76
 
 _**Note: If unknown/invalid parameters are input when mTracker prompts for the parameters to edit,
 they will be ignored.**_
+
+_**Note: If any of the non-optional parameters of the instrument being edited are provided with invalid
+inputs, you would be prompted to give a valid input. See adding of the respective instrument for its non-optional parameters.**_
 
 Then, it prints out the changes that have been made:
 
@@ -562,6 +564,11 @@ will be stored and retrieved back by mTracker once it is relaunched.**_
 **A**: You can open the `mTracker.txt` file located in the same directory as the jar file
 to edit/add instruments manually. However, please make sure that each line
 contains details of only one instrument.
+
+**Q**: Can I add multiple instruments in one command?
+
+**A**: No, most commands are designed to handle one instrument at a time. As with most commands,
+the add feature only allows adding of 1 instrument at a time.
 
 ## 4.0 Command Summary
 
