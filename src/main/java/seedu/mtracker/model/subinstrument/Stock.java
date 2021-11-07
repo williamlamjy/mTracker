@@ -4,6 +4,7 @@ import seedu.mtracker.model.Instrument;
 
 import java.util.HashMap;
 
+//@@author theodorekwok
 /**
  * Represents a Stock type instrument.
  */
@@ -22,10 +23,12 @@ public class Stock extends Instrument {
         return remark;
     }
 
+    //@@author kum-wh
     public void setRemark(String inputRemark) {
         remark = inputRemark;
     }
 
+    //@@author
     /**
      * Sets remarks parameter to the new remarks if remarks parameter is being edited.
      *
@@ -38,33 +41,56 @@ public class Stock extends Instrument {
         setRemark(editedParameters.get(REMARK_ATTRIBUTE));
     }
 
+    /**
+     * Sets all the Stock parameters being edited to its new values.
+     *
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     @Override
     public void editParameter(HashMap<String, String> editedParameters) {
         editGeneralParameter(editedParameters);
         editRemark(editedParameters);
     }
 
+    /**
+     * Gets all the type of Stock parameters in one string.
+     *
+     * @return A string containing all the type of Stock parameters.
+     */
     @Override
     public String editParameterInstructions() {
         return super.editParameterInstructions() + SEPARATOR + REMARK_ATTRIBUTE;
     }
 
+    //@@author
     @Override
     public String getType() {
         return TYPE_INSTRUMENT;
     }
 
+    //@@author williamlamjy
+    /**
+     * Formats all Stock parameters to save to text file.
+     *
+     * @return A formatted string to save to text file.
+     */
     @Override
     public String textFileFormatting() {
         return super.textFileFormatting()
                 + FILE_SEPARATOR + getRemark();
     }
+    //@@author
 
     @Override
     public String getTypeIcon() {
         return STOCK_ICON;
     }
 
+    /**
+     * Adds all the type of Stock parameters into a HashSet.
+     *
+     * @return HashSet containing the type of Stock parameters.
+     */
     @Override
     public String getAllParams() {
         return super.getAllParams()

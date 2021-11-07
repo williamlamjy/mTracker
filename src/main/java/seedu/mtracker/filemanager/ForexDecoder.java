@@ -22,6 +22,7 @@ import seedu.mtracker.model.subinstrument.Forex;
 
 import java.time.LocalDate;
 
+//@@author williamlamjy
 /**
  * Decodes and adds forex instruments into the InstrumentManager.
  */

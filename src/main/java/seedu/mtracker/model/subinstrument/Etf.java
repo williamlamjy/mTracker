@@ -5,6 +5,7 @@ import seedu.mtracker.model.Instrument;
 import java.util.HashMap;
 import java.util.HashSet;
 
+//@@author kum-wh
 /**
  * Represents an Etf type instrument.
  */
@@ -69,6 +70,11 @@ public class Etf extends Instrument {
         editRemark(editedParameters);
     }
 
+    /**
+     * Sets all the Etf parameters being edited to its new values.
+     *
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     @Override
     public void editParameter(HashMap<String, String> editedParameters) {
         editGeneralParameter(editedParameters);
@@ -87,6 +93,11 @@ public class Etf extends Instrument {
         return String.valueOf(pastReturns);
     }
 
+    /**
+     * Gets all the type of Etf parameters in one string.
+     *
+     * @return A string containing all the type of Etf parameters.
+     */
     @Override
     public String editParameterInstructions() {
         return super.editParameterInstructions() + SEPARATOR + RETURNS_ATTRIBUTE + SEPARATOR
@@ -98,17 +109,29 @@ public class Etf extends Instrument {
         return TYPE_INSTRUMENT;
     }
 
+    //@@author williamlamjy
+    /**
+     * Formats all Etf parameters to save to text file.
+     *
+     * @return A formatted string to save to text file.
+     */
     @Override
     public String textFileFormatting() {
         return super.textFileFormatting() + FILE_SEPARATOR + getReturns()
                 + FILE_SEPARATOR + remark;
     }
+    //@@author
 
     @Override
     public String getTypeIcon() {
         return ETF_ICON;
     }
 
+    /**
+     * Gets all the Etf parameters, with each parameter on a newline.
+     *
+     * @return A string containing all the Etf parameters.
+     */
     @Override
     public String getAllParams() {
         return super.getAllParams()
@@ -116,6 +139,11 @@ public class Etf extends Instrument {
                 + REMARKS_FIELD + remark;
     }
 
+    /**
+     * Adds all the type of Etf parameters into a HashSet.
+     *
+     * @return HashSet containing the type of Etf parameters.
+     */
     @Override
     public HashSet<String> getValidAttribute() {
         super.getValidAttribute();

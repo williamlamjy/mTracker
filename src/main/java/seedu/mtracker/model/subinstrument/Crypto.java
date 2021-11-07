@@ -2,11 +2,12 @@ package seedu.mtracker.model.subinstrument;
 
 import seedu.mtracker.model.Instrument;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.time.LocalDate;
 
+//@@author williamlamjy
 /**
  * Represents a Crypto type instrument.
  */
@@ -34,6 +35,7 @@ public class Crypto extends Instrument {
         return expiry.format(DateTimeFormatter.ofPattern(DATE_REGEX));
     }
 
+    //@@author kum-wh
     public void setExpiry(LocalDate inputExpiry) {
         expiry = inputExpiry;
     }
@@ -77,34 +79,57 @@ public class Crypto extends Instrument {
         editRemark(editedParameters);
     }
 
+    /**
+     * Sets all the Crypto parameters being edited to its new values.
+     *
+     * @param editedParameters HashMap containing parameters to edit and the new values.
+     */
     @Override
     public void editParameter(HashMap<String, String> editedParameters) {
         editGeneralParameter(editedParameters);
         editSpecificParameter(editedParameters);
     }
 
+    //@@author
     @Override
     public String getType() {
         return TYPE_INSTRUMENT;
     }
 
+    /**
+     * Formats all Crypto parameters to save to text file.
+     *
+     * @return A formatted string to save to text file.
+     */
     @Override
     public String textFileFormatting() {
         return super.textFileFormatting() + FILE_SEPARATOR + expiry
                 + FILE_SEPARATOR + remark;
     }
 
+    //@@author kum-wh
+    /**
+     * Gets all the type of Crypto parameters in one string.
+     *
+     * @return A string containing all the type of Crypto parameters.
+     */
     @Override
     public String editParameterInstructions() {
         return super.editParameterInstructions() + SEPARATOR + EXPIRY_ATTRIBUTE + SEPARATOR
                 + REMARK_ATTRIBUTE;
     }
 
+    //@@author
     @Override
     public String getTypeIcon() {
         return CRYPTO_ICON;
     }
 
+    /**
+     * Gets all the Crypto parameters, with each parameter on a newline.
+     *
+     * @return A string containing all the Crypto parameters.
+     */
     @Override
     public String getAllParams() {
         return super.getAllParams()
@@ -112,6 +137,12 @@ public class Crypto extends Instrument {
                 + REMARKS_FIELD + remark;
     }
 
+    //@@author kum-wh
+    /**
+     * Adds all the type of Crypto parameters into a HashSet.
+     *
+     * @return HashSet containing the type of Crypto parameters.
+     */
     @Override
     public HashSet<String> getValidAttribute() {
         super.getValidAttribute();

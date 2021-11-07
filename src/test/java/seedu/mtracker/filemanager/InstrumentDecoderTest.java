@@ -17,6 +17,7 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author williamlamjy
 class InstrumentDecoderTest {
 
     public static final String TEST_TYPE = "forex";
@@ -152,6 +153,7 @@ class InstrumentDecoderTest {
                     .addSavedInstrumentToList(instrumentManager, INVALID_INSTRUMENT_TYPE_TEXT_SEGMENT));
     }
 
+    //@@author theodorekwok
     @Test
     void addSavedInstrumentToList_emptyName_expectException() {
         assertThrows(InvalidEmptyNameInFileError.class,

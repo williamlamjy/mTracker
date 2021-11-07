@@ -5,6 +5,7 @@ import seedu.mtracker.commands.AddStockCommand;
 import seedu.mtracker.commons.error.OperationAbortedError;
 import seedu.mtracker.ui.TextUi;
 
+//@@author theodorekwok
 /**
  * A class responsible for parsing inputs when user is adding a new stock instrument.
  */

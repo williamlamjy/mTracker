@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
+//@@author williamlamjy
 /**
  * Responsible for storing and managing of all the different types of instruments.
  */
@@ -44,6 +45,7 @@ public class InstrumentManager {
         instruments.add(addedInstrument);
     }
 
+    //@@author theodorekwok
     /**
      * Scans through the list and filter instruments with name contains a keyword entered by user.
      *
@@ -60,6 +62,7 @@ public class InstrumentManager {
         instruments.remove(index);
     }
 
+    //@@author kum-wh
     /**
      * Sets the parameters of the instruments to the new values.
      *

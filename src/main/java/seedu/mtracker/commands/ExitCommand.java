@@ -2,6 +2,7 @@ package seedu.mtracker.commands;
 
 import seedu.mtracker.ui.TextUi;
 
+//@@author KVignesh122
 /**
  * Responsible for the command that terminiates the program.
  */

@@ -3,6 +3,7 @@ package seedu.mtracker.commands;
 import seedu.mtracker.model.subinstrument.Stock;
 import seedu.mtracker.ui.TextUi;
 
+//@@author theodorekwok
 /**
  * Responsible for adding Stock to the list.
  */

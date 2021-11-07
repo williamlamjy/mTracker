@@ -13,6 +13,7 @@ import seedu.mtracker.model.Instrument;
 import seedu.mtracker.model.InstrumentManager;
 import seedu.mtracker.model.subinstrument.Stock;
 
+//@@author williamlamjy
 /**
  * Decodes and adds stock instruments into the InstrumentManager.
  */

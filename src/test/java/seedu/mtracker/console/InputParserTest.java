@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author theodorekwok
 class InputParserTest {
     public static final int VALID_INDEX = 1;
 
@@ -99,6 +100,9 @@ class InputParserTest {
         assertEquals(command.getIndex(), VALID_INDEX - INDEX_OFFSET);
     }
 
+    //@@author
+
+    //@@author williamlamjy
     @Test
     void getDoneInstrumentCommand_noIndexProvided_expectException() {
         assertThrows(InvalidEmptyIndexError.class,
@@ -127,7 +131,9 @@ class InputParserTest {
                 .getDoneInstrumentCommand(VALID_INDEX_DONE_INPUT, INSTRUMENTS);
         assertEquals(command.getIndex(), VALID_INDEX - INDEX_OFFSET);
     }
+    //@@author
 
+    //@@author KVignesh122
     @Test
     void abortOperation_validAbortInAdd_expectException() {
         assertThrows(OperationAbortedError.class,
@@ -139,4 +145,5 @@ class InputParserTest {
         assertThrows(OperationAbortedError.class,
             () -> parser.checkIfAbort(ABORT, EDIT_WORKSPACE));
     }
+    //@@author
 }
