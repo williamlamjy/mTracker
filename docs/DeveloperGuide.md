@@ -306,7 +306,7 @@ More details about the reference frame for executing the done command is shown b
 
 ### Loading pre-existing data
 The loading of pre-existing data is mainly handled by the `filemanager` and `model` components. The main method calls 
-`Storage#loadFileData(instrumentManager)` which uses `InstrumentDecoder#readFile(instrumentManager, fileData)`. This method calls 
+`Storage#loadFileData(instrumentManager)` which uses `InstrumentDecoder#readFile(instrumentManager, fileLines)`. This method calls 
 `InstrumentDecoder#addSavedInstrumentToList(instrumentManager, textSegment)` for each pre-existing instrument which will add the 
 corresponding instrument in the `InstrumentManager` through calling the `XYZDecoder#addXYZToList(textSegment, instrumentManager)`. 
 In the event the instrument is not one of the 4 types of instruments, the `InstrumentDecoder` will throw a new `InvalidInstrumentInFileError`
@@ -390,7 +390,7 @@ such information in a quick and easy way.
 * *Instrument* - Represents assets that can be traded. Most common examples are stocks and foreign currency.
 * *Etf* - Known as Exchange Traded Funds, they are a type of instrument that tracks the performance of a particular asset. 
 * *Forex* - Foreign exchange market for trading currencies. An example included is the USDSGD exchange rate.
-* *Crypto* - Digital currencies that is secured by cryptography methods.
+* *Crypto* - Digital currencies that are secured by cryptography methods.
 * *Stock* - Shares of a company that provide the owner a certain level of ownership of said company.
 
 ## Instructions for manual testing

@@ -29,7 +29,7 @@ else
     TextUi--> Storage
     deactivate TextUi
 
-    Storage-> InstrumentDecoder: readFile(instrumentManager, fileData)
+    Storage-> InstrumentDecoder: readFile(instrumentManager, fileLines)
     activate InstrumentDecoder
 
     ref over InstrumentDecoder
