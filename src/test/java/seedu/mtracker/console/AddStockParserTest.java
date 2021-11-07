@@ -70,7 +70,9 @@ class AddStockParserTest extends GeneralInstrumentParserTest {
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + ABORT;
+    //@@author
 
+    //@@author theodorekwok
     void testStockParameters(String input, String[] expectedStockParameters) throws OperationAbortedError {
         simulateConsoleInput(input);
         AddStockParser testStockParser = new AddStockParser();
@@ -107,7 +109,7 @@ class AddStockParserTest extends GeneralInstrumentParserTest {
         testStockParameters(USER_INPUT_TRY_INVALID_SENTIMENT, EXPECTED_PARAMS_WITH_REMARKS);
     }
 
-    // @@KVignesh122
+    //@@KVignesh122
     @Test
     void addStockParams_abortAtName_expectException() {
         assertThrows(OperationAbortedError.class,

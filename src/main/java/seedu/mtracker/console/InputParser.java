@@ -105,6 +105,7 @@ public class InputParser {
         return deleteCommand;
     }
 
+    //@@author KVignesh122
     /**
      * Checks and prepares the view command when the user wants to view a specific instrument.
      *
@@ -122,6 +123,22 @@ public class InputParser {
         viewCommand.setIndex(instrumentNumber);
         return viewCommand;
     }
+
+    /**
+     * Checks and prepare the find command when a user wants to find instruments.
+     *
+     * @param commandComponents A string array containing the command words the user gave.
+     * @return A command to find instruments.
+     * @throws InvalidEmptySearchStringError If the user does not provide a search string.
+     */
+    public FindCommand getFindInstrumentsCommand(String[] commandComponents)
+            throws InvalidEmptySearchStringError {
+        FindCommand findCommand = new FindCommand();
+        constructSearchString(commandComponents);
+        findCommand.setSearchString(searchString);
+        return findCommand;
+    }
+    //@@author
 
     /**
      * Checks and prepares the done command when the user wants to set the instrument status as done.
@@ -235,21 +252,6 @@ public class InputParser {
     }
 
     /**
-     * Checks and prepare the find command when a user wants to find instruments.
-     *
-     * @param commandComponents A string array containing the command words the user gave.
-     * @return A command to find instruments.
-     * @throws InvalidEmptySearchStringError If the user does not provide a search string.
-     */
-    public FindCommand getFindInstrumentsCommand(String[] commandComponents)
-            throws InvalidEmptySearchStringError {
-        FindCommand findCommand = new FindCommand();
-        constructSearchString(commandComponents);
-        findCommand.setSearchString(searchString);
-        return findCommand;
-    }
-
-    /**
      * Filters and returns the command type based on the user input.
      *
      * @param commandComponents A string array containing the command words the user gave.
@@ -321,6 +323,7 @@ public class InputParser {
         }
     }
 
+    //@@author KVignesh122
     /**
      * Builds the search string the user wants to use to find the instruments.
      *
