@@ -34,7 +34,7 @@ The code I contributed can be found in the reposense link [here](https://nus-cs2
 
   * **UG**
     * Wrote the Edit feature section.[#96](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/96/files)
-    * Wrote the Abort Operation section. [#246]()
+    * Wrote the Abort Operation section. [#246](https://github.com/AY2122S1-CS2113T-T12-1/tp/pull/246/files)
     * Wrote the FAQ section.
 
 
