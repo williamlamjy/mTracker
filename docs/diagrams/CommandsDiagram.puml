@@ -3,50 +3,50 @@
 
 Package "Commands                    "  <<Rectangle>>{
      Class "{abstract}\nCommand" as Command COLOR_COMMANDS {
-     {method} + setData(InstrumentManager)
-     {method} + setParams(ArrayList<String>)
-     {method} + execute() ABSTRACT: String
+     <color:WHITE>{method} + setData(InstrumentManager)</color>
+     <color:WHITE>{method} + setParams(ArrayList<String>)</color>
+     <color:WHITE>{method} + execute() ABSTRACT: String</color>
      }
      Class ViewCommand COLOR_COMMANDS {
-     {method} + execute(): String
+     <color:WHITE>{method} + execute(): String</color>
      }
      Class EditInstrumentCommand COLOR_COMMANDS {
-     {method} + execute(): String
+     <color:WHITE>{method} + execute(): String</color>
      }
      Class DoneCommand COLOR_COMMANDS {
-     {method} + execute(): String
+     <color:WHITE>{method} + execute(): String</color>
      }
      Class DeleteCommand COLOR_COMMANDS {
-     {method} + execute(): String
+     <color:WHITE>{method} + execute(): String</color>
      }
 
      Class InvalidCommand COLOR_COMMANDS {
-     {method} + execute(): String
+     <color:WHITE>{method} + execute(): String</color>
      }
      Class ABCCommand COLOR_COMMANDS {
-     {method} + execute(): String
+     <color:WHITE>{method} + execute(): String</color>
      }
      Class AddInstrumentCommand COLOR_COMMANDS {
-     {method} + execute(): String
+     <color:WHITE>{method} + execute(): String</color>
      }
      Class "{abstract}\nIndexedCommand" as IndexedCommand COLOR_COMMANDS {
-     {method} + execute() ABSTRACT: String
+     <color:WHITE>{method} + execute() ABSTRACT: String</color>
      }
 
      Class AddXYZCommand COLOR_COMMANDS {
-     {method} + execute(): String
+     <color:WHITE>{method} + execute(): String</color>
      }
 }
 
 
 Class InstrumentManager COLOR_MODEL {
-    {method} + getSize(): int
-    {method} + getInstruments(): ArrayList<Instrument>
-    {method} + getInstrument(int): Instrument
-    {method} + addInstrument(Instrument): Instrument
-    {method} + findInstruments(String): ArrayList<Instrument>
-    {method} + deleteInstrument(int)
-    {method} + editInstrument(int, Hashmap<String, String>)
+    <color:WHITE>{method} + getSize(): int</color>
+    <color:WHITE>{method} + getInstruments(): ArrayList<Instrument></color>
+    <color:WHITE>{method} + getInstrument(int): Instrument</color>
+    <color:WHITE>{method} + addInstrument(Instrument): Instrument</color>
+    <color:WHITE>{method} + findInstruments(String): ArrayList<Instrument></color>
+    <color:WHITE>{method} + deleteInstrument(int)</color>
+    <color:WHITE>{method} + editInstrument(int, Hashmap<String, String>)</color>
 }
 
 Class TextUi COLOR_UI

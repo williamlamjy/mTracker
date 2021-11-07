@@ -5,17 +5,17 @@ Class main COLOR_MAIN
 
 Package "console                 "<<Rectangle>>{
     Class InputParser COLOR_CONSOLE {
-        + filterByCommandType(String[], ArrayList<Instrument>): Command
+        <color:WHITE>+ filterByCommandType(String[], ArrayList<Instrument>): Command</color>
     }
     Class "{abstract}\nAddInstrumentParser" as AddInstrumentParser COLOR_CONSOLE {
-        + {static} filterByInstrumentType(String[]): AddInstrumentCommand
+        <color:WHITE>+ {static} filterByInstrumentType(String[]): AddInstrumentCommand</color>
     }
     Class AddXYZParser COLOR_CONSOLE {
-        + getInstrumentParameters(): AddXYZCommand
+        <color:WHITE>+ getInstrumentParameters(): AddXYZCommand</color>
     }
     Class EditInstrumentParser COLOR_CONSOLE {
-        + {static} getEditedParameters(HashSet<String>, Instrument)
-        + {static} createEditCommand(HashSet<String>, Instrument, int): EditInstrumentCommand
+        <color:WHITE>+ {static} getEditedParameters(HashSet<String>, Instrument)</color>
+        <color:WHITE>+ {static} createEditCommand(HashSet<String>, Instrument, int): EditInstrumentCommand</color>
     }
 }
 
