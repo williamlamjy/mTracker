@@ -4,6 +4,7 @@ import seedu.mtracker.model.Instrument;
 
 import java.util.HashMap;
 
+//@@author theodorekwok
 /**
  * Represents a Stock type instrument.
  */
@@ -22,10 +23,12 @@ public class Stock extends Instrument {
         return remark;
     }
 
+    //@@author kum-wh
     public void setRemark(String inputRemark) {
         remark = inputRemark;
     }
 
+    //@@author
     /**
      * Sets remarks parameter to the new remarks if remarks parameter is being edited.
      *
@@ -59,11 +62,13 @@ public class Stock extends Instrument {
         return super.editParameterInstructions() + SEPARATOR + REMARK_ATTRIBUTE;
     }
 
+    //@@author
     @Override
     public String getType() {
         return TYPE_INSTRUMENT;
     }
 
+    //@@author williamlamjy
     /**
      * Formats all Stock parameters to save to text file.
      *
@@ -74,6 +79,7 @@ public class Stock extends Instrument {
         return super.textFileFormatting()
                 + FILE_SEPARATOR + getRemark();
     }
+    //@@author
 
     @Override
     public String getTypeIcon() {

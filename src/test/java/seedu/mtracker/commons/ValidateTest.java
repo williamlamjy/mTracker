@@ -9,6 +9,7 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+//@@author williamlamjy
 class ValidateTest {
 
     public static final String EMPTY_INPUT = "";
@@ -65,6 +66,7 @@ class ValidateTest {
         assertFalse(Validate.isValidSentiment(EMPTY_INPUT));
     }
 
+    //@@author theodorekwok
     @Test
     void addExpiry_validExpiryInFuture_expectSuccess() {
         assertTrue(Validate.isValidExpiry(FUTURE_DATE.toString()));

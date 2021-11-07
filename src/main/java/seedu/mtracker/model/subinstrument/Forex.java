@@ -2,11 +2,12 @@ package seedu.mtracker.model.subinstrument;
 
 import seedu.mtracker.model.Instrument;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.time.LocalDate;
 
+//@@author KVignesh122
 /**
  * Represents a Forex type instrument.
  */
@@ -44,6 +45,7 @@ public class Forex extends Instrument {
         this.remark = remark;
     }
 
+    //@@author kum-wh
     /**
      * Gets all the type of Forex parameters in one string.
      *
@@ -57,6 +59,7 @@ public class Forex extends Instrument {
                 + REMARK_ATTRIBUTE;
     }
 
+    //@@author
     /**
      * Formats date into String.
      *
@@ -66,6 +69,7 @@ public class Forex extends Instrument {
         return expiry.format(DateTimeFormatter.ofPattern(DATE_REGEX));
     }
 
+    //@@author kum-wh
     public void setRemark(String inputRemark) {
         remark = inputRemark;
     }
@@ -156,6 +160,7 @@ public class Forex extends Instrument {
         editSpecificParameter(editedParameters);
     }
 
+    //@@author
     @Override
     public String getType() {
         return TYPE_INSTRUMENT;
@@ -166,6 +171,7 @@ public class Forex extends Instrument {
         return FOREX_ICON;
     }
 
+    //@@author williamlamjy
     /**
      * Formats all Forex parameters to save to text file.
      *
@@ -177,6 +183,7 @@ public class Forex extends Instrument {
                 + FILE_SEPARATOR + exitPrice + FILE_SEPARATOR + expiry
                 + FILE_SEPARATOR + remark;
     }
+    //@@author
 
     /**
      * Gets all the Forex parameters, with each parameter on a newline.
@@ -192,6 +199,7 @@ public class Forex extends Instrument {
                 + REMARKS_FIELD + remark;
     }
 
+    //@@author kum-wh
     /**
      * Adds all the type of Forex parameters into a HashSet.
      *

@@ -1,5 +1,6 @@
 package seedu.mtracker.commons.error;
 
+//@@author theodorekwok
 /**
  * The custom exception class that is thrown when index is not provided.
  */

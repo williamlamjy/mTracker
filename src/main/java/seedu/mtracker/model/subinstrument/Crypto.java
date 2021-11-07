@@ -2,11 +2,12 @@ package seedu.mtracker.model.subinstrument;
 
 import seedu.mtracker.model.Instrument;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.time.LocalDate;
 
+//@@author williamlamjy
 /**
  * Represents a Crypto type instrument.
  */
@@ -34,6 +35,7 @@ public class Crypto extends Instrument {
         return expiry.format(DateTimeFormatter.ofPattern(DATE_REGEX));
     }
 
+    //@@author kum-wh
     public void setExpiry(LocalDate inputExpiry) {
         expiry = inputExpiry;
     }
@@ -88,6 +90,7 @@ public class Crypto extends Instrument {
         editSpecificParameter(editedParameters);
     }
 
+    //@@author
     @Override
     public String getType() {
         return TYPE_INSTRUMENT;
@@ -104,6 +107,7 @@ public class Crypto extends Instrument {
                 + FILE_SEPARATOR + remark;
     }
 
+    //@@author kum-wh
     /**
      * Gets all the type of Crypto parameters in one string.
      *
@@ -115,6 +119,7 @@ public class Crypto extends Instrument {
                 + REMARK_ATTRIBUTE;
     }
 
+    //@@author
     @Override
     public String getTypeIcon() {
         return CRYPTO_ICON;
@@ -132,6 +137,7 @@ public class Crypto extends Instrument {
                 + REMARKS_FIELD + remark;
     }
 
+    //@@author kum-wh
     /**
      * Adds all the type of Crypto parameters into a HashSet.
      *

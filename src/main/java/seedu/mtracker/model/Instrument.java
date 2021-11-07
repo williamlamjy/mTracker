@@ -49,6 +49,7 @@ public abstract class Instrument {
         validAttribute = new HashSet<>();
     }
 
+    //@@author williamlamjy
     public boolean getIsDone() {
         return isDone;
     }
@@ -80,6 +81,7 @@ public abstract class Instrument {
         return name;
     }
 
+    //@@author kum-wh
     public void setName(String inputName) {
         name = inputName;
     }
@@ -169,6 +171,7 @@ public abstract class Instrument {
 
     public abstract String getType();
 
+    //@@author williamlamjy
     /**
      * Formats all the parameters of the instrument to save to text file.
      *
@@ -180,6 +183,7 @@ public abstract class Instrument {
                 + isDone;
     }
 
+    //@@author kum-wh
     /**
      * Gets all the type of parameters in the instrument in one string.
      *
@@ -192,6 +196,7 @@ public abstract class Instrument {
                 + SENTIMENT_ATTRIBUTE;
     }
 
+    //@@author KVignesh122
     public abstract String getTypeIcon();
 
     /**
@@ -216,6 +221,7 @@ public abstract class Instrument {
                 + SPACE + name + SEMICOLON_SEP + currentPrice + SEMICOLON_SEP + sentiment;
     }
 
+    //@@author kum-wh
     /**
      * Adds all the type of parameters in an instrument into a HashSet.
      *

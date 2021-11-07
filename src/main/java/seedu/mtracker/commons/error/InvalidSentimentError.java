@@ -1,5 +1,6 @@
 package seedu.mtracker.commons.error;
 
+//@@author theodorekwok
 /**
  * The custom exception class that is thrown when sentiment provided is not recognised.
  */

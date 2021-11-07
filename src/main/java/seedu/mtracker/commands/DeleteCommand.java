@@ -3,6 +3,7 @@ package seedu.mtracker.commands;
 import seedu.mtracker.model.Instrument;
 import seedu.mtracker.ui.TextUi;
 
+//@@author theodorekwok
 /**
  * Responsible for the command that delete an instrument from the list.
  */

@@ -5,6 +5,7 @@ import seedu.mtracker.model.Instrument;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
+//@@author KVignesh122
 /**
  * Responsible for all interactions with the user.
  */
@@ -199,6 +200,7 @@ public class TextUi {
         System.out.println(LINE_DECORATOR);
     }
 
+    //@@author williamlamjy
     /**
      * Informs the user of the instrument that has been marked as done.
      *
@@ -209,6 +211,7 @@ public class TextUi {
                 + System.lineSeparator() + TAB + TAB
                 + instrument.getGeneralParams());
     }
+    //@@author
 
     /**
      * Informs the user that an instrument has been deleted from the list.
@@ -221,6 +224,7 @@ public class TextUi {
         System.out.println(LINE_DECORATOR);
     }
 
+    //@@author williamlamjy
     /**
      * Informs the user that the text file for saving cannot be detected and a new one will be created.
      */
@@ -234,6 +238,7 @@ public class TextUi {
     public static void displayLoadingFile() {
         System.out.println("Found a saved file. Loading the saved data now...");
     }
+    //@@author
 
     /**
      * Displays the respective error message to the user when an error is encountered.
@@ -273,6 +278,7 @@ public class TextUi {
         System.out.print(prompter);
     }
 
+    //@@author kum-wh
     /**
      * Prompts the user to enter the parameters to edit.
      *
@@ -394,6 +400,7 @@ public class TextUi {
         System.out.println("No changes to instrument was made.");
     }
 
+    //@@author
     /**
      * Displays the message that greet the user on start up.
      */

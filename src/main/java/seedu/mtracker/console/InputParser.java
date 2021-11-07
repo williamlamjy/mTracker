@@ -28,6 +28,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+//@@author theodorekwok
 /**
  * A class responsible for all the user main command inputs.
  */
@@ -105,6 +106,7 @@ public class InputParser {
         return deleteCommand;
     }
 
+    //@@author KVignesh122
     /**
      * Checks and prepares the view command when the user wants to view a specific instrument.
      *
@@ -123,6 +125,22 @@ public class InputParser {
         return viewCommand;
     }
 
+    /**
+     * Checks and prepare the find command when a user wants to find instruments.
+     *
+     * @param commandComponents A string array containing the command words the user gave.
+     * @return A command to find instruments.
+     * @throws InvalidEmptySearchStringError If the user does not provide a search string.
+     */
+    public FindCommand getFindInstrumentsCommand(String[] commandComponents)
+            throws InvalidEmptySearchStringError {
+        FindCommand findCommand = new FindCommand();
+        constructSearchString(commandComponents);
+        findCommand.setSearchString(searchString);
+        return findCommand;
+    }
+
+    //@@author williamlamjy
     /**
      * Checks and prepares the done command when the user wants to set the instrument status as done.
      *
@@ -143,6 +161,7 @@ public class InputParser {
         return doneCommand;
     }
 
+    //@@author kum-wh
     /**
      * Checks and filters the user given parameters based on the instrument of interest set of valid attributes.
      *
@@ -203,6 +222,7 @@ public class InputParser {
         EditInstrumentParser editInstrumentParser = new EditInstrumentParser();
         return editInstrumentParser.createEditCommand(parametersToEdit, instrumentToEdit, instrumentNumber);
     }
+    //@@author
 
     /**
      * Checks if the index number provided is valid.
@@ -234,21 +254,7 @@ public class InputParser {
         Validate.checkIsNotDone(instruments, instrumentNumber);
     }
 
-    /**
-     * Checks and prepare the find command when a user wants to find instruments.
-     *
-     * @param commandComponents A string array containing the command words the user gave.
-     * @return A command to find instruments.
-     * @throws InvalidEmptySearchStringError If the user does not provide a search string.
-     */
-    public FindCommand getFindInstrumentsCommand(String[] commandComponents)
-            throws InvalidEmptySearchStringError {
-        FindCommand findCommand = new FindCommand();
-        constructSearchString(commandComponents);
-        findCommand.setSearchString(searchString);
-        return findCommand;
-    }
-
+    //@@author theodorekwok
     /**
      * Filters and returns the command type based on the user input.
      *
@@ -321,6 +327,7 @@ public class InputParser {
         }
     }
 
+    //@@author KVignesh122
     /**
      * Builds the search string the user wants to use to find the instruments.
      *
