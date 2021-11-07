@@ -34,9 +34,9 @@ command-line commands mTracker intakes to execute the various functionalities.
     * [2.4.0 Mark an instrument done: `done`](#240-marking-a-setup-as-acted-upon-done)
     * [2.5.0 Edit an instrument: `edit`](#250-editing-an-instrument-edit)
     * [2.6.0 Abort an operation: `abort`](#260-aborting-an-operation-abort)
-    * [2.7.0 Remove an instrument: `delete`](#260-removing-an-instrument-record-delete)
-    * [2.8.0 Search for an instrument: `find`](#270-search-for-instruments-in-watchlist-find)
-    * [2.9.0 Exit the application : `bye`](#280-exiting-the-bot-bye)
+    * [2.7.0 Remove an instrument: `delete`](#270-removing-an-instrument-record-delete)
+    * [2.8.0 Search for an instrument: `find`](#280-search-for-instruments-in-watchlist-find)
+    * [2.9.0 Exit the application : `bye`](#290-exiting-the-bot-bye)
 * [3.0 FAQ](#30-faq)
 * [4.0 Command Summary](#40-command-summary)
 
@@ -44,15 +44,11 @@ command-line commands mTracker intakes to execute the various functionalities.
 
 ## 1.0 Quick Start
 
-1) Ensure that you have Java `11` installed on your computer.
-
-2) Download the latest version of `mTracker` from [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/releases).
-
-3) Copy the jar file to a folder that you want to run mTracker from.
-
-4) At the folder where you copied the jar file run the command `java -jar [CS2113T-T12-1][mTracker].jar` in terminal.
-
-5) If mTracker starts successfully, you should see the following greeting:
+1) Ensure that you have Java `11` installed on your computer.  
+2) Download the latest version of `mTracker` from [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/releases).  
+3) Copy the jar file to a folder that you want to run mTracker from.  
+4) At the folder where you copied the jar file run the command `java -jar [CS2113T-T12-1][mTracker].jar` in terminal.  
+5) If mTracker starts successfully, you should see the following greeting:  
 
 ```
 ________________________________________________________________________________
@@ -573,7 +569,7 @@ List all instruments in watchlist | `list` | `mTracker$main> list` prints out al
 View all info of an instrument | `view INDEX` | `mTracker$main> view 1` prints out all financial details recorded for the first instrument in watchlist.
 Mark an instrument's trade setup as completed | `done INDEX` | `mTracker$main> done 2` marks second instrument in watchlist as acted upon.
 Edit details recorded for an instrument | `edit INDEX` | Read [2.5.0 Edit an instrument: `edit`](#250-editing-an-instrument-edit) for detailed instructions and examples.
-Abort an operation | `abort`| Read [2.6.0 Abort an operation: `abort`](#260-abort-an-operation) for detailed instructions and examples.
+Abort an operation | `abort`| Read [2.6.0 Abort an operation: `abort`](#260-aborting-an-operation-abort) for detailed instructions and examples.
 Delete an instrument from watchlist | `delete INDEX` | `mTracker$main> delete 5` deletes the fifth instrument in watchlist.
 Search for recorded instrument(s) | `find SEARCH_STRING` | `mTracker$main> find USD` returns all financial instruments in watchlist that contain "USD". **(Note: SEARCH_STRING is case-sensitive.)**
 Exit program | `bye` | `mTracker$main> bye` prints out farewell message and program ends.
