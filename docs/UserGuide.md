@@ -445,8 +445,8 @@ mTracker$edit> abort
 **Expected outcome:**
 
 ```
-mTracker$main> edit 2
-	Please enter one or more StocEtf parameters to edit separated by spaces only.
+mTracker$main> edit 1
+	Please enter one or more Stock parameters to edit separated by a single space only.
 	done-status, name, current-price, sentiment, remarks
 mTracker$edit> name current-price
 	Enter new name:
