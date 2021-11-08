@@ -12,7 +12,7 @@ participant ":Stock" as Instrument COLOR_MODEL
 end box
 
 box ui COLOR_LIGHT_BLUE
-participant "<<Class>>\n:TextUi" as TextUi COLOR_UI
+participant "<<class>>\n:TextUi" as TextUi COLOR_UI
 end box
 
 [->EditInstrumentCommand:execute()

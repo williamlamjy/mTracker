@@ -58,7 +58,7 @@ public abstract class AssertParserHelper {
         assert stockParameters.size() == NUM_STOCK_PARAMETERS : MISSING_STOCK_PARAMETERS;
     }
 
-    //@@author
+    //@@author williamlamjy
     /**
      * Asserts that the number of crypto parameters that is collected after parsing is correct.
      *
@@ -68,6 +68,7 @@ public abstract class AssertParserHelper {
         assert cryptoParameters.size() == NUM_CRYPTO_PARAMETERS : MISSING_CRYPTO_PARAMETERS;
     }
 
+    //@@author KVignesh122
     /**
      * Asserts that the number of forex parameters that is collected after parsing is correct.
      *
@@ -77,6 +78,7 @@ public abstract class AssertParserHelper {
         assert forexParameters.size() == NUM_FX_PARAMETERS : MISSING_FX_PARAMETERS;
     }
 
+    //@@author kum-wh
     /**
      * Asserts that the number of etf parameters that is collected after parsing is correct.
      *

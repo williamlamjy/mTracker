@@ -16,50 +16,50 @@ public class AddEtfParser extends AddInstrumentParser {
     public static final double UNDEFINED_PAST_RETURN_VALUE = -101;
 
     /**
-     * Queries and gets etf remarks from the user.
+     * Queries and gets etf remark from the user.
      *
-     * @return User remarks input.
+     * @return User remark input.
      */
     public String getEtfRemarkFromUser() {
-        TextUi.displayAddRemarksInstruction();
+        TextUi.displayAddRemarkInstruction();
         return getUserInput(WORKSPACE);
     }
 
     /**
-     * Queries and gets etf past returns from the user.
+     * Queries and gets etf past return from the user.
      *
-     * @return User past returns input.
+     * @return User past return input.
      * @throws OperationAbortedError If the user wants to abort the add etf process.
      */
     public String getEtfPastReturnFromUser() throws OperationAbortedError {
-        TextUi.displayAddPastReturnsInstruction();
+        TextUi.displayAddPastReturnInstruction();
         String userInput = getUserInput(WORKSPACE);
         checkIfAbort(userInput, WORKSPACE);
-        if (!Validate.isValidPastReturns(userInput)) {
+        if (!Validate.isValidPastReturn(userInput)) {
             return String.valueOf(UNDEFINED_PAST_RETURN_VALUE);
         }
         return userInput;
     }
 
     /**
-     * Gets the user etf remarks input and adds it into the parameters list.
+     * Gets the user etf remark input and adds it into the parameters list.
      *
      * @throws OperationAbortedError If the user wants to abort the add etf process.
      */
     public void addEtfRemarkToParameters() throws OperationAbortedError {
-        String remarks = getEtfRemarkFromUser();
-        checkIfAbort(remarks, WORKSPACE);
-        parameters.add(remarks);
+        String remark = getEtfRemarkFromUser();
+        checkIfAbort(remark, WORKSPACE);
+        parameters.add(remark);
     }
 
     /**
-     * Gets the user etf past returns input and adds it into the parameters list.
+     * Gets the user etf past return input and adds it into the parameters list.
      *
      * @throws OperationAbortedError If the user wants to abort the add etf process.
      */
     public void addEtfPastReturnToParameters() throws OperationAbortedError {
-        String pastReturns = getEtfPastReturnFromUser();
-        parameters.add(pastReturns);
+        String pastReturn = getEtfPastReturnFromUser();
+        parameters.add(pastReturn);
     }
 
     /**

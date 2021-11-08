@@ -14,24 +14,24 @@ public class AddStockParser extends AddInstrumentParser {
     public static String STOCK_TYPE = "stock";
 
     /**
-     * Queries and gets stock remarks from the user.
+     * Queries and gets stock remark from the user.
      *
-     * @return User remarks. input.
+     * @return User remark input.
      */
-    public String getStockRemarksFromUser() {
-        TextUi.displayAddRemarksInstruction();
+    public String getStockRemarkFromUser() {
+        TextUi.displayAddRemarkInstruction();
         return getUserInput(WORKSPACE);
     }
 
     /**
-     * Gets the user stock remarks input and adds it into the parameters.
+     * Gets the user stock remark input and adds it into the parameters.
      *
      * @throws OperationAbortedError If the user wants to abort the add stock process.
      */
-    public void addStockRemarksToParameters() throws OperationAbortedError {
-        String remarks = getStockRemarksFromUser();
-        checkIfAbort(remarks, WORKSPACE);
-        parameters.add(remarks);
+    public void addStockRemarkToParameters() throws OperationAbortedError {
+        String remark = getStockRemarkFromUser();
+        checkIfAbort(remark, WORKSPACE);
+        parameters.add(remark);
     }
 
     /**
@@ -40,7 +40,7 @@ public class AddStockParser extends AddInstrumentParser {
      * @throws OperationAbortedError If the user wants to abort the add stock process.
      */
     public void getStockSpecificParameters() throws OperationAbortedError {
-        addStockRemarksToParameters();
+        addStockRemarkToParameters();
     }
 
     /**

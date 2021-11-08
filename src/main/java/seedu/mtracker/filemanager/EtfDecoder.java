@@ -7,8 +7,8 @@ import seedu.mtracker.commons.error.fileerror.InvalidEmptyNameInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidEmptySentimentInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidEmptyStatusInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidNameSavedInFileError;
-import seedu.mtracker.commons.error.fileerror.InvalidPastReturnsSavedInFileError;
-import seedu.mtracker.commons.error.fileerror.InvalidRemarksInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidPastReturnSavedInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidRemarkInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidSentimentSavedInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidStatusSavedInFileError;
 import seedu.mtracker.model.Instrument;
@@ -18,59 +18,59 @@ import seedu.mtracker.model.subinstrument.Etf;
 //@@author williamlamjy
 public class EtfDecoder extends InstrumentDecoder {
 
-    public static final int PAST_RETURNS_INDEX = 5;
-    public static final int ETF_REMARKS_INDEX = 6;
-    public static final double EMPTY_PAST_RETURNS = -101.0;
-    protected static double decodedPastReturns;
-    protected static String decodedRemarks;
+    public static final int PAST_RETURN_INDEX = 5;
+    public static final int ETF_REMARK_INDEX = 6;
+    public static final double EMPTY_PAST_RETURN = -101.0;
+    protected static double decodedPastReturn;
+    protected static String decodedRemark;
 
     /**
-     * Gets past returns from the mTracker file.
+     * Gets past return from the mTracker file.
      *
      * @param textSegment Array containing the parameters of an instrument.
-     * @return Past returns of the Etf.
-     * @throws InvalidPastReturnsSavedInFileError When the past returns parameter is of invalid format.
+     * @return Past return of the Etf.
+     * @throws InvalidPastReturnSavedInFileError When the past return parameter is of invalid format.
      */
-    public static String getPastReturnsFromFile(String[] textSegment) throws InvalidPastReturnsSavedInFileError {
-        String pastReturns;
+    public static String getPastReturnFromFile(String[] textSegment) throws InvalidPastReturnSavedInFileError {
+        String pastReturn;
         try {
-            pastReturns = textSegment[PAST_RETURNS_INDEX];
+            pastReturn = textSegment[PAST_RETURN_INDEX];
         } catch (IndexOutOfBoundsException e) {
-            throw new InvalidPastReturnsSavedInFileError();
+            throw new InvalidPastReturnSavedInFileError();
         }
-        return pastReturns;
+        return pastReturn;
     }
 
     /**
-     * Gets remarks from the mTracker file.
+     * Gets remark from the mTracker file.
      *
      * @param textSegment Array containing the parameters of an instrument.
-     * @return Remarks of the instrument.
-     * @throws InvalidRemarksInFileError When the remarks parameter is of invalid format.
+     * @return Remark of the instrument.
+     * @throws InvalidRemarkInFileError When the remark parameter is of invalid format.
      */
-    public static String getRemarksFromFile(String[] textSegment) throws InvalidRemarksInFileError {
-        String remarks;
+    public static String getRemarkFromFile(String[] textSegment) throws InvalidRemarkInFileError {
+        String remark;
         try {
-            remarks = textSegment[ETF_REMARKS_INDEX];
+            remark = textSegment[ETF_REMARK_INDEX];
         } catch (IndexOutOfBoundsException e) {
-            throw new InvalidRemarksInFileError();
+            throw new InvalidRemarkInFileError();
         }
-        return remarks;
+        return remark;
     }
 
-    private static void decodeSpecificAttributes(String pastReturns, String remarks) {
-        if (pastReturns.isEmpty()) {
-            decodedPastReturns = EMPTY_PAST_RETURNS;
+    private static void decodeSpecificAttributes(String pastReturn, String remark) {
+        if (pastReturn.isEmpty()) {
+            decodedPastReturn = EMPTY_PAST_RETURN;
         } else {
-            decodedPastReturns = Double.parseDouble(pastReturns);
+            decodedPastReturn = Double.parseDouble(pastReturn);
         }
-        decodedRemarks = remarks;
+        decodedRemark = remark;
     }
 
-    private static void validateSpecificAttributes(String[] textSegment, String pastReturns)
-            throws InvalidPastReturnsSavedInFileError {
-        if (!pastReturns.isEmpty() && !Validate.isValidPastReturns(textSegment[PAST_RETURNS_INDEX])) {
-            throw new InvalidPastReturnsSavedInFileError();
+    private static void validateSpecificAttributes(String[] textSegment, String pastReturn)
+            throws InvalidPastReturnSavedInFileError {
+        if (!pastReturn.isEmpty() && !Validate.isValidPastReturn(textSegment[PAST_RETURN_INDEX])) {
+            throw new InvalidPastReturnSavedInFileError();
         }
     }
 
@@ -78,15 +78,15 @@ public class EtfDecoder extends InstrumentDecoder {
      * Validates and decodes the specific attributes of the Etf.
      *
      * @param textSegment Array containing the parameters of an instrument.
-     * @throws InvalidRemarksInFileError When the remarks parameter is of invalid format.
-     * @throws InvalidPastReturnsSavedInFileError When the past returns parameter is of invalid format.
+     * @throws InvalidRemarkInFileError When the remark parameter is of invalid format.
+     * @throws InvalidPastReturnSavedInFileError When the past return parameter is of invalid format.
      */
     public static void validateAndDecodeSpecificAttributes(String[] textSegment) throws
-            InvalidRemarksInFileError, InvalidPastReturnsSavedInFileError {
-        String pastReturns = getPastReturnsFromFile(textSegment);
-        String remarks = getRemarksFromFile(textSegment);
-        validateSpecificAttributes(textSegment, pastReturns);
-        decodeSpecificAttributes(pastReturns, remarks);
+            InvalidRemarkInFileError, InvalidPastReturnSavedInFileError {
+        String pastReturn = getPastReturnFromFile(textSegment);
+        String remark = getRemarkFromFile(textSegment);
+        validateSpecificAttributes(textSegment, pastReturn);
+        decodeSpecificAttributes(pastReturn, remark);
     }
 
     /**
@@ -102,14 +102,14 @@ public class EtfDecoder extends InstrumentDecoder {
      * @throws InvalidEmptySentimentInFileError When the sentiment parameter is empty in the file.
      * @throws InvalidEmptyStatusInFileError When the done status parameter is empty in the file.
      * @throws InvalidStatusSavedInFileError When the done status parameter is of invalid format.
-     * @throws InvalidRemarksInFileError When the remarks parameter is of invalid format.
-     * @throws InvalidPastReturnsSavedInFileError When the past returns parameter is of invalid format.
+     * @throws InvalidRemarkInFileError When the remark parameter is of invalid format.
+     * @throws InvalidPastReturnSavedInFileError When the past return parameter is of invalid format.
      */
     public static void addEtfToList(String[] textSegment, InstrumentManager instrumentManager)
             throws InvalidNameSavedInFileError, InvalidSentimentSavedInFileError, InvalidCurrPriceSavedInFileError,
             InvalidEmptyNameInFileError, InvalidEmptySentimentInFileError, InvalidEmptyStatusInFileError,
-            InvalidStatusSavedInFileError, InvalidEmptyCurrPriceInFileError, InvalidPastReturnsSavedInFileError,
-            InvalidRemarksInFileError {
+            InvalidStatusSavedInFileError, InvalidEmptyCurrPriceInFileError, InvalidPastReturnSavedInFileError,
+            InvalidRemarkInFileError {
         validateAndDecodeGeneralAttributes(textSegment);
         validateAndDecodeSpecificAttributes(textSegment);
         Instrument etf = createDecodedInstrument();
@@ -119,7 +119,7 @@ public class EtfDecoder extends InstrumentDecoder {
 
     private static Instrument createDecodedInstrument() {
         return new Etf(decodedName, decodedCurrPrice, decodedSentiment,
-                decodedPastReturns, decodedRemarks);
+                decodedPastReturn, decodedRemark);
     }
 
 }

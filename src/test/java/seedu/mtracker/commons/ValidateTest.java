@@ -1,6 +1,5 @@
 package seedu.mtracker.commons;
 
-
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

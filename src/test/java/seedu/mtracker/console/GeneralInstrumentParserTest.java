@@ -9,15 +9,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //@@author KVignesh122
 public abstract class GeneralInstrumentParserTest {
-    protected static final String SEPARATOR_SPECIFIER = "%1$s";
-    protected static final int DAYS_DIFFERENCE = 1;
-    protected static final LocalDate FUTURE_DATE = LocalDate.now().plusDays(DAYS_DIFFERENCE);
-    protected static final LocalDate PAST_DATE = LocalDate.now().minusDays(DAYS_DIFFERENCE);
 
     public static final String ABORT = "abort";
     public static final String DONT_ABORT = "don't abort";
 
     public static final String[] NO_PARAMS_EXPECTED = {};
+
+    protected static final String SEPARATOR_SPECIFIER = "%1$s";
+    protected static final int DAYS_DIFFERENCE = 1;
+    protected static final LocalDate FUTURE_DATE = LocalDate.now().plusDays(DAYS_DIFFERENCE);
+    protected static final LocalDate PAST_DATE = LocalDate.now().minusDays(DAYS_DIFFERENCE);
 
     void verifyInstrumentParameters(AddInstrumentParser testInstrumentParser, String[] expectedParameters)
             throws OperationAbortedError {

@@ -14,12 +14,12 @@ public class AddForexParser extends AddInstrumentParser {
     public static String INSTRUMENT_TYPE = "forex";
 
     /**
-     * Queries and gets forex remarks from the user.
+     * Queries and gets forex remark from the user.
      *
-     * @return User remarks input.
+     * @return User remark input.
      */
-    public String getForexRemarksFromUser() {
-        TextUi.displayAddRemarksInstruction();
+    public String getForexRemarkFromUser() {
+        TextUi.displayAddRemarkInstruction();
         return getUserInput(WORKSPACE);
     }
 
@@ -54,14 +54,14 @@ public class AddForexParser extends AddInstrumentParser {
     }
 
     /**
-     * Gets the user forex remarks input and adds it into the parameters list.
+     * Gets the user forex remark input and adds it into the parameters list.
      *
      * @throws OperationAbortedError If the user wants to abort the add forex process.
      */
-    public void addForexRemarksToParameter() throws OperationAbortedError {
-        String remarks = getForexRemarksFromUser();
-        checkIfAbort(remarks, WORKSPACE);
-        parameters.add(remarks);
+    public void addForexRemarkToParameter() throws OperationAbortedError {
+        String remark = getForexRemarkFromUser();
+        checkIfAbort(remark, WORKSPACE);
+        parameters.add(remark);
     }
 
     /**
@@ -121,7 +121,7 @@ public class AddForexParser extends AddInstrumentParser {
         addForexEntryToParameter();
         addForexExitToParameter();
         addForexExpiryToParameter();
-        addForexRemarksToParameter();
+        addForexRemarkToParameter();
     }
 
     /**

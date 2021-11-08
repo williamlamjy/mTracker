@@ -6,7 +6,7 @@ import seedu.mtracker.commons.error.fileerror.InvalidEmptyNameInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidEmptySentimentInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidEmptyStatusInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidNameSavedInFileError;
-import seedu.mtracker.commons.error.fileerror.InvalidRemarksInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidRemarkInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidSentimentSavedInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidStatusSavedInFileError;
 import seedu.mtracker.model.Instrument;
@@ -19,39 +19,39 @@ import seedu.mtracker.model.subinstrument.Stock;
  */
 public class StockDecoder extends InstrumentDecoder {
 
-    public static final int STOCK_REMARKS_INDEX = 5;
-    protected static String decodedRemarks;
+    public static final int STOCK_REMARK_INDEX = 5;
+    protected static String decodedRemark;
 
     /**
-     * Gets remarks from the mTracker file.
+     * Gets remark from the mTracker file.
      *
      * @param textSegment Array containing the parameters of an instrument.
-     * @return Remarks of the instrument.
-     * @throws InvalidRemarksInFileError When the remarks parameter is of invalid format.
+     * @return Remark of the instrument.
+     * @throws InvalidRemarkInFileError When the remark parameter is of invalid format.
      */
-    public static String getRemarksFromFile(String[] textSegment) throws InvalidRemarksInFileError {
-        String remarks;
+    public static String getRemarkFromFile(String[] textSegment) throws InvalidRemarkInFileError {
+        String remark;
         try {
-            remarks = textSegment[STOCK_REMARKS_INDEX];
+            remark = textSegment[STOCK_REMARK_INDEX];
         } catch (IndexOutOfBoundsException e) {
-            throw new InvalidRemarksInFileError();
+            throw new InvalidRemarkInFileError();
         }
-        return remarks;
+        return remark;
     }
 
-    private static void decodeSpecificAttributes(String remarks) {
-        decodedRemarks = remarks;
+    private static void decodeSpecificAttributes(String remark) {
+        decodedRemark = remark;
     }
 
     /**
      * Validates and decodes the specific attributes of the stock.
      *
      * @param textSegment Array containing the parameters of an instrument.
-     * @throws InvalidRemarksInFileError When the remarks parameter is of invalid format.
+     * @throws InvalidRemarkInFileError When the remark parameter is of invalid format.
      */
-    public static void validateAndDecodeSpecificAttributes(String[] textSegment) throws InvalidRemarksInFileError {
-        String remarks = getRemarksFromFile(textSegment);
-        decodeSpecificAttributes(remarks);
+    public static void validateAndDecodeSpecificAttributes(String[] textSegment) throws InvalidRemarkInFileError {
+        String remark = getRemarkFromFile(textSegment);
+        decodeSpecificAttributes(remark);
     }
 
     /**
@@ -67,12 +67,12 @@ public class StockDecoder extends InstrumentDecoder {
      * @throws InvalidEmptySentimentInFileError When the sentiment parameter is empty in the file.
      * @throws InvalidEmptyStatusInFileError When the done status parameter is empty in the file.
      * @throws InvalidStatusSavedInFileError When the done status parameter is of invalid format.
-     * @throws InvalidRemarksInFileError When the remarks parameter is of invalid format.
+     * @throws InvalidRemarkInFileError When the remark parameter is of invalid format.
      */
     public static void addStockToList(String[] textSegment, InstrumentManager instrumentManager)
             throws InvalidNameSavedInFileError, InvalidSentimentSavedInFileError, InvalidCurrPriceSavedInFileError,
             InvalidEmptyNameInFileError, InvalidEmptySentimentInFileError, InvalidEmptyStatusInFileError,
-            InvalidStatusSavedInFileError, InvalidEmptyCurrPriceInFileError, InvalidRemarksInFileError {
+            InvalidStatusSavedInFileError, InvalidEmptyCurrPriceInFileError, InvalidRemarkInFileError {
         validateAndDecodeGeneralAttributes(textSegment);
         validateAndDecodeSpecificAttributes(textSegment);
         Instrument stock = createDecodedInstrument();
@@ -81,7 +81,7 @@ public class StockDecoder extends InstrumentDecoder {
     }
 
     private static Instrument createDecodedInstrument() {
-        return new Stock(decodedName, decodedCurrPrice, decodedSentiment, decodedRemarks);
+        return new Stock(decodedName, decodedCurrPrice, decodedSentiment, decodedRemark);
     }
 
 }

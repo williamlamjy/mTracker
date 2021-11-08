@@ -12,18 +12,18 @@ import java.util.HashSet;
 public class Etf extends Instrument {
 
     protected String remark;
-    protected double pastReturns;
+    protected double pastReturn;
     protected static final String ETF_ICON = "[E]";
     protected static final String TYPE_INSTRUMENT = "Etf";
     protected static final String EMPTY_STRING = "";
 
-    protected static final String RETURNS_FIELD = "Past Returns: ";
-    protected static final String RETURNS_ATTRIBUTE = "past-returns";
-    protected static final double UNDEFINED_VALUE = -101.0;
+    protected static final String PAST_RETURN_FIELD = "Past Returns: ";
+    protected static final String PAST_RETURN_ATTRIBUTE = "past-returns";
+    protected static final double UNDEFINED_PAST_RETURN_VALUE = -101.0;
 
-    public Etf(String name, double currentPrice, String sentiment, double pastReturns, String remark) {
+    public Etf(String name, double currentPrice, String sentiment, double pastReturn, String remark) {
         super(name, currentPrice, sentiment);
-        this.pastReturns = pastReturns;
+        this.pastReturn = pastReturn;
         this.remark = remark;
     }
 
@@ -31,8 +31,8 @@ public class Etf extends Instrument {
         remark = inputRemark;
     }
 
-    public void setPastReturns(Double inputPastReturn) {
-        pastReturns = inputPastReturn;
+    public void setPastReturn(Double inputPastReturn) {
+        pastReturn = inputPastReturn;
     }
 
     /**
@@ -40,16 +40,16 @@ public class Etf extends Instrument {
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
-    public void editReturn(HashMap<String, String> editedParameters) {
-        if (!editedParameters.containsKey(RETURNS_ATTRIBUTE)) {
+    public void editPastReturn(HashMap<String, String> editedParameters) {
+        if (!editedParameters.containsKey(PAST_RETURN_ATTRIBUTE)) {
             return;
         }
-        Double updateReturn = Double.parseDouble(editedParameters.get(RETURNS_ATTRIBUTE));
-        setPastReturns(updateReturn);
+        Double updateReturn = Double.parseDouble(editedParameters.get(PAST_RETURN_ATTRIBUTE));
+        setPastReturn(updateReturn);
     }
 
     /**
-     * Sets remarks parameter to the new remarks if remarks parameter is being edited.
+     * Sets remark parameter to the new remark if remark parameter is being edited.
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
@@ -66,7 +66,7 @@ public class Etf extends Instrument {
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
     public void editSpecificParameters(HashMap<String, String> editedParameters) {
-        editReturn(editedParameters);
+        editPastReturn(editedParameters);
         editRemark(editedParameters);
     }
 
@@ -84,13 +84,13 @@ public class Etf extends Instrument {
     /**
      * Gets the value past return in string.
      *
-     * @return Empty string if past returns is undefined else the value of the past return in string.
+     * @return Empty string if past return is undefined else the value of the past return in string.
      */
-    public String getReturns() {
-        if (pastReturns == UNDEFINED_VALUE) {
+    public String getPastReturn() {
+        if (pastReturn == UNDEFINED_PAST_RETURN_VALUE) {
             return EMPTY_STRING;
         }
-        return String.valueOf(pastReturns);
+        return String.valueOf(pastReturn);
     }
 
     /**
@@ -100,7 +100,7 @@ public class Etf extends Instrument {
      */
     @Override
     public String editParameterInstructions() {
-        return super.editParameterInstructions() + SEPARATOR + RETURNS_ATTRIBUTE + SEPARATOR
+        return super.editParameterInstructions() + SEPARATOR + PAST_RETURN_ATTRIBUTE + SEPARATOR
                 + REMARK_ATTRIBUTE;
     }
 
@@ -117,7 +117,7 @@ public class Etf extends Instrument {
      */
     @Override
     public String textFileFormatting() {
-        return super.textFileFormatting() + FILE_SEPARATOR + getReturns()
+        return super.textFileFormatting() + FILE_SEPARATOR + getPastReturn()
                 + FILE_SEPARATOR + remark;
     }
     //@@author
@@ -135,8 +135,8 @@ public class Etf extends Instrument {
     @Override
     public String getAllParams() {
         return super.getAllParams()
-                + RETURNS_FIELD + getReturns() + System.lineSeparator()
-                + REMARKS_FIELD + remark;
+                + PAST_RETURN_FIELD + getPastReturn() + System.lineSeparator()
+                + REMARK_FIELD + remark;
     }
 
     /**
@@ -147,7 +147,7 @@ public class Etf extends Instrument {
     @Override
     public HashSet<String> getValidAttribute() {
         super.getValidAttribute();
-        validAttribute.add(RETURNS_ATTRIBUTE);
+        validAttribute.add(PAST_RETURN_ATTRIBUTE);
         return validAttribute;
     }
 }

@@ -37,7 +37,7 @@ public class EditInstrumentParserTest extends GeneralInstrumentParserTest {
     public static final HashSet<String> PARAM_INPUT_NAME = new HashSet<>(List.of("name"));
     public static final HashSet<String> PARAM_INPUT_CURRENT_PRICE = new HashSet<>(List.of("current-price"));
     public static final HashSet<String> PARAM_INPUT_SENTIMENT = new HashSet<>(List.of("sentiment"));
-    public static final HashSet<String> PARAM_INPUT_REMARKS = new HashSet<>(List.of("remarks"));
+    public static final HashSet<String> PARAM_INPUT_REMARK = new HashSet<>(List.of("remarks"));
 
     public static final String TEST_NAME = "Test";
     public static final double TEST_PRICE = 1.0;
@@ -117,9 +117,9 @@ public class EditInstrumentParserTest extends GeneralInstrumentParserTest {
     }
 
     @Test
-    void editInstrumentParam_abortAtRemarks_expectException() {
+    void editInstrumentParam_abortAtRemark_expectException() {
         assertThrows(OperationAbortedError.class, () ->
-                testEditInstrumentParameters(USER_INPUT_ABORT, PARAM_INPUT_REMARKS,
+                testEditInstrumentParameters(USER_INPUT_ABORT, PARAM_INPUT_REMARK,
                         NO_PARAMS_EXPECTED, NO_PARAMS_EXPECTED));
     }
 }

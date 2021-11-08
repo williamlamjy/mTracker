@@ -15,12 +15,12 @@ public class AddCryptoParser extends AddInstrumentParser {
     public static String INSTRUMENT_TYPE = "crypto";
 
     /**
-     * Queries and gets crypto remarks from the user.
+     * Queries and gets crypto remark from the user.
      *
-     * @return User remarks input.
+     * @return User remark input.
      */
-    public String getCryptoRemarksFromUser() {
-        TextUi.displayAddRemarksInstruction();
+    public String getCryptoRemarkFromUser() {
+        TextUi.displayAddRemarkInstruction();
         return getUserInput(WORKSPACE);
     }
 
@@ -50,14 +50,14 @@ public class AddCryptoParser extends AddInstrumentParser {
     }
 
     /**
-     * Gets the user crypto remarks input and adds it into the parameters list.
+     * Gets the user crypto remark input and adds it into the parameters list.
      *
      * @throws OperationAbortedError If the user wants to abort the add crypto process.
      */
-    public void addCryptoRemarksToParameters() throws OperationAbortedError {
-        String remarks = getCryptoRemarksFromUser();
-        checkIfAbort(remarks, WORKSPACE);
-        parameters.add(remarks);
+    public void addCryptoRemarkToParameters() throws OperationAbortedError {
+        String remark = getCryptoRemarkFromUser();
+        checkIfAbort(remark, WORKSPACE);
+        parameters.add(remark);
     }
 
     /**
@@ -67,7 +67,7 @@ public class AddCryptoParser extends AddInstrumentParser {
      */
     public void getCryptoSpecificParameters() throws OperationAbortedError {
         addCryptoExpiryToParameters();
-        addCryptoRemarksToParameters();
+        addCryptoRemarkToParameters();
     }
 
     /**
