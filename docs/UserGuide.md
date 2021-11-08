@@ -33,9 +33,10 @@ command-line commands mTracker intakes to execute the various functionalities.
     * [2.3.0 View instrument info: `view`](#230-viewing-more-info-recorded-for-an-instrument-view)
     * [2.4.0 Mark an instrument done: `done`](#240-marking-a-setup-as-acted-upon-done)
     * [2.5.0 Edit an instrument: `edit`](#250-editing-an-instrument-edit)
-    * [2.6.0 Remove an instrument: `delete`](#260-removing-an-instrument-record-delete)
-    * [2.7.0 Search for an instrument: `find`](#270-search-for-instruments-in-watchlist-find)
-    * [2.8.0 Exit the application : `bye`](#280-exiting-the-bot-bye)
+    * [2.6.0 Abort an operation: `abort`](#260-aborting-an-operation-abort)
+    * [2.7.0 Remove an instrument: `delete`](#270-removing-an-instrument-record-delete)
+    * [2.8.0 Search for an instrument: `find`](#280-search-for-instruments-in-watchlist-find)
+    * [2.9.0 Exit the application : `bye`](#290-exiting-the-bot-bye)
 * [3.0 FAQ](#30-faq)
 * [4.0 Command Summary](#40-command-summary)
 
@@ -43,11 +44,11 @@ command-line commands mTracker intakes to execute the various functionalities.
 
 ## 1.0 Quick Start
 
-1) Ensure that you have Java `11` installed on your computer.
-2) Download the latest version of `mTracker` from [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/releases).
-3) Copy the jar file to a folder that you want to run mTracker from.
-4) At the folder where you copied the jar file run the command `java -jar [CS2113T-T12-1][mTracker].jar` in terminal.
-5) If mTracker starts successfully, you should see the following greeting:
+1) Ensure that you have Java `11` installed on your computer.  
+2) Download the latest version of `mTracker` from [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/releases).  
+3) Copy the jar file to a folder that you want to run mTracker from.  
+4) At the folder where you copied the jar file run the command `java -jar mTracker.jar` in terminal.  
+5) If mTracker starts successfully, you should see the following greeting:  
 
 ```
 ________________________________________________________________________________
@@ -179,9 +180,10 @@ _**Note: If any of the non-optional parameters `Name`, `Current price`, `Sentime
 inputs, you would be prompted to give a valid input.**_
 
 ### *2.1.3 Adding a new `etf`*
-An exchange-traded fund (ETF) is a security that tracks an index, sector, commodity, or any
+
+An exchange-traded fund (etf) is a security that tracks an index, sector, commodity, or any
 other asset. After keying in `etf` as the type of instrument, mTracker prompts for the following parameters:
-* `Name` Name of the ETF. Empty name is not allowed.
+* `Name` Name of the etf. Empty name is not allowed.
 * `Current price` Current price of the etf. Requires a positive number.
 * `Sentiment` Sentiment of user towards the etf. Only accepts `positive`, `neutral` and `negative`.
 * `Past returns` Optional input for past returns of the etf.
@@ -265,7 +267,7 @@ inputs, you would be prompted to give a valid input.**_
 
 ### 2.2.0 Displaying general info of all instruments added: `list`
 
-mTracker displays the 3 general parameters of `Name`, `Current Price`, 
+Displays the 3 general parameters of `Name`, `Current Price`, 
 and `Sentiment` for all instruments in an easy-to-view format, alongside
 their execution status marked by an `[X]`.
 
@@ -323,8 +325,7 @@ ________________________________________________________________________________
 
 ### 2.4.0 Marking a setup as acted upon: `done`
 
-mTracker provides the ability for you to mark a particular
-record of an instrument in the watchlist as executed or acted upon.
+Mark a particular record of an instrument in the watchlist as executed or acted upon.
 
 **Format**
 
@@ -371,7 +372,7 @@ instrument to be edited:
 
 ```
 mTracker$main> edit 2
-	Please enter one or more Etf parameters to edit separated by spaces only.
+	Please enter one or more Etf parameters to edit separated by a single space only.
 	done-status, name, current-price, sentiment, past-returns, remarks
 mTracker$edit> name current-price
 	Enter new name:
@@ -382,6 +383,9 @@ mTracker$edit> 148.76
 
 _**Note: If unknown/invalid parameters are input when mTracker prompts for the parameters to edit,
 they will be ignored.**_
+
+_**Note: If any of the non-optional parameters of the instrument being edited are provided with invalid
+inputs, you would be prompted to give a valid input. See adding of the respective instrument for its non-optional parameters.**_
 
 Then, it prints out the changes that have been made:
 
@@ -405,7 +409,55 @@ Remarks: Prices will plateau out in a few days.
 ________________________________________________________________________________
 ```
 
-### 2.6.0 Removing an instrument record: `delete`
+### 2.6.0 Aborting an operation: `abort`
+
+Abort a current process. If you want to terminate the `add` or `edit` operation at any stage, enter `abort`
+and the operation will be terminated.
+
+**Note:**  `abort` is case-insensitive but must be entered without any additional characters. For example, 
+`abort/` will be an invalid input.
+
+Aborting an Add Operation:
+
+**Example usage**
+```
+mTracker$add> abort
+```
+**Expected outcome:**
+
+```
+mTracker$main> add
+Please key in the type of instrument:
+mTracker$add> stock
+Name of stock:
+mTracker$add> abort
+Addition of new instrument has been aborted! You are in the main workspace now.
+```
+
+Aborting an Edit Operation:
+
+**Example usage**
+
+```
+mTracker$edit> abort
+```
+
+**Expected outcome:**
+
+```
+mTracker$main> edit 1
+	Please enter one or more Stock parameters to edit separated by a single space only.
+	done-status, name, current-price, sentiment, remarks
+mTracker$edit> name current-price
+	Enter new name:
+mTracker$edit> abort
+Edit process has been aborted! You are in the main workspace now.
+```
+
+_**Note: You can use this feature to exit an add or edit process. Calling abort in any other functionality will
+result in an error message being displayed.**_
+
+### 2.7.0 Removing an instrument record: `delete`
 
 You can remove an instrument from the watchlist with 
 the index number of the instrument in the watchlist.
@@ -435,7 +487,7 @@ ________________________________________________________________________________
 
 You can key in `list` once again to view the latest watchlist.
 
-### 2.7.0 Search for instruments in watchlist: `find`
+### 2.8.0 Search for instruments in watchlist: `find`
 
 You can find specific instruments in the watchlist by searching for them through `find` command.
 
@@ -474,7 +526,7 @@ ________________________________________________________________________________
 
 _**Note: SEARCH_STRING is case-sensitive.**_
 
-### 2.8.0 Exiting the bot: `bye`
+### 2.9.0 Exiting the bot: `bye`
 When you wish to quit the mTracker program, simply type in `bye`.
 
 **Example usage**
@@ -513,6 +565,11 @@ will be stored and retrieved back by mTracker once it is relaunched.**_
 to edit/add instruments manually. However, please make sure that each line
 contains details of only one instrument.
 
+**Q**: Can I add multiple instruments in one command?
+
+**A**: No, most commands are designed to handle one instrument at a time. As with most commands,
+the add feature only allows adding of 1 instrument at a time.
+
 ## 4.0 Command Summary
 
 Action | Format | Examples
@@ -522,6 +579,7 @@ List all instruments in watchlist | `list` | `mTracker$main> list` prints out al
 View all info of an instrument | `view INDEX` | `mTracker$main> view 1` prints out all financial details recorded for the first instrument in watchlist.
 Mark an instrument's trade setup as completed | `done INDEX` | `mTracker$main> done 2` marks second instrument in watchlist as acted upon.
 Edit details recorded for an instrument | `edit INDEX` | Read [2.5.0 Edit an instrument: `edit`](#250-editing-an-instrument-edit) for detailed instructions and examples.
+Abort an operation | `abort`| Read [2.6.0 Abort an operation: `abort`](#260-aborting-an-operation-abort) for detailed instructions and examples.
 Delete an instrument from watchlist | `delete INDEX` | `mTracker$main> delete 5` deletes the fifth instrument in watchlist.
 Search for recorded instrument(s) | `find SEARCH_STRING` | `mTracker$main> find USD` returns all financial instruments in watchlist that contain "USD". **(Note: SEARCH_STRING is case-sensitive.)**
 Exit program | `bye` | `mTracker$main> bye` prints out farewell message and program ends.
