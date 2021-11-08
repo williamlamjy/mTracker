@@ -372,7 +372,7 @@ instrument to be edited:
 
 ```
 mTracker$main> edit 2
-	Please enter one or more Etf parameters to edit separated by spaces only.
+	Please enter one or more Etf parameters to edit separated by a single space only.
 	done-status, name, current-price, sentiment, past-returns, remarks
 mTracker$edit> name current-price
 	Enter new name:
