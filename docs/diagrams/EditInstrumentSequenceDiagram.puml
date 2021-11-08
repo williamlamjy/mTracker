@@ -16,7 +16,7 @@ participant ":Stock" as Instrument COLOR_MODEL
 end box
 
 box ui COLOR_LIGHT_BLUE
-participant "<<Class>>\n:TextUi" as TextUi COLOR_UI
+participant "<<class>>\n:TextUi" as TextUi COLOR_UI
 end box
 
 [-> InputParser : filterByCommandType({"edit", "1"},\n instruments)
@@ -25,13 +25,13 @@ activate InputParser
 InputParser -> InputParser: getEditInstrumentCommand({"edit", "1"},\n instruments)
 activate InputParser
 
-InputParser -> InputParser: getAndValidateIndexNumber({"edit", "1"}, instrument)
+InputParser -> InputParser: getAndValidateIndexNumber({"edit", "1"}, instruments)
 
 activate InputParser
 InputParser --> InputParser
 deactivate InputParser
 
-InputParser -> TextUi: displayEditInstrumentFirstInstruction(Stock)
+InputParser -> TextUi: displayEditInstrumentFirstInstruction(stockToEdit)
 activate TextUi
 TextUi --> InputParser
 deactivate TextUi
@@ -58,7 +58,7 @@ activate EditInstrumentParser
 EditInstrumentParser --> InputParser
 deactivate EditInstrumentParser
 
-InputParser -> EditInstrumentParser: createEditCommand({"name"}, instrument, 1);
+InputParser -> EditInstrumentParser: createEditCommand({"name"}, stockToEdit, 1);
 activate EditInstrumentParser
 
 ref over EditInstrumentParser
@@ -69,7 +69,7 @@ and its new value
 endref
 
 create EditInstrumentCommand
-EditInstrumentParser -> EditInstrumentCommand: EditInstrumentCommand()
+EditInstrumentParser -> EditInstrumentCommand: EditInstrumentCommand({"name", "new name"})
 activate EditInstrumentCommand
 EditInstrumentCommand --> EditInstrumentParser
 deactivate EditInstrumentCommand

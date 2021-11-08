@@ -3,50 +3,50 @@
 
 Package "Commands                    "  <<Rectangle>>{
      Class "{abstract}\nCommand" as Command COLOR_COMMANDS {
-     {method} + setData(InstrumentManager)
-     {method} + setParams(ArrayList<String>)
-     {method} + execute() ABSTRACT: String
+     <color:WHITE>{method} + setData(InstrumentManager)</color>
+     <color:WHITE>{method} + setParams(ArrayList<String>)</color>
+     <color:WHITE>{method} + execute() ABSTRACT: String</color>
      }
      Class ViewCommand COLOR_COMMANDS {
-     {method} + execute(): String
+     <color:WHITE>{method} + execute(): String</color>
      }
      Class EditInstrumentCommand COLOR_COMMANDS {
-     {method} + execute(): String
+     <color:WHITE>{method} + execute(): String</color>
      }
      Class DoneCommand COLOR_COMMANDS {
-     {method} + execute(): String
+     <color:WHITE>{method} + execute(): String</color>
      }
      Class DeleteCommand COLOR_COMMANDS {
-     {method} + execute(): String
+     <color:WHITE>{method} + execute(): String</color>
      }
 
      Class InvalidCommand COLOR_COMMANDS {
-     {method} + execute(): String
+     <color:WHITE>{method} + execute(): String</color>
      }
      Class ABCCommand COLOR_COMMANDS {
-     {method} + execute(): String
+     <color:WHITE>{method} + execute(): String</color>
      }
      Class AddInstrumentCommand COLOR_COMMANDS {
-     {method} + execute(): String
+     <color:WHITE>{method} + execute(): String</color>
      }
      Class "{abstract}\nIndexedCommand" as IndexedCommand COLOR_COMMANDS {
-     {method} + execute() ABSTRACT: String
+     <color:WHITE>{method} + execute() ABSTRACT: String</color>
      }
 
      Class AddXYZCommand COLOR_COMMANDS {
-     {method} + execute(): String
+     <color:WHITE>{method} + execute(): String</color>
      }
 }
 
 
 Class InstrumentManager COLOR_MODEL {
-    {method} + getSize(): int
-    {method} + getInstruments(): ArrayList<Instrument>
-    {method} + getInstrument(int): Instrument
-    {method} + addInstrument(Instrument): Instrument
-    {method} + findInstruments(String): ArrayList<Instrument>
-    {method} + deleteInstrument(int)
-    {method} + editInstrument(int, Hashmap<String, String>)
+    <color:WHITE>{method} + getSize(): int</color>
+    <color:WHITE>{method} + getInstruments(): ArrayList<Instrument></color>
+    <color:WHITE>{method} + getInstrument(int): Instrument</color>
+    <color:WHITE>{method} + addInstrument(Instrument): Instrument</color>
+    <color:WHITE>{method} + findInstruments(String): ArrayList<Instrument></color>
+    <color:WHITE>{method} + deleteInstrument(int)</color>
+    <color:WHITE>{method} + editInstrument(int, Hashmap<String, String>)</color>
 }
 
 Class TextUi COLOR_UI
@@ -63,29 +63,29 @@ show ViewCommand members
 show ABCCommand members
 show AddXYZCommand members
 
-Command -up[COLOR_COMMANDS]->"1" InstrumentManager
 InvalidCommand -[COLOR_COMMANDS]-|>Command
+Command -left[COLOR_COMMANDS]->"1" InstrumentManager
 
-note right of ABCCommand: ABCCommand = ExitCommand, \nFindCommand, \nListCommand
+note right of ABCCommand: ABCCommand = \nExitCommand, \nFindCommand, \nListCommand
 
 ABCCommand -[COLOR_COMMANDS]-|>Command
-AddInstrumentCommand -[COLOR_COMMANDS]-|>Command
+AddInstrumentCommand -up[COLOR_COMMANDS]-|>Command
 IndexedCommand -up[COLOR_COMMANDS]-|>Command
 
-AddXYZCommand -[COLOR_COMMANDS]-|>AddInstrumentCommand
+AddXYZCommand -up[COLOR_COMMANDS]-|>AddInstrumentCommand
 
-EditInstrumentCommand -[COLOR_COMMANDS]-|>IndexedCommand
+EditInstrumentCommand -left[COLOR_COMMANDS]-|>IndexedCommand
 ViewCommand -[COLOR_COMMANDS]-|>IndexedCommand
-DoneCommand -[COLOR_COMMANDS]-|>IndexedCommand
-DeleteCommand -[COLOR_COMMANDS]-|>IndexedCommand
+DoneCommand -down[COLOR_COMMANDS]-|>IndexedCommand
+DeleteCommand -up[COLOR_COMMANDS]-|>IndexedCommand
 
 AddXYZCommand -[COLOR_COMMANDS].>TextUi
 ABCCommand -[COLOR_COMMANDS].>TextUi
-
 
 DeleteCommand -[COLOR_COMMANDS].>TextUi
 DoneCommand -[COLOR_COMMANDS].>TextUi
 EditInstrumentCommand -[COLOR_COMMANDS].>TextUi
 ViewCommand -[COLOR_COMMANDS].>TextUi
+
 
 @enduml

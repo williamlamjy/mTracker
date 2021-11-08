@@ -10,7 +10,7 @@ group sd Get new edited parameters from user \nand create a hashmap associating 
 
 activate EditInstrumentParser
 
-EditInstrumentParser -> EditInstrumentParser: getEditedParameters({"name"}, instrument)
+EditInstrumentParser -> EditInstrumentParser: getEditedParameters({"name"}, stockToEdit)
 activate EditInstrumentParser
 
 EditInstrumentParser -> EditInstrumentParser: editNameParameter("stock", {"name"})
@@ -19,7 +19,7 @@ activate EditInstrumentParser
 
 alt parameters to edit does not include "name"
 else
-loop until valid name is entered
+loop until valid name is entered or abort is called
 EditInstrumentParser -> EditInstrumentParser: getUserInput()
 activate EditInstrumentParser
 EditInstrumentParser --> EditInstrumentParser: return new name
@@ -31,12 +31,12 @@ EditInstrumentParser --> EditInstrumentParser
 deactivate EditInstrumentParser
 
 EditInstrumentParser -> EditInstrumentParser: editXYZParameter({"name"})
-note left: This represents similar methods that does the same\nas the one above but for other parameters.\nXYZ represents all other parameters of\ncurrent price, sentiments past returns, entry price,\nexit price, expiry, remarks, status.
+note left: This represents similar methods that does the same\nas the one above but for other parameters.\nXYZ represents all other parameters of\ncurrent price, sentiment, past return, entry price,\nexit price, expiry, remark, status.
 activate EditInstrumentParser
 
 alt parameters to edit does not include parameter "XYZ"
 else
-loop until valid parameter is entered
+loop until valid parameter is entered or abort is called
 EditInstrumentParser -> EditInstrumentParser: getUserInput()
 activate EditInstrumentParser
 EditInstrumentParser --> EditInstrumentParser: return new value of parameter

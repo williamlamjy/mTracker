@@ -39,6 +39,8 @@ end
 
 TextUi --> TextUi : All instruments' general \nparams printed out
 deactivate TextUi
+[<-- TextUi
+deactivate TextUi
 
 
 @enduml

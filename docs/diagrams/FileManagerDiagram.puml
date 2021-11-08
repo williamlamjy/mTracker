@@ -6,20 +6,20 @@ Class main COLOR_MAIN
 
 Package "filemanager"  <<Rectangle>> {
      Class Storage COLOR_STORAGE {
-     + loadFileData(InstrumentManager)
-     + writeFileData(ArrayList<Instrument>)
-     + updateFileData(ArrayList<Instrument>)
+     <color:WHITE>+ loadFileData(InstrumentManager)</color>
+     <color:WHITE>+ writeFileData(ArrayList<Instrument>)</color>
+     <color:WHITE>+ updateFileData(ArrayList<Instrument>)</color>
      }
      Class InstrumentDecoder COLOR_STORAGE {
-     + {static} readFile(InstrumentManager, List<String>)
-     + {static} addSavedInstrumentToList(InstrumentManager, String[])
+     <color:WHITE>+ {static} readFile(InstrumentManager, List<String>)</color>
+     <color:WHITE>+ {static} addSavedInstrumentToList(InstrumentManager, String[])</color>
      }
      Class InstrumentEncoder COLOR_STORAGE {
-     + {static} editFile(String, FileWriter)
-     + {static} writeFile(ArrayList<Instrument>, FileWriter)
+     <color:WHITE>+ {static} editFile(String, FileWriter)</color>
+     <color:WHITE>+ {static} writeFile(ArrayList<Instrument>, FileWriter)</color>
      }
      Class XYZDecoder COLOR_STORAGE {
-     + {static} addXYZToList(String[], InstrumentManager)
+     <color:WHITE>+ {static} addXYZToList(String[], InstrumentManager)</color>
      }
 
 }
