@@ -4,6 +4,7 @@
 Package "Model                    "  <<Rectangle>>{
      Class "{abstract}\nInstrument" as Instrument COLOR_MODEL
      Class InstrumentManager COLOR_MODEL {
+        <color:WHITE>+ instrumentManager()</color>
         <color:WHITE>+ addInstrument(Instrument)</color>
         <color:WHITE>+ findInstruments(String): ArrayList<Instrument></color>
         <color:WHITE>+ deleteInstrument(int)</color>
@@ -18,7 +19,8 @@ Package "Model                    "  <<Rectangle>>{
 show InstrumentManager members
 
 Class main COLOR_MAIN
-main -down[COLOR_MODEL]->"1" InstrumentManager
+main -down[COLOR_MODEL]-> InstrumentManager: getInstance()
+InstrumentManager -up[COLOR_MODEL]-> "1"InstrumentManager
 Crypto -up[COLOR_MODEL]-|>Instrument
 Stock -up[COLOR_MODEL]-|>Instrument
 Etf -up[COLOR_MODEL]-|>Instrument
