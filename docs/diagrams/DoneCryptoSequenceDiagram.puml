@@ -16,7 +16,7 @@ participant ":Instrument" as Instrument COLOR_MODEL
 end box
 
 box ui COLOR_LIGHT_BLUE
-participant "<<Class>>\nTextUi" as TextUi COLOR_UI
+participant "<<class>>\nTextUi" as TextUi COLOR_UI
 end box
 
 
@@ -64,7 +64,7 @@ Mark instrument as done and displays it in the TextUi
 
 endref
 
-[<--DoneCommand
+[<--DoneCommand : return "done"
 deactivate DoneCommand
 
 @enduml

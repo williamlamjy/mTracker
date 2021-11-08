@@ -4,10 +4,10 @@
 Package "Model                    "  <<Rectangle>>{
      Class "{abstract}\nInstrument" as Instrument COLOR_MODEL
      Class InstrumentManager COLOR_MODEL {
-        + addInstrument(Instrument)
-        + findInstruments(String)
-        + deleteInstrument(int)
-        + editInstrument(int, HashMap<String, String>)
+        <color:WHITE>+ addInstrument(Instrument)</color>
+        <color:WHITE>+ findInstruments(String): ArrayList<Instrument></color>
+        <color:WHITE>+ deleteInstrument(int)</color>
+        <color:WHITE>+ editInstrument(int, HashMap<String, String>)</color>
      }
      Class Crypto COLOR_MODEL
      Class Stock COLOR_MODEL

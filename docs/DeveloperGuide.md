@@ -2,7 +2,17 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Referenced the AB3 developer guide [here](https://se-education.org/addressbook-level3/DeveloperGuide.html).
+
+## Setting up and getting started
+First fork the mTracker repo from [here](https://github.com/AY2122S1-CS2113T-T12-1/tp) and clone the fork into your computer.
+
+Do read through this developer guide to understand the project software architecture.
+
+Writing code:
+  * Before starting, please familiarise yourself with the Java code style guidelines [here](https://se-education.org/guides/conventions/java/index.html).
+  * After coding if you would like to create a pull request, please ensure that your code passes the github checks before
+  asking for a reviewer.
 
 ## Design
 
@@ -45,7 +55,7 @@ them during runtime, and restoring data from previous session when the program i
 The subsequent sections will elaborate on the more technical design and implementation details of
 the architectural components briefly explained in this section.
 
-### Parser component
+### Console component
 
 The main parent class in `console` package is the `InputParser` class which is defined in `InputParser.java`.
 The figure below represents the class diagram of how all the parser classes interact with classes outside the `console`
@@ -55,8 +65,8 @@ package:
 
 How the `InputParser` class works:
 1. When the user enters a command along with the relevant parameters if any, the
-   `getCommandComponents()` method in `InputParser` separates the user's command by spaces to return a string array.
-2. The command is then determined by using the `filterByCommandType()` method which would return the corresponding
+   `getCommandComponents(commandInput)` method in `InputParser` separates the user's command by spaces to return a string array.
+2. The command is then determined by using the `filterByCommandType(componentComponents, instruments)` method which would return the corresponding
    command type. Examples of different command types are `AddInstrumentCommand`, `DeleteCommand`, `ListCommand` etc.
 
 #### Design considerations for parsing inputs for add functionality 
@@ -85,7 +95,7 @@ This helps to support the user through the process of adding a new instrument.
 #### Design considerations for parsing inputs for edit functionality
 Despite currently supporting 4 types of financial instruments, the parsing of inputs for the edit functionality does not require
 4 edit classes for each instrument. This is because the edit functionality is done on an existing instrument which
-contains information on what parameters can be edited on. Therefore, only a single EditInstrumentParser 
+contains information on what parameters can be edited on. Therefore, only a single `EditInstrumentParser` 
 is needed to filter out all the other parameters that are irrelevant to the instrument.
  
 In addition, the current design is able to parse multiple input parameters and display the relevant instructions to
@@ -190,7 +200,7 @@ how the different class work together:
 The FileManager Component:
 
 * Contains the `Storage` class that loads data from any pre-existing text file. If the file does not exist, it creates 
-a new text file to store the data. It updates the file by calling the `writeFile()` method in the `InstrumentEncoder` class.
+a new text file to store the data. It updates the file by calling the `writeFile(instruments, writeToFile)` method in the `InstrumentEncoder` class.
 * Contains the `InstrumentEncoder` class which encodes the instrument data into a text file format for decoding.
 * Contains the `InstrumentDecoder` parent class which decodes the text file. The 4 sub-decoder classes `CryptoDecoder`,
 `EtfDecoder`, `ForexDecoder` and `StockDecoder` adds the respective instruments with their decoded attributes into the
@@ -210,8 +220,9 @@ a higher level of abstraction.
 ### Add instrument feature
 The add instrument functionality is mainly handled by the `console` and `commands` components. Within the `console`
 component, the `InputParser` class implements the method `InputParser#getAddInstrumentParameters()`. This method calls
-`AddInstrumentParser#filterByInstrumentType()` which will then guide the user through the process of adding a new
-instrument. 
+`AddInstrumentParser#filterByInstrumentType(componentComponents)` which will then guide the user through the process of adding a new
+instrument. `AddInstrumentParser#filterByInstrumentType(componentComponents)` will throw an `InvalidInstrumentError` if the
+user provides an instrument type that is invalid.
 
 The figure below represents the sequence diagram when the user wants to add a stock:
 
@@ -231,15 +242,23 @@ From the notes in the sequence diagram above, for every attribute in the instrum
 prompt to get user to provide information for that attribute. This is done through a series of methods in
 the `TextUi` class.
 
+After getting the stock details from the user, the `AddStockCommand#execute()` will be called. This creates a new stock
+adds it to the list of instruments. Here below we have a sequence diagram detailing the process.
+
+<img src="images/AddStockSequenceExecuteDiagram.png" width="600"/>
+
+For other instrument types a different command will be executed. For example if the user is adding a new crypto,
+the equivalent command used would be the `AddCryptoCommand`.
+
 ### Edit instrument feature
 
 The edit instrument functionality mainly involves the `console`, `commands` and `model` components. Within the `console`
-component, the `InputParser` class implements the method `InputParser#getEditInstrumentCommand()`. This method calls
-`InputParser#getParametersToEdit` which will prompt the users to input which parameters of the instrument to edit
+component, the `InputParser` class implements the method `InputParser#getEditInstrumentCommand(comandComponents, instruments)`. This method calls
+`InputParser#getParametersToEdit(validAttributes)` which will prompt the users to input which parameters of the instrument to edit
 and check if the parameters entered are valid. Invalid inputs will not be processed.
 
 The process of writing the new values of the parameters to be edited is handled by the `EditInstrumentParser` class.
-The method `EditInstrumentParser#createEditCommand()` calls `EditInstrumentParser#getEditedParameters()` which 
+The method `EditInstrumentParser#createEditCommand(parametersToEdit, instrumentToEdit, instrumentNumber)` calls `EditInstrumentParser#getEditedParameters(parametersToEdit, instrumentToEdit)` which 
 calls multiple individual methods that check if its parameters is being edited and to enter a new value for the 
 parameters.
 
@@ -271,7 +290,7 @@ For example the user can edit the expiry parameter in Crypto but not in Stock.
 ### Mark an instrument as done feature
 
 The done instrument functionality mainly involves the `console`, `commands` and `model` components. Within the `console`
-component, the `InputParser` class implements the method `InputParser#getDoneInstrumentCommand()`, which processes the index of instrument
+component, the `InputParser` class implements the method `InputParser#getDoneInstrumentCommand(commandComponents, instruments)`, which processes the index of instrument
 and check if the instrument has been previously marked as done. 
 
 The execution of marking the instrument as done is handled by the `DoneCommand`class.
@@ -288,7 +307,7 @@ More details about the reference frame for executing the done command is shown b
 
 ### Loading pre-existing data
 The loading of pre-existing data is mainly handled by the `filemanager` and `model` components. The main method calls 
-`Storage#loadFileData(instrumentManager)` which uses `InstrumentDecoder#readFile(instrumentManager, fileData)`. This method calls 
+`Storage#loadFileData(instrumentManager)` which uses `InstrumentDecoder#readFile(instrumentManager, fileLines)`. This method calls 
 `InstrumentDecoder#addSavedInstrumentToList(instrumentManager, textSegment)` for each pre-existing instrument which will add the 
 corresponding instrument in the `InstrumentManager` through calling the `XYZDecoder#addXYZToList(textSegment, instrumentManager)`. 
 In the event the instrument is not one of the 4 types of instruments, the `InstrumentDecoder` will throw a new `InvalidInstrumentInFileError`
@@ -328,12 +347,16 @@ appropriate message through the `TextUi` class.
 
 ## Product scope
 ### Target user profile
-
-{Describe the target user profile}
+ * Busy individuals that need a convenient way to record financial information on the go.
+ * Familiar with using the terminal and command-line interface applications.
+ * Individuals that consistently keep up to date with financial news and events.
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+Financial information is rapidly evolving and growing beyond what the standard brokerages
+and traditional financial news provide. The information is readily and easily accessible to any individual with an internet connection
+via social media and public forums. Therefore, mTracker aims to empower individuals with the capability to note and organise 
+such information in a quick and easy way. 
 
 ## User Stories
 
@@ -365,8 +388,175 @@ appropriate message through the `TextUi` class.
 
 ## Glossary
 
-* *glossary item* - Definition
+* *Instrument* - Represents assets that can be traded. Most common examples are stocks and foreign currency.
+* *Etf* - Known as Exchange Traded Funds, they are a type of instrument that tracks the performance of a particular asset. 
+* *Forex* - Foreign exchange market for trading currencies. An example included is the USDSGD exchange rate.
+* *Crypto* - Digital currencies that are secured by cryptography methods.
+* *Stock* - Shares of a company that provide the owner a certain level of ownership of said company.
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+In this section are some instructions for getting started with manual testing of the program.
+Feel free to come up with more test cases to try for yourself.
+
+**Launch and start up**
+
+1) Ensure that you have `Java 11` installed.
+2) Download the latest jar file [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/releases). 
+3) In your terminal under the directory where the jar file is saved type `java -jar [CS2113T-T12-1][mTracker].jar`.
+   1) If it is successful you should see a mTracker greet message. If you get an error message please create a new issue
+      [here](https://github.com/AY2122S1-CS2113T-T12-1/tp/issues) along with a description of the error.
+4) Refer to the [userguide](https://github.com/AY2122S1-CS2113T-T12-1/tp/blob/master/docs/UserGuide.md) to understand how
+to use the program.
+
+**Add functionality Testing**
+
+To test the add functionality, there are a few test cases you can try:
+1. Testcase: Adding a stock with an empty name.
+```
+    mTracker$main> add
+    Please key in the type of instrument:
+    mTracker$add> stock
+    Name of stock:
+```
+Expected: An error message that says name cannot be empty.
+```
+Sorry stock cannot have an empty name!
+	Name of stock: 
+mTracker$add> 
+```
+2. Testcase: Adding a crypto with an empty current price. 
+```
+mTracker$main> add
+	Please key in the type of instrument: 
+mTracker$add> crypto
+	Name of crypto: 
+mTracker$add> bitcoin
+	Current Price: 
+mTracker$add> 
+```
+Expected: An error message that says current price cannot be empty.
+```
+Sorry price cannot be empty.
+	Current Price: 
+mTracker$add> 
+```
+3. Testcase: Adding an etf with a past return of -150.
+```
+mTracker$main> add
+	Please key in the type of instrument: 
+mTracker$add> etf
+	Name of etf: 
+mTracker$add> SPY
+	Current Price: 
+mTracker$add> 468.53
+	Sentiment for instrument: 
+mTracker$add> neutral
+	Past Returns (optional): 
+mTracker$add> -150
+```
+Expected: An error message that says past returns cannot be less than -100 and input will be ignored.     
+```
+Sorry, past return inserted cannot be lesser than -100. Input value will be ignored.
+	Remarks (optional): 
+mTracker$add> 
+```
+**Edit functionality Testing**
+
+To test the edit functionality, there are a few test cases you can try:
+1. Testcase: Edit an instrument at an index that is out of range. For example if you have less than 100 instruments in
+your list, you can try the example below.
+```
+mTracker$main> edit 100
+```
+Expected: An error message that says instrument does not exist at that index.
+```
+Oops, instrument does not exist at that index.
+```
+2. Testcase: Enter parameters that are not supported by stock type.
+```
+mTracker$main> edit 7
+	Please enter one or more Stock parameters to edit separated by spaces only.
+	done-status, name, current-price, sentiment, remarks
+mTracker$edit> entry-price
+```  
+Expected: An error message that says the parameter is invalid and will be ignored.
+```
+entry-price is an invalid attribute of this instrument and will be ignored.
+```
+**Delete functionality Testing**
+
+To test the delete functionality, there are a few test cases you can try:
+1. Testcase: Delete an instrument at an index that is out of range. For example if you have less than 100 instruments in
+your list, you can try the example below.
+```
+mTracker$main> delete 100
+```
+Expected: An error message that says instrument does not exist at that index.
+```
+Oops, instrument does not exist at that index.
+```
+2. Testcase: Deleting by providing a non-numerical index value.
+```
+mTracker$main> delete notANumber
+```
+Expected: An error message that says the index provided is invalid.
+```
+Oops an invalid index is given. 
+Please provide an acceptable index number corresponding to the instruments in the watchlist.
+```
+**Done functionality Testing**
+
+To test the done functionality, there are a few test cases you can try:
+1. Testcase: Set an already done instrument as done.
+```
+mTracker$main> done 7
+	Nice! I have marked this instrument as completed:
+		[S][X] IBM; 144.61; positive
+mTracker$main> done 7
+```
+Expected: An error message that says instrument is already done.
+```
+Instrument at provided index has already been marked as completed!
+```
+
+**Find functionality Testing**
+
+To test the find functionality, there are a few test cases you can try:
+1. Testcase: Try the find command without any search string.
+```
+mTracker$main> find
+```
+Expected: An error message that says please enter a search string.
+```
+Oops, please input a search string after 'find' command.
+```
+
+**List functionality Testing**
+
+To test the list functionality, there are a few test cases you can try:
+1. Testcase: Listing instruments with extraneous parameters.
+```
+mTracker$main> list extraneous parameters
+```
+Expected: It should perform the list action ignoring the additional words.
+
+**View functionality Testing**
+
+To test the view functionality, there are a few test cases you can try:
+1. Testcase: Viewing an instrument with extraneous parameters.
+```
+mTracker$main> view 8 10
+```
+Expected: It should return only the 8th instrument in the list ignoring the value `10`.
+
+**Loading storage file testing**
+
+To test the program against corruption of saved file data, there are a few test cases you can try:
+1. Testcase: In the saved file on a newline write `This is a fake instrument`.
+
+   Expected: It should say that incorrect instrument type is provided and that instrument would be ignored. 
+```
+Oops, it appears that the incorrect instrument type is provided in the mTracker.txt file
+Ignoring saved instrument 1 as it was corrupted.
+```
