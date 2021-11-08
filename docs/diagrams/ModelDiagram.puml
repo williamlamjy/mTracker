@@ -4,7 +4,7 @@
 Package "Model                    "  <<Rectangle>>{
      Class "{abstract}\nInstrument" as Instrument COLOR_MODEL
      Class InstrumentManager COLOR_MODEL {
-        <color:WHITE>+ {static} getInstance()</color>
+        <color:WHITE>+ {static} getInstance(): InstrumentManager</color>
         <color:WHITE>+ addInstrument(Instrument)</color>
         <color:WHITE>+ findInstruments(String): ArrayList<Instrument></color>
         <color:WHITE>+ deleteInstrument(int)</color>
