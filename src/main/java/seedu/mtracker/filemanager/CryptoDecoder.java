@@ -9,7 +9,7 @@ import seedu.mtracker.commons.error.fileerror.InvalidEmptySentimentInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidEmptyStatusInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidExpirySavedInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidNameSavedInFileError;
-import seedu.mtracker.commons.error.fileerror.InvalidRemarksInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidRemarkInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidSentimentSavedInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidStatusSavedInFileError;
 import seedu.mtracker.model.Instrument;
@@ -25,9 +25,9 @@ import java.time.LocalDate;
 public class CryptoDecoder extends InstrumentDecoder {
 
     public static final int CRYPTO_EXPIRY_INDEX = 5;
-    public static final int CRYPTO_REMARKS_INDEX = 6;
+    public static final int CRYPTO_REMARK_INDEX = 6;
     protected static LocalDate decodedExpiry;
-    protected static String decodedRemarks;
+    protected static String decodedRemark;
 
     /**
      * Gets expiry from the mTracker file.
@@ -47,20 +47,20 @@ public class CryptoDecoder extends InstrumentDecoder {
     }
 
     /**
-     * Gets remarks from the mTracker file.
+     * Gets remark from the mTracker file.
      *
      * @param textSegment Array containing the parameters of an instrument.
-     * @return Remarks of the instrument.
-     * @throws InvalidRemarksInFileError When the remarks parameter is of invalid format.
+     * @return Remark of the instrument.
+     * @throws InvalidRemarkInFileError When the remark parameter is of invalid format.
      */
-    public static String getRemarksFromFile(String[] textSegment) throws InvalidRemarksInFileError {
-        String remarks;
+    public static String getRemarkFromFile(String[] textSegment) throws InvalidRemarkInFileError {
+        String remark;
         try {
-            remarks = textSegment[CRYPTO_REMARKS_INDEX];
+            remark = textSegment[CRYPTO_REMARK_INDEX];
         } catch (IndexOutOfBoundsException e) {
-            throw new InvalidRemarksInFileError();
+            throw new InvalidRemarkInFileError();
         }
-        return remarks;
+        return remark;
     }
 
     /**
@@ -75,9 +75,9 @@ public class CryptoDecoder extends InstrumentDecoder {
         }
     }
 
-    private static void decodeSpecificAttributes(String expiry, String remarks) {
+    private static void decodeSpecificAttributes(String expiry, String remark) {
         decodedExpiry = LocalDate.parse(expiry);
-        decodedRemarks = remarks;
+        decodedRemark = remark;
     }
 
     /**
@@ -85,15 +85,15 @@ public class CryptoDecoder extends InstrumentDecoder {
      *
      * @param textSegment Array containing the parameters of an instrument.
      * @throws InvalidEmptyExpiryInFileError When the expiry parameter is empty in the file.
-     * @throws InvalidRemarksInFileError When the remarks parameter is of invalid format.
+     * @throws InvalidRemarkInFileError When the remark parameter is of invalid format.
      * @throws InvalidExpirySavedInFileError When the expiry parameter is of invalid format.
      */
     public static void validateAndDecodeSpecificAttributes(String[] textSegment) throws InvalidEmptyExpiryInFileError,
-            InvalidRemarksInFileError, InvalidExpirySavedInFileError {
+            InvalidRemarkInFileError, InvalidExpirySavedInFileError {
         String expiry = getExpiryFromFile(textSegment);
-        String remarks = getRemarksFromFile(textSegment);
+        String remark = getRemarkFromFile(textSegment);
         validateSpecificAttributes(textSegment);
-        decodeSpecificAttributes(expiry, remarks);
+        decodeSpecificAttributes(expiry, remark);
     }
 
     /**
@@ -110,14 +110,14 @@ public class CryptoDecoder extends InstrumentDecoder {
      * @throws InvalidEmptyStatusInFileError When the done status parameter is empty in the file.
      * @throws InvalidStatusSavedInFileError When the done status parameter is of invalid format.
      * @throws InvalidEmptyExpiryInFileError When the expiry parameter is empty in the file.
-     * @throws InvalidRemarksInFileError When the remarks parameter is of invalid format.
+     * @throws InvalidRemarkInFileError When the remark parameter is of invalid format.
      * @throws InvalidExpirySavedInFileError When the expiry parameter is of invalid format.
      */
     public static void addCryptoToList(String[] textSegment, InstrumentManager instrumentManager)
             throws InvalidNameSavedInFileError, InvalidSentimentSavedInFileError, InvalidCurrPriceSavedInFileError,
             InvalidEmptyNameInFileError, InvalidEmptySentimentInFileError, InvalidEmptyStatusInFileError,
             InvalidStatusSavedInFileError, InvalidEmptyCurrPriceInFileError, InvalidEmptyExpiryInFileError,
-            InvalidRemarksInFileError, InvalidExpirySavedInFileError {
+            InvalidRemarkInFileError, InvalidExpirySavedInFileError {
         validateAndDecodeGeneralAttributes(textSegment);
         validateAndDecodeSpecificAttributes(textSegment);
         Instrument crypto = createDecodedInstrument();
@@ -127,7 +127,7 @@ public class CryptoDecoder extends InstrumentDecoder {
 
     private static Instrument createDecodedInstrument() {
         return new Crypto(decodedName, decodedCurrPrice, decodedSentiment,
-                decodedExpiry, decodedRemarks);
+                decodedExpiry, decodedRemark);
     }
 
 }

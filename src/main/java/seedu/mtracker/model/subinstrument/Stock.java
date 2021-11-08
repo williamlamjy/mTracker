@@ -28,9 +28,8 @@ public class Stock extends Instrument {
         remark = inputRemark;
     }
 
-    //@@author
     /**
-     * Sets remarks parameter to the new remarks if remarks parameter is being edited.
+     * Sets remark parameter to the new remark if remark parameter is being edited.
      *
      * @param editedParameters HashMap containing parameters to edit and the new values.
      */
@@ -94,6 +93,6 @@ public class Stock extends Instrument {
     @Override
     public String getAllParams() {
         return super.getAllParams()
-                + REMARKS_FIELD + remark;
+                + REMARK_FIELD + remark;
     }
 }

@@ -7,7 +7,7 @@ import seedu.mtracker.commons.error.fileerror.InvalidEmptyExpiryInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidEntryPriceSavedInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidExitPriceSavedInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidExpirySavedInFileError;
-import seedu.mtracker.commons.error.fileerror.InvalidRemarksInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidRemarkInFileError;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -77,7 +77,7 @@ class ForexDecoderTest extends InstrumentDecoderTest {
         TEST_ENTRY_PRICE_STRING
     };
 
-    public static final String[] INVALID_FOREX_REMARKS_WRONG_FORMAT_TEXT_SEGMENT = {
+    public static final String[] INVALID_FOREX_REMARK_WRONG_FORMAT_TEXT_SEGMENT = {
         TEST_TYPE,
         TEST_NAME,
         TEST_PRICE_STRING,
@@ -132,9 +132,9 @@ class ForexDecoderTest extends InstrumentDecoderTest {
     }
 
     @Test
-    void decodeSpecificAttributes_remarksFormatNotCorrect_expectException() {
-        assertThrows(InvalidRemarksInFileError.class,
+    void decodeSpecificAttributes_remarkFormatNotCorrect_expectException() {
+        assertThrows(InvalidRemarkInFileError.class,
             () -> ForexDecoder
-                        .validateAndDecodeSpecificAttributes(INVALID_FOREX_REMARKS_WRONG_FORMAT_TEXT_SEGMENT));
+                        .validateAndDecodeSpecificAttributes(INVALID_FOREX_REMARK_WRONG_FORMAT_TEXT_SEGMENT));
     }
 }

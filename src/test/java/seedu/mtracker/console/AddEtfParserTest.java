@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class AddEtfParserTest extends GeneralInstrumentParserTest {
     public static final int PARAMETER_SIZE = 5;
 
-    public static final String USER_INPUT_NO_REMARKS = "TTTXXX"
+    public static final String USER_INPUT_NO_REMARK = "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + "50.0"
@@ -21,7 +21,7 @@ public class AddEtfParserTest extends GeneralInstrumentParserTest {
             + SEPARATOR_SPECIFIER + "50.0"
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
-    public static final String[] EXPECTED_PARAMS_NO_REMARKS = {
+    public static final String[] EXPECTED_PARAMS_NO_REMARK = {
         "TTTXXX",
         "23.4",
         "positive",
@@ -37,7 +37,7 @@ public class AddEtfParserTest extends GeneralInstrumentParserTest {
         "fooRemarks"
     };
 
-    public static final String[] EXPECTED_PARAMS_INVALID_RETURNS = {
+    public static final String[] EXPECTED_PARAMS_INVALID_PAST_RETURN = {
         "TTTXXX",
         "23.4",
         "positive",
@@ -68,7 +68,7 @@ public class AddEtfParserTest extends GeneralInstrumentParserTest {
             + SEPARATOR_SPECIFIER + "50.0"
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
-    public static final String USER_INPUT_TRY_EMPTY_RETURNS = SEPARATOR_SPECIFIER + "TTTXXX"
+    public static final String USER_INPUT_TRY_EMPTY_PAST_RETURN = SEPARATOR_SPECIFIER + "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + ""
@@ -87,12 +87,12 @@ public class AddEtfParserTest extends GeneralInstrumentParserTest {
             + SEPARATOR_SPECIFIER + DONT_ABORT
             + SEPARATOR_SPECIFIER.repeat(2) + ABORT;
 
-    public static final String USER_INPUT_TRY_ABORT_AT_RETURNS = SEPARATOR_SPECIFIER + "TTTXXX"
+    public static final String USER_INPUT_TRY_ABORT_AT_PAST_RETURN = SEPARATOR_SPECIFIER + "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + ABORT;
 
-    public static final String USER_INPUT_TRY_ABORT_AT_REMARKS = "TTTXXX"
+    public static final String USER_INPUT_TRY_ABORT_AT_REMARK = "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + "50.0"
@@ -111,13 +111,13 @@ public class AddEtfParserTest extends GeneralInstrumentParserTest {
     }
 
     @Test
-    void addEtfParams_noRemarks_expectSuccess() throws OperationAbortedError {
-        testEtfParameters(USER_INPUT_NO_REMARKS, EXPECTED_PARAMS_NO_REMARKS);
+    void addEtfParams_noRemark_expectSuccess() throws OperationAbortedError {
+        testEtfParameters(USER_INPUT_NO_REMARK, EXPECTED_PARAMS_NO_REMARK);
     }
 
     @Test
     void addEtfParams_noPastReturn_expectSuccess() throws OperationAbortedError {
-        testEtfParameters(USER_INPUT_TRY_EMPTY_RETURNS, EXPECTED_PARAMS_INVALID_RETURNS);
+        testEtfParameters(USER_INPUT_TRY_EMPTY_PAST_RETURN, EXPECTED_PARAMS_INVALID_PAST_RETURN);
     }
 
     @Test
@@ -160,14 +160,14 @@ public class AddEtfParserTest extends GeneralInstrumentParserTest {
     }
 
     @Test
-    void addEtfParams_abortAtReturns_expectException() {
+    void addEtfParams_abortAtReturn_expectException() {
         assertThrows(OperationAbortedError.class,
-            () -> testEtfParameters(USER_INPUT_TRY_ABORT_AT_RETURNS, NO_PARAMS_EXPECTED));
+            () -> testEtfParameters(USER_INPUT_TRY_ABORT_AT_PAST_RETURN, NO_PARAMS_EXPECTED));
     }
 
     @Test
     void addEtfParams_abortAtRemark_expectException() {
         assertThrows(OperationAbortedError.class,
-            () -> testEtfParameters(USER_INPUT_TRY_ABORT_AT_REMARKS, NO_PARAMS_EXPECTED));
+            () -> testEtfParameters(USER_INPUT_TRY_ABORT_AT_REMARK, NO_PARAMS_EXPECTED));
     }
 }

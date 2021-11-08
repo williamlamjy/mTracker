@@ -13,7 +13,7 @@ import seedu.mtracker.commons.error.fileerror.InvalidEntryPriceSavedInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidExitPriceSavedInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidExpirySavedInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidNameSavedInFileError;
-import seedu.mtracker.commons.error.fileerror.InvalidRemarksInFileError;
+import seedu.mtracker.commons.error.fileerror.InvalidRemarkInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidSentimentSavedInFileError;
 import seedu.mtracker.commons.error.fileerror.InvalidStatusSavedInFileError;
 import seedu.mtracker.model.Instrument;
@@ -31,11 +31,11 @@ public class ForexDecoder extends InstrumentDecoder {
     public static final int ENTRY_PRICE_INDEX = 5;
     public static final int EXIT_PRICE_INDEX = 6;
     public static final int FOREX_EXPIRY_INDEX = 7;
-    public static final int FOREX_REMARKS_INDEX = 8;
+    public static final int FOREX_REMARK_INDEX = 8;
     protected static double decodedEntryPrice;
     protected static double decodedExitPrice;
     protected static LocalDate decodedExpiry;
-    protected static String decodedRemarks;
+    protected static String decodedRemark;
 
     /**
      * Gets entry price from the mTracker file.
@@ -89,20 +89,20 @@ public class ForexDecoder extends InstrumentDecoder {
     }
 
     /**
-     * Gets remarks from the mTracker file.
+     * Gets remark from the mTracker file.
      *
      * @param textSegment Array containing the parameters of an instrument.
-     * @return Remarks of the instrument.
-     * @throws InvalidRemarksInFileError When the remarks parameter is of invalid format.
+     * @return Remark of the instrument.
+     * @throws InvalidRemarkInFileError When the remark parameter is of invalid format.
      */
-    public static String getRemarksFromFile(String[] textSegment) throws InvalidRemarksInFileError {
-        String remarks;
+    public static String getRemarkFromFile(String[] textSegment) throws InvalidRemarkInFileError {
+        String remark;
         try {
-            remarks = textSegment[FOREX_REMARKS_INDEX];
+            remark = textSegment[FOREX_REMARK_INDEX];
         } catch (IndexOutOfBoundsException e) {
-            throw new InvalidRemarksInFileError();
+            throw new InvalidRemarkInFileError();
         }
-        return remarks;
+        return remark;
     }
 
     /**
@@ -112,21 +112,21 @@ public class ForexDecoder extends InstrumentDecoder {
      * @throws InvalidEmptyEntryPriceInFileError When the entry price parameter is empty in the file.
      * @throws InvalidEmptyExitPriceInFileError When the exit price parameter is empty in the file.
      * @throws InvalidEmptyExpiryInFileError When the expiry parameter is empty in the file.
-     * @throws InvalidRemarksInFileError When the remarks parameter is of invalid format.
+     * @throws InvalidRemarkInFileError When the remark parameter is of invalid format.
      * @throws InvalidExpirySavedInFileError When the expiry parameter is of invalid format.
      * @throws InvalidEntryPriceSavedInFileError When the entry price parameter is of invalid format.
      * @throws InvalidExitPriceSavedInFileError When the exit price parameter is of invalid format.
      */
     public static void validateAndDecodeSpecificAttributes(String[] textSegment)
             throws InvalidEmptyEntryPriceInFileError, InvalidEmptyExitPriceInFileError, InvalidEmptyExpiryInFileError,
-            InvalidRemarksInFileError, InvalidEntryPriceSavedInFileError, InvalidExitPriceSavedInFileError,
+            InvalidRemarkInFileError, InvalidEntryPriceSavedInFileError, InvalidExitPriceSavedInFileError,
             InvalidExpirySavedInFileError {
         String entryPrice = getEntryPriceFromFile(textSegment);
         String exitPrice = getExitPriceFromFile(textSegment);
         String expiry = getExpiryFromFile(textSegment);
-        String remarks = getRemarksFromFile(textSegment);
+        String remark = getRemarkFromFile(textSegment);
         validateSpecificAttributes(textSegment);
-        decodeSpecificAttributes(entryPrice, exitPrice, expiry, remarks);
+        decodeSpecificAttributes(entryPrice, exitPrice, expiry, remark);
     }
 
     private static void validateSpecificAttributes(String[] textSegment) throws InvalidExpirySavedInFileError,
@@ -142,11 +142,11 @@ public class ForexDecoder extends InstrumentDecoder {
         }
     }
 
-    private static void decodeSpecificAttributes(String entryPrice, String exitPrice, String expiry, String remarks) {
+    private static void decodeSpecificAttributes(String entryPrice, String exitPrice, String expiry, String remark) {
         decodedEntryPrice = Double.parseDouble(entryPrice);
         decodedExitPrice = Double.parseDouble(exitPrice);
         decodedExpiry = LocalDate.parse(expiry);
-        decodedRemarks = remarks;
+        decodedRemark = remark;
     }
 
     /**
@@ -167,7 +167,7 @@ public class ForexDecoder extends InstrumentDecoder {
      * @throws InvalidEmptyEntryPriceInFileError When the entry price parameter is empty in the file.
      * @throws InvalidEmptyExitPriceInFileError When the exit price parameter is empty in the file.
      * @throws InvalidEmptyExpiryInFileError When the expiry parameter is empty in the file.
-     * @throws InvalidRemarksInFileError When the remarks parameter is of invalid format.
+     * @throws InvalidRemarkInFileError When the remark parameter is of invalid format.
      * @throws InvalidExpirySavedInFileError When the expiry parameter is of invalid format.
      */
     public static void addForexToList(String[] textSegment, InstrumentManager instrumentManager)
@@ -175,7 +175,7 @@ public class ForexDecoder extends InstrumentDecoder {
             InvalidEmptyNameInFileError, InvalidEmptySentimentInFileError, InvalidEmptyStatusInFileError,
             InvalidStatusSavedInFileError, InvalidEmptyCurrPriceInFileError, InvalidEntryPriceSavedInFileError,
             InvalidExitPriceSavedInFileError, InvalidExpirySavedInFileError, InvalidEmptyExitPriceInFileError,
-            InvalidEmptyExpiryInFileError, InvalidEmptyEntryPriceInFileError, InvalidRemarksInFileError {
+            InvalidEmptyExpiryInFileError, InvalidEmptyEntryPriceInFileError, InvalidRemarkInFileError {
         validateAndDecodeGeneralAttributes(textSegment);
         validateAndDecodeSpecificAttributes(textSegment);
         Instrument forex = createDecodedInstrument();
@@ -185,6 +185,6 @@ public class ForexDecoder extends InstrumentDecoder {
 
     private static Instrument createDecodedInstrument() {
         return new Forex(decodedName, decodedCurrPrice, decodedSentiment,
-                decodedEntryPrice, decodedExitPrice, decodedExpiry, decodedRemarks);
+                decodedEntryPrice, decodedExitPrice, decodedExpiry, decodedRemark);
     }
 }

@@ -9,19 +9,19 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class AddCryptoParserTest extends GeneralInstrumentParserTest {
     public static final int PARAMETER_SIZE = 5;
 
-    public static final String USER_INPUT_NO_REMARKS = "TTTXXX"
+    public static final String USER_INPUT_NO_REMARK = "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + " ";
 
-    public static final String USER_INPUT_WITH_REMARKS = "TTTXXX"
+    public static final String USER_INPUT_WITH_REMARK = "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + FUTURE_DATE
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
-    public static final String[] EXPECTED_PARAMS_NO_REMARKS = {
+    public static final String[] EXPECTED_PARAMS_NO_REMARK = {
         "TTTXXX",
         "23.4",
         "positive",
@@ -29,7 +29,7 @@ class AddCryptoParserTest extends GeneralInstrumentParserTest {
         "",
     };
 
-    public static final String[] EXPECTED_PARAMS_WITH_REMARKS = {
+    public static final String[] EXPECTED_PARAMS_WITH_REMARK = {
         "TTTXXX",
         "23.4",
         "positive",
@@ -82,7 +82,7 @@ class AddCryptoParserTest extends GeneralInstrumentParserTest {
             + SEPARATOR_SPECIFIER + "fooRemarks";
 
     //@@KVignesh122
-    public static final String USER_INPUT_TRY_ABORT_AT_REMARKS = "TTTXXX"
+    public static final String USER_INPUT_TRY_ABORT_AT_REMARK = "TTTXXX"
             + SEPARATOR_SPECIFIER + "23.4"
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + FUTURE_DATE
@@ -106,7 +106,6 @@ class AddCryptoParserTest extends GeneralInstrumentParserTest {
             + SEPARATOR_SPECIFIER + "positive"
             + SEPARATOR_SPECIFIER + DONT_ABORT
             + SEPARATOR_SPECIFIER.repeat(2) + ABORT;
-    //@@author
 
     //@@author williamlamjy
     void testCryptoParameters(String input, String[] expectedParameters) throws OperationAbortedError {
@@ -121,47 +120,47 @@ class AddCryptoParserTest extends GeneralInstrumentParserTest {
     }
 
     @Test
-    void addCryptoParams_noRemarks_expectSuccess() throws OperationAbortedError {
-        testCryptoParameters(USER_INPUT_NO_REMARKS, EXPECTED_PARAMS_NO_REMARKS);
+    void addCryptoParams_noRemark_expectSuccess() throws OperationAbortedError {
+        testCryptoParameters(USER_INPUT_NO_REMARK, EXPECTED_PARAMS_NO_REMARK);
     }
 
     @Test
-    void addCryptoParams_allValidParametersWithRemarks_expectSuccess() throws OperationAbortedError {
-        testCryptoParameters(USER_INPUT_WITH_REMARKS,
-                EXPECTED_PARAMS_WITH_REMARKS);
+    void addCryptoParams_allValidParametersWithRemark_expectSuccess() throws OperationAbortedError {
+        testCryptoParameters(USER_INPUT_WITH_REMARK,
+                EXPECTED_PARAMS_WITH_REMARK);
     }
 
     @Test
     void addCryptoParams_tryInvalidNameMultipleTimes_expectSuccess() throws OperationAbortedError {
-        testCryptoParameters(USER_INPUT_TRY_INVALID_NAME, EXPECTED_PARAMS_NO_REMARKS);
+        testCryptoParameters(USER_INPUT_TRY_INVALID_NAME, EXPECTED_PARAMS_NO_REMARK);
     }
 
     @Test
     void addCryptoParams_tryInvalidPriceMultipleTimes_expectSuccess() throws OperationAbortedError {
         testCryptoParameters(USER_INPUT_TRY_INVALID_PRICE,
-                EXPECTED_PARAMS_WITH_REMARKS);
+                EXPECTED_PARAMS_WITH_REMARK);
     }
 
     @Test
     void addCryptoParams_tryInvalidSentimentMultipleTimes_expectSuccess() throws OperationAbortedError {
         testCryptoParameters(USER_INPUT_TRY_INVALID_SENTIMENT,
-                EXPECTED_PARAMS_WITH_REMARKS);
+                EXPECTED_PARAMS_WITH_REMARK);
     }
 
     @Test
     void addCryptoParams_tryEmptyExpiryMultipleTimes_expectSuccess() throws OperationAbortedError {
         testCryptoParameters(USER_INPUT_TRY_EMPTY_EXPIRY,
-                EXPECTED_PARAMS_WITH_REMARKS);
+                EXPECTED_PARAMS_WITH_REMARK);
     }
 
     @Test
     void addForexParams_tryInvalidDateMultipleTimes_expectSuccess() throws OperationAbortedError {
-        testCryptoParameters(USER_INPUT_TRY_INVALID_EXPIRY, EXPECTED_PARAMS_WITH_REMARKS);
+        testCryptoParameters(USER_INPUT_TRY_INVALID_EXPIRY, EXPECTED_PARAMS_WITH_REMARK);
     }
 
     @Test
     void addForexParams_tryPastDateMultipleTimes_expectSuccess() throws OperationAbortedError {
-        testCryptoParameters(USER_INPUT_TRY_PAST_EXPIRY, EXPECTED_PARAMS_WITH_REMARKS);
+        testCryptoParameters(USER_INPUT_TRY_PAST_EXPIRY, EXPECTED_PARAMS_WITH_REMARK);
     }
 
     //@@KVignesh122
@@ -192,6 +191,6 @@ class AddCryptoParserTest extends GeneralInstrumentParserTest {
     @Test
     void addCryptoParams_abortAtRemark_expectException() {
         assertThrows(OperationAbortedError.class,
-            () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_REMARKS, NO_PARAMS_EXPECTED));
+            () -> testCryptoParameters(USER_INPUT_TRY_ABORT_AT_REMARK, NO_PARAMS_EXPECTED));
     }
 }

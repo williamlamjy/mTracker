@@ -21,7 +21,7 @@ public class EditInstrumentParser extends InputParser {
     protected static final String CURRENT_PRICE_ATTRIBUTE = "current-price";
     protected static final String SENTIMENT_ATTRIBUTE = "sentiment";
     protected static final String REMARK_ATTRIBUTE = "remarks";
-    protected static final String RETURN_ATTRIBUTE = "past-returns";
+    protected static final String PAST_RETURN_ATTRIBUTE = "past-returns";
     protected static final String ENTRY_PRICE_ATTRIBUTE = "entry-price";
     protected static final String EXIT_PRICE_ATTRIBUTE = "exit-price";
     protected static final String EXPIRY_ATTRIBUTE = "expiry";
@@ -95,13 +95,13 @@ public class EditInstrumentParser extends InputParser {
     }
 
     /**
-     * Gets the user new remarks input and stores it in a hashmap that maps the remarks attribute to input.
-     * Process is skipped if the user does not want to edit the remarks.
+     * Gets the user new remark input and stores it in a hashmap that maps the remark attribute to input.
+     * Process is skipped if the user does not want to edit the remark.
      *
      * @param parametersGiven The set of parameters of the instrument the user wants to edit.
      * @throws OperationAbortedError If the user wants to abort the edit instrument process.
      */
-    public void editRemarksParameter(HashSet<String> parametersGiven)
+    public void editRemarkParameter(HashSet<String> parametersGiven)
             throws OperationAbortedError {
         if (!parametersGiven.contains(REMARK_ATTRIBUTE)) {
             return;
@@ -113,24 +113,24 @@ public class EditInstrumentParser extends InputParser {
     }
 
     /**
-     * Gets the user new past returns input and stores it in a hashmap that maps the past returns attribute to input.
-     * Process is skipped if the user does not want to edit the past returns.
+     * Gets the user new past return input and stores it in a hashmap that maps the past return attribute to input.
+     * Process is skipped if the user does not want to edit the past return.
      *
      * @param parametersGiven The set of parameters of the instrument the user wants to edit.
      * @throws OperationAbortedError If the user wants to abort the edit instrument process.
      */
-    public void editReturnParameter(HashSet<String> parametersGiven)
+    public void editPastReturnParameter(HashSet<String> parametersGiven)
             throws OperationAbortedError {
-        if (!parametersGiven.contains(RETURN_ATTRIBUTE)) {
+        if (!parametersGiven.contains(PAST_RETURN_ATTRIBUTE)) {
             return;
         }
-        TextUi.displayEditReturn();
+        TextUi.displayEditPastReturn();
         String inputReturn = getUserInput(WORKSPACE);
         checkIfAbort(inputReturn, WORKSPACE);
-        if (!Validate.isValidPastReturns(inputReturn)) {
+        if (!Validate.isValidPastReturn(inputReturn)) {
             inputReturn = String.valueOf(UNDEFINED_PAST_RETURN_VALUE);
         }
-        editedParameters.put(RETURN_ATTRIBUTE, inputReturn);
+        editedParameters.put(PAST_RETURN_ATTRIBUTE, inputReturn);
     }
 
     /**
@@ -229,11 +229,11 @@ public class EditInstrumentParser extends InputParser {
         editNameParameter(instrumentType, parametersGiven);
         editCurrentPriceParameter(parametersGiven);
         editSentimentsParameter(parametersGiven);
-        editReturnParameter(parametersGiven);
+        editPastReturnParameter(parametersGiven);
         editEntryPriceParameter(parametersGiven);
         editExitPriceParameter(parametersGiven);
         editExpiryParameter(parametersGiven);
-        editRemarksParameter(parametersGiven);
+        editRemarkParameter(parametersGiven);
         editDoneStatus(parametersGiven);
     }
 
