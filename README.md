@@ -1,6 +1,6 @@
 # mTracker
 
-![](images/mTracker_logo_cropped.png)
+![](docs/images/mTracker_logo_cropped.png)
 
 mTracker is a **command-line based trading journal interface** that **allows
 investors and traders to store and view important trading related information** on their
